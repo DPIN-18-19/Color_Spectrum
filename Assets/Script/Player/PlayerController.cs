@@ -13,11 +13,11 @@ public class PlayerController : MonoBehaviour {
 
     // enum colores
 
-    public float MoveSpeed;         // PLayer's speed
+    //public float MoveSpeed;         // PLayer's speed
     private Rigidbody myRigidbody;
    
-    private Vector3 moveInput;      // Player direction. Input dependent
-    private Vector3 moveVelocity;   // Player new vector speed
+    //private Vector3 moveInput;      // Player direction. Input dependent
+    //private Vector3 moveVelocity;   // Player new vector speed
     
     private Camera maincamera;      // Player Camera
 
@@ -161,23 +161,23 @@ public class PlayerController : MonoBehaviour {
         }
 
         // Apply movement to player
-        moveInput = new Vector3(Input.GetAxisRaw("Horizontal"), 0f, Input.GetAxisRaw("Vertical"));
-        moveVelocity = moveInput * MoveSpeed;
+        //moveInput = new Vector3(Input.GetAxisRaw("Horizontal"), 0f, Input.GetAxisRaw("Vertical"));
+        //moveVelocity = moveInput * MoveSpeed;
         // Fix diagonal speed
 
         ///////////////////////////////////////
 
         // Player Rotation
-        Ray cameraRay = maincamera.ScreenPointToRay(Input.mousePosition);
-        Plane groundPlane = new Plane(Vector3.up, Vector3.zero);
-        float rayLeght;
+        //Ray cameraRay = maincamera.ScreenPointToRay(Input.mousePosition);
+        //Plane groundPlane = new Plane(Vector3.up, Vector3.zero);
+        //float rayLeght;
 
-        if(groundPlane.Raycast(cameraRay, out rayLeght))
-        {
-            Vector3 pointToLook = cameraRay.GetPoint(rayLeght);
-            Debug.DrawLine(cameraRay.origin, pointToLook, Color.blue);
-            transform.LookAt(new Vector3(pointToLook.x, transform.position.y, pointToLook.z));
-        }
+        //if(groundPlane.Raycast(cameraRay, out rayLeght))
+        //{
+        //    Vector3 pointToLook = cameraRay.GetPoint(rayLeght);
+        //    Debug.DrawLine(cameraRay.origin, pointToLook, Color.blue);
+        //    transform.LookAt(new Vector3(pointToLook.x, transform.position.y, pointToLook.z));
+        //}
 
         ////////////////////////////////////////
 
@@ -191,7 +191,7 @@ public class PlayerController : MonoBehaviour {
     {
         vida.text = Vida.ToString();
         // textvida.text = "= " + Vida.ToString();
-        myRigidbody.velocity = moveVelocity;
+        //myRigidbody.velocity = moveVelocity;
     }
 
 
