@@ -28,9 +28,9 @@ public class GunController : MonoBehaviour {
     public float FlashTime;         // Flash duration
 
     // Bullet shells
-    public Transform ShellYellow;
-    public Transform ShellBlue;
-    public Transform ShellPink;
+    //public Transform ShellYellow;
+    //public Transform ShellBlue;
+    //public Transform ShellPink;
     public Transform ShellEjection; // Shell starting position
 
     public Transform shell;
