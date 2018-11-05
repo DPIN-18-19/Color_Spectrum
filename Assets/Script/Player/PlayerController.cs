@@ -188,9 +188,9 @@ public class PlayerController : MonoBehaviour {
 
         // Firing automatic weapon
         if(Input.GetMouseButtonDown(0))
-         theGun.isFiring = true;
+         theGun.is_firing = true;
         if (Input.GetMouseButtonUp(0))
-            theGun.isFiring = false;
+            theGun.is_firing = false;
     }
     void FixedUpdate ()
     {

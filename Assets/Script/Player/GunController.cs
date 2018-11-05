@@ -4,11 +4,14 @@ using UnityEngine;
 
 public class GunController : MonoBehaviour {
 
-    public bool isFiring;   // Player is firing gun
+    public bool is_firing;   // Player is firing gun
 
-    public BulletController bullet;     // Yellow bullet gameobject
-    public GameObject bulletBlue;       // Blue Bullet
-    public GameObject bulletPink;       // Pink Bullet
+    public GameObject yellow_bullet;    // Yellow Bullet
+    public GameObject cyan_bullet;      // Blue Bullet
+    public GameObject magenta_bullet;   // Pink Bullet
+
+    private GameObject cur_bullet;      // Current color bullet
+
 
     // Small flash at the beginning
     public GameObject EffectYellow;     
@@ -48,98 +51,120 @@ public class GunController : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
+        
+        // Subscribe to Event
+        ColorChangingController.Instance.ToYellow += BulletToYellow;
+        ColorChangingController.Instance.ToCyan += BulletToCyan;
+        ColorChangingController.Instance.ToMagenta += BulletToMagenta;
+
         BulletYellow = true;
         BulletBlue = false;
         BulletPink = false;
+
+
     }
 	
 	// Update is called once per frame
 	void Update () {
 
-        if (Input.GetKeyDown("q") && BulletYellow == true)
-        {
-            BulletYellow = false;
-            BulletBlue = false;
-            BulletPink = true;
-        }
-       else if (Input.GetKeyDown("e") && BulletYellow == true)
-        {
-            BulletYellow = false;
-            BulletBlue = true;
-            BulletPink = false;
-        }
-        else if  (Input.GetKeyDown("q") && BulletBlue == true)
-        {
-            BulletYellow = true;
-            BulletBlue = false;
-            BulletPink = false;
+       // if (Input.GetKeyDown("q") && BulletYellow == true)
+       // {
+       //     BulletYellow = false;
+       //     BulletBlue = false;
+       //     BulletPink = true;
+       // }
+       //else if (Input.GetKeyDown("e") && BulletYellow == true)
+       // {
+       //     BulletYellow = false;
+       //     BulletBlue = true;
+       //     BulletPink = false;
+       // }
+       // else if  (Input.GetKeyDown("q") && BulletBlue == true)
+       // {
+       //     BulletYellow = true;
+       //     BulletBlue = false;
+       //     BulletPink = false;
             
-        }
-        else if (Input.GetKeyDown("e") && BulletBlue == true)
-        {
-            BulletYellow = false;
-            BulletBlue = false;
-            BulletPink = true;
-        }
-        else if (Input.GetKeyDown("q") && BulletPink == true)
-        {
-            BulletYellow = false;
-            BulletBlue = true;
-            BulletPink = false;
+       // }
+       // else if (Input.GetKeyDown("e") && BulletBlue == true)
+       // {
+       //     BulletYellow = false;
+       //     BulletBlue = false;
+       //     BulletPink = true;
+       // }
+       // else if (Input.GetKeyDown("q") && BulletPink == true)
+       // {
+       //     BulletYellow = false;
+       //     BulletBlue = true;
+       //     BulletPink = false;
             
-        }
-        else if (Input.GetKeyDown("e") && BulletPink == true)
-        {
-            BulletYellow = true;
-            BulletBlue = false;
-            BulletPink = false;
+       // }
+       // else if (Input.GetKeyDown("e") && BulletPink == true)
+       // {
+       //     BulletYellow = true;
+       //     BulletBlue = false;
+       //     BulletPink = false;
 
-        }
+       // }
 
-
-        if (isFiring && BulletYellow == true && BulletBlue == false && BulletPink == false )
-        {
-            shotCounter -= Time.deltaTime;
-            if(shotCounter <= 0)
-            {
-                shotCounter = timeBetweenShorts;
-                BulletController newBullet = Instantiate(bullet, FirePoint.position, FirePoint.rotation) as BulletController;
-                source.PlayOneShot(FXShotPlayer);
-                newBullet.speed = bulletSpeed;
-                EffectYellow.SetActive(true);
-                Instantiate(ShellYellow, ShellEjection.position, ShellEjection.rotation);
-                Invoke("QuitarEfectoYellow", FlashTime);
-                
-            }
-        }
-
-        if (isFiring && BulletYellow == false && BulletBlue == true && BulletPink == false)
+        if(is_firing)
         {
             shotCounter -= Time.deltaTime;
             if (shotCounter <= 0)
             {
-                source.PlayOneShot(FXShotPlayer);
                 shotCounter = timeBetweenShorts;
-                Instantiate(bulletBlue , FirePoint.position, FirePoint.rotation) ;
-                EffectBlue.SetActive(true);
-                Instantiate(ShellBlue, ShellEjection.position, ShellEjection.rotation);
-                Invoke("QuitarEfectoBlue", FlashTime);
+                Instantiate(cur_bullet, FirePoint.position, FirePoint.rotation);
+                source.PlayOneShot(FXShotPlayer);
+                //EffectYellow.SetActive(true);
+                //Instantiate(ShellYellow, ShellEjection.position, ShellEjection.rotation);
+                //Invoke("QuitarEfectoYellow", FlashTime);
+
             }
         }
 
-        if (isFiring && BulletYellow == false && BulletBlue == false && BulletPink == true)
-        {
-            shotCounter -= Time.deltaTime;
-            if (shotCounter <= 0)
-            {
-                source.PlayOneShot(FXShotPlayer);
-                shotCounter = timeBetweenShorts;
-                Instantiate(bulletPink , FirePoint.position, FirePoint.rotation) ;
-                EffectPink.SetActive(true);
-                Instantiate(ShellPink, ShellEjection.position, ShellEjection.rotation);
-                Invoke("QuitarEfectoPink", FlashTime);
-            }
-        }
+        //if (isFiring && BulletYellow == true && BulletBlue == false && BulletPink == false )
+        //{
+        //    shotCounter -= Time.deltaTime;
+        //    if(shotCounter <= 0)
+        //    {
+        //        shotCounter = timeBetweenShorts;
+        //        BulletController newBullet = Instantiate(bullet, FirePoint.position, FirePoint.rotation) as BulletController;
+        //        source.PlayOneShot(FXShotPlayer);
+        //        newBullet.speed = bulletSpeed;
+        //        EffectYellow.SetActive(true);
+        //        Instantiate(ShellYellow, ShellEjection.position, ShellEjection.rotation);
+        //        Invoke("QuitarEfectoYellow", FlashTime);
+
+        //    }
+        //}
+
+        //if (isFiring && BulletYellow == false && BulletBlue == true && BulletPink == false)
+        //{
+        //    shotCounter -= Time.deltaTime;
+        //    if (shotCounter <= 0)
+        //    {
+        //        source.PlayOneShot(FXShotPlayer);
+        //        shotCounter = timeBetweenShorts;
+        //        Instantiate(bulletBlue , FirePoint.position, FirePoint.rotation) ;
+        //        EffectBlue.SetActive(true);
+        //        Instantiate(ShellBlue, ShellEjection.position, ShellEjection.rotation);
+        //        Invoke("QuitarEfectoBlue", FlashTime);
+        //    }
+        //}
+
+        //if (isFiring && BulletYellow == false && BulletBlue == false && BulletPink == true)
+        //{
+        //    shotCounter -= Time.deltaTime;
+        //    if (shotCounter <= 0)
+        //    {
+        //        source.PlayOneShot(FXShotPlayer);
+        //        shotCounter = timeBetweenShorts;
+        //        Instantiate(bulletPink , FirePoint.position, FirePoint.rotation) ;
+        //        EffectPink.SetActive(true);
+        //        Instantiate(ShellPink, ShellEjection.position, ShellEjection.rotation);
+        //        Invoke("QuitarEfectoPink", FlashTime);
+        //    }
+        //}
     }
    void QuitarEfectoYellow()
     {
@@ -153,5 +178,23 @@ public class GunController : MonoBehaviour {
     {
         EffectPink.SetActive(false);
     }
-   
+
+    void BulletToYellow()
+    {
+        cur_bullet = yellow_bullet;
+        Debug.Log("Change to yellow");
+    }
+
+    void BulletToCyan()
+    {
+        cur_bullet = cyan_bullet;
+        Debug.Log("Change to cyan");
+    }
+
+    void BulletToMagenta()
+    {
+        cur_bullet = magenta_bullet;
+        Debug.Log("Change to magenta");
+    }
+
 }
