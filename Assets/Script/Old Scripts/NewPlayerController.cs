@@ -73,59 +73,59 @@ public class NewPlayerController : MonoBehaviour
 
         if (Vida <= 0)
         {
-            if (theGun.BulletYellow)
-            {
-                Instantiate(DieEffectYellow.gameObject, transform.position, Quaternion.identity);
-                Vida = 0;
-                Destroy(gameObject);
-            }
-            if (theGun.BulletBlue)
-            {
-                Instantiate(DieEffectBlue.gameObject, transform.position, Quaternion.identity);
-                Destroy(gameObject);
-                Vida = 0;
-            }
-            if (theGun.BulletPink)
-            {
-                Instantiate(DieEffectPink.gameObject, transform.position, Quaternion.identity);
-                Destroy(gameObject);
-                Vida = 0;
-            }
+            //if (theGun.BulletYellow)
+            //{
+            //    Instantiate(DieEffectYellow.gameObject, transform.position, Quaternion.identity);
+            //    Vida = 0;
+            //    Destroy(gameObject);
+            //}
+            //if (theGun.BulletBlue)
+            //{
+            //    Instantiate(DieEffectBlue.gameObject, transform.position, Quaternion.identity);
+            //    Destroy(gameObject);
+            //    Vida = 0;
+            //}
+            //if (theGun.BulletPink)
+            //{
+            //    Instantiate(DieEffectPink.gameObject, transform.position, Quaternion.identity);
+            //    Destroy(gameObject);
+            //    Vida = 0;
+            //}
         }
         if (Vida > 50)
         {
             Vida = 50;
         }
 
-        if (theGun.BulletYellow)
-        {
-            gameObject.layer = 8;
+        //if (theGun.BulletYellow)
+        //{
+        //    gameObject.layer = 8;
 
-            GetComponent<Renderer>().material = Yellow_Material;
-            YellowNormal.SetActive(true);
-            BlueNormal.SetActive(false);
-            PinkNormal.SetActive(false);
+        //    GetComponent<Renderer>().material = Yellow_Material;
+        //    YellowNormal.SetActive(true);
+        //    BlueNormal.SetActive(false);
+        //    PinkNormal.SetActive(false);
 
 
-        }
-        if (theGun.BulletBlue)
-        {
-            gameObject.layer = 9;
+        //}
+        //if (theGun.BulletBlue)
+        //{
+        //    gameObject.layer = 9;
 
-            GetComponent<Renderer>().material = Blue_Material;
-            YellowNormal.SetActive(false);
-            BlueNormal.SetActive(true);
-            PinkNormal.SetActive(false);
-        }
-        if (theGun.BulletPink)
-        {
-            gameObject.layer = 10;
+        //    GetComponent<Renderer>().material = Blue_Material;
+        //    YellowNormal.SetActive(false);
+        //    BlueNormal.SetActive(true);
+        //    PinkNormal.SetActive(false);
+        //}
+        //if (theGun.BulletPink)
+        //{
+        //    gameObject.layer = 10;
 
-            GetComponent<Renderer>().material = Pink_Material;
-            YellowNormal.SetActive(false);
-            BlueNormal.SetActive(false);
-            PinkNormal.SetActive(true);
-        }
+        //    GetComponent<Renderer>().material = Pink_Material;
+        //    YellowNormal.SetActive(false);
+        //    BlueNormal.SetActive(false);
+        //    PinkNormal.SetActive(true);
+        //}
 
         moveInput = new Vector3(Input.GetAxisRaw("Horizontal"), 0f, Input.GetAxisRaw("Vertical"));
         moveVelocity = moveInput * MoveSpeed;

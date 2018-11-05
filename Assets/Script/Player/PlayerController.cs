@@ -88,25 +88,25 @@ public class PlayerController : MonoBehaviour {
         // Death code
         if (Vida <= 0)
         {
-            if(theGun.BulletYellow)
-            {
-                Instantiate(DieEffectYellow.gameObject, transform.position, Quaternion.identity);
-                Vida  = 0;
-                Destroy(gameObject);
-                // Destroy Particles when finished
-            }
-           if(theGun.BulletBlue)
-            {
-                Instantiate(DieEffectBlue.gameObject, transform.position, Quaternion.identity);
-                Destroy(gameObject);
-                Vida = 0;
-            }
-           if (theGun.BulletPink)
-            {
-                Instantiate(DieEffectPink.gameObject, transform.position, Quaternion.identity);
-                Destroy(gameObject);
-                Vida = 0;
-            }
+           // if(theGun.BulletYellow)
+           // {
+           //     Instantiate(DieEffectYellow.gameObject, transform.position, Quaternion.identity);
+           //     Vida  = 0;
+           //     Destroy(gameObject);
+           //     // Destroy Particles when finished
+           // }
+           //if(theGun.BulletBlue)
+           // {
+           //     Instantiate(DieEffectBlue.gameObject, transform.position, Quaternion.identity);
+           //     Destroy(gameObject);
+           //     Vida = 0;
+           // }
+           //if (theGun.BulletPink)
+           // {
+           //     Instantiate(DieEffectPink.gameObject, transform.position, Quaternion.identity);
+           //     Destroy(gameObject);
+           //     Vida = 0;
+           // }
         }
 
         // Health maximum limit
