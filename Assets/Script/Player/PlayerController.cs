@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 using UnityEngine.UI;
 
 public class PlayerController : MonoBehaviour {
@@ -52,15 +53,19 @@ public class PlayerController : MonoBehaviour {
     // Use this for initialization
     void Awake()
     {
-       
-        
+
     }
 
-    void Start () {
+    void Start ()
+    {
+        ColorChangingController.Instance.ToYellow += ChangeToYellow;
+        ColorChangingController.Instance.ToCyan += ChangeToCyan;
+        ColorChangingController.Instance.ToMagenta += ChangeToMagenta;
+
         //DieEffectYellow.Stop();
         //DieEffectBlue.Stop();
         //DieEffectPink.Stop();
-        gameObject.layer = 8;           // Player's color
+        //gameObject.layer = 8;           // Player's color
         YellowNormal.SetActive(true);
         BlueNormal.SetActive(false);
         PinkNormal.SetActive(false);
@@ -114,51 +119,51 @@ public class PlayerController : MonoBehaviour {
         ///////////////////////////////////////////////////
 
         // Player changes to yellow
-        if (theGun.BulletYellow)
-        {
-            gameObject.layer = 8;
+        //if (theGun.BulletYellow)
+        //{
+        //    gameObject.layer = 8;
            
-            GetComponent<Renderer>().material = Yellow_Material;
+        //    GetComponent<Renderer>().material = Yellow_Material;
 
 
-            YellowNormal.SetActive(true);
-            BlueNormal.SetActive(false);
-            PinkNormal.SetActive(false);
+        //    YellowNormal.SetActive(true);
+        //    BlueNormal.SetActive(false);
+        //    PinkNormal.SetActive(false);
 
-            HUDAmarillo.SetActive(true);
-            HUDRosa.SetActive(false);
-            HUDAzul.SetActive(false);
+        //    HUDAmarillo.SetActive(true);
+        //    HUDRosa.SetActive(false);
+        //    HUDAzul.SetActive(false);
 
 
-        }
-        // Player changes to blue
-        if (theGun.BulletBlue)
-        {
-            gameObject.layer = 9;
+        //}
+        //// Player changes to blue
+        //if (theGun.BulletBlue)
+        //{
+        //    gameObject.layer = 9;
             
-            GetComponent<Renderer>().material = Blue_Material;
-            YellowNormal.SetActive(false);
-            BlueNormal.SetActive(true);
-            PinkNormal.SetActive(false);
+        //    GetComponent<Renderer>().material = Blue_Material;
+        //    YellowNormal.SetActive(false);
+        //    BlueNormal.SetActive(true);
+        //    PinkNormal.SetActive(false);
 
-            HUDAmarillo.SetActive(false);
-            HUDRosa.SetActive(false);
-            HUDAzul.SetActive(true);
-        }
-        // Player changes to pink
-        if (theGun.BulletPink)
-        {
-            gameObject.layer = 10;
+        //    HUDAmarillo.SetActive(false);
+        //    HUDRosa.SetActive(false);
+        //    HUDAzul.SetActive(true);
+        //}
+        //// Player changes to pink
+        //if (theGun.BulletPink)
+        //{
+        //    gameObject.layer = 10;
             
-            GetComponent<Renderer>().material = Pink_Material;
-            YellowNormal.SetActive(false);
-            BlueNormal.SetActive(false);
-            PinkNormal.SetActive(true);
+        //    GetComponent<Renderer>().material = Pink_Material;
+        //    YellowNormal.SetActive(false);
+        //    BlueNormal.SetActive(false);
+        //    PinkNormal.SetActive(true);
 
-            HUDAmarillo.SetActive(false);
-            HUDRosa.SetActive(true);
-            HUDAzul.SetActive(false);
-        }
+        //    HUDAmarillo.SetActive(false);
+        //    HUDRosa.SetActive(true);
+        //    HUDAzul.SetActive(false);
+        //}
 
         // Apply movement to player
         //moveInput = new Vector3(Input.GetAxisRaw("Horizontal"), 0f, Input.GetAxisRaw("Vertical"));
@@ -196,6 +201,27 @@ public class PlayerController : MonoBehaviour {
 
 
 
+
+    void ChangeToYellow()
+    {
+        gameObject.layer = 8;                                   // Yellow Layer
+        renderPlayer.material = Yellow_Material;    // Apply player material
+        Debug.Log("Change to yellow");
+    }
+
+    void ChangeToCyan()
+    {
+        gameObject.layer = 9;                                   // Cyan Layer
+        renderPlayer.material = Blue_Material;      // Apply player material
+        Debug.Log("Change to cyan");
+    }
+
+    void ChangeToMagenta()
+    {
+        gameObject.layer = 10;                                  // Magenta Layer
+        renderPlayer.material = Pink_Material;      // Apply player material
+        Debug.Log("Change to magenta");
+    }
 
 
     public void HacerDaño()
