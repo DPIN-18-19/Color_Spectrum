@@ -79,6 +79,7 @@ public class BestAIYellow : MonoBehaviour {
     }
     private void OnCollisionEnter(Collision col)
     {
+        // Move this chunk to bullet controller
         if ((col.gameObject.tag == "Blue" && col.gameObject.layer == 12) || (col.gameObject.tag == "Pink" && col.gameObject.layer == 13))
         {
             Instantiate(DieEffect.gameObject, transform.position, Quaternion.identity);
@@ -87,10 +88,6 @@ public class BestAIYellow : MonoBehaviour {
         //Evitar Fuego Amigo
         if(col.gameObject.layer == 16 && FuegoAmigo == true)
         {
-
-
-
-
             Destroy(col.gameObject);
         }
     }
@@ -108,10 +105,6 @@ public class BestAIYellow : MonoBehaviour {
         {
             isMoving = false;
             shot.isShooting = false;
-
-
         }
-
     }
-
 }

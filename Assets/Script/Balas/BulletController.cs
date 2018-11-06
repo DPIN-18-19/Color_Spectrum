@@ -28,22 +28,26 @@ public class BulletController : MonoBehaviour
         StartCoroutine(DestroyBullet());
     }
 
+    // Bullet variable initializer
     public void AddBulletInfo(int n_color, float n_speed, float n_damage, float n_range, bool n_friend)
     {
         if (n_color == 0)
         {
             this.gameObject.tag = "Yellow";
             enemy_ignore = "EnemyYellow";
+            this.gameObject.layer = 11;             // Take out layers
         }
         else if (n_color == 1)
         {
             this.gameObject.tag = "Blue";
             enemy_ignore = "EnemyBlue";
+            this.gameObject.layer = 12;             // Take out layers
         }
         else if (n_color == 2)
         { 
             this.gameObject.tag = "Pink";
             enemy_ignore = "EnemyPink";
+            this.gameObject.layer = 13;             // Take out layers
         }
 
         bullet_color = n_color;

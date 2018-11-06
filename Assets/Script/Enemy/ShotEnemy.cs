@@ -29,7 +29,8 @@ public class ShotEnemy : MonoBehaviour {
 	void Update ()
     {
         timeBetweenShorts = timeBetweenShorts - Time.deltaTime;
-		if(timeBetweenShorts < 0 && isShooting == true)
+
+        if (timeBetweenShorts < 0 && isShooting == true)
         {
             source.PlayOneShot(FXShotEnemy);
             EffectShot.SetActive(true);
