@@ -86,35 +86,35 @@ public class PlayerController : MonoBehaviour {
         // Debug.Log(Vida);
        
         // Death code
-        if (Vida <= 0)
-        {
-           // if(theGun.BulletYellow)
-           // {
-           //     Instantiate(DieEffectYellow.gameObject, transform.position, Quaternion.identity);
-           //     Vida  = 0;
-           //     Destroy(gameObject);
-           //     // Destroy Particles when finished
-           // }
-           //if(theGun.BulletBlue)
-           // {
-           //     Instantiate(DieEffectBlue.gameObject, transform.position, Quaternion.identity);
-           //     Destroy(gameObject);
-           //     Vida = 0;
-           // }
-           //if (theGun.BulletPink)
-           // {
-           //     Instantiate(DieEffectPink.gameObject, transform.position, Quaternion.identity);
-           //     Destroy(gameObject);
-           //     Vida = 0;
-           // }
-        }
+        //if (Vida <= 0)
+        //{
+        //   // if(theGun.BulletYellow)
+        //   // {
+        //   //     Instantiate(DieEffectYellow.gameObject, transform.position, Quaternion.identity);
+        //   //     Vida  = 0;
+        //   //     Destroy(gameObject);
+        //   //     // Destroy Particles when finished
+        //   // }
+        //   //if(theGun.BulletBlue)
+        //   // {
+        //   //     Instantiate(DieEffectBlue.gameObject, transform.position, Quaternion.identity);
+        //   //     Destroy(gameObject);
+        //   //     Vida = 0;
+        //   // }
+        //   //if (theGun.BulletPink)
+        //   // {
+        //   //     Instantiate(DieEffectPink.gameObject, transform.position, Quaternion.identity);
+        //   //     Destroy(gameObject);
+        //   //     Vida = 0;
+        //   // }
+        //}
 
         // Health maximum limit
         // Make variable from this
-        if(Vida > 50)
-        {
-            Vida = 50;
-        }
+        //if(Vida > 50)
+        //{
+        //    Vida = 50;
+        //}
 
         ///////////////////////////////////////////////////
 

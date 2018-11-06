@@ -2,16 +2,15 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class BulletController : MonoBehaviour {
-
-   
+public class BulletController : MonoBehaviour
+{
+    
     public float speed;
     //public float VidaQuitada;
     Collider m_collider;
     // Use this for initialization
     void Start()
     {
-       
         m_collider = GetComponent<Collider>();
     }
 
