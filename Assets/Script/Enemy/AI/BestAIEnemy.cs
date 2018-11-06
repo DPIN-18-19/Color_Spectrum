@@ -5,20 +5,18 @@ using UnityEngine.AI;
 
 public class BestAIEnemy : MonoBehaviour {
     
-    private NavMeshAgent theAgent;      // Navmesh object
-    private GameObject target;          // Move towards objective
-    public bool isMoving;               // Is enemy moving towards objective
-    public ShotEnemy shot;              // Enemy's gun
-    public Transform [] points;         // Patrol points (unfinished)
-    public ParticleSystem DieEffect;    // Die particles
-    public bool cercaMirar = false;     // Rotate enemy when going after player
-    public GameObject Back;             // Enemy return point
-    public bool Stop;                   // (Unused)
-    public bool FuegoAmigo;             // Friendly fire
+    private NavMeshAgent  theAgent;
+    private GameObject target;
+    public bool isMoving;
+    public ShotEnemy shot;
+    public Transform [] points;
+    public ParticleSystem DieEffect;
+    public bool cercaMirar = false;
+    public GameObject Back;
+    public bool Stop;
+    public bool FuegoAmigo;
 
     // private int despoint;
-
-
     // Use this for initialization
     void Start () {
         target = GameObject.Find("Player");
@@ -29,7 +27,6 @@ public class BestAIEnemy : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
       
-        // Go after player
         if (isMoving == true )
         {
             theAgent.SetDestination(target.transform.position);
@@ -37,19 +34,16 @@ public class BestAIEnemy : MonoBehaviour {
             theAgent.isStopped = false;
             
         }
-        // Go back home
+ 
         if (isMoving == false)
         {
+
             theAgent.SetDestination(Back.transform.position);
         }
-
-        // Rotate towards player
         if(cercaMirar == true)
         {
             transform.LookAt(target.transform.position);
         }
-
-        // Freeze in navmesh
         if (Stop == true)
         {
             theAgent.isStopped = true;
@@ -61,7 +55,7 @@ public class BestAIEnemy : MonoBehaviour {
 
     private void OnTriggerEnter(Collider col)
     {
-        //  Keep distance from player
+
         if (col.gameObject.tag == "LimitEnemigo")
         {
             cercaMirar = true;
@@ -69,7 +63,6 @@ public class BestAIEnemy : MonoBehaviour {
             shot.isShooting = true;
 
         }
-        // Start attacking player
         if (col.gameObject.tag == "AttackPlayer")
         {
 
@@ -83,15 +76,11 @@ public class BestAIEnemy : MonoBehaviour {
     }
     private void OnCollisionEnter(Collision col)
     {
-        // Collided with player's bullet
         if((col.gameObject.tag == "Blue" && col.gameObject.layer == 12) || (col.gameObject.tag == "Yellow" && col.gameObject.layer == 11))
         {
             Instantiate(DieEffect.gameObject,transform.position, Quaternion.identity);
             Debug.Log("hOLA");
             Destroy(this.gameObject);
-            // Has to destroy enemy position too
-
-
             if (col.gameObject.layer == 16 && FuegoAmigo == true)
             {
                 Destroy(col.gameObject);
@@ -101,7 +90,6 @@ public class BestAIEnemy : MonoBehaviour {
     }
     private void OnTriggerExit(Collider col)
     {
-        // Keep walking towards player
         if (col.gameObject.tag == "LimitEnemigo")
         {
             isMoving = true;
@@ -110,8 +98,6 @@ public class BestAIEnemy : MonoBehaviour {
             transform.LookAt(target.transform.position);
 
         }
-
-        // Go back home
         if (col.gameObject.tag == "AttackPlayer")
         {
             isMoving = false;
