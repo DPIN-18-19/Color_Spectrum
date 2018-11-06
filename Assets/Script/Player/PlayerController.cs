@@ -1,49 +1,48 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.Events;
 using UnityEngine.UI;
 
 public class PlayerController : MonoBehaviour {
 
 
-    public Text vida;               // Player's health in UI
-    public float Vida;              // Player's current health
-    public float VidaQuitada;       // Player's received damage per attack
-    // float vida maxima
-
-    // enum colores
-
-    //public float MoveSpeed;         // PLayer's speed
+    public Text vida;
+    public float MoveSpeed;
     private Rigidbody myRigidbody;
    
-    //private Vector3 moveInput;      // Player direction. Input dependent
-    //private Vector3 moveVelocity;   // Player new vector speed
+    private Vector3 moveInput;
+    private Vector3 moveVelocity;
     
-    private Camera maincamera;      // Player Camera
+    private Camera maincamera;
 
-    public GunController theGun;    // Player's Gun
+    public GunController theGun;
 
-
-    Collider m_collider;
-    private Renderer renderPlayer;
-
-    // HUD small colored squares
     public GameObject YellowNormal;
     public GameObject BlueNormal;
+
+    
     public GameObject PinkNormal;
 
-    // Death particles
+    public  float Vida;
+
+    public float VidaQuitada;
+
+
     public ParticleSystem DieEffectYellow;
     public ParticleSystem DieEffectBlue;
     public ParticleSystem DieEffectPink;
 
-    // Player's material
+
+    Collider m_collider;
+
     public Material Blue_Material;
     public Material Yellow_Material;
     public Material Pink_Material;
+    private Renderer renderPlayer;
 
-    // HUD screen transparency
+
+
+
     public GameObject HUDAmarillo;
     public GameObject HUDRosa;
     public GameObject HUDAzul;
@@ -53,19 +52,14 @@ public class PlayerController : MonoBehaviour {
     // Use this for initialization
     void Awake()
     {
-
+       
+        
     }
-
-    void Start ()
-    {
-        ColorChangingController.Instance.ToYellow += ChangeToYellow;
-        ColorChangingController.Instance.ToCyan += ChangeToCyan;
-        ColorChangingController.Instance.ToMagenta += ChangeToMagenta;
-
-        //DieEffectYellow.Stop();
-        //DieEffectBlue.Stop();
-        //DieEffectPink.Stop();
-        //gameObject.layer = 8;           // Player's color
+    void Start () {
+        DieEffectYellow.Stop();
+        DieEffectBlue.Stop();
+        DieEffectPink.Stop();
+        gameObject.layer = 8;
         YellowNormal.SetActive(true);
         BlueNormal.SetActive(false);
         PinkNormal.SetActive(false);
@@ -85,151 +79,108 @@ public class PlayerController : MonoBehaviour {
 	void Update () {
         // Debug.Log(Vida);
        
-        // Death code
+        
         if (Vida <= 0)
         {
-           // if(theGun.BulletYellow)
-           // {
-           //     Instantiate(DieEffectYellow.gameObject, transform.position, Quaternion.identity);
-           //     Vida  = 0;
-           //     Destroy(gameObject);
-           //     // Destroy Particles when finished
-           // }
-           //if(theGun.BulletBlue)
-           // {
-           //     Instantiate(DieEffectBlue.gameObject, transform.position, Quaternion.identity);
-           //     Destroy(gameObject);
-           //     Vida = 0;
-           // }
-           //if (theGun.BulletPink)
-           // {
-           //     Instantiate(DieEffectPink.gameObject, transform.position, Quaternion.identity);
-           //     Destroy(gameObject);
-           //     Vida = 0;
-           // }
-        }
+            if(theGun.BulletYellow)
+            {
+                Instantiate(DieEffectYellow.gameObject, transform.position, Quaternion.identity);
+                Vida  = 0;
+                Destroy(gameObject);
 
-        // Health maximum limit
-        // Make variable from this
+            }
+           if(theGun.BulletBlue)
+            {
+                Instantiate(DieEffectBlue.gameObject, transform.position, Quaternion.identity);
+                Destroy(gameObject);
+                Vida = 0;
+            }
+           if (theGun.BulletPink)
+            {
+                Instantiate(DieEffectPink.gameObject, transform.position, Quaternion.identity);
+                Destroy(gameObject);
+                Vida = 0;
+            }
+        }
         if(Vida > 50)
         {
             Vida = 50;
         }
 
-        ///////////////////////////////////////////////////
-
-        // Player changes to yellow
-        //if (theGun.BulletYellow)
-        //{
-        //    gameObject.layer = 8;
+        if (theGun.BulletYellow)
+        {
+            gameObject.layer = 8;
            
-        //    GetComponent<Renderer>().material = Yellow_Material;
+            GetComponent<Renderer>().material = Yellow_Material;
+            YellowNormal.SetActive(true);
+            BlueNormal.SetActive(false);
+            PinkNormal.SetActive(false);
+
+            HUDAmarillo.SetActive(true);
+            HUDRosa.SetActive(false);
+            HUDAzul.SetActive(false);
 
 
-        //    YellowNormal.SetActive(true);
-        //    BlueNormal.SetActive(false);
-        //    PinkNormal.SetActive(false);
-
-        //    HUDAmarillo.SetActive(true);
-        //    HUDRosa.SetActive(false);
-        //    HUDAzul.SetActive(false);
-
-
-        //}
-        //// Player changes to blue
-        //if (theGun.BulletBlue)
-        //{
-        //    gameObject.layer = 9;
+        }
+        if (theGun.BulletBlue)
+        {
+            gameObject.layer = 9;
             
-        //    GetComponent<Renderer>().material = Blue_Material;
-        //    YellowNormal.SetActive(false);
-        //    BlueNormal.SetActive(true);
-        //    PinkNormal.SetActive(false);
+            GetComponent<Renderer>().material = Blue_Material;
+            YellowNormal.SetActive(false);
+            BlueNormal.SetActive(true);
+            PinkNormal.SetActive(false);
 
-        //    HUDAmarillo.SetActive(false);
-        //    HUDRosa.SetActive(false);
-        //    HUDAzul.SetActive(true);
-        //}
-        //// Player changes to pink
-        //if (theGun.BulletPink)
-        //{
-        //    gameObject.layer = 10;
+            HUDAmarillo.SetActive(false);
+            HUDRosa.SetActive(false);
+            HUDAzul.SetActive(true);
+        }
+        if (theGun.BulletPink)
+        {
+            gameObject.layer = 10;
             
-        //    GetComponent<Renderer>().material = Pink_Material;
-        //    YellowNormal.SetActive(false);
-        //    BlueNormal.SetActive(false);
-        //    PinkNormal.SetActive(true);
+            GetComponent<Renderer>().material = Pink_Material;
+            YellowNormal.SetActive(false);
+            BlueNormal.SetActive(false);
+            PinkNormal.SetActive(true);
 
-        //    HUDAmarillo.SetActive(false);
-        //    HUDRosa.SetActive(true);
-        //    HUDAzul.SetActive(false);
-        //}
+            HUDAmarillo.SetActive(false);
+            HUDRosa.SetActive(true);
+            HUDAzul.SetActive(false);
+        }
 
-        // Apply movement to player
-        //moveInput = new Vector3(Input.GetAxisRaw("Horizontal"), 0f, Input.GetAxisRaw("Vertical"));
-        //moveVelocity = moveInput * MoveSpeed;
-        // Fix diagonal speed
+        moveInput = new Vector3(Input.GetAxisRaw("Horizontal"), 0f, Input.GetAxisRaw("Vertical"));
+        moveVelocity = moveInput * MoveSpeed;
+        
+        {
+            moveVelocity = moveInput * MoveSpeed;
+        }
+        Ray cameraRay = maincamera.ScreenPointToRay(Input.mousePosition);
+        Plane groundPlane = new Plane(Vector3.up, Vector3.zero);
+        float rayLeght;
 
-        ///////////////////////////////////////
-
-        // Player Rotation
-        //Ray cameraRay = maincamera.ScreenPointToRay(Input.mousePosition);
-        //Plane groundPlane = new Plane(Vector3.up, Vector3.zero);
-        //float rayLeght;
-
-        //if(groundPlane.Raycast(cameraRay, out rayLeght))
-        //{
-        //    Vector3 pointToLook = cameraRay.GetPoint(rayLeght);
-        //    Debug.DrawLine(cameraRay.origin, pointToLook, Color.blue);
-        //    transform.LookAt(new Vector3(pointToLook.x, transform.position.y, pointToLook.z));
-        //}
-
-        ////////////////////////////////////////
-
-        // Firing automatic weapon
+        if(groundPlane.Raycast(cameraRay, out rayLeght))
+        {
+            Vector3 pointToLook = cameraRay.GetPoint(rayLeght);
+            Debug.DrawLine(cameraRay.origin, pointToLook, Color.blue);
+            transform.LookAt(new Vector3(pointToLook.x, transform.position.y, pointToLook.z));
+        }
         if(Input.GetMouseButtonDown(0))
-         theGun.is_firing = true;
+         theGun.isFiring = true;
         if (Input.GetMouseButtonUp(0))
-            theGun.is_firing = false;
+            theGun.isFiring = false;
     }
     void FixedUpdate ()
     {
         vida.text = Vida.ToString();
         // textvida.text = "= " + Vida.ToString();
-        //myRigidbody.velocity = moveVelocity;
+        myRigidbody.velocity = moveVelocity;
     }
-
-
-
-
-    void ChangeToYellow()
-    {
-        gameObject.layer = 8;                                   // Yellow Layer
-        renderPlayer.material = Yellow_Material;    // Apply player material
-        Debug.Log("Change to yellow");
-    }
-
-    void ChangeToCyan()
-    {
-        gameObject.layer = 9;                                   // Cyan Layer
-        renderPlayer.material = Blue_Material;      // Apply player material
-        Debug.Log("Change to cyan");
-    }
-
-    void ChangeToMagenta()
-    {
-        gameObject.layer = 10;                                  // Magenta Layer
-        renderPlayer.material = Pink_Material;      // Apply player material
-        Debug.Log("Change to magenta");
-    }
-
-
     public void HacerDaño()
     {
         Vida = Vida - VidaQuitada;
         Debug.Log(Vida);
     }
-
     public void RecibeVida()
     {
         Vida = Vida + VidaQuitada;

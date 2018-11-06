@@ -1,8 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
-
 namespace IndiePixel.Cameras {
     public class TopCamara : MonoBehaviour
     {
