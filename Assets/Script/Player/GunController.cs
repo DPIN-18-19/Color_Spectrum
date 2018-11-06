@@ -7,51 +7,48 @@ public class GunController : MonoBehaviour {
     public bool is_firing;   // Player is firing gun
 
     public GameObject bullet;    // Yellow Bullet
-    // public GameObject cyan_bullet;      // Blue Bullet
-    // public GameObject magenta_bullet;   // Pink Bullet
+                                 // public GameObject cyan_bullet;      // Blue Bullet
+                                 // public GameObject magenta_bullet;   // Pink Bullet
 
     // private GameObject cur_bullet;      // Current color bullet
 
+    public Transform bullet_spawn;     // Bullet spawn position
 
     // Materials
-    public Material Blue_Material;
-    public Material Yellow_Material;
-    public Material Pink_Material;
+    public Material yellow_mat;
+    public Material cyan_mat;
+    public Material magenta_mat;
 
     // Small flash at the beginning
     //public GameObject EffectYellow;     
     //public GameObject EffectPink;
     //public GameObject EffectBlue;
 
-    public GameObject effect;
-
-    public float FlashTime;         // Flash duration
+    public GameObject flash_effect;
+    public float flash_time;         // Flash duration
 
     // Bullet shells
-    public Transform ShellYellow;
-    public Transform ShellBlue;
-    public Transform ShellPink;
-    public Transform ShellEjection; // Shell starting position
+    //public Transform ShellYellow;
+    //public Transform ShellBlue;
+    //public Transform ShellPink;
 
     public Transform shell;
+    public Transform shell_spawn; // Shell starting position
 
     // PLayer's bullet color checker
     //public bool BulletYellow;
     //public bool BulletBlue;
     //public bool BulletPink;
-    public float bulletSpeed;       // Bullet speed
+    //public float bulletSpeed;       // Bullet speed
 
-    public float timeBetweenShorts; // Firing cooldown
-    private float shotCounter;      // Firing cooldown counter
+    public float timeBetweenShorts;     // Firing cooldown
+    private float shotCounter;          // Firing cooldown counter
 
     // Sometimes there is no bullet fired
 
     public AudioClip FXShotPlayer;
     private AudioSource source;
-
-
-    public Transform FirePoint;     // Bullet spawn position
-
+    
 
     void Awake()
     {
@@ -122,12 +119,12 @@ public class GunController : MonoBehaviour {
             if (shotCounter <= 0)
             {
                 shotCounter = timeBetweenShorts;
-                Instantiate(bullet, FirePoint.position, FirePoint.rotation);
-                //Instantiate(effect, FirePoint.position, FirePoint.rotation);
+                Instantiate(bullet, bullet_spawn.position, bullet_spawn.rotation);
+                //Instantiate(flash_effect, bullet_spawn.position, bullet_spawn.rotation);
                 source.PlayOneShot(FXShotPlayer);
                 //effect.SetActive(true);
                 //EffectYellow.SetActive(true);
-                Instantiate(shell, ShellEjection.position, ShellEjection.rotation);
+                Instantiate(shell, shell_spawn.position, shell_spawn.rotation);
                 //Invoke("QuitarEfectoYellow", FlashTime);
 
             }
@@ -190,33 +187,34 @@ public class GunController : MonoBehaviour {
    //     EffectPink.SetActive(false);
    // }
 
+    // Color dependent functions
     void BulletToYellow()
     {
         //cur_bullet = yellow_bullet;
-        bullet.GetComponent<Renderer>().material = Yellow_Material;
-        effect.GetComponent<SpriteRenderer>().color = Color.yellow;
-        effect.GetComponentInChildren<Light>().color = Color.yellow;
-        shell.GetComponent<MeshRenderer>().material = Yellow_Material;
+        bullet.GetComponent<Renderer>().material = yellow_mat;
+        flash_effect.GetComponent<SpriteRenderer>().color = Color.yellow;
+        flash_effect.GetComponentInChildren<Light>().color = Color.yellow;
+        shell.GetComponent<MeshRenderer>().material = yellow_mat;
         Debug.Log("Change to yellow");
     }
 
     void BulletToCyan()
     {
         //cur_bullet = cyan_bullet;
-        bullet.GetComponent<Renderer>().material = Blue_Material;
-        effect.GetComponent<SpriteRenderer>().color = Color.cyan;
-        effect.GetComponentInChildren<Light>().color = Color.cyan;
-        shell.GetComponent<MeshRenderer>().material = Blue_Material;
+        bullet.GetComponent<Renderer>().material = cyan_mat;
+        flash_effect.GetComponent<SpriteRenderer>().color = Color.cyan;
+        flash_effect.GetComponentInChildren<Light>().color = Color.cyan;
+        shell.GetComponent<MeshRenderer>().material = cyan_mat;
         Debug.Log("Change to cyan");
     }
 
     void BulletToMagenta()
     {
         //cur_bullet = magenta_bullet;
-        bullet.GetComponent<Renderer>().material = Pink_Material;
-        effect.GetComponent<SpriteRenderer>().color = Color.magenta;
-        effect.GetComponentInChildren<Light>().color = Color.magenta;
-        shell.GetComponent<MeshRenderer>().material = Pink_Material;
+        bullet.GetComponent<Renderer>().material = magenta_mat;
+        flash_effect.GetComponent<SpriteRenderer>().color = Color.magenta;
+        flash_effect.GetComponentInChildren<Light>().color = Color.magenta;
+        shell.GetComponent<MeshRenderer>().material = magenta_mat;
         Debug.Log("Change to magenta");
     }
 

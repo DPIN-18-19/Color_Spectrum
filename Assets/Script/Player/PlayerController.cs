@@ -1,15 +1,14 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.Events;
 using UnityEngine.UI;
 
 public class PlayerController : MonoBehaviour {
 
 
-    public Text vida;               // Player's health in UI
-    public float Vida;              // Player's current health
-    public float VidaQuitada;       // Player's received damage per attack
+    //public Text vida;               // Player's health in UI
+    //public float Vida;              // Player's current health
+    //public float VidaQuitada;       // Player's received damage per attack
     // float vida maxima
 
     // enum colores
@@ -34,9 +33,9 @@ public class PlayerController : MonoBehaviour {
     public GameObject PinkNormal;
 
     // Death particles
-    public ParticleSystem DieEffectYellow;
-    public ParticleSystem DieEffectBlue;
-    public ParticleSystem DieEffectPink;
+    //public ParticleSystem DieEffectYellow;
+    //public ParticleSystem DieEffectBlue;
+    //public ParticleSystem DieEffectPink;
 
     // Player's material
     public Material Blue_Material;
@@ -194,7 +193,7 @@ public class PlayerController : MonoBehaviour {
     }
     void FixedUpdate ()
     {
-        vida.text = Vida.ToString();
+        //vida.text = Vida.ToString();
         // textvida.text = "= " + Vida.ToString();
         //myRigidbody.velocity = moveVelocity;
     }
@@ -224,27 +223,27 @@ public class PlayerController : MonoBehaviour {
     }
 
 
-    public void HacerDaño()
-    {
-        Vida = Vida - VidaQuitada;
-        Debug.Log(Vida);
-    }
+    //public void HacerDaño()
+    //{
+    //    Vida = Vida - VidaQuitada;
+    //    Debug.Log(Vida);
+    //}
 
-    public void RecibeVida()
-    {
-        Vida = Vida + VidaQuitada;
-        Debug.Log(Vida);
+    //public void RecibeVida()
+    //{
+    //    Vida = Vida + VidaQuitada;
+    //    Debug.Log(Vida);
 
-    }
+    //}
 
 
-    private void OnColliderEnter(Collider col)
-    {
+    //private void OnColliderEnter(Collider col)
+    //{
         
-        // if (collision.gameObject.tag == "Pink" || collision.gameObject.tag == "Blue" || collision.gameObject.tag == "Yellow" )
-        //{
-        //  m_collider.enabled = !m_collider.enabled;
-        //}
-    }
+    //    // if (collision.gameObject.tag == "Pink" || collision.gameObject.tag == "Blue" || collision.gameObject.tag == "Yellow" )
+    //    //{
+    //    //  m_collider.enabled = !m_collider.enabled;
+    //    //}
+    //}
     
 }
