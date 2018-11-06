@@ -6,17 +6,18 @@ public class ColorChangingController : MonoBehaviour {
 
     public enum Colors
     {
-        Yellow,
-        Cyan,
-        Magenta
+        Yellow,         // Yellow = 0
+        Cyan,           // Cyan = 1
+        Magenta         // Magenta = 2
     };
 
-    public Colors cur_color;
-    int i_cur_color;
-    private int num_colors;
+    public Colors cur_color;                    // Current selected color
+    int i_cur_color;                            // Current selected color (number)
+    private int num_colors;                     // Number of colors
+
     public Colors init_color = Colors.Yellow;
 
-    bool do_update;
+    bool do_update;     // Has color changed?
 
     //////////////////////////////////////////////////////////////////////////////
 
@@ -109,5 +110,10 @@ public class ColorChangingController : MonoBehaviour {
             return length-1;
         else
             return t;
+    }
+
+    public int GetColor()
+    {
+        return i_cur_color;
     }
 }

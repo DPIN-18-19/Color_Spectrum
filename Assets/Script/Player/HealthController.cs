@@ -49,6 +49,9 @@ public class HealthController : MonoBehaviour
     // Substract health
     public void GetDamage(float damage)
     {
+        if (armor > 0)
+            GetArmorDamage(damage);
+
         health -= damage;
         Debug.Log("Damaged : " + health);
     }

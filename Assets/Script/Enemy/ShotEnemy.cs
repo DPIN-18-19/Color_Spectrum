@@ -26,13 +26,15 @@ public class ShotEnemy : MonoBehaviour {
 	}
 	
 	// Update is called once per frame
-	void Update () {
+	void Update ()
+    {
         timeBetweenShorts = timeBetweenShorts - Time.deltaTime;
 		if(timeBetweenShorts < 0 && isShooting == true)
         {
             source.PlayOneShot(FXShotEnemy);
             EffectShot.SetActive(true);
-            Instantiate(bullet, FirePos.position, FirePos.rotation);
+            GameObject bullet_shot = Instantiate(bullet, FirePos.position, FirePos.rotation);
+            bullet_shot.GetComponent<BulletController>().AddBulletInfo(0,5,5,5,false);
             Instantiate(Shell, ShellEjection.position, ShellEjection.rotation);
             timeBetweenShorts = TimeShots;
             Invoke("QuitarEfecto", FlashTime);

@@ -126,7 +126,7 @@ public class GunController : MonoBehaviour {
             {
                 shotCounter = timeBetweenShorts;
                 GameObject bullet_shot = Instantiate(bullet, bullet_spawn.position, bullet_spawn.rotation);
-                bullet_shot.GetComponent<BulletController>().AddBulletInfo(cur_color, speed, damage, range);
+                bullet_shot.GetComponent<BulletController>().AddBulletInfo(cur_color, speed, damage, range, true);
                 //Instantiate(flash_effect, bullet_spawn.position, bullet_spawn.rotation);
                 source.PlayOneShot(FXShotPlayer);
                 //effect.SetActive(true);
