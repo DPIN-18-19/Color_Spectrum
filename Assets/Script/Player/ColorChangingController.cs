@@ -18,13 +18,15 @@ public class ColorChangingController : MonoBehaviour {
 
     bool do_update;
 
+    //////////////////////////////////////////////////////////////////////////////
+
     // Events
     public delegate void ColorChange();
     public event ColorChange ToYellow;
     public event ColorChange ToCyan;
     public event ColorChange ToMagenta;
 
-
+    //////////////////////////////////////////////////////////////////////////////
 
     public static ColorChangingController Instance
     {

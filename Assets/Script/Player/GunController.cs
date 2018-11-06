@@ -19,6 +19,11 @@ public class GunController : MonoBehaviour {
     public Material cyan_mat;
     public Material magenta_mat;
 
+    int cur_color;
+    public float speed = 0.2f;
+    public float damage = 5;
+    public float range = 5;
+
     // Small flash at the beginning
     //public GameObject EffectYellow;     
     //public GameObject EffectPink;
@@ -48,7 +53,8 @@ public class GunController : MonoBehaviour {
 
     public AudioClip FXShotPlayer;
     private AudioSource source;
-    
+
+    //////////////////////////////////////////////////////////////////////////////
 
     void Awake()
     {
@@ -119,7 +125,8 @@ public class GunController : MonoBehaviour {
             if (shotCounter <= 0)
             {
                 shotCounter = timeBetweenShorts;
-                Instantiate(bullet, bullet_spawn.position, bullet_spawn.rotation);
+                GameObject bullet_shot = Instantiate(bullet, bullet_spawn.position, bullet_spawn.rotation);
+                bullet_shot.GetComponent<BulletController>().AddBulletInfo(cur_color, speed, damage, range);
                 //Instantiate(flash_effect, bullet_spawn.position, bullet_spawn.rotation);
                 source.PlayOneShot(FXShotPlayer);
                 //effect.SetActive(true);
@@ -191,6 +198,7 @@ public class GunController : MonoBehaviour {
     void BulletToYellow()
     {
         //cur_bullet = yellow_bullet;
+        cur_color = 0;
         bullet.GetComponent<Renderer>().material = yellow_mat;
         flash_effect.GetComponent<SpriteRenderer>().color = Color.yellow;
         flash_effect.GetComponentInChildren<Light>().color = Color.yellow;
@@ -201,6 +209,7 @@ public class GunController : MonoBehaviour {
     void BulletToCyan()
     {
         //cur_bullet = cyan_bullet;
+        cur_color = 1;
         bullet.GetComponent<Renderer>().material = cyan_mat;
         flash_effect.GetComponent<SpriteRenderer>().color = Color.cyan;
         flash_effect.GetComponentInChildren<Light>().color = Color.cyan;
@@ -211,6 +220,7 @@ public class GunController : MonoBehaviour {
     void BulletToMagenta()
     {
         //cur_bullet = magenta_bullet;
+        cur_color = 2;
         bullet.GetComponent<Renderer>().material = magenta_mat;
         flash_effect.GetComponent<SpriteRenderer>().color = Color.magenta;
         flash_effect.GetComponentInChildren<Light>().color = Color.magenta;

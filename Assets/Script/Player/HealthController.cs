@@ -14,13 +14,18 @@ public class HealthController : MonoBehaviour
     // Dead variables
     public ParticleSystem [] die_effect;
     int player_color;
-                                   
+
+    //////////////////////////////////////////////////////////////////////////////
+
     // Use this for initialization
     void Start ()
     {
         ColorChangingController.Instance.ToYellow += ChangeToYellow;
         ColorChangingController.Instance.ToCyan += ChangeToCyan;
         ColorChangingController.Instance.ToMagenta += ChangeToMagenta;
+
+        health = max_health;
+        armor = max_armor;
     }
 	
 	// Update is called once per frame

@@ -23,7 +23,6 @@ public class PlayerController : MonoBehaviour {
 
     public GunController theGun;    // Player's Gun
 
-
     Collider m_collider;
     private Renderer renderPlayer;
 
@@ -47,7 +46,7 @@ public class PlayerController : MonoBehaviour {
     public GameObject HUDRosa;
     public GameObject HUDAzul;
 
-    
+    //////////////////////////////////////////////////////////////////////////////
 
     // Use this for initialization
     void Awake()
