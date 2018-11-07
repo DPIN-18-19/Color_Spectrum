@@ -4,11 +4,11 @@ using UnityEngine;
 
 public class GunController : MonoBehaviour {
 
-    public bool is_firing;   // Player is firing gun
+    public bool is_firing;          // Player is firing gun
 
-    public GameObject bullet;    // Yellow Bullet
-                                 // public GameObject cyan_bullet;      // Blue Bullet
-                                 // public GameObject magenta_bullet;   // Pink Bullet
+    public GameObject bullet;       // Bullet to shoot
+    // public GameObject cyan_bullet;      // Blue Bullet
+    // public GameObject magenta_bullet;   // Pink Bullet
 
     // private GameObject cur_bullet;      // Current color bullet
 
@@ -127,7 +127,10 @@ public class GunController : MonoBehaviour {
                 shotCounter = timeBetweenShorts;
                 GameObject bullet_shot = Instantiate(bullet, bullet_spawn.position, bullet_spawn.rotation);
                 bullet_shot.GetComponent<BulletController>().AddBulletInfo(cur_color, speed, damage, range, true);
+
+                //-Need to fix flash effect rotation on creation, and destroy itself
                 //Instantiate(flash_effect, bullet_spawn.position, bullet_spawn.rotation);
+
                 source.PlayOneShot(FXShotPlayer);
                 //effect.SetActive(true);
                 //EffectYellow.SetActive(true);
@@ -194,7 +197,11 @@ public class GunController : MonoBehaviour {
    //     EffectPink.SetActive(false);
    // }
 
+
+
     // Color dependent functions
+
+    // Changing to yellow
     void BulletToYellow()
     {
         //cur_bullet = yellow_bullet;
@@ -203,9 +210,9 @@ public class GunController : MonoBehaviour {
         flash_effect.GetComponent<SpriteRenderer>().color = Color.yellow;
         flash_effect.GetComponentInChildren<Light>().color = Color.yellow;
         shell.GetComponent<MeshRenderer>().material = yellow_mat;
-        Debug.Log("Change to yellow");
     }
 
+    // Changing to cyan
     void BulletToCyan()
     {
         //cur_bullet = cyan_bullet;
@@ -214,9 +221,9 @@ public class GunController : MonoBehaviour {
         flash_effect.GetComponent<SpriteRenderer>().color = Color.cyan;
         flash_effect.GetComponentInChildren<Light>().color = Color.cyan;
         shell.GetComponent<MeshRenderer>().material = cyan_mat;
-        Debug.Log("Change to cyan");
     }
 
+    // Changing to magenta
     void BulletToMagenta()
     {
         //cur_bullet = magenta_bullet;
@@ -225,7 +232,6 @@ public class GunController : MonoBehaviour {
         flash_effect.GetComponent<SpriteRenderer>().color = Color.magenta;
         flash_effect.GetComponentInChildren<Light>().color = Color.magenta;
         shell.GetComponent<MeshRenderer>().material = magenta_mat;
-        Debug.Log("Change to magenta");
     }
 
 }

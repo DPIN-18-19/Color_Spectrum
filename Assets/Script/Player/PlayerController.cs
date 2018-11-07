@@ -10,8 +10,7 @@ public class PlayerController : MonoBehaviour {
     //public float Vida;              // Player's current health
     //public float VidaQuitada;       // Player's received damage per attack
     // float vida maxima
-
-    // enum colores
+    
 
     //public float MoveSpeed;         // PLayer's speed
     private Rigidbody myRigidbody;
@@ -27,6 +26,7 @@ public class PlayerController : MonoBehaviour {
     private Renderer renderPlayer;
 
     // HUD small colored squares
+    //- Take these out to HUD
     public GameObject YellowNormal;
     public GameObject BlueNormal;
     public GameObject PinkNormal;
@@ -42,6 +42,7 @@ public class PlayerController : MonoBehaviour {
     public Material Pink_Material;
 
     // HUD screen transparency
+    //- Take these out to HUD
     public GameObject HUDAmarillo;
     public GameObject HUDRosa;
     public GameObject HUDAzul;
@@ -56,6 +57,7 @@ public class PlayerController : MonoBehaviour {
 
     void Start ()
     {
+        // Subscribe to event
         ColorChangingController.Instance.ToYellow += ChangeToYellow;
         ColorChangingController.Instance.ToCyan += ChangeToCyan;
         ColorChangingController.Instance.ToMagenta += ChangeToMagenta;
@@ -185,6 +187,7 @@ public class PlayerController : MonoBehaviour {
         ////////////////////////////////////////
 
         // Firing automatic weapon
+        //- Move this to GunController?
         if(Input.GetMouseButtonDown(0))
          theGun.is_firing = true;
         if (Input.GetMouseButtonUp(0))
@@ -198,25 +201,27 @@ public class PlayerController : MonoBehaviour {
     }
 
 
+    ///////////////////////////////////////////////////////////
 
+    // Color events
 
     void ChangeToYellow()
     {
-        gameObject.layer = 8;                                   // Yellow Layer
+        gameObject.layer = 8;                       // Yellow Layer
         renderPlayer.material = Yellow_Material;    // Apply player material
         Debug.Log("Change to yellow");
     }
 
     void ChangeToCyan()
     {
-        gameObject.layer = 9;                                   // Cyan Layer
+        gameObject.layer = 9;                       // Cyan Layer
         renderPlayer.material = Blue_Material;      // Apply player material
         Debug.Log("Change to cyan");
     }
 
     void ChangeToMagenta()
     {
-        gameObject.layer = 10;                                  // Magenta Layer
+        gameObject.layer = 10;                      // Magenta Layer
         renderPlayer.material = Pink_Material;      // Apply player material
         Debug.Log("Change to magenta");
     }

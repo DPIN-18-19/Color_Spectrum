@@ -15,9 +15,9 @@ public class ColorChangingController : MonoBehaviour {
     int i_cur_color;                            // Current selected color (number)
     private int num_colors;                     // Number of colors
 
-    public Colors init_color = Colors.Yellow;
+    public Colors init_color = Colors.Yellow;   // Initial color
 
-    bool do_update;     // Has color changed?
+    bool do_update;                             // Has color changed?
 
     //////////////////////////////////////////////////////////////////////////////
 
@@ -75,6 +75,7 @@ public class ColorChangingController : MonoBehaviour {
         }
     }
 
+    // If color was changed, send event
     void UpdateColor()
     {
         if (do_update)
@@ -102,6 +103,8 @@ public class ColorChangingController : MonoBehaviour {
         }
     }
 
+    // Loop between values
+    // Mathf.Repeat
     int Loop(int t, int length)
     {
         if (t >= length)
@@ -112,6 +115,7 @@ public class ColorChangingController : MonoBehaviour {
             return t;
     }
 
+    // Get current color int value
     public int GetColor()
     {
         return i_cur_color;

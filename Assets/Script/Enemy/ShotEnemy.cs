@@ -11,6 +11,7 @@ public class ShotEnemy : MonoBehaviour
     public Material cyan_mat;
     public Material magenta_mat;
 
+    ////////////////////////////////////////////////
 
     public GameObject bullet;
     public Transform FirePos;
@@ -44,7 +45,7 @@ public class ShotEnemy : MonoBehaviour
             source.PlayOneShot(FXShotEnemy);
             EffectShot.SetActive(true);
             GameObject bullet_shot = Instantiate(bullet, FirePos.position, FirePos.rotation);
-            bullet_shot.GetComponent<BulletController>().AddBulletInfo(bullet_color,5,5,5,false);
+            bullet_shot.GetComponent<BulletController>().AddBulletInfo(bullet_color,10,5,20,false);   //- Create Gun Variables
             Instantiate(Shell, ShellEjection.position, ShellEjection.rotation);
             timeBetweenShorts = TimeShots;
             Invoke("QuitarEfecto", FlashTime);
@@ -55,6 +56,7 @@ public class ShotEnemy : MonoBehaviour
         EffectShot.SetActive(false);
     }
 
+    // Change colors of bullet
     void AddaptColor()
     {
         bullet_color = gameObject.GetComponent<BestAIEnemy>().GetColor();

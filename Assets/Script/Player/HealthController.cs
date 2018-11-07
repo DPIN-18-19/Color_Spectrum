@@ -4,22 +4,23 @@ using UnityEngine;
 
 public class HealthController : MonoBehaviour
 {
-    //public Text vida;               // Player's health in UI
-    float health;              // Player's current health
+    //public Text vida;             // Player's health in UI
+    float health;                   // Player's current health
     public float max_health;        // Player's maximum health
 
-    float armor;
-    public float max_armor;
+    float armor;                    // Player's current armor
+    public float max_armor;         // Player's maximum armor
 
     // Dead variables
-    public ParticleSystem [] die_effect;
-    int player_color;
+    public ParticleSystem [] die_effect;    // Effect particle array
+    int player_color;                       // Player's color
 
     //////////////////////////////////////////////////////////////////////////////
 
     // Use this for initialization
     void Start ()
     {
+        // Subscribe to event
         ColorChangingController.Instance.ToYellow += ChangeToYellow;
         ColorChangingController.Instance.ToCyan += ChangeToCyan;
         ColorChangingController.Instance.ToMagenta += ChangeToMagenta;
@@ -34,12 +35,15 @@ public class HealthController : MonoBehaviour
         IsDead();
     }
 
+    // Check if dead
     void IsDead()
     {
         if(health <= 0)
         {
             if(player_color < die_effect.Length)
             {
+                //- Search a way to destroy die effect after finishing
+
                 Instantiate(die_effect[player_color].gameObject, transform.position, Quaternion.identity);
                 Destroy(gameObject);
             }
@@ -101,3 +105,6 @@ public class HealthController : MonoBehaviour
         player_color = 2;
     }
 }
+
+
+// Adeslas

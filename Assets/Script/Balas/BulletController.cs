@@ -10,14 +10,15 @@ public class BulletController : MonoBehaviour
     public float bullet_range;      // Distance a bullet can travel(m)
     public float bullet_life_time;  // Time of bullet(s)
 
-    public float wall_active_time = 0.2f;
-    public float enemy_active_time = 0.2f;
+    //- Consider making just one variable
+    public float wall_active_time = 0.2f;       // Time to get collision back after wall
+    public float enemy_active_time = 0.2f;      // Time to get collision back after enemy
 
-    string enemy_ignore;
+    string enemy_ignore;            // Enemy color to ignore collision with
 
-    public bool friendly;
+    public bool friendly;           // Who shot the bullet? True: Player, False: Enemy
 
-    Collider m_collider;
+    Collider m_collider;            // Bullet collider
 
     //////////////////////////////////////////////////////////////////////////////
 
@@ -31,30 +32,32 @@ public class BulletController : MonoBehaviour
     // Bullet variable initializer
     public void AddBulletInfo(int n_color, float n_speed, float n_damage, float n_range, bool n_friend)
     {
+        // Color dependent variables
         if (n_color == 0)
         {
             this.gameObject.tag = "Yellow";
             enemy_ignore = "EnemyYellow";
-            this.gameObject.layer = 11;             // Take out layers
+            this.gameObject.layer = 11;             //- Take out layers
         }
         else if (n_color == 1)
         {
             this.gameObject.tag = "Blue";
             enemy_ignore = "EnemyBlue";
-            this.gameObject.layer = 12;             // Take out layers
+            this.gameObject.layer = 12;             //- Take out layers
         }
         else if (n_color == 2)
         { 
             this.gameObject.tag = "Pink";
             enemy_ignore = "EnemyPink";
-            this.gameObject.layer = 13;             // Take out layers
+            this.gameObject.layer = 13;             //- Take out layers
         }
 
-        // Take out layers sometime
+        //- Take out layers sometime
         // Enemy layers
-        if (!friendly)
+        if (!n_friend)
             this.gameObject.layer = 16;
 
+        // Non-color dependent variables
         bullet_color = n_color;
         bullet_speed = n_speed;
         bullet_damage = n_damage;
@@ -67,47 +70,21 @@ public class BulletController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        // Move bullet
         transform.Translate(Vector3.forward * bullet_speed * Time.deltaTime);
-        //Destroy(gameObject, 3f);
     }
 
-    private void OnTriggerEnter(Collider col)
-    {
-
-        if (col.gameObject.tag == "Player")
-        {
-            Debug.Log("Bala");
-            col.gameObject.SendMessage("HacerDaño");
-            Destroy(gameObject);
-        }
-    }
-
+    // If not collided with anything, destroy
     IEnumerator DestroyBullet()
     {
         yield return new WaitForSeconds(bullet_life_time);
         Destroy(gameObject);
     }
 
-    //Collider m_collider;
-    //public float PonerColisionPared;
-    //public float PonerColisionEnemigo;
-
-    // Use this for initialization
-    //void Start()
-    //{
-    //    m_collider = GetComponent<Collider>();
-    //}
-
-    // Update is called once per frame
-    //void Update()
-    //{
-    //    transform.Translate(Vector3.forward * speed * Time.deltaTime);
-    //    Destroy(gameObject, 3f);
-    //}
-
+    
     private void OnCollisionEnter(Collision col)
     {
-        // Collision with player is not working
+        //- Collision with player is not working
         if (col.gameObject.tag == "Player")
         {
             if (friendly)
@@ -121,20 +98,16 @@ public class BulletController : MonoBehaviour
 
     void OnCollisionStay(Collision col)
     {
+        // Same color obstacle collision
         if (col.gameObject.tag == gameObject.tag)
         {
             m_collider.enabled = !m_collider.enabled;
             Invoke("ReactivateCollision", wall_active_time);
         }
-        //else if (col.gameObject.tag == "Player" && col.gameObject.layer == 9)
-        //{
-        //    Debug.Log("RecibeVida");
-        //    col.gameObject.SendMessage("RecibeVida");
-        //    //col.gameObject.SendMessage("HacerDaño");
-        //    Destroy(gameObject);
-        //}
+        // Collision with player
         else if (col.gameObject.tag == "Player")
         {
+            // Enemy bullet
             if (!friendly)
             {
                 // Taking damage to player
@@ -147,12 +120,14 @@ public class BulletController : MonoBehaviour
 
                 Destroy(gameObject);
             }
-            //else
-            //{
-            //    Debug.Log("Collided with player");
-            //    m_collider.enabled = !m_collider.enabled;
-            //    Invoke("ReactivateCollision", 1);
-            //}
+            // Player bullet
+            //- Bug here
+            else
+            {
+                Debug.Log("collided with player");
+                m_collider.enabled = !m_collider.enabled;
+                Invoke("ReactivateCollision", 1);
+            }
         }
         // Ignore enemies of same color
         else if (col.gameObject.tag == enemy_ignore)
@@ -167,7 +142,6 @@ public class BulletController : MonoBehaviour
         }
 
     }
-
 
     void ReactivateCollision()
     {
