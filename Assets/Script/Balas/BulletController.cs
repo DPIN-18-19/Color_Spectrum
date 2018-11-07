@@ -50,6 +50,11 @@ public class BulletController : MonoBehaviour
             this.gameObject.layer = 13;             // Take out layers
         }
 
+        // Take out layers sometime
+        // Enemy layers
+        if (!friendly)
+            this.gameObject.layer = 16;
+
         bullet_color = n_color;
         bullet_speed = n_speed;
         bullet_damage = n_damage;
@@ -100,8 +105,21 @@ public class BulletController : MonoBehaviour
     //    Destroy(gameObject, 3f);
     //}
 
+    private void OnCollisionEnter(Collision col)
+    {
+        // Collision with player is not working
+        if (col.gameObject.tag == "Player")
+        {
+            if (friendly)
+            {
+                Debug.Log("Collided with player");
+                m_collider.enabled = !m_collider.enabled;
+                Invoke("ReactivateCollision", 1);
+            }
+        }
+    }
 
-    private void OnCollisionStay(Collision col)
+    void OnCollisionStay(Collision col)
     {
         if (col.gameObject.tag == gameObject.tag)
         {
@@ -129,6 +147,12 @@ public class BulletController : MonoBehaviour
 
                 Destroy(gameObject);
             }
+            //else
+            //{
+            //    Debug.Log("Collided with player");
+            //    m_collider.enabled = !m_collider.enabled;
+            //    Invoke("ReactivateCollision", 1);
+            //}
         }
         // Ignore enemies of same color
         else if (col.gameObject.tag == enemy_ignore)

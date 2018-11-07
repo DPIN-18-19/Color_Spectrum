@@ -3,8 +3,22 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
 
-public class BestAIEnemy : MonoBehaviour {
+public class BestAIEnemy : MonoBehaviour
+{
+    // Make Universal color system
+
+    // Colors
+    public enum Colors
+    {
+        Yellow,         // Yellow = 0
+        Cyan,           // Cyan = 1
+        Magenta         // Magenta = 2
+    };
     
+    public Colors cur_color = Colors.Yellow;                    // Current selected color
+
+    /////////////////////////////////////////////////////
+
     private NavMeshAgent theAgent;      // Navmesh object
     private GameObject target;          // Move towards objective
     public bool isMoving;               // Is enemy moving towards objective
@@ -17,7 +31,6 @@ public class BestAIEnemy : MonoBehaviour {
     public bool FuegoAmigo;             // Friendly fire
 
     // private int despoint;
-
 
     // Use this for initialization
     void Start () {
@@ -119,7 +132,14 @@ public class BestAIEnemy : MonoBehaviour {
             
 
         }
-
     }
 
+
+    //////////////////////////////////////////
+
+    // Get Enemy Color
+    public int GetColor()
+    {
+        return (int)cur_color;
+    }
 }
