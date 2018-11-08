@@ -2,15 +2,11 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class BulletContollerEnemyPink : MonoBehaviour
-{
-    public float speed;                 // Bullet speed
-    Collider m_collider;                // Bullet collider
-
-    public float PonerColisionPared;    // Time of return collider
+public class BulletContollerEnemyPink : MonoBehaviour {
+    public float speed;
+    Collider m_collider;
+    public float PonerColisionPared;
     public float PonerColisionEnemigo;
-
-
     void Start()
     {
         m_collider = GetComponent<Collider>();
@@ -22,10 +18,8 @@ public class BulletContollerEnemyPink : MonoBehaviour
         transform.Translate(Vector3.forward * speed * Time.deltaTime);
         Destroy(gameObject, 3f);
     }
-
     private void OnCollisionEnter(Collision col)
     {
-        // Collided with pink wall
         if (col.gameObject.tag == "Pink")
         {
             Debug.Log("Hola");
@@ -33,14 +27,12 @@ public class BulletContollerEnemyPink : MonoBehaviour
             if (m_collider.enabled == false)
                 Invoke("PonerCollision", PonerColisionPared);
         }
-        // Collided with player as pink
         else if (col.gameObject.tag == "Player" && col.gameObject.layer == 10)
         {
             Debug.Log("PasoPorAqui");
             col.gameObject.SendMessage("RecibeVida");
             Destroy(gameObject);
         }
-        // Collided with player
         else if (col.gameObject.tag == "Player")
         {
             col.gameObject.SendMessage("HacerDaño");

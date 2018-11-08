@@ -4,48 +4,40 @@ using UnityEngine;
 
 public class GunController : MonoBehaviour {
 
-    public bool isFiring;   // Player is firing gun
+    public bool isFiring;
+    public BulletController bullet;
+    public GameObject bulletBlue;
+    public GameObject bulletPink;
 
-    public BulletController bullet;     // Yellow bullet gameobject
-    public GameObject bulletBlue;       // Blue Bullet
-    public GameObject bulletPink;       // Pink Bullet
-
-    // Small flash at the beginning
-    public GameObject EffectYellow;     
+    public GameObject EffectYellow;
     public GameObject EffectPink;
     public GameObject EffectBlue;
+    public float FlashTime;
 
-    public float FlashTime;         // Flash duration
-
-    // Bullet shells
     public Transform ShellYellow;
     public Transform ShellBlue;
     public Transform ShellPink;
-    public Transform ShellEjection; // Shell starting position
+    public Transform ShellEjection;
 
-    // PLayer's bullet color checker
     public bool BulletYellow;
     public bool BulletBlue;
     public bool BulletPink;
-    public float bulletSpeed;       // Bullet speed
+    public float bulletSpeed;
 
-    public float timeBetweenShorts; // Firing cooldown
-    private float shotCounter;      // Firing cooldown counter
-
-    // Sometimes there is no bullet fired
+    public float timeBetweenShorts;
+    private float shotCounter;
 
     public AudioClip FXShotPlayer;
     private AudioSource source;
 
 
-    public Transform FirePoint;     // Bullet spawn position
+    public Transform FirePoint;
 
 
     void Awake()
     {
         source = GetComponent<AudioSource>();
     }
-
 	// Use this for initialization
 	void Start () {
         BulletYellow = true;
