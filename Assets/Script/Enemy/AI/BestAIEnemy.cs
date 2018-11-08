@@ -3,27 +3,74 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
 
-public class BestAIEnemy : MonoBehaviour {
+public class BestAIEnemy : MonoBehaviour
+{
+    //- Make Universal color system
+
+    // Colors
+    public enum Colors
+    {
+        Yellow,         // Yellow = 0
+        Cyan,           // Cyan = 1
+        Magenta         // Magenta = 2
+    };
     
-    private NavMeshAgent  theAgent;
-    private GameObject target;
-    public bool isMoving;
-    public ShotEnemy shot;
-    public Transform [] points;
-    public ParticleSystem DieEffect;
-    public bool cercaMirar = false;
-    public GameObject Back;
-    public bool Stop;
-    public bool FuegoAmigo;
+    public Colors cur_color = Colors.Yellow;                    // Current selected color
+
+    string damaging_tag1;
+    string damaging_tag2;
+    int damaging_layer1;
+    int damaging_layer2;
+
+
+    /////////////////////////////////////////////////////
+
+    private NavMeshAgent theAgent;      // Navmesh object
+    private GameObject target;          // Move towards objective
+    public bool isMoving;               // Is enemy moving towards objective
+    public ShotEnemy shot;              // Enemy's gun
+    public Transform [] points;         // Patrol points (unfinished)
+    public ParticleSystem DieEffect;    // Die particles
+    public bool cercaMirar = false;     // Rotate enemy when going after player
+    public GameObject Back;             // Enemy return point
+    public bool Stop;                   // (Unused)
+    public bool FuegoAmigo;             // Friendly fire
 
     // private int despoint;
+
     // Use this for initialization
     void Start () {
         target = GameObject.Find("Player");
         theAgent = GetComponent<NavMeshAgent>();
         DieEffect.Stop();
+        EnemyColorData();
     }
 	
+    void EnemyColorData()
+    {
+        if(cur_color == Colors.Yellow)
+        {
+            damaging_tag1 = "Blue";
+            damaging_tag2 = "Pink";
+            damaging_layer1 = 12;
+            damaging_layer2 = 13;
+        }
+        else if (cur_color == Colors.Magenta)
+        {
+            damaging_tag1 = "Blue";
+            damaging_tag2 = "Yellow";
+            damaging_layer1 = 12;
+            damaging_layer2 = 11;
+        }
+        else if (cur_color == Colors.Cyan)
+        {
+            damaging_tag1 = "Pink";
+            damaging_tag2 = "Yellow";
+            damaging_layer1 = 13;
+            damaging_layer2 = 11;
+        }
+    }
+
 	// Update is called once per frame
 	void Update () {
       
@@ -51,8 +98,6 @@ public class BestAIEnemy : MonoBehaviour {
 
     }
 
-
-
     private void OnTriggerEnter(Collider col)
     {
 
@@ -76,11 +121,15 @@ public class BestAIEnemy : MonoBehaviour {
     }
     private void OnCollisionEnter(Collision col)
     {
-        if((col.gameObject.tag == "Blue" && col.gameObject.layer == 12) || (col.gameObject.tag == "Yellow" && col.gameObject.layer == 11))
+        // Collided with player's bullet
+        if((col.gameObject.tag == damaging_tag1 && col.gameObject.layer == damaging_layer1) || (col.gameObject.tag == damaging_tag2 && col.gameObject.layer == damaging_layer2))
         {
             Instantiate(DieEffect.gameObject,transform.position, Quaternion.identity);
             Debug.Log("hOLA");
             Destroy(this.gameObject);
+            //- Has to destroy enemy position too
+
+
             if (col.gameObject.layer == 16 && FuegoAmigo == true)
             {
                 Destroy(col.gameObject);
@@ -105,7 +154,14 @@ public class BestAIEnemy : MonoBehaviour {
             
 
         }
-
     }
 
+
+    //////////////////////////////////////////
+
+    // Get Enemy Color
+    public int GetColor()
+    {
+        return (int)cur_color;
+    }
 }
