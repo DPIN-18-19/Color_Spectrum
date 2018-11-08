@@ -162,14 +162,7 @@ public class PlayerController : MonoBehaviour {
         moveInput = new Vector3(Input.GetAxisRaw("Horizontal"), 0f, Input.GetAxisRaw("Vertical"));
         moveVelocity = moveInput * MoveSpeed;
 
-        //Codigo del Dash
-        if( dashTime <= 0 && Input.GetButtonDown ("Dash"))
-        {
-            //Instantiate(DashEffectYellow.gameObject, transform.position, Quaternion.identity);
-            moveInput = new Vector3(Input.GetAxisRaw("Horizontal") * dashspeed, 0f, Input.GetAxisRaw("Vertical")* dashspeed);
-            dashTime = startDashTime;
-        }
-        //Fin codigo del dash
+        
         
         {
             moveVelocity = moveInput * MoveSpeed;
@@ -188,6 +181,14 @@ public class PlayerController : MonoBehaviour {
          theGun.isFiring = true;
         if (Input.GetMouseButtonUp(0))
             theGun.isFiring = false;
+        //Codigo del Dash
+        if (dashTime <= 0 && Input.GetButtonDown("Dash"))
+        {
+            //Instantiate(DashEffectYellow.gameObject, transform.position, Quaternion.identity);
+            moveInput = new Vector3(Input.GetAxisRaw("Horizontal") * dashspeed, 0f, Input.GetAxisRaw("Vertical") * dashspeed);
+            dashTime = startDashTime;
+        }
+        //Fin codigo del dash
     }
     void FixedUpdate ()
     {
