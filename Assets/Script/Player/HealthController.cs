@@ -54,10 +54,15 @@ public class HealthController : MonoBehaviour
     public void GetDamage(float damage)
     {
         if (armor > 0)
+        {
             GetArmorDamage(damage);
-
-        health -= damage;
-        Debug.Log("Damaged : " + health);
+            Debug.Log("Damaged_armor : " + armor);
+        }
+        else
+        {
+            health -= damage;
+            Debug.Log("Damaged_health : " + health);
+        }
     }
 
     // Get back health
