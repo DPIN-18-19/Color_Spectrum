@@ -6,6 +6,7 @@ public class BulletController : MonoBehaviour
 {
     int bullet_color;
     public float bullet_speed;      // Bullet speed(m/s)
+    Vector3 bullet_dir;
     public float bullet_damage;     // Damage bullet makes 
     public float bullet_range;      // Distance a bullet can travel(m)
     public float bullet_life_time;  // Time of bullet(s)
@@ -30,7 +31,7 @@ public class BulletController : MonoBehaviour
     }
 
     // Bullet variable initializer
-    public void AddBulletInfo(int n_color, float n_speed, float n_damage, float n_range, bool n_friend)
+    public void AddBulletInfo(int n_color, float n_speed, Vector3 n_dir, float n_damage, float n_range, bool n_friend)
     {
         // Color dependent variables
         if (n_color == 0)
@@ -60,6 +61,7 @@ public class BulletController : MonoBehaviour
         // Non-color dependent variables
         bullet_color = n_color;
         bullet_speed = n_speed;
+        bullet_dir = n_dir;
         bullet_damage = n_damage;
         bullet_range = n_range;
         bullet_life_time = bullet_range / bullet_speed;
@@ -187,10 +189,10 @@ public class BulletController : MonoBehaviour
 
     void MoveBullet()
     {
-        Vector3 final_pos = transform.position + Vector3.forward * bullet_speed * Time.deltaTime;
+        Vector3 final_pos = transform.position + bullet_dir * bullet_speed * Time.deltaTime;
         // Move only if no collision is found
         if(!PeekNextPosition(final_pos))
-            transform.Translate(Vector3.forward * bullet_speed * Time.deltaTime);
+            transform.Translate(bullet_dir * bullet_speed * Time.deltaTime);
     }
 
     // Check next position the bullet will move to

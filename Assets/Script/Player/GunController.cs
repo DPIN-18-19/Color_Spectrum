@@ -54,6 +54,8 @@ public class GunController : MonoBehaviour {
     public AudioClip FXShotPlayer;
     private AudioSource source;
 
+    public CameraController cam;
+
     //////////////////////////////////////////////////////////////////////////////
 
     void Awake()
@@ -126,7 +128,11 @@ public class GunController : MonoBehaviour {
             {
                 shotCounter = timeBetweenShorts;
                 GameObject bullet_shot = Instantiate(bullet, bullet_spawn.position, bullet_spawn.rotation);
-                bullet_shot.GetComponent<BulletController>().AddBulletInfo(cur_color, speed, damage, range, true);
+
+                Vector3 bullet_dir = bullet_spawn.position- cam.GetMousePosInPlane(bullet_spawn.position);
+   
+                Debug.DrawLine(cam.GetMousePosInPlane(bullet_spawn.position), bullet_spawn.position, Color.cyan);
+                bullet_shot.GetComponent<BulletController>().AddBulletInfo(cur_color, speed, transform.forward, damage, range, true);
                 //Debug.Break();
                 //-Need to fix flash effect rotation on creation, and destroy itself
                 Quaternion spawn_rot = bullet_spawn.rotation;
