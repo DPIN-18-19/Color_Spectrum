@@ -129,7 +129,10 @@ public class GunController : MonoBehaviour {
                 bullet_shot.GetComponent<BulletController>().AddBulletInfo(cur_color, speed, damage, range, true);
 
                 //-Need to fix flash effect rotation on creation, and destroy itself
-                //Instantiate(flash_effect, bullet_spawn.position, bullet_spawn.rotation);
+                Quaternion spawn_rot = bullet_spawn.rotation;
+                //Debug.Log("Rotation: X:" + spawn_rot.x + " Y:" + spawn_rot.y + " Z:" + spawn_rot.z);
+                spawn_rot *= Quaternion.Euler(new Vector3(90, -90, 0));
+                Instantiate(flash_effect, bullet_spawn.position, spawn_rot);
 
                 source.PlayOneShot(FXShotPlayer);
                 //effect.SetActive(true);
