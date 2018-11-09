@@ -70,8 +70,10 @@ public class BulletController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        //Debug.Log("Update bullet");
+        //Debug.Break();
         // Move bullet
-        transform.Translate(Vector3.forward * bullet_speed * Time.deltaTime);
+        MoveBullet();
     }
 
     // If not collided with anything, destroy
@@ -81,23 +83,59 @@ public class BulletController : MonoBehaviour
         Destroy(gameObject);
     }
 
-    
+
     private void OnCollisionEnter(Collision col)
     {
+        Debug.Log("Enter Collided with " + col.transform.gameObject.tag);
         //- Collision with player is not working
-        if (col.gameObject.tag == "Player")
+        // Same color obstacle collision
+        if (col.gameObject.tag == gameObject.tag)
         {
-            if (friendly)
+            m_collider.enabled = !m_collider.enabled;
+            Invoke("ReactivateCollision", wall_active_time);
+        }
+        // Collision with player
+        else if (col.gameObject.tag == "Player")
+        {
+            // Enemy bullet
+            if (!friendly)
             {
-                Debug.Log("Collided with player");
+                // Taking damage to player
+                if (col.gameObject.GetComponent<ColorChangingController>().GetColor() != bullet_color)
+                    col.gameObject.SendMessage("GetDamage", bullet_damage);
+                // Restoring player health
+                else
+                    col.gameObject.SendMessage("RestoreHealth", bullet_damage);
+
+
+                Destroy(gameObject);
+            }
+            // Player bullet
+            //- Bug here
+            else
+            {
+                Debug.Log("collided with player");
                 m_collider.enabled = !m_collider.enabled;
                 Invoke("ReactivateCollision", 1);
             }
+        }
+        // Ignore enemies of same color
+        else if (col.gameObject.tag == enemy_ignore)
+        {
+            m_collider.enabled = !m_collider.enabled;
+            Invoke("ReactivateCollision", enemy_active_time);
+        }
+        // Collision with any other object
+        else
+        {
+            Destroy(gameObject);
         }
     }
 
     void OnCollisionStay(Collision col)
     {
+        Debug.Log("Collided with " + col.transform.gameObject.tag);
+
         // Same color obstacle collision
         if (col.gameObject.tag == gameObject.tag)
         {
@@ -140,11 +178,49 @@ public class BulletController : MonoBehaviour
         {
             Destroy(gameObject);
         }
-
     }
 
     void ReactivateCollision()
     {
         m_collider.enabled = !m_collider.enabled;
+    }
+
+    void MoveBullet()
+    {
+        Vector3 final_pos = transform.position + Vector3.forward * bullet_speed * Time.deltaTime;
+        // Move only if no collision is found
+        if(!PeekNextPosition(final_pos))
+            transform.Translate(Vector3.forward * bullet_speed * Time.deltaTime);
+    }
+
+    // Check next position the bullet will move to
+    // Return true: Bullet will collide with something
+    // Return false: Bullet will not collide
+    bool PeekNextPosition(Vector3 f_pos)
+    {
+        RaycastHit hit;
+
+        Vector3 ray_dir = transform.position - f_pos;
+        float dist = Vector3.Distance(transform.position, f_pos);
+
+        Debug.Log("Ray");
+        //Debug.Break();
+
+        if (Physics.Raycast(transform.position, ray_dir.normalized, out hit, dist))
+        {
+            //- Take out LimitEnemigo and Attack enemy
+            // Move to collision point
+            if (hit.transform.gameObject.tag != "Player")
+                transform.position = hit.point;
+            else
+                return false;
+
+            Debug.Log("Rayhit with " + hit.transform.gameObject.tag);
+            
+
+            return true;
+        }
+        else
+            return false;
     }
 }
