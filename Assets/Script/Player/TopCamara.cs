@@ -16,10 +16,23 @@ namespace IndiePixel.Cameras {
 
         public float m_SmoothSpeed = 0.5f;
         private Vector3 RefVelocity;
+
+        public float offset;
+
+        private CameraController cam;
         // Use this for initialization
+
+        private void Awake()
+        {
+
+            cam = GetComponent<CameraController>();
+        }
+
         void Start()
         {
+
             HandleCamera();
+
         }
 
         // Update is called once per frame
@@ -34,18 +47,27 @@ namespace IndiePixel.Cameras {
             {
                 return;
             }
-            Vector3 worldPosition = (Vector3.forward * -m_Distance) + (Vector3.up * m_height);
-            Debug.DrawLine(m_target.position, worldPosition, Color.red);
 
+            //Build worldposition vector
+            Vector3 worldPosition = (Vector3.forward * -m_Distance) + (Vector3.up * m_height);
+            //Debug.DrawLine(m_target.position, worldPosition, Color.red);
+
+            // Build rotated vector
             Vector3 rotatedVector = Quaternion.AngleAxis(m_Angle, Vector3.up) * worldPosition;
-            Debug.DrawLine(m_target.position, rotatedVector, Color.green);
+            //Debug.DrawLine(m_target.position, rotatedVector, Color.green);
 
             Vector3 flatTargetPosition = m_target.position;
+            flatTargetPosition = cam.CalculatePointInCircleFromCenter(m_target.position, cam.GetMousePosInPlane(m_target.position), offset);
+            
+            Debug.DrawLine(m_target.position, flatTargetPosition, Color.red);
             flatTargetPosition.y = 0f;
+
             Vector3 finalPosition = flatTargetPosition + rotatedVector;
 
-            transform.position =Vector3.SmoothDamp(transform.position, finalPosition, ref RefVelocity , m_SmoothSpeed);
+            
+            transform.position = Vector3.SmoothDamp(transform.position, finalPosition, ref RefVelocity , m_SmoothSpeed);
             transform.LookAt(flatTargetPosition);
+
         }
     }
 }
