@@ -49,7 +49,8 @@ namespace IndiePixel.Cameras {
             }
 
             //Build worldposition vector
-            Vector3 worldPosition = (Vector3.forward * -m_Distance) + (Vector3.up * m_height);
+            //Vector3 worldPosition = (Vector3.forward * -m_Distance) + (Vector3.up * m_height);
+            Vector3 worldPosition = (Vector3.up * m_height);
             //Debug.DrawLine(m_target.position, worldPosition, Color.red);
 
             // Build rotated vector
@@ -63,10 +64,9 @@ namespace IndiePixel.Cameras {
             flatTargetPosition.y = 0f;
 
             Vector3 finalPosition = flatTargetPosition + rotatedVector;
-
             
             transform.position = Vector3.SmoothDamp(transform.position, finalPosition, ref RefVelocity , m_SmoothSpeed);
-            transform.LookAt(flatTargetPosition);
+            //transform.LookAt(flatTargetPosition);
 
         }
     }
