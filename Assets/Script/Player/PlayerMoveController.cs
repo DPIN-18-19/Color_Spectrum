@@ -11,7 +11,7 @@ public class PlayerMoveController : MonoBehaviour
     // Variables
     public float move_speed;            // PLayer's speed
 
-    private Vector3 move_dir;           // Player direction
+    public Vector3 move_dir;           // Player direction
     private Vector3 move_velocity;      // Player new velocity vector
 
     // Use this for initialization

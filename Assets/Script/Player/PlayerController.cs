@@ -56,9 +56,7 @@ public class PlayerController : MonoBehaviour {
 
 
 
-    public float dashspeed;
-    private float dashTime;
-    public float startDashTime;
+    
 
 
 
@@ -94,7 +92,7 @@ public class PlayerController : MonoBehaviour {
 
 
 
-        dashTime = startDashTime;
+       // dashTime = startDashTime;
 
     }
   
@@ -210,12 +208,11 @@ public class PlayerController : MonoBehaviour {
         if (Input.GetMouseButtonUp(0))
             theGun.is_firing = false;
         //Codigo del Dash
-        if (dashTime <= 0 && Input.GetButtonDown("Dash"))
-        {
+        
             //Instantiate(DashEffectYellow.gameObject, transform.position, Quaternion.identity);
            // moveInput = new Vector3(Input.GetAxisRaw("Horizontal") * dashspeed, 0f, Input.GetAxisRaw("Vertical") * dashspeed);
            // dashTime = startDashTime;
-        }
+        
         //Fin codigo del dash
     }
     void FixedUpdate ()
