@@ -16,6 +16,16 @@ public class CameraController : MonoBehaviour {
 		
 	}
 
+    public Vector3 GetMousePos()
+    {
+        Ray cam_ray = cam.ScreenPointToRay(new Vector3(Input.mousePosition.x, Input.mousePosition.y, 0));
+        Plane ground_plane = new Plane(Vector3.up, Vector3.zero);
+        float ray_length;
+        ground_plane.Raycast(cam_ray, out ray_length);
+
+        return cam_ray.GetPoint(ray_length);
+    }
+
     public Vector3 GetMousePosInPlane(Vector3 point_in_plane)
     {
         Ray cam_ray = cam.ScreenPointToRay(new Vector3(Input.mousePosition.x, Input.mousePosition.y, 0));
