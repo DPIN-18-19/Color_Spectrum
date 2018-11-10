@@ -130,9 +130,10 @@ public class GunController : MonoBehaviour {
                 GameObject bullet_shot = Instantiate(bullet, bullet_spawn.position, bullet_spawn.rotation);
 
                 Vector3 bullet_dir = bullet_spawn.position- cam.GetMousePosInPlane(bullet_spawn.position);
+                bullet_dir = bullet_spawn.transform.TransformDirection(bullet_dir);
    
                 Debug.DrawLine(cam.GetMousePosInPlane(bullet_spawn.position), bullet_spawn.position, Color.cyan);
-                bullet_shot.GetComponent<BulletController>().AddBulletInfo(cur_color, speed, transform.forward, damage, range, true);
+                bullet_shot.GetComponent<BulletController>().AddBulletInfo(cur_color, speed, bullet_dir,damage, range, true);
                 //Debug.Break();
                 //-Need to fix flash effect rotation on creation, and destroy itself
                 Quaternion spawn_rot = bullet_spawn.rotation;

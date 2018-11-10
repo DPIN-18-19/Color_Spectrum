@@ -45,7 +45,8 @@ public class ShotEnemy : MonoBehaviour
             source.PlayOneShot(FXShotEnemy);
             EffectShot.SetActive(true);
             GameObject bullet_shot = Instantiate(bullet, FirePos.position, FirePos.rotation);
-            bullet_shot.GetComponent<BulletController>().AddBulletInfo(bullet_color,10, FirePos.transform.forward, 5,20,false);   //- Create Gun Variables
+            //bullet_shot.GetComponent<BulletController>().AddBulletInfo(bullet_color,10, 5,20,false);   //- Create Gun Variables
+            bullet_shot.GetComponent<BulletController>().AddBulletInfo(bullet_color, 10,transform.forward, 5, 20, false);   //- Create Gun Variables
             Instantiate(Shell, ShellEjection.position, ShellEjection.rotation);
             timeBetweenShorts = TimeShots;
             Invoke("QuitarEfecto", FlashTime);

@@ -32,6 +32,7 @@ public class BulletController : MonoBehaviour
 
     // Bullet variable initializer
     public void AddBulletInfo(int n_color, float n_speed, Vector3 n_dir, float n_damage, float n_range, bool n_friend)
+    //public void AddBulletInfo(int n_color, float n_speed, float n_damage, float n_range, bool n_friend)
     {
         // Color dependent variables
         if (n_color == 0)
@@ -61,7 +62,15 @@ public class BulletController : MonoBehaviour
         // Non-color dependent variables
         bullet_color = n_color;
         bullet_speed = n_speed;
-        bullet_dir = n_dir;
+
+        //bullet_dir = transform.forward;
+
+        //bullet_dir = transform.TransformDirection(transform.forward);
+
+        bullet_dir = transform.InverseTransformDirection(n_dir);
+
+        Debug.Log("Direction is: X:" + bullet_dir.x + " Y:" + bullet_dir.y + " Z:" + bullet_dir.z);
+
         bullet_damage = n_damage;
         bullet_range = n_range;
         bullet_life_time = bullet_range / bullet_speed;
@@ -75,7 +84,10 @@ public class BulletController : MonoBehaviour
         //Debug.Log("Update bullet");
         //Debug.Break();
         // Move bullet
-        MoveBullet();
+        //MoveBullet();
+        //transform.Translate(transform.forward * bullet_speed * Time.deltaTime);
+        //transform.Translate(transform.forward);
+        transform.position += bullet_dir * -bullet_speed * Time.deltaTime;
     }
 
     // If not collided with anything, destroy
@@ -189,10 +201,11 @@ public class BulletController : MonoBehaviour
 
     void MoveBullet()
     {
-        Vector3 final_pos = transform.position + bullet_dir * bullet_speed * Time.deltaTime;
+        Vector3 final_pos = transform.position + bullet_dir * -bullet_speed * Time.deltaTime;
         // Move only if no collision is found
         if(!PeekNextPosition(final_pos))
-            transform.Translate(bullet_dir * bullet_speed * Time.deltaTime);
+            transform.position += bullet_dir * -bullet_speed * Time.deltaTime;
+        Debug.Log("asda");
     }
 
     // Check next position the bullet will move to
@@ -204,8 +217,7 @@ public class BulletController : MonoBehaviour
 
         Vector3 ray_dir = transform.position - f_pos;
         float dist = Vector3.Distance(transform.position, f_pos);
-
-        Debug.Log("Ray");
+        
         //Debug.Break();
 
         if (Physics.Raycast(transform.position, ray_dir.normalized, out hit, dist))
@@ -213,14 +225,11 @@ public class BulletController : MonoBehaviour
             //- Take out LimitEnemigo and Attack enemy
             // Move to collision point
             if (hit.transform.gameObject.tag != "Player")
+            {
                 transform.position = hit.point;
-            else
-                return false;
-
-            Debug.Log("Rayhit with " + hit.transform.gameObject.tag);
-            
-
-            return true;
+                return true;
+            }
+            return false;
         }
         else
             return false;
