@@ -22,7 +22,7 @@ public class Amplificador : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-        PositionX += 0.01f * Time.deltaTime * 0.5f ; // poner 0.5f si es amplificador2
+        PositionX += 0.01f * Time.deltaTime * 1f ; // poner 0.5f si es amplificador2
         Scalex += 0.01f * Time.deltaTime * velocidad;
         Scaley += 0.01f * Time.deltaTime * velocidad;
         Scalez += 0.01f * Time.deltaTime * velocidad;
@@ -45,19 +45,19 @@ public class Amplificador : MonoBehaviour {
         //  TimeBetweenShot = TimeBetweenShot - Time.deltaTime;
         if (col.gameObject.layer == 8 && col.gameObject.tag == "Player" && tiempoNoHacerDaño <= tiempoinmuneravilidad)
         {
-            col.gameObject.SendMessage("HacerDaño");
+            //col.gameObject.SendMessage("HacerDaño");
             //Destruir();
             tiempoNoHacerDaño = tiempoNoHacerDaño - Time.deltaTime;
         }
         if (col.gameObject.layer == 9 && col.gameObject.tag == "Player" && tiempoNoHacerDaño <= tiempoinmuneravilidad)
         {
-            col.gameObject.SendMessage("RecibeVida");
+           // col.gameObject.SendMessage("RecibeVida");
             //  Destruir();
             tiempoNoHacerDaño = tiempoNoHacerDaño - Time.deltaTime;
         }
         if (col.gameObject.layer == 10 && col.gameObject.tag == "Player" && tiempoNoHacerDaño <= tiempoinmuneravilidad)
         {
-            col.gameObject.SendMessage("HacerDaño");
+          //  col.gameObject.SendMessage("HacerDaño");
             // Destruir();
             tiempoNoHacerDaño = tiempoNoHacerDaño - Time.deltaTime;
         }
