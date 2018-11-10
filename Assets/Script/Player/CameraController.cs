@@ -26,6 +26,16 @@ public class CameraController : MonoBehaviour {
         return cam_ray.GetPoint(ray_length);
     }
 
+    public float CalculateOffset(Vector3 center, Vector3 point, float max_dist, float max_offset)
+    {
+        //Given the distance between player and mouse, make an offset
+
+        Vector3 a_vector = center - point;
+        float dist = a_vector.magnitude;
+
+        return max_offset * (dist / max_dist);
+    }
+
     public Vector3 CalculatePointInCircleFromCenter(Vector3 center, Vector3 perimeter_point, float dist)
     {
         Vector3 radius = perimeter_point - center;

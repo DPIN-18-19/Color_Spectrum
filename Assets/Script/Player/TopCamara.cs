@@ -17,7 +17,8 @@ namespace IndiePixel.Cameras {
         public float m_SmoothSpeed = 0.5f;
         private Vector3 RefVelocity;
 
-        public float offset;
+        public float screen_limit;
+        public float cam_offset;
 
         private CameraController cam;
         // Use this for initialization
@@ -58,7 +59,8 @@ namespace IndiePixel.Cameras {
             //Debug.DrawLine(m_target.position, rotatedVector, Color.green);
 
             Vector3 flatTargetPosition = m_target.position;
-            flatTargetPosition = cam.CalculatePointInCircleFromCenter(m_target.position, cam.GetMousePosInPlane(m_target.position), offset);
+            flatTargetPosition = cam.CalculatePointInCircleFromCenter(m_target.position, cam.GetMousePosInPlane(m_target.position),
+                cam.CalculateOffset(m_target.position, cam.GetMousePosInPlane(m_target.position), screen_limit, cam_offset));
             
             Debug.DrawLine(m_target.position, flatTargetPosition, Color.red);
             flatTargetPosition.y = 0f;

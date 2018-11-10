@@ -84,10 +84,10 @@ public class BulletController : MonoBehaviour
         //Debug.Log("Update bullet");
         //Debug.Break();
         // Move bullet
-        //MoveBullet();
+        MoveBullet();
         //transform.Translate(transform.forward * bullet_speed * Time.deltaTime);
         //transform.Translate(transform.forward);
-        transform.position += bullet_dir * -bullet_speed * Time.deltaTime;
+        //transform.position += bullet_dir * -bullet_speed * Time.deltaTime;
     }
 
     // If not collided with anything, destroy
