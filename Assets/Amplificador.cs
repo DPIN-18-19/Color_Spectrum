@@ -12,13 +12,20 @@ public class Amplificador : MonoBehaviour {
     public float velocidad = 1;
     public float tiempoNoHacerDaño;
     private float tiempoinmuneravilidad;
+
+
+    public ColorChangingController cambioColor;
+    public GameObject player;
+
     Vector3 NewSize;
 
 
 	// Use this for initialization
 	void Start () {
         tiempoNoHacerDaño = tiempoinmuneravilidad;
-	}
+        player = GameObject.Find("Player");
+        cambioColor = player.GetComponent<ColorChangingController>();
+    }
 	
 	// Update is called once per frame
 	void Update () {
@@ -42,25 +49,39 @@ public class Amplificador : MonoBehaviour {
     //Solo funciona si es azul
     private void OnTriggerEnter(Collider col)
     {
+
+        if (col.gameObject.tag == "Player" && col.gameObject.layer != 9)
+        {
+            cambioColor.SetColor(1);
+
+        }
+        
+
+
+
+
+
+
+
         //  TimeBetweenShot = TimeBetweenShot - Time.deltaTime;
-        if (col.gameObject.layer == 8 && col.gameObject.tag == "Player" && tiempoNoHacerDaño <= tiempoinmuneravilidad)
-        {
-            //col.gameObject.SendMessage("HacerDaño");
-            //Destruir();
-            tiempoNoHacerDaño = tiempoNoHacerDaño - Time.deltaTime;
-        }
-        if (col.gameObject.layer == 9 && col.gameObject.tag == "Player" && tiempoNoHacerDaño <= tiempoinmuneravilidad)
-        {
-           // col.gameObject.SendMessage("RecibeVida");
-            //  Destruir();
-            tiempoNoHacerDaño = tiempoNoHacerDaño - Time.deltaTime;
-        }
-        if (col.gameObject.layer == 10 && col.gameObject.tag == "Player" && tiempoNoHacerDaño <= tiempoinmuneravilidad)
-        {
-          //  col.gameObject.SendMessage("HacerDaño");
-            // Destruir();
-            tiempoNoHacerDaño = tiempoNoHacerDaño - Time.deltaTime;
-        }
+        //if (col.gameObject.layer == 8 && col.gameObject.tag == "Player" && tiempoNoHacerDaño <= tiempoinmuneravilidad)
+        // {
+        //col.gameObject.SendMessage("HacerDaño");
+        //Destruir();
+        //    tiempoNoHacerDaño = tiempoNoHacerDaño - Time.deltaTime;
+        // }
+        // if (col.gameObject.layer == 9 && col.gameObject.tag == "Player" && tiempoNoHacerDaño <= tiempoinmuneravilidad)
+        //  {
+        // col.gameObject.SendMessage("RecibeVida");
+        //  Destruir();
+        //     tiempoNoHacerDaño = tiempoNoHacerDaño - Time.deltaTime;
+        //  }
+        //  if (col.gameObject.layer == 10 && col.gameObject.tag == "Player" && tiempoNoHacerDaño <= tiempoinmuneravilidad)
+        //  {
+        //  col.gameObject.SendMessage("HacerDaño");
+        // Destruir();
+        //    tiempoNoHacerDaño = tiempoNoHacerDaño - Time.deltaTime;
+        //  }
 
     }
 }
