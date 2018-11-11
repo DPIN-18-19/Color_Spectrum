@@ -22,16 +22,19 @@ public class ParedBlanca : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-
+        
     }
     private void OnCollisionEnter(Collision col)
     {
         if (col.gameObject.tag == "Blue" && col.gameObject.layer == 20 && CambiosColor < 1)
         {
+            gameObject.tag = "Blue";
             gameObject.layer = 9;
             GetComponent<Renderer>().material = MaterialBlue;
             ObstaculoAzul.SetActive(false);
             CambiosColor = CambiosColor + 1;
+            
+            //
         }
         else if (col.gameObject.tag == "Pink" && col.gameObject.layer == 19 && CambiosColor < 1)
         {
@@ -39,6 +42,7 @@ public class ParedBlanca : MonoBehaviour
             GetComponent<Renderer>().material = MaterialPink;
             ObstaculoRosa.SetActive(false);
             CambiosColor = CambiosColor + 1;
+            gameObject.tag = "Pink";
         }
         else if (col.gameObject.tag == "Yellow" && col.gameObject.layer == 18 && CambiosColor < 1)
         {
@@ -46,6 +50,11 @@ public class ParedBlanca : MonoBehaviour
             GetComponent<Renderer>().material = MaterialYellow;
             ObstaculoAmarillo.SetActive(false);
             CambiosColor = CambiosColor + 1;
+            gameObject.tag = "Yellow";
         }
     }
+
+   
+     
+    
 }
