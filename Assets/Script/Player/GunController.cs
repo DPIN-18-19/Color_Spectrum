@@ -129,21 +129,21 @@ public class GunController : MonoBehaviour {
                 shotCounter = timeBetweenShorts;
                 GameObject bullet_shot = Instantiate(bullet, bullet_spawn.position, bullet_spawn.rotation);
 
-                Vector3 bullet_dir = bullet_spawn.position- cam.GetMousePosInPlane(bullet_spawn.position);
-                bullet_dir = bullet_spawn.transform.TransformDirection(bullet_dir);
+                Vector3 bullet_dir = bullet_spawn.position - cam.GetMousePosInPlane(bullet_spawn.position);
+                bullet_dir = bullet_spawn.transform.TransformDirection(bullet_dir.normalized);
    
                 Debug.DrawLine(cam.GetMousePosInPlane(bullet_spawn.position), bullet_spawn.position, Color.cyan);
                 bullet_shot.GetComponent<BulletController>().AddBulletInfo(cur_color, speed, bullet_dir,damage, range, true);
                 //Debug.Break();
-                //-Need to fix flash effect rotation on creation, and destroy itself
+
+                // Flash effect
                 Quaternion spawn_rot = bullet_spawn.rotation;
                 //Debug.Log("Rotation: X:" + spawn_rot.x + " Y:" + spawn_rot.y + " Z:" + spawn_rot.z);
                 spawn_rot *= Quaternion.Euler(new Vector3(90, -90, 0));
                 Instantiate(flash_effect, bullet_spawn.position, spawn_rot);
 
                 source.PlayOneShot(FXShotPlayer);
-                //effect.SetActive(true);
-                //EffectYellow.SetActive(true);
+
                 Instantiate(shell, shell_spawn.position, shell_spawn.rotation);
                 //Invoke("QuitarEfectoYellow", FlashTime);
 
@@ -217,6 +217,7 @@ public class GunController : MonoBehaviour {
         //cur_bullet = yellow_bullet;
         cur_color = 0;
         bullet.GetComponent<Renderer>().material = yellow_mat;
+        //bullet.GetComponent<TrailRenderer>().material = yellow_mat;
         flash_effect.GetComponent<SpriteRenderer>().color = Color.yellow;
         flash_effect.GetComponentInChildren<Light>().color = Color.yellow;
         shell.GetComponent<MeshRenderer>().material = yellow_mat;
@@ -228,6 +229,7 @@ public class GunController : MonoBehaviour {
         //cur_bullet = cyan_bullet;
         cur_color = 1;
         bullet.GetComponent<Renderer>().material = cyan_mat;
+        //bullet.GetComponent<TrailRenderer>().material = cyan_mat;
         flash_effect.GetComponent<SpriteRenderer>().color = Color.cyan;
         flash_effect.GetComponentInChildren<Light>().color = Color.cyan;
         shell.GetComponent<MeshRenderer>().material = cyan_mat;
@@ -239,6 +241,7 @@ public class GunController : MonoBehaviour {
         //cur_bullet = magenta_bullet;
         cur_color = 2;
         bullet.GetComponent<Renderer>().material = magenta_mat;
+        //bullet.GetComponent<TrailRenderer>().material = magenta_mat;
         flash_effect.GetComponent<SpriteRenderer>().color = Color.magenta;
         flash_effect.GetComponentInChildren<Light>().color = Color.magenta;
         shell.GetComponent<MeshRenderer>().material = magenta_mat;
