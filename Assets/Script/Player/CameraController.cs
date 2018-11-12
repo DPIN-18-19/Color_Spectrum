@@ -57,7 +57,6 @@ public class CameraController : MonoBehaviour {
         Vector3 new_point = radius.normalized * dist;
 
         Debug.DrawLine(center, center + new_point, Color.red);
-        Debug.Log("Here");
         return center + new_point;
     }
 }
