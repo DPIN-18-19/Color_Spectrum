@@ -75,7 +75,7 @@ public class BulletController : MonoBehaviour
 
         bullet_damage = n_damage;
         bullet_range = n_range;
-        bullet_life_time = bullet_range / bullet_speed;
+        bullet_life_time = bullet_range / Mathf.Abs(bullet_speed);
 
         friendly = n_friend;
     }
@@ -96,6 +96,7 @@ public class BulletController : MonoBehaviour
     IEnumerator DestroyBullet()
     {
         yield return new WaitForSeconds(bullet_life_time);
+        Debug.Log("Out of time");
         Destroy(gameObject);
     }
 
@@ -172,8 +173,8 @@ public class BulletController : MonoBehaviour
                 // Restoring player health
                 else
                     col.gameObject.SendMessage("RestoreHealth", bullet_damage);
-
-
+                
+                Debug.Log("Destry enemy bullet11");
                 Destroy(gameObject);
             }
             // Player bullet
@@ -194,6 +195,7 @@ public class BulletController : MonoBehaviour
         // Collision with any other object
         else
         {
+            Debug.Log("Destry enemy bullet");
             Destroy(gameObject);
         }
     }
@@ -222,17 +224,18 @@ public class BulletController : MonoBehaviour
         Vector3 ray_dir = transform.position - f_pos;
         float dist = Vector3.Distance(transform.position, f_pos);
         
-        //Debug.Break();
 
         if (Physics.Raycast(transform.position, ray_dir.normalized, out hit, dist))
         {
             //- Take out LimitEnemigo and Attack enemy
             // Move to collision point
-            if (hit.transform.gameObject.tag != "Player")
+            if (hit.transform.gameObject.tag != "Player" && hit.transform.gameObject.tag != gameObject.tag && (!friendly && hit.transform.gameObject.tag != enemy_ignore))
             {
                 transform.position = hit.point;
                 return true;
             }
+
+
             return false;
         }
         else
