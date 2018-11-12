@@ -6,12 +6,13 @@ public class CustomCursorController : MonoBehaviour
 {
     public CameraController cam;
 
-    public Canvas my_canvas;
+    private Canvas my_canvas;
 
 	// Use this for initialization
 	void Start ()
     {
-        my_canvas = GetComponent<Canvas>();
+        my_canvas = gameObject.GetComponentInParent<Canvas>();
+        Cursor.visible = false;
 	}
 	
 	// Update is called once per frame
