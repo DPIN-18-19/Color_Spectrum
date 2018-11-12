@@ -101,55 +101,55 @@ public class BulletController : MonoBehaviour
     }
 
 
-    //private void OnCollisionEnter(Collision col)
-    //{
-    //    Debug.Log("Enter Collided with " + col.transform.gameObject.tag);
-    //    //- Collision with player is not working
-    //    // Same color obstacle collision
-    //    if (col.gameObject.tag == gameObject.tag)
-    //    {
-    //        Debug.Log("Collided with a wall");
-    //        m_collider.enabled = !m_collider.enabled;
-    //        Invoke("ReactivateCollision", wall_active_time);
-    //    }
-    //    // Collision with player
-    //    else if (col.gameObject.tag == "Player")
-    //    {
-    //        // Enemy bullet
-    //        if (!friendly)
-    //        {
-    //            // Taking damage to player
-    //            if (col.gameObject.GetComponent<ColorChangingController>().GetColor() != bullet_color)
-    //                col.gameObject.SendMessage("GetDamage", bullet_damage);
-    //            // Restoring player health
-    //            else
-    //                col.gameObject.SendMessage("RestoreHealth", bullet_damage);
+    private void OnCollisionEnter(Collision col)
+    {
+        Debug.Log("Enter Collided with " + col.transform.gameObject.tag);
+        //- Collision with player is not working
+        // Same color obstacle collision
+        if (col.gameObject.tag == gameObject.tag)
+        {
+            Debug.Log("Collided with a wall");
+            m_collider.enabled = !m_collider.enabled;
+            Invoke("ReactivateCollision", wall_active_time);
+        }
+        // Collision with player
+        else if (col.gameObject.tag == "Player")
+        {
+            // Enemy bullet
+            if (!friendly)
+            {
+                // Taking damage to player
+                if (col.gameObject.GetComponent<ColorChangingController>().GetColor() != bullet_color)
+                    col.gameObject.SendMessage("GetDamage", bullet_damage);
+                // Restoring player health
+                else
+                    col.gameObject.SendMessage("RestoreHealth", bullet_damage);
 
 
-    //            Destroy(gameObject);
-    //        }
-    //        // Player bullet
-    //        //- Bug here
-    //        else
-    //        {
-    //            Debug.Log("collided with player");
-    //            m_collider.enabled = !m_collider.enabled;
-    //            Invoke("ReactivateCollision", 1);
-    //        }
-    //    }
-    //    // Ignore enemies of same color
-    //    else if (col.gameObject.tag == enemy_ignore)
-    //    {
-    //        m_collider.enabled = !m_collider.enabled;
-    //        Invoke("ReactivateCollision", enemy_active_time);
-    //    }
-    //    // Collision with any other object
-    //    else
-    //    {
-    //        Debug.Log("destroy bullet");
-    //        Destroy(gameObject);
-    //    }
-    //}
+                Destroy(gameObject);
+            }
+            // Player bullet
+            //- Bug here
+            else
+            {
+                Debug.Log("collided with player");
+                m_collider.enabled = !m_collider.enabled;
+                Invoke("ReactivateCollision", 1);
+            }
+        }
+        // Ignore enemies of same color
+        else if (col.gameObject.tag == enemy_ignore)
+        {
+            m_collider.enabled = !m_collider.enabled;
+            Invoke("ReactivateCollision", enemy_active_time);
+        }
+        // Collision with any other object
+        else
+        {
+            Debug.Log("destroy bullet");
+            Destroy(gameObject);
+        }
+    }
 
     void OnCollisionStay(Collision col)
     {
