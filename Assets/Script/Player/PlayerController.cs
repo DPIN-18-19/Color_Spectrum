@@ -49,10 +49,10 @@ public class PlayerController : MonoBehaviour {
 
 
     // HUD screen transparency
-    //- Take these out to HUD
-    public GameObject HUDAmarillo;
-    public GameObject HUDRosa;
-    public GameObject HUDAzul;
+    ////- Take these out to HUD
+    //public GameObject HUDAmarillo;
+    //public GameObject HUDRosa;
+    //public GameObject HUDAzul;
 
 
 
@@ -77,13 +77,13 @@ public class PlayerController : MonoBehaviour {
         //DieEffectBlue.Stop();
         //DieEffectPink.Stop();
         //gameObject.layer = 8;           // Player's color
-        YellowNormal.SetActive(true);
-        BlueNormal.SetActive(false);
-        PinkNormal.SetActive(false);
+        //YellowNormal.SetActive(true);
+        //BlueNormal.SetActive(false);
+        //PinkNormal.SetActive(false);
 
-        HUDAmarillo.SetActive(true);
-        HUDRosa.SetActive(false);
-        HUDAzul.SetActive(false);
+        //HUDAmarillo.SetActive(true);
+        //HUDRosa.SetActive(false);
+        //HUDAzul.SetActive(false);
 
         renderPlayer = GetComponent<Renderer>();
         myRigidbody = GetComponent<Rigidbody>();

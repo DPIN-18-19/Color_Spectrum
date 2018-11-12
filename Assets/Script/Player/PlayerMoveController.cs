@@ -6,6 +6,7 @@ public class PlayerMoveController : MonoBehaviour
 {
     //Components
     private Rigidbody rb;
+    public  CameraController cam1;
     private Camera cam;
     Animator anim;
     
@@ -22,7 +23,7 @@ public class PlayerMoveController : MonoBehaviour
         SetUpAnimation();
 
         rb = GetComponent<Rigidbody>();
-        cam = FindObjectOfType<Camera>();   // Consider changing it if more than one camera in the scene
+        //cam = FindObjectOfType<Camera>();   // Consider changing it if more than one camera in the scene
     }
 	
 	// Update is called once per frame
@@ -66,21 +67,21 @@ public class PlayerMoveController : MonoBehaviour
             }
         }
     }
-
+   
     // Prepare when animations come
     void Rotation()
     {
         // Calculate ray from mouse position 
-        Ray cam_ray = cam.ScreenPointToRay(Input.mousePosition);
-        Plane ground_plane = new Plane(Vector3.up, Vector3.zero);
-        float ray_length;
+        //Ray cam_ray = cam.ScreenPointToRay(Input.mousePosition);
+        //Plane ground_plane = new Plane(Vector3.up, Vector3.zero);
+        //float ray_length;
 
-        if (ground_plane.Raycast(cam_ray, out ray_length))
-        {
-            Vector3 point_to_look = cam_ray.GetPoint(ray_length);
-            //Debug.DrawLine(cam_ray.origin, point_to_look, Color.blue);
-            transform.LookAt(new Vector3(point_to_look.x, transform.position.y, point_to_look.z));
-        }
+        //if (ground_plane.Raycast(cam_ray, out ray_length))
+        //{
+        Vector3 point_to_look = cam1.GetMousePosInPlane(transform.position);
+        Debug.DrawLine(point_to_look, transform.position, Color.blue);
+        transform.LookAt(new Vector3(point_to_look.x, transform.position.y, point_to_look.z));
+        //}
     }
 }
 // forward z

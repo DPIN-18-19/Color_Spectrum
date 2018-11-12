@@ -42,7 +42,7 @@ public class BestAIEnemy : MonoBehaviour
     void Start () {
         target = GameObject.Find("Player");
         theAgent = GetComponent<NavMeshAgent>();
-        DieEffect.Stop();
+        //DieEffect.Stop();
         EnemyColorData();
     }
 	
