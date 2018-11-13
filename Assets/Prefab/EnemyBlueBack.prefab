@@ -197,10 +197,10 @@ GameObject:
   - component: {fileID: 33442434069124070}
   - component: {fileID: 23573402238583388}
   - component: {fileID: 65301730342042430}
-  - component: {fileID: 114265955259641100}
   - component: {fileID: 54049570774414004}
   - component: {fileID: 195805227047412576}
   - component: {fileID: 114170318643768330}
+  - component: {fileID: 114265955259641100}
   - component: {fileID: 82817851808114492}
   m_Layer: 9
   m_Name: EnemyBlue
@@ -742,7 +742,8 @@ MonoBehaviour:
   isMoving: 0
   shot: {fileID: 114265955259641100}
   points: []
-  DieEffect: {fileID: 198606080208310902}
+  DieEffect: {fileID: 198306443048833670, guid: 6f65329844db9d643a3d883f0b0fde0a,
+    type: 2}
   cercaMirar: 0
   Back: {fileID: 1304513730225442}
   Stop: 0

@@ -19,8 +19,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4359110239731332}
-  - component: {fileID: 65412366632789258}
   - component: {fileID: 212369196988248512}
+  - component: {fileID: 114464768044149400}
   m_Layer: 0
   m_Name: EffectYellow
   m_TagString: Player
@@ -50,14 +50,14 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1278190975341966}
-  m_LocalRotation: {x: 0.7071068, y: 0, z: 0, w: 0.7071068}
-  m_LocalPosition: {x: 3.75, y: 0.38, z: -0.04}
+  m_LocalRotation: {x: 0.5, y: -0.5, z: 0.5, w: 0.5}
+  m_LocalPosition: {x: 19.37662, y: 1.53, z: 1.1210444}
   m_LocalScale: {x: 1.509605, y: 0.97129536, z: 0.99999046}
   m_Children:
   - {fileID: 4548702077179196}
   m_Father: {fileID: 0}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 90, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 90, y: -90, z: 0}
 --- !u!4 &4548702077179196
 Transform:
   m_ObjectHideFlags: 1
@@ -71,18 +71,6 @@ Transform:
   m_Father: {fileID: 4359110239731332}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!65 &65412366632789258
-BoxCollider:
-  m_ObjectHideFlags: 1
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1278190975341966}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 0
-  serializedVersion: 2
-  m_Size: {x: 1, y: 1, z: 1}
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!108 &108291927209524046
 Light:
   m_ObjectHideFlags: 1
@@ -120,6 +108,18 @@ Light:
   m_UseColorTemperature: 0
   m_ShadowRadius: 0
   m_ShadowAngle: 0
+--- !u!114 &114464768044149400
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1278190975341966}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d554592a4ed861346a91ada777096bc7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  life_time: 0.05
 --- !u!212 &212369196988248512
 SpriteRenderer:
   m_ObjectHideFlags: 1
