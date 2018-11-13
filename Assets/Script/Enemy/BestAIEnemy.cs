@@ -52,22 +52,22 @@ public class BestAIEnemy : MonoBehaviour
         {
             damaging_tag1 = "Blue";
             damaging_tag2 = "Pink";
-            damaging_layer1 = 12;
-            damaging_layer2 = 13;
+            damaging_layer1 = 19;
+            damaging_layer2 = 20;
         }
         else if (cur_color == Colors.Magenta)
         {
             damaging_tag1 = "Blue";
             damaging_tag2 = "Yellow";
-            damaging_layer1 = 12;
-            damaging_layer2 = 11;
+            damaging_layer1 = 19;
+            damaging_layer2 = 18;
         }
         else if (cur_color == Colors.Cyan)
         {
             damaging_tag1 = "Pink";
             damaging_tag2 = "Yellow";
-            damaging_layer1 = 13;
-            damaging_layer2 = 11;
+            damaging_layer1 = 20;
+            damaging_layer2 = 18;
         }
     }
 

@@ -41,19 +41,19 @@ public class BulletController : MonoBehaviour
         {
             this.gameObject.tag = "Yellow";
             enemy_ignore = "EnemyYellow";
-            this.gameObject.layer = 11;             //- Take out layers
+            this.gameObject.layer = 18;             //- Take out layers
         }
         else if (n_color == 1)
         {
             this.gameObject.tag = "Blue";
             enemy_ignore = "EnemyBlue";
-            this.gameObject.layer = 12;             //- Take out layers
+            this.gameObject.layer = 19;             //- Take out layers
         }
         else if (n_color == 2)
         { 
             this.gameObject.tag = "Pink";
             enemy_ignore = "EnemyPink";
-            this.gameObject.layer = 13;             //- Take out layers
+            this.gameObject.layer = 20;             //- Take out layers
         }
 
         //- Take out layers sometime
