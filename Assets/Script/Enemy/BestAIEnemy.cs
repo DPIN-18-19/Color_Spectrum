@@ -25,23 +25,23 @@ public class BestAIEnemy : MonoBehaviour
 
     /////////////////////////////////////////////////////
 
-    private NavMeshAgent theAgent;      // Navmesh object
-    private GameObject target;          // Move towards objective
-    public bool isMoving;               // Is enemy moving towards objective
-    public ShotEnemy shot;              // Enemy's gun
-    public Transform [] points;         // Patrol points (unfinished)
-    public ParticleSystem DieEffect;    // Die particles
-    public bool cercaMirar = false;     // Rotate enemy when going after player
-    public GameObject Back;             // Enemy return point
-    public bool Stop;                   // (Unused)
-    public bool FuegoAmigo;             // Friendly fire
+    private NavMeshAgent nav_agent;         // Navmesh object
+    private GameObject target;              // Move towards objective
+    public bool is_chasing;                 // Is enemy moving towards objective
+    public ShotEnemy shot;                  // Enemy's gun
+    public Transform [] points;             // Patrol points (unfinished)
+    public ParticleSystem DieEffect;        // Die particles
+    public bool cercaMirar = false;         // Rotate enemy when going after player
+    public GameObject enemy_home;                 // Enemy return point
+    //public bool Stop;                       // (Unused)
+    public bool friendly_fire;                 // Friendly fire
 
     // private int despoint;
 
     // Use this for initialization
     void Start () {
         target = GameObject.Find("Player");
-        theAgent = GetComponent<NavMeshAgent>();
+        nav_agent = GetComponent<NavMeshAgent>();
         //DieEffect.Stop();
         EnemyColorData();
     }
@@ -75,17 +75,17 @@ public class BestAIEnemy : MonoBehaviour
 	void Update () {
       
         // Go after player
-        if (isMoving == true )
+        if (is_chasing == true )
         {
-            theAgent.SetDestination(target.transform.position);
+            nav_agent.SetDestination(target.transform.position);
             shot.isShooting = true;
-            theAgent.isStopped = false;
+            nav_agent.isStopped = false;
             
         }
         // Go back home
-        if (isMoving == false)
+        if (is_chasing == false)
         {
-            theAgent.SetDestination(Back.transform.position);
+            nav_agent.SetDestination(enemy_home.transform.position);
         }
 
         // Rotate towards player
@@ -95,10 +95,10 @@ public class BestAIEnemy : MonoBehaviour
         }
 
         // Freeze in navmesh
-        if (Stop == true)
-        {
-            theAgent.isStopped = true;
-        }
+        //if (Stop == true)
+        //{
+        //    nav_agent.isStopped = true;
+        //}
 
     }
 
@@ -108,7 +108,7 @@ public class BestAIEnemy : MonoBehaviour
         if (col.gameObject.tag == "LimitEnemigo")
         {
             cercaMirar = true;
-            Stop = true;
+            //Stop = true;
             shot.isShooting = true;
 
         }
@@ -117,13 +117,15 @@ public class BestAIEnemy : MonoBehaviour
         {
 
             // target = GameObject.Find("Player");
-            isMoving = true;
-            Stop = false;
+            is_chasing = true;
+            //Stop = false;
 
 
         }
 
     }
+
+
     private void OnCollisionEnter(Collision col)
     {
         // Collided with player's bullet
@@ -135,7 +137,7 @@ public class BestAIEnemy : MonoBehaviour
             //- Has to destroy enemy position too
 
 
-            if (col.gameObject.layer == 16 && FuegoAmigo == true)
+            if (col.gameObject.layer == 16 && friendly_fire == true)
             {
                 Destroy(col.gameObject);
             }
@@ -147,9 +149,9 @@ public class BestAIEnemy : MonoBehaviour
         // Keep walking towards player
         if (col.gameObject.tag == "LimitEnemigo")
         {
-            isMoving = true;
-            Stop = false;
-            cercaMirar = false;
+            is_chasing = true;
+            //Stop = false;
+            //cercaMirar = false;
             transform.LookAt(target.transform.position);
 
         }
@@ -157,7 +159,7 @@ public class BestAIEnemy : MonoBehaviour
         // Go back home
         if (col.gameObject.tag == "AttackPlayer")
         {
-            isMoving = false;
+            is_chasing = false;
             shot.isShooting = false;
             
 
