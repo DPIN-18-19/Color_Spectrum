@@ -27,26 +27,19 @@ public class PlayerController : MonoBehaviour {
 
     // HUD small colored squares
     //- Take these out to HUD
-    public GameObject YellowNormal;
-    public GameObject BlueNormal;
-
-    
-    public GameObject PinkNormal;
+    //public GameObject YellowNormal;
+    //public GameObject BlueNormal;
+    //public GameObject PinkNormal;
 
     // Death particles
     //public ParticleSystem DieEffectYellow;
     //public ParticleSystem DieEffectBlue;
     //public ParticleSystem DieEffectPink;
 
-
+    // Player's material
     public Material Blue_Material;
     public Material Yellow_Material;
     public Material Pink_Material;
-    
-
-
-
-
 
     // HUD screen transparency
     ////- Take these out to HUD
@@ -54,11 +47,7 @@ public class PlayerController : MonoBehaviour {
     //public GameObject HUDRosa;
     //public GameObject HUDAzul;
 
-
-
-    
-
-
+    //////////////////////////////////////////////////////////////////////////////
 
     // Use this for initialization
     void Awake()
@@ -89,10 +78,6 @@ public class PlayerController : MonoBehaviour {
         myRigidbody = GetComponent<Rigidbody>();
         maincamera = FindObjectOfType<Camera>();
         //m_collider = GetComponent<Collider>();
-
-
-
-       // dashTime = startDashTime;
 
     }
   
@@ -207,13 +192,6 @@ public class PlayerController : MonoBehaviour {
          theGun.is_firing = true;
         if (Input.GetMouseButtonUp(0))
             theGun.is_firing = false;
-        //Codigo del Dash
-        
-            //Instantiate(DashEffectYellow.gameObject, transform.position, Quaternion.identity);
-           // moveInput = new Vector3(Input.GetAxisRaw("Horizontal") * dashspeed, 0f, Input.GetAxisRaw("Vertical") * dashspeed);
-           // dashTime = startDashTime;
-        
-        //Fin codigo del dash
     }
     void FixedUpdate ()
     {
@@ -248,19 +226,6 @@ public class PlayerController : MonoBehaviour {
         Debug.Log("Change to magenta");
     }
 
-
-    
-
-
-    private void OnColliderEnter(Collision collision)
-    {
-        //Codigo Cambio de Color automatico
-      //   if (collision.gameObject.tag == "Yellow" && collision.gameObject.layer == 8 && theGun.BulletBlue == true)
-       // {
-       //     theGun.BulletYellow = true;
-       //     Debug.Log("Auto");
-       // }
-    }
 
     //public void HacerDaño()
     //{

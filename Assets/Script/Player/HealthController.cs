@@ -54,7 +54,6 @@ public class HealthController : MonoBehaviour
     public void GetDamage(float damage)
     {
         if (armor > 0)
-        
             GetArmorDamage(damage);
         else
             health -= damage;

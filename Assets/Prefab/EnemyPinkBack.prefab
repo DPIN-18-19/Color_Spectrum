@@ -132,7 +132,7 @@ GameObject:
   - component: {fileID: 4392923674559570}
   m_Layer: 10
   m_Name: EnemyPinkBack
-  m_TagString: Untagged
+  m_TagString: EnemyPink
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -275,8 +275,8 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1776678082225206}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -10.918089, y: 1.1025866, z: 2.7419777}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1.671, z: 1}
   m_Children:
   - {fileID: 4325210964744674}
@@ -738,11 +738,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2a90025d0b4cbca4da58ac6237368f45, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  cur_color: 0
+  cur_color: 2
   isMoving: 0
   shot: {fileID: 114885375870612728}
   points: []
-  DieEffect: {fileID: 198598883611325870}
+  DieEffect: {fileID: 198772174094883282, guid: 3f9fa29604449284580d40d5378dc2cb,
+    type: 2}
   cercaMirar: 0
   Back: {fileID: 1776678082225206}
   Stop: 0
@@ -758,10 +759,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5e6e62700134e404d8bd51107b5ff240, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  yellow_mat: {fileID: 0}
-  cyan_mat: {fileID: 0}
-  magenta_mat: {fileID: 0}
-  bullet: {fileID: 1601845071691088, guid: 6d0aa7663b2591d4380cb4063fead61e, type: 2}
+  yellow_mat: {fileID: 2100000, guid: 2ce7cd8dc39c12341b44c918ccb6393d, type: 2}
+  cyan_mat: {fileID: 2100000, guid: 7ecbc580b62e10740878b3ba62cc0279, type: 2}
+  magenta_mat: {fileID: 2100000, guid: 376a1e887b15b78458b49d05ba2781c9, type: 2}
+  bullet: {fileID: 1630379668744072, guid: 2f81b0e9d6ddddb46af89965f98063e8, type: 2}
   FirePos: {fileID: 4615459873541056}
   timeBetweenShorts: 0.35
   TimeShots: 0.35
@@ -778,7 +779,7 @@ NavMeshAgent:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1947835364560480}
   m_Enabled: 1
-  m_AgentTypeID: 0
+  m_AgentTypeID: -334000983
   m_Radius: 0.5
   m_Speed: 3.5
   m_Acceleration: 8

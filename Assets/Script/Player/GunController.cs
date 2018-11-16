@@ -62,6 +62,7 @@ public class GunController : MonoBehaviour {
     {
         source = GetComponent<AudioSource>();
     }
+
 	// Use this for initialization
 	void Start () {
         
