@@ -3636,6 +3636,11 @@ Prefab:
       propertyPath: enemy_home
       value: 
       objectReference: {fileID: 281131510}
+    - target: {fileID: 114479202419947458, guid: 426196d65d98b834eaa638b4a3cd30d4,
+        type: 2}
+      propertyPath: home
+      value: 
+      objectReference: {fileID: 281131510}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 426196d65d98b834eaa638b4a3cd30d4, type: 2}
   m_IsPrefabAsset: 0
@@ -5149,6 +5154,11 @@ Prefab:
     - target: {fileID: 114170318643768330, guid: 985b9a342584d9a4a8136c2cd2448914,
         type: 2}
       propertyPath: enemy_home
+      value: 
+      objectReference: {fileID: 206814350}
+    - target: {fileID: 114170318643768330, guid: 985b9a342584d9a4a8136c2cd2448914,
+        type: 2}
+      propertyPath: home
       value: 
       objectReference: {fileID: 206814350}
     m_RemovedComponents: []
@@ -6680,7 +6690,7 @@ ParticleSystem:
   stopAction: 0
   looping: 0
   prewarm: 0
-  playOnAwake: 1
+  playOnAwake: 0
   useUnscaledTime: 0
   autoRandomSeed: 1
   useRigidbodyForVelocity: 1
@@ -12289,6 +12299,14 @@ Prefab:
       propertyPath: cam
       value: 
       objectReference: {fileID: 282840815}
+    - target: {fileID: 1798534647958216, guid: af2510b9c4b79fc41930ab447409a73e, type: 2}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1935414997402082, guid: af2510b9c4b79fc41930ab447409a73e, type: 2}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: af2510b9c4b79fc41930ab447409a73e, type: 2}
   m_IsPrefabAsset: 0
@@ -14095,14 +14113,17 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   cur_color: 2
-  is_chasing: 0
-  shot: {fileID: 1844118614}
   points: []
+  home: {fileID: 2027262430}
+  home_distance: 0
+  sight_distance: 5
+  sight_angle: 60
+  shot: {fileID: 1844118614}
   DieEffect: {fileID: 198772174094883282, guid: 3f9fa29604449284580d40d5378dc2cb,
     type: 2}
-  cercaMirar: 0
-  enemy_home: {fileID: 2027262430}
   friendly_fire: 0
+  is_chasing: 0
+  look_target: 0
 --- !u!54 &1844118613
 Rigidbody:
   m_ObjectHideFlags: 0

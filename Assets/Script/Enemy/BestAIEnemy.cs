@@ -25,16 +25,38 @@ public class BestAIEnemy : MonoBehaviour
 
     /////////////////////////////////////////////////////
 
-    private NavMeshAgent nav_agent;         // Navmesh object
-    private GameObject target;              // Move towards objective
-    public bool is_chasing;                 // Is enemy moving towards objective
-    public ShotEnemy shot;                  // Enemy's gun
-    public Transform [] points;             // Patrol points (unfinished)
-    public ParticleSystem DieEffect;        // Die particles
-    public bool cercaMirar = false;         // Rotate enemy when going after player
-    public GameObject enemy_home;                 // Enemy return point
-    //public bool Stop;                       // (Unused)
-    public bool friendly_fire;                 // Friendly fire
+    // Navmesh variables
+
+    private NavMeshAgent nav_agent;             // Navmesh object
+    private GameObject target;                  // Move towards objective
+    public Transform[] points;                  // Patrol points (unfinished)
+    public GameObject home;               // Enemy return point
+
+    // Moving variables
+
+    float patrol_speed;
+    float chase_speed;
+
+    // Target Detection
+    public float home_distance;                 // Distance the enemy can be from home
+    public float sight_distance;                // Distance at which the enemy detects the player by sight
+    public float sight_angle;
+    float listen_distance;                      // Distance at which the enemy detects the player by noise
+    bool chase_by_near;
+    bool chase_on_sight;
+
+    // Shooting
+    public ShotEnemy shot;                      // Enemy's gun
+    public ParticleSystem DieEffect;            // Die particles
+    //public bool Stop;                         // (Unused)
+    public bool friendly_fire;                  // Friendly fire
+
+
+
+    // AI variables
+
+    public bool is_chasing;                     // Is enemy moving towards objective
+    public bool look_target = false;            // Rotate enemy when going after player
 
     // private int despoint;
 
@@ -72,8 +94,10 @@ public class BestAIEnemy : MonoBehaviour
     }
 
 	// Update is called once per frame
-	void Update () {
-      
+	void Update ()
+    {
+        DetectPlayer();
+
         // Go after player
         if (is_chasing == true )
         {
@@ -85,11 +109,11 @@ public class BestAIEnemy : MonoBehaviour
         // Go back home
         if (is_chasing == false)
         {
-            nav_agent.SetDestination(enemy_home.transform.position);
+            nav_agent.SetDestination(home.transform.position);
         }
 
-        // Rotate towards player
-        if(cercaMirar == true)
+        // Rotate towards player instantly
+        if(look_target == true)
         {
             transform.LookAt(target.transform.position);
         }
@@ -107,7 +131,7 @@ public class BestAIEnemy : MonoBehaviour
         //  Keep distance from player
         if (col.gameObject.tag == "LimitEnemigo")
         {
-            cercaMirar = true;
+            look_target = true;
             //Stop = true;
             shot.isShooting = true;
 
@@ -122,9 +146,63 @@ public class BestAIEnemy : MonoBehaviour
 
 
         }
-
     }
 
+    private void DetectPlayer()
+    {
+        if (IsPlayerNear() && IsPlayerOnSight())
+            is_chasing = true;
+        else
+            is_chasing = false;
+    }
+
+    private bool IsPlayerNear()
+    {
+        Vector3 target_distance = target.transform.position - transform.position;
+
+        if(target_distance.magnitude <= sight_distance)
+        {
+            //is_chasing = true;          //- Move is_chasing somewhere else
+            return true;
+        }
+        else
+        {
+            //is_chasing = false;         //- Move is_chasing somewhere else
+            return false;
+        }
+    }
+
+    // Detect player if on range of sight, obstacles between enemy and target are not considered
+    private bool IsPlayerOnSight()
+    {
+        Vector3 target_dir = target.transform.position - transform.position;
+        target_dir.Normalize();
+
+        float target_angle = Vector3.Angle(transform.forward, target_dir);
+
+        if(sight_angle/2 > Mathf.Abs(target_angle))
+        {
+            return true;
+        }
+        else
+        {
+            return false;
+        }
+    }
+
+    private void IsHomeFar()
+    {
+        Vector3 home_distance = transform.position - home.transform.position;
+
+        if (home_distance.magnitude <= sight_distance)
+        {
+            is_chasing = true;
+        }
+        else
+        {
+            is_chasing = false;
+        }
+    }
 
     private void OnCollisionEnter(Collision col)
     {
@@ -151,7 +229,7 @@ public class BestAIEnemy : MonoBehaviour
         {
             is_chasing = true;
             //Stop = false;
-            //cercaMirar = false;
+            //look_target = false;
             transform.LookAt(target.transform.position);
 
         }
