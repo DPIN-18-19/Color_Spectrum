@@ -33,6 +33,8 @@ public class HealthController : MonoBehaviour
 	void Update ()
     {
         IsDead();
+
+        GameplayManager.GetInstance().health = health;
     }
 
     // Check if dead

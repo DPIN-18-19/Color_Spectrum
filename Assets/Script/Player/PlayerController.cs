@@ -3,9 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class PlayerController : MonoBehaviour {
-
-
+public class PlayerController : MonoBehaviour
+{
     //public Text vida;               // Player's health in UI
     //public float Vida;              // Player's current health
     //public float VidaQuitada;       // Player's received damage per attack
@@ -209,6 +208,7 @@ public class PlayerController : MonoBehaviour {
     {
         gameObject.layer = 8;                       // Yellow Layer
         renderPlayer.material = Yellow_Material;    // Apply player material
+        GameplayManager.GetInstance().ChangeColor(0);
         Debug.Log("Change to yellow");
     }
 
@@ -216,6 +216,7 @@ public class PlayerController : MonoBehaviour {
     {
         gameObject.layer = 9;                       // Cyan Layer
         renderPlayer.material = Blue_Material;      // Apply player material
+        GameplayManager.GetInstance().ChangeColor(1);
         Debug.Log("Change to cyan");
     }
 
@@ -223,6 +224,7 @@ public class PlayerController : MonoBehaviour {
     {
         gameObject.layer = 10;                      // Magenta Layer
         renderPlayer.material = Pink_Material;      // Apply player material
+        GameplayManager.GetInstance().ChangeColor(2);
         Debug.Log("Change to magenta");
     }
 
