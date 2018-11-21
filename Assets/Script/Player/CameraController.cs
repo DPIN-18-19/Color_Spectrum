@@ -59,4 +59,15 @@ public class CameraController : MonoBehaviour {
         Debug.DrawLine(center, center + new_point, Color.red);
         return center + new_point;
     }
+
+    public float LookAtAxis(Vector3 look_at)
+    {
+        // Calculate point to look at
+
+        Vector3 to_target = transform.position - look_at;
+        Vector3 projection = Vector3.ProjectOnPlane(to_target, transform.right);
+
+        // Calculate Angle between current transform.front and object to look at
+        return Vector3.Angle(transform.forward, projection) - 180;
+    }
 }

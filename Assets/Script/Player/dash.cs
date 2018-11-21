@@ -8,7 +8,7 @@ public class dash : MonoBehaviour {
     private float dashTime;
     public float Cooldown;
     private float Max_Cooldown;
-    public PlayerMoveController MovePlayer;
+    public PlayerJaneMoveController MovePlayer;
     public Rigidbody rb;
 
 
