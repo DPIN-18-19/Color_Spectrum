@@ -21,6 +21,9 @@ namespace IndiePixel.Cameras {
         public float cam_offset;
 
         private CameraController cam;
+
+        private bool do_rotate = true;
+
         // Use this for initialization
 
         private void Awake()
@@ -40,6 +43,7 @@ namespace IndiePixel.Cameras {
         void Update()
         {
             HandleCamera();
+            //Rotate_Once();
         }
 
         protected virtual void HandleCamera()
@@ -55,7 +59,7 @@ namespace IndiePixel.Cameras {
             //Debug.DrawLine(m_target.position, worldPosition, Color.red);
 
             // Build rotated vector
-            Vector3 rotatedVector = Quaternion.AngleAxis(m_Angle, Vector3.up) * worldPosition;
+            Vector3 rotatedVector = Quaternion.AngleAxis(m_Angle, Vector3.right) * worldPosition;
             //Debug.DrawLine(m_target.position, rotatedVector, Color.green);
 
             Vector3 flatTargetPosition = m_target.position;
@@ -70,6 +74,23 @@ namespace IndiePixel.Cameras {
             transform.position = Vector3.SmoothDamp(transform.position, finalPosition, ref RefVelocity , m_SmoothSpeed);
             //transform.LookAt(flatTargetPosition);
 
+            float angle_to_rotate = cam.LookAtAxis(m_target.position);
+
+            if (Mathf.Floor(Mathf.Abs(angle_to_rotate)) != 0 && Mathf.Abs(angle_to_rotate) > Mathf.Abs(m_Angle))
+            {
+                //Debug.Log("Flip : " + angle_to_rotate);
+                transform.Rotate(angle_to_rotate, 0, 0);
+            }
+
+        }
+
+        void Rotate_Once()
+        {
+            if(do_rotate)
+            {
+                transform.Rotate(cam.LookAtAxis(m_target.position), 0, 0);
+                do_rotate = false;
+            }
         }
     }
 }

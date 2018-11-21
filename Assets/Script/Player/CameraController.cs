@@ -18,22 +18,32 @@ public class CameraController : MonoBehaviour {
 
     public Vector3 GetMousePos()
     {
-        Ray cam_ray = cam.ScreenPointToRay(new Vector3(Input.mousePosition.x, Input.mousePosition.y, 0));
-        Plane ground_plane = new Plane(Vector3.up, Vector3.zero);
-        float ray_length;
-        ground_plane.Raycast(cam_ray, out ray_length);
+        if (cam != null)
+        {
+            Ray cam_ray = cam.ScreenPointToRay(new Vector3(Input.mousePosition.x, Input.mousePosition.y, 0));
+            Plane ground_plane = new Plane(Vector3.up, Vector3.zero);
+            float ray_length;
+            ground_plane.Raycast(cam_ray, out ray_length);
 
-        return cam_ray.GetPoint(ray_length);
+            return cam_ray.GetPoint(ray_length);
+        }
+
+        return Vector3.zero;
     }
 
     public Vector3 GetMousePosInPlane(Vector3 point_in_plane)
     {
-        Ray cam_ray = cam.ScreenPointToRay(new Vector3(Input.mousePosition.x, Input.mousePosition.y, 0));
-        Plane ground_plane = new Plane(Vector3.up, point_in_plane);
-        float ray_length;
-        ground_plane.Raycast(cam_ray, out ray_length);
+        if (cam != null)
+        {
+            Ray cam_ray = cam.ScreenPointToRay(new Vector3(Input.mousePosition.x, Input.mousePosition.y, 0));
+            Plane ground_plane = new Plane(Vector3.up, point_in_plane);
+            float ray_length;
+            ground_plane.Raycast(cam_ray, out ray_length);
 
-        return cam_ray.GetPoint(ray_length);
+            return cam_ray.GetPoint(ray_length);
+        }
+
+        return Vector3.zero;
     }
 
     public float CalculateOffset(Vector3 center, Vector3 point, float max_dist, float max_offset)
@@ -58,5 +68,15 @@ public class CameraController : MonoBehaviour {
 
         Debug.DrawLine(center, center + new_point, Color.red);
         return center + new_point;
+    }
+
+    public float LookAtAxis(Vector3 look_at)
+    {
+        // Calculate point to look at
+        Vector3 projection = Vector3.ProjectOnPlane(transform.position - look_at, transform.right);
+
+        // Calculate Angle between current transform.front and object to look at
+        
+        return Vector3.Angle(transform.forward, projection) - 180;
     }
 }

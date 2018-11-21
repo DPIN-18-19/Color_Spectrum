@@ -628,6 +628,34 @@ Transform:
   m_Father: {fileID: 1891561835}
   m_RootOrder: 24
   m_LocalEulerAnglesHint: {x: 180, y: 180, z: 89.99999}
+--- !u!1 &154866854
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 154866855}
+  m_Layer: 10
+  m_Name: Patrol1
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &154866855
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 154866854}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 5.46, y: 0, z: -0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 1404629650}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &164052529
 GameObject:
   m_ObjectHideFlags: 0
@@ -1310,7 +1338,7 @@ MonoBehaviour:
   m_target: {fileID: 1969338308}
   m_height: 20.89
   m_Distance: 3.79
-  m_Angle: 0
+  m_Angle: -35
   m_SmoothSpeed: 0.125
   screen_limit: 200
   cam_offset: 3
@@ -3263,6 +3291,34 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 4331534537200180, guid: ad46278d32044b441b3e108c767995aa,
     type: 2}
   m_PrefabInternal: {fileID: 1627701057}
+--- !u!1 &692411942
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 692411943}
+  m_Layer: 10
+  m_Name: Patrol2
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &692411943
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 692411942}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -5.29, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 1404629650}
+  m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &695800847
 GameObject:
   m_ObjectHideFlags: 0
@@ -11905,6 +11961,36 @@ Transform:
   m_Father: {fileID: 255887412}
   m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 180, y: 180, z: 89.99999}
+--- !u!1 &1404629649
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1404629650}
+  m_Layer: 10
+  m_Name: PatrolPoints
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1404629650
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1404629649}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children:
+  - {fileID: 154866855}
+  - {fileID: 692411943}
+  m_Father: {fileID: 2027262431}
+  m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1412403296
 GameObject:
   m_ObjectHideFlags: 0
@@ -13955,6 +14041,7 @@ GameObject:
   - component: {fileID: 1844118611}
   - component: {fileID: 1844118612}
   - component: {fileID: 1844118614}
+  - component: {fileID: 1844118618}
   - component: {fileID: 1844118610}
   m_Layer: 10
   m_Name: EnemyPink
@@ -14115,15 +14202,15 @@ MonoBehaviour:
   cur_color: 2
   points: []
   home: {fileID: 2027262430}
+  chase_speed: 0
   home_distance: 0
-  sight_distance: 5
+  alert_distance: 5
+  sight_distance: 10
   sight_angle: 60
+  safe_distance: 4
   shot: {fileID: 1844118614}
   DieEffect: {fileID: 198772174094883282, guid: 3f9fa29604449284580d40d5378dc2cb,
     type: 2}
-  friendly_fire: 0
-  is_chasing: 0
-  look_target: 0
 --- !u!54 &1844118613
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -14159,12 +14246,14 @@ MonoBehaviour:
   FirePos: {fileID: 1655365405}
   timeBetweenShorts: 0.35
   TimeShots: 0.35
+  TimeShotsMax: 0.85
   isShooting: 0
   EffectShot: {fileID: 861209390}
   FlashTime: 0.05
   Shell: {fileID: 4433962083124234, guid: 79c5f0a67fd240a48b84fce6b5b322a4, type: 2}
   ShellEjection: {fileID: 621886050}
   FXShotEnemy: {fileID: 8300000, guid: 2662e3577d475624281d7436f793de32, type: 3}
+  random: 0
 --- !u!65 &1844118615
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -14222,6 +14311,23 @@ MeshFilter:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1844118608}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!114 &1844118618
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1844118608}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0247cea6f9bbb36458c258727cfdadd5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  patrol_points:
+  - {fileID: 154866855}
+  - {fileID: 692411943}
+  wait_time: 0
+  patrol_speed: 5
+  is_patrol: 1
 --- !u!1 &1864852941
 GameObject:
   m_ObjectHideFlags: 0
@@ -15196,14 +15302,15 @@ Transform:
     type: 2}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 2027262430}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 21.69, y: 1.1025858, z: -31.427422}
+  m_LocalRotation: {x: -0, y: 1, z: -0, w: -0.0000003129243}
+  m_LocalPosition: {x: 19.21, y: 1.1025858, z: -32.61}
   m_LocalScale: {x: 1, y: 1.671, z: 1}
   m_Children:
   - {fileID: 1844118609}
+  - {fileID: 1404629650}
   m_Father: {fileID: 0}
   m_RootOrder: 4
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 179.99998, z: 0}
 --- !u!1 &2034753138
 GameObject:
   m_ObjectHideFlags: 0

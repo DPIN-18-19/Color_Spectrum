@@ -16,7 +16,8 @@ public class ShotEnemy : MonoBehaviour
     public GameObject bullet;
     public Transform FirePos;
     public float timeBetweenShorts = 3;
-    public float TimeShots;
+    public float TimeShots = 1;
+    public float TimeShotsMax = 1.5f;
     public bool isShooting;
     public GameObject EffectShot;
     public float FlashTime;
@@ -24,6 +25,8 @@ public class ShotEnemy : MonoBehaviour
     public Transform ShellEjection;
     public AudioClip FXShotEnemy;
     private AudioSource source;
+
+    public bool random = false; 
 
     void Awake()
     {
@@ -50,7 +53,7 @@ public class ShotEnemy : MonoBehaviour
 
             bullet_shot.GetComponent<BulletController>().AddBulletInfo(bullet_color, -10, bullet_dir, 5, 20, false);   //- Create Gun Variables
             Instantiate(Shell, ShellEjection.position, ShellEjection.rotation);
-            timeBetweenShorts = TimeShots;
+            NextShotTime();
             Invoke("QuitarEfecto", FlashTime);
         }
 	}
@@ -78,6 +81,18 @@ public class ShotEnemy : MonoBehaviour
             default:
                 Debug.Log("Hello");
                 break;
+        }
+    }
+
+    void NextShotTime()
+    {
+        if(!random)
+        {
+            timeBetweenShorts = TimeShots;
+        }
+        else
+        {
+            timeBetweenShorts = Random.Range(TimeShots, TimeShotsMax);
         }
     }
 }

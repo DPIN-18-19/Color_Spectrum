@@ -30,40 +30,49 @@ public class BestAIEnemy : MonoBehaviour
     private NavMeshAgent nav_agent;             // Navmesh object
     private GameObject target;                  // Move towards objective
     public Transform[] points;                  // Patrol points (unfinished)
-    public GameObject home;               // Enemy return point
+    public GameObject home;                     // Enemy return point
 
     // Moving variables
 
-    float patrol_speed;
-    float chase_speed;
+    public float chase_speed = 7;
 
     // Target Detection
     public float home_distance;                 // Distance the enemy can be from home
+    public float alert_distance;                // Distance at which the enemy detects the player by getting near
     public float sight_distance;                // Distance at which the enemy detects the player by sight
-    public float sight_angle;
+    public float sight_angle;                   // Enemy field of view
     float listen_distance;                      // Distance at which the enemy detects the player by noise
     bool chase_by_near;
     bool chase_on_sight;
+
+    // Chasing
+    public float safe_distance;                 // Distance the enemy can be from the player
+
 
     // Shooting
     public ShotEnemy shot;                      // Enemy's gun
     public ParticleSystem DieEffect;            // Die particles
     //public bool Stop;                         // (Unused)
-    public bool friendly_fire;                  // Friendly fire
+    bool friendly_fire;                         // Friendly fire
 
 
 
     // AI variables
 
-    public bool is_chasing;                     // Is enemy moving towards objective
-    public bool look_target = false;            // Rotate enemy when going after player
+    bool is_chasing;                        // Is enemy moving towards objective
+    bool look_target = false;               // Rotate enemy when going after player
+    bool back_home = false;                 // Is enemy heading back home
+    PatrolController patrol;
 
     // private int despoint;
 
     // Use this for initialization
-    void Start () {
+    void Start ()
+    {
         target = GameObject.Find("Player");
         nav_agent = GetComponent<NavMeshAgent>();
+        patrol = GetComponent<PatrolController>();
+
         //DieEffect.Stop();
         EnemyColorData();
     }
@@ -97,25 +106,36 @@ public class BestAIEnemy : MonoBehaviour
 	void Update ()
     {
         DetectPlayer();
+        KeepDistance();
+        ShootTarget();
+        IsInHome();
 
         // Go after player
         if (is_chasing == true )
         {
             nav_agent.SetDestination(target.transform.position);
-            shot.isShooting = true;
+            //nav_agent.speed = chase_speed;
             nav_agent.isStopped = false;
+            patrol.is_patrol = false;
             
         }
         // Go back home
-        if (is_chasing == false)
+        if (back_home == true)
         {
             nav_agent.SetDestination(home.transform.position);
+            shot.isShooting = false;
         }
 
         // Rotate towards player instantly
         if(look_target == true)
         {
-            transform.LookAt(target.transform.position);
+            //transform.LookAt(target.transform.position);
+
+            float look = LookAtAxis(target.transform.position);
+
+            look = Mathf.LerpAngle(0, look, Time.deltaTime);
+            transform.Rotate(0, look, 0);
+            nav_agent.isStopped = true;
         }
 
         // Freeze in navmesh
@@ -148,19 +168,57 @@ public class BestAIEnemy : MonoBehaviour
         }
     }
 
+
+    // Player Detection
     private void DetectPlayer()
     {
-        if (IsPlayerNear() && IsPlayerOnSight())
-            is_chasing = true;
-        else
+        if(is_chasing && !IsPlayerNear(sight_distance))
+        {
             is_chasing = false;
+            back_home = true;
+        }
+
+        if (IsPlayerInFront() && IsPlayerOnSight())
+        {
+            //Debug.Log("I see you");
+            is_chasing = true;
+        }
+        else if (IsPlayerNear(alert_distance) && IsPlayerOnSight())
+        {
+            //Debug.Log("You are near me");
+            is_chasing = true;
+        }
     }
 
-    private bool IsPlayerNear()
+    private void KeepDistance()
+    {
+        if (IsPlayerNear(safe_distance))
+        {
+            look_target = true;
+        }
+        else
+            look_target = false;
+    }
+
+    private void ShootTarget()
+    {
+        if (IsPlayerInFront() && IsPlayerOnSight())
+        {
+            shot.isShooting = true;
+            shot.random = false;
+        }
+        else
+        {
+            //shot.isShooting = false;
+            shot.random = true;
+        }
+    }
+
+    private bool IsPlayerNear(float distance)
     {
         Vector3 target_distance = target.transform.position - transform.position;
 
-        if(target_distance.magnitude <= sight_distance)
+        if(target_distance.magnitude <= distance)
         {
             //is_chasing = true;          //- Move is_chasing somewhere else
             return true;
@@ -173,7 +231,7 @@ public class BestAIEnemy : MonoBehaviour
     }
 
     // Detect player if on range of sight, obstacles between enemy and target are not considered
-    private bool IsPlayerOnSight()
+    private bool IsPlayerInFront()
     {
         Vector3 target_dir = target.transform.position - transform.position;
         target_dir.Normalize();
@@ -190,6 +248,38 @@ public class BestAIEnemy : MonoBehaviour
         }
     }
 
+    // Detect if player is in the enemy line of sight. Obstacles between enemy and target are considered.
+    // Enemies cannot see through same layer obstacles
+    private bool IsPlayerOnSight()
+    {
+        RaycastHit hit;
+
+        //int layer_mask = 1 << 8;
+
+        Vector3 target_dir = target.transform.position - transform.position;
+
+        if (Physics.Raycast(transform.position, target_dir.normalized, out hit, sight_distance))
+        {
+            if (hit.transform.gameObject.tag == target.tag)
+            {
+                return true;
+            }
+            
+            // See through same colored objects
+            //if(hit.transform.gameObject.layer == this.gameObject.layer)
+            //{
+            //    float dist_left = distance - (hit.point -see_from).magnitude;
+
+            //    if (IsPlayerOnSight(hit.point, dist_left))
+            //        return true;
+            //    else
+            //        return false;
+            //}
+        }
+
+        return false;
+    }
+
     private void IsHomeFar()
     {
         Vector3 home_distance = transform.position - home.transform.position;
@@ -201,6 +291,21 @@ public class BestAIEnemy : MonoBehaviour
         else
         {
             is_chasing = false;
+        }
+    }
+
+    private void IsInHome()
+    {
+        if (back_home)
+        {
+            float dist = nav_agent.remainingDistance;
+            if (dist != Mathf.Infinity && nav_agent.pathStatus == NavMeshPathStatus.PathComplete && nav_agent.remainingDistance == 0)
+            {
+                Debug.Log("Home reached");
+                back_home = false;
+                patrol.is_patrol = true;
+                patrol.ResetPatrol();
+            }
         }
     }
 
@@ -251,5 +356,17 @@ public class BestAIEnemy : MonoBehaviour
     public int GetColor()
     {
         return (int)cur_color;
+    }
+
+
+    //- Make a utilities script
+    public float LookAtAxis(Vector3 look_at)
+    {
+        // Calculate point to look at
+        Vector3 projection = Vector3.ProjectOnPlane(transform.position - look_at, transform.up);
+
+        // Calculate Angle between current transform.front and object to look at
+
+        return Vector3.Angle(transform.forward, projection) - 180;
     }
 }
