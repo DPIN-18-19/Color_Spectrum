@@ -129,9 +129,14 @@ public class GunController : MonoBehaviour {
                 shotCounter = timeBetweenShorts;
                 GameObject bullet_shot = Instantiate(bullet, bullet_spawn.position, bullet_spawn.rotation);
 
-                Vector3 bullet_dir = bullet_spawn.position - cam.GetMousePosInPlane(bullet_spawn.position);
-                bullet_dir = bullet_spawn.transform.TransformDirection(bullet_dir.normalized);
-   
+                //Vector3 bullet_dir = bullet_spawn.position - cam.GetMousePosInPlane(bullet_spawn.position);
+                //bullet_dir = bullet_spawn.transform.TransformDirection(bullet_dir.normalized);
+
+                /////////////
+                // Get Player direction and raycast to infinity
+                Vector3 bullet_dir = CalculateBulletDirection();
+
+
                 Debug.DrawLine(cam.GetMousePosInPlane(bullet_spawn.position), bullet_spawn.position, Color.cyan);
                 bullet_shot.GetComponent<BulletController>().AddBulletInfo(cur_color, speed, bullet_dir,damage, range, true);
                 //Debug.Break();
@@ -149,7 +154,7 @@ public class GunController : MonoBehaviour {
 
             }
         }
-
+        
         //if (isFiring && BulletYellow == true && BulletBlue == false && BulletPink == false )
         //{
         //    shotCounter -= Time.deltaTime;
@@ -194,18 +199,34 @@ public class GunController : MonoBehaviour {
         //    }
         //}
     }
-   //void QuitarEfectoYellow()
-   // {
-   //     EffectYellow.SetActive(false);
-   // }
-   // void QuitarEfectoBlue()
-   // {
-   //     EffectBlue.SetActive(false);
-   // }
-   // void QuitarEfectoPink()
-   // {
-   //     EffectPink.SetActive(false);
-   // }
+
+    Vector3 CalculateBulletDirection()
+    {
+        RaycastHit hit;
+        Transform player = GetComponentInParent<PlayerController>().transform;
+
+        if (Physics.Raycast(player.position, player.forward, out hit, Mathf.Infinity))
+        {
+            Debug.Log("Collision with: " + hit.transform.gameObject.name);
+            return (player.position - hit.point).normalized;
+        }
+
+        Debug.Log("Error");
+        return Vector3.zero;
+    }
+
+    //void QuitarEfectoYellow()
+    // {
+    //     EffectYellow.SetActive(false);
+    // }
+    // void QuitarEfectoBlue()
+    // {
+    //     EffectBlue.SetActive(false);
+    // }
+    // void QuitarEfectoPink()
+    // {
+    //     EffectPink.SetActive(false);
+    // }
 
 
 

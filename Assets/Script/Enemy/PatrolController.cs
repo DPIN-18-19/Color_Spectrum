@@ -54,7 +54,7 @@ public class PatrolController : MonoBehaviour {
         float dist = nav_agent.remainingDistance;
         if (dist != Mathf.Infinity && nav_agent.pathStatus == NavMeshPathStatus.PathComplete && nav_agent.remainingDistance == 0)
         {
-            Debug.Log("Destination reached: " + cur_patrol);
+            //Debug.Log("Destination reached: " + cur_patrol);
             Invoke("ChooseNextPatrol", wait_time);
         }
     }
