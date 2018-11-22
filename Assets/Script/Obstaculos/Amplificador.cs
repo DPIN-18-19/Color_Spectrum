@@ -23,7 +23,7 @@ public class Amplificador : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
         tiempoNoHacerDaño = tiempoinmuneravilidad;
-        player = GameObject.Find("Player");
+        player = GameObject.Find("Player_Naomi");
         cambioColor = player.GetComponent<ColorChangingController>();
     }
 	

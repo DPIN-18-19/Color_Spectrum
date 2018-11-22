@@ -6,8 +6,12 @@ using UnityEngine.UI;
 public class PlayerController : MonoBehaviour {
 
     Animator anim;
+  public ParticleSystem Change_effectYellow;
+  public ParticleSystem Change_effectBlue;
+  public ParticleSystem Change_effectPink;
 
-  public bool isFiring;
+
+    public bool isFiring;
 
     //public float MoveSpeed;         // PLayer's speed
     private Rigidbody myRigidbody;
@@ -30,7 +34,7 @@ public class PlayerController : MonoBehaviour {
     public Material Yellow_Material;
     public Material Pink_Material;
 
-    public Material[] cara;
+    
     
   
     //////////////////////////////////////////////////////////////////////////////
@@ -45,12 +49,13 @@ public class PlayerController : MonoBehaviour {
     void Start ()
     {
         
+
         // Subscribe to event
         ColorChangingController.Instance.ToYellow += ChangeToYellow;
         ColorChangingController.Instance.ToCyan += ChangeToCyan;
         ColorChangingController.Instance.ToMagenta += ChangeToMagenta;
 
-        cara = GetComponent<SkinnedMeshRenderer>().materials;
+        
        
         myRigidbody = GetComponent<Rigidbody>();
         maincamera = FindObjectOfType<Camera>();
@@ -93,13 +98,10 @@ public class PlayerController : MonoBehaviour {
         foreach(Renderer r in renderersToChangeColor)
         {
             r.material = Yellow_Material;    // Apply player material
-            
+            Instantiate(Change_effectYellow.gameObject, transform.position, Quaternion.identity);
             Debug.Log("Change to yellow");
         }
-        for ( int i =0; i < cara.Length; i++)
-        {
-            cara[i] = Yellow_Material;
-        }
+        
         gameObject.layer = 8;                       // Yellow Layer
     }
 
@@ -109,11 +111,9 @@ public class PlayerController : MonoBehaviour {
         {
             r.material = Blue_Material;      // Apply player material
             Debug.Log("Change to cyan");
+            Instantiate(Change_effectBlue.gameObject, transform.position, Quaternion.identity);
         }
-        for (int i = 0; i < cara.Length; i++)
-        {
-            cara[i] = Blue_Material;
-        }
+       
         gameObject.layer = 9;                       // Cyan Layer
     }
 
@@ -124,13 +124,13 @@ public class PlayerController : MonoBehaviour {
             // Magenta Layer
             r.material = Pink_Material;      // Apply player material
             Debug.Log("Change to magenta");
+            Instantiate(Change_effectPink.gameObject, transform.position, Quaternion.identity);
         }
-        for (int i = 0; i < cara.Length; i++)
-        {
-            cara[i] = Pink_Material;
-        }
+       
         gameObject.layer = 10;
     }
+
+
 
 
     
