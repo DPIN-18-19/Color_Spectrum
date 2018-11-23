@@ -24,17 +24,16 @@ public class RuedaArmas : MonoBehaviour {
 
 
 
-        if (Input.GetKeyDown(KeyCode.Tab)) //Input avtiv. o desact. rueda armas.
+        if (Input.GetKeyDown(KeyCode.Tab)) //Input avtiv. rueda armas.
         {
-            
-                Pause();
-            
+               Pause(); 
         }
 
-        if (Input.GetKeyUp(KeyCode.Tab))
+        if (Input.GetKeyUp(KeyCode.Tab)) //Input desact. rueda armas.
         {
             Resume();
         }
+
 
     }
 

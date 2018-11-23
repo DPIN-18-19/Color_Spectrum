@@ -14,7 +14,7 @@ public class BestAIEnemy : MonoBehaviour
         Cyan,           // Cyan = 1
         Magenta         // Magenta = 2
     };
-    
+
     public Colors cur_color = Colors.Yellow;                    // Current selected color
 
     string damaging_tag1;
@@ -22,14 +22,21 @@ public class BestAIEnemy : MonoBehaviour
     int damaging_layer1;
     int damaging_layer2;
 
+    public float rotacion;
+
 
     /////////////////////////////////////////////////////
+
+    public bool AttackMovePlayer;
+    public bool AttackStopPlayer;
+    Animator anim;
+
 
     private NavMeshAgent theAgent;      // Navmesh object
     private GameObject target;          // Move towards objective
     public bool isMoving;               // Is enemy moving towards objective
     public ShotEnemy shot;              // Enemy's gun
-    public Transform [] points;         // Patrol points (unfinished)
+    public Transform[] points;         // Patrol points (unfinished)
     public ParticleSystem DieEffect;    // Die particles
     public bool cercaMirar = false;     // Rotate enemy when going after player
     public GameObject Back;             // Enemy return point
@@ -39,16 +46,22 @@ public class BestAIEnemy : MonoBehaviour
     // private int despoint;
 
     // Use this for initialization
-    void Start () {
+    void Start()
+    {
+        anim = gameObject.GetComponent<Animator>();
+        
+
+
+
         target = GameObject.Find("Player");
         theAgent = GetComponent<NavMeshAgent>();
-        DieEffect.Stop();
+        //DieEffect.Stop();
         EnemyColorData();
     }
-	
+
     void EnemyColorData()
     {
-        if(cur_color == Colors.Yellow)
+        if (cur_color == Colors.Yellow)
         {
             damaging_tag1 = "Blue";
             damaging_tag2 = "Pink";
@@ -71,33 +84,50 @@ public class BestAIEnemy : MonoBehaviour
         }
     }
 
-	// Update is called once per frame
-	void Update () {
-      
+    // Update is called once per frame
+    void Update()
+    {
+
         // Go after player
-        if (isMoving == true )
+        if (isMoving == true)
         {
             theAgent.SetDestination(target.transform.position);
             shot.isShooting = true;
+
+            AttackMovePlayer = true;
+            anim.SetBool("Attack", AttackMovePlayer);
+            AttackStopPlayer = false;
+            anim.SetBool("AttackStop", AttackStopPlayer);
+
+
             theAgent.isStopped = false;
-            
+
         }
         // Go back home
         if (isMoving == false)
         {
             theAgent.SetDestination(Back.transform.position);
+
         }
 
         // Rotate towards player
-        if(cercaMirar == true)
+        if (cercaMirar == true)
         {
-            transform.LookAt(target.transform.position);
+            float look = LookAtAxis(target.transform.position);
+
+            look = Mathf.LerpAngle(0, look, Time.deltaTime * rotacion);
+            transform.Rotate(0, look, 0);
+            theAgent.isStopped = true;
         }
 
         // Freeze in navmesh
         if (Stop == true)
         {
             theAgent.isStopped = true;
+            AttackStopPlayer = true;
+            anim.SetBool("AttackStop", AttackStopPlayer);
+            AttackMovePlayer = false;
+            anim.SetBool("Attack", AttackMovePlayer);
         }
 
     }
@@ -127,9 +157,9 @@ public class BestAIEnemy : MonoBehaviour
     private void OnCollisionEnter(Collision col)
     {
         // Collided with player's bullet
-        if((col.gameObject.tag == damaging_tag1 && col.gameObject.layer == damaging_layer1) || (col.gameObject.tag == damaging_tag2 && col.gameObject.layer == damaging_layer2))
+        if ((col.gameObject.tag == damaging_tag1 && col.gameObject.layer == damaging_layer1) || (col.gameObject.tag == damaging_tag2 && col.gameObject.layer == damaging_layer2))
         {
-            Instantiate(DieEffect.gameObject,transform.position, Quaternion.identity);
+            Instantiate(DieEffect.gameObject, transform.position, Quaternion.identity);
             Debug.Log("hOLA");
             Destroy(this.gameObject);
             //- Has to destroy enemy position too
@@ -161,6 +191,7 @@ public class BestAIEnemy : MonoBehaviour
             shot.isShooting = false;
             
 
+
         }
     }
 
@@ -172,4 +203,12 @@ public class BestAIEnemy : MonoBehaviour
     {
         return (int)cur_color;
     }
+
+    public float LookAtAxis(Vector3 look_at)
+   {
+        Vector3 projection = Vector3.ProjectOnPlane(transform.position - look_at, transform.up);
+        {
+            return Vector3.Angle(transform.forward, projection) - 180;
+        }
+  }
 }

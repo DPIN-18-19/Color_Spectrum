@@ -120,4 +120,13 @@ public class ColorChangingController : MonoBehaviour {
     {
         return i_cur_color;
     }
+    public void SetColor(int N_Color)
+    {
+        if (N_Color >= 0 && N_Color <= num_colors)
+        {
+            i_cur_color = N_Color;
+            cur_color = (Colors)i_cur_color;
+            do_update = true;
+        }
+    }
 }
