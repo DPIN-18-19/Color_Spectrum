@@ -20,6 +20,11 @@ public class PlayerController : MonoBehaviour {
     
     private Camera maincamera;      // Player Camera
 
+
+    public Escopeta pistola;
+    public Escopeta sniper;
+    public Escopeta escopeta;
+
     public GunController theGun;    // Player's Gun
     
     Collider m_collider;
@@ -69,19 +74,48 @@ public class PlayerController : MonoBehaviour {
 
         if (Input.GetMouseButtonDown(0))
         {
-            theGun.is_firing = true;
+            pistola.is_firing = true;
+            isFiring = true;
+            anim.SetBool("isFiring", isFiring);
+
+        }
+        if (Input.GetMouseButtonUp(0))
+        {
+            pistola.is_firing = false;
+            isFiring = false;
+            anim.SetBool("isFiring", isFiring);
+        }
+
+        if (Input.GetMouseButtonDown(0))
+        {
+            sniper.is_firing = true;
+            isFiring = true;
+            anim.SetBool("isFiring", isFiring);
+        }
+
+
+        if (Input.GetMouseButtonUp(0))
+        {
+            sniper.is_firing = false;
+            isFiring = false;
+            anim.SetBool("isFiring", isFiring);
+        }
+
+        if (Input.GetMouseButtonDown(0))
+        {
+            escopeta.is_firing = true;
             isFiring = true;
             anim.SetBool("isFiring", isFiring);
         }
         if (Input.GetMouseButtonUp(0))
         {
-            theGun.is_firing = false;
+            escopeta.is_firing = false;
             isFiring = false;
             anim.SetBool("isFiring", isFiring);
         }
-            
 
-       
+
+
     }
     void FixedUpdate ()
     {
@@ -90,6 +124,10 @@ public class PlayerController : MonoBehaviour {
 
 
     ///////////////////////////////////////////////////////////
+
+
+
+
 
     // Color events
 
@@ -102,7 +140,9 @@ public class PlayerController : MonoBehaviour {
             Debug.Log("Change to yellow");
         }
         
-        gameObject.layer = 8;                       // Yellow Layer
+        gameObject.layer = 8;
+        GameplayManager.GetInstance().ChangeColor(0);
+        // Yellow Layer
     }
 
     void ChangeToCyan()
@@ -114,7 +154,8 @@ public class PlayerController : MonoBehaviour {
             Instantiate(Change_effectBlue.gameObject, transform.position, Quaternion.identity);
         }
        
-        gameObject.layer = 9;                       // Cyan Layer
+        gameObject.layer = 9;
+        GameplayManager.GetInstance().ChangeColor(1); // Cyan Layer
     }
 
     void ChangeToMagenta()
@@ -128,6 +169,7 @@ public class PlayerController : MonoBehaviour {
         }
        
         gameObject.layer = 10;
+        GameplayManager.GetInstance().ChangeColor(2);
     }
 
 

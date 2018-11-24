@@ -42,6 +42,9 @@ public class BestAIEnemy : MonoBehaviour
     public GameObject Back;             // Enemy return point
     public bool Stop;                   // (Unused)
     public bool FuegoAmigo;             // Friendly fire
+    public bool back_home;
+
+    
 
     // private int despoint;
 
@@ -53,7 +56,7 @@ public class BestAIEnemy : MonoBehaviour
 
 
 
-        target = GameObject.Find("Player");
+        target = GameObject.Find("Player_Naomi");
         theAgent = GetComponent<NavMeshAgent>();
         //DieEffect.Stop();
         EnemyColorData();
@@ -87,6 +90,7 @@ public class BestAIEnemy : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        IsInHome();
 
         // Go after player
         if (isMoving == true)
@@ -115,8 +119,16 @@ public class BestAIEnemy : MonoBehaviour
         {
             float look = LookAtAxis(target.transform.position);
 
-            look = Mathf.LerpAngle(0, look, Time.deltaTime * rotacion);
+            if(Mathf.Floor(Mathf.Abs(look)) != 0)
+            //look = Mathf.LerpAngle(0, look, Time.deltaTime);
             transform.Rotate(0, look, 0);
+
+            AttackStopPlayer = true;
+            anim.SetBool("AttackStop", AttackStopPlayer);
+           
+
+            if (look > 20)
+                Debug.Break();
             theAgent.isStopped = true;
         }
 
@@ -124,12 +136,35 @@ public class BestAIEnemy : MonoBehaviour
         if (Stop == true)
         {
             theAgent.isStopped = true;
+
             AttackStopPlayer = true;
             anim.SetBool("AttackStop", AttackStopPlayer);
-            AttackMovePlayer = false;
-            anim.SetBool("Attack", AttackMovePlayer);
+           
+
         }
 
+        // Check if reached home
+        if(back_home)
+        {
+            AttackMovePlayer = false;
+            anim.SetBool("Attack", AttackMovePlayer);
+
+
+     
+        }
+
+    }
+
+    void IsInHome()
+    {
+        float dist = theAgent.remainingDistance;
+        if (dist != Mathf.Infinity && theAgent.pathStatus == NavMeshPathStatus.PathComplete
+            && theAgent.remainingDistance == 0)
+        {
+            back_home = true;
+        }
+        else
+            back_home = false;
     }
 
     private void OnTriggerEnter(Collider col)
@@ -180,7 +215,7 @@ public class BestAIEnemy : MonoBehaviour
             isMoving = true;
             Stop = false;
             cercaMirar = false;
-            transform.LookAt(target.transform.position);
+            //transform.LookAt(target.transform.position);
 
         }
 
@@ -204,11 +239,16 @@ public class BestAIEnemy : MonoBehaviour
         return (int)cur_color;
     }
 
+
     public float LookAtAxis(Vector3 look_at)
-   {
-        Vector3 projection = Vector3.ProjectOnPlane(transform.position - look_at, transform.up);
-        {
-            return Vector3.Angle(transform.forward, projection) - 180;
-        }
-  }
+    {
+        Vector3 projection = Vector3.ProjectOnPlane(look_at - transform.position, Vector3.up);
+
+        float angle = Vector3.SignedAngle(transform.forward, projection, Vector3.up);
+        //float angle2 = Vector3.Angle(projection, transform.forward) - 180;
+        //Debug.Log("Angle of rot: " + angle);
+        //Debug.Log("Angle2 of rot: " + angle2);
+
+        return angle;
+    }
 }
