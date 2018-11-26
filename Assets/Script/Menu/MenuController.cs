@@ -15,6 +15,11 @@ public class MenuController : MonoBehaviour
     //public int totalLevels = 3;
     //public float yOffset = 1f;
 
+    private void Start()
+    {
+        Cursor.visible = true;
+    }
+
     void Update()
     {
         if (Input.GetKeyDown(KeyCode.Escape))

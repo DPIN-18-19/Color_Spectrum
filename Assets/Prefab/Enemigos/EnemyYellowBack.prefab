@@ -27,6 +27,7 @@ GameObject:
   - component: {fileID: 114479202419947458}
   - component: {fileID: 114740703306660796}
   - component: {fileID: 82415781528823420}
+  - component: {fileID: 95811148630281908}
   m_Layer: 8
   m_Name: EnemyYellow
   m_TagString: EnemyYellow
@@ -297,9 +298,9 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1698407596104636}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1.671, z: 1}
+  m_LocalRotation: {x: -0, y: -0.99990946, z: -0, w: 0.013459568}
+  m_LocalPosition: {x: 132, y: 0.4999983, z: 96.3}
+  m_LocalScale: {x: 1.0000004, y: 1, z: 1.0000004}
   m_Children:
   - {fileID: 4857323424833912}
   m_Father: {fileID: 0}
@@ -690,6 +691,24 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!95 &95811148630281908
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1090209418919414}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 0}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!108 &108713997217940988
 Light:
   m_ObjectHideFlags: 1
@@ -739,6 +758,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   cur_color: 0
+  AttackMovePlayer: 0
+  AttackStopPlayer: 0
   isMoving: 0
   shot: {fileID: 114740703306660796}
   points: []
@@ -805,7 +826,7 @@ ParticleSystem:
   stopAction: 0
   looping: 0
   prewarm: 0
-  playOnAwake: 1
+  playOnAwake: 0
   useUnscaledTime: 0
   autoRandomSeed: 1
   useRigidbodyForVelocity: 1

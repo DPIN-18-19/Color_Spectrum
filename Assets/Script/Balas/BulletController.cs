@@ -212,6 +212,7 @@ public class BulletController : MonoBehaviour
         // Move only if no collision is found
         if(!PeekNextPosition(final_pos))
             transform.position += bullet_dir * -bullet_speed * Time.deltaTime;
+        Debug.Log("asda");
     }
 
     // Check next position the bullet will move to

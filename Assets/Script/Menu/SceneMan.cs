@@ -14,6 +14,11 @@ public class SceneMan : MonoBehaviour
 
     public void ToLevel1()
     {
-        SceneManager.LoadScene("Pruebas");
+        SceneManager.LoadScene("Hologram_Shader");
+    }
+
+    public void NextLevel(string name)
+    {
+        SceneManager.LoadScene(name);
     }
 }

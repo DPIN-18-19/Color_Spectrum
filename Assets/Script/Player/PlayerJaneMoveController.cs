@@ -7,6 +7,8 @@ public class PlayerJaneMoveController : MonoBehaviour {
     private Rigidbody rb;
     private Camera cam;
     Animator anim;
+    public bool Move;
+
 
     // Variables
     public float move_speed;            // PLayer's speed
@@ -19,6 +21,7 @@ public class PlayerJaneMoveController : MonoBehaviour {
     {
         // Initialize
         SetUpAnimation();
+        anim.SetBool("Move", Move);
 
         rb = GetComponent<Rigidbody>();
         cam = FindObjectOfType<Camera>();   // Consider changing it if more than one camera in the scene
