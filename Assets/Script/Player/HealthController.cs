@@ -5,7 +5,8 @@ using UnityEngine;
 public class HealthController : MonoBehaviour
 {
     //public Text vida;             // Player's health in UI
-    float health;                   // Player's current health
+    float health;
+    float newHealth;                // Player's current health
     public float max_health;        // Player's maximum health
 
     float armor;                    // Player's current armor
@@ -14,9 +15,15 @@ public class HealthController : MonoBehaviour
     // Dead variables
     public ParticleSystem [] die_effect;    // Effect particle array
     int player_color;                       // Player's color
+    public AudioClip FxDie;
+    private AudioSource source;
 
     //////////////////////////////////////////////////////////////////////////////
+    void Awake()
+    {
+        source = GetComponent<AudioSource>();
 
+    }
     // Use this for initialization
     void Start ()
     {
@@ -24,28 +31,46 @@ public class HealthController : MonoBehaviour
         ColorChangingController.Instance.ToYellow += ChangeToYellow;
         ColorChangingController.Instance.ToCyan += ChangeToCyan;
         ColorChangingController.Instance.ToMagenta += ChangeToMagenta;
+        if(GameplayManager.GetInstance() != null)
+        GameplayManager.GetInstance().max_health = max_health;
+
 
         health = max_health;
+        newHealth = health;
         armor = max_armor;
     }
-	
-	// Update is called once per frame
-	void Update ()
+
+    // Update is called once per frame
+    void Update()
     {
         IsDead();
+        GameplayManager.GetInstance().health = health;
+        health = Mathf.Lerp(health, newHealth, Time.deltaTime * 17);
+        if (health > max_health)
+            health = max_health;
+        if (health < 0)
+        {
+            health = 0;
+
+        }
     }
 
     // Check if dead
     void IsDead()
     {
-        if(health <= 0)
+        if (health <= 0.4)
         {
-            if(player_color < die_effect.Length)
+            AudioSource.PlayClipAtPoint(FxDie, transform.position);
+            if (player_color < die_effect.Length)
             {
                 //- Search a way to destroy die effect after finishing
 
                 Instantiate(die_effect[player_color].gameObject, transform.position, Quaternion.identity);
+
+                GameObject.Find("GameManager").GetComponent<SceneMan>().Invoke("ToMenu", 2);
+
                 Destroy(gameObject);
+                
             }
         }
     }
@@ -56,7 +81,7 @@ public class HealthController : MonoBehaviour
         if (armor > 0)
             GetArmorDamage(damage);
         else
-            health -= damage;
+            newHealth = health - damage;
 
         Debug.Log("Damaged : " + health);
     }
@@ -64,9 +89,10 @@ public class HealthController : MonoBehaviour
     // Get back health
     public void RestoreHealth(float cure)
     {
-        health += cure;
+        newHealth = health + cure;
+        //health += cure;
 
-        if(health > max_health)
+        if (health > max_health)
             health = max_health;
 
         Debug.Log("Restored : " + health);
@@ -106,6 +132,3 @@ public class HealthController : MonoBehaviour
         player_color = 2;
     }
 }
-
-
-// Adeslas

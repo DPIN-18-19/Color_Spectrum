@@ -200,6 +200,7 @@ GameObject:
   - component: {fileID: 114750470784645670}
   - component: {fileID: 195920863155490982}
   - component: {fileID: 82844770270265378}
+  - component: {fileID: 95329386347571440}
   m_Layer: 10
   m_Name: EnemyPink
   m_TagString: EnemyPink
@@ -245,7 +246,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1947835364560480}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: 0.013, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4496340308784114}
@@ -275,9 +276,9 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1776678082225206}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1.671, z: 1}
+  m_LocalRotation: {x: -0, y: -0.99990946, z: 0, w: 0.013459568}
+  m_LocalPosition: {x: -26.960793, y: 0.5, z: 45.23074}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4325210964744674}
   m_Father: {fileID: 0}
@@ -690,6 +691,24 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!95 &95329386347571440
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1947835364560480}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 0}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!108 &108932868790534126
 Light:
   m_ObjectHideFlags: 1
@@ -739,6 +758,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   cur_color: 2
+  AttackMovePlayer: 0
+  AttackStopPlayer: 0
   isMoving: 0
   shot: {fileID: 114885375870612728}
   points: []

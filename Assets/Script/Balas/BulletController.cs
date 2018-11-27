@@ -69,7 +69,8 @@ public class BulletController : MonoBehaviour
 
         //bullet_dir = transform.TransformDirection(transform.forward);
 
-        bullet_dir = transform.InverseTransformDirection(n_dir);
+        //bullet_dir = transform.InverseTransformDirection(n_dir);
+        bullet_dir = n_dir;
 
         //Debug.Log("Direction is: X:" + bullet_dir.x + " Y:" + bullet_dir.y + " Z:" + bullet_dir.z);
 

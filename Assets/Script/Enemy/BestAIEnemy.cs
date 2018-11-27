@@ -14,7 +14,7 @@ public class BestAIEnemy : MonoBehaviour
         Cyan,           // Cyan = 1
         Magenta         // Magenta = 2
     };
-    
+
     public Colors cur_color = Colors.Yellow;                    // Current selected color
 
     string damaging_tag1;
@@ -22,33 +22,50 @@ public class BestAIEnemy : MonoBehaviour
     int damaging_layer1;
     int damaging_layer2;
 
+    public float rotacion;
+
 
     /////////////////////////////////////////////////////
+
+    public bool AttackMovePlayer;
+    public bool AttackStopPlayer;
+    Animator anim;
+
 
     private NavMeshAgent theAgent;      // Navmesh object
     private GameObject target;          // Move towards objective
     public bool isMoving;               // Is enemy moving towards objective
     public ShotEnemy shot;              // Enemy's gun
-    public Transform [] points;         // Patrol points (unfinished)
+    public Transform[] points;         // Patrol points (unfinished)
     public ParticleSystem DieEffect;    // Die particles
     public bool cercaMirar = false;     // Rotate enemy when going after player
     public GameObject Back;             // Enemy return point
     public bool Stop;                   // (Unused)
     public bool FuegoAmigo;             // Friendly fire
+    public bool back_home;
+
+    public AudioClip FxDie;
+    private AudioSource source;
 
     // private int despoint;
 
     // Use this for initialization
-    void Start () {
-        target = GameObject.Find("Player");
+    void Start()
+    {
+        anim = gameObject.GetComponent<Animator>();
+        source = GetComponent<AudioSource>();
+
+
+
+        target = GameObject.Find("Player_Naomi");
         theAgent = GetComponent<NavMeshAgent>();
         //DieEffect.Stop();
         EnemyColorData();
     }
-	
+
     void EnemyColorData()
     {
-        if(cur_color == Colors.Yellow)
+        if (cur_color == Colors.Yellow)
         {
             damaging_tag1 = "Blue";
             damaging_tag2 = "Pink";
@@ -71,35 +88,84 @@ public class BestAIEnemy : MonoBehaviour
         }
     }
 
-	// Update is called once per frame
-	void Update () {
-      
+    // Update is called once per frame
+    void Update()
+    {
+        IsInHome();
+
         // Go after player
-        if (isMoving == true )
+        if (isMoving == true)
         {
             theAgent.SetDestination(target.transform.position);
             shot.isShooting = true;
+
+            AttackMovePlayer = true;
+            anim.SetBool("Attack", AttackMovePlayer);
+            AttackStopPlayer = false;
+            anim.SetBool("AttackStop", AttackStopPlayer);
+
+
             theAgent.isStopped = false;
-            
+
         }
         // Go back home
         if (isMoving == false)
         {
             theAgent.SetDestination(Back.transform.position);
+
         }
 
         // Rotate towards player
-        if(cercaMirar == true)
+        if (cercaMirar == true)
         {
-            transform.LookAt(target.transform.position);
+            float look = LookAtAxis(target.transform.position);
+
+            if(Mathf.Floor(Mathf.Abs(look)) != 0)
+            //look = Mathf.LerpAngle(0, look, Time.deltaTime);
+            transform.Rotate(0, look, 0);
+
+            AttackStopPlayer = true;
+            anim.SetBool("AttackStop", AttackStopPlayer);
+           
+
+            if (look > 20)
+                Debug.Break();
+            theAgent.isStopped = true;
         }
 
         // Freeze in navmesh
         if (Stop == true)
         {
             theAgent.isStopped = true;
+
+            AttackStopPlayer = true;
+            anim.SetBool("AttackStop", AttackStopPlayer);
+           
+
         }
 
+        // Check if reached home
+        if(back_home)
+        {
+            AttackMovePlayer = false;
+            anim.SetBool("Attack", AttackMovePlayer);
+
+
+     
+        }
+
+    }
+
+    void IsInHome()
+    {
+        float dist = theAgent.remainingDistance;
+        if (dist != Mathf.Infinity && theAgent.pathStatus == NavMeshPathStatus.PathComplete
+            && theAgent.remainingDistance == 0)
+        {
+            back_home = true;
+        }
+        else
+            back_home = false;
     }
 
     private void OnTriggerEnter(Collider col)
@@ -127,10 +193,11 @@ public class BestAIEnemy : MonoBehaviour
     private void OnCollisionEnter(Collision col)
     {
         // Collided with player's bullet
-        if((col.gameObject.tag == damaging_tag1 && col.gameObject.layer == damaging_layer1) || (col.gameObject.tag == damaging_tag2 && col.gameObject.layer == damaging_layer2))
+        if ((col.gameObject.tag == damaging_tag1 && col.gameObject.layer == damaging_layer1) || (col.gameObject.tag == damaging_tag2 && col.gameObject.layer == damaging_layer2))
         {
-            Instantiate(DieEffect.gameObject,transform.position, Quaternion.identity);
+            Instantiate(DieEffect.gameObject, transform.position, Quaternion.identity);
             Debug.Log("hOLA");
+            AudioSource.PlayClipAtPoint(FxDie, transform.position);
             Destroy(this.gameObject);
             //- Has to destroy enemy position too
 
@@ -150,7 +217,7 @@ public class BestAIEnemy : MonoBehaviour
             isMoving = true;
             Stop = false;
             cercaMirar = false;
-            transform.LookAt(target.transform.position);
+            //transform.LookAt(target.transform.position);
 
         }
 
@@ -160,6 +227,7 @@ public class BestAIEnemy : MonoBehaviour
             isMoving = false;
             shot.isShooting = false;
             
+
 
         }
     }
@@ -171,5 +239,18 @@ public class BestAIEnemy : MonoBehaviour
     public int GetColor()
     {
         return (int)cur_color;
+    }
+
+
+    public float LookAtAxis(Vector3 look_at)
+    {
+        Vector3 projection = Vector3.ProjectOnPlane(look_at - transform.position, Vector3.up);
+
+        float angle = Vector3.SignedAngle(transform.forward, projection, Vector3.up);
+        //float angle2 = Vector3.Angle(projection, transform.forward) - 180;
+        //Debug.Log("Angle of rot: " + angle);
+        //Debug.Log("Angle2 of rot: " + angle2);
+
+        return angle;
     }
 }
