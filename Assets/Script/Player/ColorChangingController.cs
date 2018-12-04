@@ -22,6 +22,9 @@ public class ColorChangingController : MonoBehaviour {
 
     bool do_update;                             // Has color changed?
 
+    public AudioClip FxCambioColor;
+    AudioSource source;
+
     //////////////////////////////////////////////////////////////////////////////
 
     // Events
@@ -41,6 +44,7 @@ public class ColorChangingController : MonoBehaviour {
     public void Awake()
     {
         Instance = this;
+        source = GetComponent<AudioSource>();
     }
 
     // Use this for initialization
@@ -88,16 +92,26 @@ public class ColorChangingController : MonoBehaviour {
             switch (cur_color)
             {
                 case Colors.Yellow:
-                    if(ToYellow != null)
+                    if (ToYellow != null)
+                    {
                         ToYellow();
+                        source.PlayOneShot(FxCambioColor);
+                    }
+
                     break;
                 case Colors.Cyan:
-                    if(ToCyan != null)
+                    if (ToCyan != null)
+                    {
                         ToCyan();
+                        source.PlayOneShot(FxCambioColor);
+                    }
                     break;
                 case Colors.Magenta:
-                    if(ToMagenta != null)
+                    if (ToMagenta != null)
+                    {
                         ToMagenta();
+                        source.PlayOneShot(FxCambioColor);
+                    }
                     break;
                 default:
                     Debug.Log("Color event error");

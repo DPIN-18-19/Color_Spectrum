@@ -2,7 +2,8 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class DoSomething : MonoBehaviour {
+public class DoSomething : MonoBehaviour
+{
 
 	// Use this for initialization
 	void Start ()
@@ -18,6 +19,6 @@ public class DoSomething : MonoBehaviour {
 
     void DoMyThing()
     {
-        Debug.Log("I win.");
+        GetComponent<Animator>().SetTrigger("OpenDoor");
     }
 }

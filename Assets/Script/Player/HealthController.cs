@@ -15,9 +15,15 @@ public class HealthController : MonoBehaviour
     // Dead variables
     public ParticleSystem [] die_effect;    // Effect particle array
     int player_color;                       // Player's color
+    public AudioClip FxDie;
+    private AudioSource source;
 
     //////////////////////////////////////////////////////////////////////////////
+    void Awake()
+    {
+        source = GetComponent<AudioSource>();
 
+    }
     // Use this for initialization
     void Start ()
     {
@@ -54,12 +60,17 @@ public class HealthController : MonoBehaviour
     {
         if (health <= 0.4)
         {
+            AudioSource.PlayClipAtPoint(FxDie, transform.position);
             if (player_color < die_effect.Length)
             {
                 //- Search a way to destroy die effect after finishing
 
                 Instantiate(die_effect[player_color].gameObject, transform.position, Quaternion.identity);
+
+                GameObject.Find("GameManager").GetComponent<SceneMan>().Invoke("ToMenu", 2);
+
                 Destroy(gameObject);
+                
             }
         }
     }

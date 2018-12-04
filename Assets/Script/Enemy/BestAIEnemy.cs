@@ -44,7 +44,8 @@ public class BestAIEnemy : MonoBehaviour
     public bool FuegoAmigo;             // Friendly fire
     public bool back_home;
 
-    
+    public AudioClip FxDie;
+    private AudioSource source;
 
     // private int despoint;
 
@@ -52,7 +53,7 @@ public class BestAIEnemy : MonoBehaviour
     void Start()
     {
         anim = gameObject.GetComponent<Animator>();
-        
+        source = GetComponent<AudioSource>();
 
 
 
@@ -196,6 +197,7 @@ public class BestAIEnemy : MonoBehaviour
         {
             Instantiate(DieEffect.gameObject, transform.position, Quaternion.identity);
             Debug.Log("hOLA");
+            AudioSource.PlayClipAtPoint(FxDie, transform.position);
             Destroy(this.gameObject);
             //- Has to destroy enemy position too
 
