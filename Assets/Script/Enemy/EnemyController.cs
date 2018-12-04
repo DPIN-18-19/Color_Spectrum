@@ -364,9 +364,9 @@ public class EnemyController : MonoBehaviour
         if ((col.gameObject.tag == damaging_tag1 && col.gameObject.layer == damaging_layer1) || (col.gameObject.tag == damaging_tag2 && col.gameObject.layer == damaging_layer2))
         {
             Instantiate(DieEffect.gameObject, transform.position, Quaternion.identity);
-            Debug.Log("hOLA");
-            Destroy(this.gameObject);
-            //- Has to destroy enemy position too
+
+            // Destroy the whole enemy and its positions
+            Destroy(transform.parent.gameObject);
 
 
             if (col.gameObject.layer == 16 && friendly_fire == true)
