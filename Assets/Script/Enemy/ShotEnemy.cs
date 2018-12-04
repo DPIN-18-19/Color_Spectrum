@@ -28,6 +28,7 @@ public class ShotEnemy : MonoBehaviour
     public Transform EffectShot;
     public float timeBetweenShorts = 3;
     public float TimeShots;
+    public float TimeShotsMax = 1.5f;
     public bool isShooting;
     //public GameObject EffectShot;
   //  public float FlashTime;
@@ -36,12 +37,15 @@ public class ShotEnemy : MonoBehaviour
     public AudioClip FXShotEnemy;
     private AudioSource source;
 
+    public bool random = false;
+
     void Awake()
     {
         source = GetComponent<AudioSource>();
     }
     // Use this for initialization
-    void Start () {
+    void Start ()
+    {
         timeBetweenShorts = TimeShots;
     }
 	
@@ -108,6 +112,18 @@ public class ShotEnemy : MonoBehaviour
             default:
                 Debug.Log("Hello");
                 break;
+        }
+    }
+
+    void NextShotTime()
+    {
+        if (!random)
+        {
+            timeBetweenShorts = TimeShots;
+        }
+        else
+        {
+            timeBetweenShorts = Random.Range(TimeShots, TimeShotsMax);
         }
     }
 }

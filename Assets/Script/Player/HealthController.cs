@@ -83,7 +83,7 @@ public class HealthController : MonoBehaviour
         else
             newHealth = health - damage;
 
-        Debug.Log("Damaged : " + health);
+        //Debug.Log("Damaged : " + health);
     }
 
     // Get back health
@@ -95,7 +95,7 @@ public class HealthController : MonoBehaviour
         if (health > max_health)
             health = max_health;
 
-        Debug.Log("Restored : " + health);
+        //Debug.Log("Restored : " + health);
     }
 
     public void GetArmorDamage(float damage)
