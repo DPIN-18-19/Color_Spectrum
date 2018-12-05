@@ -28,7 +28,7 @@ public class PlayerJaneMoveController : MonoBehaviour {
         SetUpAnimation();
         anim.SetBool("Move", Move);
 
-        rb = transform.GetChild(0).GetComponent<Rigidbody>();
+        rb = GetComponent<Rigidbody>();
         cam = FindObjectOfType<Camera>();   // Consider changing it if more than one camera in the scene
     }
 
@@ -69,7 +69,7 @@ public class PlayerJaneMoveController : MonoBehaviour {
     }
     void SetUpAnimation()
     {
-        anim = transform.GetChild(0).GetComponent<Animator>();
+        anim = GetComponent<Animator>();
         Debug.Log("Hola");
 
         foreach (var childAnimator in GetComponentsInChildren<Animator>())

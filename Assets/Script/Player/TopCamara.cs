@@ -78,7 +78,7 @@ namespace IndiePixel.Cameras {
 
             if (Mathf.Floor(Mathf.Abs(angle_to_rotate)) != 0 && Mathf.Abs(angle_to_rotate) > Mathf.Abs(m_Angle))
             {
-                Debug.Log("Flip : " + angle_to_rotate);
+                //Debug.Log("Flip : " + angle_to_rotate);
                 transform.Rotate(cam.LookAtAxis(m_target.position), 0, 0);
             }
 
