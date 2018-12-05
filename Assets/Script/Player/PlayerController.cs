@@ -137,7 +137,6 @@ public class PlayerController : MonoBehaviour {
         {
             r.material = Yellow_Material;    // Apply player material
             Instantiate(Change_effectYellow.gameObject, transform.position, Quaternion.identity);
-            Debug.Log("Change to yellow");
         }
         
         gameObject.layer = 8;
@@ -150,7 +149,6 @@ public class PlayerController : MonoBehaviour {
         foreach (Renderer r in renderersToChangeColor)
         {
             r.material = Blue_Material;      // Apply player material
-            Debug.Log("Change to cyan");
             Instantiate(Change_effectBlue.gameObject, transform.position, Quaternion.identity);
         }
        
@@ -164,7 +162,6 @@ public class PlayerController : MonoBehaviour {
         {
             // Magenta Layer
             r.material = Pink_Material;      // Apply player material
-            Debug.Log("Change to magenta");
             Instantiate(Change_effectPink.gameObject, transform.position, Quaternion.identity);
         }
        

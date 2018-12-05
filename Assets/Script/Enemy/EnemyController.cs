@@ -41,13 +41,15 @@ public class EnemyController : MonoBehaviour
     public float chase_speed = 7;
 
     // Target Detection
-    public float home_distance;                 // Distance the enemy can be from home
+    //public float home_distance;                 // Distance the enemy can be from home
     public float alert_distance;                // Distance at which the enemy detects the player by getting near
     public float sight_distance;                // Distance at which the enemy detects the player by sight
-    public float sight_angle;                   // Enemy field of view
-    float listen_distance;                      // Distance at which the enemy detects the player by noise
-    bool chase_by_near;
-    bool chase_on_sight;
+    //public float sight_angle;                   // Enemy field of view
+    //float listen_distance;                      // Distance at which the enemy detects the player by noise
+    //bool chase_by_near;
+    //bool chase_on_sight;
+
+    DetectionController detect;
 
     // Chasing
     public float safe_distance;                 // Distance the enemy can be from the player
@@ -85,6 +87,7 @@ public class EnemyController : MonoBehaviour
         target = GameObject.FindWithTag("Player");
         nav_agent = GetComponent<NavMeshAgent>();
 
+        detect = GetComponent<DetectionController>();
         shot = GetComponent<ShotEnemy>();
 
         if(patrol != null)
@@ -98,24 +101,15 @@ public class EnemyController : MonoBehaviour
     {
         if (cur_color == Colors.Yellow)
         {
-            damaging_tag1 = "Blue";
-            damaging_tag2 = "Pink";
-            damaging_layer1 = 12;
-            damaging_layer2 = 13;
+            GetComponent<EnemyHealthController>().ChangeToYellow();
         }
         else if (cur_color == Colors.Magenta)
         {
-            damaging_tag1 = "Blue";
-            damaging_tag2 = "Yellow";
-            damaging_layer1 = 12;
-            damaging_layer2 = 11;
+            GetComponent<EnemyHealthController>().ChangeToMagenta();
         }
         else if (cur_color == Colors.Cyan)
         {
-            damaging_tag1 = "Pink";
-            damaging_tag2 = "Yellow";
-            damaging_layer1 = 13;
-            damaging_layer2 = 11;
+            GetComponent<EnemyHealthController>().ChangeToCyan();
         }
     }
 
@@ -183,40 +177,40 @@ public class EnemyController : MonoBehaviour
 
     private void OnTriggerEnter(Collider col)
     {
-        //  Keep distance from player
-        if (col.gameObject.tag == "LimitEnemigo")
-        {
-            look_target = true;
-            //Stop = true;
-            shot.isShooting = true;
+        ////  Keep distance from player
+        //if (col.gameObject.tag == "LimitEnemigo")
+        //{
+        //    look_target = true;
+        //    //Stop = true;
+        //    shot.isShooting = true;
 
-        }
-        // Start attacking player
-        if (col.gameObject.tag == "AttackPlayer")
-        {
-            // target = GameObject.Find("Player");
-            is_chasing = true;
-            //Stop = false;
-        }
+        //}
+        //// Start attacking player
+        //if (col.gameObject.tag == "AttackPlayer")
+        //{
+        //    // target = GameObject.Find("Player");
+        //    is_chasing = true;
+        //    //Stop = false;
+        //}
     }
 
 
     // Player Detection
     private void DetectPlayer()
     {
-        if (is_chasing && !IsPlayerNear(sight_distance))
+        if (is_chasing && !detect.IsPlayerNear(sight_distance))
         {
             is_chasing = false;
             back_home = true;
         }
 
-        if (IsPlayerInFront() && IsPlayerOnSight())
+        if (detect.IsPlayerInFront() && detect.IsPlayerOnSight(sight_distance))
         {
             //Debug.Log("I see you");
             is_chasing = true;
             in_home = false;
         }
-        else if (IsPlayerNear(alert_distance) && IsPlayerOnSight())
+        else if (detect.IsPlayerNear(alert_distance) && detect.IsPlayerOnSight(sight_distance))
         {
             //Debug.Log("You are near me");
             is_chasing = true;
@@ -226,7 +220,7 @@ public class EnemyController : MonoBehaviour
 
     private void KeepDistance()
     {
-        if (IsPlayerNear(safe_distance))
+        if (detect.IsPlayerNear(safe_distance))
         {
             look_target = true;
         }
@@ -236,7 +230,7 @@ public class EnemyController : MonoBehaviour
 
     private void ShootTarget()
     {
-        if (IsPlayerInFront() && IsPlayerOnSight())
+        if (detect.IsPlayerInFront() && detect.IsPlayerOnSight(sight_distance))
         {
             shot.isShooting = true;
             shot.random = false;
@@ -246,72 +240,6 @@ public class EnemyController : MonoBehaviour
             //shot.isShooting = false;
             shot.random = true;
         }
-    }
-
-    private bool IsPlayerNear(float distance)
-    {
-        Vector3 target_distance = target.transform.position - transform.position;
-
-        if (target_distance.magnitude <= distance)
-        {
-            //is_chasing = true;          //- Move is_chasing somewhere else
-            return true;
-        }
-        else
-        {
-            //is_chasing = false;         //- Move is_chasing somewhere else
-            return false;
-        }
-    }
-
-    // Detect player if on range of sight, obstacles between enemy and target are not considered
-    private bool IsPlayerInFront()
-    {
-        Vector3 target_dir = target.transform.position - transform.position;
-        target_dir.Normalize();
-
-        float target_angle = Vector3.Angle(transform.forward, target_dir);
-
-        if (sight_angle / 2 > Mathf.Abs(target_angle))
-        {
-            return true;
-        }
-        else
-        {
-            return false;
-        }
-    }
-
-    // Detect if player is in the enemy line of sight. Obstacles between enemy and target are considered.
-    // Enemies cannot see through same layer obstacles
-    private bool IsPlayerOnSight()
-    {
-        RaycastHit hit;
-
-        //int layer_mask = 1 << 8;
-
-        Vector3 target_dir = target.transform.position - transform.position;
-
-        if (Physics.Raycast(transform.position, target_dir.normalized, out hit, sight_distance))
-        {
-            if (hit.transform.gameObject.tag == target.tag)
-            {
-                return true;
-            }
-
-            // See through same colored objects
-            //if(hit.transform.gameObject.layer == this.gameObject.layer)
-            //{
-            //    float dist_left = distance - (hit.point -see_from).magnitude;
-
-            //    if (IsPlayerOnSight(hit.point, dist_left))
-            //        return true;
-            //    else
-            //        return false;
-            //}
-        }
-
-        return false;
     }
 
     private void IsHomeFar()
@@ -334,15 +262,6 @@ public class EnemyController : MonoBehaviour
         {
             Debug.Log("here");
             float dist = nav_agent.remainingDistance;
-            //Debug.Log(dist + "m remaining.");
-
-            //if (nav_agent.pathStatus == NavMeshPathStatus.PathComplete)
-            //    Debug.Log("Complete");
-            //if (nav_agent.pathStatus == NavMeshPathStatus.PathInvalid)
-            //    Debug.Log("Invalid");
-            //if (nav_agent.pathStatus == NavMeshPathStatus.PathPartial)
-            //    Debug.Log("Partial");
-
             if (dist != Mathf.Infinity /*&& nav_agent.pathStatus == NavMeshPathStatus.PathComplete*/ && nav_agent.remainingDistance == 0)
             {
                 Debug.Log("Home reached");
@@ -361,40 +280,44 @@ public class EnemyController : MonoBehaviour
     private void OnCollisionEnter(Collision col)
     {
         // Collided with player's bullet
-        if ((col.gameObject.tag == damaging_tag1 && col.gameObject.layer == damaging_layer1) || (col.gameObject.tag == damaging_tag2 && col.gameObject.layer == damaging_layer2))
-        {
-            Instantiate(DieEffect.gameObject, transform.position, Quaternion.identity);
+        //if ((col.gameObject.tag == damaging_tag1 && col.gameObject.layer == damaging_layer1) || (col.gameObject.tag == damaging_tag2 && col.gameObject.layer == damaging_layer2))
+        //{
+        //    // Maybe you should code something at bullet controller
 
-            // Destroy the whole enemy and its positions
-            Destroy(transform.parent.gameObject);
+        //    Instantiate(DieEffect.gameObject, transform.position, Quaternion.identity);
 
+        //    // Destroy the whole enemy and its positions
+        //    Destroy(transform.parent.gameObject);
+            
+        //    if (col.gameObject.layer == 16 && friendly_fire == true)
+        //    {
+        //        Destroy(col.gameObject);
+        //    }
 
-            if (col.gameObject.layer == 16 && friendly_fire == true)
-            {
-                Destroy(col.gameObject);
-            }
-
-        }
+        //}
+        //if(GetComponent<EnemyHealthController>().IsWeak(col.gameObject.tag, col.gameObject.layer))
+        //{
+        //    GetComponent<EnemyHealthController>().Get
+        //}
     }
-    private void OnTriggerExit(Collider col)
-    {
-        // Keep walking towards player
-        if (col.gameObject.tag == "LimitEnemigo")
-        {
-            is_chasing = true;
-            //Stop = false;
-            //look_target = false;
-            transform.LookAt(target.transform.position);
+    //private void OnTriggerExit(Collider col)
+    //{
+    //    // Keep walking towards player
+    //    if (col.gameObject.tag == "LimitEnemigo")
+    //    {
+    //        is_chasing = true;
+    //        //Stop = false;
+    //        //look_target = false;
+    //        transform.LookAt(target.transform.position);
+    //    }
 
-        }
-
-        // Go back home
-        if (col.gameObject.tag == "AttackPlayer")
-        {
-            is_chasing = false;
-            shot.isShooting = false;
-        }
-    }
+    //    // Go back home
+    //    if (col.gameObject.tag == "AttackPlayer")
+    //    {
+    //        is_chasing = false;
+    //        shot.isShooting = false;
+    //    }
+    //}
 
 
     //////////////////////////////////////////

@@ -292,7 +292,7 @@ public class Escopeta : MonoBehaviour {
 
         if (Physics.Raycast(player.position, player.forward, out hit, Mathf.Infinity))
         {
-            Debug.Log("Collision with: " + hit.transform.gameObject.name);
+            //Debug.Log("Collision with: " + hit.transform.gameObject.name);
             return (player.position - hit.point).normalized;
         }
 

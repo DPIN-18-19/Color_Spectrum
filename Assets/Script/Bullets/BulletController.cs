@@ -125,8 +125,7 @@ public class BulletController : MonoBehaviour
                 // Restoring player health
                 else
                     col.gameObject.SendMessage("RestoreHealth", bullet_damage);
-
-
+                
                 Destroy(gameObject);
             }
             // Player bullet
@@ -145,6 +144,14 @@ public class BulletController : MonoBehaviour
             Invoke("ReactivateCollision", enemy_active_time);
         }
         // Collision with any other object
+        else if(col.gameObject.tag.Contains("Enemy"))
+        {
+            Debug.Log("Enemy hit");
+            if (col.gameObject.GetComponent<EnemyHealthController>().IsWeak(gameObject.tag, gameObject.layer))
+                col.gameObject.GetComponent<EnemyHealthController>().GetDamage(bullet_damage);
+            
+            Destroy(gameObject);
+        }
         else
         {
             Debug.Log("destroy bullet");
@@ -194,6 +201,14 @@ public class BulletController : MonoBehaviour
             Invoke("ReactivateCollision", enemy_active_time);
         }
         // Collision with any other object
+        else if (col.gameObject.tag.Contains("Enemy"))
+        {
+            Debug.Log("Enemy hit");
+            if (col.gameObject.GetComponent<EnemyHealthController>().IsWeak(gameObject.tag, gameObject.layer))
+                col.gameObject.GetComponent<EnemyHealthController>().GetDamage(bullet_damage);
+
+            Destroy(gameObject);
+        }
         else
         {
             Debug.Log("Destry enemy bullet");
@@ -212,7 +227,6 @@ public class BulletController : MonoBehaviour
         // Move only if no collision is found
         if(!PeekNextPosition(final_pos))
             transform.position += bullet_dir * -bullet_speed * Time.deltaTime;
-        Debug.Log("asda");
     }
 
     // Check next position the bullet will move to
