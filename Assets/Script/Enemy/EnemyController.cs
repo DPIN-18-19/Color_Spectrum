@@ -164,8 +164,11 @@ public class EnemyController : MonoBehaviour
 
         if(in_home)
         {
-            AttackMovePlayer = false;
-            anim.SetBool("Attack", AttackMovePlayer);
+            if (patrol != null && !patrol.is_patrol)
+            {
+                AttackMovePlayer = false;
+                anim.SetBool("Attack", AttackMovePlayer);
+            }
         }
         // Freeze in navmesh
         //if (Stop == true)

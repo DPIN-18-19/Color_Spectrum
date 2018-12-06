@@ -146,10 +146,12 @@ public class BulletController : MonoBehaviour
         // Collision with any other object
         else if(col.gameObject.tag.Contains("Enemy"))
         {
-            Debug.Log("Enemy hit");
-            if (col.gameObject.GetComponent<EnemyHealthController>().IsWeak(gameObject.tag, gameObject.layer))
-                col.gameObject.GetComponent<EnemyHealthController>().GetDamage(bullet_damage);
-            
+            if (friendly)
+            {
+                if (col.gameObject.GetComponent<EnemyHealthController>().IsWeak(gameObject.tag, gameObject.layer))
+                    col.gameObject.GetComponent<EnemyHealthController>().GetDamage(bullet_damage);
+            }
+
             Destroy(gameObject);
         }
         else

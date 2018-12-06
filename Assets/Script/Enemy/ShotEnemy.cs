@@ -31,11 +31,20 @@ public class ShotEnemy : MonoBehaviour
     public float TimeShotsMax = 1.5f;
     public bool isShooting;
     //public GameObject EffectShot;
-  //  public float FlashTime;
-   // public Transform Shell;
+    //public float FlashTime;
+    // public Transform Shell;
     public Transform ShellEjection;
     public AudioClip FXShotEnemy;
     private AudioSource source;
+
+    ///////////////////////////////////////////////
+
+    public float bullet_speed = 10;
+    public float bullet_dmg = 5;
+    public float bullet_range = 20;
+    public bool bullet_friend = false;
+
+    //////////////////////////////////////////////
 
     public bool random = false;
 
@@ -58,15 +67,15 @@ public class ShotEnemy : MonoBehaviour
         {
             AddaptColor();
             source.PlayOneShot(FXShotEnemy);
-           // EffectShot.SetActive(true);
+            // EffectShot.SetActive(true);
             GameObject bullet_shot = Instantiate(bullet, FirePos.position, FirePos.rotation);
             //bullet_shot.GetComponent<BulletController>().AddBulletInfo(bullet_color,10, 5,20,false);   //- Create Gun Variables
             Vector3 bullet_dir = transform.forward;
 
-            bullet_shot.GetComponent<BulletController>().AddBulletInfo(bullet_color, -10, bullet_dir, 5, 20, false);   //- Create Gun Variables
-          //  Instantiate(Shell, ShellEjection.position, ShellEjection.rotation);
+            bullet_shot.GetComponent<BulletController>().AddBulletInfo(bullet_color, -bullet_speed, bullet_dir, bullet_dmg, bullet_range, bullet_friend);   //- Create Gun Variables
+            // Instantiate(Shell, ShellEjection.position, ShellEjection.rotation);
             timeBetweenShorts = TimeShots;
-           // Invoke("QuitarEfecto", FlashTime);
+            // Invoke("QuitarEfecto", FlashTime);
         }
 	}
     void QuitarEfecto()
@@ -77,7 +86,7 @@ public class ShotEnemy : MonoBehaviour
     // Change colors of bullet
     void AddaptColor()
     {
-        bullet_color = gameObject.GetComponent<BestAIEnemy>().GetColor();
+        bullet_color = gameObject.GetComponent<EnemyController>().GetColor();
 
         switch (bullet_color)
         {
