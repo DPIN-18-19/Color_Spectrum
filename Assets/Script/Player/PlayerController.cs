@@ -30,7 +30,7 @@ public class PlayerController : MonoBehaviour {
 
     //Renderers to change
     [SerializeField]
-    List<Renderer> renderersToChangeColor;
+    public List<Renderer> renderersToChangeColor;
    
 
     // Player's material

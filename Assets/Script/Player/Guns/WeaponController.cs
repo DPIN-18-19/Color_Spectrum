@@ -16,6 +16,7 @@ public class WeaponController : MonoBehaviour
     [SerializeField]
     private WeaponList gun_list;            // Lista de armas;
     private GunData cur_weapon;           // Datos del arma equipada
+    GameObject gun;
     public int activated_weapon = 0;        // Número de arma activada
     public GameObject weapon_pos;                     // Posición del arma
 
@@ -33,6 +34,9 @@ public class WeaponController : MonoBehaviour
 
     /////////////////////////////////////////////////////////
     // Colors Dependent
+
+    List<Renderer> render_children;
+    
     public Material yellow_mat;
     public Material cyan_mat;
     public Material magenta_mat;
@@ -55,6 +59,7 @@ public class WeaponController : MonoBehaviour
     void Awake()
     {
         source = GetComponent<AudioSource>();
+        render_children = new List<Renderer>();
         //contShoot = gunlist.weaponList[2].num_disparos;
         //pistola = true;
     }
@@ -67,7 +72,7 @@ public class WeaponController : MonoBehaviour
         ColorChangingController.Instance.ToCyan += BulletToCyan;
         ColorChangingController.Instance.ToMagenta += BulletToMagenta;
 
-        GetNewWeapon(1);
+        GetNewWeapon(0);
     }
 
     // Update is called once per frame
@@ -84,10 +89,17 @@ public class WeaponController : MonoBehaviour
                 {
                     Debug.Log("MakeShoot");
 
+                    Transform spawn = cur_weapon.gun.transform.Find("FirePos");
+                    if (spawn != null)
+                    {
+                        Debug.Log(spawn.name);
+                    }
+
+
                     shotCounter = cur_weapon.cadency;
-                    GameObject bullet_shot = Instantiate(bullet, cur_weapon.gun.transform.Find("FirePos").position, cur_weapon.gun.transform.Find("FirePos").rotation);
+                    GameObject bullet_shot = Instantiate(bullet, spawn.position, spawn.rotation);
                     source.PlayOneShot(cur_weapon.fx_shot);
-                    Debug.Break();
+                    Debug.Log("Fire pos: " + spawn.position);
 
                     Vector3 bullet_dir = CalculateBulletDirection();
                     //bullet_dir = bullet_spawn.transform.TransformDirection(bullet_dir.normalized);
@@ -155,17 +167,47 @@ public class WeaponController : MonoBehaviour
     
     void GetNewWeapon(int id)
     {
+        // Eliminar datos de materiales
+        TakeOutRenderers();
+
         // Destruir el arma actualmente equipada
-        if(cur_weapon != null)
-            Destroy(cur_weapon.gun);
+        if (gun != null)
+            Destroy(gun);
         
         // Actualizar datos
         activated_weapon = id;
         cur_weapon = gun_list.weapon_list[id];
 
+
         // Crear arma nueva como hijo
-        GameObject new_gun = Instantiate(cur_weapon.gun, weapon_pos.transform);
-        new_gun.transform.parent = weapon_pos.transform;
+        gun = Instantiate(cur_weapon.gun, weapon_pos.transform);
+        gun.transform.parent = weapon_pos.transform;
+
+        // Incluir datos de materiales
+        SearchRenderers();
+        GetComponentInParent<PlayerController>().renderersToChangeColor.AddRange(render_children);
+    }
+
+    void SearchRenderers()
+    {
+        render_children.Clear();
+        
+        if (gun.GetComponentsInChildren<Renderer>().Length != 0)
+        {
+            render_children.AddRange(gun.GetComponentsInChildren<Renderer>());
+        }
+
+        //if (gun.GetComponent<Renderer>() != null)
+        //    render_children.Add(gun.GetComponent<Renderer>());
+    }
+
+    void TakeOutRenderers()
+    {
+        if(render_children.Count != 0)
+            foreach (Renderer r in render_children)
+                GetComponentInParent<PlayerController>().renderersToChangeColor.Remove(r);
+
+        render_children.Clear();
     }
 
     // Color dependent functions
