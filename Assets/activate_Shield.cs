@@ -11,11 +11,13 @@ public class activate_Shield : MonoBehaviour {
     private float Max_Cooldown;
     public float DuracionHabilidad;
     private float Max_Duracion;
+    private bool Init_Abi;
 
     // Use this for initialization
     void Start () {
         Max_Cooldown = Cooldown;
         Max_Duracion = DuracionHabilidad;
+         Init_Abi = true;
         
     }
 	
@@ -23,12 +25,13 @@ public class activate_Shield : MonoBehaviour {
 	void Update () {
 
         Cooldown -= Time.deltaTime;
-        if (Cooldown <= 0 &&/* DuracionHabilidad == Max_Duracion*/ SePuedeUsar == true && Input.GetButtonDown("Habilidad1"))
+        if ( SePuedeUsar == true && Input.GetButtonDown("Habilidad1") && Init_Abi == true)
         {
             Shield.SetActive(true);
             DuracionHabilidad = Max_Duracion;
             UsarHabilidad = true;
-            
+            Init_Abi = false;
+
 
         }
         if (UsarHabilidad)
@@ -43,16 +46,19 @@ public class activate_Shield : MonoBehaviour {
                
                 Cooldown = Max_Cooldown;
                 Shield.SetActive(false);
+                Cooldown = Max_Cooldown;
+                Init_Abi = true;
                 DuracionHabilidad = Max_Duracion;
             }
             
 
         }
-        if (Cooldown <= 0)
+        if (Cooldown <= 0 && Init_Abi == true)
         {
             //Shield.SetActive(false);
             SePuedeUsar = true;
            
+
             // GameplayManager.GetInstance().CambioColor(SePuedeUsar);
             Cooldown = 0;
         }

@@ -12,6 +12,7 @@ public class HabilidadCambioColor : MonoBehaviour {
     public float DuracionHabilidad;
     private float Max_Duracion;
     public AudioClip FxHabilidad;
+    private bool Init_Abi;
      AudioSource source;
 
     public GameObject effect;
@@ -21,7 +22,7 @@ public class HabilidadCambioColor : MonoBehaviour {
     }
         // Use this for initialization
         void Start () {
-       
+        Init_Abi = true;
         Max_Cooldown = Cooldown;
         Max_Duracion = DuracionHabilidad;
 
@@ -34,12 +35,14 @@ public class HabilidadCambioColor : MonoBehaviour {
         GameplayManager.GetInstance().cambio_cooldown = Cooldown;
         GameplayManager.GetInstance().cambio_activo = SePuedeUsar;
         GameplayManager.GetInstance().usarhabilidad = UsarHabilidad;
-        if (Cooldown <= 0 &&/* DuracionHabilidad == Max_Duracion*/ SePuedeUsar == true && Input.GetButtonDown("Habilidad1"))
+        if ( SePuedeUsar == true && Input.GetButtonDown("Habilidad1") && Init_Abi == true )
         {
             source.PlayOneShot(FxHabilidad);
             DuracionHabilidad = Max_Duracion;
             UsarHabilidad = true;
             CreateEffect();
+            Init_Abi = false;
+
         }
         if (UsarHabilidad)
         {
@@ -47,20 +50,23 @@ public class HabilidadCambioColor : MonoBehaviour {
             DuracionHabilidad -= Time.deltaTime;
             if (DuracionHabilidad <= 0)
             {
+               
                 UsarHabilidad = false;
                 SePuedeUsar = false;
                 GameplayManager.GetInstance().CambioColor(SePuedeUsar);
                
                 Cooldown = Max_Cooldown;
+                Init_Abi = true;
                 DuracionHabilidad = Max_Duracion;
             }
 
         }
-        if (Cooldown <= 0)
+        if (Cooldown <= 0 && Init_Abi == true)
         {
             SePuedeUsar = true;
             GameplayManager.GetInstance().CambioColor(SePuedeUsar);
             Cooldown = 0;
+            
         }
     }
     void OnCollisionEnter(Collision collision)
