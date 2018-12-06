@@ -44,7 +44,7 @@ public class Sniper : MonoBehaviour {
     public Transform shell_spawn; // Shell starting position
 
     [SerializeField]
-    private weapon_List gunlist;
+    private WeaponList gunlist;
 
 
 
@@ -86,19 +86,19 @@ public class Sniper : MonoBehaviour {
             shotCounter -= Time.deltaTime;
             if (shotCounter <= 0)
             {
-                shotCounter = gunlist.weaponList[1].cadency;
+                shotCounter = gunlist.weapon_list[1].cadency;
                 GameObject bullet_shot = Instantiate(bullet, bullet_spawn.position, bullet_spawn.rotation);
 
                 Vector3 bullet_dir = CalculateBulletDirection();
                // bullet_dir = bullet_spawn.transform.TransformDirection(bullet_dir.normalized);
 
                 //Random Spray
-                float randspray = Random.Range(gunlist.weaponList[1].spray, -gunlist.weaponList[1].spray);
+                float randspray = Random.Range(gunlist.weapon_list[1].spray, -gunlist.weapon_list[1].spray);
                 Quaternion angulo = Quaternion.Euler(0f, randspray, 0f);
                 bullet_dir = angulo * bullet_dir;
 
                 Debug.DrawLine(cam.GetMousePosInPlane(bullet_spawn.position), bullet_spawn.position, Color.cyan);
-                bullet_shot.GetComponent<BulletController>().AddBulletInfo(cur_color, gunlist.weaponList[1].speed, bullet_dir, gunlist.weaponList[1].damage, gunlist.weaponList[1].range, true);
+                bullet_shot.GetComponent<BulletController>().AddBulletInfo(cur_color, gunlist.weapon_list[1].speed, bullet_dir, gunlist.weapon_list[1].damage, gunlist.weapon_list[1].range, true);
                 //Debug.Break();
                 if (cur_color == 0)
                 {

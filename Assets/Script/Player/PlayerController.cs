@@ -6,20 +6,19 @@ using UnityEngine.UI;
 public class PlayerController : MonoBehaviour {
 
     Animator anim;
-  public ParticleSystem Change_effectYellow;
-  public ParticleSystem Change_effectBlue;
-  public ParticleSystem Change_effectPink;
-
-
+    public ParticleSystem Change_effectYellow;
+    public ParticleSystem Change_effectBlue;
+    public ParticleSystem Change_effectPink;
+    
     public bool isFiring;
 
     //public float MoveSpeed;         // PLayer's speed
     private Rigidbody myRigidbody;
    
-    
-    
     private Camera maincamera;      // Player Camera
 
+
+    WeaponController weapon;
 
     public Escopeta pistola;
     public Escopeta sniper;
@@ -39,9 +38,14 @@ public class PlayerController : MonoBehaviour {
     public Material Yellow_Material;
     public Material Pink_Material;
 
-    
-    
-  
+
+    ///////////////////////////////////////////////
+    // Events
+
+
+    public delegate void Shoot();
+    public event Shoot Shoot_Noise;
+
     //////////////////////////////////////////////////////////////////////////////
 
     // Use this for initialization
@@ -53,19 +57,14 @@ public class PlayerController : MonoBehaviour {
 
     void Start ()
     {
-        
-
         // Subscribe to event
         ColorChangingController.Instance.ToYellow += ChangeToYellow;
         ColorChangingController.Instance.ToCyan += ChangeToCyan;
         ColorChangingController.Instance.ToMagenta += ChangeToMagenta;
-
         
-       
         myRigidbody = GetComponent<Rigidbody>();
         maincamera = FindObjectOfType<Camera>();
-        
-
+        weapon = GetComponentInChildren<WeaponController>();
     }
   
 	// Update is called once per frame
@@ -74,45 +73,45 @@ public class PlayerController : MonoBehaviour {
 
         if (Input.GetMouseButtonDown(0))
         {
-            pistola.is_firing = true;
+            weapon.is_firing = true;
             isFiring = true;
             anim.SetBool("isFiring", isFiring);
 
         }
         if (Input.GetMouseButtonUp(0))
         {
-            pistola.is_firing = false;
+            weapon.is_firing = false;
             isFiring = false;
             anim.SetBool("isFiring", isFiring);
         }
 
-        if (Input.GetMouseButtonDown(0))
-        {
-            sniper.is_firing = true;
-            isFiring = true;
-            anim.SetBool("isFiring", isFiring);
-        }
+        //if (Input.GetMouseButtonDown(0))
+        //{
+        //    sniper.is_firing = true;
+        //    isFiring = true;
+        //    anim.SetBool("isFiring", isFiring);
+        //}
 
 
-        if (Input.GetMouseButtonUp(0))
-        {
-            sniper.is_firing = false;
-            isFiring = false;
-            anim.SetBool("isFiring", isFiring);
-        }
+        //if (Input.GetMouseButtonUp(0))
+        //{
+        //    sniper.is_firing = false;
+        //    isFiring = false;
+        //    anim.SetBool("isFiring", isFiring);
+        //}
 
-        if (Input.GetMouseButtonDown(0))
-        {
-            escopeta.is_firing = true;
-            isFiring = true;
-            anim.SetBool("isFiring", isFiring);
-        }
-        if (Input.GetMouseButtonUp(0))
-        {
-            escopeta.is_firing = false;
-            isFiring = false;
-            anim.SetBool("isFiring", isFiring);
-        }
+        //if (Input.GetMouseButtonDown(0))
+        //{
+        //    escopeta.is_firing = true;
+        //    isFiring = true;
+        //    anim.SetBool("isFiring", isFiring);
+        //}
+        //if (Input.GetMouseButtonUp(0))
+        //{
+        //    escopeta.is_firing = false;
+        //    isFiring = false;
+        //    anim.SetBool("isFiring", isFiring);
+        //}
 
 
 
@@ -121,14 +120,8 @@ public class PlayerController : MonoBehaviour {
     {
        
     }
-
-
     ///////////////////////////////////////////////////////////
-
-
-
-
-
+    
     // Color events
 
     void ChangeToYellow()

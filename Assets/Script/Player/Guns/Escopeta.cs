@@ -1,7 +1,4 @@
-﻿
-
-
-using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -40,15 +37,15 @@ public class Escopeta : MonoBehaviour {
 
 
     //public GameObject flash_effect;
-   // public float flash_time;         // Flash duration
-
-
+    // public float flash_time;         // Flash duration
+   
 
     //public Transform shell;
     public Transform shell_spawn; // Shell starting position
 
     [SerializeField]
-    private weapon_List gunlist;
+    private WeaponList gunlist;
+    int activated_weapon = 0;
 
 
     public bool pistola;
@@ -83,191 +80,178 @@ public class Escopeta : MonoBehaviour {
     // Use this for initialization
     void Start()
     {
-
         // Subscribe to Event
         ColorChangingController.Instance.ToYellow += BulletToYellow;
         ColorChangingController.Instance.ToCyan += BulletToCyan;
         ColorChangingController.Instance.ToMagenta += BulletToMagenta;
-
-
-
-
     }
 
     // Update is called once per frame
     void Update()
     {
-
-        
         if (is_firing)
         {
-            if (pistola)
-            {
-                contShoot = gunlist.weaponList[0].num_disparos;
-                shotCounter -= Time.deltaTime;
-                if (shotCounter <= 0)
-                {
-                    
-                    do
-                    {
-                        shotCounter = gunlist.weaponList[0].cadency;
-                        GameObject bullet_shot = Instantiate(bullet, bullet_spawn_pistola.position, bullet_spawn_pistola.rotation);
-                        source.PlayOneShot(FXShotPistolaPlayer);
+            //if (pistola)
+            //{
+            //    contShoot = gunlist.weaponList[0].num_disparos;
+            //    shotCounter -= Time.deltaTime;
+            //    if (shotCounter <= 0)
+            //    {
+            //        do
+            //        {
+            //            shotCounter = gunlist.weaponList[0].cadency;
+            //            GameObject bullet_shot = Instantiate(bullet, bullet_spawn_pistola.position, bullet_spawn_pistola.rotation);
+            //            source.PlayOneShot(FXShotPistolaPlayer);
 
-                        Vector3 bullet_dir = CalculateBulletDirection();
-                        //bullet_dir = bullet_spawn.transform.TransformDirection(bullet_dir.normalized);
+            //            Vector3 bullet_dir = CalculateBulletDirection();
+            //            //bullet_dir = bullet_spawn.transform.TransformDirection(bullet_dir.normalized);
 
-                        //Random Spray
-                        float randspray = Random.Range(gunlist.weaponList[0].spray, -gunlist.weaponList[0].spray);
-                        Quaternion angulo = Quaternion.Euler(0f, randspray, 0f);
-                        bullet_dir = angulo * bullet_dir;
+            //            //Random Spray
+            //            float randspray = Random.Range(gunlist.weaponList[0].spray, -gunlist.weaponList[0].spray);
+            //            Quaternion angulo = Quaternion.Euler(0f, randspray, 0f);
+            //            bullet_dir = angulo * bullet_dir;
 
-                        Debug.DrawLine(cam.GetMousePosInPlane(bullet_spawn_pistola.position), bullet_spawn_pistola.position, Color.cyan);
-                        bullet_shot.GetComponent<BulletController>().AddBulletInfo(cur_color, gunlist.weaponList[0].speed, bullet_dir, gunlist.weaponList[0].damage, gunlist.weaponList[0].range, true);
-                        //Debug.Break();
+            //            Debug.DrawLine(cam.GetMousePosInPlane(bullet_spawn_pistola.position), bullet_spawn_pistola.position, Color.cyan);
+            //            bullet_shot.GetComponent<BulletController>().AddBulletInfo(cur_color, gunlist.weaponList[0].speed, bullet_dir, gunlist.weaponList[0].damage, gunlist.weaponList[0].range, true);
+            //            //Debug.Break();
 
-                        --contShoot;
+            //            --contShoot;
 
-                    } while (contShoot > 0);
+            //        } while (contShoot > 0);
 
-                    contShoot = gunlist.weaponList[0].num_disparos;
-                    if (cur_color == 0)
-                    {
-                        Instantiate(Shot_effectYellow.gameObject, bullet_spawn_pistola.position, bullet_spawn_pistola.rotation);
+            //        contShoot = gunlist.weaponList[0].num_disparos;
+            //        if (cur_color == 0)
+            //        {
+            //            Instantiate(Shot_effectYellow.gameObject, bullet_spawn_pistola.position, bullet_spawn_pistola.rotation);
 
-                        Instantiate(ShellEfectYellow.gameObject, shell_spawn.position, shell_spawn.rotation);
+            //            Instantiate(ShellEfectYellow.gameObject, shell_spawn.position, shell_spawn.rotation);
 
-                    }
-                    if (cur_color == 1)
-                    {
-                        Instantiate(Shot_effectBlue.gameObject, bullet_spawn_pistola.position, bullet_spawn_pistola.rotation);
+            //        }
+            //        if (cur_color == 1)
+            //        {
+            //            Instantiate(Shot_effectBlue.gameObject, bullet_spawn_pistola.position, bullet_spawn_pistola.rotation);
 
-                        Instantiate(ShellEfectBlue.gameObject, shell_spawn.position, shell_spawn.rotation);
-                    }
-                    if (cur_color == 2)
-                    {
-                        Instantiate(Shot_effectPink.gameObject, bullet_spawn_pistola.position, bullet_spawn_pistola.rotation);
+            //            Instantiate(ShellEfectBlue.gameObject, shell_spawn.position, shell_spawn.rotation);
+            //        }
+            //        if (cur_color == 2)
+            //        {
+            //            Instantiate(Shot_effectPink.gameObject, bullet_spawn_pistola.position, bullet_spawn_pistola.rotation);
 
-                        Instantiate(ShellEfectPink.gameObject, shell_spawn.position, shell_spawn.rotation);
-                    }
-                }
+            //            Instantiate(ShellEfectPink.gameObject, shell_spawn.position, shell_spawn.rotation);
+            //        }
+            //    }
 
-            }
+            //}
 
-            if (sniper)
-            {
-                //Debug.LogError("TUPUTAMADRE");
-                contShoot = gunlist.weaponList[1].num_disparos;
-                shotCounter -= Time.deltaTime;
-                if (shotCounter <= 0)
-                {
+            //if (sniper)
+            //{
+            //    //Debug.LogError("TUPUTAMADRE");
+            //    contShoot = gunlist.weaponList[1].num_disparos;
+            //    shotCounter -= Time.deltaTime;
+            //    if (shotCounter <= 0)
+            //    {
 
-                    do
-                    {
-                        shotCounter = gunlist.weaponList[1].cadency;
-                        GameObject bullet_shot = Instantiate(bullet, bullet_spawn_sniper.position, bullet_spawn_sniper.rotation);
-                        source.PlayOneShot(FXShotSniperPlayer);
-                        Vector3 bullet_dir = CalculateBulletDirection();
-                        //bullet_dir = bullet_spawn.transform.TransformDirection(bullet_dir.normalized);
+            //        do
+            //        {
+            //            shotCounter = gunlist.weaponList[1].cadency;
+            //            GameObject bullet_shot = Instantiate(bullet, bullet_spawn_sniper.position, bullet_spawn_sniper.rotation);
+            //            source.PlayOneShot(FXShotSniperPlayer);
+            //            Vector3 bullet_dir = CalculateBulletDirection();
+            //            //bullet_dir = bullet_spawn.transform.TransformDirection(bullet_dir.normalized);
 
-                        //Random Spray
-                        float randspray = Random.Range(gunlist.weaponList[1].spray, -gunlist.weaponList[1].spray);
-                        Quaternion angulo = Quaternion.Euler(0f, randspray, 0f);
-                        bullet_dir = angulo * bullet_dir;
+            //            //Random Spray
+            //            float randspray = Random.Range(gunlist.weaponList[1].spray, -gunlist.weaponList[1].spray);
+            //            Quaternion angulo = Quaternion.Euler(0f, randspray, 0f);
+            //            bullet_dir = angulo * bullet_dir;
 
-                        Debug.DrawLine(cam.GetMousePosInPlane(bullet_spawn_sniper.position), bullet_spawn_sniper.position, Color.cyan);
-                        bullet_shot.GetComponent<BulletController>().AddBulletInfo(cur_color, gunlist.weaponList[1].speed, bullet_dir, gunlist.weaponList[1].damage, gunlist.weaponList[1].range, true);
-                        //Debug.Break();
+            //            Debug.DrawLine(cam.GetMousePosInPlane(bullet_spawn_sniper.position), bullet_spawn_sniper.position, Color.cyan);
+            //            bullet_shot.GetComponent<BulletController>().AddBulletInfo(cur_color, gunlist.weaponList[1].speed, bullet_dir, gunlist.weaponList[1].damage, gunlist.weaponList[1].range, true);
+            //            //Debug.Break();
 
-                        --contShoot;
+            //            --contShoot;
 
-                    } while (contShoot > 0);
+            //        } while (contShoot > 0);
 
-                    contShoot = gunlist.weaponList[1].num_disparos;
-                    if (cur_color == 0)
-                    {
-                        Instantiate(Shot_effectYellow.gameObject, bullet_spawn_sniper.position, bullet_spawn_sniper.rotation);
+            //        contShoot = gunlist.weaponList[1].num_disparos;
+            //        if (cur_color == 0)
+            //        {
+            //            Instantiate(Shot_effectYellow.gameObject, bullet_spawn_sniper.position, bullet_spawn_sniper.rotation);
 
-                        Instantiate(ShellEfectYellow.gameObject, shell_spawn.position, shell_spawn.rotation);
+            //            Instantiate(ShellEfectYellow.gameObject, shell_spawn.position, shell_spawn.rotation);
 
-                    }
-                    if (cur_color == 1)
-                    {
-                        Instantiate(Shot_effectBlue.gameObject, bullet_spawn_sniper.position, bullet_spawn_sniper.rotation);
+            //        }
+            //        if (cur_color == 1)
+            //        {
+            //            Instantiate(Shot_effectBlue.gameObject, bullet_spawn_sniper.position, bullet_spawn_sniper.rotation);
 
-                        Instantiate(ShellEfectBlue.gameObject, shell_spawn.position, shell_spawn.rotation);
-                    }
-                    if (cur_color == 2)
-                    {
-                        Instantiate(Shot_effectPink.gameObject, bullet_spawn_sniper.position, bullet_spawn_sniper.rotation);
+            //            Instantiate(ShellEfectBlue.gameObject, shell_spawn.position, shell_spawn.rotation);
+            //        }
+            //        if (cur_color == 2)
+            //        {
+            //            Instantiate(Shot_effectPink.gameObject, bullet_spawn_sniper.position, bullet_spawn_sniper.rotation);
 
-                        Instantiate(ShellEfectPink.gameObject, shell_spawn.position, shell_spawn.rotation);
-                    }
-                }
+            //            Instantiate(ShellEfectPink.gameObject, shell_spawn.position, shell_spawn.rotation);
+            //        }
+            //    }
 
-            }
+            //}
 
-            else if (escopeta)
-            {
-                contShoot = gunlist.weaponList[2].num_disparos;
-                shotCounter -= Time.deltaTime;
-                if (shotCounter <= 0)
-                {
+            //else if (escopeta)
+            //{
+            //    contShoot = gunlist.weaponList[2].num_disparos;
+            //    shotCounter -= Time.deltaTime;
+            //    if (shotCounter <= 0)
+            //    {
 
-                    do
-                    {
-                        shotCounter = gunlist.weaponList[2].cadency;
-                        GameObject bullet_shot = Instantiate(bullet, bullet_spawn_escopeta.position, bullet_spawn_escopeta.rotation);
-                        source.PlayOneShot(FXShotEscopetaPlayer);
-                        Vector3 bullet_dir = CalculateBulletDirection();
-                        //bullet_dir = bullet_spawn.transform.TransformDirection(bullet_dir.normalized);
+            //        do
+            //        {
+            //            shotCounter = gunlist.weaponList[2].cadency;
+            //            GameObject bullet_shot = Instantiate(bullet, bullet_spawn_escopeta.position, bullet_spawn_escopeta.rotation);
+            //            source.PlayOneShot(FXShotEscopetaPlayer);
+            //            Vector3 bullet_dir = CalculateBulletDirection();
+            //            //bullet_dir = bullet_spawn.transform.TransformDirection(bullet_dir.normalized);
 
-                        //Random Spray
-                        float randspray = Random.Range(gunlist.weaponList[2].spray, -gunlist.weaponList[2].spray);
-                        Quaternion angulo = Quaternion.Euler(0f, randspray, 0f);
-                        bullet_dir = angulo * bullet_dir;
+            //            //Random Spray
+            //            float randspray = Random.Range(gunlist.weaponList[2].spray, -gunlist.weaponList[2].spray);
+            //            Quaternion angulo = Quaternion.Euler(0f, randspray, 0f);
+            //            bullet_dir = angulo * bullet_dir;
 
-                        Debug.DrawLine(cam.GetMousePosInPlane(bullet_spawn_escopeta.position), bullet_spawn_escopeta.position, Color.cyan);
-                        bullet_shot.GetComponent<BulletController>().AddBulletInfo(cur_color, gunlist.weaponList[2].speed, bullet_dir, gunlist.weaponList[2].damage, gunlist.weaponList[2].range, true);
-                        //Debug.Break();
+            //            Debug.DrawLine(cam.GetMousePosInPlane(bullet_spawn_escopeta.position), bullet_spawn_escopeta.position, Color.cyan);
+            //            bullet_shot.GetComponent<BulletController>().AddBulletInfo(cur_color, gunlist.weaponList[2].speed, bullet_dir, gunlist.weaponList[2].damage, gunlist.weaponList[2].range, true);
+            //            //Debug.Break();
 
-                        --contShoot;
+            //            --contShoot;
 
-                    } while (contShoot > 0);
+            //        } while (contShoot > 0);
 
-                    contShoot = gunlist.weaponList[2].num_disparos;
-                    if (cur_color == 0)
-                    {
-                        Instantiate(Shot_effectYellow.gameObject, bullet_spawn_escopeta.position, bullet_spawn_escopeta.rotation);
+            //        contShoot = gunlist.weaponList[2].num_disparos;
+            //        if (cur_color == 0)
+            //        {
+            //            Instantiate(Shot_effectYellow.gameObject, bullet_spawn_escopeta.position, bullet_spawn_escopeta.rotation);
 
-                        Instantiate(ShellEfectYellow.gameObject, shell_spawn.position, shell_spawn.rotation);
+            //            Instantiate(ShellEfectYellow.gameObject, shell_spawn.position, shell_spawn.rotation);
 
-                    }
-                    if (cur_color == 1)
-                    {
-                        Instantiate(Shot_effectBlue.gameObject, bullet_spawn_escopeta.position, bullet_spawn_escopeta.rotation);
+            //        }
+            //        if (cur_color == 1)
+            //        {
+            //            Instantiate(Shot_effectBlue.gameObject, bullet_spawn_escopeta.position, bullet_spawn_escopeta.rotation);
 
-                        Instantiate(ShellEfectBlue.gameObject, shell_spawn.position, shell_spawn.rotation);
-                    }
-                    if (cur_color == 2)
-                    {
-                        Instantiate(Shot_effectPink.gameObject, bullet_spawn_escopeta.position, bullet_spawn_escopeta.rotation);
+            //            Instantiate(ShellEfectBlue.gameObject, shell_spawn.position, shell_spawn.rotation);
+            //        }
+            //        if (cur_color == 2)
+            //        {
+            //            Instantiate(Shot_effectPink.gameObject, bullet_spawn_escopeta.position, bullet_spawn_escopeta.rotation);
 
-                        Instantiate(ShellEfectPink.gameObject, shell_spawn.position, shell_spawn.rotation);
-                    }
-                }
+            //            Instantiate(ShellEfectPink.gameObject, shell_spawn.position, shell_spawn.rotation);
+            //        }
+            //    }
 
-            }
+            //}
             
-              
-            
-            
-
-                // Flash effect
-                Quaternion spawn_rot = bullet_spawn_sniper.rotation;
-                Quaternion spawn_rot1 = bullet_spawn_escopeta.rotation;
-                 Quaternion spawn_rot2 = bullet_spawn_pistola.rotation;
-
+            // Flash effect
+            Quaternion spawn_rot = bullet_spawn_sniper.rotation;
+            Quaternion spawn_rot1 = bullet_spawn_escopeta.rotation;
+            Quaternion spawn_rot2 = bullet_spawn_pistola.rotation;
 
             //Debug.Log("Rotation: X:" + spawn_rot.x + " Y:" + spawn_rot.y + " Z:" + spawn_rot.z);
             spawn_rot *= Quaternion.Euler(new Vector3(90, -90, 0));

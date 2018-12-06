@@ -104,7 +104,7 @@ public class BulletController : MonoBehaviour
 
     private void OnCollisionEnter(Collision col)
     {
-        Debug.Log("Enter Collided with " + col.transform.gameObject.tag);
+        //Debug.Log("Enter Collided with " + col.transform.gameObject.tag);
         //- Collision with player is not working
         // Same color obstacle collision
         if (col.gameObject.tag == gameObject.tag)

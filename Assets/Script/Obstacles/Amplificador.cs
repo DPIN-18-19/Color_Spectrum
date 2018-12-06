@@ -23,7 +23,7 @@ public class Amplificador : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
         tiempoNoHacerDaño = tiempoinmuneravilidad;
-        player = GameObject.Find("Player_Naomi");
+        player = GameObject.Find("Player_Naomi Test");
         cambioColor = player.GetComponent<ColorChangingController>();
     }
 	
@@ -56,12 +56,6 @@ public class Amplificador : MonoBehaviour {
 
         }
         
-
-
-
-
-
-
 
         //  TimeBetweenShot = TimeBetweenShot - Time.deltaTime;
         //if (col.gameObject.layer == 8 && col.gameObject.tag == "Player" && tiempoNoHacerDaño <= tiempoinmuneravilidad)

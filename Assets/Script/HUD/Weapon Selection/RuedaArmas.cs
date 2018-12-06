@@ -17,20 +17,15 @@ public class RuedaArmas : MonoBehaviour
     public Escopeta Gun;
     public Escopeta pistola;
     public Escopeta sniper;
-
-
+    
 
     void Start()
     {
 
     }
-
-
+    
     void Update()
     {
-
-
-
         if (Input.GetKeyDown(KeyCode.Tab)) //Input avtiv. rueda armas.
         {
             Pause();
@@ -40,8 +35,6 @@ public class RuedaArmas : MonoBehaviour
         {
             Resume();
         }
-
-
     }
 
     public void Resume()
