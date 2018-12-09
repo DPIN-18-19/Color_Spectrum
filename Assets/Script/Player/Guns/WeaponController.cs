@@ -78,6 +78,10 @@ public class WeaponController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        //Debug.Log(cur_weapon.gun.name);
+        //Debug.Log(cur_weapon.gun.transform.parent.name);
+        Debug.Log("Gun pos: " + cur_weapon.gun.transform.position);
+
         if (is_firing)
         {
             contShoot = cur_weapon.num_disparos;
@@ -85,21 +89,27 @@ public class WeaponController : MonoBehaviour
 
             if (shotCounter <= 0)
             {
+                Transform spawn = gun.transform.Find("FirePos");
+                Vector3 spawn_pos = spawn.TransformDirection(spawn.position);
+                Debug.Log("Fire pos: " + spawn.position);
+                Debug.Log("Fire pos: " + spawn_pos);
+
                 do
                 {
                     Debug.Log("MakeShoot");
 
-                    Transform spawn = cur_weapon.gun.transform.Find("FirePos");
+
                     if (spawn != null)
                     {
                         Debug.Log(spawn.name);
                     }
 
+                    //spawn.position = Vector3.one * 100;
 
                     shotCounter = cur_weapon.cadency;
                     GameObject bullet_shot = Instantiate(bullet, spawn.position, spawn.rotation);
                     source.PlayOneShot(cur_weapon.fx_shot);
-                    Debug.Log("Fire pos: " + spawn.position);
+                    //Debug.Break();
 
                     Vector3 bullet_dir = CalculateBulletDirection();
                     //bullet_dir = bullet_spawn.transform.TransformDirection(bullet_dir.normalized);
@@ -111,7 +121,7 @@ public class WeaponController : MonoBehaviour
 
                     //Debug.DrawLine(cam.GetMousePosInPlane(bullet_spawn_pistola.position), bullet_spawn_pistola.position, Color.cyan);
                     bullet_shot.GetComponent<BulletController>().AddBulletInfo(cur_color, cur_weapon.speed, bullet_dir, cur_weapon.damage, cur_weapon.range, true);
-                    //Debug.Break();
+                    
 
                     --contShoot;
 
@@ -182,6 +192,8 @@ public class WeaponController : MonoBehaviour
         // Crear arma nueva como hijo
         gun = Instantiate(cur_weapon.gun, weapon_pos.transform);
         gun.transform.parent = weapon_pos.transform;
+
+        Debug.Log("Parent: " + gun.transform.parent.name);
 
         // Incluir datos de materiales
         SearchRenderers();
