@@ -78,10 +78,6 @@ public class WeaponController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        //Debug.Log(cur_weapon.gun.name);
-        //Debug.Log(cur_weapon.gun.transform.parent.name);
-        Debug.Log("Gun pos: " + cur_weapon.gun.transform.position);
-
         if (is_firing)
         {
             contShoot = cur_weapon.num_disparos;
@@ -90,22 +86,10 @@ public class WeaponController : MonoBehaviour
             if (shotCounter <= 0)
             {
                 Transform spawn = gun.transform.Find("FirePos");
-                Vector3 spawn_pos = spawn.TransformDirection(spawn.position);
-                Debug.Log("Fire pos: " + spawn.position);
-                Debug.Log("Fire pos: " + spawn_pos);
+                Transform shell = gun.transform.Find("SpawnShell");
 
                 do
                 {
-                    Debug.Log("MakeShoot");
-
-
-                    if (spawn != null)
-                    {
-                        Debug.Log(spawn.name);
-                    }
-
-                    //spawn.position = Vector3.one * 100;
-
                     shotCounter = cur_weapon.cadency;
                     GameObject bullet_shot = Instantiate(bullet, spawn.position, spawn.rotation);
                     source.PlayOneShot(cur_weapon.fx_shot);
@@ -122,41 +106,29 @@ public class WeaponController : MonoBehaviour
                     //Debug.DrawLine(cam.GetMousePosInPlane(bullet_spawn_pistola.position), bullet_spawn_pistola.position, Color.cyan);
                     bullet_shot.GetComponent<BulletController>().AddBulletInfo(cur_color, cur_weapon.speed, bullet_dir, cur_weapon.damage, cur_weapon.range, true);
                     
-
                     --contShoot;
 
                 } while (contShoot > 0);
 
+                //// Change this
                 if (cur_color == 0)
                 {
-                    Instantiate(Shot_effectYellow.gameObject, cur_weapon.gun.transform.Find("FirePos").position, cur_weapon.gun.transform.Find("FirePos").rotation);
-                    Instantiate(ShellEfectYellow.gameObject, cur_weapon.gun.transform.Find("SpawnShell").position, cur_weapon.gun.transform.Find("SpawnShell").rotation);
+                    Instantiate(Shot_effectYellow.gameObject, spawn.position, spawn.rotation);
+                    Instantiate(ShellEfectYellow.gameObject, shell.position, shell.rotation);
                 }
 
                 if (cur_color == 1)
                 {
-                    Instantiate(Shot_effectBlue.gameObject, cur_weapon.gun.transform.Find("FirePos").position, cur_weapon.gun.transform.Find("FirePos").rotation);
-                    Instantiate(ShellEfectBlue.gameObject, cur_weapon.gun.transform.Find("SpawnShell").position, cur_weapon.gun.transform.Find("SpawnShell").rotation);
+                    Instantiate(Shot_effectBlue.gameObject, spawn.position, spawn.rotation);
+                    Instantiate(ShellEfectBlue.gameObject, shell.position, shell.rotation);
                 }
 
                 if (cur_color == 2)
                 {
-                    Instantiate(Shot_effectPink.gameObject, cur_weapon.gun.transform.Find("FirePos").position, cur_weapon.gun.transform.Find("FirePos").rotation);
-                    Instantiate(ShellEfectPink.gameObject, cur_weapon.gun.transform.Find("SpawnShell").position, cur_weapon.gun.transform.Find("SpawnShell").rotation);
+                    Instantiate(Shot_effectPink.gameObject, spawn.position, spawn.rotation);
+                    Instantiate(ShellEfectPink.gameObject, shell.position, shell.rotation);
                 }
             }
-            
-            //Quaternion spawn_rot = bullet_spawn_sniper.rotation;
-            //Quaternion spawn_rot1 = bullet_spawn_escopeta.rotation;
-            //Quaternion spawn_rot2 = bullet_spawn_pistola.rotation;
-
-            //Debug.Log("Rotation: X:" + spawn_rot.x + " Y:" + spawn_rot.y + " Z:" + spawn_rot.z);
-            //spawn_rot *= Quaternion.Euler(new Vector3(90, -90, 0));
-            //spawn_rot1 *= Quaternion.Euler(new Vector3(90, -90, 0));
-            //spawn_rot2 *= Quaternion.Euler(new Vector3(90, -90, 0));
-            
-            //source.PlayOneShot(FXShotPlayer);
-            //Invoke("QuitarEfectoYellow", FlashTime);
         }
     }
 
@@ -165,12 +137,13 @@ public class WeaponController : MonoBehaviour
         RaycastHit hit;
         Transform player = GetComponentInParent<PlayerController>().transform;
 
+        // Raycast desde el jugador al infinito
         if (Physics.Raycast(player.position, player.forward, out hit, Mathf.Infinity))
         {
-            //Debug.Log("Collision with: " + hit.transform.gameObject.name);
             return (player.position - hit.point).normalized;
         }
 
+        // Disparo al infinito
         Debug.Log("Error");
         return Vector3.zero;
     }
@@ -197,24 +170,23 @@ public class WeaponController : MonoBehaviour
 
         // Incluir datos de materiales
         SearchRenderers();
-        GetComponentInParent<PlayerController>().renderersToChangeColor.AddRange(render_children);
     }
 
     void SearchRenderers()
     {
         render_children.Clear();
         
+        // Buscar todos los componentes de un arma que tengan "Renderer"
         if (gun.GetComponentsInChildren<Renderer>().Length != 0)
-        {
             render_children.AddRange(gun.GetComponentsInChildren<Renderer>());
-        }
 
-        //if (gun.GetComponent<Renderer>() != null)
-        //    render_children.Add(gun.GetComponent<Renderer>());
+        // Incluir los renderers en los objetos actualizados con colores
+        GetComponentInParent<PlayerController>().renderersToChangeColor.AddRange(render_children);
     }
 
     void TakeOutRenderers()
     {
+        // Eliminar los renderers del jugador
         if(render_children.Count != 0)
             foreach (Renderer r in render_children)
                 GetComponentInParent<PlayerController>().renderersToChangeColor.Remove(r);
@@ -227,17 +199,14 @@ public class WeaponController : MonoBehaviour
     // Changing to yellow
     void BulletToYellow()
     {
-        //cur_bullet = yellow_bullet;
         cur_color = 0;
         bullet.GetComponent<Renderer>().material = yellow_mat;
         bullet.GetComponent<TrailRenderer>().material = yellow_mat;
-
     }
 
     // Changing to cyan
     void BulletToCyan()
     {
-        //cur_bullet = cyan_bullet;
         cur_color = 1;
         bullet.GetComponent<Renderer>().material = cyan_mat;
         bullet.GetComponent<TrailRenderer>().material = cyan_mat;
@@ -246,9 +215,8 @@ public class WeaponController : MonoBehaviour
     // Changing to magenta
     void BulletToMagenta()
     {
-        //cur_bullet = magenta_bullet;
         cur_color = 2;
-        bullet.GetComponent<Renderer>().material = magenta_mat;
-        bullet.GetComponent<TrailRenderer>().material = magenta_mat;
+        bullet.GetComponent<Renderer>().sharedMaterial = magenta_mat;
+        bullet.GetComponent<TrailRenderer>().sharedMaterial = magenta_mat;
     }
 }
