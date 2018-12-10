@@ -148,7 +148,7 @@ public class WeaponController : MonoBehaviour
         return Vector3.zero;
     }
     
-    void GetNewWeapon(int id)
+    public void GetNewWeapon(int id)
     {
         // Eliminar datos de materiales
         TakeOutRenderers();
@@ -160,8 +160,7 @@ public class WeaponController : MonoBehaviour
         // Actualizar datos
         activated_weapon = id;
         cur_weapon = gun_list.weapon_list[id];
-
-
+        
         // Crear arma nueva como hijo
         gun = Instantiate(cur_weapon.gun, weapon_pos.transform);
         gun.transform.parent = weapon_pos.transform;
@@ -182,6 +181,8 @@ public class WeaponController : MonoBehaviour
 
         // Incluir los renderers en los objetos actualizados con colores
         GetComponentInParent<PlayerController>().renderersToChangeColor.AddRange(render_children);
+        // Pintar el arma con el correspondiente material
+        GetComponentInParent<PlayerController>().UpdateColor();
     }
 
     void TakeOutRenderers()

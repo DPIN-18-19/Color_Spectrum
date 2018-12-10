@@ -69,6 +69,7 @@ public class ColorChangingController : MonoBehaviour {
             i_cur_color = (int)cur_color;
             i_cur_color = Loop(i_cur_color+1, num_colors);
             cur_color = (Colors)i_cur_color;
+            source.PlayOneShot(FxCambioColor);
             do_update = true;
         }
 
@@ -78,6 +79,7 @@ public class ColorChangingController : MonoBehaviour {
             i_cur_color = (int)cur_color;
             i_cur_color = Loop(i_cur_color - 1, num_colors);
             cur_color = (Colors)i_cur_color;
+            source.PlayOneShot(FxCambioColor);
             do_update = true;
         }
     }
@@ -95,7 +97,6 @@ public class ColorChangingController : MonoBehaviour {
                     if (ToYellow != null)
                     {
                         ToYellow();
-                        source.PlayOneShot(FxCambioColor);
                     }
 
                     break;
@@ -103,14 +104,12 @@ public class ColorChangingController : MonoBehaviour {
                     if (ToCyan != null)
                     {
                         ToCyan();
-                        source.PlayOneShot(FxCambioColor);
                     }
                     break;
                 case Colors.Magenta:
                     if (ToMagenta != null)
                     {
                         ToMagenta();
-                        source.PlayOneShot(FxCambioColor);
                     }
                     break;
                 default:
@@ -137,6 +136,7 @@ public class ColorChangingController : MonoBehaviour {
     {
         return i_cur_color;
     }
+
     public void SetColor(int N_Color)
     {
         if (N_Color >= 0 && N_Color <= num_colors)
@@ -145,5 +145,10 @@ public class ColorChangingController : MonoBehaviour {
             cur_color = (Colors)i_cur_color;
             do_update = true;
         }
+    }
+
+    public void ReColor()
+    {
+        do_update = true;
     }
 }

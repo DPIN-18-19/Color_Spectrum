@@ -68,9 +68,8 @@ public class PlayerController : MonoBehaviour {
     }
   
 	// Update is called once per frame
-	void Update () {
-        
-
+	void Update ()
+    {
         if (Input.GetMouseButtonDown(0))
         {
             weapon.is_firing = true;
@@ -78,6 +77,7 @@ public class PlayerController : MonoBehaviour {
             anim.SetBool("isFiring", isFiring);
 
         }
+
         if (Input.GetMouseButtonUp(0))
         {
             weapon.is_firing = false;
@@ -112,9 +112,6 @@ public class PlayerController : MonoBehaviour {
         //    isFiring = false;
         //    anim.SetBool("isFiring", isFiring);
         //}
-
-
-
     }
     void FixedUpdate ()
     {
@@ -132,9 +129,8 @@ public class PlayerController : MonoBehaviour {
             Instantiate(Change_effectYellow.gameObject, transform.position, Quaternion.identity);
         }
         
-        gameObject.layer = 8;
+        gameObject.layer = 8;                           // Yellow Layer
         GameplayManager.GetInstance().ChangeColor(0);
-        // Yellow Layer
     }
 
     void ChangeToCyan()
@@ -145,8 +141,8 @@ public class PlayerController : MonoBehaviour {
             Instantiate(Change_effectBlue.gameObject, transform.position, Quaternion.identity);
         }
        
-        gameObject.layer = 9;
-        GameplayManager.GetInstance().ChangeColor(1); // Cyan Layer
+        gameObject.layer = 9;                       // Cyan Layer
+        GameplayManager.GetInstance().ChangeColor(1); 
     }
 
     void ChangeToMagenta()
@@ -158,13 +154,12 @@ public class PlayerController : MonoBehaviour {
             Instantiate(Change_effectPink.gameObject, transform.position, Quaternion.identity);
         }
        
-        gameObject.layer = 10;
+        gameObject.layer = 10;                      // Magenta Layer
         GameplayManager.GetInstance().ChangeColor(2);
     }
 
-
-
-
-    
-    
+    public void UpdateColor()
+    {
+        GetComponent<ColorChangingController>().ReColor();
+    }
 }
