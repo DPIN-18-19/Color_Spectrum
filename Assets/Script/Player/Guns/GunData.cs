@@ -15,6 +15,8 @@ public class GunData
     public float spray = 5;
     public float cadency = 0.5f;
     public float num_disparos = 1f;
+
+    public string ability = "";
     
     public AudioClip fx_shot;
 }

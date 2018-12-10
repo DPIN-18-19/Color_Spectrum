@@ -8,8 +8,8 @@ public class WeaponWheel : MonoBehaviour
 
     public static bool GameIsPaused; //Booleano que detecta cuando esta activado o desactivado la rueda de armas.
     
-    dash Sash;
-    HabilidadCambioColor CambioColor;
+    //dash Sash;
+    //HabilidadCambioColor CambioColor;
     WeaponController weapon;
 
     ///////////////////////////////////////////////////////////////////////////////////////////////////
@@ -18,10 +18,8 @@ public class WeaponWheel : MonoBehaviour
     {
         Rueda_Arm = transform.GetChild(0).gameObject;
 
-        Debug.Log("Start");
-
-        Sash = GameObject.FindGameObjectWithTag("Player").GetComponent<dash>();
-        CambioColor = GameObject.FindGameObjectWithTag("Player").GetComponent<HabilidadCambioColor>();
+        //Sash = GameObject.FindGameObjectWithTag("Player").GetComponent<dash>();
+        //CambioColor = GameObject.FindGameObjectWithTag("Player").GetComponent<HabilidadCambioColor>();
         weapon = GameObject.FindGameObjectWithTag("Player").GetComponentInChildren<WeaponController>();
     }
 
@@ -30,7 +28,6 @@ public class WeaponWheel : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.Tab)) //Input avtiv. rueda armas.
         {
             Pause();
-            Debug.Log("Pause Here");
         }
 
         if (Input.GetKeyUp(KeyCode.Tab)) //Input desact. rueda armas.
@@ -57,8 +54,8 @@ public class WeaponWheel : MonoBehaviour
     {
         //pistola
         GameplayManager.GetInstance().ChangeGun(0);
-        Sash.GetComponent<dash>().enabled = false;
-        CambioColor.GetComponent<HabilidadCambioColor>().enabled = true;
+        //Sash.GetComponent<dash>().enabled = false;
+        //CambioColor.GetComponent<HabilidadCambioColor>().enabled = true;
         
         weapon.GetNewWeapon(0);
 
@@ -69,9 +66,9 @@ public class WeaponWheel : MonoBehaviour
     public void Select_Weapon_1()
     {
         GameplayManager.GetInstance().ChangeGun(1);
-        Sash.GetComponent<dash>().enabled = false;
-        CambioColor.GetComponent<HabilidadCambioColor>().enabled = false;
-        CambioColor.GetComponent<HabilidadCambioColor>().UsarHabilidad = false;
+        //Sash.GetComponent<dash>().enabled = false;
+        //CambioColor.GetComponent<HabilidadCambioColor>().enabled = false;
+        //CambioColor.GetComponent<HabilidadCambioColor>().UsarHabilidad = false;
 
         weapon.GetNewWeapon(1);
 
@@ -82,9 +79,9 @@ public class WeaponWheel : MonoBehaviour
     public void Select_Weapon_2()
     {
         GameplayManager.GetInstance().ChangeGun(2);
-        Sash.GetComponent<dash>().enabled = true;
-        CambioColor.GetComponent<HabilidadCambioColor>().enabled = false;
-        CambioColor.GetComponent<HabilidadCambioColor>().UsarHabilidad = false;
+        //Sash.GetComponent<dash>().enabled = true;
+        //CambioColor.GetComponent<HabilidadCambioColor>().enabled = false;
+        //CambioColor.GetComponent<HabilidadCambioColor>().UsarHabilidad = false;
         
         weapon.GetNewWeapon(2);
 

@@ -67,8 +67,6 @@ public class HabilidadCambioColor : MonoBehaviour {
     {
         if (UsarHabilidad)
         {
-            
-
             if (collision.gameObject.tag == "Pink" )
             {
                 cambioColor.SetColor(2);

@@ -165,10 +165,11 @@ public class WeaponController : MonoBehaviour
         gun = Instantiate(cur_weapon.gun, weapon_pos.transform);
         gun.transform.parent = weapon_pos.transform;
 
-        Debug.Log("Parent: " + gun.transform.parent.name);
-
         // Incluir datos de materiales
         SearchRenderers();
+
+        // Activar habilidad
+        GetComponent<AbilityController>().ActivateAbility(cur_weapon.ability);
     }
 
     void SearchRenderers()

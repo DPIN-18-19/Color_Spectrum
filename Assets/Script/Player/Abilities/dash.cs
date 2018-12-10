@@ -2,7 +2,8 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class dash : MonoBehaviour {
+public class dash : MonoBehaviour
+{
     public bool UsarHabilidad;
     public float dashspeed;
     private float dashTime;
