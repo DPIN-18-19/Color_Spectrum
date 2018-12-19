@@ -1,4 +1,10 @@
-﻿using System.Collections;
+﻿
+
+
+
+//Jaime
+
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -11,6 +17,14 @@ public class ColorChangingController : MonoBehaviour {
         Magenta         // Magenta = 2
     };
 
+
+    public bool ParedCambioNo;
+    public SameColorPink ParedRosa;
+    public float DuracionMismoColor;
+    public float MaxDuracion;
+
+
+
     public Colors cur_color;                    // Current selected color
     int i_cur_color;                            // Current selected color (number)
     private int num_colors;                     // Number of colors
@@ -18,6 +32,9 @@ public class ColorChangingController : MonoBehaviour {
     public Colors init_color = Colors.Yellow;   // Initial color
 
     bool do_update;                             // Has color changed?
+
+    public AudioClip FxCambioColor;
+    AudioSource source;
 
     //////////////////////////////////////////////////////////////////////////////
 
@@ -38,6 +55,7 @@ public class ColorChangingController : MonoBehaviour {
     public void Awake()
     {
         Instance = this;
+        source = GetComponent<AudioSource>();
     }
 
     // Use this for initialization
@@ -45,6 +63,8 @@ public class ColorChangingController : MonoBehaviour {
     {
         num_colors = System.Enum.GetNames(typeof(Colors)).Length;
         do_update = true;
+
+       
     }
 	
 	// Update is called once per frame
@@ -59,19 +79,37 @@ public class ColorChangingController : MonoBehaviour {
         // Change colors forward
         if(Input.GetKeyDown(KeyCode.E))
         {
-            i_cur_color = (int)cur_color;
-            i_cur_color = Loop(i_cur_color+1, num_colors);
-            cur_color = (Colors)i_cur_color;
-            do_update = true;
+            if (ParedCambioNo == false){
+
+                i_cur_color = (int)cur_color;
+                i_cur_color = Loop(i_cur_color + 1, num_colors);
+                cur_color = (Colors)i_cur_color;
+                do_update = true;
+                source.PlayOneShot(FxCambioColor);
+            }
         }
 
         // Change Colors backwards
         if (Input.GetKeyDown(KeyCode.Q))
         {
-            i_cur_color = (int)cur_color;
+            if (ParedCambioNo == false){
+
+                i_cur_color = (int)cur_color;
             i_cur_color = Loop(i_cur_color - 1, num_colors);
             cur_color = (Colors)i_cur_color;
             do_update = true;
+                source.PlayOneShot(FxCambioColor);
+            }
+        }
+        if(ParedCambioNo == true)
+        {
+            DuracionMismoColor += Time.deltaTime;
+            if(DuracionMismoColor > MaxDuracion)
+            {
+               ParedCambioNo = false;
+               DuracionMismoColor = 0;
+            }
+
         }
     }
 
@@ -85,16 +123,26 @@ public class ColorChangingController : MonoBehaviour {
             switch (cur_color)
             {
                 case Colors.Yellow:
-                    if(ToYellow != null)
+                    if (ToYellow != null)
+                    {
                         ToYellow();
+                       
+                    }
+
                     break;
                 case Colors.Cyan:
-                    if(ToCyan != null)
+                    if (ToCyan != null)
+                    {
                         ToCyan();
+                        //source.PlayOneShot(FxCambioColor);
+                    }
                     break;
                 case Colors.Magenta:
-                    if(ToMagenta != null)
+                    if (ToMagenta != null)
+                    {
                         ToMagenta();
+                      //  source.PlayOneShot(FxCambioColor);
+                    }
                     break;
                 default:
                     Debug.Log("Color event error");
@@ -128,5 +176,33 @@ public class ColorChangingController : MonoBehaviour {
             cur_color = (Colors)i_cur_color;
             do_update = true;
         }
+    }
+    private void OnTriggerStay(Collider col)
+    {
+        if(col.gameObject.tag == "ParedNoCambioRosa" && this.gameObject.layer == 10 )
+        {
+            
+                ParedCambioNo = true;
+                Debug.Log("NoPasarRosa");
+            
+        }
+        if (col.gameObject.tag == "ParedNoCambioAzul" && this.gameObject.layer == 9 )
+        {
+            
+                ParedCambioNo = true;
+                Debug.Log("NoPasarAzul");
+            
+        }
+        if (col.gameObject.tag == "ParedNoCambioYellow" && this.gameObject.layer == 8 )
+        {
+            
+                ParedCambioNo = true;
+                Debug.Log("NoPasarYellow");
+            
+        }
+    }
+    public void ReColor()
+    {
+        do_update = true;
     }
 }

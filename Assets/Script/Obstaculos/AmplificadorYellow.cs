@@ -55,7 +55,6 @@ public class AmplificadorYellow : MonoBehaviour {
         if (col.gameObject.tag == "Player" && col.gameObject.layer != 8)
         {
             cambioColor.SetColor(0);
-
         }
 
 

@@ -25,6 +25,7 @@ GameObject:
   - component: {fileID: 114412115372288814}
   - component: {fileID: 54043415725198708}
   - component: {fileID: 96107334424617374}
+  - component: {fileID: 82004546688392338}
   m_Layer: 11
   m_Name: BulletYellow
   m_TagString: Yellow
@@ -60,7 +61,7 @@ MeshRenderer:
   m_ReflectionProbeUsage: 1
   m_RenderingLayerMask: 4294967295
   m_Materials:
-  - {fileID: 2100000, guid: d88ec5f6f06e64d4db6956c458f0b867, type: 2}
+  - {fileID: 2100000, guid: 7ecbc580b62e10740878b3ba62cc0279, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -101,7 +102,102 @@ Rigidbody:
   m_IsKinematic: 0
   m_Interpolate: 0
   m_Constraints: 0
-  m_CollisionDetection: 0
+  m_CollisionDetection: 2
+--- !u!82 &82004546688392338
+AudioSource:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1341849102906586}
+  m_Enabled: 1
+  serializedVersion: 4
+  OutputAudioMixerGroup: {fileID: 0}
+  m_audioClip: {fileID: 0}
+  m_PlayOnAwake: 1
+  m_Volume: 1
+  m_Pitch: 1
+  Loop: 0
+  Mute: 0
+  Spatialize: 0
+  SpatializePostEffects: 0
+  Priority: 128
+  DopplerLevel: 1
+  MinDistance: 1
+  MaxDistance: 500
+  Pan2D: 0
+  rolloffMode: 0
+  BypassEffects: 0
+  BypassListenerEffects: 0
+  BypassReverbZones: 0
+  rolloffCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 1
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  panLevelCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  spreadCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  reverbZoneMixCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
 --- !u!96 &96107334424617374
 TrailRenderer:
   serializedVersion: 2
@@ -118,7 +214,7 @@ TrailRenderer:
   m_ReflectionProbeUsage: 0
   m_RenderingLayerMask: 4294967295
   m_Materials:
-  - {fileID: 2100000, guid: d88ec5f6f06e64d4db6956c458f0b867, type: 2}
+  - {fileID: 2100000, guid: 7ecbc580b62e10740878b3ba62cc0279, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -205,13 +301,23 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ce2f3f51f4f4814489eefa13f32f4f04, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  bullet_color: 0
   bullet_speed: 0
+  bullet_dir: {x: 0, y: 0, z: 0}
   bullet_damage: 0
   bullet_range: 0
   bullet_life_time: 0
   wall_active_time: 0.05
-  enemy_active_time: 0.05
+  enemy_active_time: 0.3
+  enemy_ignore: 
   friendly: 0
+  DestroyEffectYellow: {fileID: 198690981872490802, guid: 945dfa2ed122ea04e90f205649c71858,
+    type: 2}
+  DestroyEffectPink: {fileID: 198035394985013128, guid: 824962ffbe90b24479af85066ad67126,
+    type: 2}
+  DestroyEffectBlue: {fileID: 198289753299169598, guid: 82e7cddc1be16c948a7468bb8e502ea9,
+    type: 2}
+  DestroyBulletFx: {fileID: 0}
 --- !u!135 &135619003353237412
 SphereCollider:
   m_ObjectHideFlags: 1

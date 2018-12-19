@@ -4,6 +4,18 @@ using UnityEngine;
 
 public class GunController : MonoBehaviour
 {
+    public ParticleSystem Shot_effectYellow;
+    public ParticleSystem Shot_effectBlue;
+    public ParticleSystem Shot_effectPink;
+
+    public ParticleSystem ShellEfectYellow;
+    public ParticleSystem ShellEfectBlue;
+    public ParticleSystem ShellEfectPink;
+
+    public ColorChangingController cambioColor;
+    public GameObject player;
+
+
 
     public bool is_firing;          // Player is firing gun
 
@@ -67,7 +79,7 @@ public class GunController : MonoBehaviour
     // Use this for initialization
     void Start()
     {
-
+        cambioColor = player.GetComponent<ColorChangingController>();
         // Subscribe to Event
         ColorChangingController.Instance.ToYellow += BulletToYellow;
         ColorChangingController.Instance.ToCyan += BulletToCyan;
@@ -83,54 +95,74 @@ public class GunController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        
 
-        // if (Input.GetKeyDown("q") && BulletYellow == true)
-        // {
-        //     BulletYellow = false;
-        //     BulletBlue = false;
-        //     BulletPink = true;
-        // }
-        //else if (Input.GetKeyDown("e") && BulletYellow == true)
-        // {
-        //     BulletYellow = false;
-        //     BulletBlue = true;
-        //     BulletPink = false;
-        // }
-        // else if  (Input.GetKeyDown("q") && BulletBlue == true)
-        // {
-        //     BulletYellow = true;
-        //     BulletBlue = false;
-        //     BulletPink = false;
+            // if (Input.GetKeyDown("q") && BulletYellow == true)
+            // {
+            //     BulletYellow = false;
+            //     BulletBlue = false;
+            //     BulletPink = true;
+            // }
+            //else if (Input.GetKeyDown("e") && BulletYellow == true)
+            // {
+            //     BulletYellow = false;
+            //     BulletBlue = true;
+            //     BulletPink = false;
+            // }
+            // else if  (Input.GetKeyDown("q") && BulletBlue == true)
+            // {
+            //     BulletYellow = true;
+            //     BulletBlue = false;
+            //     BulletPink = false;
 
-        // }
-        // else if (Input.GetKeyDown("e") && BulletBlue == true)
-        // {
-        //     BulletYellow = false;
-        //     BulletBlue = false;
-        //     BulletPink = true;
-        // }
-        // else if (Input.GetKeyDown("q") && BulletPink == true)
-        // {
-        //     BulletYellow = false;
-        //     BulletBlue = true;
-        //     BulletPink = false;
+            // }
+            // else if (Input.GetKeyDown("e") && BulletBlue == true)
+            // {
+            //     BulletYellow = false;
+            //     BulletBlue = false;
+            //     BulletPink = true;
+            // }
+            // else if (Input.GetKeyDown("q") && BulletPink == true)
+            // {
+            //     BulletYellow = false;
+            //     BulletBlue = true;
+            //     BulletPink = false;
 
-        // }
-        // else if (Input.GetKeyDown("e") && BulletPink == true)
-        // {
-        //     BulletYellow = true;
-        //     BulletBlue = false;
-        //     BulletPink = false;
+            // }
+            // else if (Input.GetKeyDown("e") && BulletPink == true)
+            // {
+            //     BulletYellow = true;
+            //     BulletBlue = false;
+            //     BulletPink = false;
 
-        // }
+            // }
 
-        if (is_firing)
+            if (is_firing)
         {
             shotCounter -= Time.deltaTime;
             if (shotCounter <= 0)
             {
                 shotCounter = timeBetweenShorts;
                 GameObject bullet_shot = Instantiate(bullet, bullet_spawn.position, bullet_spawn.rotation);
+                if(cur_color == 0)
+                {
+                    Instantiate(Shot_effectYellow.gameObject, bullet_spawn.position, bullet_spawn.rotation);
+
+                    Instantiate(ShellEfectYellow.gameObject, shell_spawn.position, shell_spawn.rotation);
+
+                }
+                if (cur_color == 1)
+                {
+                    Instantiate(Shot_effectBlue.gameObject, bullet_spawn.position, bullet_spawn.rotation);
+
+                    Instantiate(ShellEfectBlue.gameObject, shell_spawn.position, shell_spawn.rotation);
+                }
+                if (cur_color == 2)
+                {
+                    Instantiate(Shot_effectPink.gameObject, bullet_spawn.position, bullet_spawn.rotation);
+
+                    Instantiate(ShellEfectPink.gameObject, shell_spawn.position, shell_spawn.rotation);
+                }
 
                 //Vector3 bullet_dir = bullet_spawn.position - cam.GetMousePosInPlane(bullet_spawn.position);
                 //bullet_dir = bullet_spawn.transform.TransformDirection(bullet_dir.normalized);
@@ -150,7 +182,7 @@ public class GunController : MonoBehaviour
 
                 source.PlayOneShot(FXShotPlayer);
 
-                Instantiate(shell, shell_spawn.position, shell_spawn.rotation);
+               // Instantiate(shell, shell_spawn.position, shell_spawn.rotation);
                 //Invoke("QuitarEfectoYellow", FlashTime);
 
             }
@@ -205,7 +237,7 @@ public class GunController : MonoBehaviour
     {
         RaycastHit hit;
         Transform player = GetComponentInParent<PlayerController>().transform;
-
+        
         if (Physics.Raycast(player.position, player.forward, out hit, Mathf.Infinity))
         {
             Debug.Log("Collision with: " + hit.transform.gameObject.name);
@@ -243,6 +275,8 @@ public class GunController : MonoBehaviour
        // flash_effect.GetComponent<SpriteRenderer>().color = Color.yellow;
        // flash_effect.GetComponentInChildren<Light>().color = Color.yellow;
         shell.GetComponent<MeshRenderer>().material = yellow_mat;
+        shell.gameObject.layer = 8;
+       
     }
 
     // Changing to cyan
@@ -255,6 +289,8 @@ public class GunController : MonoBehaviour
      //   flash_effect.GetComponent<SpriteRenderer>().color = Color.cyan;
     //    flash_effect.GetComponentInChildren<Light>().color = Color.cyan;
         shell.GetComponent<MeshRenderer>().material = cyan_mat;
+        shell.gameObject.layer = 9;
+
     }
 
     // Changing to magenta
@@ -267,6 +303,7 @@ public class GunController : MonoBehaviour
      //   flash_effect.GetComponent<SpriteRenderer>().color = Color.magenta;
     //    flash_effect.GetComponentInChildren<Light>().color = Color.magenta;
         shell.GetComponent<MeshRenderer>().material = magenta_mat;
+        shell.gameObject.layer = 10;
     }
 
 }
