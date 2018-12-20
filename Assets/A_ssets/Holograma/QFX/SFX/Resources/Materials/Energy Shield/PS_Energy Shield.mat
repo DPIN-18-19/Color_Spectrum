@@ -4,7 +4,7 @@
 Material:
   serializedVersion: 6
   m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
+  m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_Name: PS_Energy Shield
   m_Shader: {fileID: 4800000, guid: 1e7815e243552d74ab5c7dbb893ad2a2, type: 3}
@@ -149,13 +149,13 @@ Material:
     - _MaskAppearAxis: 2
     - _MaskAppearInvert: 0
     - _MaskAppearProgress: 0
-    - _MaskAppearStrength: 0.225
+    - _MaskAppearStrength: 0.448
     - _MaxDistance: 1.11
     - _Metallic: 0
     - _Mode: 0
-    - _NoiseDistortionPower: 2
-    - _NoiseDistortionTilling: 3.85
-    - _NoiseOffset: 0.024
+    - _NoiseDistortionPower: 0
+    - _NoiseDistortionTilling: 0
+    - _NoiseOffset: 0.435
     - _NoisePower: 0.1
     - _NoiseSpeed: 0.52
     - _NoiseTilling: 1.05
@@ -172,8 +172,8 @@ Material:
     - __dirty: 0
     m_Colors:
     - _Color: {r: 1, g: 1, b: 1, a: 1}
-    - _DepthColor: {r: 0.8529408, g: 1.5257602, b: 4, a: 1}
-    - _DisotrionColor: {r: 1.3766438, g: 1.3766438, b: 1.3766438, a: 1}
+    - _DepthColor: {r: 0, g: 0, b: 0, a: 0.92941177}
+    - _DisotrionColor: {r: 0.7489423, g: 2.603466, b: 0, a: 0}
     - _DistortionSpeed: {r: 0, g: 0.4, b: 0, a: 0}
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
     - _HitColor: {r: 1.492636, g: 3.3537521, b: 7.000021, a: 1}
@@ -185,5 +185,5 @@ Material:
     - _NoiseSpeed: {r: 0, g: 0.15, b: 0, a: 0}
     - _NoiseTilling: {r: 10, g: 10, b: 0, a: 0}
     - _SpecColor: {r: 1, g: 1, b: 1, a: 1}
-    - _TintColor: {r: 0.63970435, g: 1.4373207, b: 3.0000005, a: 1}
+    - _TintColor: {r: 0.06704977, g: 0.18867922, b: 0, a: 0.5019608}
     - _Vector0: {r: 0, g: 0, b: 0, a: 0}

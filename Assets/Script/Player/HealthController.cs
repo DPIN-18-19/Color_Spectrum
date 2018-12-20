@@ -8,7 +8,7 @@ public class HealthController : MonoBehaviour
     float health;
     float newHealth;                // Player's current health
     public float max_health;        // Player's maximum health
-
+    public ColorChangingController cambioColor;
     float armor;                    // Player's current armor
     public float max_armor;         // Player's maximum armor
 
@@ -18,6 +18,27 @@ public class HealthController : MonoBehaviour
     public AudioClip FxDie;
     private AudioSource source;
 
+    public ParticleSystem HealthYellow;
+    public ParticleSystem HealthBlue;
+    public ParticleSystem HealthPink;
+
+    public PlayerController MaterialsPlayer;
+
+    public float TimeDamageMat;
+    private float MaxTimeDamageMat;
+    public bool Daño;
+
+    public float TimeHealtheMat;
+    public float MaxTimeHealhthMat;
+    public bool curar;
+
+    public float TimeGlitchtheMat;
+    public float MaxGlitchthMat;
+    public bool ParedNopasar;
+   
+    public ColorChangingController BlackGlitch;
+
+    
     //////////////////////////////////////////////////////////////////////////////
     void Awake()
     {
@@ -27,6 +48,9 @@ public class HealthController : MonoBehaviour
     // Use this for initialization
     void Start ()
     {
+       // TimeGlitchtheMat = MaxGlitchthMat;
+        MaxTimeDamageMat = TimeDamageMat;
+        //  MaxTimeHealhthMat = TimeHealtheMat;
         // Subscribe to event
         ColorChangingController.Instance.ToYellow += ChangeToYellow;
         ColorChangingController.Instance.ToCyan += ChangeToCyan;
@@ -51,7 +75,153 @@ public class HealthController : MonoBehaviour
         if (health < 0)
         {
             health = 0;
+        }
 
+        if(Daño == true) 
+        {
+            TimeDamageMat -= Time.deltaTime;
+        }
+
+        if (Daño == false && TimeDamageMat < 0)
+        {
+            if (ParedNopasar == false)
+            {
+
+                if (cambioColor.GetColor() == 0)
+                {
+                    MaterialsPlayer.RestoreChangeToYellow();
+                }
+                if (cambioColor.GetColor() == 1)
+                {
+                    MaterialsPlayer.RestoreChangeToCyan();
+                }
+                if (cambioColor.GetColor() == 2)
+                {
+                    MaterialsPlayer.RestoreChangeToMagenta();
+                }
+                TimeDamageMat = MaxTimeDamageMat;
+            }
+            if(ParedNopasar == true)
+            {
+                if (cambioColor.GetColor() == 0)
+                {
+                    MaterialsPlayer.ChangeToBlackYellow();
+                }
+                if (cambioColor.GetColor() == 1)
+                {
+                    MaterialsPlayer.ChangeToBlackBlue();
+                }
+                if (cambioColor.GetColor() == 2)
+                {
+                    MaterialsPlayer.ChangeToBlackPink();
+                }
+                TimeDamageMat = MaxTimeDamageMat;
+            }
+        }
+
+        if( TimeDamageMat < 0)
+        {
+            Daño = false;
+        }
+       
+        if (curar == true)
+        {
+            TimeHealtheMat -= Time.deltaTime;
+        }
+        if (curar == false && TimeHealtheMat < 0)
+        {
+            if (cambioColor.GetColor() == 0)
+            {
+                MaterialsPlayer.RestoreChangeToYellow();
+            }
+            if (cambioColor.GetColor() == 1)
+            {
+                MaterialsPlayer.RestoreChangeToCyan();
+            }
+            if (cambioColor.GetColor() == 2)
+            {
+                MaterialsPlayer.RestoreChangeToMagenta();
+            }
+            TimeHealtheMat = MaxTimeHealhthMat;
+
+        }
+        if (TimeHealtheMat < 0)
+        {
+            curar = false;
+        }
+        
+        if(cambioColor.ParedCambioNo == true)
+        {
+            ParedNopasar = true;
+            TimeGlitchtheMat += Time.deltaTime;
+            if (TimeGlitchtheMat < MaxGlitchthMat)
+            {
+                if (cambioColor.GetColor() == 0)
+                {
+                    MaterialsPlayer.ChangeToBlackGlitchYellow();
+                }
+                if (cambioColor.GetColor() == 1)
+                {
+                    MaterialsPlayer.ChangeToBlackGlitchBlue();
+                }
+                if (cambioColor.GetColor() == 2)
+                {
+                    MaterialsPlayer.ChangeToBlackGlitchPink();
+                }
+            }
+            if (TimeGlitchtheMat > MaxGlitchthMat && Daño == false )
+            {
+                if (cambioColor.GetColor() == 0)
+                {
+                    MaterialsPlayer.ChangeToBlackYellow();
+                }
+                if (cambioColor.GetColor() == 1)
+                {
+                    MaterialsPlayer.ChangeToBlackBlue();
+                }
+                if (cambioColor.GetColor() == 2)
+                {
+                    MaterialsPlayer.ChangeToBlackPink();
+                }
+            }
+            if (TimeGlitchtheMat > MaxGlitchthMat && Daño == true)
+            {
+
+                if (cambioColor.GetColor() == 0)
+                {
+                    MaterialsPlayer.ChangeToDamageYellow();
+                }
+                if (cambioColor.GetColor() == 1)
+                {
+                    MaterialsPlayer.ChangeToDamageBlue();
+                }
+                if (cambioColor.GetColor() == 2)
+                {
+                    MaterialsPlayer.ChangeToDamagePink();
+                }
+
+               // TimeDamageMat -= Time.deltaTime;
+
+            }
+
+
+            if (TimeGlitchtheMat > cambioColor.MaxDuracion)
+            {
+                if (cambioColor.GetColor() == 0)
+                {
+                    MaterialsPlayer.RestoreChangeToYellow();
+                }
+                if (cambioColor.GetColor() == 1)
+                {
+                    MaterialsPlayer.RestoreChangeToCyan();
+                }
+                if (cambioColor.GetColor() == 2)
+                {
+                    MaterialsPlayer.RestoreChangeToMagenta();
+                }
+                TimeGlitchtheMat = 0;
+                ParedNopasar = false;
+            }
         }
     }
 
@@ -70,7 +240,6 @@ public class HealthController : MonoBehaviour
                 GameObject.Find("GameManager").GetComponent<SceneMan>().Invoke("ToMenu", 2);
 
                 Destroy(gameObject);
-                
             }
         }
     }
@@ -81,21 +250,57 @@ public class HealthController : MonoBehaviour
         if (armor > 0)
             GetArmorDamage(damage);
         else
+        {
             newHealth = health - damage;
 
-        Debug.Log("Damaged : " + health);
+            if (cambioColor.GetColor() == 0)
+            {
+                MaterialsPlayer.ChangeToDamageYellow();
+
+            }
+            if (cambioColor.GetColor() == 1)
+            {
+                MaterialsPlayer.ChangeToDamageBlue();
+            }
+            if (cambioColor.GetColor() == 2)
+            {
+                MaterialsPlayer.ChangeToDamagePink();
+            }
+
+            ScoreManager.Instance.CountDamage(damage);
+            Daño = true;
+        }
     }
+
+
+
 
     // Get back health
     public void RestoreHealth(float cure)
     {
         newHealth = health + cure;
         //health += cure;
-
+        if (cambioColor.GetColor() == 0)
+        {
+            MaterialsPlayer.ChangeToHealthYellow();
+            Instantiate(HealthYellow.gameObject, transform.position, Quaternion.identity);
+        }
+        if (cambioColor.GetColor() == 1)
+        {
+            MaterialsPlayer.ChangeToHealthBlue();
+            Instantiate(HealthBlue.gameObject, transform.position, Quaternion.identity);
+        }
+        if (cambioColor.GetColor() == 2)
+        {
+            MaterialsPlayer.ChangeToHealthPink();
+            Instantiate(HealthPink.gameObject, transform.position, Quaternion.identity);
+        }
+        curar = true;
         if (health > max_health)
+        {
             health = max_health;
-
-        Debug.Log("Restored : " + health);
+          
+        }
     }
 
     public void GetArmorDamage(float damage)

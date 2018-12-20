@@ -103,14 +103,14 @@ public class Escopeta : MonoBehaviour {
         {
             if (pistola)
             {
-                contShoot = gunlist.weaponList[0].num_disparos;
+                contShoot = gunlist.weapon_list[0].num_disparos;
                 shotCounter -= Time.deltaTime;
                 if (shotCounter <= 0)
                 {
                     
                     do
                     {
-                        shotCounter = gunlist.weaponList[0].cadency;
+                        shotCounter = gunlist.weapon_list[0].cadency;
                         GameObject bullet_shot = Instantiate(bullet, bullet_spawn_pistola.position, bullet_spawn_pistola.rotation);
                         source.PlayOneShot(FXShotPistolaPlayer);
 
@@ -118,19 +118,19 @@ public class Escopeta : MonoBehaviour {
                         //bullet_dir = bullet_spawn.transform.TransformDirection(bullet_dir.normalized);
 
                         //Random Spray
-                        float randspray = Random.Range(gunlist.weaponList[0].spray, -gunlist.weaponList[0].spray);
+                        float randspray = Random.Range(gunlist.weapon_list[0].spray, -gunlist.weapon_list[0].spray);
                         Quaternion angulo = Quaternion.Euler(0f, randspray, 0f);
                         bullet_dir = angulo * bullet_dir;
 
                         Debug.DrawLine(cam.GetMousePosInPlane(bullet_spawn_pistola.position), bullet_spawn_pistola.position, Color.cyan);
-                        bullet_shot.GetComponent<BulletController>().AddBulletInfo(cur_color, gunlist.weaponList[0].speed, bullet_dir, gunlist.weaponList[0].damage, gunlist.weaponList[0].range, true);
+                        bullet_shot.GetComponent<BulletController>().AddBulletInfo(cur_color, gunlist.weapon_list[0].speed, bullet_dir, gunlist.weapon_list[0].damage, gunlist.weapon_list[0].range, true);
                         //Debug.Break();
 
                         --contShoot;
 
                     } while (contShoot > 0);
 
-                    contShoot = gunlist.weaponList[0].num_disparos;
+                    contShoot = gunlist.weapon_list[0].num_disparos;
                     if (cur_color == 0)
                     {
                         Instantiate(Shot_effectYellow.gameObject, bullet_spawn_pistola.position, bullet_spawn_pistola.rotation);
@@ -157,33 +157,33 @@ public class Escopeta : MonoBehaviour {
             if (sniper)
             {
                 //Debug.LogError("TUPUTAMADRE");
-                contShoot = gunlist.weaponList[1].num_disparos;
+                contShoot = gunlist.weapon_list[1].num_disparos;
                 shotCounter -= Time.deltaTime;
                 if (shotCounter <= 0)
                 {
 
                     do
                     {
-                        shotCounter = gunlist.weaponList[1].cadency;
+                        shotCounter = gunlist.weapon_list[1].cadency;
                         GameObject bullet_shot = Instantiate(bullet, bullet_spawn_sniper.position, bullet_spawn_sniper.rotation);
                         source.PlayOneShot(FXShotSniperPlayer);
                         Vector3 bullet_dir = CalculateBulletDirection();
                         //bullet_dir = bullet_spawn.transform.TransformDirection(bullet_dir.normalized);
 
                         //Random Spray
-                        float randspray = Random.Range(gunlist.weaponList[1].spray, -gunlist.weaponList[1].spray);
+                        float randspray = Random.Range(gunlist.weapon_list[1].spray, -gunlist.weapon_list[1].spray);
                         Quaternion angulo = Quaternion.Euler(0f, randspray, 0f);
                         bullet_dir = angulo * bullet_dir;
 
                         Debug.DrawLine(cam.GetMousePosInPlane(bullet_spawn_sniper.position), bullet_spawn_sniper.position, Color.cyan);
-                        bullet_shot.GetComponent<BulletController>().AddBulletInfo(cur_color, gunlist.weaponList[1].speed, bullet_dir, gunlist.weaponList[1].damage, gunlist.weaponList[1].range, true);
+                        bullet_shot.GetComponent<BulletController>().AddBulletInfo(cur_color, gunlist.weapon_list[1].speed, bullet_dir, gunlist.weapon_list[1].damage, gunlist.weapon_list[1].range, true);
                         //Debug.Break();
 
                         --contShoot;
 
                     } while (contShoot > 0);
 
-                    contShoot = gunlist.weaponList[1].num_disparos;
+                    contShoot = gunlist.weapon_list[1].num_disparos;
                     if (cur_color == 0)
                     {
                         Instantiate(Shot_effectYellow.gameObject, bullet_spawn_sniper.position, bullet_spawn_sniper.rotation);
@@ -209,33 +209,33 @@ public class Escopeta : MonoBehaviour {
 
             else if (escopeta)
             {
-                contShoot = gunlist.weaponList[2].num_disparos;
+                contShoot = gunlist.weapon_list[2].num_disparos;
                 shotCounter -= Time.deltaTime;
                 if (shotCounter <= 0)
                 {
 
                     do
                     {
-                        shotCounter = gunlist.weaponList[2].cadency;
+                        shotCounter = gunlist.weapon_list[2].cadency;
                         GameObject bullet_shot = Instantiate(bullet, bullet_spawn_escopeta.position, bullet_spawn_escopeta.rotation);
                         source.PlayOneShot(FXShotEscopetaPlayer);
                         Vector3 bullet_dir = CalculateBulletDirection();
                         //bullet_dir = bullet_spawn.transform.TransformDirection(bullet_dir.normalized);
 
                         //Random Spray
-                        float randspray = Random.Range(gunlist.weaponList[2].spray, -gunlist.weaponList[2].spray);
+                        float randspray = Random.Range(gunlist.weapon_list[2].spray, -gunlist.weapon_list[2].spray);
                         Quaternion angulo = Quaternion.Euler(0f, randspray, 0f);
                         bullet_dir = angulo * bullet_dir;
 
                         Debug.DrawLine(cam.GetMousePosInPlane(bullet_spawn_escopeta.position), bullet_spawn_escopeta.position, Color.cyan);
-                        bullet_shot.GetComponent<BulletController>().AddBulletInfo(cur_color, gunlist.weaponList[2].speed, bullet_dir, gunlist.weaponList[2].damage, gunlist.weaponList[2].range, true);
+                        bullet_shot.GetComponent<BulletController>().AddBulletInfo(cur_color, gunlist.weapon_list[2].speed, bullet_dir, gunlist.weapon_list[2].damage, gunlist.weapon_list[2].range, true);
                         //Debug.Break();
 
                         --contShoot;
 
                     } while (contShoot > 0);
 
-                    contShoot = gunlist.weaponList[2].num_disparos;
+                    contShoot = gunlist.weapon_list[2].num_disparos;
                     if (cur_color == 0)
                     {
                         Instantiate(Shot_effectYellow.gameObject, bullet_spawn_escopeta.position, bullet_spawn_escopeta.rotation);

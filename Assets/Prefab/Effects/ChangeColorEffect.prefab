@@ -23,8 +23,8 @@ GameObject:
   - component: {fileID: 114950342152245582}
   - component: {fileID: 199192782066546092}
   - component: {fileID: 114959118924645286}
-  - component: {fileID: 114711576544233876}
   - component: {fileID: 114649148982318746}
+  - component: {fileID: 114649511948053774}
   m_Layer: 0
   m_Name: ChangeColorEffect
   m_TagString: Untagged
@@ -86,7 +86,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f9c5145a35dd8be40acc25519849f9a5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &114711576544233876
+--- !u!114 &114649511948053774
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_CorrespondingSourceObject: {fileID: 0}
@@ -94,9 +94,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 1248072988339676}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: df2428269656cd24fbde7d49033108ee, type: 3}
+  m_Script: {fileID: 11500000, guid: 246cc59c7a84ea44f87f6b70acfe30c5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  who: 0
+  custom_target: {fileID: 0}
 --- !u!114 &114950342152245582
 MonoBehaviour:
   m_ObjectHideFlags: 1

@@ -12,26 +12,34 @@ namespace QFXToolKit
 
         public event Action<CollisionPoint> OnCollision;
 
-        private void OnCollisionEnter(Collision collision)
+        private void OnTriggerEnter(Collider collision)
         {
-            if (!IsRunning)
-                return;
-
-            if (_wasCollided && IsSingleCollisionMode)
-                return;
-
-            foreach (var contact in collision.contacts)
+            if (collision.gameObject.layer != 11 )
             {
-                if (!_wasCollided)
-                    _wasCollided = true;
-
-                if (OnCollision != null)
-                    OnCollision.Invoke(new CollisionPoint
+                if (collision.gameObject.layer != 13 )
+                    if (collision.gameObject.layer != 12 )
                     {
-                        Point = contact.point,
-                        Normal = contact.normal
-                    });
+                        {
+                            Debug.Log("AnimacionEscudo");
+                            if (!IsRunning)
+                                return;
+
+                            if (_wasCollided && IsSingleCollisionMode)
+                                return;
+
+                            if (!_wasCollided)
+                                _wasCollided = true;
+
+                            if (OnCollision != null)
+                                OnCollision.Invoke(new CollisionPoint
+                                {
+                                    Point = collision.transform.position,
+                                    Normal = (collision.transform.position - transform.position).normalized
+                                });
+                        }
+                    }
             }
         }
     }
 }
+// collision.gameObject.layer != 13 && collision.gameObject.tag != "Pink" || (collision.gameObject.layer != 12 && collision.gameObject.tag != "Blue" )

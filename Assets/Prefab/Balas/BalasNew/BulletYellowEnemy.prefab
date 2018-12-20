@@ -60,7 +60,7 @@ MeshRenderer:
   m_ReflectionProbeUsage: 1
   m_RenderingLayerMask: 4294967295
   m_Materials:
-  - {fileID: 2100000, guid: 5a96abfc6a74b1841ba0d0201453881b, type: 2}
+  - {fileID: 2100000, guid: a3bb50ec3e1a5b5419ae6870033ad15d, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -110,7 +110,7 @@ TrailRenderer:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1630379668744072}
   m_Enabled: 1
-  m_CastShadows: 1
+  m_CastShadows: 0
   m_ReceiveShadows: 0
   m_DynamicOccludee: 0
   m_MotionVectors: 1
@@ -118,7 +118,7 @@ TrailRenderer:
   m_ReflectionProbeUsage: 0
   m_RenderingLayerMask: 4294967295
   m_Materials:
-  - {fileID: 2100000, guid: 5a96abfc6a74b1841ba0d0201453881b, type: 2}
+  - {fileID: 2100000, guid: a3bb50ec3e1a5b5419ae6870033ad15d, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -205,13 +205,23 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ce2f3f51f4f4814489eefa13f32f4f04, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  bullet_color: 0
   bullet_speed: 0
+  bullet_dir: {x: 0, y: 0, z: 0}
   bullet_damage: 0
   bullet_range: 0
   bullet_life_time: 0
   wall_active_time: 0.2
   enemy_active_time: 0.2
+  enemy_ignore: 
   friendly: 0
+  DestroyEffectYellow: {fileID: 198690981872490802, guid: 945dfa2ed122ea04e90f205649c71858,
+    type: 2}
+  DestroyEffectPink: {fileID: 198035394985013128, guid: 824962ffbe90b24479af85066ad67126,
+    type: 2}
+  DestroyEffectBlue: {fileID: 198289753299169598, guid: 82e7cddc1be16c948a7468bb8e502ea9,
+    type: 2}
+  DestroyBulletFx: {fileID: 0}
 --- !u!135 &135755369451379990
 SphereCollider:
   m_ObjectHideFlags: 1

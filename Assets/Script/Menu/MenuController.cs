@@ -22,11 +22,11 @@ public class MenuController : MonoBehaviour
 
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Escape))
+       /* if (Input.GetKeyDown(KeyCode.Escape))
         {
             QuitGame();
         }
-
+*/
         //if (Input.GetKeyDown(KeyCode.S) || Input.GetKeyDown(KeyCode.DownArrow))
         //{
         //    if (index < totalLevels - 1)

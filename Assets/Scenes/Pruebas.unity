@@ -1709,16 +1709,26 @@ MonoBehaviour:
   yellow_mat: {fileID: 0}
   cyan_mat: {fileID: 0}
   magenta_mat: {fileID: 0}
+  Shot_effectYellow: {fileID: 0}
+  Shot_effectBlue: {fileID: 0}
+  Shot_effectPink: {fileID: 0}
+  ShellEfectYellow: {fileID: 0}
+  ShellEfectBlue: {fileID: 0}
+  ShellEfectPink: {fileID: 0}
   bullet: {fileID: 1824224085843562, guid: bd52c32739bcf1b40999a89a376e1f9f, type: 2}
   FirePos: {fileID: 1669185044}
+  EffectShot: {fileID: 500010753}
   timeBetweenShorts: 0.35
   TimeShots: 0.35
+  TimeShotsMax: 1.5
   isShooting: 0
-  EffectShot: {fileID: 500010753}
-  FlashTime: 0.05
-  Shell: {fileID: 4272308481728346, guid: ad3f148018b531445a583c19f796bfba, type: 2}
   ShellEjection: {fileID: 1214038819}
   FXShotEnemy: {fileID: 8300000, guid: 2662e3577d475624281d7436f793de32, type: 3}
+  bullet_speed: 10
+  bullet_dmg: 5
+  bullet_range: 20
+  bullet_friend: 0
+  random: 0
 --- !u!65 &280139283
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -2090,6 +2100,11 @@ Prefab:
       propertyPath: m_RootOrder
       value: 16
       objectReference: {fileID: 0}
+    - target: {fileID: 114462222153977568, guid: 77d49e8ab62bef94daa2453b3ad8e931,
+        type: 2}
+      propertyPath: m_LayerMask.m_Bits
+      value: 3143735
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 77d49e8ab62bef94daa2453b3ad8e931, type: 2}
   m_IsPrefabAsset: 0
@@ -2189,6 +2204,8 @@ MonoBehaviour:
   Back: {fileID: 617637193}
   Stop: 0
   FuegoAmigo: 0
+  back_home: 0
+  FxDie: {fileID: 0}
 --- !u!114 &331952694
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2203,17 +2220,27 @@ MonoBehaviour:
   yellow_mat: {fileID: 2100000, guid: 5a96abfc6a74b1841ba0d0201453881b, type: 2}
   cyan_mat: {fileID: 2100000, guid: 95506bf5b0569b94f91203cd4b7bf4f4, type: 2}
   magenta_mat: {fileID: 2100000, guid: a3bb50ec3e1a5b5419ae6870033ad15d, type: 2}
+  Shot_effectYellow: {fileID: 0}
+  Shot_effectBlue: {fileID: 0}
+  Shot_effectPink: {fileID: 0}
+  ShellEfectYellow: {fileID: 0}
+  ShellEfectBlue: {fileID: 0}
+  ShellEfectPink: {fileID: 0}
   bullet: {fileID: 1630379668744072, guid: d59c53fa4931c994a9da4bf1cf0d6112, type: 2}
   FirePos: {fileID: 1570473572}
+  EffectShot: {fileID: 529719590}
   timeBetweenShorts: 0.5
   TimeShots: 0.5
+  TimeShotsMax: 1.5
   isShooting: 0
-  EffectShot: {fileID: 529719590}
-  FlashTime: 0.2
-  Shell: {fileID: 529719591}
   ShellEjection: {fileID: 4153427343534002, guid: 23cb4a5d7a26b724ca06f5e3f946b4c1,
     type: 2}
   FXShotEnemy: {fileID: 0}
+  bullet_speed: 10
+  bullet_dmg: 5
+  bullet_range: 20
+  bullet_friend: 0
+  random: 0
 --- !u!195 &331952695
 NavMeshAgent:
   m_ObjectHideFlags: 0
@@ -3802,7 +3829,7 @@ Transform:
   m_LocalScale: {x: 0.94849724, y: 0.94849634, z: 0.9484964}
   m_Children: []
   m_Father: {fileID: 2116787727}
-  m_RootOrder: 3
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: -177.733, z: 0}
 --- !u!1001 &553636006
 Prefab:
@@ -4147,6 +4174,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d5839ae65990c2147871824d4175fa74, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  Shot_effectYellow: {fileID: 0}
+  Shot_effectBlue: {fileID: 0}
+  Shot_effectPink: {fileID: 0}
+  ShellEfectYellow: {fileID: 0}
+  ShellEfectBlue: {fileID: 0}
+  ShellEfectPink: {fileID: 0}
+  cambioColor: {fileID: 0}
+  player: {fileID: 0}
   is_firing: 0
   bullet: {fileID: 1341849102906586, guid: 00211a0bc60a82a499bf0a685973fc81, type: 2}
   bullet_spawn: {fileID: 1808159177}
@@ -4441,7 +4476,7 @@ Transform:
   m_LocalPosition: {x: 51.925, y: 0.312, z: -4.2595}
   m_LocalScale: {x: 1.3972849, y: 1.3972849, z: 1.3972849}
   m_Children:
-  - {fileID: 331952692}
+  - {fileID: 715956131}
   m_Father: {fileID: 0}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -4677,7 +4712,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1403790740}
-  m_RootOrder: 2
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 3.7910001, y: -9.984, z: 81.718}
 --- !u!4 &666049696 stripped
 Transform:
@@ -5052,6 +5087,10 @@ Prefab:
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ac15bad74c0d9824fa4b37b3ee94525f, type: 2}
   m_IsPrefabAsset: 0
+--- !u!4 &715956131 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 715956130}
 --- !u!1 &716872797
 GameObject:
   m_ObjectHideFlags: 0
@@ -5609,16 +5648,26 @@ MonoBehaviour:
   yellow_mat: {fileID: 2100000, guid: 5a96abfc6a74b1841ba0d0201453881b, type: 2}
   cyan_mat: {fileID: 2100000, guid: 95506bf5b0569b94f91203cd4b7bf4f4, type: 2}
   magenta_mat: {fileID: 2100000, guid: a3bb50ec3e1a5b5419ae6870033ad15d, type: 2}
+  Shot_effectYellow: {fileID: 0}
+  Shot_effectBlue: {fileID: 0}
+  Shot_effectPink: {fileID: 0}
+  ShellEfectYellow: {fileID: 0}
+  ShellEfectBlue: {fileID: 0}
+  ShellEfectPink: {fileID: 0}
   bullet: {fileID: 1630379668744072, guid: d59c53fa4931c994a9da4bf1cf0d6112, type: 2}
   FirePos: {fileID: 665536851}
+  EffectShot: {fileID: 688560413}
   timeBetweenShorts: 0.35
   TimeShots: 0.35
+  TimeShotsMax: 1.5
   isShooting: 0
-  EffectShot: {fileID: 688560413}
-  FlashTime: 0
-  Shell: {fileID: 4153427343534002, guid: 23cb4a5d7a26b724ca06f5e3f946b4c1, type: 2}
   ShellEjection: {fileID: 1062759397}
   FXShotEnemy: {fileID: 0}
+  bullet_speed: 10
+  bullet_dmg: 5
+  bullet_range: 20
+  bullet_friend: 0
+  random: 0
 --- !u!114 &770276569
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5642,6 +5691,8 @@ MonoBehaviour:
   Back: {fileID: 909128085}
   Stop: 0
   FuegoAmigo: 0
+  back_home: 0
+  FxDie: {fileID: 0}
 --- !u!54 &770276570
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -6472,7 +6523,7 @@ Transform:
   m_LocalPosition: {x: 48.2, y: -0.5, z: -3.87}
   m_LocalScale: {x: 1.3253198, y: 1.3253195, z: 1.3253198}
   m_Children:
-  - {fileID: 770276565}
+  - {fileID: 972088668}
   m_Father: {fileID: 0}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -6902,6 +6953,10 @@ Prefab:
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 5ecfd1c03651e6f4e902dc9a579a86f8, type: 2}
   m_IsPrefabAsset: 0
+--- !u!4 &972088668 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 972088667}
 --- !u!1 &977284812
 GameObject:
   m_ObjectHideFlags: 0
@@ -7325,7 +7380,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1047839967}
-  m_RootOrder: 1
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: -177.733, z: 0}
 --- !u!1 &1074806787
 GameObject:
@@ -9612,7 +9667,7 @@ Transform:
   m_LocalScale: {x: 0.71567357, y: 1.1958905, z: 0.71567357}
   m_Children: []
   m_Father: {fileID: 331952692}
-  m_RootOrder: 2
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: -90, y: 0, z: 0}
 --- !u!199 &1349869139
 ParticleSystemRenderer:
@@ -20229,7 +20284,7 @@ Transform:
   m_LocalScale: {x: 0.94849825, y: 0.9484965, z: 0.9484961}
   m_Children: []
   m_Father: {fileID: 2116787727}
-  m_RootOrder: 2
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 3.7910001, y: -9.984, z: 81.718}
 --- !u!1 &1571397558
 GameObject:
@@ -20679,8 +20734,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   cambioColor: {fileID: 1614658524}
   UsarHabilidad: 0
+  SePuedeUsar: 0
   Cooldown: 2
   DuracionHabilidad: 3
+  FxHabilidad: {fileID: 0}
+  effect: {fileID: 0}
 --- !u!114 &1614658522
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -20698,6 +20756,9 @@ MonoBehaviour:
   Cooldown: 1
   MovePlayer: {fileID: 0}
   rb: {fileID: 1614658526}
+  SePuedeUsar: 0
+  FxDash: {fileID: 0}
+  p_sys: {fileID: 0}
 --- !u!114 &1614658523
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -20711,11 +20772,18 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   max_health: 30
+  cambioColor: {fileID: 0}
   max_armor: 0
   die_effect:
   - {fileID: 198036780334477388, guid: 6509124751f5d404fa0b7ff9e5940f4a, type: 2}
   - {fileID: 198526383505352786, guid: b32102adb91e3cc4e9287e691cc1d09a, type: 2}
   - {fileID: 198946016394406564, guid: bc84f3b8c0a20ec48ac2b7426fa99b72, type: 2}
+  FxDie: {fileID: 0}
+  HealthYellow: {fileID: 0}
+  HealthBlue: {fileID: 0}
+  HealthPink: {fileID: 0}
+  MaterialsPlayer: {fileID: 0}
+  TimeDamageMat: 0
 --- !u!114 &1614658524
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -20728,8 +20796,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 07f017e74462fc3418d69f1824a0b48c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  ParedCambioNo: 0
+  ParedRosa: {fileID: 0}
+  DuracionMismoColor: 0
+  MaxDuracion: 0
   cur_color: 0
   init_color: 1
+  FxCambioColor: {fileID: 0}
 --- !u!114 &1614658525
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -22328,12 +22401,18 @@ MonoBehaviour:
   Change_effectBlue: {fileID: 0}
   Change_effectPink: {fileID: 0}
   isFiring: 0
+  pistola: {fileID: 0}
+  sniper: {fileID: 0}
+  escopeta: {fileID: 0}
   theGun: {fileID: 574959896}
   renderersToChangeColor:
   - {fileID: 1284093552}
   Blue_Material: {fileID: 2100000, guid: 7ecbc580b62e10740878b3ba62cc0279, type: 2}
   Yellow_Material: {fileID: 2100000, guid: 2ce7cd8dc39c12341b44c918ccb6393d, type: 2}
   Pink_Material: {fileID: 2100000, guid: 376a1e887b15b78458b49d05ba2781c9, type: 2}
+  DamageBlueMaterial: {fileID: 0}
+  DamageYellowMaterial: {fileID: 0}
+  DamagePinkMaterial: {fileID: 0}
 --- !u!4 &1969338308
 Transform:
   m_ObjectHideFlags: 0
