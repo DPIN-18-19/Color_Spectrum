@@ -5,7 +5,7 @@ using UnityEngine;
 public class HealthController : MonoBehaviour
 {
     //public Text vida;             // Player's health in UI
-    float health;
+    public float health;
     float newHealth;                // Player's current health
     public float max_health;        // Player's maximum health
     public ColorChangingController cambioColor;
@@ -38,7 +38,9 @@ public class HealthController : MonoBehaviour
    
     public ColorChangingController BlackGlitch;
 
-    
+    public PlayerJaneMoveController MovePlayer;
+
+
     //////////////////////////////////////////////////////////////////////////////
     void Awake()
     {
@@ -67,6 +69,7 @@ public class HealthController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+       // Debug.Log(health);
         IsDead();
         GameplayManager.GetInstance().health = health;
         health = Mathf.Lerp(health, newHealth, Time.deltaTime * 17);
@@ -239,7 +242,11 @@ public class HealthController : MonoBehaviour
 
                 GameObject.Find("GameManager").GetComponent<SceneMan>().Invoke("ToMenu", 2);
 
-                Destroy(gameObject);
+                gameObject.SetActive(false);
+
+                MovePlayer.CanMove = false;
+
+               // Destroy(gameObject);
             }
         }
     }

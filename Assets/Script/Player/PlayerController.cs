@@ -21,9 +21,10 @@ public class PlayerController : MonoBehaviour {
     private Camera maincamera;      // Player Camera
 
 
-    public Escopeta pistola;
-    public Escopeta sniper;
-    public Escopeta escopeta;
+  
+
+
+
 
     public GunController theGun;    // Player's Gun
     

@@ -10,6 +10,7 @@ public class PlayerJaneMoveController : MonoBehaviour {
     Animator anim;
     public bool Move;
     public CinemachineVirtualCamera Cam1;
+    public bool CanMove = true;
     //public float TimeStopGrenade;
 
     // Variables
@@ -35,6 +36,7 @@ public class PlayerJaneMoveController : MonoBehaviour {
     // Update is called once per frame
     void Update()
     {
+        if(CanMove)
        Movement();
        // TimeStopGrenade += Time.deltaTime; 
 

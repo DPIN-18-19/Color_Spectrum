@@ -6,14 +6,14 @@ Material:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
-  m_Name: GO_Hologra_Black
+  m_Name: GO_Hologram_Yellow 8
   m_Shader: {fileID: 4800000, guid: 053e4279a99bc5f458a231ffe6a35ad0, type: 3}
   m_ShaderKeywords: _EMISSION _MASKAPPEARAXIS_DISTANCE _MASKAPPEARAXIS_NONE _NORMALMAP
     _SPECGLOSSMAP
   m_LightmapFlags: 1
-  m_EnableInstancingVariants: 0
+  m_EnableInstancingVariants: 1
   m_DoubleSidedGI: 0
-  m_CustomRenderQueue: 3000
+  m_CustomRenderQueue: -1
   stringTagMap: {}
   disabledShaderPasses: []
   m_SavedProperties:
@@ -56,7 +56,7 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _EmissionTexture:
-        m_Texture: {fileID: 2800000, guid: a016fe05856597449ace9b4d606b3fa0, type: 3}
+        m_Texture: {fileID: 2800000, guid: 9833aab57bc26d64fbac696212133142, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _FlickerTexture:
@@ -70,10 +70,6 @@ Material:
     - _MainTexVariant:
         m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
-        m_Offset: {x: 0, y: 0}
-    - _MaskAppearNoise:
-        m_Texture: {fileID: 2800000, guid: 0aadcba748987a64db7e670239291cf8, type: 3}
-        m_Scale: {x: 8, y: 8}
         m_Offset: {x: 0, y: 0}
     - _MetallicGlossMap:
         m_Texture: {fileID: 0}
@@ -122,29 +118,24 @@ Material:
     - _Cutoff: 0.5
     - _DetailMode: 0
     - _DetailNormalMapScale: 1
-    - _DissolveAmount: 0.58
     - _DstBlend: 0
     - _FresnelOpacity: 0
-    - _FresnelPower: 2.07
-    - _FresnelScale: 1
-    - _Glitch: 1
+    - _FresnelPower: 3.81
+    - _FresnelScale: 0.201
+    - _Glitch: 0
     - _GlitchInterval: 0.972
-    - _GlitchSpeed: 50
+    - _GlitchSpeed: 5
     - _GlossMapScale: 0.725
     - _Glossiness: 0.281
     - _GlossyReflections: 1
     - _GlowOpacity: 0
-    - _GlowSize: 1
-    - _GlowSpeed: 0.73
-    - _GlowTiling: 0.74
+    - _GlowSize: 0.889
+    - _GlowSpeed: 0.77
+    - _GlowTiling: 0.37
     - _HasAnimatedAlbedo: 0
     - _HasAnimatedEmission: 0
     - _HasTransmission: 1
     - _LightProbeScale: 1
-    - _MaskAppearAxis: 0
-    - _MaskAppearInvert: 0
-    - _MaskAppearProgress: 1.5
-    - _MaskAppearStrength: 0
     - _MetaDiffuseScale: 1
     - _MetaEmissionScale: 1
     - _MetaMetallicSoup: 1
@@ -157,8 +148,8 @@ Material:
     - _Parallax: 0.02
     - _ReflectionProbeBoost: 1
     - _Rim: 9.8
-    - _Scan: 0.926
-    - _ScanTiling: 76.9
+    - _Scan: 1
+    - _ScanTiling: 100
     - _Smoothness: 1
     - _SmoothnessTextureChannel: 0
     - _SpecularHighlights: 1
@@ -167,8 +158,6 @@ Material:
     - _TransmissionThicknessScale: 1
     - _UVDetailMask: 0
     - _UVSec: 0
-    - _UseFresnelOpacity: 0
-    - _UseGlowOpacity: 0
     - _VertexOcclusionPower: 1
     - _ZWrite: 1
     - __dirty: 0
@@ -178,12 +167,11 @@ Material:
     - _AnimatedUVRange: {r: 0.5, g: 0.05, b: 0.05, a: 0.1}
     - _AnimatedUVScaleOffset: {r: 1, g: 1, b: 0, a: 0}
     - _Color: {r: 1, g: 1, b: 1, a: 1}
-    - _DissolveColor: {r: 0, g: 2.7241373, b: 5, a: 1}
-    - _EmissionColor: {r: 1, g: 1, b: 1, a: 0.92156863}
-    - _FlickerSpeed: {r: 0.1, g: 0.1, b: 0, a: 0}
-    - _FresnelColor: {r: 0, g: 0, b: 0, a: 1}
-    - _GlitchOffset: {r: 0.02, g: 0, b: 0, a: 0}
-    - _GlowColor: {r: 0.017337512, g: 0.017337512, b: 0.017337512, a: 1}
+    - _EmissionColor: {r: 0.11911331, g: 0.33962262, b: 0, a: 1}
+    - _FlickerSpeed: {r: 2, g: 2, b: 2, a: 0}
+    - _FresnelColor: {r: 1.2294083, g: 2.8978908, b: 0.64397573, a: 1}
+    - _GlitchOffset: {r: 0.02, g: 0.02, b: 0.02, a: 0}
+    - _GlowColor: {r: 0.047023706, g: 0.30980393, b: 0, a: 1}
     - _GlowColorm: {r: 0.34558794, g: 0.5125757, b: 1, a: 1}
     - _GlowSpeed: {r: 0, g: 2, b: 0, a: 0}
     - _MainColor: {r: 0.35294116, g: 0.35294116, b: 0.35294116, a: 1}
@@ -194,5 +182,5 @@ Material:
     - _MetaSpecularAdd: {r: 0, g: 0, b: 0, a: 1}
     - _MetaSpecularTint: {r: 1, g: 1, b: 1, a: 1}
     - _RimColor: {r: 0.66176474, g: 1.5892493, b: 5, a: 1}
-    - _ScanSpeed: {r: 0, g: 0, b: 0, a: 0}
+    - _ScanSpeed: {r: 0, g: 1, b: 1, a: 1}
     - _SpecColor: {r: 0.19999996, g: 0.19999996, b: 0.19999996, a: 1}
