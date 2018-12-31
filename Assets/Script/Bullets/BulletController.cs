@@ -305,7 +305,7 @@ public class BulletController : MonoBehaviour
         m_collider.enabled = !m_collider.enabled;
     }
 
-    void MoveBullet()
+    protected void MoveBullet()
     {
         Vector3 final_pos = transform.position + bullet_dir * -bullet_speed * Time.deltaTime;
         // Move only if no collision is found
@@ -316,7 +316,7 @@ public class BulletController : MonoBehaviour
     // Check next position the bullet will move to
     // Return true: Bullet will collide with something
     // Return false: Bullet will not collide
-    bool PeekNextPosition(Vector3 f_pos)
+   protected bool PeekNextPosition(Vector3 f_pos)
     {
         RaycastHit hit;
 
