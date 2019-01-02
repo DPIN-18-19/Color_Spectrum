@@ -164,10 +164,8 @@ MonoBehaviour:
   Change_effectPink: {fileID: 198095156976260396, guid: 5cf07ff81eccaad40b7a5fadc3de7267,
     type: 2}
   isFiring: 0
-  pistola: {fileID: 0}
-  sniper: {fileID: 0}
-  escopeta: {fileID: 0}
   theGun: {fileID: 0}
+  cur_color: 0
   renderersToChangeColor:
   - {fileID: 428373711}
   - {fileID: 1674500527}
@@ -1053,7 +1051,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ff5e275c34c8b61458cb0ccc7715cca2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  AlphaThreshold: 0.1
 --- !u!114 &54149359
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2746,12 +2743,13 @@ GameObject:
   - component: {fileID: 139844982}
   - component: {fileID: 4239346}
   - component: {fileID: 4239345}
-  - component: {fileID: 139844981}
-  - component: {fileID: 139844980}
-  - component: {fileID: 139844979}
-  - component: {fileID: 139844978}
-  - component: {fileID: 139844977}
   - component: {fileID: 139844976}
+  - component: {fileID: 139844980}
+  - component: {fileID: 139844978}
+  - component: {fileID: 139844985}
+  - component: {fileID: 139844977}
+  - component: {fileID: 139844981}
+  - component: {fileID: 139844979}
   - component: {fileID: 139844975}
   - component: {fileID: 139844974}
   m_Layer: 22
@@ -2950,7 +2948,7 @@ MonoBehaviour:
     type: 2}
   HealthPink: {fileID: 198945216879961990, guid: 79dcddc10e0bd5b4795b7bb169850ecf,
     type: 2}
-  MaterialsPlayer: {fileID: 4239345}
+  MaterialsPlayer: {fileID: 0}
   TimeDamageMat: 0.4
   "Da\xF1o": 0
   TimeHealtheMat: 0.4
@@ -2972,13 +2970,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 928c77d4d74d3604cad2a19ce864c108, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  cambioColor: {fileID: 4239346}
-  UsarHabilidad: 0
-  SePuedeUsar: 0
-  Cooldown: 3
-  DuracionHabilidad: 5
-  FxHabilidad: {fileID: 8300000, guid: 29357947ef2d5b240874991898dde298, type: 3}
+  use_ability: 0
+  is_active: 0
+  c_cooldown: 2
+  dur: 5
   effect: {fileID: 1248072988339676, guid: 825ae2e87d3a6ee4e972d3a279b44a25, type: 2}
+  FxHabilidad: {fileID: 8300000, guid: 29357947ef2d5b240874991898dde298, type: 3}
+  cambioColor: {fileID: 4239346}
 --- !u!114 &139844980
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3006,13 +3004,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4586f386884f4934a88c74ee0e1b47bb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  UsarHabilidad: 0
-  dashspeed: 2
-  Cooldown: 3
-  MovePlayer: {fileID: 139844976}
+  dash_speed: 5
+  c_cooldown: 2
+  use_ability: 0
+  is_active: 0
+  player: {fileID: 0}
   rb: {fileID: 139844983}
-  SePuedeUsar: 0
-  FxDash: {fileID: 8300000, guid: 546d68f4a1cb4944b855d14fcead5300, type: 3}
+  dash_fx: {fileID: 0}
   p_sys: {fileID: 1439803652329598, guid: 9114aa7b7cdad4d479ca9e38ba3b0335, type: 2}
 --- !u!65 &139844982
 BoxCollider:
@@ -3062,6 +3060,38 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!114 &139844985
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 139844973}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: efa253f98f20e694783d630490204063, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  renderersToChangeColor: []
+  Blue_Material: {fileID: 2100000, guid: 44c2e440ab0d013449cfa8308164d9c4, type: 2}
+  Yellow_Material: {fileID: 2100000, guid: d88ec5f6f06e64d4db6956c458f0b867, type: 2}
+  Pink_Material: {fileID: 2100000, guid: 2d0ac1555fd56254c83e06f281b9678d, type: 2}
+  DamageBlueMaterial: {fileID: 2100000, guid: ddb750c2306a8dd45a02db3f1e7090c3, type: 2}
+  DamageYellowMaterial: {fileID: 2100000, guid: 7ac3a7aa4f5223f4c9a9f7424f18ea8d,
+    type: 2}
+  DamagePinkMaterial: {fileID: 2100000, guid: 932dc70665a94764e94bd56cf504986c, type: 2}
+  HealthBlueMaterial: {fileID: 2100000, guid: ebfe7d681aad2554da42228332505ffb, type: 2}
+  HealthYellowMaterial: {fileID: 2100000, guid: e30b95678a080994b9e625b5d121b04f,
+    type: 2}
+  HealthPinkMaterial: {fileID: 2100000, guid: 9150d4175f25f204c80420d51a2fca7a, type: 2}
+  BlackGlitchBlueMaterial: {fileID: 2100000, guid: 3c2af6c2acc3bbb45b96268e4eb58db8,
+    type: 2}
+  BlackGlitchYellowMaterial: {fileID: 2100000, guid: beb6b505a26630a46b8c4f192ecdc7ae,
+    type: 2}
+  BlackGlitchPinkMaterial: {fileID: 2100000, guid: af8418d191a23464db92bce3c7e5aec2,
+    type: 2}
+  BlackBlueMaterial: {fileID: 2100000, guid: f49e0048957ab1b4a87c2b33a60cbbc3, type: 2}
+  BlackYellowMaterial: {fileID: 2100000, guid: 2e7e8ab92193a5f4da32d410109412b5, type: 2}
+  BlackPinkMaterial: {fileID: 2100000, guid: 3f56c702627902340920ec6900176340, type: 2}
 --- !u!1 &142045041
 GameObject:
   m_ObjectHideFlags: 0
@@ -3275,7 +3305,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ff5e275c34c8b61458cb0ccc7715cca2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  AlphaThreshold: 0.1
 --- !u!114 &154571116
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -26348,7 +26377,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ff5e275c34c8b61458cb0ccc7715cca2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  AlphaThreshold: 0.1
 --- !u!114 &1260072534
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -30490,7 +30518,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ff5e275c34c8b61458cb0ccc7715cca2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  AlphaThreshold: 0.1
 --- !u!114 &1529505325
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -32611,7 +32638,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ff5e275c34c8b61458cb0ccc7715cca2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  AlphaThreshold: 0.1
 --- !u!114 &1676260503
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -36776,7 +36802,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ff5e275c34c8b61458cb0ccc7715cca2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  AlphaThreshold: 0.1
 --- !u!114 &1916856249
 MonoBehaviour:
   m_ObjectHideFlags: 0

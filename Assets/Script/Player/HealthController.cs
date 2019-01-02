@@ -22,7 +22,7 @@ public class HealthController : MonoBehaviour
     public ParticleSystem HealthBlue;
     public ParticleSystem HealthPink;
 
-    public PlayerController MaterialsPlayer;
+    public PlayerRenderer MaterialsPlayer;
 
     public float TimeDamageMat;
     private float MaxTimeDamageMat;
@@ -37,18 +37,16 @@ public class HealthController : MonoBehaviour
     public bool ParedNopasar;
    
     public ColorChangingController BlackGlitch;
-
     
     //////////////////////////////////////////////////////////////////////////////
     void Awake()
     {
         source = GetComponent<AudioSource>();
-
     }
     // Use this for initialization
     void Start ()
     {
-       // TimeGlitchtheMat = MaxGlitchthMat;
+        // TimeGlitchtheMat = MaxGlitchthMat;
         MaxTimeDamageMat = TimeDamageMat;
         //  MaxTimeHealhthMat = TimeHealtheMat;
         // Subscribe to event
@@ -56,8 +54,8 @@ public class HealthController : MonoBehaviour
         ColorChangingController.Instance.ToCyan += ChangeToCyan;
         ColorChangingController.Instance.ToMagenta += ChangeToMagenta;
         if(GameplayManager.GetInstance() != null)
-        GameplayManager.GetInstance().max_health = max_health;
-
+            GameplayManager.GetInstance().max_health = max_health;
+        MaterialsPlayer = GetComponent<PlayerRenderer>();
 
         health = max_health;
         newHealth = health;
@@ -86,35 +84,12 @@ public class HealthController : MonoBehaviour
         {
             if (ParedNopasar == false)
             {
-
-                if (cambioColor.GetColor() == 0)
-                {
-                    MaterialsPlayer.RestoreChangeToYellow();
-                }
-                if (cambioColor.GetColor() == 1)
-                {
-                    MaterialsPlayer.RestoreChangeToCyan();
-                }
-                if (cambioColor.GetColor() == 2)
-                {
-                    MaterialsPlayer.RestoreChangeToMagenta();
-                }
+                MaterialsPlayer.ResetColor();
                 TimeDamageMat = MaxTimeDamageMat;
             }
             if(ParedNopasar == true)
             {
-                if (cambioColor.GetColor() == 0)
-                {
-                    MaterialsPlayer.ChangeToBlackYellow();
-                }
-                if (cambioColor.GetColor() == 1)
-                {
-                    MaterialsPlayer.ChangeToBlackBlue();
-                }
-                if (cambioColor.GetColor() == 2)
-                {
-                    MaterialsPlayer.ChangeToBlackPink();
-                }
+                MaterialsPlayer.BlackColor();
                 TimeDamageMat = MaxTimeDamageMat;
             }
         }
@@ -130,18 +105,7 @@ public class HealthController : MonoBehaviour
         }
         if (curar == false && TimeHealtheMat < 0)
         {
-            if (cambioColor.GetColor() == 0)
-            {
-                MaterialsPlayer.RestoreChangeToYellow();
-            }
-            if (cambioColor.GetColor() == 1)
-            {
-                MaterialsPlayer.RestoreChangeToCyan();
-            }
-            if (cambioColor.GetColor() == 2)
-            {
-                MaterialsPlayer.RestoreChangeToMagenta();
-            }
+            MaterialsPlayer.ResetColor();
             TimeHealtheMat = MaxTimeHealhthMat;
 
         }
@@ -156,69 +120,20 @@ public class HealthController : MonoBehaviour
             TimeGlitchtheMat += Time.deltaTime;
             if (TimeGlitchtheMat < MaxGlitchthMat)
             {
-                if (cambioColor.GetColor() == 0)
-                {
-                    MaterialsPlayer.ChangeToBlackGlitchYellow();
-                }
-                if (cambioColor.GetColor() == 1)
-                {
-                    MaterialsPlayer.ChangeToBlackGlitchBlue();
-                }
-                if (cambioColor.GetColor() == 2)
-                {
-                    MaterialsPlayer.ChangeToBlackGlitchPink();
-                }
+                MaterialsPlayer.BlackGlitchColor();
             }
             if (TimeGlitchtheMat > MaxGlitchthMat && Daño == false )
             {
-                if (cambioColor.GetColor() == 0)
-                {
-                    MaterialsPlayer.ChangeToBlackYellow();
-                }
-                if (cambioColor.GetColor() == 1)
-                {
-                    MaterialsPlayer.ChangeToBlackBlue();
-                }
-                if (cambioColor.GetColor() == 2)
-                {
-                    MaterialsPlayer.ChangeToBlackPink();
-                }
+                MaterialsPlayer.BlackColor();
             }
             if (TimeGlitchtheMat > MaxGlitchthMat && Daño == true)
             {
-
-                if (cambioColor.GetColor() == 0)
-                {
-                    MaterialsPlayer.ChangeToDamageYellow();
-                }
-                if (cambioColor.GetColor() == 1)
-                {
-                    MaterialsPlayer.ChangeToDamageBlue();
-                }
-                if (cambioColor.GetColor() == 2)
-                {
-                    MaterialsPlayer.ChangeToDamagePink();
-                }
-
-               // TimeDamageMat -= Time.deltaTime;
-
+                MaterialsPlayer.DamageColor();
             }
-
 
             if (TimeGlitchtheMat > cambioColor.MaxDuracion)
             {
-                if (cambioColor.GetColor() == 0)
-                {
-                    MaterialsPlayer.RestoreChangeToYellow();
-                }
-                if (cambioColor.GetColor() == 1)
-                {
-                    MaterialsPlayer.RestoreChangeToCyan();
-                }
-                if (cambioColor.GetColor() == 2)
-                {
-                    MaterialsPlayer.RestoreChangeToMagenta();
-                }
+                MaterialsPlayer.ResetColor();
                 TimeGlitchtheMat = 0;
                 ParedNopasar = false;
             }
@@ -233,12 +148,8 @@ public class HealthController : MonoBehaviour
             AudioSource.PlayClipAtPoint(FxDie, transform.position);
             if (player_color < die_effect.Length)
             {
-                //- Search a way to destroy die effect after finishing
-
                 Instantiate(die_effect[player_color].gameObject, transform.position, Quaternion.identity);
-
                 GameObject.Find("GameManager").GetComponent<SceneMan>().Invoke("ToMenu", 2);
-
                 Destroy(gameObject);
             }
         }
@@ -251,55 +162,35 @@ public class HealthController : MonoBehaviour
             GetArmorDamage(damage);
         else
         {
+            MaterialsPlayer.DamageColor();
             newHealth = health - damage;
-
-            if (cambioColor.GetColor() == 0)
-            {
-                MaterialsPlayer.ChangeToDamageYellow();
-
-            }
-            if (cambioColor.GetColor() == 1)
-            {
-                MaterialsPlayer.ChangeToDamageBlue();
-            }
-            if (cambioColor.GetColor() == 2)
-            {
-                MaterialsPlayer.ChangeToDamagePink();
-            }
-
             ScoreManager.Instance.CountDamage(damage);
             Daño = true;
         }
     }
-
-
-
-
+    
     // Get back health
     public void RestoreHealth(float cure)
     {
         newHealth = health + cure;
         //health += cure;
+        MaterialsPlayer.HealthColor();
         if (cambioColor.GetColor() == 0)
         {
-            MaterialsPlayer.ChangeToHealthYellow();
             Instantiate(HealthYellow.gameObject, transform.position, Quaternion.identity);
         }
         if (cambioColor.GetColor() == 1)
         {
-            MaterialsPlayer.ChangeToHealthBlue();
             Instantiate(HealthBlue.gameObject, transform.position, Quaternion.identity);
         }
         if (cambioColor.GetColor() == 2)
         {
-            MaterialsPlayer.ChangeToHealthPink();
             Instantiate(HealthPink.gameObject, transform.position, Quaternion.identity);
         }
         curar = true;
         if (health > max_health)
         {
             health = max_health;
-          
         }
     }
 

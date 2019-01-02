@@ -10,8 +10,8 @@ public class AbilityController : MonoBehaviour
 
     // Habilidades
 
-    dash a_dash;
-    HabilidadCambioColor a_autocolor;
+    Dash a_dash;
+    AutoColor a_autocolor;
     throw_gre a_grenade;
     activate_Shield a_shield;
 
@@ -20,8 +20,8 @@ public class AbilityController : MonoBehaviour
     {
         holder = GameObject.FindGameObjectWithTag("Player");
 
-        a_dash = holder.GetComponent<dash>();
-        a_autocolor = holder.GetComponent<HabilidadCambioColor>();
+        a_dash = holder.GetComponent<Dash>();
+        a_autocolor = holder.GetComponent<AutoColor>();
         a_grenade = holder.GetComponent<throw_gre>();
         a_shield = holder.GetComponent<activate_Shield>();
     }
