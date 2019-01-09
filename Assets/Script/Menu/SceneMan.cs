@@ -17,7 +17,7 @@ public class SceneMan : MonoBehaviour
         SceneManager.LoadScene("Pruebas_CinemaMachine");
     }
     
-    public void NextLevel(string name)
+    public void ToLevelByName(string name)
     {
         SceneManager.LoadScene(name);
     }
@@ -25,5 +25,10 @@ public class SceneMan : MonoBehaviour
     public void ResetLevel()
     {
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+    }
+
+    public void DoIt(int i, float f)
+    {
+
     }
 }

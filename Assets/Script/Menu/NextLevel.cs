@@ -21,7 +21,7 @@ public class NextLevel : MonoBehaviour
         {
             Debug.Log("theefsad");
             //Destroy(gm.gameObject);
-            scene_man.NextLevel(next_name);
+            scene_man.ToLevelByName(next_name);
         }
     }
 }
