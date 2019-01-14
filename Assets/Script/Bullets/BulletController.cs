@@ -28,7 +28,6 @@ public class BulletController : MonoBehaviour
 
     Collider m_collider;            // Bullet collider
 
-
     public ParticleSystem DestroyEffectYellow;
     private bool YellowDestroyeffect;
     public ParticleSystem DestroyEffectPink;

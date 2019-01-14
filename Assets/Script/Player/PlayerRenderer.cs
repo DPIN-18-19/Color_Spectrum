@@ -14,18 +14,22 @@ public class PlayerRenderer : MonoBehaviour
     Material cur_mat;
     int cur_color;
 
+    // Material Neutro
     public Material Yellow_Material;
     public Material Blue_Material;
     public Material Pink_Material;
 
+    // Material Dano
     public Material DamageYellowMaterial;
     public Material DamageBlueMaterial;
     public Material DamagePinkMaterial;
 
+    // Material Curar
     public Material HealthYellowMaterial;
     public Material HealthBlueMaterial;
     public Material HealthPinkMaterial;
 
+    // Material Glitch
     public Material BlackGlitchYellowMaterial;
     public Material BlackGlitchBlueMaterial;
     public Material BlackGlitchPinkMaterial;

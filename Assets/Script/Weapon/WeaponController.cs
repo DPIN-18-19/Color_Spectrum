@@ -8,7 +8,6 @@ public class WeaponController : MonoBehaviour
     // Components
 
     private AudioSource source;
-    public CameraController cam;
     
     /////////////////////////////////////////////////////////
     // Guns
@@ -27,7 +26,7 @@ public class WeaponController : MonoBehaviour
 
     /////////////////////////////////////////////////////////
     // Logic
-   // public PlayerController player;
+    // public PlayerController player;
     public bool is_firing;          // Player is firing gun
     private float contShoot;        // Number of bullets to spawn at the same time
     private float shotCounter;      // Firing cadency counter
@@ -68,9 +67,9 @@ public class WeaponController : MonoBehaviour
     void Start()
     {
         // Subscribe to Event
-        ColorChangingController.Instance.ToYellow += BulletToYellow;
-        ColorChangingController.Instance.ToCyan += BulletToCyan;
-        ColorChangingController.Instance.ToMagenta += BulletToMagenta;
+        //ColorChangingController.Instance.ToYellow += BulletToYellow;
+        //ColorChangingController.Instance.ToCyan += BulletToCyan;
+        //ColorChangingController.Instance.ToMagenta += BulletToMagenta;
 
         GetNewWeapon(activated_weapon);
     }
@@ -78,78 +77,85 @@ public class WeaponController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        shotCounter -= Time.deltaTime;
         if (is_firing)
         {
-            contShoot = cur_weapon.num_disparos;
-           
-
-            if (shotCounter <= 0)
-            {
-                Transform spawn = gun.transform.Find("FirePos");
-                Transform shell = gun.transform.Find("SpawnShell");
-
-                do
-                {
-                    shotCounter = cur_weapon.cadency;
-                    GameObject bullet_shot = Instantiate(cur_weapon.bullet, spawn.position, spawn.rotation);
-                    source.PlayOneShot(cur_weapon.fx_shot);
-                    //Debug.Break();
-
-                    Vector3 bullet_dir = CalculateBulletDirection();
-                    //bullet_dir = bullet_spawn.transform.TransformDirection(bullet_dir.normalized);
-
-                    //Random Spray
-                    float randspray = Random.Range(cur_weapon.spray, -cur_weapon.spray);
-                    Quaternion angulo = Quaternion.Euler(0f, randspray, 0f);
-                    bullet_dir = angulo * bullet_dir;
-
-                    //Debug.DrawLine(cam.GetMousePosInPlane(bullet_spawn_pistola.position), bullet_spawn_pistola.position, Color.cyan);
-                    bullet_shot.GetComponent<BulletController>().AddBulletInfo(cur_color, cur_weapon.speed, bullet_dir, cur_weapon.damage, cur_weapon.range, true);
-                    
-                    --contShoot;
-
-                } while (contShoot > 0);
-
-                //// Change this
-                if (cur_color == 0)
-                {
-                    Instantiate(Shot_effectYellow.gameObject, spawn.position, spawn.rotation);
-                    Instantiate(ShellEfectYellow.gameObject, shell.position, shell.rotation);
-                }
-
-                if (cur_color == 1)
-                {
-                    Instantiate(Shot_effectBlue.gameObject, spawn.position, spawn.rotation);
-                    Instantiate(ShellEfectBlue.gameObject, shell.position, shell.rotation);
-                }
-
-                if (cur_color == 2)
-                {
-                    Instantiate(Shot_effectPink.gameObject, spawn.position, spawn.rotation);
-                    Instantiate(ShellEfectPink.gameObject, shell.position, shell.rotation);
-                }
-            }
+            gun.GetComponent<GunController>().FireBullet();
+            //FireWeapon();
             // True  automatica, False manual 
             is_firing = true;
         }
+
+        gun.GetComponent<GunController>().UpdateCadence();
     }
 
-    Vector3 CalculateBulletDirection()
-    {
-        RaycastHit hit;
-        Transform player = GetComponentInParent<PlayerController>().transform;
+    //void FireWeapon()
+    //{
+    //    contShoot = cur_weapon.num_disparos;
 
-        // Raycast desde el jugador al infinito
-        if (Physics.Raycast(player.position, player.forward, out hit, Mathf.Infinity))
-        {
-            return (player.position - hit.point).normalized;
-        }
 
-        // Disparo al infinito
-        Debug.Log("Error");
-        return Vector3.zero;
-    }
+    //    if (shotCounter <= 0)
+    //    {
+    //        Transform spawn = gun.transform.Find("FirePos");
+    //        Transform shell = gun.transform.Find("SpawnShell");
+
+    //        do
+    //        {
+    //            shotCounter = cur_weapon.cadency;
+    //            GameObject bullet_shot = Instantiate(cur_weapon.bullet, spawn.position, spawn.rotation);
+    //            source.PlayOneShot(cur_weapon.fx_shot);
+    //            //Debug.Break();
+
+    //            Vector3 bullet_dir = CalculateBulletDirection();
+    //            //bullet_dir = bullet_spawn.transform.TransformDirection(bullet_dir.normalized);
+
+    //            //Random Spray
+    //            float randspray = Random.Range(cur_weapon.spray, -cur_weapon.spray);
+    //            Quaternion angulo = Quaternion.Euler(0f, randspray, 0f);
+    //            bullet_dir = angulo * bullet_dir;
+
+    //            //Debug.DrawLine(cam.GetMousePosInPlane(bullet_spawn_pistola.position), bullet_spawn_pistola.position, Color.cyan);
+    //            bullet_shot.GetComponent<BulletController>().AddBulletInfo(cur_color, cur_weapon.speed, bullet_dir, cur_weapon.damage, cur_weapon.range, true);
+
+    //            --contShoot;
+
+    //        } while (contShoot > 0);
+
+    //        //// Change this
+    //        if (cur_color == 0)
+    //        {
+    //            Instantiate(Shot_effectYellow.gameObject, spawn.position, spawn.rotation);
+    //            Instantiate(ShellEfectYellow.gameObject, shell.position, shell.rotation);
+    //        }
+
+    //        if (cur_color == 1)
+    //        {
+    //            Instantiate(Shot_effectBlue.gameObject, spawn.position, spawn.rotation);
+    //            Instantiate(ShellEfectBlue.gameObject, shell.position, shell.rotation);
+    //        }
+
+    //        if (cur_color == 2)
+    //        {
+    //            Instantiate(Shot_effectPink.gameObject, spawn.position, spawn.rotation);
+    //            Instantiate(ShellEfectPink.gameObject, shell.position, shell.rotation);
+    //        }
+    //    }
+    //}
+
+    //Vector3 CalculateBulletDirection()
+    //{
+    //    RaycastHit hit;
+    //    Transform player = GetComponentInParent<PlayerController>().transform;
+
+    //    // Raycast desde el jugador al infinito
+    //    if (Physics.Raycast(player.position, player.forward, out hit, Mathf.Infinity))
+    //    {
+    //        return (player.position - hit.point).normalized;
+    //    }
+
+    //    // Disparo al infinito
+    //    Debug.Log("Error");
+    //    return Vector3.zero;
+    //}
     
     public void GetNewWeapon(int id)
     {
@@ -167,6 +173,7 @@ public class WeaponController : MonoBehaviour
         // Crear arma nueva como hijo
         gun = Instantiate(cur_weapon.gun, weapon_pos.transform);
         gun.transform.parent = weapon_pos.transform;
+        gun.GetComponent<GunController>().AddGunInfo(cur_weapon);
 
         // Incluir datos de materiales
         SearchRenderers();
@@ -202,32 +209,32 @@ public class WeaponController : MonoBehaviour
     // Color dependent functions
 
     // Changing to yellow
-    void BulletToYellow()
-    {
-        cur_color = 0;
-        if(cur_weapon.bullet.GetComponent<Renderer>() != null)
-            cur_weapon.bullet.GetComponent<Renderer>().material = yellow_mat;
-        if(cur_weapon.bullet.GetComponent<TrailRenderer>() != null)
-            cur_weapon.bullet.GetComponent<TrailRenderer>().material = yellow_mat;
-    }
+    //protected void BulletToYellow()
+    //{
+    //    cur_color = 0;
+    //    if(cur_weapon.bullet.GetComponent<Renderer>() != null)
+    //        cur_weapon.bullet.GetComponent<Renderer>().material = yellow_mat;
+    //    if(cur_weapon.bullet.GetComponent<TrailRenderer>() != null)
+    //        cur_weapon.bullet.GetComponent<TrailRenderer>().material = yellow_mat;
+    //}
 
-    // Changing to cyan
-    void BulletToCyan()
-    {
-        cur_color = 1;
-        if (cur_weapon.bullet.GetComponent<Renderer>() != null)
-            cur_weapon.bullet.GetComponent<Renderer>().material = cyan_mat;
-        if (cur_weapon.bullet.GetComponent<TrailRenderer>() != null)
-            cur_weapon.bullet.GetComponent<TrailRenderer>().material = cyan_mat;
-    }
+    //// Changing to cyan
+    //protected void BulletToCyan()
+    //{
+    //    cur_color = 1;
+    //    if (cur_weapon.bullet.GetComponent<Renderer>() != null)
+    //        cur_weapon.bullet.GetComponent<Renderer>().material = cyan_mat;
+    //    if (cur_weapon.bullet.GetComponent<TrailRenderer>() != null)
+    //        cur_weapon.bullet.GetComponent<TrailRenderer>().material = cyan_mat;
+    //}
 
-    // Changing to magenta
-    void BulletToMagenta()
-    {
-        cur_color = 2;
-        if (cur_weapon.bullet.GetComponent<Renderer>() != null)
-            cur_weapon.bullet.GetComponent<Renderer>().sharedMaterial = magenta_mat;
-        if (cur_weapon.bullet.GetComponent<TrailRenderer>() != null)
-            cur_weapon.bullet.GetComponent<TrailRenderer>().sharedMaterial = magenta_mat;
-    }
+    //// Changing to magenta
+    //protected void BulletToMagenta()
+    //{
+    //    cur_color = 2;
+    //    if (cur_weapon.bullet.GetComponent<Renderer>() != null)
+    //        cur_weapon.bullet.GetComponent<Renderer>().sharedMaterial = magenta_mat;
+    //    if (cur_weapon.bullet.GetComponent<TrailRenderer>() != null)
+    //        cur_weapon.bullet.GetComponent<TrailRenderer>().sharedMaterial = magenta_mat;
+    //}
 }
