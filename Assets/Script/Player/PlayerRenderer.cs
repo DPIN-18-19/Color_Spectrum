@@ -12,7 +12,7 @@ public class PlayerRenderer : MonoBehaviour
 
     // Player's material
     Material cur_mat;
-    int cur_color;
+    public int cur_color;
 
     // Material Neutro
     public Material Yellow_Material;

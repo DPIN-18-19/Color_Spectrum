@@ -166,29 +166,6 @@ MonoBehaviour:
   isFiring: 0
   theGun: {fileID: 0}
   cur_color: 0
-  renderersToChangeColor:
-  - {fileID: 428373711}
-  - {fileID: 1674500527}
-  Blue_Material: {fileID: 2100000, guid: 44c2e440ab0d013449cfa8308164d9c4, type: 2}
-  Yellow_Material: {fileID: 2100000, guid: d88ec5f6f06e64d4db6956c458f0b867, type: 2}
-  Pink_Material: {fileID: 2100000, guid: 2d0ac1555fd56254c83e06f281b9678d, type: 2}
-  DamageBlueMaterial: {fileID: 2100000, guid: ddb750c2306a8dd45a02db3f1e7090c3, type: 2}
-  DamageYellowMaterial: {fileID: 2100000, guid: 7ac3a7aa4f5223f4c9a9f7424f18ea8d,
-    type: 2}
-  DamagePinkMaterial: {fileID: 2100000, guid: 932dc70665a94764e94bd56cf504986c, type: 2}
-  HealthBlueMaterial: {fileID: 2100000, guid: ebfe7d681aad2554da42228332505ffb, type: 2}
-  HealthYellowMaterial: {fileID: 2100000, guid: e30b95678a080994b9e625b5d121b04f,
-    type: 2}
-  HealthPinkMaterial: {fileID: 2100000, guid: 9150d4175f25f204c80420d51a2fca7a, type: 2}
-  BlackGlitchBlueMaterial: {fileID: 2100000, guid: 3c2af6c2acc3bbb45b96268e4eb58db8,
-    type: 2}
-  BlackGlitchYellowMaterial: {fileID: 2100000, guid: beb6b505a26630a46b8c4f192ecdc7ae,
-    type: 2}
-  BlackGlitchPinkMaterial: {fileID: 2100000, guid: af8418d191a23464db92bce3c7e5aec2,
-    type: 2}
-  BlackBlueMaterial: {fileID: 2100000, guid: f49e0048957ab1b4a87c2b33a60cbbc3, type: 2}
-  BlackYellowMaterial: {fileID: 2100000, guid: 2e7e8ab92193a5f4da32d410109412b5, type: 2}
-  BlackPinkMaterial: {fileID: 2100000, guid: 3f56c702627902340920ec6900176340, type: 2}
   Fire: 0
 --- !u!114 &4239346
 MonoBehaviour:
@@ -3071,26 +3048,28 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: efa253f98f20e694783d630490204063, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  renderersToChangeColor: []
-  Blue_Material: {fileID: 2100000, guid: 44c2e440ab0d013449cfa8308164d9c4, type: 2}
+  renderersToChangeColor:
+  - {fileID: 428373711}
+  - {fileID: 1674500527}
   Yellow_Material: {fileID: 2100000, guid: d88ec5f6f06e64d4db6956c458f0b867, type: 2}
+  Blue_Material: {fileID: 2100000, guid: 44c2e440ab0d013449cfa8308164d9c4, type: 2}
   Pink_Material: {fileID: 2100000, guid: 2d0ac1555fd56254c83e06f281b9678d, type: 2}
-  DamageBlueMaterial: {fileID: 2100000, guid: ddb750c2306a8dd45a02db3f1e7090c3, type: 2}
   DamageYellowMaterial: {fileID: 2100000, guid: 7ac3a7aa4f5223f4c9a9f7424f18ea8d,
     type: 2}
+  DamageBlueMaterial: {fileID: 2100000, guid: ddb750c2306a8dd45a02db3f1e7090c3, type: 2}
   DamagePinkMaterial: {fileID: 2100000, guid: 932dc70665a94764e94bd56cf504986c, type: 2}
-  HealthBlueMaterial: {fileID: 2100000, guid: ebfe7d681aad2554da42228332505ffb, type: 2}
   HealthYellowMaterial: {fileID: 2100000, guid: e30b95678a080994b9e625b5d121b04f,
     type: 2}
+  HealthBlueMaterial: {fileID: 2100000, guid: ebfe7d681aad2554da42228332505ffb, type: 2}
   HealthPinkMaterial: {fileID: 2100000, guid: 9150d4175f25f204c80420d51a2fca7a, type: 2}
-  BlackGlitchBlueMaterial: {fileID: 2100000, guid: 3c2af6c2acc3bbb45b96268e4eb58db8,
-    type: 2}
   BlackGlitchYellowMaterial: {fileID: 2100000, guid: beb6b505a26630a46b8c4f192ecdc7ae,
+    type: 2}
+  BlackGlitchBlueMaterial: {fileID: 2100000, guid: 3c2af6c2acc3bbb45b96268e4eb58db8,
     type: 2}
   BlackGlitchPinkMaterial: {fileID: 2100000, guid: af8418d191a23464db92bce3c7e5aec2,
     type: 2}
-  BlackBlueMaterial: {fileID: 2100000, guid: f49e0048957ab1b4a87c2b33a60cbbc3, type: 2}
   BlackYellowMaterial: {fileID: 2100000, guid: 2e7e8ab92193a5f4da32d410109412b5, type: 2}
+  BlackBlueMaterial: {fileID: 2100000, guid: f49e0048957ab1b4a87c2b33a60cbbc3, type: 2}
   BlackPinkMaterial: {fileID: 2100000, guid: 3f56c702627902340920ec6900176340, type: 2}
 --- !u!1 &142045041
 GameObject:
@@ -22836,7 +22815,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 88362deda9903a44a9962f69a2c98b4d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  cam: {fileID: 0}
   gun_list: {fileID: 11400000, guid: 50af914333c1ec545bc5d69c43dc8622, type: 2}
   gun: {fileID: 0}
   activated_weapon: 0
@@ -36196,31 +36174,31 @@ Prefab:
     m_Modifications:
     - target: {fileID: 4798417969251926, guid: 7f9064efd292f0c44a61e62765ad1d35, type: 2}
       propertyPath: m_LocalPosition.x
-      value: 328.43372
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4798417969251926, guid: 7f9064efd292f0c44a61e62765ad1d35, type: 2}
       propertyPath: m_LocalPosition.y
-      value: 9.11176
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4798417969251926, guid: 7f9064efd292f0c44a61e62765ad1d35, type: 2}
       propertyPath: m_LocalPosition.z
-      value: -212.31999
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4798417969251926, guid: 7f9064efd292f0c44a61e62765ad1d35, type: 2}
       propertyPath: m_LocalRotation.x
-      value: 0.43157238
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4798417969251926, guid: 7f9064efd292f0c44a61e62765ad1d35, type: 2}
       propertyPath: m_LocalRotation.y
-      value: 0.000008001382
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4798417969251926, guid: 7f9064efd292f0c44a61e62765ad1d35, type: 2}
       propertyPath: m_LocalRotation.z
-      value: -0.000009980334
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4798417969251926, guid: 7f9064efd292f0c44a61e62765ad1d35, type: 2}
       propertyPath: m_LocalRotation.w
-      value: 0.90207833
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4798417969251926, guid: 7f9064efd292f0c44a61e62765ad1d35, type: 2}
       propertyPath: m_RootOrder
@@ -36238,7 +36216,7 @@ Prefab:
     - target: {fileID: 20077908425716010, guid: 7f9064efd292f0c44a61e62765ad1d35,
         type: 2}
       propertyPath: field of view
-      value: 51.5
+      value: 40
       objectReference: {fileID: 0}
     - target: {fileID: 114367519486115872, guid: 7f9064efd292f0c44a61e62765ad1d35,
         type: 2}

@@ -1,10 +1,4 @@
-﻿
-
-
-
-//Jaime
-
-using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -22,11 +16,9 @@ public class ColorChangingController : MonoBehaviour {
     public SameColorPink ParedRosa;
     public float DuracionMismoColor;
     public float MaxDuracion;
-
-
-
+    
     public Colors cur_color;                    // Current selected color
-    int i_cur_color;                            // Current selected color (number)
+    public int i_cur_color;                            // Current selected color (number)
     private int num_colors;                     // Number of colors
 
     public Colors init_color = Colors.Yellow;   // Initial color
@@ -63,8 +55,6 @@ public class ColorChangingController : MonoBehaviour {
     {
         num_colors = System.Enum.GetNames(typeof(Colors)).Length;
         do_update = true;
-
-       
     }
 	
 	// Update is called once per frame
@@ -126,7 +116,6 @@ public class ColorChangingController : MonoBehaviour {
                     if (ToYellow != null)
                     {
                         ToYellow();
-                       
                     }
 
                     break;
@@ -134,7 +123,6 @@ public class ColorChangingController : MonoBehaviour {
                     if (ToCyan != null)
                     {
                         ToCyan();
-                        //source.PlayOneShot(FxCambioColor);
                     }
                     break;
                 case Colors.Magenta:

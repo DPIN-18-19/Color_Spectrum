@@ -98,13 +98,13 @@ public class GunController : MonoBehaviour
                 bullet_dir = angulo * bullet_dir;
 
                 //Debug.DrawLine(cam.GetMousePosInPlane(bullet_spawn_pistola.position), bullet_spawn_pistola.position, Color.cyan);
+                Debug.Log("Color is " + weapon_color);
                 bullet_shot.GetComponent<BulletController>().AddBulletInfo(weapon_color, bullet_speed, bullet_dir, bullet_damage, bullet_range, true);
 
                 --c_bullets;
 
             } while (c_bullets > 0);
-
-
+            
             cadence = gun_cadence_dur;
             FireEffect();
         }
@@ -112,7 +112,7 @@ public class GunController : MonoBehaviour
 
     void FireEffect()
     {
-        //// Change this
+        // Change this
         if (weapon_color == 0)
         {
             Instantiate(Shot_effectYellow.gameObject, spawn.position, spawn.rotation);
@@ -139,7 +139,20 @@ public class GunController : MonoBehaviour
 
     public void UpdateColor(int n_color)
     {
-        weapon_color = n_color;
+        switch (n_color)
+        {
+            case 0:
+                BulletToYellow();
+                break;
+            case 1:
+                BulletToCyan();
+                break;
+            case 2:
+                BulletToMagenta();
+                break;
+            default:
+                break;
+        }
     }
 
     Vector3 CalculateBulletDirection()
@@ -161,7 +174,7 @@ public class GunController : MonoBehaviour
     // Color dependent functions
 
     // Changing to yellow
-    protected void BulletToYellow()
+    protected virtual void BulletToYellow()
     {
         weapon_color = 0;
         if (bullet.GetComponent<Renderer>() != null)
@@ -171,7 +184,7 @@ public class GunController : MonoBehaviour
     }
 
     // Changing to cyan
-    protected void BulletToCyan()
+    protected virtual void BulletToCyan()
     {
         weapon_color = 1;
         if (bullet.GetComponent<Renderer>() != null)
@@ -181,7 +194,7 @@ public class GunController : MonoBehaviour
     }
 
     // Changing to magenta
-    protected void BulletToMagenta()
+    protected virtual void BulletToMagenta()
     {
         weapon_color = 2;
         if (bullet.GetComponent<Renderer>() != null)
