@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class GunController : MonoBehaviour
 {
-    AudioSource source;
+    protected AudioSource source;
 
     //////////////////////////////////////////////////////////////////
     // Informacion de la bala
@@ -16,14 +16,17 @@ public class GunController : MonoBehaviour
 
     //////////////////////////////////////////////////////////////////
     // Informacion de pistola
-    Transform spawn;                    // Posicion de spawn de bala
-    Transform shell;                    // Posicion de spawn de cartucho
+    //public GunController weapon_type;
+    protected Transform spawn;                    // Posicion de spawn de bala
+    protected Transform shell;                    // Posicion de spawn de cartucho
 
     float gun_num_bullets = 1.0f;       // Balas disparadas simultaneamente
     float gun_cadence_dur;              // Cadencia del arma
-    float cadence;                      // Contador de la cadencia
+    protected float cadence;                      // Contador de la cadencia
+    bool gun_automatic;
+    bool shoot_again;
     
-    int weapon_color;                   // Color del arma
+    protected int weapon_color;                   // Color del arma
     AudioClip fx_shot;                  // Efecto sonoro de disparo
 
     //////////////////////////////////////////////////////////////////
@@ -45,7 +48,7 @@ public class GunController : MonoBehaviour
     //////////////////////////////////////////////////////////////////
 
     // Use this for initialization
-    void Start ()
+    protected void Start ()
     {
         source = GetComponent<AudioSource>();
 
@@ -55,6 +58,8 @@ public class GunController : MonoBehaviour
         
         spawn = transform.Find("FirePos");
         shell = transform.Find("SpawnShell");
+        Debug.Log("I was called");
+        //weapon_type = this;
     }
 	
 	// Update is called once per frame
@@ -73,40 +78,47 @@ public class GunController : MonoBehaviour
 
         gun_cadence_dur = n_data.cadence;
         gun_num_bullets = n_data.num_bullets;
+        gun_automatic = n_data.automatic;
         fx_shot = n_data.fx_shot;
     }
 
-    public void FireBullet()
+    public virtual void FireBullet()
     {
-        if (cadence <= 0)
+        if (shoot_again)
         {
-            float c_bullets = gun_num_bullets;
-
-            do
+            if (cadence <= 0)
             {
-                Debug.Log(spawn.name);
-                GameObject bullet_shot = Instantiate(bullet, spawn.position, spawn.rotation);
-                source.PlayOneShot(fx_shot);
-                //Debug.Break();
+                float c_bullets = gun_num_bullets;
 
-                Vector3 bullet_dir = CalculateBulletDirection();
-                //bullet_dir = bullet_spawn.transform.TransformDirection(bullet_dir.normalized);
+                do
+                {
+                    Debug.Log(spawn.name);
+                    GameObject bullet_shot = Instantiate(bullet, spawn.position, spawn.rotation);
+                    source.PlayOneShot(fx_shot);
+                    //Debug.Break();
 
-                //Random Spray
-                float randspray = Random.Range(bullet_spray, -bullet_spray);
-                Quaternion angulo = Quaternion.Euler(0f, randspray, 0f);
-                bullet_dir = angulo * bullet_dir;
+                    Vector3 bullet_dir = CalculateBulletDirection();
+                    //bullet_dir = bullet_spawn.transform.TransformDirection(bullet_dir.normalized);
 
-                //Debug.DrawLine(cam.GetMousePosInPlane(bullet_spawn_pistola.position), bullet_spawn_pistola.position, Color.cyan);
-                Debug.Log("Color is " + weapon_color);
-                bullet_shot.GetComponent<BulletController>().AddBulletInfo(weapon_color, bullet_speed, bullet_dir, bullet_damage, bullet_range, true);
+                    //Random Spray
+                    float randspray = Random.Range(bullet_spray, -bullet_spray);
+                    Quaternion angulo = Quaternion.Euler(0f, randspray, 0f);
+                    bullet_dir = angulo * bullet_dir;
 
-                --c_bullets;
+                    //Debug.DrawLine(cam.GetMousePosInPlane(bullet_spawn_pistola.position), bullet_spawn_pistola.position, Color.cyan);
+                    Debug.Log("Color is " + weapon_color);
+                    bullet_shot.GetComponent<BulletController>().AddBulletInfo(weapon_color, bullet_speed, bullet_dir, bullet_damage, bullet_range, true);
 
-            } while (c_bullets > 0);
-            
-            cadence = gun_cadence_dur;
-            FireEffect();
+                    --c_bullets;
+
+                } while (c_bullets > 0);
+
+                cadence = gun_cadence_dur;
+                FireEffect();
+
+                if (!gun_automatic)
+                    shoot_again = false;
+            }
         }
     }
 
@@ -153,6 +165,11 @@ public class GunController : MonoBehaviour
             default:
                 break;
         }
+    }
+
+    public void TriggerRelease()
+    {
+        shoot_again = true;
     }
 
     Vector3 CalculateBulletDirection()

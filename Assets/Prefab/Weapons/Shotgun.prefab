@@ -34,8 +34,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4252851435847748}
-  - component: {fileID: 114317680422498352}
   - component: {fileID: 82315048450426898}
+  - component: {fileID: 114083553306766066}
   m_Layer: 0
   m_Name: Shotgun
   m_TagString: Untagged
@@ -178,7 +178,7 @@ AudioSource:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1300654682825010}
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 0}
@@ -267,7 +267,7 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
---- !u!114 &114317680422498352
+--- !u!114 &114083553306766066
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_CorrespondingSourceObject: {fileID: 0}
@@ -275,7 +275,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 1300654682825010}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d7565df79810d4c4cb85255ab6999cd5, type: 3}
+  m_Script: {fileID: 11500000, guid: 05c4a5e3d83035f4a870068472789c99, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   yellow_mat: {fileID: 2100000, guid: d88ec5f6f06e64d4db6956c458f0b867, type: 2}
@@ -292,4 +292,6 @@ MonoBehaviour:
   ShellEfectBlue: {fileID: 198834423430413478, guid: 93a8d38d779f61f4cbf4add2091be907,
     type: 2}
   ShellEfectPink: {fileID: 198076230649775678, guid: 3a875e93ad345f74b8662cfe669da381,
+    type: 2}
+  ready_flash: {fileID: 1278190975341966, guid: 415fbc4141afe074794356b2d4317819,
     type: 2}

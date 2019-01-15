@@ -79,11 +79,14 @@ public class WeaponController : MonoBehaviour
     {
         if (is_firing)
         {
+            //Debug.Log(gun.GetComponent<GunController>().GetType().Name);
             gun.GetComponent<GunController>().FireBullet();
             //FireWeapon();
             // True  automatica, False manual 
-            is_firing = true;
+            //is_firing = true;
         }
+        else
+            gun.GetComponent<GunController>().TriggerRelease();
 
         gun.GetComponent<GunController>().UpdateCadence();
     }

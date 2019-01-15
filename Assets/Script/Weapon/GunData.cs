@@ -16,6 +16,7 @@ public class GunData
     public float spray = 5;
     public float cadence = 0.5f;
     public float num_bullets = 1f;
+    public bool automatic = true;
 
     public string ability = "";
     
