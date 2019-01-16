@@ -184,6 +184,7 @@ MonoBehaviour:
   DuracionMismoColor: 0
   MaxDuracion: 4
   cur_color: 0
+  i_cur_color: 0
   init_color: 0
   FxCambioColor: {fileID: 8300000, guid: 95b0c667a5ca8f345b2798680b90ca1d, type: 3}
 --- !u!1 &4450656
@@ -3051,6 +3052,7 @@ MonoBehaviour:
   renderersToChangeColor:
   - {fileID: 428373711}
   - {fileID: 1674500527}
+  cur_color: 0
   Yellow_Material: {fileID: 2100000, guid: d88ec5f6f06e64d4db6956c458f0b867, type: 2}
   Blue_Material: {fileID: 2100000, guid: 44c2e440ab0d013449cfa8308164d9c4, type: 2}
   Pink_Material: {fileID: 2100000, guid: 2d0ac1555fd56254c83e06f281b9678d, type: 2}
@@ -20991,7 +20993,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!82 &887065116
 AudioSource:
   m_ObjectHideFlags: 0
@@ -22817,7 +22819,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   gun_list: {fileID: 11400000, guid: 50af914333c1ec545bc5d69c43dc8622, type: 2}
   gun: {fileID: 0}
-  activated_weapon: 0
+  activated_weapon: 2
   weapon_pos: {fileID: 716138809}
   is_firing: 0
   yellow_mat: {fileID: 2100000, guid: d88ec5f6f06e64d4db6956c458f0b867, type: 2}
@@ -36174,31 +36176,31 @@ Prefab:
     m_Modifications:
     - target: {fileID: 4798417969251926, guid: 7f9064efd292f0c44a61e62765ad1d35, type: 2}
       propertyPath: m_LocalPosition.x
-      value: 0
+      value: 328.43372
       objectReference: {fileID: 0}
     - target: {fileID: 4798417969251926, guid: 7f9064efd292f0c44a61e62765ad1d35, type: 2}
       propertyPath: m_LocalPosition.y
-      value: 0
+      value: 9.11176
       objectReference: {fileID: 0}
     - target: {fileID: 4798417969251926, guid: 7f9064efd292f0c44a61e62765ad1d35, type: 2}
       propertyPath: m_LocalPosition.z
-      value: 0
+      value: -212.31999
       objectReference: {fileID: 0}
     - target: {fileID: 4798417969251926, guid: 7f9064efd292f0c44a61e62765ad1d35, type: 2}
       propertyPath: m_LocalRotation.x
-      value: 0
+      value: 0.43157238
       objectReference: {fileID: 0}
     - target: {fileID: 4798417969251926, guid: 7f9064efd292f0c44a61e62765ad1d35, type: 2}
       propertyPath: m_LocalRotation.y
-      value: 0
+      value: 0.000008001382
       objectReference: {fileID: 0}
     - target: {fileID: 4798417969251926, guid: 7f9064efd292f0c44a61e62765ad1d35, type: 2}
       propertyPath: m_LocalRotation.z
-      value: 0
+      value: -0.000009980334
       objectReference: {fileID: 0}
     - target: {fileID: 4798417969251926, guid: 7f9064efd292f0c44a61e62765ad1d35, type: 2}
       propertyPath: m_LocalRotation.w
-      value: 1
+      value: 0.90207833
       objectReference: {fileID: 0}
     - target: {fileID: 4798417969251926, guid: 7f9064efd292f0c44a61e62765ad1d35, type: 2}
       propertyPath: m_RootOrder
@@ -36216,7 +36218,7 @@ Prefab:
     - target: {fileID: 20077908425716010, guid: 7f9064efd292f0c44a61e62765ad1d35,
         type: 2}
       propertyPath: field of view
-      value: 40
+      value: 51.5
       objectReference: {fileID: 0}
     - target: {fileID: 114367519486115872, guid: 7f9064efd292f0c44a61e62765ad1d35,
         type: 2}
