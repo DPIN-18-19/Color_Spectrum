@@ -5,6 +5,7 @@ using UnityEngine.EventSystems;
 
 public class DropZone : MonoBehaviour, IDropHandler, IPointerEnterHandler, IPointerExitHandler
 {
+
     public void OnPointerEnter(PointerEventData p_event_data)
     {
         if (p_event_data.pointerDrag == null)
