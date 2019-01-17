@@ -8,6 +8,7 @@ public class FollowTarget : MonoBehaviour
     {
         Player,
         Enemy,
+        FirePos,
         Custom
     };
     public ToFollow who;
@@ -29,6 +30,9 @@ public class FollowTarget : MonoBehaviour
                 break;
             case ToFollow.Custom:
                 TargetIsCustom();
+                break;
+            case ToFollow.FirePos:
+                TargetIsFirePos();
                 break;
             default:
                 Debug.Log("No Target To Follow Assign");
@@ -64,5 +68,9 @@ public class FollowTarget : MonoBehaviour
     void TargetIsCustom()
     {
         target = custom_target;
+    }
+    void TargetIsFirePos()
+    {
+        target = GameObject.FindGameObjectWithTag("FirePos");
     }
 }

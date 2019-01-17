@@ -9,7 +9,7 @@ public class EnemyHealthController : MonoBehaviour
     string damaging_tag2;
     int damaging_layer1;
     int damaging_layer2;
-
+    public Transform PosDeadParticle;
     ///////////////////////////////////////////////////////////////
 
     // Health variables
@@ -101,7 +101,7 @@ public class EnemyHealthController : MonoBehaviour
             //AudioSource.PlayClipAtPoint(FxDie, transform.position);
             if (enemy_color < die_effect.Length)
             {
-                Instantiate(die_effect[enemy_color].gameObject, transform.position, Quaternion.identity);
+                Instantiate(die_effect[enemy_color].gameObject, PosDeadParticle.transform.position, Quaternion.identity);
                 ScoreManager.Instance.CountEnemy(score);
                 Destroy(transform.parent.gameObject);
             }

@@ -20,9 +20,6 @@ public class Botiquin : MonoBehaviour {
         {
             vida.RestoreHealth(Salud);
             Destroy(gameObject);
-          
-
-
         }
     }
 }

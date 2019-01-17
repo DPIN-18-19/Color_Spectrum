@@ -6,7 +6,7 @@ using UnityEngine.Events;
 
 public class SimpleCameraShakeInCinemachine : MonoBehaviour
 {
-
+    public HealthController Damage;
     public float ShakeDuration = 0.3f;          // Time the Camera Shake effect will last
     public float ShakeAmplitude = 1.2f;         // Cinemachine Noise Profile Parameter
     public float ShakeFrequency = 2.0f;         // Cinemachine Noise Profile Parameter
@@ -29,7 +29,7 @@ public class SimpleCameraShakeInCinemachine : MonoBehaviour
     void Update()
     {
         // TODO: Replace with your trigger
-        if (Input.GetKey(KeyCode.F))
+        if (Damage.Daño == true)
         {
             ShakeElapsedTime = ShakeDuration;
         }

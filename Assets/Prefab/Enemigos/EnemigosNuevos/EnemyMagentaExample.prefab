@@ -705,6 +705,21 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+--- !u!1 &1627874585160284
+GameObject:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 4432653494729024}
+  m_Layer: 9
+  m_Name: DeadEffect
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
 --- !u!1 &1629787051202220
 GameObject:
   m_ObjectHideFlags: 1
@@ -1108,6 +1123,7 @@ Transform:
   - {fileID: 4309907472971054}
   - {fileID: 4736829308718730}
   - {fileID: 4512348617259228}
+  - {fileID: 4432653494729024}
   m_Father: {fileID: 4421888213126604}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: -179.753, z: 0}
@@ -1365,7 +1381,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1929973850218482}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 19.803768, y: 0.14763665, z: -1.7080679}
+  m_LocalPosition: {x: 18.455124, y: 0.14763665, z: -11.348087}
   m_LocalScale: {x: 1.2848799, y: 1.2848799, z: 1.2848799}
   m_Children:
   - {fileID: 224632376777443738}
@@ -1374,6 +1390,19 @@ Transform:
   - {fileID: 4105761212294076}
   m_Father: {fileID: 0}
   m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!4 &4432653494729024
+Transform:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1627874585160284}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 1.2559999, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 4105761212294076}
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &4452112491331320
 Transform:
@@ -2017,12 +2046,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 62cc23658d5fbe04e9500fc1c9fd4b84, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  PosDeadParticle: {fileID: 4432653494729024}
   max_health: 15
   health_bar: {fileID: 114334616615874824}
   die_effect:
-  - {fileID: 198946016394406564, guid: 6569dad07df1d814aa956a8e22cefe3b, type: 2}
-  - {fileID: 198946016394406564, guid: 6569dad07df1d814aa956a8e22cefe3b, type: 2}
-  - {fileID: 198946016394406564, guid: 6569dad07df1d814aa956a8e22cefe3b, type: 2}
+  - {fileID: 198960496170012676, guid: 6b023f22181b1d640a11c4ae1a24ade8, type: 2}
+  - {fileID: 198960496170012676, guid: 6b023f22181b1d640a11c4ae1a24ade8, type: 2}
+  - {fileID: 198960496170012676, guid: 6b023f22181b1d640a11c4ae1a24ade8, type: 2}
   FxDie: {fileID: 0}
   EnemyMaterials: {fileID: 114284460066396250}
   TimeDamageMat: 0.4

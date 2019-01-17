@@ -55,6 +55,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   who: 0
   custom_target: {fileID: 0}
+  Offset: {x: 0, y: 0, z: 0}
 --- !u!198 &198945216879961990
 ParticleSystem:
   m_ObjectHideFlags: 1
@@ -134,7 +135,7 @@ ParticleSystem:
     startLifetime:
       serializedVersion: 2
       minMaxState: 3
-      scalar: 1
+      scalar: 0.6
       minScalar: 0.5
       maxCurve:
         serializedVersion: 2
@@ -187,8 +188,8 @@ ParticleSystem:
     startSpeed:
       serializedVersion: 2
       minMaxState: 3
-      scalar: 3.5
-      minScalar: 2.5
+      scalar: 4.5
+      minScalar: 3.5
       maxCurve:
         serializedVersion: 2
         m_Curve:
@@ -828,8 +829,8 @@ ParticleSystem:
     rateOverTime:
       serializedVersion: 2
       minMaxState: 3
-      scalar: 5
-      minScalar: 2
+      scalar: 7
+      minScalar: 4
       maxCurve:
         serializedVersion: 2
         m_Curve:

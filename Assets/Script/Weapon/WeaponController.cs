@@ -184,9 +184,9 @@ public class WeaponController : MonoBehaviour
             render_children.AddRange(gun.GetComponentsInChildren<Renderer>());
 
         // Incluir los renderers en los objetos actualizados con colores
-        GetComponentInParent<PlayerController>().renderersToChangeColor.AddRange(render_children);
+        GetComponentInParent<PlayerRenderer>().renderersToChangeColor.AddRange(render_children);
         // Pintar el arma con el correspondiente material
-        GetComponentInParent<PlayerController>().UpdateColor();
+        GetComponentInParent<PlayerRenderer>().UpdateColor();
     }
 
     void TakeOutRenderers()
@@ -194,7 +194,7 @@ public class WeaponController : MonoBehaviour
         // Eliminar los renderers del jugador
         if(render_children.Count != 0)
             foreach (Renderer r in render_children)
-                GetComponentInParent<PlayerController>().renderersToChangeColor.Remove(r);
+                GetComponentInParent<PlayerRenderer>().renderersToChangeColor.Remove(r);
 
         render_children.Clear();
     }
