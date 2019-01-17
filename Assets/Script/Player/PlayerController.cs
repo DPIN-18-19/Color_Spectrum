@@ -17,17 +17,17 @@ public class PlayerController : MonoBehaviour {
 
     WeaponController weapon;
     private Camera maincamera;      // Player Camera
-    public GunController theGun;    // Player's Gun
+   
     public int cur_color;
     
     Collider m_collider;
 
     //Renderers to change
-    //[SerializeField]
-    //public List<Renderer> renderersToChangeColor;
+    [SerializeField]
+    public List<Renderer> renderersToChangeColor;
 
 
-    // Player's material
+    //Player's material
     //public Material Blue_Material;
     //public Material Yellow_Material;
     //public Material Pink_Material;
@@ -139,14 +139,14 @@ public class PlayerController : MonoBehaviour {
         gameObject.layer = 10;
         GameplayManager.GetInstance().ChangeColor(2);
     }
-    
+
     //// Jaime functions
     //// Reset Colors
     //public void ResetColor()
     //{
     //    foreach (Renderer r in renderersToChangeColor)
     //    {
-    //        switch(cur_color)
+    //        switch (cur_color)
     //        {
     //            case 0:
     //                r.material = Yellow_Material;    // Apply player material
@@ -161,39 +161,39 @@ public class PlayerController : MonoBehaviour {
     //    }
     //}
 
-    ////public void RestoreChangeToYellow()
-    ////{
-    ////    foreach (Renderer r in renderersToChangeColor)
-    ////    {
-    ////        r.material = Yellow_Material;    // Apply player material
-    ////    }
+    //public void RestoreChangeToYellow()
+    //{
+    //    foreach (Renderer r in renderersToChangeColor)
+    //    {
+    //        r.material = Yellow_Material;    // Apply player material
+    //    }
 
-    ////    gameObject.layer = 8;
-    ////    GameplayManager.GetInstance().ChangeColor(0);   // Yellow Layer
-    ////}
+    //    gameObject.layer = 8;
+    //    GameplayManager.GetInstance().ChangeColor(0);   // Yellow Layer
+    //}
 
-    ////public void RestoreChangeToCyan()
-    ////{
-    ////    foreach (Renderer r in renderersToChangeColor)
-    ////    {
-    ////        r.material = Blue_Material;      // Apply player material
-    ////    }
+    //public void RestoreChangeToCyan()
+    //{
+    //    foreach (Renderer r in renderersToChangeColor)
+    //    {
+    //        r.material = Blue_Material;      // Apply player material
+    //    }
 
-    ////    gameObject.layer = 9;
-    ////    GameplayManager.GetInstance().ChangeColor(1); // Cyan Layer
-    ////}
+    //    gameObject.layer = 9;
+    //    GameplayManager.GetInstance().ChangeColor(1); // Cyan Layer
+    //}
 
-    ////public void RestoreChangeToMagenta()
-    ////{
-    ////    foreach (Renderer r in renderersToChangeColor)
-    ////    {
-    ////        // Magenta Layer
-    ////        r.material = Pink_Material;      // Apply player material
-    ////    }
+    //public void RestoreChangeToMagenta()
+    //{
+    //    foreach (Renderer r in renderersToChangeColor)
+    //    {
+    //        // Magenta Layer
+    //        r.material = Pink_Material;      // Apply player material
+    //    }
 
-    ////    gameObject.layer = 10;
-    ////    GameplayManager.GetInstance().ChangeColor(2);
-    ////}
+    //    gameObject.layer = 10;
+    //    GameplayManager.GetInstance().ChangeColor(2);
+    //}
 
     //// Damage
     //public void DamageColor()
@@ -215,61 +215,44 @@ public class PlayerController : MonoBehaviour {
     //    }
     //}
 
-    ////public void ChangeToDamageYellow()
-    ////{
-    ////    foreach (Renderer r in renderersToChangeColor)
-    ////    {
-    ////        // Magenta Layer
-    ////        r.material = DamageYellowMaterial;      // Apply player material
-    ////    }
-
-    ////    gameObject.layer = 8;
-    ////    GameplayManager.GetInstance().ChangeColor(0);
-    ////}
-
-    ////public void ChangeToDamageBlue()
-    ////{
-    ////    foreach (Renderer r in renderersToChangeColor)
-    ////    {
-    ////        // Magenta Layer
-    ////        r.material = DamageBlueMaterial;      // Apply player material
-    ////    }
-
-    ////    gameObject.layer = 9;
-    ////    GameplayManager.GetInstance().ChangeColor(1);
-    ////}
-
-    ////public void ChangeToDamagePink()
-    ////{
-    ////    foreach (Renderer r in renderersToChangeColor)
-    ////    {
-    ////        // Magenta Layer
-    ////        r.material = DamagePinkMaterial;      // Apply player material
-    ////    }
-
-    ////    gameObject.layer = 10;
-    ////    GameplayManager.GetInstance().ChangeColor(2);
-    ////}
-
-    //// Health Material
-    //public void DamageColor()
+    //public void ChangeToDamageYellow()
     //{
     //    foreach (Renderer r in renderersToChangeColor)
     //    {
-    //        switch (cur_color)
-    //        {
-    //            case 0:
-    //                r.material = DamageYellowMaterial;    // Apply player material
-    //                break;
-    //            case 1:
-    //                r.material = DamageBlueMaterial;    // Apply player material
-    //                break;
-    //            case 2:
-    //                r.material = DamagePinkMaterial;    // Apply player material
-    //                break;
-    //        }
+    //        // Magenta Layer
+    //        r.material = DamageYellowMaterial;      // Apply player material
     //    }
+
+    //    gameObject.layer = 8;
+    //    GameplayManager.GetInstance().ChangeColor(0);
     //}
+
+    //public void ChangeToDamageBlue()
+    //{
+    //    foreach (Renderer r in renderersToChangeColor)
+    //    {
+    //        // Magenta Layer
+    //        r.material = DamageBlueMaterial;      // Apply player material
+    //    }
+
+    //    gameObject.layer = 9;
+    //    GameplayManager.GetInstance().ChangeColor(1);
+    //}
+
+    //public void ChangeToDamagePink()
+    //{
+    //    foreach (Renderer r in renderersToChangeColor)
+    //    {
+    //        // Magenta Layer
+    //        r.material = DamagePinkMaterial;      // Apply player material
+    //    }
+
+    //    gameObject.layer = 10;
+    //    GameplayManager.GetInstance().ChangeColor(2);
+    //}
+
+    //// Health Material
+
 
     //public void ChangeToHealthYellow()
     //{
@@ -387,8 +370,8 @@ public class PlayerController : MonoBehaviour {
     //    GameplayManager.GetInstance().ChangeColor(2);
     //}
 
-    //public void UpdateColor()
-    //{
-    //    GetComponent<ColorChangingController>().ReColor();
-    //}
+    public void UpdateColor()
+    {
+        GetComponent<ColorChangingController>().ReColor();
+    }
 }

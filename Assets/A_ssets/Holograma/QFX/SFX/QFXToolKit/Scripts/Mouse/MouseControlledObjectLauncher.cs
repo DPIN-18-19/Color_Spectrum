@@ -1,8 +1,7 @@
 using UnityEngine;
-
+using QFXToolKit;
 // ReSharper disable once CheckNamespace
-namespace QFXToolKit
-{
+
     public class MouseControlledObjectLauncher : MonoBehaviour
     {
         public ControlledObject ControlledObject;
@@ -26,4 +25,3 @@ namespace QFXToolKit
             }
         }
     }
-}

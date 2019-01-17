@@ -5,7 +5,7 @@ using UnityEngine;
 public class HealthController : MonoBehaviour
 {
     //public Text vida;             // Player's health in UI
-    float health;
+    public float health;
     float newHealth;                // Player's current health
     public float max_health;        // Player's maximum health
     public ColorChangingController cambioColor;
@@ -14,6 +14,7 @@ public class HealthController : MonoBehaviour
 
     // Dead variables
     public ParticleSystem [] die_effect;    // Effect particle array
+    public Transform PosParticleDead;
     int player_color;                       // Player's color
     public AudioClip FxDie;
     private AudioSource source;
@@ -37,16 +38,20 @@ public class HealthController : MonoBehaviour
     public bool ParedNopasar;
    
     public ColorChangingController BlackGlitch;
-    
+
+    public PlayerJaneMoveController MovePlayer;
+
+
     //////////////////////////////////////////////////////////////////////////////
     void Awake()
     {
         source = GetComponent<AudioSource>();
+
     }
     // Use this for initialization
     void Start ()
     {
-        // TimeGlitchtheMat = MaxGlitchthMat;
+       // TimeGlitchtheMat = MaxGlitchthMat;
         MaxTimeDamageMat = TimeDamageMat;
         //  MaxTimeHealhthMat = TimeHealtheMat;
         // Subscribe to event
@@ -54,7 +59,7 @@ public class HealthController : MonoBehaviour
         ColorChangingController.Instance.ToCyan += ChangeToCyan;
         ColorChangingController.Instance.ToMagenta += ChangeToMagenta;
         if(GameplayManager.GetInstance() != null)
-            GameplayManager.GetInstance().max_health = max_health;
+        GameplayManager.GetInstance().max_health = max_health;
         MaterialsPlayer = GetComponent<PlayerRenderer>();
 
         health = max_health;
@@ -65,6 +70,7 @@ public class HealthController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+       // Debug.Log(health);
         IsDead();
         GameplayManager.GetInstance().health = health;
         health = Mathf.Lerp(health, newHealth, Time.deltaTime * 17);
@@ -84,6 +90,7 @@ public class HealthController : MonoBehaviour
         {
             if (ParedNopasar == false)
             {
+
                 MaterialsPlayer.ResetColor();
                 TimeDamageMat = MaxTimeDamageMat;
             }
@@ -128,8 +135,13 @@ public class HealthController : MonoBehaviour
             }
             if (TimeGlitchtheMat > MaxGlitchthMat && Daño == true)
             {
+
                 MaterialsPlayer.DamageColor();
+
+                // TimeDamageMat -= Time.deltaTime;
+
             }
+
 
             if (TimeGlitchtheMat > cambioColor.MaxDuracion)
             {
@@ -148,9 +160,17 @@ public class HealthController : MonoBehaviour
             AudioSource.PlayClipAtPoint(FxDie, transform.position);
             if (player_color < die_effect.Length)
             {
-                Instantiate(die_effect[player_color].gameObject, transform.position, Quaternion.identity);
+                //- Search a way to destroy die effect after finishing
+
+                Instantiate(die_effect[player_color].gameObject, PosParticleDead.position, Quaternion.identity);
+
                 GameObject.Find("GameManager").GetComponent<SceneMan>().Invoke("ToMenu", 2);
-                Destroy(gameObject);
+
+                gameObject.SetActive(false);
+
+                MovePlayer.CanMove = false;
+
+               // Destroy(gameObject);
             }
         }
     }
@@ -162,13 +182,18 @@ public class HealthController : MonoBehaviour
             GetArmorDamage(damage);
         else
         {
-            MaterialsPlayer.DamageColor();
             newHealth = health - damage;
+
+            MaterialsPlayer.DamageColor();
+
             ScoreManager.Instance.CountDamage(damage);
             Daño = true;
         }
     }
-    
+
+
+
+
     // Get back health
     public void RestoreHealth(float cure)
     {
@@ -177,10 +202,12 @@ public class HealthController : MonoBehaviour
         MaterialsPlayer.HealthColor();
         if (cambioColor.GetColor() == 0)
         {
+           
             Instantiate(HealthYellow.gameObject, transform.position, Quaternion.identity);
         }
         if (cambioColor.GetColor() == 1)
         {
+           
             Instantiate(HealthBlue.gameObject, transform.position, Quaternion.identity);
         }
         if (cambioColor.GetColor() == 2)
@@ -191,6 +218,7 @@ public class HealthController : MonoBehaviour
         if (health > max_health)
         {
             health = max_health;
+          
         }
     }
 

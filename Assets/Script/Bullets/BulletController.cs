@@ -26,7 +26,7 @@ public class BulletController : MonoBehaviour
     [HideInInspector]
     public bool friendly;           // Who shot the bullet? True: Player, False: Enemy
 
-    Collider m_collider;            // Bullet collider
+    protected Collider m_collider;            // Bullet collider
 
 
     public ParticleSystem DestroyEffectYellow;
@@ -130,6 +130,8 @@ public class BulletController : MonoBehaviour
         if (col.gameObject.tag == gameObject.tag)
         {
             Debug.Log("Collided with a wall");
+            if (m_collider == null)
+                Debug.Log("Error");
             m_collider.enabled = !m_collider.enabled;
             Invoke("ReactivateCollision", wall_active_time);
         }
@@ -305,7 +307,7 @@ public class BulletController : MonoBehaviour
         m_collider.enabled = !m_collider.enabled;
     }
 
-    void MoveBullet()
+    protected void MoveBullet()
     {
         Vector3 final_pos = transform.position + bullet_dir * -bullet_speed * Time.deltaTime;
         // Move only if no collision is found
@@ -316,7 +318,7 @@ public class BulletController : MonoBehaviour
     // Check next position the bullet will move to
     // Return true: Bullet will collide with something
     // Return false: Bullet will not collide
-    bool PeekNextPosition(Vector3 f_pos)
+   protected bool PeekNextPosition(Vector3 f_pos)
     {
         RaycastHit hit;
 

@@ -7,6 +7,8 @@ namespace QFX.SFX
 {
     public class MotionCloner : ControlledObject
     {
+        public ColorChangingController ColorPlayer;
+
         public GameObject TargetGameObject;
 
         public float CloneLifeTime = 1f;
@@ -14,6 +16,9 @@ namespace QFX.SFX
 
         public bool ReplaceMaterial = true;
         public Material CloneMaterial;
+        public Material CloneMaterialYellow;
+        public Material CloneMaterialBlue;
+        public Material CloneMaterialPink;
 
         public bool ReplaceMaterialInMotion;
         public Material MotionMaterial;
@@ -24,7 +29,9 @@ namespace QFX.SFX
         public GameObject ActivateCloneParticleSystem;
         public GameObject FinishMotionParticleSystem;
 
-        public GameObject CloneParticleSystem;
+        public GameObject CloneParticleSystemBlue;
+        public GameObject CloneParticleSystemYellow;
+        public GameObject CloneParticleSystemPink;
         public MeshRenderer MeshRenderer;
         public SkinnedMeshRenderer SkinnedMeshRenderer;
 
@@ -123,7 +130,20 @@ namespace QFX.SFX
 
             if (ReplaceMaterial)
             {
+                if (ColorPlayer.GetColor() == 0)
+                {
+                    CloneMaterial = CloneMaterialYellow;
+                }
+                if (ColorPlayer.GetColor() == 1)
+                {
+                    CloneMaterial = CloneMaterialBlue;
+                }
+                if (ColorPlayer.GetColor() == 2)
+                {
+                    CloneMaterial = CloneMaterialPink;
+                }
                 var newMaterial = new Material(CloneMaterial);
+                
 
                 var rends = clone.GetComponentsInChildren<Renderer>();
                 foreach (var rend in rends)
@@ -138,20 +158,59 @@ namespace QFX.SFX
 
             if (!ShowCloneGameObject)
                 clone.SetActive(false);
-
-            if (CloneParticleSystem != null)
+            if (ColorPlayer.GetColor() == 0)
             {
-                var go = Instantiate(CloneParticleSystem, TargetGameObject.transform.position,
-                    TargetGameObject.transform.transform.rotation);
-                var ps = go.GetComponent<ParticleSystem>();
+                if (CloneParticleSystemYellow != null)
+               
+                    {
+                        var go = Instantiate(CloneParticleSystemYellow, TargetGameObject.transform.position,
+                            TargetGameObject.transform.transform.rotation);
+                        var ps = go.GetComponent<ParticleSystem>();
 
-                if (MeshRenderer != null)
-                    ParticleSystemMeshAttacher.Attach(ps, MeshRenderer, 0f);
-                else if (SkinnedMeshRenderer != null)
-                    ParticleSystemMeshAttacher.Attach(ps, SkinnedMeshRenderer, 0f);
+                        if (MeshRenderer != null)
+                            ParticleSystemMeshAttacher.Attach(ps, MeshRenderer, 0f);
+                        else if (SkinnedMeshRenderer != null)
+                            ParticleSystemMeshAttacher.Attach(ps, SkinnedMeshRenderer, 0f);
 
-                ps.gameObject.SetActive(true);
-                ps.Play();
+                        ps.gameObject.SetActive(true);
+                        ps.Play();
+                    }
+                }
+            if (ColorPlayer.GetColor() == 1)
+            {
+                if (CloneParticleSystemBlue != null)
+
+                {
+                    var go = Instantiate(CloneParticleSystemBlue, TargetGameObject.transform.position,
+                        TargetGameObject.transform.transform.rotation);
+                    var ps = go.GetComponent<ParticleSystem>();
+
+                    if (MeshRenderer != null)
+                        ParticleSystemMeshAttacher.Attach(ps, MeshRenderer, 0f);
+                    else if (SkinnedMeshRenderer != null)
+                        ParticleSystemMeshAttacher.Attach(ps, SkinnedMeshRenderer, 0f);
+
+                    ps.gameObject.SetActive(true);
+                    ps.Play();
+                }
+            }
+            if (ColorPlayer.GetColor() == 2)
+            {
+                if (CloneParticleSystemPink != null)
+
+                {
+                    var go = Instantiate(CloneParticleSystemPink, TargetGameObject.transform.position,
+                        TargetGameObject.transform.transform.rotation);
+                    var ps = go.GetComponent<ParticleSystem>();
+
+                    if (MeshRenderer != null)
+                        ParticleSystemMeshAttacher.Attach(ps, MeshRenderer, 0f);
+                    else if (SkinnedMeshRenderer != null)
+                        ParticleSystemMeshAttacher.Attach(ps, SkinnedMeshRenderer, 0f);
+
+                    ps.gameObject.SetActive(true);
+                    ps.Play();
+                }
             }
 
             Destroy(clone, CloneLifeTime);
@@ -163,11 +222,11 @@ namespace QFX.SFX
 
             if (ReplaceMaterialInMotion)
             {
-                foreach (var originalMaterial in _rendererToSharedMaterials.Keys)
-                {
+               foreach (var originalMaterial in _rendererToSharedMaterials.Keys)
+               {
                     var newMaterials = new Material[originalMaterial.sharedMaterials.Length];
-                    for (int i = 0; i < newMaterials.Length; i++)
-                        newMaterials[i] = MotionMaterial;
+                   for (int i = 0; i < newMaterials.Length; i++)
+                       newMaterials[i] = MotionMaterial;
                     originalMaterial.sharedMaterials = newMaterials;
                 }
             }
@@ -183,7 +242,7 @@ namespace QFX.SFX
             if (_trailPs != null)
                 _trailPs.Stop();
 
-            foreach (var originalMaterial in _rendererToSharedMaterials)
+           foreach (var originalMaterial in _rendererToSharedMaterials)
                 originalMaterial.Key.sharedMaterials = originalMaterial.Value;
 
             if (_finishPs != null)
@@ -192,6 +251,7 @@ namespace QFX.SFX
 
         private void Update()
         {
+           // MeshRenderer = GameObject.FindGameObjectWithTag("Body").GetComponent<MeshRenderer>();
             if (!IsRunning)
                 return;
 

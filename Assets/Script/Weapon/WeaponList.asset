@@ -19,19 +19,21 @@ MonoBehaviour:
     damage: 10
     range: 7
     spray: 5
-    cadency: 0.5
-    num_disparos: 1
+    cadence: 0.5
+    num_bullets: 1
+    automatic: 1
     ability: Escudo
     fx_shot: {fileID: 8300000, guid: 2c270755a083f394bb2ccf4037733bea, type: 3}
   - name: Sniper
     gun: {fileID: 1019867649845852, guid: 8d3cf347f9da1ed4dbdfa37f9bbf9a39, type: 2}
     bullet: {fileID: 1355325964623596, guid: 05f9ef38a4b74114a8e0984e4e975f1a, type: 2}
-    speed: 30
+    speed: 50
     damage: 25
     range: 30
     spray: 1
-    cadency: 2
-    num_disparos: 1
+    cadence: 2
+    num_bullets: 1
+    automatic: 0
     ability: CambioColor
     fx_shot: {fileID: 8300000, guid: 358d64b831ae7734c95d9b884c8b2929, type: 3}
   - name: Shotgun
@@ -41,8 +43,21 @@ MonoBehaviour:
     damage: 20
     range: 5
     spray: 20
-    cadency: 1.25
-    num_disparos: 1
+    cadence: 0.5
+    num_bullets: 1
+    automatic: 0
     ability: Granada
     fx_shot: {fileID: 8300000, guid: d98214d00ecaad849a0d0cb5be6cdf77, type: 3}
+  - name: Rifle
+    gun: {fileID: 1884693661767280, guid: f6b50fdc03c91a24296e317ae2d0ca45, type: 2}
+    bullet: {fileID: 1341849102906586, guid: 5f318d6af04c9324ca8e2aeafad9039e, type: 2}
+    speed: 20
+    damage: 5
+    range: 7
+    spray: 5
+    cadence: 0.2
+    num_bullets: 1
+    automatic: 1
+    ability: Dash
+    fx_shot: {fileID: 8300000, guid: f6cb1f581b7444b23a05b613a16420d5, type: 3}
   equipped_weapons: []
