@@ -9,6 +9,7 @@ public class InventoryPanel : MonoBehaviour, IDropHandler, IPointerEnterHandler,
     {
         Inventory,
         Weapon,
+        WeaponSlot,
         Player
     }
 

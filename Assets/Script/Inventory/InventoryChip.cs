@@ -6,6 +6,14 @@ using UnityEngine.UI;
 
 public class InventoryChip : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragHandler
 {
+    public enum ChipType
+    {
+        Upgrade,
+        Weapon,
+        Ability
+    }
+    public ChipType chip_type;
+
     public Transform org_deck = null;         // Area de retorno original
     public Transform new_possible_deck = null;        // Nueva area de retorno
     Transform canvas;
@@ -79,18 +87,49 @@ public class InventoryChip : MonoBehaviour, IBeginDragHandler, IDragHandler, IEn
 
     public void OnEndDrag(PointerEventData p_event_data)
     {
-        // Colocar objeto en zona de retorno
-        this.transform.parent = new_possible_deck;
         GetComponent<CanvasGroup>().blocksRaycasts = true;
         // Colocar objeto en hueco
-
-        if (this.transform.parent.GetComponentInParent<InventoryPanel>().panel_type == InventoryPanel.PaneType.Inventory)
+        
+        if (new_possible_deck.GetComponentInParent<InventoryPanel>().panel_type == InventoryPanel.PaneType.Weapon)
         {
+            if (chip_type == ChipType.Weapon)
+            {
+                Transform equipped = shadow_copy.transform.Find("Equipped");
+                if (equipped != null)
+                    equipped.gameObject.SetActive(true);
+                else
+                    Debug.Log("Child not found");
+
+                Transform weapon_panel = transform.Find("WeaponPanel");
+                weapon_panel.gameObject.SetActive(true);
+
+                Transform chip_form = transform.Find("ChipForm");
+                chip_form.gameObject.SetActive(false);
+            }
+            else
+                new_possible_deck = org_deck;
+        }
+
+        if (new_possible_deck.GetComponentInParent<InventoryPanel>().panel_type == InventoryPanel.PaneType.Inventory)
+        {
+            // Colocar objeto en zona de retorno
+            this.transform.parent = new_possible_deck;
             this.transform.SetSiblingIndex(shadow_copy.transform.GetSiblingIndex());
             Destroy(shadow_copy);
+            
+            if (chip_type == ChipType.Weapon)
+            {
+                Transform weapon_panel = transform.Find("WeaponPanel");
+                weapon_panel.gameObject.SetActive(false);
+
+                Transform chip_form = transform.Find("ChipForm");
+                chip_form.gameObject.SetActive(true);
+            }
         }
         else
         {
+            // Colocar objeto en zona de retorno
+            this.transform.parent = new_possible_deck;
             Transform equipped = shadow_copy.transform.Find("Equipped");
             equipped.gameObject.SetActive(true);
         }
