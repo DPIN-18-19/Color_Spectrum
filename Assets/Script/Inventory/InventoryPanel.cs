@@ -5,15 +5,16 @@ using UnityEngine.EventSystems;
 
 public class InventoryPanel : MonoBehaviour, IDropHandler, IPointerEnterHandler, IPointerExitHandler
 {
-    public enum PaneType
+    public enum PanelType
     {
         Inventory,
         Weapon,
+        AbilitySlot,
         WeaponSlot,
         Player
     }
 
-    public PaneType panel_type;
+    public PanelType panel_type;
 
     public void OnPointerEnter(PointerEventData p_event_data)
     {

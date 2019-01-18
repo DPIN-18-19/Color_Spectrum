@@ -27,20 +27,14 @@ public class InventoryChip : MonoBehaviour, IBeginDragHandler, IDragHandler, IEn
 
     public void OnBeginDrag(PointerEventData p_event_data)
     {
-        // Crear hueco de tamaño de objeto
-        if (this.transform.parent.GetComponentInParent<InventoryPanel>().panel_type == InventoryPanel.PaneType.Inventory)
+        // Comprobar si el objeto sale del inventario
+        if (this.transform.parent.GetComponentInParent<InventoryPanel>().panel_type == InventoryPanel.PanelType.Inventory)
         {
+            // Crear copia oscurecida
             shadow_copy = Instantiate(gameObject);
-            shadow_copy.AddComponent<Darken>();
-            Destroy(shadow_copy.GetComponent<InventoryChip>());
-            //shadow_copy.AddComponent<RectTransform>();
-            //shadow_copy.GetComponent<RectTransform>().sizeDelta = this.GetComponent<RectTransform>().sizeDelta;
+            shadow_copy.AddComponent<Darken>();                         // Componente oscurecer
+            Destroy(shadow_copy.GetComponent<InventoryChip>());         // Eliminar componente que permite arrastrarlo
             shadow_copy.transform.SetParent(this.transform.parent);
-            //LayoutElement le = shadow_copy.AddComponent<LayoutElement>();
-            //le.preferredHeight = this.GetComponent<LayoutElement>().preferredHeight;
-            //le.preferredWidth = this.GetComponent<LayoutElement>().preferredWidth;
-            //le.flexibleHeight = 0;
-            //le.flexibleWidth = 0;
             
             // Posicion de hueco
             shadow_copy.transform.SetSiblingIndex(this.transform.GetSiblingIndex());
@@ -52,7 +46,7 @@ public class InventoryChip : MonoBehaviour, IBeginDragHandler, IDragHandler, IEn
 
         this.transform.parent = canvas;   // Sacar fuera de area al objeto
 
-        GetComponent<CanvasGroup>().blocksRaycasts = false;     // Permitir hacer raycast de puntero
+        GetComponent<CanvasGroup>().blocksRaycasts = false;             // Permitir hacer raycast de puntero
     }
 
     public void OnDrag(PointerEventData p_event_data)
@@ -88,29 +82,19 @@ public class InventoryChip : MonoBehaviour, IBeginDragHandler, IDragHandler, IEn
     public void OnEndDrag(PointerEventData p_event_data)
     {
         GetComponent<CanvasGroup>().blocksRaycasts = true;
-        // Colocar objeto en hueco
-        
-        if (new_possible_deck.GetComponentInParent<InventoryPanel>().panel_type == InventoryPanel.PaneType.Weapon)
+        ChipFilter();
+
+        // Colocar objeto en panel de armas
+        if (new_possible_deck.GetComponentInParent<InventoryPanel>().panel_type == InventoryPanel.PanelType.Weapon)
         {
-            if (chip_type == ChipType.Weapon)
-            {
-                Transform equipped = shadow_copy.transform.Find("Equipped");
-                if (equipped != null)
-                    equipped.gameObject.SetActive(true);
-                else
-                    Debug.Log("Child not found");
+            Transform weapon_panel = transform.Find("WeaponPanel");
+            weapon_panel.gameObject.SetActive(true);
 
-                Transform weapon_panel = transform.Find("WeaponPanel");
-                weapon_panel.gameObject.SetActive(true);
-
-                Transform chip_form = transform.Find("ChipForm");
-                chip_form.gameObject.SetActive(false);
-            }
-            else
-                new_possible_deck = org_deck;
+            Transform chip_form = transform.Find("ChipForm");
+            chip_form.gameObject.SetActive(false);
         }
 
-        if (new_possible_deck.GetComponentInParent<InventoryPanel>().panel_type == InventoryPanel.PaneType.Inventory)
+        if (new_possible_deck.GetComponentInParent<InventoryPanel>().panel_type == InventoryPanel.PanelType.Inventory)
         {
             // Colocar objeto en zona de retorno
             this.transform.parent = new_possible_deck;
@@ -132,6 +116,35 @@ public class InventoryChip : MonoBehaviour, IBeginDragHandler, IDragHandler, IEn
             this.transform.parent = new_possible_deck;
             Transform equipped = shadow_copy.transform.Find("Equipped");
             equipped.gameObject.SetActive(true);
+        }
+    }
+
+    void ChipFilter()
+    {
+        InventoryPanel.PanelType panel_type = new_possible_deck.GetComponentInParent<InventoryPanel>().panel_type;
+
+        switch (chip_type)
+        {
+            case ChipType.Upgrade:
+                if (panel_type == InventoryPanel.PanelType.Weapon || panel_type == InventoryPanel.PanelType.AbilitySlot)
+                    new_possible_deck = org_deck;
+                else
+                    Debug.Log("Tryn'");
+                break;
+            case ChipType.Weapon:
+                if(panel_type == InventoryPanel.PanelType.AbilitySlot || panel_type == InventoryPanel.PanelType.Player || panel_type == InventoryPanel.PanelType.WeaponSlot)
+                    new_possible_deck = org_deck;
+                break;
+            case ChipType.Ability:
+                Debug.Log("Trynss'");
+                if (panel_type == InventoryPanel.PanelType.Weapon || panel_type == InventoryPanel.PanelType.Player || panel_type == InventoryPanel.PanelType.WeaponSlot)
+                    new_possible_deck = org_deck;
+                else
+                    Debug.Log("Off you go");
+                break;
+            default:
+                Debug.Log("Trysfn'");
+                break;
         }
     }
 }
