@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
-public class InventoryChip : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragHandler
+public class InventoryChip : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragHandler, IPointerEnterHandler, IPointerExitHandler
 {
     public enum ChipType
     {
@@ -19,6 +19,9 @@ public class InventoryChip : MonoBehaviour, IBeginDragHandler, IDragHandler, IEn
     Transform canvas;
 
     GameObject shadow_copy = null;              // Area hueco
+
+    public GameObject hover_tooltip;
+    GameObject my_hover_tooltip;
 
     void Start()
     {
@@ -118,7 +121,7 @@ public class InventoryChip : MonoBehaviour, IBeginDragHandler, IDragHandler, IEn
             equipped.gameObject.SetActive(true);
         }
     }
-
+    
     void ChipFilter()
     {
         InventoryPanel.PanelType panel_type = new_possible_deck.GetComponentInParent<InventoryPanel>().panel_type;
@@ -146,6 +149,20 @@ public class InventoryChip : MonoBehaviour, IBeginDragHandler, IDragHandler, IEn
                 Debug.Log("Trysfn'");
                 break;
         }
+    }
+
+
+    public void OnPointerEnter(PointerEventData p_event_data)
+    {
+        my_hover_tooltip = Instantiate(hover_tooltip, p_event_data.position, Quaternion.identity);
+        my_hover_tooltip.transform.SetParent(canvas);
+
+        Debug.Log("Here");
+    }
+
+    public void OnPointerExit(PointerEventData p_event_data)
+    {
+        my_hover_tooltip.GetComponent<HoverTooltip>().Leave();
     }
 }
 
