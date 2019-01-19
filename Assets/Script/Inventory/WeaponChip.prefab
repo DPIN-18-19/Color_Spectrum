@@ -79,7 +79,7 @@ GameObject:
   - component: {fileID: 114239130778703830}
   - component: {fileID: 225054741497538574}
   m_Layer: 5
-  m_Name: WeaponPanel
+  m_Name: WeaponForm
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -130,8 +130,8 @@ GameObject:
   m_Component:
   - component: {fileID: 224901314504720540}
   - component: {fileID: 222486406158220854}
-  - component: {fileID: 114871167687514116}
   - component: {fileID: 114856286454716230}
+  - component: {fileID: 114863092664039416}
   - component: {fileID: 225408244992691278}
   m_Layer: 5
   m_Name: WeaponChip
@@ -499,7 +499,7 @@ MonoBehaviour:
   m_FlexibleWidth: 0
   m_FlexibleHeight: 0
   m_LayoutPriority: 1
---- !u!114 &114871167687514116
+--- !u!114 &114863092664039416
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_CorrespondingSourceObject: {fileID: 0}
@@ -507,12 +507,14 @@ MonoBehaviour:
   m_GameObject: {fileID: 1872107800408908}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 535f1b5905c03d549baf2109e99e7097, type: 3}
+  m_Script: {fileID: 11500000, guid: e0c99efabf7e5674db1401d16d7435fd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   chip_type: 1
   org_deck: {fileID: 0}
   new_possible_deck: {fileID: 0}
+  hover_tooltip: {fileID: 1576484268447382, guid: 3c73a0ed91ce99e428131382824e9011,
+    type: 2}
 --- !u!114 &114932256952679444
 MonoBehaviour:
   m_ObjectHideFlags: 1

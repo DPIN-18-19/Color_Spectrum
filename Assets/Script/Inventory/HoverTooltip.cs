@@ -32,7 +32,6 @@ public class HoverTooltip : MonoBehaviour
             {
                 GetComponent<CanvasGroup>().alpha = Mathf.Lerp(0, 1, elapsed_time / to_visible_dur);
                 elapsed_time += Time.deltaTime;
-                Debug.Log("Revealing");
             }
 
             show_elapsed_time += Time.deltaTime;
@@ -53,7 +52,6 @@ public class HoverTooltip : MonoBehaviour
         while (do_loop)
         {
             GetComponent<CanvasGroup>().alpha = Mathf.Lerp(start_alpha, 0, elapsed_time / to_invisible_dur);
-            Debug.Log("UnRevealing");
 
             elapsed_time += Time.deltaTime;
 

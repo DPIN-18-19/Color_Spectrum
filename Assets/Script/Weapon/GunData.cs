@@ -18,6 +18,7 @@ public class GunData
     public float num_bullets = 1f;
     public bool automatic = true;
 
+    public float weight = 10.0f; 
     public string ability = "";
     
     public AudioClip fx_shot;

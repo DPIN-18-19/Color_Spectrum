@@ -16,9 +16,10 @@ public class InventoryChip : MonoBehaviour, IBeginDragHandler, IDragHandler, IEn
 
     public Transform org_deck = null;         // Area de retorno original
     public Transform new_possible_deck = null;        // Nueva area de retorno
-    Transform canvas;
+    protected Transform canvas;
 
     GameObject shadow_copy = null;              // Area hueco
+
 
     public GameObject hover_tooltip;
     GameObject my_hover_tooltip;
@@ -28,7 +29,7 @@ public class InventoryChip : MonoBehaviour, IBeginDragHandler, IDragHandler, IEn
         canvas = GetComponentInParent<Canvas>().transform;
     }
 
-    public void OnBeginDrag(PointerEventData p_event_data)
+    public virtual void OnBeginDrag(PointerEventData p_event_data)
     {
         // Comprobar si el objeto sale del inventario
         if (this.transform.parent.GetComponentInParent<InventoryPanel>().panel_type == InventoryPanel.PanelType.Inventory)
@@ -47,19 +48,20 @@ public class InventoryChip : MonoBehaviour, IBeginDragHandler, IDragHandler, IEn
             new_possible_deck = org_deck;
         }
 
+
         this.transform.parent = canvas;   // Sacar fuera de area al objeto
 
         GetComponent<CanvasGroup>().blocksRaycasts = false;             // Permitir hacer raycast de puntero
     }
 
-    public void OnDrag(PointerEventData p_event_data)
+    public virtual void OnDrag(PointerEventData p_event_data)
     {
         // Actualizar posicion del objeto arrastrandose
         transform.position = p_event_data.position;
 
-        // Actualizar tablero donde aparece el hueco
-        //if (shadow_copy.transform.parent != new_possible_deck)
-          //  shadow_copy.transform.SetParent(new_possible_deck);
+        // Actualizar tablero donde aparece el hueco de arma
+        //if (weapon_slot.transform.parent != new_possible_deck)
+        //    weapon_slot.transform.SetParent(canvas);
 
         // Posicion hueco en el orden
         //int new_sibling_index = new_possible_deck.childCount;
@@ -82,7 +84,9 @@ public class InventoryChip : MonoBehaviour, IBeginDragHandler, IDragHandler, IEn
         //shadow_copy.transform.SetSiblingIndex(new_sibling_index);
     }
 
-    public void OnEndDrag(PointerEventData p_event_data)
+
+
+    public virtual void OnEndDrag(PointerEventData p_event_data)
     {
         GetComponent<CanvasGroup>().blocksRaycasts = true;
         ChipFilter();
@@ -90,14 +94,15 @@ public class InventoryChip : MonoBehaviour, IBeginDragHandler, IDragHandler, IEn
         // Colocar objeto en panel de armas
         if (new_possible_deck.GetComponentInParent<InventoryPanel>().panel_type == InventoryPanel.PanelType.Weapon)
         {
-            Transform weapon_panel = transform.Find("WeaponPanel");
+            Transform weapon_panel = transform.Find("WeaponForm");
             weapon_panel.gameObject.SetActive(true);
 
             Transform chip_form = transform.Find("ChipForm");
             chip_form.gameObject.SetActive(false);
+            
+            this.transform.parent = new_possible_deck;
         }
-
-        if (new_possible_deck.GetComponentInParent<InventoryPanel>().panel_type == InventoryPanel.PanelType.Inventory)
+        else if (new_possible_deck.GetComponentInParent<InventoryPanel>().panel_type == InventoryPanel.PanelType.Inventory)
         {
             // Colocar objeto en zona de retorno
             this.transform.parent = new_possible_deck;
@@ -106,7 +111,7 @@ public class InventoryChip : MonoBehaviour, IBeginDragHandler, IDragHandler, IEn
             
             if (chip_type == ChipType.Weapon)
             {
-                Transform weapon_panel = transform.Find("WeaponPanel");
+                Transform weapon_panel = transform.Find("WeaponForm");
                 weapon_panel.gameObject.SetActive(false);
 
                 Transform chip_form = transform.Find("ChipForm");
@@ -120,6 +125,7 @@ public class InventoryChip : MonoBehaviour, IBeginDragHandler, IDragHandler, IEn
             Transform equipped = shadow_copy.transform.Find("Equipped");
             equipped.gameObject.SetActive(true);
         }
+
     }
     
     void ChipFilter()
@@ -131,38 +137,33 @@ public class InventoryChip : MonoBehaviour, IBeginDragHandler, IDragHandler, IEn
             case ChipType.Upgrade:
                 if (panel_type == InventoryPanel.PanelType.Weapon || panel_type == InventoryPanel.PanelType.AbilitySlot)
                     new_possible_deck = org_deck;
-                else
-                    Debug.Log("Tryn'");
                 break;
             case ChipType.Weapon:
                 if(panel_type == InventoryPanel.PanelType.AbilitySlot || panel_type == InventoryPanel.PanelType.Player || panel_type == InventoryPanel.PanelType.WeaponSlot)
                     new_possible_deck = org_deck;
                 break;
             case ChipType.Ability:
-                Debug.Log("Trynss'");
                 if (panel_type == InventoryPanel.PanelType.Weapon || panel_type == InventoryPanel.PanelType.Player || panel_type == InventoryPanel.PanelType.WeaponSlot)
                     new_possible_deck = org_deck;
-                else
-                    Debug.Log("Off you go");
                 break;
             default:
-                Debug.Log("Trysfn'");
                 break;
         }
     }
-
-
+    
     public void OnPointerEnter(PointerEventData p_event_data)
     {
-        my_hover_tooltip = Instantiate(hover_tooltip, p_event_data.position, Quaternion.identity);
-        my_hover_tooltip.transform.SetParent(canvas);
-
-        Debug.Log("Here");
+        if (!Input.GetMouseButton(0))
+        {
+            my_hover_tooltip = Instantiate(hover_tooltip, p_event_data.position, Quaternion.identity);
+            my_hover_tooltip.transform.SetParent(canvas);
+        }
     }
 
     public void OnPointerExit(PointerEventData p_event_data)
     {
-        my_hover_tooltip.GetComponent<HoverTooltip>().Leave();
+        if(my_hover_tooltip)
+            my_hover_tooltip.GetComponent<HoverTooltip>().Leave();
     }
 }
 

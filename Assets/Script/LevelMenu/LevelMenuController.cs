@@ -2,15 +2,14 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class LevelMenuController : MonoBehaviour {
+public class LevelMenuController : MonoBehaviour
+{
+    public LevelList l_levels;
 
-	// Use this for initialization
-	void Start () {
-		
-	}
-	
-	// Update is called once per frame
-	void Update () {
-		
-	}
+    int level_selected;
+
+    void LoadLevelInfo()
+    {
+
+    }
 }

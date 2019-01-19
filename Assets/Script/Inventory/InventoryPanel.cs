@@ -27,6 +27,16 @@ public class InventoryPanel : MonoBehaviour, IDropHandler, IPointerEnterHandler,
         {
             d.new_possible_deck = this.transform;
         }
+
+        if (panel_type == PanelType.Weapon)
+        {
+            InventoryWeaponChip w = p_event_data.pointerDrag.GetComponent<InventoryWeaponChip>();
+            if (w != null)
+            {
+                w.inside = true;
+                w.weapon_deck = this.transform;
+            }
+        }
     }
 
     public void OnPointerExit(PointerEventData p_event_data)
@@ -39,6 +49,16 @@ public class InventoryPanel : MonoBehaviour, IDropHandler, IPointerEnterHandler,
         if (d != null && d.new_possible_deck == this.transform)
         {
             d.new_possible_deck = d.org_deck;
+        }
+
+        if (panel_type == PanelType.Weapon)
+        {
+            InventoryWeaponChip w = p_event_data.pointerDrag.GetComponent<InventoryWeaponChip>();
+            if (w != null)
+            {
+                w.inside = false;
+                w.weapon_deck = w.org_deck;
+            }
         }
     }
 
