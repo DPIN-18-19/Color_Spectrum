@@ -11,4 +11,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6553ade529006d442a0e2ed63e9151ac, type: 3}
   m_Name: InventoryWeaponChips
   m_EditorClassIdentifier: 
-  i_w_chip_list: []
+  i_weapon_chips:
+  - base_gun:
+      name: 
+      gun: {fileID: 0}
+      bullet: {fileID: 0}
+      speed: 0.2
+      damage: 5
+      range: 5
+      spray: 5
+      cadence: 0.5
+      num_bullets: 1
+      automatic: 1
+      weight: 10
+      ability: 
+      fx_shot: {fileID: 0}
+    added_chips: []
+    spaces: 0

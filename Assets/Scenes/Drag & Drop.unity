@@ -195,8 +195,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c4b88bfaed0f71348b3df6942886b19c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  inventory: {fileID: 11400000, guid: 3d782b250553ded4e88b83270a30ca10, type: 2}
+  i_chips: {fileID: 11400000, guid: 3d782b250553ded4e88b83270a30ca10, type: 2}
+  i_weapons: {fileID: 11400000, guid: ec433dc75cb480c4f8e60395d5e95caf, type: 2}
   chip_mould: {fileID: 1866709081300792, guid: 1c08688a1e46b6c4aa01175437f529cd, type: 2}
+  weapon_chip_mould: {fileID: 1872107800408908, guid: d9f38672d53cace4aae5a43c015378fa,
+    type: 2}
 --- !u!1 &304391522
 GameObject:
   m_ObjectHideFlags: 0
@@ -207,8 +210,9 @@ GameObject:
   - component: {fileID: 304391523}
   - component: {fileID: 304391527}
   - component: {fileID: 304391526}
-  - component: {fileID: 304391525}
   - component: {fileID: 304391524}
+  - component: {fileID: 304391525}
+  - component: {fileID: 304391528}
   m_Layer: 5
   m_Name: CharacterPanel
   m_TagString: Untagged
@@ -303,6 +307,19 @@ CanvasRenderer:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 304391522}
   m_CullTransparentMesh: 0
+--- !u!114 &304391528
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 304391522}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 504ece4e41877ab45908f266a797505a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  character_chips: {fileID: 11400000, guid: 7a67465f0ad3b454795926c34a287cd0, type: 2}
+  chip_mould: {fileID: 1866709081300792, guid: 1c08688a1e46b6c4aa01175437f529cd, type: 2}
 --- !u!1001 &421218912
 Prefab:
   m_ObjectHideFlags: 0
@@ -552,6 +569,7 @@ GameObject:
   - component: {fileID: 744344707}
   - component: {fileID: 744344706}
   - component: {fileID: 744344705}
+  - component: {fileID: 744344709}
   m_Layer: 5
   m_Name: WeaponPanel
   m_TagString: Untagged
@@ -645,6 +663,21 @@ CanvasRenderer:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 744344703}
   m_CullTransparentMesh: 0
+--- !u!114 &744344709
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 744344703}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6b7b83d6b97abbc4fa34b3d4820a321d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  i_weapons: {fileID: 11400000, guid: 055e05b6fd4971a4db4fa3adbc10bca2, type: 2}
+  weapon_chip_mould: {fileID: 1872107800408908, guid: d9f38672d53cace4aae5a43c015378fa,
+    type: 2}
+  weapon_slots: 3
 --- !u!224 &752526844 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 224376012727891354, guid: 1c08688a1e46b6c4aa01175437f529cd,
@@ -1516,6 +1549,11 @@ CanvasRenderer:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1502524614}
   m_CullTransparentMesh: 0
+--- !u!224 &1605656506 stripped
+RectTransform:
+  m_CorrespondingSourceObject: {fileID: 224901314504720540, guid: d9f38672d53cace4aae5a43c015378fa,
+    type: 2}
+  m_PrefabInternal: {fileID: 2061245672}
 --- !u!224 &1620676427 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 224376012727891354, guid: 1c08688a1e46b6c4aa01175437f529cd,
@@ -1666,6 +1704,7 @@ RectTransform:
   - {fileID: 1935455914}
   - {fileID: 1494270376}
   - {fileID: 2024745498}
+  - {fileID: 1605656506}
   m_Father: {fileID: 151005681}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -1748,3 +1787,107 @@ RectTransform:
   m_CorrespondingSourceObject: {fileID: 224901314504720540, guid: d9f38672d53cace4aae5a43c015378fa,
     type: 2}
   m_PrefabInternal: {fileID: 816791010}
+--- !u!1001 &2061245672
+Prefab:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 1991597279}
+    m_Modifications:
+    - target: {fileID: 224901314504720540, guid: d9f38672d53cace4aae5a43c015378fa,
+        type: 2}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 224901314504720540, guid: d9f38672d53cace4aae5a43c015378fa,
+        type: 2}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 224901314504720540, guid: d9f38672d53cace4aae5a43c015378fa,
+        type: 2}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 224901314504720540, guid: d9f38672d53cace4aae5a43c015378fa,
+        type: 2}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 224901314504720540, guid: d9f38672d53cace4aae5a43c015378fa,
+        type: 2}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 224901314504720540, guid: d9f38672d53cace4aae5a43c015378fa,
+        type: 2}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 224901314504720540, guid: d9f38672d53cace4aae5a43c015378fa,
+        type: 2}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 224901314504720540, guid: d9f38672d53cace4aae5a43c015378fa,
+        type: 2}
+      propertyPath: m_RootOrder
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 224901314504720540, guid: d9f38672d53cace4aae5a43c015378fa,
+        type: 2}
+      propertyPath: m_AnchoredPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 224901314504720540, guid: d9f38672d53cace4aae5a43c015378fa,
+        type: 2}
+      propertyPath: m_AnchoredPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 224901314504720540, guid: d9f38672d53cace4aae5a43c015378fa,
+        type: 2}
+      propertyPath: m_SizeDelta.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 224901314504720540, guid: d9f38672d53cace4aae5a43c015378fa,
+        type: 2}
+      propertyPath: m_SizeDelta.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 224901314504720540, guid: d9f38672d53cace4aae5a43c015378fa,
+        type: 2}
+      propertyPath: m_AnchorMin.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 224901314504720540, guid: d9f38672d53cace4aae5a43c015378fa,
+        type: 2}
+      propertyPath: m_AnchorMin.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 224901314504720540, guid: d9f38672d53cace4aae5a43c015378fa,
+        type: 2}
+      propertyPath: m_AnchorMax.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 224901314504720540, guid: d9f38672d53cace4aae5a43c015378fa,
+        type: 2}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 224901314504720540, guid: d9f38672d53cace4aae5a43c015378fa,
+        type: 2}
+      propertyPath: m_Pivot.x
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 224901314504720540, guid: d9f38672d53cace4aae5a43c015378fa,
+        type: 2}
+      propertyPath: m_Pivot.y
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 1872107800408908, guid: d9f38672d53cace4aae5a43c015378fa, type: 2}
+      propertyPath: m_Name
+      value: WeaponChip (3)
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: d9f38672d53cace4aae5a43c015378fa, type: 2}
+  m_IsPrefabAsset: 0
