@@ -34,4 +34,10 @@ public class InventoryPanel : MonoBehaviour
             n_w_chip.GetComponent<InventoryWeaponChip>().w_data = i_weapons.i_weapon_chips[i];
         }
     }
+
+    public void EquipChip(InventoryChip chip)
+    {
+        int index = i_chips.chips.FindIndex(x => x.id == chip.data.id);
+        i_chips.chips[index].equipped = true;
+    }
 }

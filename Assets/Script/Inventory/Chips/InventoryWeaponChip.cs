@@ -18,6 +18,8 @@ public class InventoryWeaponChip : InventoryChip
     void Start()
     {
         canvas = GetComponentInParent<Canvas>().transform;
+        inv_deck = GameObject.Find("InventoryPanel").transform;
+
         weapon_panel = GameObject.Find("WeaponPanel").GetComponent<RectTransform>();
     }
 

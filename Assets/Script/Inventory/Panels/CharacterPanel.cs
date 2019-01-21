@@ -4,8 +4,7 @@ using UnityEngine;
 
 public class CharacterPanel : MonoBehaviour
 {
-    [SerializeField]
-    private ChipList character_chips;
+    public ChipList character_chips;
 
     public GameObject chip_mould;
 
@@ -17,12 +16,11 @@ public class CharacterPanel : MonoBehaviour
 
     void LoadChips()
     {
-        for (int i = 0; i < character_chips.chips.Capacity; ++i)
+        for (int i = 0; i < character_chips.chips.Count; ++i)
         {
             GameObject n_chip = Instantiate(chip_mould);
-            n_chip.transform.SetParent(transform.Find("CharacterPanel"));
+            n_chip.transform.SetParent(transform);
             n_chip.GetComponent<InventoryChip>().data = character_chips.chips[i];
-
         }
     }
 }

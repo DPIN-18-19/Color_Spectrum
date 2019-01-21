@@ -56,7 +56,7 @@ public class EnemyController : MonoBehaviour
 
 
     // Shooting
-    ShotEnemy shot;                             // Enemy's gun
+    ShotEnemy shot = null;                             // Enemy's gun
     //public ParticleSystem DieEffect;            // Die particles
     //public bool Stop;                         // (Unused)
     bool friendly_fire;                         // Friendly fire
@@ -266,6 +266,7 @@ public class EnemyController : MonoBehaviour
         if (back_home == true)
         {
             nav_agent.SetDestination(home.transform.position);
+            if(shot)
             shot.isShooting = false;
         }
 

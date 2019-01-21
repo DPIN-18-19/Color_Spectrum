@@ -17,11 +17,12 @@ public class InventoryChip : MonoBehaviour, IBeginDragHandler, IDragHandler, IEn
     //[HideInInspector]
     public ChipData data;
 
-    public Transform org_deck = null;         // Area de retorno original
-    public Transform new_possible_deck = null;        // Nueva area de retorno
+    public Transform inv_deck = null;
+    public Transform org_deck = null;               // Area de retorno original
+    public Transform new_possible_deck = null;      // Nueva area de retorno
     protected Transform canvas;
 
-    GameObject shadow_copy = null;              // Area hueco
+    GameObject shadow_copy = null;                  // Area hueco
 
 
     public GameObject hover_tooltip;
@@ -29,32 +30,69 @@ public class InventoryChip : MonoBehaviour, IBeginDragHandler, IDragHandler, IEn
 
     void Start()
     {
+        Debug.Log(transform.name);
         canvas = GetComponentInParent<Canvas>().transform;
+        inv_deck = GameObject.Find("InventoryPanel").transform;
     }
 
     public virtual void OnBeginDrag(PointerEventData p_event_data)
     {
-        // Comprobar si el objeto sale del inventario
-        if (this.transform.parent.GetComponentInParent<DropPanel>().panel_type == DropPanel.PanelType.Inventory)
-        {
-            // Crear copia oscurecida
-            shadow_copy = Instantiate(gameObject);
-            shadow_copy.AddComponent<Darken>();                         // Componente oscurecer
-            Destroy(shadow_copy.GetComponent<InventoryChip>());         // Eliminar componente que permite arrastrarlo
-            shadow_copy.transform.SetParent(this.transform.parent);
-            
-            // Posicion de hueco
-            shadow_copy.transform.SetSiblingIndex(this.transform.GetSiblingIndex());
+        // Recoger datos de lugar de retorno
+        org_deck = this.transform.parent;
+        new_possible_deck = org_deck;
 
-            // Recoger datos de lugar de retorno
-            org_deck = this.transform.parent;
-            new_possible_deck = org_deck;
-        }
+        RemoveChip();
+
+        //// Comprobar si el objeto sale del inventario
+        //if (this.transform.parent.GetComponentInParent<DropPanel>().panel_type == DropPanel.PanelType.Inventory)
+        //{
+        //    // Crear copia oscurecida
+        //    shadow_copy = Instantiate(gameObject);
+        //    shadow_copy.AddComponent<Darken>();                         // Componente oscurecer
+        //    Destroy(shadow_copy.GetComponent<InventoryChip>());         // Eliminar componente que permite arrastrarlo
+        //    shadow_copy.transform.SetParent(inv_deck);
+            
+        //    // Posicion de hueco
+        //    shadow_copy.transform.SetSiblingIndex(this.transform.GetSiblingIndex());
+
+        //}
 
 
         this.transform.parent = canvas;   // Sacar fuera de area al objeto
 
         GetComponent<CanvasGroup>().blocksRaycasts = false;             // Permitir hacer raycast de puntero
+    }
+
+    void RemoveChip()
+    {
+        DropPanel.PanelType panel_type = org_deck.GetComponentInParent<DropPanel>().panel_type;
+
+        switch(panel_type)
+        {
+            case DropPanel.PanelType.AbilitySlot:
+                break;
+            case DropPanel.PanelType.Inventory:
+            {
+                // Crear copia oscurecida
+                shadow_copy = Instantiate(gameObject);
+                shadow_copy.AddComponent<Darken>();                         // Componente oscurecer
+                Destroy(shadow_copy.GetComponent<InventoryChip>());         // Eliminar componente que permite arrastrarlo
+                shadow_copy.transform.SetParent(inv_deck);
+
+                // Posicion de hueco
+                shadow_copy.transform.SetSiblingIndex(this.transform.GetSiblingIndex());
+                break;
+            }
+            case DropPanel.PanelType.Player:
+                org_deck.GetComponent<CharacterPanel>().character_chips.chips.Remove(data);
+                break;
+            case DropPanel.PanelType.Weapon:
+                break;
+            case DropPanel.PanelType.WeaponSlot:
+                break;
+            default:
+                break;
+        }
     }
 
     public virtual void OnDrag(PointerEventData p_event_data)
@@ -92,7 +130,7 @@ public class InventoryChip : MonoBehaviour, IBeginDragHandler, IDragHandler, IEn
     public virtual void OnEndDrag(PointerEventData p_event_data)
     {
         GetComponent<CanvasGroup>().blocksRaycasts = true;
-        ChipFilter();
+        //ChipFilter();
 
         // Colocar objeto en panel de armas
         if (new_possible_deck.GetComponentInParent<DropPanel>().panel_type == DropPanel.PanelType.Weapon)
@@ -126,33 +164,34 @@ public class InventoryChip : MonoBehaviour, IBeginDragHandler, IDragHandler, IEn
             // Colocar objeto en zona de retorno
             this.transform.parent = new_possible_deck;
             Transform equipped = shadow_copy.transform.Find("Equipped");
+            
             equipped.gameObject.SetActive(true);
         }
 
     }
     
-    void ChipFilter()
-    {
-        DropPanel.PanelType panel_type = new_possible_deck.GetComponentInParent<DropPanel>().panel_type;
+    //void ChipFilter()
+    //{
+    //    DropPanel.PanelType panel_type = new_possible_deck.GetComponentInParent<DropPanel>().panel_type;
 
-        switch (chip_type)
-        {
-            case ChipType.Upgrade:
-                if (panel_type == DropPanel.PanelType.Weapon || panel_type == DropPanel.PanelType.AbilitySlot)
-                    new_possible_deck = org_deck;
-                break;
-            case ChipType.Weapon:
-                if(panel_type == DropPanel.PanelType.AbilitySlot || panel_type == DropPanel.PanelType.Player || panel_type == DropPanel.PanelType.WeaponSlot)
-                    new_possible_deck = org_deck;
-                break;
-            case ChipType.Ability:
-                if (panel_type == DropPanel.PanelType.Weapon || panel_type == DropPanel.PanelType.Player || panel_type == DropPanel.PanelType.WeaponSlot)
-                    new_possible_deck = org_deck;
-                break;
-            default:
-                break;
-        }
-    }
+    //    switch (chip_type)
+    //    {
+    //        case ChipType.Upgrade:
+    //            if (panel_type == DropPanel.PanelType.Weapon || panel_type == DropPanel.PanelType.AbilitySlot)
+    //                new_possible_deck = org_deck;
+    //            break;
+    //        case ChipType.Weapon:
+    //            if(panel_type == DropPanel.PanelType.AbilitySlot || panel_type == DropPanel.PanelType.Player || panel_type == DropPanel.PanelType.WeaponSlot)
+    //                new_possible_deck = org_deck;
+    //            break;
+    //        case ChipType.Ability:
+    //            if (panel_type == DropPanel.PanelType.Weapon || panel_type == DropPanel.PanelType.Player || panel_type == DropPanel.PanelType.WeaponSlot)
+    //                new_possible_deck = org_deck;
+    //            break;
+    //        default:
+    //            break;
+    //    }
+    //}
     
     public void OnPointerEnter(PointerEventData p_event_data)
     {
