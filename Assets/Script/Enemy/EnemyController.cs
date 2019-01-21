@@ -57,6 +57,7 @@ public class EnemyController : MonoBehaviour
 
     // Shooting
     ShotEnemy shot;                             // Enemy's gun
+    public bool DontShot;
     //public ParticleSystem DieEffect;            // Die particles
     //public bool Stop;                         // (Unused)
     bool friendly_fire;                         // Friendly fire
@@ -218,24 +219,6 @@ public class EnemyController : MonoBehaviour
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
     // Update is called once per frame
     void Update()
     {
@@ -266,6 +249,7 @@ public class EnemyController : MonoBehaviour
         if (back_home == true)
         {
             nav_agent.SetDestination(home.transform.position);
+            if(DontShot == false)
             shot.isShooting = false;
         }
 
@@ -360,13 +344,19 @@ public class EnemyController : MonoBehaviour
     {
         if (detect.IsPlayerInFront() && detect.IsPlayerOnSight(sight_distance))
         {
-            shot.isShooting = true;
-            shot.random = false;
+            if (DontShot == false)
+            {
+                shot.isShooting = true;
+                shot.random = false;
+            }
         }
         else
         {
             //shot.isShooting = false;
-            shot.random = true;
+            if (DontShot == false)
+            {
+                shot.random = true;
+            }
         }
     }
 

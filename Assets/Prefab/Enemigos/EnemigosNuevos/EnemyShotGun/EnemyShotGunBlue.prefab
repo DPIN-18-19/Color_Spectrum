@@ -2304,6 +2304,7 @@ MonoBehaviour:
   alert_distance: 10
   sight_distance: 20
   safe_distance: 5
+  DontShot: 0
   renderersToChangeColor:
   - {fileID: 137296045721074754}
   - {fileID: 23971066955149152}
@@ -2359,12 +2360,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 62cc23658d5fbe04e9500fc1c9fd4b84, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  PosDeadParticle: {fileID: 0}
   max_health: 25
   health_bar: {fileID: 114259797346556552}
   die_effect:
-  - {fileID: 198036780334477388, guid: 954fa78d458ea524283b9f32825a0494, type: 2}
-  - {fileID: 198526383505352786, guid: eb135824a4c604145bf1652d84f1e305, type: 2}
-  - {fileID: 198946016394406564, guid: 6569dad07df1d814aa956a8e22cefe3b, type: 2}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
   FxDie: {fileID: 0}
   EnemyMaterials: {fileID: 114319141730181250}
   TimeDamageMat: 0.4
