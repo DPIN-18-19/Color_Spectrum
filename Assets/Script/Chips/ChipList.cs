@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEditor;
 
 [CreateAssetMenu(fileName = "New Chip Info", menuName = "Chip Info", order = 0)]
-public class CreateChipList : ScriptableObject
+public class ChipList : ScriptableObject
 {
     public List<ChipData> chips;
 }

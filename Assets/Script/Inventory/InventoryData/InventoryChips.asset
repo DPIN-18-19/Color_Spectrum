@@ -9,7 +9,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: c7724e60527db6f4cad0787dccc03963, type: 3}
-  m_Name: AllChips
+  m_Name: InventoryChips
   m_EditorClassIdentifier: 
   chips:
   - id: 1
@@ -19,23 +19,6 @@ MonoBehaviour:
     - stat_name: Health
       stat_value: 10
     weapon_stats:
-    - stat_name: Damage
+    - stat_name: Health
       stat_value: 10
-  - id: 2
-    name: Chip2
-    weight: 20
-    player_stats:
-    - stat_name: Health
-      stat_value: 20
-    weapon_stats:
-    - stat_name: Damage
-      stat_value: 20
-  - id: 3
-    name: Chip3
-    weight: 30
-    player_stats:
-    - stat_name: Health
-      stat_value: 30
-    weapon_stats:
-    - stat_name: Damage
-      stat_value: 30
+    equipped: 0

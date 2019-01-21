@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
 
-public class InventoryPanel : MonoBehaviour, IDropHandler, IPointerEnterHandler, IPointerExitHandler
+public class DropPanel : MonoBehaviour, IDropHandler, IPointerEnterHandler, IPointerExitHandler
 {
     public enum PanelType
     {
@@ -68,6 +68,12 @@ public class InventoryPanel : MonoBehaviour, IDropHandler, IPointerEnterHandler,
         InventoryChip d = p_event_data.pointerDrag.GetComponent<InventoryChip>();
         if (d != null)
         {
+            if(panel_type == PanelType.Weapon)
+            {
+                if (transform.childCount >= GetComponentInParent<WeaponPanel>().weapon_slots)
+                    return;
+            }
+
             d.new_possible_deck = this.transform;
         }
     }

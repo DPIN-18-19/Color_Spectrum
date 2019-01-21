@@ -10,5 +10,7 @@ public class ChipData
     public float weight;
     public List<BonusStat> player_stats;   // Estadisticas nuevas jugador
     public List<BonusStat> weapon_stats;   // Estadisticas nuevas arma
+
+    public bool equipped;
 }
 

@@ -14,6 +14,9 @@ public class InventoryChip : MonoBehaviour, IBeginDragHandler, IDragHandler, IEn
     }
     public ChipType chip_type;
 
+    //[HideInInspector]
+    public ChipData data;
+
     public Transform org_deck = null;         // Area de retorno original
     public Transform new_possible_deck = null;        // Nueva area de retorno
     protected Transform canvas;
@@ -32,7 +35,7 @@ public class InventoryChip : MonoBehaviour, IBeginDragHandler, IDragHandler, IEn
     public virtual void OnBeginDrag(PointerEventData p_event_data)
     {
         // Comprobar si el objeto sale del inventario
-        if (this.transform.parent.GetComponentInParent<InventoryPanel>().panel_type == InventoryPanel.PanelType.Inventory)
+        if (this.transform.parent.GetComponentInParent<DropPanel>().panel_type == DropPanel.PanelType.Inventory)
         {
             // Crear copia oscurecida
             shadow_copy = Instantiate(gameObject);
@@ -92,7 +95,7 @@ public class InventoryChip : MonoBehaviour, IBeginDragHandler, IDragHandler, IEn
         ChipFilter();
 
         // Colocar objeto en panel de armas
-        if (new_possible_deck.GetComponentInParent<InventoryPanel>().panel_type == InventoryPanel.PanelType.Weapon)
+        if (new_possible_deck.GetComponentInParent<DropPanel>().panel_type == DropPanel.PanelType.Weapon)
         {
             Transform weapon_panel = transform.Find("WeaponForm");
             weapon_panel.gameObject.SetActive(true);
@@ -102,7 +105,7 @@ public class InventoryChip : MonoBehaviour, IBeginDragHandler, IDragHandler, IEn
             
             this.transform.parent = new_possible_deck;
         }
-        else if (new_possible_deck.GetComponentInParent<InventoryPanel>().panel_type == InventoryPanel.PanelType.Inventory)
+        else if (new_possible_deck.GetComponentInParent<DropPanel>().panel_type == DropPanel.PanelType.Inventory)
         {
             // Colocar objeto en zona de retorno
             this.transform.parent = new_possible_deck;
@@ -130,20 +133,20 @@ public class InventoryChip : MonoBehaviour, IBeginDragHandler, IDragHandler, IEn
     
     void ChipFilter()
     {
-        InventoryPanel.PanelType panel_type = new_possible_deck.GetComponentInParent<InventoryPanel>().panel_type;
+        DropPanel.PanelType panel_type = new_possible_deck.GetComponentInParent<DropPanel>().panel_type;
 
         switch (chip_type)
         {
             case ChipType.Upgrade:
-                if (panel_type == InventoryPanel.PanelType.Weapon || panel_type == InventoryPanel.PanelType.AbilitySlot)
+                if (panel_type == DropPanel.PanelType.Weapon || panel_type == DropPanel.PanelType.AbilitySlot)
                     new_possible_deck = org_deck;
                 break;
             case ChipType.Weapon:
-                if(panel_type == InventoryPanel.PanelType.AbilitySlot || panel_type == InventoryPanel.PanelType.Player || panel_type == InventoryPanel.PanelType.WeaponSlot)
+                if(panel_type == DropPanel.PanelType.AbilitySlot || panel_type == DropPanel.PanelType.Player || panel_type == DropPanel.PanelType.WeaponSlot)
                     new_possible_deck = org_deck;
                 break;
             case ChipType.Ability:
-                if (panel_type == InventoryPanel.PanelType.Weapon || panel_type == InventoryPanel.PanelType.Player || panel_type == InventoryPanel.PanelType.WeaponSlot)
+                if (panel_type == DropPanel.PanelType.Weapon || panel_type == DropPanel.PanelType.Player || panel_type == DropPanel.PanelType.WeaponSlot)
                     new_possible_deck = org_deck;
                 break;
             default:

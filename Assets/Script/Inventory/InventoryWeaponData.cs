@@ -2,12 +2,13 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class InventoryWeapon : MonoBehaviour
+[System.Serializable]
+public class InventoryWeaponData
 {
-    GunData base_gun;
+    public GunData base_gun;
     float org_cdc, org_dmg, org_rng;
-    List<ChipData> added_chips;
-    int spaces;
+    public List<ChipData> added_chips;
+    public int spaces;
 
     private void Start()
     {

@@ -5,6 +5,9 @@ using UnityEngine.EventSystems;
 
 public class InventoryWeaponChip : InventoryChip
 {
+    //[HideInInspector]
+    public InventoryWeaponData w_data;
+
     GameObject weapon_slot = null;
     RectTransform weapon_panel = null;
     public Transform weapon_deck = null;
@@ -42,7 +45,7 @@ public class InventoryWeaponChip : InventoryChip
     {
         base.OnEndDrag(p_event_data);
 
-        if (new_possible_deck.GetComponentInParent<InventoryPanel>().panel_type == InventoryPanel.PanelType.Weapon)
+        if (new_possible_deck.GetComponentInParent<DropPanel>().panel_type == DropPanel.PanelType.Weapon)
         {
             this.transform.SetSiblingIndex(weapon_slot.transform.GetSiblingIndex());
         }
@@ -53,7 +56,7 @@ public class InventoryWeaponChip : InventoryChip
 
     void UpdateWeaponSlot()
     {
-        if (weapon_deck.GetComponentInParent<InventoryPanel>().panel_type == InventoryPanel.PanelType.Weapon)
+        if (weapon_deck.GetComponentInParent<DropPanel>().panel_type == DropPanel.PanelType.Weapon)
         {
             Debug.Log("Updating weapon hole");
             weapon_slot.transform.SetParent(weapon_deck);
