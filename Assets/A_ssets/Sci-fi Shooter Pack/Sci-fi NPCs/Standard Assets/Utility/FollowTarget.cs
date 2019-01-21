@@ -9,6 +9,7 @@ public class FollowTarget : MonoBehaviour
         Player,
         Enemy,
         FirePos,
+        BackShotEffect,
         Custom
     };
     public ToFollow who;
@@ -34,11 +35,15 @@ public class FollowTarget : MonoBehaviour
             case ToFollow.FirePos:
                 TargetIsFirePos();
                 break;
+            case ToFollow.BackShotEffect:
+                TargetIsBackShotEffect();
+                break;
             default:
                 Debug.Log("No Target To Follow Assign");
                 break;
         }
     }
+    //BackShotEffect
 
     // Update is called once per frame
     void Update()
@@ -72,5 +77,9 @@ public class FollowTarget : MonoBehaviour
     void TargetIsFirePos()
     {
         target = GameObject.FindGameObjectWithTag("FirePos");
+    }
+    void TargetIsBackShotEffect()
+    {
+        target = GameObject.FindGameObjectWithTag("BackShotEffect");
     }
 }

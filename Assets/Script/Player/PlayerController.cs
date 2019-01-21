@@ -17,7 +17,7 @@ public class PlayerController : MonoBehaviour {
 
     WeaponController weapon;
     private Camera maincamera;      // Player Camera
-    public GunController theGun;    // Player's Gun
+   
     public int cur_color;
     
     Collider m_collider;

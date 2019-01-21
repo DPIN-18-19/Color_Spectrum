@@ -10,8 +10,8 @@ using UnityEngine;
 
         // Habilidades
 
-        dash a_dash;
-        HabilidadCambioColor a_autocolor;
+       public dash a_dash;
+        AutoColor a_autocolor;
         throw_gre a_grenade;
         activate_Shield a_shield;
 
@@ -20,8 +20,8 @@ using UnityEngine;
         {
 
 
-            a_dash = GetComponentInParent<dash>();
-        a_autocolor = GetComponentInParent<HabilidadCambioColor>();
+           // a_dash = GetComponentInParent<dash>();
+        a_autocolor = GetComponentInParent<AutoColor>();
         a_grenade = GetComponentInParent<throw_gre>();
             a_shield = GetComponentInParent<activate_Shield>();
         }

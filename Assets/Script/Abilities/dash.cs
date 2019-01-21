@@ -86,20 +86,17 @@ using QFXToolKit;
                         Instantiate(ParticleDashPink.gameObject, transform.position, rot);
                     }
 
-                    //ParticleInPlayer.SetActive(true);
-                    //ParticleInPlayer.GetComponent<ParticleSystem>().Play();
 
 
+                //Invoke("StopSpeed", 0.2f);
                     ControlledObject.Stop();
 
                     Instantiate(p_sys, transform.position, rot);
-                    //ControlledObject.Run();
+                //ControlledObject.Run();
 
-                    // Debug.Break();
-                    //  Vector3 final_pos = transform.position + (MovePlayer.move_dir * (dashspeed *10) * Time.deltaTime);
-                    //  Debug.Log("dash");
-                    UsarHabilidad = false;
-                    SePuedeUsar = false;
+                UsarHabilidad = false;
+
+                SePuedeUsar = false;
                     GameplayManager.GetInstance().Dash(SePuedeUsar);
                     Cooldown = Max_Cooldown;
 
@@ -121,6 +118,10 @@ using QFXToolKit;
         {
         ChangeMaterial.ResetColor();
         }
+    void StopSpeed()
+    {
+        UsarHabilidad = false;
+    }
     
 
         //bool PeekNextPosition(Vector3 f_pos)

@@ -26,7 +26,7 @@ public class BulletController : MonoBehaviour
     [HideInInspector]
     public bool friendly;           // Who shot the bullet? True: Player, False: Enemy
 
-    Collider m_collider;            // Bullet collider
+    protected Collider m_collider;            // Bullet collider
 
 
     public ParticleSystem DestroyEffectYellow;
@@ -36,6 +36,11 @@ public class BulletController : MonoBehaviour
     public ParticleSystem DestroyEffectBlue;
     private bool BlueDestroyeffect;
     public AudioClip DestroyBulletFx;
+
+
+
+
+    public bool Sniper;
 
     //////////////////////////////////////////////////////////////////////////////
 
@@ -130,6 +135,8 @@ public class BulletController : MonoBehaviour
         if (col.gameObject.tag == gameObject.tag)
         {
             Debug.Log("Collided with a wall");
+            if (m_collider == null)
+                Debug.Log("Error");
             m_collider.enabled = !m_collider.enabled;
             Invoke("ReactivateCollision", wall_active_time);
         }
@@ -214,7 +221,8 @@ public class BulletController : MonoBehaviour
 
                 }
             }
-
+            //LLevarselo al hijo
+            if(Sniper == false)
             Destroy(gameObject);
         }
         else

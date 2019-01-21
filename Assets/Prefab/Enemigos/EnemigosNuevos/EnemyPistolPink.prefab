@@ -1220,6 +1220,21 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+--- !u!1 &1898903532512196
+GameObject:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 4604675861209940}
+  m_Layer: 9
+  m_Name: EffectDiePos (2)
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
 --- !u!1 &1920043198077088
 GameObject:
   m_ObjectHideFlags: 1
@@ -1948,6 +1963,19 @@ Transform:
   m_Father: {fileID: 4743314130474482}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!4 &4604675861209940
+Transform:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1898903532512196}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 2.4385989, y: 1.06, z: -0.61777306}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 4724597470167928}
+  m_RootOrder: 6
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &4631771248481764
 Transform:
   m_ObjectHideFlags: 1
@@ -2137,6 +2165,7 @@ Transform:
   - {fileID: 4698825464157042}
   - {fileID: 4922924205202158}
   - {fileID: 4011029796246724}
+  - {fileID: 4604675861209940}
   m_Father: {fileID: 4743314130474482}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: -183.98799, z: 0}
@@ -2174,7 +2203,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1220717223002304}
   m_LocalRotation: {x: -0, y: -0.99939454, z: -0, w: -0.034793016}
-  m_LocalPosition: {x: 20.76, y: 0.2162, z: -15.91}
+  m_LocalPosition: {x: 34.38, y: 0.14763665, z: -15.72}
   m_LocalScale: {x: 1.2481819, y: 1.2803414, z: 1.4793196}
   m_Children:
   - {fileID: 224307454616647084}
@@ -2799,12 +2828,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 62cc23658d5fbe04e9500fc1c9fd4b84, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  PosDeadParticle: {fileID: 4604675861209940}
   max_health: 10
   health_bar: {fileID: 114041532779662880}
   die_effect:
-  - {fileID: 198036780334477388, guid: 954fa78d458ea524283b9f32825a0494, type: 2}
-  - {fileID: 198526383505352786, guid: eb135824a4c604145bf1652d84f1e305, type: 2}
-  - {fileID: 198946016394406564, guid: 6569dad07df1d814aa956a8e22cefe3b, type: 2}
+  - {fileID: 198085412305327686, guid: d1f231a539122664c86f0a6a6a456157, type: 2}
+  - {fileID: 198410871006054420, guid: 5e64849e24a3b3949a4999b2eb9ef198, type: 2}
+  - {fileID: 198960496170012676, guid: 6b023f22181b1d640a11c4ae1a24ade8, type: 2}
   FxDie: {fileID: 0}
   EnemyMaterials: {fileID: 114296319343175346}
   TimeDamageMat: 0.4
@@ -2872,11 +2902,11 @@ MonoBehaviour:
   yellow_mat: {fileID: 2100000, guid: 5a96abfc6a74b1841ba0d0201453881b, type: 2}
   cyan_mat: {fileID: 2100000, guid: 95506bf5b0569b94f91203cd4b7bf4f4, type: 2}
   magenta_mat: {fileID: 2100000, guid: a3bb50ec3e1a5b5419ae6870033ad15d, type: 2}
-  Shot_effectYellow: {fileID: 198534960484000138, guid: 2f41a27a56f24d04c8814a40bcb39171,
+  Shot_effectYellow: {fileID: 198534960484000138, guid: f3dd52b642049b24b810219ac86f23ec,
     type: 2}
-  Shot_effectBlue: {fileID: 198857426217267120, guid: e0b017361e07171498b7739eb1b9552a,
+  Shot_effectBlue: {fileID: 198857426217267120, guid: 36020c596b143aa41b0a3ec20a2be32c,
     type: 2}
-  Shot_effectPink: {fileID: 198178962905762056, guid: 63bff0b177895924da3eb0e7d08c0e7a,
+  Shot_effectPink: {fileID: 198178962905762056, guid: 9691f1331907a50498f57dc72b89f5dc,
     type: 2}
   ShellEfectYellow: {fileID: 198236717835626218, guid: 485aef8f70c9c974ab96492c7fd11b2c,
     type: 2}
