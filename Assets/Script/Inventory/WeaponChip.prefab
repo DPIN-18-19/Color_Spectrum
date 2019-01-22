@@ -131,8 +131,9 @@ GameObject:
   - component: {fileID: 224901314504720540}
   - component: {fileID: 222486406158220854}
   - component: {fileID: 114856286454716230}
-  - component: {fileID: 114863092664039416}
   - component: {fileID: 225408244992691278}
+  - component: {fileID: 114863092664039416}
+  - component: {fileID: 114779156421078228}
   m_Layer: 5
   m_Name: WeaponChip
   m_TagString: Untagged
@@ -480,6 +481,27 @@ MonoBehaviour:
   m_FillAmount: 1
   m_FillClockwise: 1
   m_FillOrigin: 0
+--- !u!114 &114779156421078228
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1872107800408908}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c999cff8f9bafed4da83f6267205c102, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  chip_type: 1
+  data:
+    id: 
+    name: 
+    weight: 0
+    player_stats: []
+    weapon_stats: []
+    equipped: 0
+  hover_tooltip: {fileID: 1576484268447382, guid: 3c73a0ed91ce99e428131382824e9011,
+    type: 2}
 --- !u!114 &114856286454716230
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -510,11 +532,30 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e0c99efabf7e5674db1401d16d7435fd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  chip_type: 1
+  ichip_data: {fileID: 0}
+  inv_deck: {fileID: 0}
   org_deck: {fileID: 0}
   new_possible_deck: {fileID: 0}
-  hover_tooltip: {fileID: 1576484268447382, guid: 3c73a0ed91ce99e428131382824e9011,
-    type: 2}
+  shadow_copy: {fileID: 0}
+  w_data:
+    base_gun:
+      name: 
+      gun: {fileID: 0}
+      bullet: {fileID: 0}
+      speed: 0.2
+      damage: 5
+      range: 5
+      spray: 5
+      cadence: 0.5
+      num_bullets: 1
+      automatic: 1
+      weight: 10
+      ability: 
+      fx_shot: {fileID: 0}
+    added_chips: []
+    spaces: 0
+  weapon_deck: {fileID: 0}
+  inside: 0
 --- !u!114 &114932256952679444
 MonoBehaviour:
   m_ObjectHideFlags: 1

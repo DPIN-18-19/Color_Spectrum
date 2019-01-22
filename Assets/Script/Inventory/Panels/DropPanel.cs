@@ -13,7 +13,6 @@ public class DropPanel : MonoBehaviour, IDropHandler, IPointerEnterHandler, IPoi
         WeaponSlot,
         Player
     }
-
     public PanelType panel_type;
 
     public void OnPointerEnter(PointerEventData p_event_data)
@@ -22,7 +21,7 @@ public class DropPanel : MonoBehaviour, IDropHandler, IPointerEnterHandler, IPoi
             return;
 
         // Nueva posible zona de retorno
-        InventoryChip d = p_event_data.pointerDrag.GetComponent<InventoryChip>();
+        IChipDrag d = p_event_data.pointerDrag.GetComponent<IChipDrag>();
         if (d != null)
         {
             d.new_possible_deck = this.transform;
@@ -30,7 +29,7 @@ public class DropPanel : MonoBehaviour, IDropHandler, IPointerEnterHandler, IPoi
 
         if (panel_type == PanelType.Weapon)
         {
-            InventoryWeaponChip w = p_event_data.pointerDrag.GetComponent<InventoryWeaponChip>();
+            IWeaponChipDrag w = p_event_data.pointerDrag.GetComponent<IWeaponChipDrag>();
             if (w != null)
             {
                 w.inside = true;
@@ -45,7 +44,7 @@ public class DropPanel : MonoBehaviour, IDropHandler, IPointerEnterHandler, IPoi
             return;
 
         // Recuperar zona anterior de retorno
-        InventoryChip d = p_event_data.pointerDrag.GetComponent<InventoryChip>();
+        IChipDrag d = p_event_data.pointerDrag.GetComponent<IChipDrag>();
         if (d != null && d.new_possible_deck == this.transform)
         {
             d.new_possible_deck = d.inv_deck;
@@ -53,7 +52,7 @@ public class DropPanel : MonoBehaviour, IDropHandler, IPointerEnterHandler, IPoi
 
         if (panel_type == PanelType.Weapon)
         {
-            InventoryWeaponChip w = p_event_data.pointerDrag.GetComponent<InventoryWeaponChip>();
+            IWeaponChipDrag w = p_event_data.pointerDrag.GetComponent<IWeaponChipDrag>();
             if (w != null)
             {
                 w.inside = false;
@@ -65,7 +64,7 @@ public class DropPanel : MonoBehaviour, IDropHandler, IPointerEnterHandler, IPoi
     public void OnDrop(PointerEventData p_event_data)
     {
         // Nueva posicion de retorno es lugar donde se suelta
-        InventoryChip d = p_event_data.pointerDrag.GetComponent<InventoryChip>();
+        IChipDrag d = p_event_data.pointerDrag.GetComponent<IChipDrag>();
         if (d != null)
         {
             // Limit the amount of chips the panel can have
@@ -84,30 +83,30 @@ public class DropPanel : MonoBehaviour, IDropHandler, IPointerEnterHandler, IPoi
         }
     }
 
-    bool ChipsFilter(InventoryChip chip)
+    bool ChipsFilter(IChipDrag chip)
     {
-        InventoryChip.ChipType chip_type = chip.chip_type;
+        IChipData.ChipType chip_type = chip.ichip_data.chip_type;
 
         switch (chip_type)
         {
-            case InventoryChip.ChipType.Upgrade:
+            case IChipData.ChipType.Upgrade:
                 if (panel_type == PanelType.Weapon || panel_type == PanelType.AbilitySlot)
                 {
-                    chip.new_possible_deck = chip.org_deck;
+                    chip.new_possible_deck = chip.inv_deck;
                     return false;
                 }
                 break;
-            case InventoryChip.ChipType.Weapon:
+            case IChipData.ChipType.Weapon:
                 if (panel_type == PanelType.AbilitySlot || panel_type == PanelType.Player || panel_type == PanelType.WeaponSlot)
                 {
-                    chip.new_possible_deck = chip.org_deck;
+                    chip.new_possible_deck = chip.inv_deck;
                     return false;
                 }
                 break;
-            case InventoryChip.ChipType.Ability:
+            case IChipData.ChipType.Ability:
                 if (panel_type == PanelType.Weapon || panel_type == PanelType.Player || panel_type == PanelType.WeaponSlot)
                 {
-                    chip.new_possible_deck = chip.org_deck;
+                    chip.new_possible_deck = chip.inv_deck;
                     return false;
                 }
                 break;
@@ -119,7 +118,7 @@ public class DropPanel : MonoBehaviour, IDropHandler, IPointerEnterHandler, IPoi
         return true;
     }
 
-    void AddData(InventoryChip chip)
+    void AddData(IChipDrag chip)
     {
         switch(panel_type)
         {
@@ -128,7 +127,7 @@ public class DropPanel : MonoBehaviour, IDropHandler, IPointerEnterHandler, IPoi
             case PanelType.Inventory:
                 break;
             case PanelType.Player:
-                GetComponent<CharacterPanel>().character_chips.chips.Add(chip.data);
+                GetComponent<CharacterPanel>().character_chips.chips.Add(chip.ichip_data.data);
                 break;
             case PanelType.Weapon:
                 break;

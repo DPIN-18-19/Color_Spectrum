@@ -4,35 +4,37 @@ using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
-public class InventoryChip : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragHandler, IPointerEnterHandler, IPointerExitHandler
+public class IChipDrag : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragHandler//, IPointerEnterHandler, IPointerExitHandler
 {
-    public enum ChipType
-    {
-        Upgrade,
-        Weapon,
-        Ability
-    }
-    public ChipType chip_type;
+    //public enum ChipType
+    //{
+    //    Upgrade,        // Normal
+    //    Weapon,         // Chip de arma
+    //    Ability         // Chip de habilidad
+    //}
+    //public ChipType chip_type;      // Clase de chip
 
     //[HideInInspector]
-    public ChipData data;
+    //public ChipData data;           // Contenido del chip
 
-    public Transform inv_deck = null;
+    public IChipData ichip_data;
+
+    public Transform inv_deck = null;               // Area inventario
     public Transform org_deck = null;               // Area de retorno original
     public Transform new_possible_deck = null;      // Nueva area de retorno
-    protected Transform canvas;
+    protected Transform canvas;                     // El canvas
 
-    GameObject shadow_copy = null;                  // Area hueco
+    public GameObject shadow_copy = null;                  // Area hueco
 
 
-    public GameObject hover_tooltip;
-    GameObject my_hover_tooltip;
+    //public GameObject hover_tooltip;                // Objeto con el que se creará el tooltip
+    //GameObject my_hover_tooltip;                    // Referencia al tooltip creado
 
     void Start()
     {
-        Debug.Log(transform.name);
-        canvas = GetComponentInParent<Canvas>().transform;
-        inv_deck = GameObject.Find("InventoryPanel").transform;
+        canvas = GetComponentInParent<Canvas>().transform;          // Coger el canvas de la interfaz
+        inv_deck = GameObject.Find("InventoryPanel").transform;     // Coger el área del inventario
+        ichip_data = GetComponent<IChipData>();
     }
 
     public virtual void OnBeginDrag(PointerEventData p_event_data)
@@ -40,26 +42,10 @@ public class InventoryChip : MonoBehaviour, IBeginDragHandler, IDragHandler, IEn
         // Recoger datos de lugar de retorno
         org_deck = this.transform.parent;
         new_possible_deck = org_deck;
+        
+        RemoveChip();                                                   // Realizar operaciones necesarias al sacar coger un chip
 
-        RemoveChip();
-
-        //// Comprobar si el objeto sale del inventario
-        //if (this.transform.parent.GetComponentInParent<DropPanel>().panel_type == DropPanel.PanelType.Inventory)
-        //{
-        //    // Crear copia oscurecida
-        //    shadow_copy = Instantiate(gameObject);
-        //    shadow_copy.AddComponent<Darken>();                         // Componente oscurecer
-        //    Destroy(shadow_copy.GetComponent<InventoryChip>());         // Eliminar componente que permite arrastrarlo
-        //    shadow_copy.transform.SetParent(inv_deck);
-            
-        //    // Posicion de hueco
-        //    shadow_copy.transform.SetSiblingIndex(this.transform.GetSiblingIndex());
-
-        //}
-
-
-        this.transform.parent = canvas;   // Sacar fuera de area al objeto
-
+        this.transform.parent = canvas;                                 // Sacar fuera de area al objeto
         GetComponent<CanvasGroup>().blocksRaycasts = false;             // Permitir hacer raycast de puntero
     }
 
@@ -76,7 +62,7 @@ public class InventoryChip : MonoBehaviour, IBeginDragHandler, IDragHandler, IEn
                 // Crear copia oscurecida
                 shadow_copy = Instantiate(gameObject);
                 shadow_copy.AddComponent<Darken>();                         // Componente oscurecer
-                Destroy(shadow_copy.GetComponent<InventoryChip>());         // Eliminar componente que permite arrastrarlo
+                Destroy(shadow_copy.GetComponent<IChipDrag>());         // Eliminar componente que permite arrastrarlo
                 shadow_copy.transform.SetParent(inv_deck);
 
                 // Posicion de hueco
@@ -84,7 +70,7 @@ public class InventoryChip : MonoBehaviour, IBeginDragHandler, IDragHandler, IEn
                 break;
             }
             case DropPanel.PanelType.Player:
-                org_deck.GetComponent<CharacterPanel>().character_chips.chips.Remove(data);
+                org_deck.GetComponent<CharacterPanel>().character_chips.chips.Remove(ichip_data.data);
                 break;
             case DropPanel.PanelType.Weapon:
                 break;
@@ -130,31 +116,34 @@ public class InventoryChip : MonoBehaviour, IBeginDragHandler, IDragHandler, IEn
     public virtual void OnEndDrag(PointerEventData p_event_data)
     {
         GetComponent<CanvasGroup>().blocksRaycasts = true;
-        //ChipFilter();
 
         // Colocar objeto en panel de armas
         if (new_possible_deck.GetComponentInParent<DropPanel>().panel_type == DropPanel.PanelType.Weapon)
         {
+            // Cambiar forma a Arma
             Transform weapon_panel = transform.Find("WeaponForm");
             weapon_panel.gameObject.SetActive(true);
-
             Transform chip_form = transform.Find("ChipForm");
             chip_form.gameObject.SetActive(false);
             
             this.transform.parent = new_possible_deck;
         }
+        // Colocar objeto en inventario
         else if (new_possible_deck.GetComponentInParent<DropPanel>().panel_type == DropPanel.PanelType.Inventory)
         {
-            // Colocar objeto en zona de retorno
+            // Colocar objeto en zona de retorno en posición de copia
             this.transform.parent = new_possible_deck;
             this.transform.SetSiblingIndex(shadow_copy.transform.GetSiblingIndex());
             Destroy(shadow_copy);
-            
-            if (chip_type == ChipType.Weapon)
+
+            // Desquipar chip
+            inv_deck.GetComponentInParent<InventoryPanel>().UnequipChip(ichip_data.data);
+
+            if (ichip_data.chip_type == IChipData.ChipType.Weapon)
             {
+                // Cambiar forma a Chip
                 Transform weapon_panel = transform.Find("WeaponForm");
                 weapon_panel.gameObject.SetActive(false);
-
                 Transform chip_form = transform.Find("ChipForm");
                 chip_form.gameObject.SetActive(true);
             }
@@ -163,49 +152,29 @@ public class InventoryChip : MonoBehaviour, IBeginDragHandler, IDragHandler, IEn
         {
             // Colocar objeto en zona de retorno
             this.transform.parent = new_possible_deck;
+
+            // Equipar chip
             Transform equipped = shadow_copy.transform.Find("Equipped");
-            
             equipped.gameObject.SetActive(true);
+            inv_deck.GetComponentInParent<InventoryPanel>().EquipChip(ichip_data.data);
         }
 
     }
     
-    //void ChipFilter()
+    //public void OnPointerEnter(PointerEventData p_event_data)
     //{
-    //    DropPanel.PanelType panel_type = new_possible_deck.GetComponentInParent<DropPanel>().panel_type;
-
-    //    switch (chip_type)
+    //    // Evitar que se muestre un tooltip si ya se agarrando algo
+    //    if (!Input.GetMouseButton(0))
     //    {
-    //        case ChipType.Upgrade:
-    //            if (panel_type == DropPanel.PanelType.Weapon || panel_type == DropPanel.PanelType.AbilitySlot)
-    //                new_possible_deck = org_deck;
-    //            break;
-    //        case ChipType.Weapon:
-    //            if(panel_type == DropPanel.PanelType.AbilitySlot || panel_type == DropPanel.PanelType.Player || panel_type == DropPanel.PanelType.WeaponSlot)
-    //                new_possible_deck = org_deck;
-    //            break;
-    //        case ChipType.Ability:
-    //            if (panel_type == DropPanel.PanelType.Weapon || panel_type == DropPanel.PanelType.Player || panel_type == DropPanel.PanelType.WeaponSlot)
-    //                new_possible_deck = org_deck;
-    //            break;
-    //        default:
-    //            break;
+    //        my_hover_tooltip = Instantiate(hover_tooltip, p_event_data.position, Quaternion.identity);
+    //        my_hover_tooltip.transform.SetParent(canvas);
     //    }
     //}
-    
-    public void OnPointerEnter(PointerEventData p_event_data)
-    {
-        if (!Input.GetMouseButton(0))
-        {
-            my_hover_tooltip = Instantiate(hover_tooltip, p_event_data.position, Quaternion.identity);
-            my_hover_tooltip.transform.SetParent(canvas);
-        }
-    }
 
-    public void OnPointerExit(PointerEventData p_event_data)
-    {
-        if(my_hover_tooltip)
-            my_hover_tooltip.GetComponent<HoverTooltip>().Leave();
-    }
+    //public void OnPointerExit(PointerEventData p_event_data)
+    //{
+    //    if(my_hover_tooltip)
+    //        my_hover_tooltip.GetComponent<HoverTooltip>().Leave();
+    //}
 }
 

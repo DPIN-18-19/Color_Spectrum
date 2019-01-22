@@ -39,6 +39,7 @@ GameObject:
   - component: {fileID: 222592763635435134}
   - component: {fileID: 114024532508758572}
   - component: {fileID: 114342072102553796}
+  - component: {fileID: 114142045845444688}
   - component: {fileID: 114711178578700492}
   - component: {fileID: 225897724310565538}
   m_Layer: 5
@@ -92,6 +93,27 @@ MonoBehaviour:
   m_FillAmount: 1
   m_FillClockwise: 1
   m_FillOrigin: 0
+--- !u!114 &114142045845444688
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1866709081300792}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c999cff8f9bafed4da83f6267205c102, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  chip_type: 0
+  data:
+    id: 
+    name: 
+    weight: 0
+    player_stats: []
+    weapon_stats: []
+    equipped: 0
+  hover_tooltip: {fileID: 1576484268447382, guid: 3c73a0ed91ce99e428131382824e9011,
+    type: 2}
 --- !u!114 &114195145549495420
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -130,18 +152,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 535f1b5905c03d549baf2109e99e7097, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  chip_type: 0
-  data:
-    id: 
-    name: 
-    weight: 0
-    player_stats: []
-    weapon_stats: []
-    equipped: 0
+  ichip_data: {fileID: 0}
+  inv_deck: {fileID: 0}
   org_deck: {fileID: 0}
   new_possible_deck: {fileID: 0}
-  hover_tooltip: {fileID: 1576484268447382, guid: 3c73a0ed91ce99e428131382824e9011,
-    type: 2}
+  shadow_copy: {fileID: 0}
 --- !u!114 &114411525951756516
 MonoBehaviour:
   m_ObjectHideFlags: 1

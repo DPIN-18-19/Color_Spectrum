@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
 
-public class InventoryWeaponChip : InventoryChip
+public class IWeaponChipDrag : IChipDrag
 {
     //[HideInInspector]
     public InventoryWeaponData w_data;
@@ -19,6 +19,7 @@ public class InventoryWeaponChip : InventoryChip
     {
         canvas = GetComponentInParent<Canvas>().transform;
         inv_deck = GameObject.Find("InventoryPanel").transform;
+        ichip_data = GetComponent<IChipData>();
 
         weapon_panel = GameObject.Find("WeaponPanel").GetComponent<RectTransform>();
     }
@@ -28,7 +29,7 @@ public class InventoryWeaponChip : InventoryChip
         base.OnBeginDrag(p_event_data);
         
         weapon_slot = Instantiate(gameObject);
-        Destroy(weapon_slot.GetComponent<InventoryChip>());
+        Destroy(weapon_slot.GetComponent<IChipDrag>());
         weapon_slot.GetComponent<CanvasGroup>().alpha = 0;
         weapon_slot.transform.SetParent(canvas);
         weapon_slot.transform.Find("WeaponForm").gameObject.SetActive(true);

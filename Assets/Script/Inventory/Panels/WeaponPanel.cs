@@ -22,7 +22,7 @@ public class WeaponPanel : MonoBehaviour
         {
             GameObject n_w_chip = Instantiate(weapon_chip_mould);
             n_w_chip.transform.SetParent(transform.Find("WeaponPanel"));
-            n_w_chip.GetComponent<InventoryWeaponChip>().w_data = i_weapons.i_weapon_chips[i];
+            n_w_chip.GetComponent<IWeaponChipDrag>().w_data = i_weapons.i_weapon_chips[i];
         }
     }
 }
