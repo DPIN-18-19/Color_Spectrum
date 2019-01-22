@@ -49,7 +49,7 @@ public class IChipDrag : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDra
         GetComponent<CanvasGroup>().blocksRaycasts = false;             // Permitir hacer raycast de puntero
     }
 
-    void RemoveChip()
+    protected virtual void RemoveChip()
     {
         DropPanel.PanelType panel_type = org_deck.GetComponentInParent<DropPanel>().panel_type;
 
@@ -70,9 +70,11 @@ public class IChipDrag : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDra
                 break;
             }
             case DropPanel.PanelType.Player:
-                org_deck.GetComponent<CharacterPanel>().character_chips.chips.Remove(ichip_data.data);
+                org_deck.GetComponent<CharacterPanel>().character_p_chips.chips.Remove(ichip_data.data);
                 break;
             case DropPanel.PanelType.Weapon:
+                // Removal of weapon is done in IWeaponChipDrag
+                //org_deck.GetComponent<WeaponPanel>().weapon_p_chips.i_weapon_chips.Remove();
                 break;
             case DropPanel.PanelType.WeaponSlot:
                 break;
@@ -127,6 +129,7 @@ public class IChipDrag : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDra
             chip_form.gameObject.SetActive(false);
             
             this.transform.parent = new_possible_deck;
+            inv_deck.GetComponentInParent<InventoryPanel>().EquipChip(ichip_data);
         }
         // Colocar objeto en inventario
         else if (new_possible_deck.GetComponentInParent<DropPanel>().panel_type == DropPanel.PanelType.Inventory)
@@ -136,8 +139,8 @@ public class IChipDrag : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDra
             this.transform.SetSiblingIndex(shadow_copy.transform.GetSiblingIndex());
             Destroy(shadow_copy);
 
-            // Desquipar chip
-            inv_deck.GetComponentInParent<InventoryPanel>().UnequipChip(ichip_data.data);
+            // Desequipar chip
+            inv_deck.GetComponentInParent<InventoryPanel>().UnequipChip(ichip_data);
 
             if (ichip_data.chip_type == IChipData.ChipType.Weapon)
             {
@@ -156,7 +159,7 @@ public class IChipDrag : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDra
             // Equipar chip
             Transform equipped = shadow_copy.transform.Find("Equipped");
             equipped.gameObject.SetActive(true);
-            inv_deck.GetComponentInParent<InventoryPanel>().EquipChip(ichip_data.data);
+            inv_deck.GetComponentInParent<InventoryPanel>().EquipChip(ichip_data);
         }
 
     }

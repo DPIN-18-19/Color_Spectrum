@@ -7,7 +7,7 @@ public class InventoryPanel : MonoBehaviour
     [SerializeField]
     private ChipList i_chips;
     [SerializeField]
-    private InventoryWeaponList i_weapons;
+    private IWeaponChipList i_weapons;
 
     Transform i_panel;
     public GameObject chip_mould;
@@ -33,6 +33,7 @@ public class InventoryPanel : MonoBehaviour
             n_chip.transform.SetParent(i_panel);
             n_chip.GetComponent<IChipData>().data = i_chips.chips[i];
 
+            // Comprobar el estado "equipado" y crear copia
             if(i_chips.chips[i].equipped)
             {
                 n_chip.AddComponent<Darken>();
@@ -45,8 +46,9 @@ public class InventoryPanel : MonoBehaviour
         for (int i = 0; i < i_weapons.i_weapon_chips.Count; ++i)
         {
             GameObject n_w_chip = Instantiate(weapon_chip_mould);
-            n_w_chip.transform.SetParent(transform.Find("InventoryPanel"));
+            n_w_chip.transform.SetParent(i_panel);
             n_w_chip.GetComponent<IWeaponChipDrag>().w_data = i_weapons.i_weapon_chips[i];
+            n_w_chip.GetComponent<IChipData>().data.id = i_weapons.i_weapon_chips[i].id;
         }
     }
 
@@ -61,17 +63,33 @@ public class InventoryPanel : MonoBehaviour
         return null;
     }
 
-    public void EquipChip(ChipData chip)
+    public void EquipChip(IChipData chip)
     {
-        // Buscar chip con id
-        int index = i_chips.chips.FindIndex(x => x.id == chip.id);
-        i_chips.chips[index].equipped = true;
+        if (chip.chip_type == IChipData.ChipType.Upgrade)
+        {
+            // Buscar chip con id
+            int index = i_chips.chips.FindIndex(x => x.id == chip.data.id);
+            i_chips.chips[index].equipped = true;
+        }
+        else if(chip.chip_type == IChipData.ChipType.Weapon)
+        {
+            int index = i_weapons.i_weapon_chips.FindIndex(x => x.id == chip.data.id);
+            i_weapons.i_weapon_chips[index].equipped = true;
+        }
     }
 
-    public void UnequipChip(ChipData chip)
+    public void UnequipChip(IChipData chip)
     {
-        // Buscar chip con id
-        int index = i_chips.chips.FindIndex(x => x.id == chip.id);
-        i_chips.chips[index].equipped = false;
+        if (chip.chip_type == IChipData.ChipType.Upgrade)
+        {
+            // Buscar chip con id
+            int index = i_chips.chips.FindIndex(x => x.id == chip.data.id);
+            i_chips.chips[index].equipped = false;
+        }
+        else if(chip.chip_type == IChipData.ChipType.Weapon)
+        {
+            int index = i_weapons.i_weapon_chips.FindIndex(x => x.id == chip.data.id);
+            i_weapons.i_weapon_chips[index].equipped = false;
+        }
     }
 }

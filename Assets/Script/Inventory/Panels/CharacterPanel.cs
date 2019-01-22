@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class CharacterPanel : MonoBehaviour
 {
-    public ChipList character_chips;
+    public ChipList character_p_chips;
 
     Transform i_panel;
     public GameObject chip_mould;
@@ -18,16 +18,16 @@ public class CharacterPanel : MonoBehaviour
 
     void LoadChips()
     {
-        for (int i = 0; i < character_chips.chips.Count; ++i)
+        for (int i = 0; i < character_p_chips.chips.Count; ++i)
         {
             GameObject n_chip = Instantiate(chip_mould);
             n_chip.transform.SetParent(transform);
-            n_chip.GetComponent<IChipData>().data = character_chips.chips[i];
+            n_chip.GetComponent<IChipData>().data = character_p_chips.chips[i];
 
-            if(character_chips.chips[i].equipped)
+            if(character_p_chips.chips[i].equipped)
             {
                 if (i_panel.GetComponent<InventoryPanel>())
-                    n_chip.GetComponent<IChipDrag>().shadow_copy = i_panel.GetComponent<InventoryPanel>().SearchChip(character_chips.chips[i]);
+                    n_chip.GetComponent<IChipDrag>().shadow_copy = i_panel.GetComponent<InventoryPanel>().SearchChip(character_p_chips.chips[i]);
                 else
                     Debug.Log("There was an error loading character panel");
             }

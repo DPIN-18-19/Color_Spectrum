@@ -6,7 +6,7 @@ using UnityEngine.EventSystems;
 public class IWeaponChipDrag : IChipDrag
 {
     //[HideInInspector]
-    public InventoryWeaponData w_data;
+    public IWeaponData w_data;
 
     GameObject weapon_slot = null;
     RectTransform weapon_panel = null;
@@ -35,6 +35,14 @@ public class IWeaponChipDrag : IChipDrag
         weapon_slot.transform.Find("WeaponForm").gameObject.SetActive(true);
 
         weapon_deck = org_deck;
+    }
+
+    protected override void RemoveChip()
+    {
+        base.RemoveChip();
+
+        if(org_deck.GetComponentInParent<DropPanel>().panel_type == DropPanel.PanelType.Weapon)
+            org_deck.GetComponent<WeaponPanel>().weapon_p_chips.i_weapon_chips.Remove(w_data);
     }
 
     public override void OnDrag(PointerEventData p_event_data)

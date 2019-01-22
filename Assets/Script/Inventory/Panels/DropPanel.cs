@@ -67,9 +67,9 @@ public class DropPanel : MonoBehaviour, IDropHandler, IPointerEnterHandler, IPoi
         IChipDrag d = p_event_data.pointerDrag.GetComponent<IChipDrag>();
         if (d != null)
         {
-            // Limit the amount of chips the panel can have
             if(panel_type == PanelType.Weapon)
             {
+                // Limit the amount of chips the panel can have
                 if (transform.childCount >= GetComponentInParent<WeaponPanel>().weapon_slots)
                     return;
             }
@@ -78,8 +78,19 @@ public class DropPanel : MonoBehaviour, IDropHandler, IPointerEnterHandler, IPoi
 
             if(ChipsFilter(d))
             {
+                if (panel_type == PanelType.Weapon)
+                {
+                    IWeaponChipDrag w = p_event_data.pointerDrag.GetComponent<IWeaponChipDrag>();
+                    if (w != null)
+                    {
+                        AddWeapon(w);
+                        return;
+                    }
+                }
+
                 AddData(d);
             }
+
         }
     }
 
@@ -127,9 +138,10 @@ public class DropPanel : MonoBehaviour, IDropHandler, IPointerEnterHandler, IPoi
             case PanelType.Inventory:
                 break;
             case PanelType.Player:
-                GetComponent<CharacterPanel>().character_chips.chips.Add(chip.ichip_data.data);
+                GetComponent<CharacterPanel>().character_p_chips.chips.Add(chip.ichip_data.data);
                 break;
             case PanelType.Weapon:
+                // Weapon add data is done in a separate function
                 break;
             case PanelType.WeaponSlot:
                 break;
@@ -137,5 +149,10 @@ public class DropPanel : MonoBehaviour, IDropHandler, IPointerEnterHandler, IPoi
                 Debug.Log("Add data to panel of unknown type");
                 break;
         }
+    }
+
+    void AddWeapon(IWeaponChipDrag chip)
+    {
+        GetComponent<WeaponPanel>().weapon_p_chips.i_weapon_chips.Add(chip.w_data);
     }
 }

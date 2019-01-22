@@ -3,12 +3,14 @@ using System.Collections.Generic;
 using UnityEngine;
 
 [System.Serializable]
-public class InventoryWeaponData
+public class IWeaponData
 {
+    public string id;
     public GunData base_gun;
     float org_cdc, org_dmg, org_rng;
     public List<ChipData> added_chips;
     public int spaces;
+    public bool equipped;
 
     private void Start()
     {

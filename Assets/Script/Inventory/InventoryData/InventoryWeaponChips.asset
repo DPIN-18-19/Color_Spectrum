@@ -12,7 +12,8 @@ MonoBehaviour:
   m_Name: InventoryWeaponChips
   m_EditorClassIdentifier: 
   i_weapon_chips:
-  - base_gun:
+  - id: Gun1
+    base_gun:
       name: 
       gun: {fileID: 0}
       bullet: {fileID: 0}
@@ -28,3 +29,4 @@ MonoBehaviour:
       fx_shot: {fileID: 0}
     added_chips: []
     spaces: 0
+    equipped: 1
