@@ -1,10 +1,9 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.AI;
 
-public class EnemyController : MonoBehaviour
-{
+public class Enemy_ControllerKamikaze : MonoBehaviour {
+
     //- Make Universal color system
 
     // Colors
@@ -21,6 +20,7 @@ public class EnemyController : MonoBehaviour
     string damaging_tag2;
     int damaging_layer1;
     int damaging_layer2;
+    public GameObject ThisEnemy;
 
 
     /////////////////////////////////////////////////////
@@ -31,7 +31,7 @@ public class EnemyController : MonoBehaviour
 
     // Navmesh variables
 
-    private NavMeshAgent nav_agent;             // Navmesh object
+    private UnityEngine.AI.NavMeshAgent nav_agent;             // Navmesh object
     private GameObject target;                  // Move towards objective
     //public Transform[] points;                  // Patrol points (unfinished)
     public GameObject home;                     // Enemy return point
@@ -90,11 +90,7 @@ public class EnemyController : MonoBehaviour
     public Material DamageYellowMaterial;
     public Material DamagePinkMaterial;
 
-    public ParticleSystem EffectDestroy;
-    public Transform PosDeadParticle;
-    public bool isKamikaze;
-  
-
+    
 
     // private int despoint;
 
@@ -105,7 +101,7 @@ public class EnemyController : MonoBehaviour
         source = GetComponent<AudioSource>();
 
         target = GameObject.FindWithTag("Player");
-        nav_agent = GetComponent<NavMeshAgent>();
+        nav_agent = GetComponent<UnityEngine.AI.NavMeshAgent>();
 
         detect = GetComponent<DetectionController>();
         shot = GetComponent<ShotEnemy>();
@@ -120,7 +116,7 @@ public class EnemyController : MonoBehaviour
     {
         if (cur_color == Colors.Yellow)
         {
-            GetComponent<EnemyHealthController>().ChangeToYellow();
+            GetComponent<EnemyHealthControllerKamikaze>().ChangeToYellow();
         }
         else if (cur_color == Colors.Magenta)
         {
@@ -141,7 +137,7 @@ public class EnemyController : MonoBehaviour
             //   Debug.Log("Change to yellow");
         }
 
-       // gameObject.layer = 8;
+        // gameObject.layer = 8;
         GameplayManager.GetInstance().ChangeColor(0);
         // Yellow Layer
     }
@@ -155,7 +151,7 @@ public class EnemyController : MonoBehaviour
                                              //  Instantiate(Change_effectPink.gameObject, transform.position, Quaternion.identity);
         }
 
-      //  gameObject.layer = 10;
+        //  gameObject.layer = 10;
         GameplayManager.GetInstance().ChangeColor(2);
     }
     public void RestoreChangeToCyan()
@@ -167,7 +163,7 @@ public class EnemyController : MonoBehaviour
                                              //Instantiate(Change_effectBlue.gameObject, transform.position, Quaternion.identity);
         }
 
-      //  gameObject.layer = 9;
+        //  gameObject.layer = 9;
         GameplayManager.GetInstance().ChangeColor(1); // Cyan Layer
     }
 
@@ -184,7 +180,7 @@ public class EnemyController : MonoBehaviour
                                                     //  Instantiate(Change_effectPink.gameObject, transform.position, Quaternion.identity);
         }
 
-       // gameObject.layer = 8;
+        // gameObject.layer = 8;
         GameplayManager.GetInstance().ChangeColor(0);
     }
     public void ChangeToDamageBlue()
@@ -197,7 +193,7 @@ public class EnemyController : MonoBehaviour
                                                   //  Instantiate(Change_effectPink.gameObject, transform.position, Quaternion.identity);
         }
 
-       // gameObject.layer = 9;
+        // gameObject.layer = 9;
         GameplayManager.GetInstance().ChangeColor(1);
     }
     public void ChangeToDamagePink()
@@ -210,7 +206,7 @@ public class EnemyController : MonoBehaviour
                                                   //  Instantiate(Change_effectPink.gameObject, transform.position, Quaternion.identity);
         }
 
-      //  gameObject.layer = 10;
+        //  gameObject.layer = 10;
         GameplayManager.GetInstance().ChangeColor(2);
     }
 
@@ -254,8 +250,8 @@ public class EnemyController : MonoBehaviour
         if (back_home == true)
         {
             nav_agent.SetDestination(home.transform.position);
-            if(DontShot == false)
-            shot.isShooting = false;
+            if (DontShot == false)
+                shot.isShooting = false;
         }
 
         // Rotate towards player instantly
@@ -272,8 +268,10 @@ public class EnemyController : MonoBehaviour
 
             AttackStopPlayer = true;
             anim.SetBool("AttackStop", AttackStopPlayer);
+            Invoke("DestroyEnemy", 1.5f);
+            //Matar enemigo en 1.5 seg
 
-            //nav_agent.velocity = Vector3.zero;
+            nav_agent.velocity = Vector3.zero;
             nav_agent.isStopped = true; // Se para el enemigo
         }
 
@@ -338,27 +336,13 @@ public class EnemyController : MonoBehaviour
 
     private void KeepDistance()
     {
-        if (isKamikaze == false)
+        if (detect.IsPlayerNear(safe_distance))
         {
-            if (detect.IsPlayerNear(safe_distance))
-            {
-                look_target = true;
-            }
-            else
-                look_target = false;
+            look_target = true;
         }
-        if(isKamikaze == true)
-        {
-            if (detect.IsPlayerNear(safe_distance))
-            {
-                look_target = true;
-                Invoke("DestroyEnemy", 1.5f);
-                nav_agent.velocity = Vector3.zero;
-
-            }
-           // else
-              //  look_target = false;
-        }
+        //if()
+       // else
+        //    look_target = false;
     }
 
     private void ShootTarget()
@@ -399,7 +383,7 @@ public class EnemyController : MonoBehaviour
     {
         if (back_home)
         {
-           // Debug.Log("here");
+            // Debug.Log("here");
             float dist = nav_agent.remainingDistance;
             if (dist != Mathf.Infinity /*&& nav_agent.pathStatus == NavMeshPathStatus.PathComplete*/ && nav_agent.remainingDistance == 0)
             {
@@ -409,7 +393,7 @@ public class EnemyController : MonoBehaviour
 
                 if (patrol != null)
                 {
-                   // Debug.Log("Start again");
+                    // Debug.Log("Start again");
                     patrol.is_patrol = true;
                     patrol.ResetPatrol();
                 }
@@ -488,10 +472,5 @@ public class EnemyController : MonoBehaviour
 
         return Vector3.SignedAngle(transform.forward, projection, Vector3.up) - 180;
     }
-    public void DestroyEnemy()
-    {
-        //Efecto de particulas de explosion
-        Instantiate(EffectDestroy.gameObject, PosDeadParticle.transform.position, Quaternion.identity);
-        Destroy(transform.parent.gameObject);
-    }
+    
 }

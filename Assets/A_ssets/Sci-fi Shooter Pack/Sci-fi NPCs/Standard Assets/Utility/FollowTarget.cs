@@ -8,6 +8,7 @@ public class FollowTarget : MonoBehaviour
     {
         Player,
         Enemy,
+       
         FirePos,
         BackShotEffect,
         Custom
@@ -29,6 +30,7 @@ public class FollowTarget : MonoBehaviour
             case ToFollow.Enemy:
                 TargetIsEnenmy();
                 break;
+           
             case ToFollow.Custom:
                 TargetIsCustom();
                 break;
@@ -38,6 +40,7 @@ public class FollowTarget : MonoBehaviour
             case ToFollow.BackShotEffect:
                 TargetIsBackShotEffect();
                 break;
+           
             default:
                 Debug.Log("No Target To Follow Assign");
                 break;
@@ -67,6 +70,10 @@ public class FollowTarget : MonoBehaviour
     void TargetIsEnenmy()
     {
         target = transform.parent.GetComponentInChildren<EnemyController>().transform.Find("HeadBob").gameObject;
+    }
+    void TargetIsEnenmyKamikaze()
+    {
+        target = transform.parent.GetComponentInChildren<EnemyHealthControllerKamikaze>().transform.Find("HeadBob").gameObject;
     }
 
     // Seguir a elemento escogido
