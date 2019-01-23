@@ -129,6 +129,8 @@ public class IChipDrag : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDra
             chip_form.gameObject.SetActive(false);
             
             this.transform.parent = new_possible_deck;
+            Transform equipped = shadow_copy.transform.Find("Equipped");
+            equipped.gameObject.SetActive(true);
             inv_deck.GetComponentInParent<InventoryPanel>().EquipChip(ichip_data);
         }
         // Colocar objeto en inventario

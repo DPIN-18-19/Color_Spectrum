@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Name: AllChips
   m_EditorClassIdentifier: 
   chips:
-  - id: 1
+  - id: 0001
     name: Chip1
     weight: 10
     player_stats:
@@ -21,6 +21,7 @@ MonoBehaviour:
     weapon_stats:
     - stat_name: Damage
       stat_value: 10
+    equipped: 0
   - id: 2
     name: Chip2
     weight: 20
@@ -30,6 +31,7 @@ MonoBehaviour:
     weapon_stats:
     - stat_name: Damage
       stat_value: 20
+    equipped: 0
   - id: 3
     name: Chip3
     weight: 30
@@ -39,3 +41,4 @@ MonoBehaviour:
     weapon_stats:
     - stat_name: Damage
       stat_value: 30
+    equipped: 0

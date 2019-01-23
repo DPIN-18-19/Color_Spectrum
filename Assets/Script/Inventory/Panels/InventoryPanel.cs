@@ -48,7 +48,16 @@ public class InventoryPanel : MonoBehaviour
             GameObject n_w_chip = Instantiate(weapon_chip_mould);
             n_w_chip.transform.SetParent(i_panel);
             n_w_chip.GetComponent<IWeaponChipDrag>().w_data = i_weapons.i_weapon_chips[i];
-            n_w_chip.GetComponent<IChipData>().data.id = i_weapons.i_weapon_chips[i].id;
+            n_w_chip.GetComponent<IChipData>().data.id = i_weapons.i_weapon_chips[i].id;        // El id de chip es el mismo que el id de chip de arma
+
+            // Comprobar el estado "equipado" y crear copia
+            if(i_weapons.i_weapon_chips[i].equipped)
+            {
+                Debug.Log("Weapon is equipped on load");
+                n_w_chip.AddComponent<Darken>();
+                Destroy(n_w_chip.GetComponent<IWeaponChipDrag>());
+                n_w_chip.transform.Find("Equipped").gameObject.SetActive(true);
+            }
         }
     }
 
