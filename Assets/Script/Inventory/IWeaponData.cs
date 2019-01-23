@@ -7,6 +7,8 @@ public class IWeaponData
 {
     public string id;
     public GunData base_gun;
+    public ChipData ability;
+    public string ability_name;
     float org_cdc, org_dmg, org_rng;
     public List<ChipData> added_chips;
     public int spaces;
@@ -50,11 +52,11 @@ public class IWeaponData
         base_gun.range = org_rng;
     }
 
-    void AddChip(ChipData n_chip)
+    public void AddChip(ChipData n_chip)
     {
         added_chips.Add(n_chip);
 
-        for (int i = 0; i < n_chip.weapon_stats.Capacity; ++i)
+        for (int i = 0; i < n_chip.weapon_stats.Count; ++i)
         {
             switch (n_chip.weapon_stats[i].stat_name)
             {
@@ -73,13 +75,13 @@ public class IWeaponData
         }
     }
 
-    void TakeOutChip(ChipData o_chip)
+    public void TakeOutChip(ChipData o_chip)
     {
         int take_out = added_chips.IndexOf(o_chip);
 
-        if (take_out < added_chips.Capacity)
+        if (take_out < added_chips.Count)
         {
-            for (int i = 0; i < o_chip.weapon_stats.Capacity; ++i)
+            for (int i = 0; i < o_chip.weapon_stats.Count; ++i)
             {
                 switch (o_chip.weapon_stats[i].stat_name)
                 {

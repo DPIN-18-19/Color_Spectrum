@@ -134,6 +134,7 @@ public class DropPanel : MonoBehaviour, IDropHandler, IPointerEnterHandler, IPoi
         switch(panel_type)
         {
             case PanelType.AbilitySlot:
+                GetComponent<AbilityPanel>().AddChipToEquippedWeapon(chip.ichip_data.data);
                 break;
             case PanelType.Inventory:
                 break;
@@ -144,6 +145,7 @@ public class DropPanel : MonoBehaviour, IDropHandler, IPointerEnterHandler, IPoi
                 // Weapon add data is done in a separate function
                 break;
             case PanelType.WeaponSlot:
+                GetComponent<WeaponSlotPanel>().AddChipToEquippedWeapon(chip.ichip_data.data);
                 break;
             default:
                 Debug.Log("Add data to panel of unknown type");

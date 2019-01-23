@@ -56,6 +56,7 @@ public class IChipDrag : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDra
         switch(panel_type)
         {
             case DropPanel.PanelType.AbilitySlot:
+                org_deck.GetComponent<AbilityPanel>().RemoveChipFromEquippedWeapon(ichip_data.data);
                 break;
             case DropPanel.PanelType.Inventory:
             {
@@ -77,6 +78,7 @@ public class IChipDrag : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDra
                 //org_deck.GetComponent<WeaponPanel>().weapon_p_chips.i_weapon_chips.Remove();
                 break;
             case DropPanel.PanelType.WeaponSlot:
+                org_deck.GetComponent<WeaponSlotPanel>().RemoveChipFromEquippedWeapon(ichip_data.data);
                 break;
             default:
                 break;

@@ -40,6 +40,12 @@ public class InventoryPanel : MonoBehaviour
                 Destroy(n_chip.GetComponent<IChipDrag>());
                 n_chip.transform.Find("Equipped").gameObject.SetActive(true);
             }
+
+            // Comprobar si es un chip de habilidad
+            if(i_chips.chips[i].ability != "")
+            {
+                n_chip.GetComponent<IChipData>().chip_type = IChipData.ChipType.Ability;
+            }
         }
 
         // Introducir chips de armas
@@ -69,12 +75,13 @@ public class InventoryPanel : MonoBehaviour
                 return i_panel.GetChild(i).gameObject;
         }
 
+        Debug.Log("Not found");
         return null;
     }
 
     public void EquipChip(IChipData chip)
     {
-        if (chip.chip_type == IChipData.ChipType.Upgrade)
+        if (chip.chip_type == IChipData.ChipType.Upgrade || chip.chip_type == IChipData.ChipType.Ability)
         {
             // Buscar chip con id
             int index = i_chips.chips.FindIndex(x => x.id == chip.data.id);
@@ -89,7 +96,7 @@ public class InventoryPanel : MonoBehaviour
 
     public void UnequipChip(IChipData chip)
     {
-        if (chip.chip_type == IChipData.ChipType.Upgrade)
+        if (chip.chip_type == IChipData.ChipType.Upgrade || chip.chip_type == IChipData.ChipType.Ability)
         {
             // Buscar chip con id
             int index = i_chips.chips.FindIndex(x => x.id == chip.data.id);

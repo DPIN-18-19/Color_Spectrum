@@ -28,30 +28,6 @@ public class WeaponPanel : MonoBehaviour
 
             n_w_chip.GetComponent<IChipData>().data.id = weapon_p_chips.i_weapon_chips[i].id;
 
-            //IWeaponChipDrag w_drag = n_w_chip.GetComponent<IWeaponChipDrag>();
-
-            //if(w_drag)
-            //{
-
-
-            //    Debug.Log("IWeaponChipDrag detected");
-            //        //IChipData the_data = w_drag.ichip_data;
-
-            //    if (w_drag.ichip_data != null)
-            //    {
-            //        Debug.Log("Data detected");
-            //    }
-            //    else
-            //        Debug.Log("Data not detected");
-
-            //    //if (w_drag.ichip_data.chip_type == IChipData.ChipType.Weapon)
-            //    //    Debug.Log("id is " + w_drag.ichip_data.chip_type);
-            //}
-            //else
-            //    Debug.Log("IWeaponChipDrag not detected");
-
-            //w_drag.ichip_data.data.id = weapon_p_chips.i_weapon_chips[i].id;
-
             // Show weapon chip form
             Transform weapon_panel = n_w_chip.transform.Find("WeaponForm");
             weapon_panel.gameObject.SetActive(true);
