@@ -19,36 +19,24 @@ public class damageGrenade : MonoBehaviour {
     }
     private void OnTriggerEnter(Collider other)
     {
-        Debug.Log("FAROFrente");
+       // Debug.Log("FAROFrente");
         if ( other.gameObject.tag == "EnemyPink" || other.gameObject.tag == "EnemyBlue")
         {
-          //  if (DamageTime <= 0)
+            RaycastHit hit;
+            Vector3 dir = (other.transform.position - transform.position).normalized;
+            if (Physics.Raycast(transform.position, dir, out hit, 6.05f))
+            //  if (DamageTime <= 0)
             {
-                other.GetComponent<EnemyHealthController>().GetDamage(damage);
-                
+                if (hit.transform.gameObject.tag != "Blue" && hit.transform.gameObject.tag != "Pink")
+                {
+                    Debug.Log("DañoAmariillo");
+                    other.GetComponent<EnemyHealthController>().GetDamage(damage);
+                }
+                Debug.Log(hit.transform.name);
                 // HacerDañoYellow();
-                Debug.Log("DañoAmariillo");
+                
             }
         }
-       // if (cambioColor.GetColor() == 1 && other.gameObject.tag == "EnemyYellow" || other.gameObject.tag == "EnemyPink")
-      //  {
-      //      Debug.Log("TrueDaño");
-         //   if (DamageTime <= 0)
-     //       {
-       //         other.GetComponent<EnemyHealthController>().GetDamage(damage);
-                // HacerDañoBlue();
-      //          Debug.Log("DañoAzul");
-      //      }
-    //    }
-     //   if (cambioColor.GetColor() == 2 && other.gameObject.tag == "EnemyYellow" || other.gameObject.tag == "EnemyBlue")
-   //     {
-           // if (DamageTime <= 0)
-       //     {
-       //         other.GetComponent<EnemyHealthController>().GetDamage(damage);
-        //        // HacerDañoPink();
-       //         Debug.Log("DañoRosa");
-       //     }
-    //    }
-
+   
     }
 }

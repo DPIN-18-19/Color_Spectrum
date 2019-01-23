@@ -25,10 +25,20 @@ public class damage_grenade_blue : MonoBehaviour {
         if (other.gameObject.tag == "EnemyYellow" || other.gameObject.tag == "EnemyPink")
         {
             //  if (DamageTime <= 0)
+            RaycastHit hit;
+            Vector3 dir = (other.transform.position - transform.position).normalized;
+            if (Physics.Raycast(transform.position, dir, out hit, 6.05f))
+
+            //  if (DamageTime <= 0)
             {
-                other.GetComponent<EnemyHealthController>().GetDamage(damage);
+                if (hit.transform.gameObject.tag != "Yellow" && hit.transform.gameObject.tag != "Pink")
+                {
+                    Debug.Log("DañoBlue");
+                    other.GetComponent<EnemyHealthController>().GetDamage(damage);
+                }
+                Debug.Log(hit.transform.name);
                 // HacerDañoYellow();
-                Debug.Log("DañoAzul");
+
             }
         }
         // if (cambioColor.GetColor() == 1 && other.gameObject.tag == "EnemyYellow" || other.gameObject.tag == "EnemyPink")

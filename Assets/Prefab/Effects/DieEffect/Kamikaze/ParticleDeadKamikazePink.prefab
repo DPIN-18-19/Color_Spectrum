@@ -22,6 +22,7 @@ GameObject:
   - component: {fileID: 198908611744529508}
   - component: {fileID: 199393528946793072}
   - component: {fileID: 135612961552435870}
+  - component: {fileID: 114766222067577954}
   m_Layer: 10
   m_Name: ParticleDeadKamikazePink
   m_TagString: Untagged
@@ -42,6 +43,18 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: -90, y: 0, z: 0}
+--- !u!114 &114766222067577954
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1973397203347294}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9a4aac3db75bac34c86773b3444d5731, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  damage: 15
 --- !u!135 &135612961552435870
 SphereCollider:
   m_ObjectHideFlags: 1
