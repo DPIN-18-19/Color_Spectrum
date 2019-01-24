@@ -24,8 +24,11 @@ public class WeaponSlotPanel : MonoBehaviour
 
     void LoadChips()
     {
+        Debug.Log("Here");
         int index = w_panel.GetComponent<WeaponPanel>().weapon_p_chips.i_weapon_chips.FindIndex(x => x.id == w_id);
         List<ChipData> chips = w_panel.GetComponent<WeaponPanel>().weapon_p_chips.i_weapon_chips[index].added_chips;
+
+        Debug.Log("Here");
 
         for(int i = 0; i < chips.Count; ++i)
         {

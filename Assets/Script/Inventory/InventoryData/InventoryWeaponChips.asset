@@ -18,7 +18,7 @@ MonoBehaviour:
       gun: {fileID: 0}
       bullet: {fileID: 0}
       speed: 0.2
-      damage: 5
+      damage: 25
       range: 5
       spray: 5
       cadence: 0.5
@@ -27,6 +27,37 @@ MonoBehaviour:
       weight: 10
       ability: 
       fx_shot: {fileID: 0}
-    added_chips: []
+    ability:
+      id: 
+      name: 
+      weight: 0
+      player_stats: []
+      weapon_stats: []
+      ability: 
+      equipped: 0
+    ability_name: 
+    added_chips:
+    - id: 1
+      name: Chip1
+      weight: 10
+      player_stats:
+      - stat_name: Health
+        stat_value: 10
+      weapon_stats:
+      - stat_name: Damage
+        stat_value: 10
+      ability: 
+      equipped: 1
+    - id: 1
+      name: Chip1
+      weight: 10
+      player_stats:
+      - stat_name: Health
+        stat_value: 10
+      weapon_stats:
+      - stat_name: Damage
+        stat_value: 10
+      ability: 
+      equipped: 1
     spaces: 0
     equipped: 1
