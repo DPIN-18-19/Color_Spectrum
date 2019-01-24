@@ -22,7 +22,7 @@ MonoBehaviour:
     cadence: 0.5
     num_bullets: 1
     automatic: 1
-    ability: Escudo
+    ability: CambioAuto
     fx_shot: {fileID: 8300000, guid: 2c270755a083f394bb2ccf4037733bea, type: 3}
   - name: Sniper
     gun: {fileID: 1019867649845852, guid: 8d3cf347f9da1ed4dbdfa37f9bbf9a39, type: 2}
@@ -34,7 +34,7 @@ MonoBehaviour:
     cadence: 2
     num_bullets: 1
     automatic: 0
-    ability: CambioColor
+    ability: Escudo
     fx_shot: {fileID: 8300000, guid: 358d64b831ae7734c95d9b884c8b2929, type: 3}
   - name: Shotgun
     gun: {fileID: 1300654682825010, guid: 2c8dae5336223084e93d57e722c2aa71, type: 2}

@@ -12,19 +12,24 @@ public class GameplayManager : MonoBehaviour
     public float health;
     public float max_health;
 
+    public bool isDash;
     public Text t_dash_cooldown;       // Player´s dash cooldown in UI
     public float dash_cooldown;
     public bool dash_activo;
 
+
+    public bool isGrenade;
     public Text t_grenade_cooldown;       // Player´s dash cooldown in UI
     public float grenade_cooldown;
     public bool grenade_activo;
 
+    public bool isCambioColor;
     public Text t_cambio_cooldown;      // Player´s cambio color cooldown in UI
     public float cambio_cooldown;
     public bool cambio_activo;
     public bool usarhabilidad;
 
+    public bool is_Shield;
     public Text t_Shield_cooldown;      // Player´s cambio color cooldown in UI
     public float shield_cooldown;
     public bool Shield_activo;
@@ -323,15 +328,19 @@ public class GameplayManager : MonoBehaviour
 
     public void CambioColor(bool activo)
     {
+        //Debug.Log("Entro por aqui");
         switch (activo)
         {
+              
             case false:
                 cambio_icon.SetActive(false);
                 no_cambio_icon.SetActive(true);
+                //Debug.Log("Entro por aqui");
                 break;
             case true:
                 cambio_icon.SetActive(true);
                 no_cambio_icon.SetActive(false);
+               // Debug.Log("Entro por aqui1");
                 break;
         }
 

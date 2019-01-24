@@ -5,7 +5,7 @@ using UnityEngine;
 public class AutoColor : MonoBehaviour
 {
     public bool use_ability;        // Dash to be used checker
-    public bool is_active;          // Ability activated checker
+    public bool is_active = false;          // Ability activated checker
 
     public float c_cooldown;        // Cooldown counter
     private float cooldown;         // Cooldown to be applied

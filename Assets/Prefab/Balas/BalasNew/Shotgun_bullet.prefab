@@ -20,6 +20,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4139983251047912}
   - component: {fileID: 114390799705299712}
+  - component: {fileID: 114825409783908450}
   m_Layer: 0
   m_Name: Shotgun_bullet
   m_TagString: Untagged
@@ -428,6 +429,7 @@ MonoBehaviour:
   DestroyEffectPink: {fileID: 0}
   DestroyEffectBlue: {fileID: 0}
   DestroyBulletFx: {fileID: 0}
+  Sniper: 0
   is_lerping: 0
 --- !u!114 &114408738321576580
 MonoBehaviour:
@@ -440,6 +442,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b297668dff0003e40aefd4b8a160eaa3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &114825409783908450
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1016495751108764}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 246cc59c7a84ea44f87f6b70acfe30c5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  who: 2
+  custom_target: {fileID: 0}
+  Offset: {x: 0, y: 0, z: 0}
 --- !u!198 &198046953440648826
 ParticleSystem:
   m_ObjectHideFlags: 1

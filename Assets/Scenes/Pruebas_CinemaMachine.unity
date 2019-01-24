@@ -1930,7 +1930,7 @@ Prefab:
       objectReference: {fileID: 70008239}
     - target: {fileID: 4976748514391118, guid: 17637a8ec01a52745a5eedcf0fbf50e3, type: 2}
       propertyPath: m_LocalPosition.x
-      value: -7.6634064
+      value: -4.9234066
       objectReference: {fileID: 0}
     - target: {fileID: 4976748514391118, guid: 17637a8ec01a52745a5eedcf0fbf50e3, type: 2}
       propertyPath: m_LocalPosition.y
@@ -1966,7 +1966,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4976748514391118, guid: 17637a8ec01a52745a5eedcf0fbf50e3, type: 2}
       propertyPath: m_LocalRotation.y
-      value: 0.0000050557023
+      value: 0.000005055704
       objectReference: {fileID: 0}
     - target: {fileID: 4976748514391118, guid: 17637a8ec01a52745a5eedcf0fbf50e3, type: 2}
       propertyPath: m_LocalRotation.z
@@ -8310,16 +8310,20 @@ MonoBehaviour:
   t_health: {fileID: 1179071496}
   health: 0
   max_health: 50
+  isDash: 0
   t_dash_cooldown: {fileID: 782861864}
   dash_cooldown: 0
   dash_activo: 0
+  isGrenade: 0
   t_grenade_cooldown: {fileID: 1124318214}
   grenade_cooldown: 0
   grenade_activo: 0
+  isCambioColor: 0
   t_cambio_cooldown: {fileID: 2091850597}
   cambio_cooldown: 0
   cambio_activo: 0
   usarhabilidad: 0
+  is_Shield: 0
   t_Shield_cooldown: {fileID: 1533962834}
   shield_cooldown: 0
   Shield_activo: 0
@@ -17013,7 +17017,7 @@ Prefab:
     m_Modifications:
     - target: {fileID: 4087462339696920, guid: 5955951cd8788f1468147aee51808139, type: 2}
       propertyPath: m_LocalPosition.x
-      value: -31.4
+      value: -28.66
       objectReference: {fileID: 0}
     - target: {fileID: 4087462339696920, guid: 5955951cd8788f1468147aee51808139, type: 2}
       propertyPath: m_LocalPosition.y
@@ -18875,7 +18879,7 @@ Prefab:
     m_Modifications:
     - target: {fileID: 4317092712101460, guid: 7f9064efd292f0c44a61e62765ad1d35, type: 2}
       propertyPath: m_LocalPosition.x
-      value: 13.603735
+      value: 16.343735
       objectReference: {fileID: 0}
     - target: {fileID: 4317092712101460, guid: 7f9064efd292f0c44a61e62765ad1d35, type: 2}
       propertyPath: m_LocalPosition.y
@@ -18891,7 +18895,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4317092712101460, guid: 7f9064efd292f0c44a61e62765ad1d35, type: 2}
       propertyPath: m_LocalRotation.y
-      value: 0.0000050557023
+      value: 0.000005055704
       objectReference: {fileID: 0}
     - target: {fileID: 4317092712101460, guid: 7f9064efd292f0c44a61e62765ad1d35, type: 2}
       propertyPath: m_LocalRotation.z
