@@ -12,13 +12,13 @@ MonoBehaviour:
   m_Name: EquippedWeapons
   m_EditorClassIdentifier: 
   i_weapon_chips:
-  - id: Gun1
+  - id: Gun2
     base_gun:
       name: 
       gun: {fileID: 0}
       bullet: {fileID: 0}
       speed: 0.2
-      damage: -145
+      damage: -175
       range: 5
       spray: 5
       cadence: 0.5
@@ -36,37 +36,6 @@ MonoBehaviour:
       ability: 
       equipped: 0
     ability_name: 
-    added_chips: []
-    slots: 3
-    equipped: 1
-  - id: Gun2
-    base_gun:
-      name: 
-      gun: {fileID: 0}
-      bullet: {fileID: 0}
-      speed: 0.2
-      damage: -145
-      range: 5
-      spray: 5
-      cadence: 0.5
-      num_bullets: 1
-      automatic: 1
-      weight: 10
-      ability: 
-      fx_shot: {fileID: 0}
-    ability:
-      id: 1
-      name: Chip1
-      weight: 10
-      player_stats:
-      - stat_name: Health
-        stat_value: 10
-      weapon_stats:
-      - stat_name: Damage
-        stat_value: 10
-      ability: Dash
-      equipped: 1
-    ability_name: Dash
     added_chips: []
     slots: 3
     equipped: 1

@@ -10,18 +10,21 @@ public class InventoryPanel : MonoBehaviour
     public IWeaponChipList i_weapons;
 
     Transform i_panel;
+    Transform wei_panel;
     public GameObject chip_mould;
     public GameObject weapon_chip_mould;
 
     private void Awake()
     {
         i_panel = transform.Find("InventoryPanel");
+        wei_panel = GameObject.Find("Weight").transform;
         LoadChips();
     }
 
     // Use this for initialization
     void Start ()
     {
+
 	}
 
     void LoadChips()
@@ -91,6 +94,8 @@ public class InventoryPanel : MonoBehaviour
             int index = i_weapons.i_weapon_chips.FindIndex(x => x.id == chip.data.id);
             i_weapons.i_weapon_chips[index].equipped = true;
         }
+
+        wei_panel.GetComponent<WeightPanel>().CalculateWeight();
     }
 
     public void UnequipChip(IChipData chip)
@@ -106,5 +111,7 @@ public class InventoryPanel : MonoBehaviour
             int index = i_weapons.i_weapon_chips.FindIndex(x => x.id == chip.data.id);
             i_weapons.i_weapon_chips[index].equipped = false;
         }
+
+        wei_panel.GetComponent<WeightPanel>().CalculateWeight();
     }
 }

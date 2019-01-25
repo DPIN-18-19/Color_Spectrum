@@ -103,8 +103,21 @@ public class IWeaponData
         }
     }
 
-    void GetWeight()
+    public float GetWeight()
     {
+        float weight = 0;
 
+        // Calculate chips weight
+        for(int i = 0; i < added_chips.Count; ++i)
+        {
+            weight += added_chips[i].weight;
+        }
+
+        // Calculate ability weight
+        if (ability != null)
+            weight += ability.weight;
+        
+        // Return calculated whole weapon weight
+        return weight + base_gun.weight;
     }
 }
