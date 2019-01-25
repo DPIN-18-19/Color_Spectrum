@@ -15,6 +15,13 @@ public class DropPanel : MonoBehaviour, IDropHandler, IPointerEnterHandler, IPoi
     }
     public PanelType panel_type;
 
+    Transform weight_panel;
+
+    private void Start()
+    {
+        weight_panel = GameObject.Find("Weight").transform;
+    }
+
     public void OnPointerEnter(PointerEventData p_event_data)
     {
         if (p_event_data.pointerDrag == null)
@@ -72,6 +79,7 @@ public class DropPanel : MonoBehaviour, IDropHandler, IPointerEnterHandler, IPoi
                 d.new_possible_deck = d.inv_deck;
                 return;
             }
+            
 
             //if(panel_type == PanelType.Weapon)
             //{
@@ -89,11 +97,21 @@ public class DropPanel : MonoBehaviour, IDropHandler, IPointerEnterHandler, IPoi
                     IWeaponChipDrag w = p_event_data.pointerDrag.GetComponent<IWeaponChipDrag>();
                     if (w != null)
                     {
+                        if (!weight_panel.GetComponent<WeightPanel>().CanFitChip(w.w_data.GetWeight()))
+                        {
+                            w.new_possible_deck = w.inv_deck;
+                            return;
+                        }
                         AddWeapon(w);
                         return;
                     }
                 }
 
+                if (!weight_panel.GetComponent<WeightPanel>().CanFitChip(d.ichip_data.data.weight))
+                {
+                    d.new_possible_deck = d.inv_deck;
+                    return;
+                }
                 AddData(d);
             }
 

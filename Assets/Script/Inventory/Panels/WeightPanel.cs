@@ -53,4 +53,12 @@ public class WeightPanel : MonoBehaviour
         //Update text
         weight_text.text = weight.ToString() + " / " + max_weight.ToString();
     }
+
+    public bool CanFitChip(float n_weight)
+    {
+        if (n_weight + weight < max_weight)
+            return true;
+
+        return false;
+    }
 }
