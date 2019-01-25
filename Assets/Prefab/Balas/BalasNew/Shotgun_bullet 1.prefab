@@ -327,7 +327,7 @@ MeshRenderer:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1603424198375044}
-  m_Enabled: 1
+  m_Enabled: 0
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
@@ -417,6 +417,9 @@ MonoBehaviour:
   DestroyEffectPink: {fileID: 0}
   DestroyEffectBlue: {fileID: 0}
   DestroyBulletFx: {fileID: 0}
+  TimeTrasparenteMat: 0
+  Trasparente: 0
+  MaterialsPlayer: {fileID: 0}
   Sniper: 0
   increase_time: 0.2
   is_lerping: 0
