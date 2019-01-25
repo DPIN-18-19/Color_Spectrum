@@ -38,6 +38,9 @@ public class PlayerRenderer : MonoBehaviour
     public Material BlackBlueMaterial;
     public Material BlackPinkMaterial;
 
+    public Material TrasparentYellow;
+    public Material TrasparentBlue;
+    public Material TrasparentPink;
     // Use this for initialization
     void Start ()
     {
@@ -162,6 +165,22 @@ public class PlayerRenderer : MonoBehaviour
                 break;
             case 2:
                 cur_mat = BlackPinkMaterial;    // Apply player material
+                break;
+        }
+        ApplyColor();
+    }
+    public void SameColor()
+    {
+        switch (cur_color)
+        {
+            case 0:
+                cur_mat = TrasparentYellow;    // Apply player material
+                break;
+            case 1:
+                cur_mat = TrasparentBlue;    // Apply player material
+                break;
+            case 2:
+                cur_mat = TrasparentPink;    // Apply player material
                 break;
         }
         ApplyColor();

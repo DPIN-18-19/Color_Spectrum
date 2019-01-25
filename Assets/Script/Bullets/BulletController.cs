@@ -37,8 +37,12 @@ public class BulletController : MonoBehaviour
     private bool BlueDestroyeffect;
     public AudioClip DestroyBulletFx;
 
+    public float TimeTrasparenteMat;
+    private float MaxTimeTrasparenteMat;
+    public bool Trasparente;
 
 
+    public PlayerRenderer MaterialsPlayer;
 
     public bool Sniper;
 
@@ -48,9 +52,11 @@ public class BulletController : MonoBehaviour
     void Start()
     {
         m_collider = GetComponent<Collider>();
+        MaterialsPlayer = GameObject.Find("Player_Naomi").GetComponent<PlayerRenderer>();
 
         StartCoroutine(DestroyBullet());
     }
+
 
     // Bullet variable initializer
     public virtual void AddBulletInfo(int n_color, float n_speed, Vector3 n_dir, float n_damage, float n_range, bool n_friend)
@@ -116,6 +122,22 @@ public class BulletController : MonoBehaviour
         //transform.Translate(transform.forward * bullet_speed * Time.deltaTime);
         //transform.Translate(transform.forward);
         //transform.position += bullet_dir * -bullet_speed * Time.deltaTime;
+
+        if (Trasparente == true)
+        {
+            MaterialsPlayer.SameColor();
+            TimeTrasparenteMat -= Time.deltaTime;
+        }
+        if (Trasparente == false && TimeTrasparenteMat < 0)
+        {
+            MaterialsPlayer.ResetColor();
+            TimeTrasparenteMat = MaxTimeTrasparenteMat;
+
+        }
+        if (TimeTrasparenteMat < 0)
+        {
+            Trasparente = false;
+        }
     }
 
     // If not collided with anything, destroy
@@ -169,12 +191,21 @@ public class BulletController : MonoBehaviour
             {
                 // Taking damage to player
                 if (col.gameObject.GetComponent<ColorChangingController>().GetColor() != bullet_color)
+                {
                     col.gameObject.SendMessage("GetDamage", bullet_damage);
+                    Destroy(gameObject);
+                }
                 // Restoring player health
                 else
-                    col.gameObject.SendMessage("RestoreHealth", bullet_damage);
+                {
+                    Debug.Log("Paso");
+                    m_collider.enabled = !m_collider.enabled;
+                    Trasparente = true;
+                    Invoke("ReactivateCollision", 0.5f);
+                    //  col.gameObject.SendMessage("RestoreHealth", bullet_damage);
+                }
 
-                Destroy(gameObject);
+                
             }
             // Player bullet
             //- Bug here
@@ -272,7 +303,10 @@ public class BulletController : MonoBehaviour
                     col.gameObject.SendMessage("GetDamage", bullet_damage);
                 // Restoring player health
                 else
-                    col.gameObject.SendMessage("RestoreHealth", bullet_damage);
+                {
+                  
+                    //   col.gameObject.SendMessage("RestoreHealth", bullet_damage);
+                }
 
                 Debug.Log("Destry enemy bullet11");
                 Destroy(gameObject);
