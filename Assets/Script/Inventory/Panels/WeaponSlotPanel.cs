@@ -24,43 +24,28 @@ public class WeaponSlotPanel : MonoBehaviour
 
     void LoadChips()
     {
-        Debug.Log("Here");
         int index = w_panel.GetComponent<WeaponPanel>().weapon_p_chips.i_weapon_chips.FindIndex(x => x.id == w_id);
-        List<ChipData> chips = w_panel.GetComponent<WeaponPanel>().weapon_p_chips.i_weapon_chips[index].added_chips;
-
-        Debug.Log("Here");
-
-        for(int i = 0; i < chips.Count; ++i)
+        // Check if there are any weapons to be loaded
+        if (index != -1)
         {
-            GameObject n_chip = Instantiate(chip_mould);
-            n_chip.transform.SetParent(transform);
-            n_chip.GetComponent<IChipData>().data = chips[i];
-
-            if(chips[i].equipped)
+            List<ChipData> chips = w_panel.GetComponent<WeaponPanel>().weapon_p_chips.i_weapon_chips[index].added_chips;
+            
+            for (int i = 0; i < chips.Count; ++i)
             {
-                if (i_panel.GetComponent<InventoryPanel>())
-                    n_chip.GetComponent<IChipDrag>().shadow_copy = i_panel.GetComponent<InventoryPanel>().SearchChip(chips[i]);
-                else
-                    Debug.Log("There was an error loading character panel");
+                GameObject n_chip = Instantiate(chip_mould);
+                n_chip.transform.SetParent(transform);
+                n_chip.GetComponent<IChipData>().data = chips[i];
+
+                if (chips[i].equipped)
+                {
+                    if (i_panel.GetComponent<InventoryPanel>())
+                        n_chip.GetComponent<IChipDrag>().shadow_copy = i_panel.GetComponent<InventoryPanel>().SearchChip(chips[i]);
+                    else
+                        Debug.Log("There was an error loading character panel");
+                }
+
             }
-
         }
-
-        //for (int i = 0; i < wslot_p_chips.chips.Count; ++i)
-        //{
-        //    GameObject n_chip = Instantiate(chip_mould);
-        //    n_chip.transform.SetParent(transform);
-        //    n_chip.GetComponent<IChipData>().data = wslot_p_chips.chips[i];
-
-
-        //if (character_p_chips.chips[i].equipped)
-        //{
-        //    if (i_panel.GetComponent<InventoryPanel>())
-        //        n_chip.GetComponent<IChipDrag>().shadow_copy = i_panel.GetComponent<InventoryPanel>().SearchChip(character_p_chips.chips[i]);
-        //    else
-        //        Debug.Log("There was an error loading character panel");
-        //}
-        //}
     }
 
     public void AddChipToEquippedWeapon(ChipData chip)
@@ -69,12 +54,16 @@ public class WeaponSlotPanel : MonoBehaviour
         w_panel.GetComponent<WeaponPanel>().weapon_p_chips.i_weapon_chips[index].AddChip(chip);
 
         // Is neccesary updating inventory weapon chip?
-        //i_panel.GetComponent<InventoryPanel>().
+        index = i_panel.GetComponent<InventoryPanel>().i_weapons.i_weapon_chips.FindIndex(x => x.id == w_id);
+        i_panel.GetComponent<InventoryPanel>().i_weapons.i_weapon_chips[index].AddChip(chip);
     }
 
     public void RemoveChipFromEquippedWeapon(ChipData chip)
     {
         int index = w_panel.GetComponent<WeaponPanel>().weapon_p_chips.i_weapon_chips.FindIndex(x => x.id == w_id);
         w_panel.GetComponent<WeaponPanel>().weapon_p_chips.i_weapon_chips[index].TakeOutChip(chip);
+
+        index = i_panel.GetComponent<InventoryPanel>().i_weapons.i_weapon_chips.FindIndex(x => x.id == w_id);
+        i_panel.GetComponent<InventoryPanel>().i_weapons.i_weapon_chips[index].TakeOutChip(chip);
     }
 }

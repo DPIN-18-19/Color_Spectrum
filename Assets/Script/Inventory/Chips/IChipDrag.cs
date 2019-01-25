@@ -45,7 +45,7 @@ public class IChipDrag : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDra
         
         RemoveChip();                                                   // Realizar operaciones necesarias al sacar coger un chip
 
-        this.transform.parent = canvas;                                 // Sacar fuera de area al objeto
+        this.transform.SetParent(canvas);                                 // Sacar fuera de area al objeto
         GetComponent<CanvasGroup>().blocksRaycasts = false;             // Permitir hacer raycast de puntero
     }
 
@@ -130,7 +130,7 @@ public class IChipDrag : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDra
             Transform chip_form = transform.Find("ChipForm");
             chip_form.gameObject.SetActive(false);
             
-            this.transform.parent = new_possible_deck;
+            this.transform.SetParent(new_possible_deck);
             Transform equipped = shadow_copy.transform.Find("Equipped");
             equipped.gameObject.SetActive(true);
             inv_deck.GetComponentInParent<InventoryPanel>().EquipChip(ichip_data);
@@ -139,7 +139,7 @@ public class IChipDrag : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDra
         else if (new_possible_deck.GetComponentInParent<DropPanel>().panel_type == DropPanel.PanelType.Inventory)
         {
             // Colocar objeto en zona de retorno en posición de copia
-            this.transform.parent = new_possible_deck;
+            this.transform.SetParent(new_possible_deck);
             this.transform.SetSiblingIndex(shadow_copy.transform.GetSiblingIndex());
             Destroy(shadow_copy);
 
@@ -158,7 +158,7 @@ public class IChipDrag : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDra
         else
         {
             // Colocar objeto en zona de retorno
-            this.transform.parent = new_possible_deck;
+            this.transform.SetParent(new_possible_deck);
 
             // Equipar chip
             Transform equipped = shadow_copy.transform.Find("Equipped");

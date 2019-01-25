@@ -7,7 +7,7 @@ public class InventoryPanel : MonoBehaviour
     [SerializeField]
     private ChipList i_chips;
     [SerializeField]
-    private IWeaponChipList i_weapons;
+    public IWeaponChipList i_weapons;
 
     Transform i_panel;
     public GameObject chip_mould;
