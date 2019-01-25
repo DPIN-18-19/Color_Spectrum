@@ -11,7 +11,7 @@ public class IWeaponData
     public string ability_name;
     float org_cdc, org_dmg, org_rng;
     public List<ChipData> added_chips;
-    public int spaces;
+    public int slots = 3;
     public bool equipped;
 
     private void Start()

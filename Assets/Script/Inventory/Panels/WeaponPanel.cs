@@ -46,4 +46,27 @@ public class WeaponPanel : MonoBehaviour
             }
         }
     }
+
+    public void CheckCorrectOrder()
+    {
+        for(int i = 0; i < transform.childCount; ++i)
+        {
+            // Check if current weapon is at correct position
+            if(transform.GetChild(i).GetComponent<IChipData>().data.id != weapon_p_chips.i_weapon_chips[i].id)
+            {
+                //Search Correct position
+                for(int j = i; j < weapon_p_chips.i_weapon_chips.Count; ++j)
+                {
+                    // Search where weapon is actually stored
+                    if(transform.GetChild(i).GetComponent<IChipData>().data.id == weapon_p_chips.i_weapon_chips[j].id)
+                    {
+                        // Swap
+                        IWeaponData temp = weapon_p_chips.i_weapon_chips[j];
+                        weapon_p_chips.i_weapon_chips[j] = weapon_p_chips.i_weapon_chips[i];
+                        weapon_p_chips.i_weapon_chips[i] = temp;
+                    }
+                }
+            }
+        }
+    }
 }

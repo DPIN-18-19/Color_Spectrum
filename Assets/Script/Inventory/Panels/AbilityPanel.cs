@@ -32,8 +32,6 @@ public class AbilityPanel : MonoBehaviour
 
             if (chip.ability != "")
             {
-                Debug.Log("Ability is " + chip.ability);
-
                 GameObject n_chip = Instantiate(chip_mould);
                 n_chip.transform.SetParent(transform);
                 n_chip.GetComponent<IChipData>().data = chip;
@@ -44,8 +42,6 @@ public class AbilityPanel : MonoBehaviour
                     if (i_panel.GetComponent<InventoryPanel>())
                     {
                         n_chip.GetComponent<IChipDrag>().shadow_copy = i_panel.GetComponent<InventoryPanel>().SearchChip(chip);
-
-                        Debug.Log(n_chip.GetComponent<IChipDrag>().shadow_copy.transform.name);
                     }
                     else
                         Debug.Log("There was an error loading character panel");

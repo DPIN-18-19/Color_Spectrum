@@ -67,12 +67,18 @@ public class DropPanel : MonoBehaviour, IDropHandler, IPointerEnterHandler, IPoi
         IChipDrag d = p_event_data.pointerDrag.GetComponent<IChipDrag>();
         if (d != null)
         {
-            if(panel_type == PanelType.Weapon)
+            if (!ChipLimit())
             {
-                // Limit the amount of chips the panel can have
-                if (transform.childCount >= GetComponentInParent<WeaponPanel>().weapon_slots)
-                    return;
+                d.new_possible_deck = d.inv_deck;
+                return;
             }
+
+            //if(panel_type == PanelType.Weapon)
+            //{
+            //    // Limit the amount of chips the panel can have
+            //    if (transform.childCount >= GetComponentInParent<WeaponPanel>().weapon_slots)
+            //        return;
+            //}
 
             d.new_possible_deck = this.transform;
 
@@ -92,6 +98,28 @@ public class DropPanel : MonoBehaviour, IDropHandler, IPointerEnterHandler, IPoi
             }
 
         }
+    }
+
+    bool ChipLimit()
+    {
+        // Limit the amount of chips the panel can have
+        if (panel_type == PanelType.Weapon)
+        {
+            if (transform.childCount < GetComponentInParent<WeaponPanel>().weapon_slots)
+                return true;
+        }
+        else if(panel_type == PanelType.WeaponSlot)
+        {
+            if (transform.childCount < GetComponent<WeaponSlotPanel>().w_slots)
+                return true;
+        }
+        else if(panel_type == PanelType.AbilitySlot)
+        {
+            if (transform.childCount < 1)
+                return true;
+        }
+        // Empy slot was found
+        return false;
     }
 
     bool ChipsFilter(IChipDrag chip)
@@ -156,5 +184,7 @@ public class DropPanel : MonoBehaviour, IDropHandler, IPointerEnterHandler, IPoi
     void AddWeapon(IWeaponChipDrag chip)
     {
         GetComponent<WeaponPanel>().weapon_p_chips.i_weapon_chips.Add(chip.w_data);
+
+        GetComponent<WeaponPanel>().CheckCorrectOrder();
     }
 }

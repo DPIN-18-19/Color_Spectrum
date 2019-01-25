@@ -59,7 +59,6 @@ public class InventoryPanel : MonoBehaviour
             // Comprobar el estado "equipado" y crear copia
             if(i_weapons.i_weapon_chips[i].equipped)
             {
-                Debug.Log("Weapon is equipped on load");
                 n_w_chip.AddComponent<Darken>();
                 Destroy(n_w_chip.GetComponent<IWeaponChipDrag>());
                 n_w_chip.transform.Find("Equipped").gameObject.SetActive(true);

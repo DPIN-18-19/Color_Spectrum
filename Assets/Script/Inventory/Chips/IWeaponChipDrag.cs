@@ -69,7 +69,7 @@ public class IWeaponChipDrag : IChipDrag
     {
         if (weapon_deck.GetComponentInParent<DropPanel>().panel_type == DropPanel.PanelType.Weapon)
         {
-            Debug.Log("Updating weapon hole");
+            //Debug.Log("Updating weapon hole");
             weapon_slot.transform.SetParent(weapon_deck);
 
             // Posicion hueco en el orden

@@ -10,6 +10,8 @@ public class WeaponSlotPanel : MonoBehaviour
 
     string w_id = "";
 
+    public int w_slots = 3;
+
     public GameObject chip_mould;
 
     // Use this for initialization
@@ -19,6 +21,7 @@ public class WeaponSlotPanel : MonoBehaviour
         w_panel = GameObject.Find("WeaponPanel").transform;
         w_chip = GetComponentInParent<IWeaponChipDrag>().transform;
         w_id = w_chip.GetComponent<IWeaponChipDrag>().w_data.id;
+        w_slots = w_chip.GetComponent<IWeaponChipDrag>().w_data.slots;
         LoadChips();
     }
 
