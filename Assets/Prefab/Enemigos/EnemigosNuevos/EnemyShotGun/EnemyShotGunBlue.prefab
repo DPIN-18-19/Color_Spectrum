@@ -1021,6 +1021,21 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+--- !u!1 &1968389752590260
+GameObject:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 4689963709786444}
+  m_Layer: 9
+  m_Name: PosDeadParticle
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
 --- !u!1 &1969492302167384
 GameObject:
   m_ObjectHideFlags: 1
@@ -1359,7 +1374,7 @@ Transform:
   - {fileID: 4003897947117492}
   - {fileID: 4142510488571432}
   m_Father: {fileID: 4640155199209430}
-  m_RootOrder: 1
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &4352343906046958
 Transform:
@@ -1410,7 +1425,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1257885355601764}
   m_LocalRotation: {x: -0, y: -0.99878544, z: -0, w: 0.04927197}
-  m_LocalPosition: {x: 332.76718, y: -3.1000023, z: -185.97714}
+  m_LocalPosition: {x: 21.048086, y: 0.14763665, z: 6.9680386}
   m_LocalScale: {x: 1.9302557, y: 1.4431446, z: 1.7865485}
   m_Children:
   - {fileID: 224216206570433664}
@@ -1483,7 +1498,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 4640155199209430}
-  m_RootOrder: 2
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &4486584446579680
 Transform:
@@ -1663,6 +1678,7 @@ Transform:
   m_LocalPosition: {x: -0.0000038495, y: 0.052, z: -0.0026589}
   m_LocalScale: {x: 1.0883, y: 1.0883, z: 1.0883}
   m_Children:
+  - {fileID: 4689963709786444}
   - {fileID: 4703072636812384}
   - {fileID: 4299719946770082}
   - {fileID: 4436540572568242}
@@ -1710,6 +1726,19 @@ Transform:
   m_Father: {fileID: 4292340225487602}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!4 &4689963709786444
+Transform:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1968389752590260}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 1.08, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 4640155199209430}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &4698787943746032
 Transform:
   m_ObjectHideFlags: 1
@@ -1747,7 +1776,7 @@ Transform:
   m_LocalScale: {x: 0.6121219, y: 0.8173697, z: 0.6603684}
   m_Children: []
   m_Father: {fileID: 4640155199209430}
-  m_RootOrder: 0
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &4725565818467560
 Transform:
@@ -2011,7 +2040,7 @@ Rigidbody:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1885368775569004}
   serializedVersion: 2
-  m_Mass: 2
+  m_Mass: 1000
   m_Drag: 0
   m_AngularDrag: 0.05
   m_UseGravity: 1
@@ -2029,8 +2058,8 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 0.5427656, y: 2.104978, z: 1.416242}
-  m_Center: {x: 0.003293172, y: 1.0501533, z: 0.44338736}
+  m_Size: {x: 0.5427656, y: 2.0089157, z: 1.416242}
+  m_Center: {x: 0.003293172, y: 1.0981845, z: 0.44338736}
 --- !u!82 &82761259647355434
 AudioSource:
   m_ObjectHideFlags: 1
@@ -2158,11 +2187,11 @@ MonoBehaviour:
   yellow_mat: {fileID: 2100000, guid: 5a96abfc6a74b1841ba0d0201453881b, type: 2}
   cyan_mat: {fileID: 2100000, guid: 95506bf5b0569b94f91203cd4b7bf4f4, type: 2}
   magenta_mat: {fileID: 2100000, guid: a3bb50ec3e1a5b5419ae6870033ad15d, type: 2}
-  Shot_effectYellow: {fileID: 198534960484000138, guid: 2f41a27a56f24d04c8814a40bcb39171,
+  Shot_effectYellow: {fileID: 198396066239022944, guid: 1cdad0ddda2e31142873037ae83ede31,
     type: 2}
-  Shot_effectBlue: {fileID: 198857426217267120, guid: e0b017361e07171498b7739eb1b9552a,
+  Shot_effectBlue: {fileID: 198396066239022944, guid: 1cdad0ddda2e31142873037ae83ede31,
     type: 2}
-  Shot_effectPink: {fileID: 198178962905762056, guid: 63bff0b177895924da3eb0e7d08c0e7a,
+  Shot_effectPink: {fileID: 198396066239022944, guid: 1cdad0ddda2e31142873037ae83ede31,
     type: 2}
   ShellEfectYellow: {fileID: 198236717835626218, guid: 485aef8f70c9c974ab96492c7fd11b2c,
     type: 2}
@@ -2170,7 +2199,7 @@ MonoBehaviour:
     type: 2}
   ShellEfectPink: {fileID: 198076230649775678, guid: 3a875e93ad345f74b8662cfe669da381,
     type: 2}
-  bullet: {fileID: 1016495751108764, guid: 39e5e6626b6b7e340a82cd6ad4b1c891, type: 2}
+  bullet: {fileID: 1016495751108764, guid: 200301a734e6e604893134e2422faea5, type: 2}
   FirePos: {fileID: 4838775612324832}
   EffectShot: {fileID: 4115065913537520}
   timeBetweenShorts: 2.25
@@ -2315,6 +2344,9 @@ MonoBehaviour:
   DamageYellowMaterial: {fileID: 2100000, guid: 390f52499765b494aa1d60c6885adbad,
     type: 2}
   DamagePinkMaterial: {fileID: 2100000, guid: beda41a991a501d478b05666e5ba2f20, type: 2}
+  EffectDestroy: {fileID: 0}
+  PosDeadParticle: {fileID: 0}
+  isKamikaze: 0
 --- !u!114 &114677830972877186
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -2360,13 +2392,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 62cc23658d5fbe04e9500fc1c9fd4b84, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  PosDeadParticle: {fileID: 0}
+  PosDeadParticle: {fileID: 4689963709786444}
   max_health: 25
   health_bar: {fileID: 114259797346556552}
   die_effect:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
+  - {fileID: 198085412305327686, guid: d1f231a539122664c86f0a6a6a456157, type: 2}
+  - {fileID: 198410871006054420, guid: 5e64849e24a3b3949a4999b2eb9ef198, type: 2}
+  - {fileID: 198960496170012676, guid: 6b023f22181b1d640a11c4ae1a24ade8, type: 2}
   FxDie: {fileID: 0}
   EnemyMaterials: {fileID: 114319141730181250}
   TimeDamageMat: 0.4

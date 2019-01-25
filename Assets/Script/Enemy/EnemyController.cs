@@ -273,7 +273,7 @@ public class EnemyController : MonoBehaviour
             AttackStopPlayer = true;
             anim.SetBool("AttackStop", AttackStopPlayer);
 
-            //nav_agent.velocity = Vector3.zero;
+            nav_agent.velocity = Vector3.zero;
             nav_agent.isStopped = true; // Se para el enemigo
         }
 
@@ -343,6 +343,7 @@ public class EnemyController : MonoBehaviour
             if (detect.IsPlayerNear(safe_distance))
             {
                 look_target = true;
+
             }
             else
                 look_target = false;

@@ -282,7 +282,6 @@ GameObject:
   - component: {fileID: 4965857963710430}
   - component: {fileID: 95412543446935464}
   - component: {fileID: 54750930112073454}
-  - component: {fileID: 65651871589176156}
   - component: {fileID: 82688423799918148}
   - component: {fileID: 114357681362307980}
   - component: {fileID: 195008516460891380}
@@ -290,6 +289,7 @@ GameObject:
   - component: {fileID: 114951642895216942}
   - component: {fileID: 114904107244867654}
   - component: {fileID: 114585736065945068}
+  - component: {fileID: 65933021264533004}
   m_Layer: 10
   m_Name: StarMarine
   m_TagString: EnemyPink
@@ -1815,7 +1815,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1406116036392918}
   m_LocalRotation: {x: -0, y: -0.99878544, z: -0, w: 0.04927197}
-  m_LocalPosition: {x: 30.42, y: 0.14763665, z: -6.19}
+  m_LocalPosition: {x: 18.99825, y: 0.14763665, z: -10.165056}
   m_LocalScale: {x: 1.9302557, y: 1.4431446, z: 1.7865485}
   m_Children:
   - {fileID: 224412716943475338}
@@ -2040,15 +2040,15 @@ Rigidbody:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1183158271251846}
   serializedVersion: 2
-  m_Mass: 2
-  m_Drag: 0
-  m_AngularDrag: 0.05
+  m_Mass: 1000
+  m_Drag: 96.41
+  m_AngularDrag: 0
   m_UseGravity: 1
   m_IsKinematic: 0
   m_Interpolate: 0
   m_Constraints: 116
   m_CollisionDetection: 0
---- !u!65 &65651871589176156
+--- !u!65 &65933021264533004
 BoxCollider:
   m_ObjectHideFlags: 1
   m_CorrespondingSourceObject: {fileID: 0}
@@ -2058,8 +2058,8 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 0.5427656, y: 2.104978, z: 1.441753}
-  m_Center: {x: 0.0032931708, y: 1.0501533, z: 0.45614254}
+  m_Size: {x: 0.41739285, y: 2.0082886, z: 1.2713917}
+  m_Center: {x: -0.018074559, y: 1.098498, z: 0.37038293}
 --- !u!82 &82688423799918148
 AudioSource:
   m_ObjectHideFlags: 1
@@ -2191,7 +2191,7 @@ MonoBehaviour:
   chase_speed: 7
   alert_distance: 10
   sight_distance: 20
-  safe_distance: 5
+  safe_distance: 4
   DontShot: 0
   renderersToChangeColor:
   - {fileID: 137151062406797292}
@@ -2203,6 +2203,9 @@ MonoBehaviour:
   DamageYellowMaterial: {fileID: 2100000, guid: 390f52499765b494aa1d60c6885adbad,
     type: 2}
   DamagePinkMaterial: {fileID: 2100000, guid: beda41a991a501d478b05666e5ba2f20, type: 2}
+  EffectDestroy: {fileID: 0}
+  PosDeadParticle: {fileID: 0}
+  isKamikaze: 0
 --- !u!114 &114357681362307980
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -2217,11 +2220,11 @@ MonoBehaviour:
   yellow_mat: {fileID: 2100000, guid: 5a96abfc6a74b1841ba0d0201453881b, type: 2}
   cyan_mat: {fileID: 2100000, guid: 95506bf5b0569b94f91203cd4b7bf4f4, type: 2}
   magenta_mat: {fileID: 2100000, guid: a3bb50ec3e1a5b5419ae6870033ad15d, type: 2}
-  Shot_effectYellow: {fileID: 198534960484000138, guid: 2f41a27a56f24d04c8814a40bcb39171,
+  Shot_effectYellow: {fileID: 198396066239022944, guid: 1cdad0ddda2e31142873037ae83ede31,
     type: 2}
-  Shot_effectBlue: {fileID: 198857426217267120, guid: e0b017361e07171498b7739eb1b9552a,
+  Shot_effectBlue: {fileID: 198396066239022944, guid: 1cdad0ddda2e31142873037ae83ede31,
     type: 2}
-  Shot_effectPink: {fileID: 198178962905762056, guid: 63bff0b177895924da3eb0e7d08c0e7a,
+  Shot_effectPink: {fileID: 198396066239022944, guid: 1cdad0ddda2e31142873037ae83ede31,
     type: 2}
   ShellEfectYellow: {fileID: 198236717835626218, guid: 485aef8f70c9c974ab96492c7fd11b2c,
     type: 2}
@@ -2229,7 +2232,7 @@ MonoBehaviour:
     type: 2}
   ShellEfectPink: {fileID: 198076230649775678, guid: 3a875e93ad345f74b8662cfe669da381,
     type: 2}
-  bullet: {fileID: 1016495751108764, guid: 39e5e6626b6b7e340a82cd6ad4b1c891, type: 2}
+  bullet: {fileID: 1016495751108764, guid: 200301a734e6e604893134e2422faea5, type: 2}
   FirePos: {fileID: 4637578350024184}
   EffectShot: {fileID: 4096193276990624}
   timeBetweenShorts: 2.25
@@ -2509,9 +2512,9 @@ NavMeshAgent:
   m_Enabled: 1
   m_AgentTypeID: 0
   m_Radius: 0.23
-  m_Speed: 3
-  m_Acceleration: 8
-  avoidancePriority: 50
+  m_Speed: 4
+  m_Acceleration: 4
+  avoidancePriority: 99
   m_AngularSpeed: 999
   m_StoppingDistance: 0
   m_AutoTraverseOffMeshLink: 0

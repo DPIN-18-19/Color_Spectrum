@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ShotgunBullet : BulletController
+public class ShotgunBulletEnemy : BulletController
 {
     ////////////////////////////////////////////////////////////////////////
     // Shotgun Specific variables
@@ -114,7 +114,7 @@ public class ShotgunBullet : BulletController
 
         float dist = Vector3.Distance(transform.position, edge.position);
 
-        Vector3 final = transform.localScale * 2.8f / dist;
+        Vector3 final = transform.localScale * 3 / dist;
         final.y = transform.localScale.y;
 
         StartCoroutine(LerpSize(increase_time, transform.localScale, final));
