@@ -60,7 +60,7 @@ MeshRenderer:
   m_ReflectionProbeUsage: 1
   m_RenderingLayerMask: 4294967295
   m_Materials:
-  - {fileID: 2100000, guid: d88ec5f6f06e64d4db6956c458f0b867, type: 2}
+  - {fileID: 2100000, guid: 44c2e440ab0d013449cfa8308164d9c4, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -118,7 +118,7 @@ TrailRenderer:
   m_ReflectionProbeUsage: 0
   m_RenderingLayerMask: 4294967295
   m_Materials:
-  - {fileID: 2100000, guid: d88ec5f6f06e64d4db6956c458f0b867, type: 2}
+  - {fileID: 2100000, guid: 44c2e440ab0d013449cfa8308164d9c4, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -231,6 +231,9 @@ MonoBehaviour:
   DestroyEffectBlue: {fileID: 198289753299169598, guid: 82e7cddc1be16c948a7468bb8e502ea9,
     type: 2}
   DestroyBulletFx: {fileID: 0}
+  TimeTrasparenteMat: 0
+  Trasparente: 0
+  MaterialsPlayer: {fileID: 0}
   Sniper: 1
   RaycastEffect_Yellow: {fileID: 1944372459145808, guid: 74181cd3bd6fb24489ed7bf64459803d,
     type: 2}
