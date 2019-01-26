@@ -24,7 +24,7 @@ using QFXToolKit;
 
     //public GameObject  ParticleInPlayer;
     // public ParticleSystem ParticleOutPlayer2;
-    PlayerRenderer ChangeMaterial;
+    //PlayerRenderer ChangeMaterial;
 
     private AudioSource source;
         // Particles
@@ -46,7 +46,7 @@ using QFXToolKit;
             GameplayManager.GetInstance().dash_cooldown = Cooldown;
             GameplayManager.GetInstance().dash_activo = SePuedeUsar;
         //Max_Duracion = DuracionHabilidad;
-        ChangeMaterial = GetComponent<PlayerRenderer>();
+        //ChangeMaterial = GetComponent<PlayerRenderer>();
         }
 
         // Update is called once per frame
@@ -55,6 +55,7 @@ using QFXToolKit;
             GameplayManager.GetInstance().dash_cooldown = Cooldown;
             GameplayManager.GetInstance().dash_activo = SePuedeUsar;
             Cooldown -= Time.deltaTime;
+        ControlledObject.Stop();
 
         if (Input.GetButton("Dash") && Cooldown <= 0) 
         { 
@@ -72,7 +73,7 @@ using QFXToolKit;
                     rb.AddForce(MovePlayer.move_dir * (dashspeed * 100), ForceMode.Impulse);
                     // Dash particles
 
-                    Invoke("MakeEffect", 0.04f);
+                    //Invoke("MakeEffect", 0.04f);
                     Quaternion rot = Quaternion.LookRotation(-MovePlayer.move_dir, Vector3.up);
                     if (ColorPlayer.GetColor() == 0)
                     {
@@ -115,10 +116,10 @@ using QFXToolKit;
                 Cooldown = 0;
             }
         }
-        void MakeEffect()
-        {
-        ChangeMaterial.ResetColor();
-        }
+        //void MakeEffect()
+        //{
+        //ChangeMaterial.ResetColor();
+        //}
     void StopSpeed()
     {
         UsarHabilidad = false;

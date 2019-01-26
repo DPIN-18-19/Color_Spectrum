@@ -417,7 +417,7 @@ MonoBehaviour:
   DestroyEffectPink: {fileID: 0}
   DestroyEffectBlue: {fileID: 0}
   DestroyBulletFx: {fileID: 0}
-  TimeTrasparenteMat: 0
+  TimeTrasparenteMat: 0.4
   Trasparente: 0
   MaterialsPlayer: {fileID: 0}
   Sniper: 0
@@ -434,6 +434,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b297668dff0003e40aefd4b8a160eaa3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  TimeTrasparenteMat: 0.3
+  Trasparente: 0
+  MaterialsPlayer: {fileID: 0}
 --- !u!114 &114606150923918236
 MonoBehaviour:
   m_ObjectHideFlags: 1

@@ -72,7 +72,7 @@ public class ColorChangingController : MonoBehaviour {
     {
         ChangeColor();
         UpdateColor();
-        Debug.Log(GetColor());
+       // Debug.Log(GetColor());
     }
 
     void ChangeColor()
