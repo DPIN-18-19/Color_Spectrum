@@ -142,7 +142,7 @@ public class EnemyController : MonoBehaviour
         }
 
        // gameObject.layer = 8;
-        GameplayManager.GetInstance().ChangeColor(0);
+       
         // Yellow Layer
     }
     public void RestoreChangeToMagenta()
@@ -156,7 +156,7 @@ public class EnemyController : MonoBehaviour
         }
 
       //  gameObject.layer = 10;
-        GameplayManager.GetInstance().ChangeColor(2);
+        
     }
     public void RestoreChangeToCyan()
     {
@@ -168,7 +168,7 @@ public class EnemyController : MonoBehaviour
         }
 
       //  gameObject.layer = 9;
-        GameplayManager.GetInstance().ChangeColor(1); // Cyan Layer
+       
     }
 
 
@@ -185,7 +185,7 @@ public class EnemyController : MonoBehaviour
         }
 
        // gameObject.layer = 8;
-        GameplayManager.GetInstance().ChangeColor(0);
+       
     }
     public void ChangeToDamageBlue()
     {
@@ -198,7 +198,7 @@ public class EnemyController : MonoBehaviour
         }
 
        // gameObject.layer = 9;
-        GameplayManager.GetInstance().ChangeColor(1);
+        
     }
     public void ChangeToDamagePink()
     {
@@ -211,7 +211,7 @@ public class EnemyController : MonoBehaviour
         }
 
       //  gameObject.layer = 10;
-        GameplayManager.GetInstance().ChangeColor(2);
+       
     }
 
 
