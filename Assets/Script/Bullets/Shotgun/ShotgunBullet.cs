@@ -121,7 +121,7 @@ public class ShotgunBullet : BulletController
     }
 
     // Incrementar gradualmente el tamaño del área de la escopeta
-    IEnumerator LerpSize(float lerpDuration, Vector3 init_scale, Vector3 final_scale)
+    IEnumerator LerpSize (float lerpDuration, Vector3 init_scale, Vector3 final_scale)
     {
         float lerpStart_Time = Time.time;
         float lerpProgress;

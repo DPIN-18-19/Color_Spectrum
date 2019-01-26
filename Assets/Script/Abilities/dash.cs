@@ -62,9 +62,10 @@ using QFXToolKit;
             
                 {
                     UsarHabilidad = true;
-                    ControlledObject.Run();
-                    //Debug.Break();
-                }
+                ControlledObject.Run();
+                ControlledObject.Stop();
+                //Debug.Break();
+            }
                 if (UsarHabilidad)
                 {
                     source.PlayOneShot(FxDash);
@@ -89,11 +90,11 @@ using QFXToolKit;
 
 
                 //Invoke("StopSpeed", 0.2f);
-                    ControlledObject.Stop();
+               // ControlledObject.Run();
 
-                    Instantiate(p_sys, transform.position, rot);
-                //ControlledObject.Run();
-
+                Instantiate(p_sys, transform.position, rot);
+               
+               
                 UsarHabilidad = false;
 
                 SePuedeUsar = false;

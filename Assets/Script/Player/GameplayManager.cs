@@ -163,6 +163,7 @@ public class GameplayManager : MonoBehaviour
             Shield_Activo.GetComponent<Image>().material = NullActivo;
         }
 
+
         //vida.text = Vida.ToString();
         //textvida.text = "= " + Vida.ToString();
     }
@@ -270,6 +271,10 @@ public class GameplayManager : MonoBehaviour
             case 2:
                 Escopeta.SetActive(true);
                 Grenade_father.SetActive(true);
+                break;
+            case 3:
+                Pistol.SetActive(true);
+                dash_father.SetActive(true);
                 break;
         }
        
@@ -382,5 +387,6 @@ public class GameplayManager : MonoBehaviour
         Grenade_father.SetActive(false);
         cambio_father.SetActive(false);
         Shield_father.SetActive(false);
+        dash_father.SetActive(false);
     }
 }

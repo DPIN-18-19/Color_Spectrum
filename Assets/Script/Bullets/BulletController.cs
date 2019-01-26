@@ -1,5 +1,4 @@
-﻿
-using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -24,7 +23,7 @@ public class BulletController : MonoBehaviour
     [HideInInspector]
     public string enemy_ignore;            // Enemy color to ignore collision with
     [HideInInspector]
-    public bool friendly;           // Who shot the bullet? True: Player, False: Enemy
+    public bool friendly;                 // Who shot the bullet? True: Player, False: Enemy
 
     protected Collider m_collider;            // Bullet collider
 
@@ -62,6 +61,7 @@ public class BulletController : MonoBehaviour
     public virtual void AddBulletInfo(int n_color, float n_speed, Vector3 n_dir, float n_damage, float n_range, bool n_friend)
     //public void AddBulletInfo(int n_color, float n_speed, float n_damage, float n_range, bool n_friend)
     {
+        //Debug.Log(n_color);
         // Color dependent variables
         if (n_color == 0)
         {
@@ -79,7 +79,6 @@ public class BulletController : MonoBehaviour
         }
         else if (n_color == 2)
         {
-           
             PinkDestroyeffect = true;
             this.gameObject.tag = "Pink";
             enemy_ignore = "EnemyPink";
@@ -304,8 +303,7 @@ public class BulletController : MonoBehaviour
                 // Restoring player health
                 else
                 {
-                  
-                    //   col.gameObject.SendMessage("RestoreHealth", bullet_damage);
+                //   col.gameObject.SendMessage("RestoreHealth", bullet_damage);
                 }
 
                 Debug.Log("Destry enemy bullet11");
