@@ -5,11 +5,16 @@ using UnityEngine.SceneManagement;
 
 public class SceneMan : MonoBehaviour
 {
+    private void Start()
+    {
+        Cursor.visible = true;
+    }
+
     public string cur_level;
 
     public void ToMenu()
     {
-        SceneManager.LoadScene("Main_Menu");
+        SceneManager.LoadScene("Main Menu");
     }
 
     public void ToLevel1()
@@ -25,5 +30,10 @@ public class SceneMan : MonoBehaviour
     public void ResetLevel()
     {
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+    }
+
+    public void QuitGame()
+    {
+        Application.Quit();
     }
 }
