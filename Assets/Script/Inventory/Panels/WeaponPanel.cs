@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class WeaponPanel : MonoBehaviour
 {
@@ -33,7 +34,12 @@ public class WeaponPanel : MonoBehaviour
             weapon_panel.gameObject.SetActive(true);
             Transform chip_form = n_w_chip.transform.Find("ChipForm");
             chip_form.gameObject.SetActive(false);
-
+            
+            if (weapon_p_chips.i_weapon_chips[i].base_gun.display_icon != null)
+            {
+                n_w_chip.transform.Find("ChipForm").Find("W_Picture").GetComponent<Image>().sprite = weapon_p_chips.i_weapon_chips[i].base_gun.display_icon;
+                n_w_chip.transform.Find("WeaponForm").Find("W_Picture").GetComponent<Image>().sprite = weapon_p_chips.i_weapon_chips[i].base_gun.display_icon;
+            }
 
             if (weapon_p_chips.i_weapon_chips[i].equipped)
             {

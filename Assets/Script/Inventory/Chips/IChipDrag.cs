@@ -23,6 +23,7 @@ public class IChipDrag : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDra
     public Transform org_deck = null;               // Area de retorno original
     public Transform new_possible_deck = null;      // Nueva area de retorno
     protected Transform canvas;                     // El canvas
+    Transform camera;
 
     public GameObject shadow_copy = null;                  // Area hueco
 
@@ -35,6 +36,8 @@ public class IChipDrag : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDra
         canvas = GetComponentInParent<Canvas>().transform;          // Coger el canvas de la interfaz
         inv_deck = GameObject.Find("InventoryPanel").transform;     // Coger el área del inventario
         ichip_data = GetComponent<IChipData>();
+
+        camera = GameObject.Find("Main Camera").transform;
     }
 
     public virtual void OnBeginDrag(PointerEventData p_event_data)

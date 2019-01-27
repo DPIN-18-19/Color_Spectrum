@@ -29,16 +29,16 @@ public class IChipData : MonoBehaviour, IPointerEnterHandler, IPointerExitHandle
     public void OnPointerEnter(PointerEventData p_event_data)
     {
         // Evitar que se muestre un tooltip si ya se agarrando algo
-        if (!Input.GetMouseButton(0))
-        {
-            my_hover_tooltip = Instantiate(hover_tooltip, p_event_data.position, Quaternion.identity);
-            my_hover_tooltip.transform.SetParent(canvas);
-        }
+        //if (!Input.GetMouseButton(0))
+        //{
+        //    my_hover_tooltip = Instantiate(hover_tooltip, p_event_data.position, Quaternion.identity);
+        //    my_hover_tooltip.transform.SetParent(canvas);
+        //}
     }
 
     public void OnPointerExit(PointerEventData p_event_data)
     {
-        if (my_hover_tooltip)
-            my_hover_tooltip.GetComponent<HoverTooltip>().Leave();
+        //if (my_hover_tooltip)
+        //    my_hover_tooltip.GetComponent<HoverTooltip>().Leave();
     }
 }

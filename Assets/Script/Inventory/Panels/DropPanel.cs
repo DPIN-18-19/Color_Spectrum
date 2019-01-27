@@ -143,6 +143,11 @@ public class DropPanel : MonoBehaviour, IDropHandler, IPointerEnterHandler, IPoi
                 return true;
             }
         }
+        else if(panel_type == PanelType.Player)
+        {
+            if (transform.childCount < 9)
+                return true;
+        }
         // Empy slot was found
         return false;
     }

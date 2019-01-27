@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class InventoryPanel : MonoBehaviour
 {
@@ -37,6 +38,7 @@ public class InventoryPanel : MonoBehaviour
             GameObject n_chip = Instantiate(chip_mould);
             n_chip.transform.SetParent(i_panel);
             n_chip.GetComponent<IChipData>().data = i_chips.chips[i];
+            //n_chip.GetComponent<RectTransform>().localPosition = Vector3.zero;
 
             // Comprobar el estado "equipado" y crear copia
             if(i_chips.chips[i].equipped)
@@ -61,8 +63,16 @@ public class InventoryPanel : MonoBehaviour
             n_w_chip.GetComponent<IWeaponChipDrag>().w_data = i_weapons.i_weapon_chips[i];
             n_w_chip.GetComponent<IChipData>().data.id = i_weapons.i_weapon_chips[i].id;        // El id de chip es el mismo que el id de chip de arma
 
+            // Insertar imagen
+            //Debug.Log(i_weapons.i_weapon_chips[i].base_gun.display_icon);
+            if (i_weapons.i_weapon_chips[i].base_gun.display_icon != null)
+            {
+                n_w_chip.transform.Find("ChipForm").Find("W_Picture").GetComponent<Image>().sprite = i_weapons.i_weapon_chips[i].base_gun.display_icon;
+                n_w_chip.transform.Find("WeaponForm").Find("W_Picture").GetComponent<Image>().sprite = i_weapons.i_weapon_chips[i].base_gun.display_icon;
+            }
+
             // Comprobar el estado "equipado" y crear copia
-            if(i_weapons.i_weapon_chips[i].equipped)
+            if (i_weapons.i_weapon_chips[i].equipped)
             {
                 n_w_chip.AddComponent<Darken>();
                 Destroy(n_w_chip.GetComponent<IWeaponChipDrag>());
@@ -78,6 +88,11 @@ public class InventoryPanel : MonoBehaviour
             n_w_chip.GetComponent<IAbiChipData>().abi_data = i_abilities.abi_list[i];        // El id de chip es el mismo que el id de chip de arma
             n_w_chip.GetComponent<IAbiChipData>().chip_type = IChipData.ChipType.Ability;
             n_w_chip.GetComponent<IAbiChipData>().data.id = i_abilities.abi_list[i].id;
+
+            if (i_abilities.abi_list[i].display_icon != null)
+            {
+                n_w_chip.transform.Find("A_Picture").GetComponent<Image>().sprite = i_abilities.abi_list[i].display_icon;
+            }
 
             // Comprobar el estado "equipado" y crear copia
             if (i_abilities.abi_list[i].equipped)

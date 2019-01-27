@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class AbilityPanel : MonoBehaviour
 {
@@ -37,6 +38,11 @@ public class AbilityPanel : MonoBehaviour
                 n_chip.GetComponent<IAbiChipData>().abi_data = chip;
                 n_chip.GetComponent<IAbiChipData>().data.id = chip.id;
                 n_chip.GetComponent<IAbiChipData>().chip_type = IChipData.ChipType.Ability;
+                
+                if (chip.display_icon != null)
+                {
+                    n_chip.transform.Find("A_Picture").GetComponent<Image>().sprite = chip.display_icon;
+                }
 
                 if (chip.equipped)
                 {
