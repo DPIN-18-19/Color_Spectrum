@@ -10,7 +10,7 @@ public class Explosion_Kamikaze_C : MonoBehaviour {
     void Start()
     {
         source = GetComponent<AudioSource>();
-        source = GetComponent<AudioSource>();
+        source.PlayOneShot(SonidoExplosion);
 
     }
 

@@ -62,7 +62,8 @@ public class EnemyController : MonoBehaviour
     //public bool Stop;                         // (Unused)
     bool friendly_fire;                         // Friendly fire
 
-
+    public AudioClip SonidoKi;
+   
 
     // AI variables
 
@@ -355,6 +356,7 @@ public class EnemyController : MonoBehaviour
                 look_target = true;
                 Invoke("DestroyEnemy", 1.5f);
                 nav_agent.velocity = Vector3.zero;
+                source.PlayOneShot(SonidoKi);
 
             }
            // else
