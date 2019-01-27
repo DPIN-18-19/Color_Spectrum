@@ -273,21 +273,21 @@ public class GameplayManager : MonoBehaviour
     public void ChangeGun (int gun, Sprite s_weapon)
     {
         DesactivateAllGuns();
-        switch (gun)
-        {
-            case 0:
-                //Pistol.SetActive(true);
-                Shield_father.SetActive(true);
-                break;
-            case 1:
-                //Sniper.SetActive(true);
-                cambio_father.SetActive(true);
-                break;
-            case 2:
-                //Escopeta.SetActive(true);
-                Grenade_father.SetActive(true);
-                break;
-        }
+        //switch (gun)
+        //{
+        //    case 0:
+        //        //Pistol.SetActive(true);
+        //        Shield_father.SetActive(true);
+        //        break;
+        //    case 1:
+        //        //Sniper.SetActive(true);
+        //        cambio_father.SetActive(true);
+        //        break;
+        //    case 2:
+        //        //Escopeta.SetActive(true);
+        //        Grenade_father.SetActive(true);
+        //        break;
+        //}
 
         gun_icon.GetComponent<Image>().sprite = s_weapon;
     }

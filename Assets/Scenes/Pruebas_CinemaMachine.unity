@@ -5937,7 +5937,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 90ae46d1972ac4c4aa56e7a7d8482b20, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  gun_list: {fileID: 11400000, guid: 50af914333c1ec545bc5d69c43dc8622, type: 2}
+  eq_weapons: {fileID: 11400000, guid: 055e05b6fd4971a4db4fa3adbc10bca2, type: 2}
 --- !u!1 &332580141
 GameObject:
   m_ObjectHideFlags: 0
@@ -11772,7 +11772,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &585637381
 RectTransform:
   m_ObjectHideFlags: 0
@@ -17363,7 +17363,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &627544820
 RectTransform:
   m_ObjectHideFlags: 0
@@ -23240,7 +23240,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 88362deda9903a44a9962f69a2c98b4d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  gun_list: {fileID: 11400000, guid: 50af914333c1ec545bc5d69c43dc8622, type: 2}
+  eq_weapons: {fileID: 11400000, guid: 055e05b6fd4971a4db4fa3adbc10bca2, type: 2}
   gun: {fileID: 0}
   activated_weapon: 2
   weapon_pos: {fileID: 716138809}
