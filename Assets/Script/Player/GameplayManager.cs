@@ -15,7 +15,8 @@ public class GameplayManager : MonoBehaviour
     public float max_health;
 
     // Abilities data
-    Transform ability_cooldown;
+    Transform t_ability_cooldown;
+    public float ability_cooldown;
     Transform ability_frame;
     Transform ability_background;
     bool use_bckgrnd = false;
@@ -103,7 +104,7 @@ public class GameplayManager : MonoBehaviour
         Transform ability = canvas.Find("Ability");
         ability_frame = ability.Find("Frame");
         ability_background = ability.Find("Background");
-        ability_cooldown = ability.Find("Cooldown");
+        t_ability_cooldown = ability.Find("Cooldown");
         ability_icon = ability.Find("AbilityIcon");
         //y_icon.SetActive(true);
         //c_icon.SetActive(false);
@@ -128,10 +129,11 @@ public class GameplayManager : MonoBehaviour
     void FixedUpdate()
     {
         t_health.text = "" + Mathf.RoundToInt(health);
-        t_dash_cooldown.text = "" + Mathf.RoundToInt(dash_cooldown);
-        t_cambio_cooldown.text = "" + Mathf.RoundToInt(cambio_cooldown);
-        t_grenade_cooldown.text = "" + Mathf.RoundToInt(grenade_cooldown);
-        t_Shield_cooldown.text = "" + Mathf.RoundToInt(shield_cooldown);
+        //t_dash_cooldown.text = "" + Mathf.RoundToInt(dash_cooldown);
+        //t_cambio_cooldown.text = "" + Mathf.RoundToInt(cambio_cooldown);
+        //t_grenade_cooldown.text = "" + Mathf.RoundToInt(grenade_cooldown);
+        //t_Shield_cooldown.text = "" + Mathf.RoundToInt(shield_cooldown);
+        t_ability_cooldown.GetComponent<Text>().text = "" + Mathf.RoundToInt(ability_cooldown);
 
         Health_bar.GetComponent<Image>().fillAmount = Map(health, 0, max_health, 0, 1);
 
@@ -146,30 +148,30 @@ public class GameplayManager : MonoBehaviour
 
         // Ability background update
         // Autocolor
-        if (usarhabilidad == true )
-        {
-            Cambio_Activo.GetComponent<Image>().material = midhealth;
-        }
-        if(cambio_activo == true && usarhabilidad == false)
-        {
-            Cambio_Activo.GetComponent<Image>().material = fullhealth;
-        }
-        if(cambio_activo == false){
-            Cambio_Activo.GetComponent<Image>().material = NullActivo;
-        }
-        // Shield
-        if (usarhabilidadShield == true)
-        {
-            Shield_Activo.GetComponent<Image>().material = midhealth;
-        }
-        if (Shield_activo == true && usarhabilidadShield == false)
-        {
-            Shield_Activo.GetComponent<Image>().material = fullhealth;
-        }
-        if (Shield_activo == false)
-        {
-            Shield_Activo.GetComponent<Image>().material = NullActivo;
-        }
+        //if (usarhabilidad == true )
+        //{
+        //    Cambio_Activo.GetComponent<Image>().material = midhealth;
+        //}
+        //if(cambio_activo == true && usarhabilidad == false)
+        //{
+        //    Cambio_Activo.GetComponent<Image>().material = fullhealth;
+        //}
+        //if(cambio_activo == false){
+        //    Cambio_Activo.GetComponent<Image>().material = NullActivo;
+        //}
+        //// Shield
+        //if (usarhabilidadShield == true)
+        //{
+        //    Shield_Activo.GetComponent<Image>().material = midhealth;
+        //}
+        //if (Shield_activo == true && usarhabilidadShield == false)
+        //{
+        //    Shield_Activo.GetComponent<Image>().material = fullhealth;
+        //}
+        //if (Shield_activo == false)
+        //{
+        //    Shield_Activo.GetComponent<Image>().material = NullActivo;
+        //}
 
         //vida.text = Vida.ToString();
         //textvida.text = "= " + Vida.ToString();
@@ -272,7 +274,7 @@ public class GameplayManager : MonoBehaviour
 
     public void ChangeGun (int gun, Sprite s_weapon)
     {
-        DesactivateAllGuns();
+        //DesactivateAllGuns();
         //switch (gun)
         //{
         //    case 0:
@@ -294,8 +296,22 @@ public class GameplayManager : MonoBehaviour
 
     public void ChangeAbility(Sprite s_ability, bool bckgrnd)
     {
+        // If any abilities were equipped
+        if(s_ability == null)
+        {
+            ability_icon.gameObject.SetActive(false);
+            ability_background.gameObject.SetActive(false);
+            return;
+        }
+
+        ability_icon.gameObject.SetActive(true);
         ability_icon.GetComponent<Image>().sprite = s_ability;
-        use_bckgrnd = bckgrnd;
+        use_bckgrnd = !bckgrnd;
+
+        if (!bckgrnd)
+            ability_background.gameObject.SetActive(true);
+        else
+            ability_background.gameObject.SetActive(false);
     }
 
     //////////////////////////////////////////////////
@@ -305,7 +321,7 @@ public class GameplayManager : MonoBehaviour
     {
         ability_icon.gameObject.AddComponent<Darken>();
         ability_frame.gameObject.AddComponent<Darken>();
-        ability_cooldown.gameObject.SetActive(true);
+        t_ability_cooldown.gameObject.SetActive(true);
 
         // Ability needs a background
         if (use_bckgrnd)
@@ -324,7 +340,9 @@ public class GameplayManager : MonoBehaviour
     {
         Destroy(ability_icon.GetComponent<Darken>());
         Destroy(ability_frame.GetComponent<Darken>());
-        ability_cooldown.gameObject.SetActive(false);
+        ability_icon.GetComponent<Image>().color = Color.white;
+        ability_frame.GetComponent<Image>().color = Color.white;
+        t_ability_cooldown.gameObject.SetActive(false);
 
         // Ability needs a background
         if (use_bckgrnd)
@@ -334,61 +352,61 @@ public class GameplayManager : MonoBehaviour
         }
     }
 
-    public void Dash(bool activo)
-    {
-        if (!activo)
-        {
-            dash_icon.SetActive(false);
-            no_dash_icon.SetActive(true);
-        }
-        else
-        { 
-            dash_icon.SetActive(true);
-            no_dash_icon.SetActive(false);
-        }     
-    }
+    //public void Dash(bool activo)
+    //{
+    //    if (!activo)
+    //    {
+    //        dash_icon.SetActive(false);
+    //        no_dash_icon.SetActive(true);
+    //    }
+    //    else
+    //    { 
+    //        dash_icon.SetActive(true);
+    //        no_dash_icon.SetActive(false);
+    //    }     
+    //}
 
-    public void Grenade(bool activo)
-    {
-        if (!activo)
-        {
-            Grenade_icon.SetActive(false);
-            no_Grenade_icon.SetActive(true);
-        }
-        else
-        {
-            Grenade_icon.SetActive(true);
-            no_Grenade_icon.SetActive(false);
-        }
-    }
+    //public void Grenade(bool activo)
+    //{
+    //    if (!activo)
+    //    {
+    //        Grenade_icon.SetActive(false);
+    //        no_Grenade_icon.SetActive(true);
+    //    }
+    //    else
+    //    {
+    //        Grenade_icon.SetActive(true);
+    //        no_Grenade_icon.SetActive(false);
+    //    }
+    //}
 
-    public void CambioColor(bool activo)
-    {
-        if (!activo)
-        {
-            cambio_icon.SetActive(false);
-            no_cambio_icon.SetActive(true);
-        }
-        else
-        {
-            cambio_icon.SetActive(true);
-            no_cambio_icon.SetActive(false);
-        }
-    }
+    //public void CambioColor(bool activo)
+    //{
+    //    if (!activo)
+    //    {
+    //        cambio_icon.SetActive(false);
+    //        no_cambio_icon.SetActive(true);
+    //    }
+    //    else
+    //    {
+    //        cambio_icon.SetActive(true);
+    //        no_cambio_icon.SetActive(false);
+    //    }
+    //}
 
-    public void Shield(bool activo)
-    {
-        if (activo)
-        {
-            shield_icon.SetActive(false);
-            no_shield_icon.SetActive(true);
-        }
-        else
-        {
-            shield_icon.SetActive(true);
-            no_shield_icon.SetActive(false);
-        }
-    }
+    //public void Shield(bool activo)
+    //{
+    //    if (activo)
+    //    {
+    //        shield_icon.SetActive(false);
+    //        no_shield_icon.SetActive(true);
+    //    }
+    //    else
+    //    {
+    //        shield_icon.SetActive(true);
+    //        no_shield_icon.SetActive(false);
+    //    }
+    //}
 
     ////////////////////////////////////////////////////////////////////////
 
@@ -403,14 +421,14 @@ public class GameplayManager : MonoBehaviour
         m_frame.SetActive(false);
     }
 
-    void DesactivateAllGuns()
-    {
-        Pistol.SetActive(false);
-        Escopeta.SetActive(false);
-        Sniper.SetActive(false);
+    //void DesactivateAllGuns()
+    //{
+    //    Pistol.SetActive(false);
+    //    Escopeta.SetActive(false);
+    //    Sniper.SetActive(false);
 
-        Grenade_father.SetActive(false);
-        cambio_father.SetActive(false);
-        Shield_father.SetActive(false);
-    }
+    //    Grenade_father.SetActive(false);
+    //    cambio_father.SetActive(false);
+    //    Shield_father.SetActive(false);
+    //}
 }

@@ -58,7 +58,6 @@ public class GunController : MonoBehaviour
         
         spawn = transform.Find("FirePos");
         shell = transform.Find("SpawnShell");
-        Debug.Log("I was called");
         //weapon_type = this;
     }
 	

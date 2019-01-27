@@ -31,7 +31,7 @@ public class Darken : MonoBehaviour
 
     void DarkenColor()
     {
-        for(int i = 0; i < render_children.Capacity-2; ++i)
+        for(int i = 0; i < render_children.Count; ++i)
         {
             render_children[i].color = new Color(render_children[i].color.r * (1 - dark_percent),
                                                 render_children[i].color.g * (1 - dark_percent),

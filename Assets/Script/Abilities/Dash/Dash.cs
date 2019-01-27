@@ -32,8 +32,8 @@ public class Dash : MonoBehaviour
         cooldown = c_cooldown;
         rb = GetComponent<Rigidbody>();
 
-        GameplayManager.GetInstance().dash_cooldown = c_cooldown;
-        GameplayManager.GetInstance().dash_activo = is_active;
+        //GameplayManager.GetInstance().dash_cooldown = c_cooldown;
+        //GameplayManager.GetInstance().dash_activo = is_active;
         //Max_Duracion = DuracionHabilidad;
     }
 
@@ -41,8 +41,8 @@ public class Dash : MonoBehaviour
     void Update()
     {
         // Update gameplay manager
-        GameplayManager.GetInstance().dash_cooldown = c_cooldown;
-        GameplayManager.GetInstance().dash_activo = is_active;
+        GameplayManager.GetInstance().ability_cooldown = c_cooldown;
+        //GameplayManager.GetInstance().dash_activo = is_active;
         
         if (Input.GetButton("Dash") && c_cooldown <= 0)
         {
@@ -67,7 +67,8 @@ public class Dash : MonoBehaviour
 
             use_ability = false;
             is_active = false;
-            GameplayManager.GetInstance().Dash(is_active);
+            //GameplayManager.GetInstance().Dash(is_active);
+            GameplayManager.GetInstance().DeactivateAbility();
             c_cooldown = cooldown;
         }
     }
@@ -80,7 +81,8 @@ public class Dash : MonoBehaviour
         if (c_cooldown <= 0)
         {
             is_active = true;
-            GameplayManager.GetInstance().Dash(is_active);
+            //GameplayManager.GetInstance().Dash(is_active);
+            GameplayManager.GetInstance().ResetAbility();
             c_cooldown = 0;
         }
     }

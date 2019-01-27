@@ -18,7 +18,6 @@ public class AbilityController : MonoBehaviour
     // Use this for initialization
     void Awake ()
     {
-        Debug.Log("Init abilities");
         holder = GameObject.FindGameObjectWithTag("Player");
 
         a_dash = holder.GetComponent<Dash>();
@@ -48,17 +47,18 @@ public class AbilityController : MonoBehaviour
             case "Dash":
                 a_dash.enabled = true;
                 break;
-            case "CambioColor":
+            case "AutoColor":
                 a_autocolor.enabled = true;
                 break;
-            case "Granada":
+            case "Grenade":
                 a_grenade.enabled = true;
                 break;
-            case "Escudo":
+            case "Shield":
                 a_shield.enabled = true;
                 break;
             default:
                 cur_ability = "";
+                //Debug.Log("Ability not found. Data received: " + name);
                 break;
         }
 
@@ -76,13 +76,13 @@ public class AbilityController : MonoBehaviour
             case "Dash":
                 a_dash.enabled = false;
                 break;
-            case "CambioColor":
+            case "AutoColor":
                 a_autocolor.enabled = false;
                 break;
-            case "Granada":
+            case "Grenade":
                 a_grenade.enabled = false;
                 break;
-            case "Escudo":
+            case "Shield":
                 a_shield.enabled = false;
                 break;
             default:

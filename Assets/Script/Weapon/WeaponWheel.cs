@@ -86,11 +86,8 @@ public class WeaponWheel : MonoBehaviour
     public void Select_Weapon_0()
     {
         //pistola
-        Debug.Log("Here");
         GameplayManager.GetInstance().ChangeGun(0, UI_weapon_icons[0].GetComponent<Image>().sprite);
-        Debug.Log("Here3");
         GameplayManager.GetInstance().ChangeAbility(eq_weapons.i_weapon_chips[0].ability.display_icon, eq_weapons.i_weapon_chips[0].ability.is_instant);
-        Debug.Log("Here2");
         //Sash.GetComponent<dash>().enabled = false;
         //CambioColor.GetComponent<HabilidadCambioColor>().enabled = true;
 
