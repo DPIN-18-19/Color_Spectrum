@@ -22,4 +22,7 @@ public class GunData
     public string ability = "";
     
     public AudioClip fx_shot;
+
+    // Elelmentos de UI
+    public Sprite display_icon;
 }

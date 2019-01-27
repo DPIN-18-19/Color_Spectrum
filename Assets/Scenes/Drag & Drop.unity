@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.18028334, g: 0.2257134, b: 0.30692226, a: 1}
+  m_IndirectSpecularColor: {r: 0.18028378, g: 0.22571412, b: 0.30692285, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -197,8 +197,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   i_chips: {fileID: 11400000, guid: 3d782b250553ded4e88b83270a30ca10, type: 2}
   i_weapons: {fileID: 11400000, guid: ec433dc75cb480c4f8e60395d5e95caf, type: 2}
+  i_abilities: {fileID: 11400000, guid: e6a950d96ab8be44aae3fde64b0017dc, type: 2}
   chip_mould: {fileID: 1733535340280400, guid: 2e68c12cec581f049815d01adcf00753, type: 2}
   weapon_chip_mould: {fileID: 1872107800408908, guid: d9f38672d53cace4aae5a43c015378fa,
+    type: 2}
+  ability_chip_mould: {fileID: 1855735565954686, guid: f02454a50280511468e80ebe6081239e,
     type: 2}
 --- !u!1 &304391522
 GameObject:
@@ -235,7 +238,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0.9199829, y: 2.9880142}
+  m_AnchoredPosition: {x: 0.9199829, y: 2.9880066}
   m_SizeDelta: {x: -36.950012, y: -33.710007}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &304391524

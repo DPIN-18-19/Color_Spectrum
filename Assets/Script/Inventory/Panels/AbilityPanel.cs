@@ -28,20 +28,21 @@ public class AbilityPanel : MonoBehaviour
         // Check if there weapon to be loaded was found
         if (index != -1)
         {
-            ChipData chip = w_panel.GetComponent<WeaponPanel>().weapon_p_chips.i_weapon_chips[index].ability;
+            AbilityData chip = w_panel.GetComponent<WeaponPanel>().weapon_p_chips.i_weapon_chips[index].ability;
 
-            if (chip.ability != "")
+            if (chip.name != "")
             {
                 GameObject n_chip = Instantiate(chip_mould);
                 n_chip.transform.SetParent(transform);
-                n_chip.GetComponent<IChipData>().data = chip;
-                n_chip.GetComponent<IChipData>().chip_type = IChipData.ChipType.Ability;
+                n_chip.GetComponent<IAbiChipData>().abi_data = chip;
+                n_chip.GetComponent<IAbiChipData>().data.id = chip.id;
+                n_chip.GetComponent<IAbiChipData>().chip_type = IChipData.ChipType.Ability;
 
                 if (chip.equipped)
                 {
                     if (i_panel.GetComponent<InventoryPanel>())
                     {
-                        n_chip.GetComponent<IChipDrag>().shadow_copy = i_panel.GetComponent<InventoryPanel>().SearchChip(chip);
+                        n_chip.GetComponent<IChipDrag>().shadow_copy = i_panel.GetComponent<InventoryPanel>().SearchChip(n_chip.GetComponent<IAbiChipData>().data);
                     }
                     else
                         Debug.Log("There was an error loading character panel");
@@ -50,16 +51,16 @@ public class AbilityPanel : MonoBehaviour
         }
     }
 
-    public void AddChipToEquippedWeapon(ChipData chip)
+    public void AddChipToEquippedWeapon(AbilityData chip)
     {
         int index = w_panel.GetComponent<WeaponPanel>().weapon_p_chips.i_weapon_chips.FindIndex(x => x.id == w_id);
         w_panel.GetComponent<WeaponPanel>().weapon_p_chips.i_weapon_chips[index].ability = chip;
-        w_panel.GetComponent<WeaponPanel>().weapon_p_chips.i_weapon_chips[index].ability_name = chip.ability;
+        w_panel.GetComponent<WeaponPanel>().weapon_p_chips.i_weapon_chips[index].ability_name = chip.name;
 
         // Is neccesary updating inventory weapon chip?
         index = i_panel.GetComponent<InventoryPanel>().i_weapons.i_weapon_chips.FindIndex(x => x.id == w_id);
         i_panel.GetComponent<InventoryPanel>().i_weapons.i_weapon_chips[index].ability = chip;
-        i_panel.GetComponent<InventoryPanel>().i_weapons.i_weapon_chips[index].ability_name = chip.ability;
+        i_panel.GetComponent<InventoryPanel>().i_weapons.i_weapon_chips[index].ability_name = chip.name;
     }
 
     public void RemoveChipFromEquippedWeapon(ChipData chip)

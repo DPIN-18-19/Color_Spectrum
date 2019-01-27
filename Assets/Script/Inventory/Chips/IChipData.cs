@@ -14,7 +14,7 @@ public class IChipData : MonoBehaviour, IPointerEnterHandler, IPointerExitHandle
     public ChipType chip_type;      // Clase de chip
     public ChipData data;
 
-    public string ability = "Dash";
+    //public string ability = "Dash";
 
     public GameObject hover_tooltip;                // Objeto con el que se creará el tooltip
     GameObject my_hover_tooltip;                    // Referencia al tooltip creado

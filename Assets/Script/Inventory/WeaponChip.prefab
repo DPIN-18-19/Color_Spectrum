@@ -406,6 +406,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0373617964d00a04b998b0967f464639, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  w_slots: 3
   chip_mould: {fileID: 1733535340280400, guid: 2e68c12cec581f049815d01adcf00753, type: 2}
 --- !u!114 &114474519785567266
 MonoBehaviour:
@@ -418,7 +419,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2532494f1e6f7f24cadc5cd3848e2966, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  chip_mould: {fileID: 1733535340280400, guid: 2e68c12cec581f049815d01adcf00753, type: 2}
+  chip_mould: {fileID: 1855735565954686, guid: f02454a50280511468e80ebe6081239e, type: 2}
 --- !u!114 &114493060755164328
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -527,7 +528,6 @@ MonoBehaviour:
     weapon_stats: []
     ability: 
     equipped: 0
-  ability: Dash
   hover_tooltip: {fileID: 1576484268447382, guid: 3c73a0ed91ce99e428131382824e9011,
     type: 2}
 --- !u!114 &114856286454716230
@@ -581,6 +581,15 @@ MonoBehaviour:
       weight: 10
       ability: 
       fx_shot: {fileID: 0}
+      display_icon: {fileID: 0}
+    ability_chip:
+      id: 
+      name: 
+      is_instant: 1
+      cooldown_dur: 0
+      active_dur: 0
+      display_icon: {fileID: 0}
+      equipped: 0
     ability:
       id: 
       name: 
@@ -591,7 +600,7 @@ MonoBehaviour:
       equipped: 0
     ability_name: 
     added_chips: []
-    spaces: 0
+    slots: 3
     equipped: 0
   weapon_deck: {fileID: 0}
   inside: 0
@@ -855,9 +864,9 @@ RectTransform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 0, y: 0}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 1}
+  m_AnchoredPosition: {x: 108.45001, y: -12.5}
   m_SizeDelta: {x: 25, y: 25}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!225 &225017598540865212

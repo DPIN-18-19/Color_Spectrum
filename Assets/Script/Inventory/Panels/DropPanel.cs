@@ -79,14 +79,6 @@ public class DropPanel : MonoBehaviour, IDropHandler, IPointerEnterHandler, IPoi
                 d.new_possible_deck = d.inv_deck;
                 return;
             }
-            
-
-            //if(panel_type == PanelType.Weapon)
-            //{
-            //    // Limit the amount of chips the panel can have
-            //    if (transform.childCount >= GetComponentInParent<WeaponPanel>().weapon_slots)
-            //        return;
-            //}
 
             d.new_possible_deck = this.transform;
 
@@ -105,6 +97,18 @@ public class DropPanel : MonoBehaviour, IDropHandler, IPointerEnterHandler, IPoi
                         AddWeapon(w);
                         return;
                     }
+                }
+
+                if(panel_type == PanelType.AbilitySlot)
+                {
+                    IAbiChipData ad = p_event_data.pointerDrag.GetComponent<IAbiChipData>();
+                    if (!weight_panel.GetComponent<WeightPanel>().CanFitChip(ad.abi_data.weight))
+                    {
+                        d.new_possible_deck = d.inv_deck;
+                        return;
+                    }
+                    AddAbility(ad);
+                    return;
                 }
 
                 if (!weight_panel.GetComponent<WeightPanel>().CanFitChip(d.ichip_data.data.weight))
@@ -134,7 +138,9 @@ public class DropPanel : MonoBehaviour, IDropHandler, IPointerEnterHandler, IPoi
         else if(panel_type == PanelType.AbilitySlot)
         {
             if (transform.childCount < 1)
+            {
                 return true;
+            }
         }
         // Empy slot was found
         return false;
@@ -180,7 +186,8 @@ public class DropPanel : MonoBehaviour, IDropHandler, IPointerEnterHandler, IPoi
         switch(panel_type)
         {
             case PanelType.AbilitySlot:
-                GetComponent<AbilityPanel>().AddChipToEquippedWeapon(chip.ichip_data.data);
+                // Ability add data is done in a separate function
+                //GetComponent<AbilityPanel>().AddChipToEquippedWeapon(chip.ichip_data.data);
                 break;
             case PanelType.Inventory:
                 break;
@@ -204,5 +211,10 @@ public class DropPanel : MonoBehaviour, IDropHandler, IPointerEnterHandler, IPoi
         GetComponent<WeaponPanel>().weapon_p_chips.i_weapon_chips.Add(chip.w_data);
 
         GetComponent<WeaponPanel>().CheckCorrectOrder();
+    }
+
+    void AddAbility(IAbiChipData chip)
+    {
+        GetComponent<AbilityPanel>().AddChipToEquippedWeapon(chip.abi_data);
     }
 }

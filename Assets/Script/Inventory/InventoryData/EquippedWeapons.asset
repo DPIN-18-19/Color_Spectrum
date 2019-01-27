@@ -18,7 +18,7 @@ MonoBehaviour:
       gun: {fileID: 0}
       bullet: {fileID: 0}
       speed: 0.2
-      damage: -175
+      damage: -165
       range: 5
       spray: 5
       cadence: 0.5
@@ -27,15 +27,27 @@ MonoBehaviour:
       weight: 10
       ability: 
       fx_shot: {fileID: 0}
+      display_icon: {fileID: 0}
     ability:
-      id: 
-      name: 
-      weight: 0
-      player_stats: []
-      weapon_stats: []
-      ability: 
-      equipped: 0
-    ability_name: 
-    added_chips: []
+      id: Ability1
+      name: Dash
+      is_instant: 1
+      cooldown_dur: 0
+      active_dur: 0
+      display_icon: {fileID: 0}
+      weight: 10
+      equipped: 1
+    ability_name: Dash
+    added_chips:
+    - id: 3
+      name: Chip1
+      weight: 10
+      player_stats:
+      - stat_name: Health
+        stat_value: 10
+      weapon_stats:
+      - stat_name: Damage
+        stat_value: 10
+      equipped: 1
     slots: 3
     equipped: 1

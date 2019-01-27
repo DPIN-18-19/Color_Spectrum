@@ -12,6 +12,7 @@ public class WeightPanel : MonoBehaviour
     float weight = 0.01f;
     public float max_weight = 100;
 
+    TextMesh text;
     Image weight_bar;
     TextMeshProUGUI weight_text;
 
@@ -56,7 +57,7 @@ public class WeightPanel : MonoBehaviour
 
     public bool CanFitChip(float n_weight)
     {
-        if (n_weight + weight < max_weight)
+        if (n_weight + weight <= max_weight)
             return true;
 
         return false;

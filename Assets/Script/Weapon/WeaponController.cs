@@ -11,9 +11,8 @@ public class WeaponController : MonoBehaviour
     
     /////////////////////////////////////////////////////////
     // Guns
-
-    [SerializeField]
-    private weapon_List gun_list;            // Lista de armas;
+    
+    public weapon_List gun_list;            // Lista de armas;
     private GunData cur_weapon;           // Datos del arma equipada
     public GameObject gun;
     public int activated_weapon = 0;        // Número de arma activada
@@ -61,6 +60,7 @@ public class WeaponController : MonoBehaviour
         render_children = new List<Renderer>();
         //contShoot = gunlist.weaponList[2].num_disparos;
         //pistola = true;
+        //GetNewWeapon(activated_weapon);
     }
 
     // Use this for initialization

@@ -7,7 +7,8 @@ public class IWeaponData
 {
     public string id;
     public GunData base_gun;
-    public ChipData ability;
+    public AbilityData ability;
+    //public ChipData ability;
     public string ability_name;
     float org_cdc, org_dmg, org_rng;
     public List<ChipData> added_chips;

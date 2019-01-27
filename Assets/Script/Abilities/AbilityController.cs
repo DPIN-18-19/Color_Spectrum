@@ -16,8 +16,9 @@ public class AbilityController : MonoBehaviour
     activate_Shield a_shield;
 
     // Use this for initialization
-    void Start ()
+    void Awake ()
     {
+        Debug.Log("Init abilities");
         holder = GameObject.FindGameObjectWithTag("Player");
 
         a_dash = holder.GetComponent<Dash>();

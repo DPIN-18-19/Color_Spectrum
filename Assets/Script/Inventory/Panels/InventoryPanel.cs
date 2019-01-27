@@ -8,11 +8,13 @@ public class InventoryPanel : MonoBehaviour
     private ChipList i_chips;
     [SerializeField]
     public IWeaponChipList i_weapons;
+    public AbilityList i_abilities;
 
     Transform i_panel;
     Transform wei_panel;
     public GameObject chip_mould;
     public GameObject weapon_chip_mould;
+    public GameObject ability_chip_mould;
 
     private void Awake()
     {
@@ -45,10 +47,10 @@ public class InventoryPanel : MonoBehaviour
             }
 
             // Comprobar si es un chip de habilidad
-            if(i_chips.chips[i].ability != "")
-            {
-                n_chip.GetComponent<IChipData>().chip_type = IChipData.ChipType.Ability;
-            }
+            //if(i_chips.chips[i].ability != "")
+            //{
+            //    n_chip.GetComponent<IChipData>().chip_type = IChipData.ChipType.Ability;
+            //}
         }
 
         // Introducir chips de armas
@@ -64,6 +66,24 @@ public class InventoryPanel : MonoBehaviour
             {
                 n_w_chip.AddComponent<Darken>();
                 Destroy(n_w_chip.GetComponent<IWeaponChipDrag>());
+                n_w_chip.transform.Find("Equipped").gameObject.SetActive(true);
+            }
+        }
+
+        //Introducir chips de habilidades
+        for (int i = 0; i < i_abilities.abi_list.Count; ++i)
+        {
+            GameObject n_w_chip = Instantiate(ability_chip_mould);
+            n_w_chip.transform.SetParent(i_panel);
+            n_w_chip.GetComponent<IAbiChipData>().abi_data = i_abilities.abi_list[i];        // El id de chip es el mismo que el id de chip de arma
+            n_w_chip.GetComponent<IAbiChipData>().chip_type = IChipData.ChipType.Ability;
+            n_w_chip.GetComponent<IAbiChipData>().data.id = i_abilities.abi_list[i].id;
+
+            // Comprobar el estado "equipado" y crear copia
+            if (i_abilities.abi_list[i].equipped)
+            {
+                n_w_chip.AddComponent<Darken>();
+                Destroy(n_w_chip.GetComponent<IChipDrag>());
                 n_w_chip.transform.Find("Equipped").gameObject.SetActive(true);
             }
         }
@@ -83,7 +103,7 @@ public class InventoryPanel : MonoBehaviour
 
     public void EquipChip(IChipData chip)
     {
-        if (chip.chip_type == IChipData.ChipType.Upgrade || chip.chip_type == IChipData.ChipType.Ability)
+        if (chip.chip_type == IChipData.ChipType.Upgrade)
         {
             // Buscar chip con id
             int index = i_chips.chips.FindIndex(x => x.id == chip.data.id);
@@ -94,13 +114,18 @@ public class InventoryPanel : MonoBehaviour
             int index = i_weapons.i_weapon_chips.FindIndex(x => x.id == chip.data.id);
             i_weapons.i_weapon_chips[index].equipped = true;
         }
+        else if(chip.chip_type == IChipData.ChipType.Ability)
+        {
+            int index = i_abilities.abi_list.FindIndex(x => x.id == chip.data.id);
+            i_abilities.abi_list[index].equipped = true;
+        }
 
         wei_panel.GetComponent<WeightPanel>().CalculateWeight();
     }
 
     public void UnequipChip(IChipData chip)
     {
-        if (chip.chip_type == IChipData.ChipType.Upgrade || chip.chip_type == IChipData.ChipType.Ability)
+        if (chip.chip_type == IChipData.ChipType.Upgrade)
         {
             // Buscar chip con id
             int index = i_chips.chips.FindIndex(x => x.id == chip.data.id);
@@ -110,6 +135,11 @@ public class InventoryPanel : MonoBehaviour
         {
             int index = i_weapons.i_weapon_chips.FindIndex(x => x.id == chip.data.id);
             i_weapons.i_weapon_chips[index].equipped = false;
+        }
+        else if (chip.chip_type == IChipData.ChipType.Ability)
+        {
+            int index = i_abilities.abi_list.FindIndex(x => x.id == chip.data.id);
+            i_abilities.abi_list[index].equipped = false;
         }
 
         wei_panel.GetComponent<WeightPanel>().CalculateWeight();
