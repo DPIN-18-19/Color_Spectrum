@@ -4,17 +4,22 @@ using UnityEngine;
 
 public class InicioMenu : MonoBehaviour {
 
-    public Animation BandaNegra;
-    public Animation Logotipo;
-    public Animation Botones;
+    public GameObject ImagenControles;
 
+    public void Controles()
+    {
+        ImagenControles.SetActive(true);
+    }
+
+    public void CerrarControles()
+    {
+        ImagenControles.SetActive(false);
+    }
 
     private void Awake()
     {
-      
-        BandaNegra.Play();
-        Logotipo.Play();
-        Botones.Play();
+
+        Time.timeScale = 1;
     }
 
     // Use this for initialization
