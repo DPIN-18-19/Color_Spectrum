@@ -47,7 +47,7 @@ public class Explosion_kamikaze_M : MonoBehaviour {
 
             //  if (DamageTime <= 0)
             {
-                if (hit.transform.gameObject.tag != "Yellow" && hit.transform.gameObject.tag != "Pink")
+                if (hit.transform.gameObject.layer != 10)
                 {
                     
                     other.GetComponent<HealthController>().GetDamage(damage);

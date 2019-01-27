@@ -51,7 +51,8 @@ public class BulletController : MonoBehaviour
     void Start()
     {
         m_collider = GetComponent<Collider>();
-        MaterialsPlayer = GameObject.Find("Player_Naomi").GetComponent<PlayerRenderer>();
+
+
 
         StartCoroutine(DestroyBullet());
     }

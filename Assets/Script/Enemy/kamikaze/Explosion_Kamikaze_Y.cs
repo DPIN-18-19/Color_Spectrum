@@ -49,7 +49,7 @@ public class Explosion_Kamikaze_Y : MonoBehaviour {
 
             //  if (DamageTime <= 0)
             {
-                if (hit.transform.gameObject.tag != "Blue" && hit.transform.gameObject.tag != "Pink")
+                if (hit.transform.gameObject.layer != 8)
                 {
                     Debug.Log("DañoAmariillo");
                     other.GetComponent<HealthController>().GetDamage(damage);
