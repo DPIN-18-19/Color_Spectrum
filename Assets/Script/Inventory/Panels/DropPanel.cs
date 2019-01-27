@@ -127,7 +127,8 @@ public class DropPanel : MonoBehaviour, IDropHandler, IPointerEnterHandler, IPoi
         // Limit the amount of chips the panel can have
         if (panel_type == PanelType.Weapon)
         {
-            if (transform.childCount < GetComponentInParent<WeaponPanel>().weapon_slots)
+            // Fix this. A fourth weapon is allowed to be hovered over.
+            if (transform.childCount <= GetComponentInParent<WeaponPanel>().weapon_slots)
                 return true;
         }
         else if(panel_type == PanelType.WeaponSlot)
