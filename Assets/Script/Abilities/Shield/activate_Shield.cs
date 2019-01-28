@@ -32,21 +32,21 @@ public class activate_Shield : MonoBehaviour {
 	void Update () {
 
         Cooldown -= Time.deltaTime;
-        GameplayManager.GetInstance().shield_cooldown = Cooldown;
-        GameplayManager.GetInstance().Shield_activo = SePuedeUsar;
-        GameplayManager.GetInstance().usarhabilidadShield = UsarHabilidad;
+        GameplayManager.GetInstance().ability_cooldown = Cooldown;
+       
 
         
         if ( SePuedeUsar == true && Input.GetButtonDown("Habilidad1") && Init_Abi == true)
         {
+
             source.PlayOneShot(ActivateShieldFx);
             DuracionHabilidad = Max_Duracion;
             UsarHabilidad = true;
             Init_Abi = false;
             InstanciateShield();
+            GameplayManager.GetInstance().ActivateAbility();
 
-
-           // SePuedeUsar = false;
+            // SePuedeUsar = false;
 
         }
         if (UsarHabilidad)
@@ -60,8 +60,8 @@ public class activate_Shield : MonoBehaviour {
             {
                 UsarHabilidad = false;
                 SePuedeUsar = false;
-                GameplayManager.GetInstance().Shield(SePuedeUsar);
-               
+                GameplayManager.GetInstance().DeactivateAbility();
+
                 Cooldown = Max_Cooldown;
                
                 Cooldown = Max_Cooldown;
@@ -75,9 +75,9 @@ public class activate_Shield : MonoBehaviour {
         {
             //Shield.SetActive(false);
             SePuedeUsar = true;
-            GameplayManager.GetInstance().Shield(SePuedeUsar);
+            GameplayManager.GetInstance().ResetAbility();
 
-           
+
             Cooldown = 0;
         }
         if (Cooldown <= 0)

@@ -43,8 +43,7 @@ using QFXToolKit;
        
         Max_Cooldown = Cooldown;
             rb = GetComponent<Rigidbody>();
-            GameplayManager.GetInstance().dash_cooldown = Cooldown;
-            GameplayManager.GetInstance().dash_activo = SePuedeUsar;
+           
         //Max_Duracion = DuracionHabilidad;
         //ChangeMaterial = GetComponent<PlayerRenderer>();
         }
@@ -52,8 +51,8 @@ using QFXToolKit;
         // Update is called once per frame
         void Update()
         {
-            GameplayManager.GetInstance().dash_cooldown = Cooldown;
-            GameplayManager.GetInstance().dash_activo = SePuedeUsar;
+            GameplayManager.GetInstance().ability_cooldown = Cooldown;
+            
             Cooldown -= Time.deltaTime;
         ControlledObject.Stop();
 
@@ -99,8 +98,8 @@ using QFXToolKit;
                 UsarHabilidad = false;
 
                 SePuedeUsar = false;
-                    GameplayManager.GetInstance().Dash(SePuedeUsar);
-                    Cooldown = Max_Cooldown;
+                GameplayManager.GetInstance().DeactivateAbility();
+                Cooldown = Max_Cooldown;
 
                     //- Usar rotacion en vez de direccion;
                     //   transform.position += MovePlayer.move_dir * (dashspeed * 10) * Time.deltaTime;
@@ -112,8 +111,8 @@ using QFXToolKit;
             if (Cooldown <= 0)
             {
                 SePuedeUsar = true;
-                GameplayManager.GetInstance().Dash(SePuedeUsar);
-                Cooldown = 0;
+            GameplayManager.GetInstance().ResetAbility();
+            Cooldown = 0;
             }
         }
         //void MakeEffect()

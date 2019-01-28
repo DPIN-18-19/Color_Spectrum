@@ -13,7 +13,8 @@ public class WeaponController : MonoBehaviour
     // Guns
 
     [SerializeField]
-    private weapon_List gun_list;            // Lista de armas;
+   // private weapon_List gun_list;            // Lista de armas;
+    public IWeaponChipList eq_weapons;
     private GunData cur_weapon;           // Datos del arma equipada
     public GameObject gun;
     public int activated_weapon = 0;        // Número de arma activada
@@ -47,8 +48,10 @@ public class WeaponController : MonoBehaviour
 
     void Awake()
     {
+       
         source = GetComponent<AudioSource>();
         render_children = new List<Renderer>();
+        GetNewWeapon(activated_weapon);
         //contShoot = gunlist.weaponList[2].num_disparos;
         //pistola = true;
     }
@@ -61,7 +64,7 @@ public class WeaponController : MonoBehaviour
         //ColorChangingController.Instance.ToCyan += BulletToCyan;
         //ColorChangingController.Instance.ToMagenta += BulletToMagenta;
 
-        GetNewWeapon(activated_weapon);
+       
     }
 
     // Update is called once per frame
@@ -161,8 +164,9 @@ public class WeaponController : MonoBehaviour
         
         // Actualizar datos
         activated_weapon = id;
-        cur_weapon = gun_list.weapon_list[id];
-        
+        Debug.Log("MadeonGun: " + id);
+        cur_weapon = eq_weapons.i_weapon_chips[id].base_gun;
+
         // Crear arma nueva como hijo
         gun = Instantiate(cur_weapon.gun, weapon_pos.transform);
         gun.transform.parent = weapon_pos.transform;
@@ -173,7 +177,8 @@ public class WeaponController : MonoBehaviour
         SearchRenderers();
         gun.GetComponent<GunController>().UpdateColor(GetComponentInParent<PlayerRenderer>().cur_color);
         // Activar habilidad
-        GetComponent<AbilityController>().ActivateAbility(cur_weapon.ability);
+        //GetComponent<AbilityController>().ActivateAbility(cur_weapon.ability);
+
     }
 
     void SearchRenderers()

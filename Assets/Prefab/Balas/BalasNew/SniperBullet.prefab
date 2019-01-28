@@ -60,7 +60,7 @@ MeshRenderer:
   m_ReflectionProbeUsage: 1
   m_RenderingLayerMask: 4294967295
   m_Materials:
-  - {fileID: 2100000, guid: d88ec5f6f06e64d4db6956c458f0b867, type: 2}
+  - {fileID: 2100000, guid: 44c2e440ab0d013449cfa8308164d9c4, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -118,7 +118,7 @@ TrailRenderer:
   m_ReflectionProbeUsage: 0
   m_RenderingLayerMask: 4294967295
   m_Materials:
-  - {fileID: 2100000, guid: d88ec5f6f06e64d4db6956c458f0b867, type: 2}
+  - {fileID: 2100000, guid: 44c2e440ab0d013449cfa8308164d9c4, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -221,7 +221,7 @@ MonoBehaviour:
   bullet_range: 0
   bullet_life_time: 0
   wall_active_time: 0.2
-  enemy_active_time: 0.2
+  enemy_active_time: 0
   enemy_ignore: 
   friendly: 0
   DestroyEffectYellow: {fileID: 198690981872490802, guid: 945dfa2ed122ea04e90f205649c71858,

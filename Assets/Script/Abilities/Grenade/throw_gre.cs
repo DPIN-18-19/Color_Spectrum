@@ -28,15 +28,14 @@ public class throw_gre : MonoBehaviour {
 
         anim = gameObject.GetComponent<Animator>();
         MaxCooldown = Cooldown;
-        GameplayManager.GetInstance().grenade_cooldown = Cooldown;
-        GameplayManager.GetInstance().grenade_activo = SepuedeUsar;
+       
 
     }
 	
 	// Update is called once per frame
 	void Update () {
-        GameplayManager.GetInstance().grenade_cooldown = Cooldown;
-        GameplayManager.GetInstance().grenade_activo = SepuedeUsar;
+        GameplayManager.GetInstance().ability_cooldown = Cooldown;
+       
         if (NotFire == true)
             weapon.is_firing = false;
 
@@ -45,7 +44,7 @@ public class throw_gre : MonoBehaviour {
         {
             Cooldown = 0;
             SepuedeUsar = true;
-            GameplayManager.GetInstance().Grenade(SepuedeUsar);
+            GameplayManager.GetInstance().ResetAbility();
 
         }
         if (Input.GetButtonDown("Habilidad1") && Cooldown <= 0 )
@@ -53,7 +52,7 @@ public class throw_gre : MonoBehaviour {
            
             NotFire = true;
             SepuedeUsar = false;
-            GameplayManager.GetInstance().Grenade(SepuedeUsar);
+            GameplayManager.GetInstance().DeactivateAbility();
             anim.SetBool("Granada", true);
             weapon.gun.SetActive(false);
           
