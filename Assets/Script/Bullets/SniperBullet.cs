@@ -30,7 +30,7 @@ public class SniperBullet : BulletController {
             MoveEffectCian();
         if (bullet_color == 2)
             MoveEffectMagenta();
-
+        Debug.Log(bullet_color);
     }
     public override void AddBulletInfo(int n_color, float n_increase_time, Vector3 n_dir, float n_damage, float n_range, bool n_friend)
     {

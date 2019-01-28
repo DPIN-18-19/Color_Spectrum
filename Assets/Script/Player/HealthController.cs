@@ -62,6 +62,9 @@ public class HealthController : MonoBehaviour
         GameplayManager.GetInstance().max_health = max_health;
         MaterialsPlayer = GetComponent<PlayerRenderer>();
 
+        max_health = GetComponent<PlayerStats>().health;
+       // Debug.Log(max_health);
+        max_armor = GetComponent<PlayerStats>().armor;
         health = max_health;
         newHealth = health;
         armor = max_armor;

@@ -4,10 +4,13 @@ using UnityEngine;
 
 public class Explosion_Kamikaze_C : MonoBehaviour {
     public float damage;
-
+    public AudioClip SonidoExplosion;
+    AudioSource source;
     // Use this for initialization
     void Start()
     {
+        source = GetComponent<AudioSource>();
+        source.PlayOneShot(SonidoExplosion);
 
     }
 
@@ -21,6 +24,7 @@ public class Explosion_Kamikaze_C : MonoBehaviour {
         // Debug.Log("FAROFrente");
         if (other.gameObject.tag == "EnemyPink" || other.gameObject.tag == "EnemyYellow")
         {
+            
             Debug.Log("Enemy");
             RaycastHit hit;
             Vector3 dir = (other.transform.position - transform.position).normalized;
@@ -32,6 +36,7 @@ public class Explosion_Kamikaze_C : MonoBehaviour {
                 {
                     
                     other.GetComponent<EnemyHealthController>().GetDamage(damage);
+                    
                 }
                 Debug.Log(hit.transform.name);
                 // HacerDañoYellow();
@@ -40,6 +45,7 @@ public class Explosion_Kamikaze_C : MonoBehaviour {
         }
         if (other.gameObject.tag == "Player")
         {
+           
             Debug.Log("DetectoPlayer");
             RaycastHit hit;
             Vector3 dir = (other.transform.position - transform.position).normalized;
@@ -47,10 +53,11 @@ public class Explosion_Kamikaze_C : MonoBehaviour {
 
             //  if (DamageTime <= 0)
             {
-                if (hit.transform.gameObject.tag != "Blue" && hit.transform.gameObject.tag != "Yellow")
+                if (hit.transform.gameObject.layer != 9)
                 {
                     
                     other.GetComponent<HealthController>().GetDamage(damage);
+                   
                 }
                 Debug.Log(hit.transform.name);
                 // HacerDañoYellow();
