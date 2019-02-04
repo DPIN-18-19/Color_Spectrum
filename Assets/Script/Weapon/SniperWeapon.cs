@@ -5,16 +5,21 @@ using UnityEngine;
 public class SniperWeapon : GunController
 {
     bool is_ready = false;
-
-    public GameObject ready_flash_Y;
-    public GameObject ready_flash_C;
-    public GameObject ready_flash_M;
+   
+    
 
     public Transform EffectTransform;
+
+    private AudioSource audiosource;
+    public AudioClip FXShotEffect;
+    public GameObject ParticleFlash_Y;
+    public GameObject ParticleFlash_C;
+    public GameObject ParticleFlash_M;
 
     // Use this for initialization
     void Start()
     {
+        audiosource = GetComponent<AudioSource>();
         //base.Start();
         source = GetComponent<AudioSource>();
 
@@ -48,15 +53,18 @@ public class SniperWeapon : GunController
             is_ready = true;
             if (weapon_color == 0)
             {
-                Instantiate(ready_flash_Y, EffectTransform.position, EffectTransform.rotation);
+                Instantiate(ParticleFlash_Y, EffectTransform.position, EffectTransform.rotation);
+                source.PlayOneShot(FXShotEffect);
             }
             if (weapon_color == 1)
             {
-                Instantiate(ready_flash_C, EffectTransform.position, EffectTransform.rotation);
+                Instantiate(ParticleFlash_C, EffectTransform.position, EffectTransform.rotation);
+                source.PlayOneShot(FXShotEffect);
             }
             if (weapon_color == 2)
             {
-                Instantiate(ready_flash_M, EffectTransform.position, EffectTransform.rotation);
+                Instantiate(ParticleFlash_M, EffectTransform.position, EffectTransform.rotation);
+                source.PlayOneShot(FXShotEffect);
             }
         }
     }

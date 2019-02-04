@@ -190,7 +190,7 @@ GameObject:
   - component: {fileID: 4982493015719764}
   m_Layer: 0
   m_Name: FirePos
-  m_TagString: Untagged
+  m_TagString: FirePos
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -809,6 +809,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d7565df79810d4c4cb85255ab6999cd5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  gun_automatic: 0
   yellow_mat: {fileID: 2100000, guid: d88ec5f6f06e64d4db6956c458f0b867, type: 2}
   cyan_mat: {fileID: 2100000, guid: 44c2e440ab0d013449cfa8308164d9c4, type: 2}
   magenta_mat: {fileID: 2100000, guid: 2d0ac1555fd56254c83e06f281b9678d, type: 2}

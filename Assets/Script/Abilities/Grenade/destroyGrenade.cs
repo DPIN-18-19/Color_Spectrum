@@ -66,32 +66,32 @@ public class destroyGrenade : MonoBehaviour
     }
     private void OnCollisionEnter(Collision col)
     {
-        if (col.gameObject.tag == gameObject.tag)
-        {
-            Debug.Log("Collided with a wall");
-            m_collider.enabled = !m_collider.enabled;
-            Invoke("ReactivateCollision", wall_active_time);
-        }
+        //if (col.gameObject.tag == gameObject.tag)
+        //{
+        //  //  Debug.Log("Collided with a wall");
+        //    m_collider.enabled = !m_collider.enabled;
+        //    Invoke("ReactivateCollision", wall_active_time);
+        //}
 
 
-        else if (cambioColor.GetColor() == 0 && col.gameObject.tag == "ParedNoCambioYellow")
-        {
-            Debug.Log("Collided with a wall");
-            m_collider.enabled = !m_collider.enabled;
-            Invoke("ReactivateCollision", wall_active_time);
-        }
-        else if (cambioColor.GetColor() == 1 && col.gameObject.tag == "ParedNoCambioBlue")
-        {
-            Debug.Log("Collided with a wall");
-            m_collider.enabled = !m_collider.enabled;
-            Invoke("ReactivateCollision", wall_active_time);
-        }
-        else if (cambioColor.GetColor() == 2 && col.gameObject.tag == "ParedNoCambioPink")
-        {
-            Debug.Log("Collided with a wall");
-            m_collider.enabled = !m_collider.enabled;
-            Invoke("ReactivateCollision", wall_active_time);
-        }
+        //else if (cambioColor.GetColor() == 0 && col.gameObject.tag == "ParedNoCambioYellow")
+        //{
+        //  //  Debug.Log("Collided with a wall");
+        //    m_collider.enabled = !m_collider.enabled;
+        //    Invoke("ReactivateCollision", wall_active_time);
+        //}
+        //else if (cambioColor.GetColor() == 1 && col.gameObject.tag == "ParedNoCambioBlue")
+        //{
+        //  //  Debug.Log("Collided with a wall");
+        //    m_collider.enabled = !m_collider.enabled;
+        //    Invoke("ReactivateCollision", wall_active_time);
+        //}
+        //else if (cambioColor.GetColor() == 2 && col.gameObject.tag == "ParedNoCambioPink")
+        //{
+        //  //  Debug.Log("Collided with a wall");
+        //    m_collider.enabled = !m_collider.enabled;
+        //    Invoke("ReactivateCollision", wall_active_time);
+        //}
         
 
 

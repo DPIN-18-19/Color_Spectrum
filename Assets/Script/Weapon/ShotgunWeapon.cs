@@ -5,11 +5,21 @@ using UnityEngine;
 public class ShotgunWeapon : GunController
 {
     bool is_ready = false;
-    public GameObject ready_flash;
 
-	// Use this for initialization
-	void Start ()
+    
+
+    public Transform EffectTransform;
+
+    private AudioSource audiosource;
+    public AudioClip FXShotEffect;
+    public GameObject ParticleFlash_Y;
+    public GameObject ParticleFlash_C;
+    public GameObject ParticleFlash_M;
+
+    // Use this for initialization
+    void Start ()
     {
+        audiosource = GetComponent<AudioSource>();
         //base.Start();
         source = GetComponent<AudioSource>();
 
@@ -38,27 +48,26 @@ public class ShotgunWeapon : GunController
 
     void ReadyToFire()
     {
-        if(!is_ready && cadence <= 0)
+        if (!is_ready && cadence <= 0)
         {
             is_ready = true;
-            Instantiate(ready_flash, spawn.position, spawn.rotation);
+            if (weapon_color == 0)
+            {
+                Instantiate(ParticleFlash_Y, EffectTransform.position, EffectTransform.rotation);
+                source.PlayOneShot(FXShotEffect);
+            }
+            if (weapon_color == 1)
+            {
+                Instantiate(ParticleFlash_C, EffectTransform.position, EffectTransform.rotation);
+                source.PlayOneShot(FXShotEffect);
+            }
+            if (weapon_color == 2)
+            {
+                Instantiate(ParticleFlash_M, EffectTransform.position, EffectTransform.rotation);
+                source.PlayOneShot(FXShotEffect);
+            }
         }
     }
 
-    protected override void BulletToYellow()
-    {
-        weapon_color = 0;
-    }
-
-    // Changing to cyan
-    protected override void BulletToCyan()
-    {
-        weapon_color = 1;
-    }
-
-    // Changing to magenta
-    protected override void BulletToMagenta()
-    {
-        weapon_color = 2;
-    }
+    
 }

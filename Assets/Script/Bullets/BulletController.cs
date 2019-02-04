@@ -1,5 +1,4 @@
-﻿
-using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -24,7 +23,7 @@ public class BulletController : MonoBehaviour
     [HideInInspector]
     public string enemy_ignore;            // Enemy color to ignore collision with
     [HideInInspector]
-    public bool friendly;           // Who shot the bullet? True: Player, False: Enemy
+    public bool friendly;                 // Who shot the bullet? True: Player, False: Enemy
 
     protected Collider m_collider;            // Bullet collider
 
@@ -37,6 +36,15 @@ public class BulletController : MonoBehaviour
     private bool BlueDestroyeffect;
     public AudioClip DestroyBulletFx;
 
+    public float TimeTrasparenteMat;
+    private float MaxTimeTrasparenteMat;
+    public bool Trasparente;
+
+
+    public PlayerRenderer MaterialsPlayer;
+
+    public bool Sniper;
+
     //////////////////////////////////////////////////////////////////////////////
 
     // Use this for initialization
@@ -44,13 +52,17 @@ public class BulletController : MonoBehaviour
     {
         m_collider = GetComponent<Collider>();
 
+
+
         StartCoroutine(DestroyBullet());
     }
+
 
     // Bullet variable initializer
     public virtual void AddBulletInfo(int n_color, float n_speed, Vector3 n_dir, float n_damage, float n_range, bool n_friend)
     //public void AddBulletInfo(int n_color, float n_speed, float n_damage, float n_range, bool n_friend)
     {
+        //Debug.Log(n_color);
         // Color dependent variables
         if (n_color == 0)
         {
@@ -68,7 +80,6 @@ public class BulletController : MonoBehaviour
         }
         else if (n_color == 2)
         {
-           
             PinkDestroyeffect = true;
             this.gameObject.tag = "Pink";
             enemy_ignore = "EnemyPink";
@@ -111,6 +122,22 @@ public class BulletController : MonoBehaviour
         //transform.Translate(transform.forward * bullet_speed * Time.deltaTime);
         //transform.Translate(transform.forward);
         //transform.position += bullet_dir * -bullet_speed * Time.deltaTime;
+
+        if (Trasparente == true)
+        {
+            MaterialsPlayer.SameColor();
+            TimeTrasparenteMat -= Time.deltaTime;
+        }
+        if (Trasparente == false && TimeTrasparenteMat < 0)
+        {
+            MaterialsPlayer.ResetColor();
+            TimeTrasparenteMat = MaxTimeTrasparenteMat;
+
+        }
+        if (TimeTrasparenteMat < 0)
+        {
+            Trasparente = false;
+        }
     }
 
     // If not collided with anything, destroy
@@ -164,12 +191,21 @@ public class BulletController : MonoBehaviour
             {
                 // Taking damage to player
                 if (col.gameObject.GetComponent<ColorChangingController>().GetColor() != bullet_color)
+                {
                     col.gameObject.SendMessage("GetDamage", bullet_damage);
+                    Destroy(gameObject);
+                }
                 // Restoring player health
                 else
-                    col.gameObject.SendMessage("RestoreHealth", bullet_damage);
+                {
+                    Debug.Log("Paso");
+                    m_collider.enabled = !m_collider.enabled;
+                    Trasparente = true;
+                    Invoke("ReactivateCollision", 0.5f);
+                    //  col.gameObject.SendMessage("RestoreHealth", bullet_damage);
+                }
 
-                Destroy(gameObject);
+                
             }
             // Player bullet
             //- Bug here
@@ -216,7 +252,8 @@ public class BulletController : MonoBehaviour
 
                 }
             }
-
+            //LLevarselo al hijo
+            if(Sniper == false)
             Destroy(gameObject);
         }
         else
@@ -266,7 +303,9 @@ public class BulletController : MonoBehaviour
                     col.gameObject.SendMessage("GetDamage", bullet_damage);
                 // Restoring player health
                 else
-                    col.gameObject.SendMessage("RestoreHealth", bullet_damage);
+                {
+                //   col.gameObject.SendMessage("RestoreHealth", bullet_damage);
+                }
 
                 Debug.Log("Destry enemy bullet11");
                 Destroy(gameObject);

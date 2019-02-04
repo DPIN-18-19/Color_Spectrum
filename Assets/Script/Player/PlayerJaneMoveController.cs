@@ -24,7 +24,7 @@ public class PlayerJaneMoveController : MonoBehaviour {
     // Use this for initialization
     void Start()
     {
-       
+        move_speed = GetComponent<PlayerStats>().speed;
         // Initialize
         SetUpAnimation();
         anim.SetBool("Move", Move);

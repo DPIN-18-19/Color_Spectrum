@@ -20,6 +20,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4139983251047912}
   - component: {fileID: 114390799705299712}
+  - component: {fileID: 114825409783908450}
   m_Layer: 0
   m_Name: Shotgun_bullet
   m_TagString: Untagged
@@ -121,8 +122,8 @@ GameObject:
   - component: {fileID: 23847600534560606}
   - component: {fileID: 64685362493689206}
   - component: {fileID: 114408738321576580}
-  - component: {fileID: 65175922077705732}
   - component: {fileID: 54876726972923462}
+  - component: {fileID: 114606150923918236}
   m_Layer: 4
   m_Name: Cone_Down
   m_TagString: Untagged
@@ -214,7 +215,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1016495751108764}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 327.5772, y: -2.9761, z: -187.15681}
+  m_LocalPosition: {x: 23.257057, y: 0.34769, z: 0.29469824}
   m_LocalScale: {x: 1, y: 1.6145644, z: 1}
   m_Children:
   - {fileID: 4244887190290980}
@@ -391,18 +392,6 @@ MeshCollider:
   m_CookingOptions: 14
   m_SkinWidth: 0.01
   m_Mesh: {fileID: 4300000, guid: 00da458dd4e802e45802fb4bade4da12, type: 3}
---- !u!65 &65175922077705732
-BoxCollider:
-  m_ObjectHideFlags: 1
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1603424198375044}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 1.0000005, y: 0.025885398, z: 1.0000014}
-  m_Center: {x: 0.000000059604627, y: 0.973161, z: -0.0000007215767}
 --- !u!114 &114390799705299712
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -428,6 +417,11 @@ MonoBehaviour:
   DestroyEffectPink: {fileID: 0}
   DestroyEffectBlue: {fileID: 0}
   DestroyBulletFx: {fileID: 0}
+  TimeTrasparenteMat: 0.4
+  Trasparente: 0
+  MaterialsPlayer: {fileID: 0}
+  Sniper: 0
+  increase_time: 0.2
   is_lerping: 0
 --- !u!114 &114408738321576580
 MonoBehaviour:
@@ -440,6 +434,37 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b297668dff0003e40aefd4b8a160eaa3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  TimeTrasparenteMat: 0.3
+  Trasparente: 0
+  MaterialsPlayer: {fileID: 0}
+--- !u!114 &114606150923918236
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1603424198375044}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1e21234e3c8e43a6ad12673095f01bca, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  RunAtStart: 1
+  Delay: 0
+  LifeTime: 0.4
+--- !u!114 &114825409783908450
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1016495751108764}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 246cc59c7a84ea44f87f6b70acfe30c5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  who: 2
+  custom_target: {fileID: 0}
+  Offset: {x: 0, y: 0, z: 0}
 --- !u!198 &198046953440648826
 ParticleSystem:
   m_ObjectHideFlags: 1
@@ -5118,7 +5143,7 @@ ParticleSystem:
     startLifetime:
       serializedVersion: 2
       minMaxState: 0
-      scalar: 0.6
+      scalar: 0.4
       minScalar: 5
       maxCurve:
         serializedVersion: 2
@@ -5991,8 +6016,8 @@ ParticleSystem:
           outSlope: 0
           tangentMode: 0
           weightedMode: 0
-          inWeight: 0
-          outWeight: 0
+          inWeight: 0.33333334
+          outWeight: 0.33333334
         - serializedVersion: 3
           time: 1
           value: 0
@@ -6000,8 +6025,8 @@ ParticleSystem:
           outSlope: -2
           tangentMode: 0
           weightedMode: 0
-          inWeight: 0
-          outWeight: 0
+          inWeight: 0.33333334
+          outWeight: 0.33333334
         m_PreInfinity: 2
         m_PostInfinity: 2
         m_RotationOrder: 4
@@ -14307,7 +14332,7 @@ ParticleSystem:
     startLifetime:
       serializedVersion: 2
       minMaxState: 0
-      scalar: 0.6
+      scalar: 0.4
       minScalar: 5
       maxCurve:
         serializedVersion: 2
@@ -15180,8 +15205,8 @@ ParticleSystem:
           outSlope: 0
           tangentMode: 0
           weightedMode: 0
-          inWeight: 0
-          outWeight: 0
+          inWeight: 0.33333334
+          outWeight: 0.33333334
         - serializedVersion: 3
           time: 1
           value: 0
@@ -15189,8 +15214,8 @@ ParticleSystem:
           outSlope: -2
           tangentMode: 0
           weightedMode: 0
-          inWeight: 0
-          outWeight: 0
+          inWeight: 0.33333334
+          outWeight: 0.33333334
         m_PreInfinity: 2
         m_PostInfinity: 2
         m_RotationOrder: 4
@@ -18897,7 +18922,7 @@ ParticleSystem:
     startLifetime:
       serializedVersion: 2
       minMaxState: 0
-      scalar: 0.6
+      scalar: 0.4
       minScalar: 5
       maxCurve:
         serializedVersion: 2
@@ -19770,8 +19795,8 @@ ParticleSystem:
           outSlope: 0
           tangentMode: 0
           weightedMode: 0
-          inWeight: 0
-          outWeight: 0
+          inWeight: 0.33333334
+          outWeight: 0.33333334
         - serializedVersion: 3
           time: 1
           value: 0
@@ -19779,8 +19804,8 @@ ParticleSystem:
           outSlope: -2
           tangentMode: 0
           weightedMode: 0
-          inWeight: 0
-          outWeight: 0
+          inWeight: 0.33333334
+          outWeight: 0.33333334
         m_PreInfinity: 2
         m_PostInfinity: 2
         m_RotationOrder: 4
@@ -28355,7 +28380,7 @@ SpriteRenderer:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1586589376126908}
-  m_Enabled: 1
+  m_Enabled: 0
   m_CastShadows: 0
   m_ReceiveShadows: 0
   m_DynamicOccludee: 1

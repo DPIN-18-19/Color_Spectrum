@@ -21,7 +21,8 @@ GameObject:
   - component: {fileID: 4021917419193368}
   - component: {fileID: 198085128614950906}
   - component: {fileID: 199027236818692978}
-  - component: {fileID: 114424052392739244}
+  - component: {fileID: 114202053568496522}
+  - component: {fileID: 114614206786248532}
   m_Layer: 11
   m_Name: Particle_Back_Shoot_Y
   m_TagString: Untagged
@@ -36,13 +37,13 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1338210207670200}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 13.408312, y: 2.169, z: -16.90801}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: -90, y: 0, z: 0}
---- !u!114 &114424052392739244
+--- !u!114 &114202053568496522
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_CorrespondingSourceObject: {fileID: 0}
@@ -56,6 +57,20 @@ MonoBehaviour:
   who: 3
   custom_target: {fileID: 0}
   Offset: {x: 0, y: 0, z: 0}
+--- !u!114 &114614206786248532
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1338210207670200}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1e21234e3c8e43a6ad12673095f01bca, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  RunAtStart: 1
+  Delay: 0
+  LifeTime: 1.5
 --- !u!198 &198085128614950906
 ParticleSystem:
   m_ObjectHideFlags: 1
@@ -135,7 +150,7 @@ ParticleSystem:
     startLifetime:
       serializedVersion: 2
       minMaxState: 0
-      scalar: 0.3
+      scalar: 0.6
       minScalar: 1
       maxCurve:
         serializedVersion: 2
@@ -242,7 +257,7 @@ ParticleSystem:
       serializedVersion: 2
       minMaxState: 0
       minColor: {r: 1, g: 1, b: 1, a: 1}
-      maxColor: {r: 0.9339623, g: 0.9266567, b: 0.074893214, a: 1}
+      maxColor: {r: 0.9811321, g: 0.9775396, b: 0.58775365, a: 1}
       maxGradient:
         serializedVersion: 2
         key0: {r: 1, g: 1, b: 1, a: 1}
@@ -304,7 +319,7 @@ ParticleSystem:
     startSize:
       serializedVersion: 2
       minMaxState: 0
-      scalar: 1
+      scalar: 1.2
       minScalar: 10
       maxCurve:
         serializedVersion: 2
@@ -357,7 +372,7 @@ ParticleSystem:
     startSizeY:
       serializedVersion: 2
       minMaxState: 0
-      scalar: 1
+      scalar: 1.2
       minScalar: 10
       maxCurve:
         serializedVersion: 2
@@ -410,7 +425,7 @@ ParticleSystem:
     startSizeZ:
       serializedVersion: 2
       minMaxState: 0
-      scalar: 1
+      scalar: 1.2
       minScalar: 10
       maxCurve:
         serializedVersion: 2

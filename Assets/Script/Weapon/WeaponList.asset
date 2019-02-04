@@ -22,32 +22,38 @@ MonoBehaviour:
     cadence: 0.5
     num_bullets: 1
     automatic: 1
+    weight: 10
     ability: Escudo
     fx_shot: {fileID: 8300000, guid: 2c270755a083f394bb2ccf4037733bea, type: 3}
+    display_icon: {fileID: 0}
   - name: Sniper
     gun: {fileID: 1019867649845852, guid: 8d3cf347f9da1ed4dbdfa37f9bbf9a39, type: 2}
     bullet: {fileID: 1355325964623596, guid: 05f9ef38a4b74114a8e0984e4e975f1a, type: 2}
-    speed: 50
+    speed: 38
     damage: 25
-    range: 30
+    range: 100
     spray: 1
     cadence: 2
     num_bullets: 1
     automatic: 0
+    weight: 10
     ability: CambioColor
     fx_shot: {fileID: 8300000, guid: 358d64b831ae7734c95d9b884c8b2929, type: 3}
+    display_icon: {fileID: 0}
   - name: Shotgun
     gun: {fileID: 1300654682825010, guid: 2c8dae5336223084e93d57e722c2aa71, type: 2}
     bullet: {fileID: 1016495751108764, guid: 39e5e6626b6b7e340a82cd6ad4b1c891, type: 2}
-    speed: 0.2
+    speed: 5
     damage: 20
-    range: 5
-    spray: 20
-    cadence: 0.5
+    range: 2
+    spray: 5
+    cadence: 2
     num_bullets: 1
     automatic: 0
+    weight: 10
     ability: Granada
     fx_shot: {fileID: 8300000, guid: d98214d00ecaad849a0d0cb5be6cdf77, type: 3}
+    display_icon: {fileID: 0}
   - name: Rifle
     gun: {fileID: 1884693661767280, guid: f6b50fdc03c91a24296e317ae2d0ca45, type: 2}
     bullet: {fileID: 1341849102906586, guid: 5f318d6af04c9324ca8e2aeafad9039e, type: 2}
@@ -58,6 +64,8 @@ MonoBehaviour:
     cadence: 0.2
     num_bullets: 1
     automatic: 1
+    weight: 10
     ability: Dash
     fx_shot: {fileID: 8300000, guid: f6cb1f581b7444b23a05b613a16420d5, type: 3}
+    display_icon: {fileID: 21300000, guid: 3476eae7f8814b1468dcca9b84855506, type: 3}
   equipped_weapons: []

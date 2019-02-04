@@ -5,18 +5,29 @@ using UnityEngine.SceneManagement;
 
 public class SceneMan : MonoBehaviour
 {
+    
+    public void Start()
+    {
+        Time.timeScale = 1f;
+    }
     public string cur_level;
 
     public void ToMenu()
     {
-        SceneManager.LoadScene("Main_Menu");
+        SceneManager.LoadScene("Main Menu");
     }
 
     public void ToLevel1()
     {
         SceneManager.LoadScene("Pruebas_CinemaMachine");
     }
-    
+    public void ToCustomizacion()
+    {
+        SceneManager.LoadScene("Drag and Drop MINe" +
+            "" +
+            "");
+    }
+
     public void NextLevel(string name)
     {
         SceneManager.LoadScene(name);
@@ -26,4 +37,11 @@ public class SceneMan : MonoBehaviour
     {
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
     }
+    public void ExitGame()
+    {
+        Application.Quit();
+    }
+   
+
+    // public void Controls()
 }

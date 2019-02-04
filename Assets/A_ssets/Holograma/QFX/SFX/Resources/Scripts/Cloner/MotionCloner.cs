@@ -10,6 +10,7 @@ namespace QFX.SFX
         public ColorChangingController ColorPlayer;
 
         public GameObject TargetGameObject;
+        
 
         public float CloneLifeTime = 1f;
         public float CloneRate = 1f;

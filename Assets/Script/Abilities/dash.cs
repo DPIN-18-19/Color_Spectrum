@@ -24,7 +24,7 @@ using QFXToolKit;
 
     //public GameObject  ParticleInPlayer;
     // public ParticleSystem ParticleOutPlayer2;
-    PlayerRenderer ChangeMaterial;
+    //PlayerRenderer ChangeMaterial;
 
     private AudioSource source;
         // Particles
@@ -43,18 +43,18 @@ using QFXToolKit;
        
         Max_Cooldown = Cooldown;
             rb = GetComponent<Rigidbody>();
-            GameplayManager.GetInstance().dash_cooldown = Cooldown;
-            GameplayManager.GetInstance().dash_activo = SePuedeUsar;
+           
         //Max_Duracion = DuracionHabilidad;
-        ChangeMaterial = GetComponent<PlayerRenderer>();
+        //ChangeMaterial = GetComponent<PlayerRenderer>();
         }
 
         // Update is called once per frame
         void Update()
         {
-            GameplayManager.GetInstance().dash_cooldown = Cooldown;
-            GameplayManager.GetInstance().dash_activo = SePuedeUsar;
+            GameplayManager.GetInstance().ability_cooldown = Cooldown;
+            
             Cooldown -= Time.deltaTime;
+        ControlledObject.Stop();
 
         if (Input.GetButton("Dash") && Cooldown <= 0) 
         { 
@@ -62,16 +62,17 @@ using QFXToolKit;
             
                 {
                     UsarHabilidad = true;
-                    ControlledObject.Run();
-                    //Debug.Break();
-                }
+                ControlledObject.Run();
+                ControlledObject.Stop();
+                //Debug.Break();
+            }
                 if (UsarHabilidad)
                 {
                     source.PlayOneShot(FxDash);
                     rb.AddForce(MovePlayer.move_dir * (dashspeed * 100), ForceMode.Impulse);
                     // Dash particles
 
-                    Invoke("MakeEffect", 0.04f);
+                    //Invoke("MakeEffect", 0.04f);
                     Quaternion rot = Quaternion.LookRotation(-MovePlayer.move_dir, Vector3.up);
                     if (ColorPlayer.GetColor() == 0)
                     {
@@ -89,16 +90,16 @@ using QFXToolKit;
 
 
                 //Invoke("StopSpeed", 0.2f);
-                    ControlledObject.Stop();
+               // ControlledObject.Run();
 
-                    Instantiate(p_sys, transform.position, rot);
-                //ControlledObject.Run();
-
+                Instantiate(p_sys, transform.position, rot);
+               
+               
                 UsarHabilidad = false;
 
                 SePuedeUsar = false;
-                    GameplayManager.GetInstance().Dash(SePuedeUsar);
-                    Cooldown = Max_Cooldown;
+                GameplayManager.GetInstance().DeactivateAbility();
+                Cooldown = Max_Cooldown;
 
                     //- Usar rotacion en vez de direccion;
                     //   transform.position += MovePlayer.move_dir * (dashspeed * 10) * Time.deltaTime;
@@ -110,14 +111,14 @@ using QFXToolKit;
             if (Cooldown <= 0)
             {
                 SePuedeUsar = true;
-                GameplayManager.GetInstance().Dash(SePuedeUsar);
-                Cooldown = 0;
+            GameplayManager.GetInstance().ResetAbility();
+            Cooldown = 0;
             }
         }
-        void MakeEffect()
-        {
-        ChangeMaterial.ResetColor();
-        }
+        //void MakeEffect()
+        //{
+        //ChangeMaterial.ResetColor();
+        //}
     void StopSpeed()
     {
         UsarHabilidad = false;

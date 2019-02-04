@@ -43,6 +43,21 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+--- !u!1 &1102498205642230
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 4026657842326844}
+  m_Layer: 0
+  m_Name: BackShotEffect
+  m_TagString: BackShotEffect
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
 --- !u!1 &1491598501578882
 GameObject:
   m_ObjectHideFlags: 0
@@ -85,7 +100,7 @@ GameObject:
   - component: {fileID: 4700083900302422}
   m_Layer: 0
   m_Name: FirePos
-  m_TagString: Untagged
+  m_TagString: FirePos
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -97,11 +112,24 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1491598501578882}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 1.162, z: 1.24}
+  m_LocalPosition: {x: 0, y: 1.5, z: 0.34}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 4793967952606238}
   m_RootOrder: 3
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!4 &4026657842326844
+Transform:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1102498205642230}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -0.11, y: 1.34, z: 0.47}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 4793967952606238}
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &4309665603483918
 Transform:
@@ -156,6 +184,7 @@ Transform:
   - {fileID: 4700083900302422}
   - {fileID: 4309665603483918}
   - {fileID: 4025035057627468}
+  - {fileID: 4026657842326844}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -323,10 +352,11 @@ MonoBehaviour:
     type: 2}
   ShellEfectPink: {fileID: 198076230649775678, guid: 3a875e93ad345f74b8662cfe669da381,
     type: 2}
-  ready_flash_Y: {fileID: 1338210207670200, guid: 02cfce6731c1d0848b9f781761323811,
-    type: 2}
-  ready_flash_C: {fileID: 1338210207670200, guid: d85e3a8ab73a8774491e4d8b6a814ab2,
-    type: 2}
-  ready_flash_M: {fileID: 1338210207670200, guid: ef5aa0ae884507b4b936c3d10ad234b4,
-    type: 2}
   EffectTransform: {fileID: 4025035057627468}
+  FXShotEffect: {fileID: 8300000, guid: 97b65796f9cafc943acda94f9ae34695, type: 3}
+  ParticleFlash_Y: {fileID: 1338210207670200, guid: 02cfce6731c1d0848b9f781761323811,
+    type: 2}
+  ParticleFlash_C: {fileID: 1338210207670200, guid: d85e3a8ab73a8774491e4d8b6a814ab2,
+    type: 2}
+  ParticleFlash_M: {fileID: 1338210207670200, guid: ef5aa0ae884507b4b936c3d10ad234b4,
+    type: 2}

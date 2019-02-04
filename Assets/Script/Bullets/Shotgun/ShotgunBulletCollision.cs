@@ -6,17 +6,38 @@ public class ShotgunBulletCollision : MonoBehaviour
 {
     ShotgunBullet bullet;
     Collider s_collider;
+    BulletController Ref_Bullet;
+
+    public float TimeTrasparenteMat;
+    private float MaxTimeTrasparenteMat;
+    public bool Trasparente;
+
+
+    public PlayerRenderer MaterialsPlayer;
 
     // Use this for initialization
     void Start()
     {
         bullet = transform.parent.GetComponent<ShotgunBullet>();
         s_collider = GetComponentInChildren<Collider>();
+        Ref_Bullet = transform.parent.gameObject.GetComponent<BulletController>();
+        MaterialsPlayer = GameObject.Find("Player_Naomi").GetComponent<PlayerRenderer>();
     }
 
     // Update is called once per frame
     void Update()
     {
+     
+        if (Trasparente == true)
+        {
+            MaterialsPlayer.SameColor();
+            // TimeTrasparenteMat -= Time.deltaTime;
+            Invoke("ResetMaterial", TimeTrasparenteMat);
+        }
+        if (Trasparente == false)
+        {
+            MaterialsPlayer.ResetColor();
+        }
     }
 
     private void OnTriggerEnter(Collider col)
@@ -39,7 +60,8 @@ public class ShotgunBulletCollision : MonoBehaviour
                     col.gameObject.SendMessage("GetDamage", bullet.bullet_damage);
                 // Restoring player health
                 else
-                    col.gameObject.SendMessage("RestoreHealth", bullet.bullet_damage);
+                    Trasparente = true;
+                //  col.gameObject.SendMessage("RestoreHealth", bullet.bullet_damage);
 
                 //Destroy(gameObject);
             }
@@ -76,5 +98,9 @@ public class ShotgunBulletCollision : MonoBehaviour
             bullet.is_lerping = false;
             StartCoroutine(bullet.DestroyBullet());
         }
+    }
+    public void ResetMaterial()
+    {
+        Trasparente = false;
     }
 }

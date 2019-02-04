@@ -26,6 +26,21 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+--- !u!1 &1064188789198326
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 4642371933161734}
+  m_Layer: 0
+  m_Name: BackShotEffect
+  m_TagString: BackShotEffect
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
 --- !u!1 &1300654682825010
 GameObject:
   m_ObjectHideFlags: 0
@@ -53,7 +68,7 @@ GameObject:
   - component: {fileID: 4620262646823260}
   m_Layer: 0
   m_Name: FirePos
-  m_TagString: Untagged
+  m_TagString: FirePos
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -88,6 +103,7 @@ Transform:
   - {fileID: 4996760094521086}
   - {fileID: 4620262646823260}
   - {fileID: 4399263254016204}
+  - {fileID: 4642371933161734}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -116,6 +132,19 @@ Transform:
   m_Children: []
   m_Father: {fileID: 4252851435847748}
   m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!4 &4642371933161734
+Transform:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1064188789198326}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0.658, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 4252851435847748}
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &4996760094521086
 Transform:
@@ -178,7 +207,7 @@ AudioSource:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1300654682825010}
-  m_Enabled: 0
+  m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 0}
@@ -294,5 +323,11 @@ MonoBehaviour:
     type: 2}
   ShellEfectPink: {fileID: 198076230649775678, guid: 3a875e93ad345f74b8662cfe669da381,
     type: 2}
-  ready_flash: {fileID: 1338210207670200, guid: 02cfce6731c1d0848b9f781761323811,
+  EffectTransform: {fileID: 4642371933161734}
+  FXShotEffect: {fileID: 8300000, guid: 97b65796f9cafc943acda94f9ae34695, type: 3}
+  ParticleFlash_Y: {fileID: 1338210207670200, guid: 02cfce6731c1d0848b9f781761323811,
+    type: 2}
+  ParticleFlash_C: {fileID: 1338210207670200, guid: d85e3a8ab73a8774491e4d8b6a814ab2,
+    type: 2}
+  ParticleFlash_M: {fileID: 1338210207670200, guid: ef5aa0ae884507b4b936c3d10ad234b4,
     type: 2}

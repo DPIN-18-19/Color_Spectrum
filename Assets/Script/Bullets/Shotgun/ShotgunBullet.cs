@@ -7,7 +7,7 @@ public class ShotgunBullet : BulletController
     ////////////////////////////////////////////////////////////////////////
     // Shotgun Specific variables
 
-    float increase_time = 0.4f;
+   public float increase_time = 0.3f;
     float fade_time = 0.15f;
     public bool is_lerping;
 
@@ -84,7 +84,7 @@ public class ShotgunBullet : BulletController
             s_collider.gameObject.tag = "Pink";
             s_collider.gameObject.layer = 13;
         }
-        
+
 
         ////- Take out layers sometime
         //// Enemy layers
@@ -93,8 +93,8 @@ public class ShotgunBullet : BulletController
 
         //// Non-color dependent variables
         //bullet_color = n_color;
-        increase_time = 0.2f;
-        bullet_life_time = 0.05f;
+       
+        bullet_life_time = 0.6f;
     }
 
     // If not collided with anything, destroy
@@ -114,14 +114,14 @@ public class ShotgunBullet : BulletController
 
         float dist = Vector3.Distance(transform.position, edge.position);
 
-        Vector3 final = transform.localScale * bullet_range / dist;
+        Vector3 final = transform.localScale * 2.8f / dist;
         final.y = transform.localScale.y;
 
         StartCoroutine(LerpSize(increase_time, transform.localScale, final));
     }
 
     // Incrementar gradualmente el tamaño del área de la escopeta
-    IEnumerator LerpSize(float lerpDuration, Vector3 init_scale, Vector3 final_scale)
+    IEnumerator LerpSize (float lerpDuration, Vector3 init_scale, Vector3 final_scale)
     {
         float lerpStart_Time = Time.time;
         float lerpProgress;

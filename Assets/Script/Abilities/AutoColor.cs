@@ -5,7 +5,7 @@ using UnityEngine;
 public class AutoColor : MonoBehaviour
 {
     public bool use_ability;        // Dash to be used checker
-    public bool is_active;          // Ability activated checker
+    public bool is_active = false;          // Ability activated checker
 
     public float c_cooldown;        // Cooldown counter
     private float cooldown;         // Cooldown to be applied
@@ -37,9 +37,8 @@ public class AutoColor : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        GameplayManager.GetInstance().cambio_cooldown = c_cooldown;
-        GameplayManager.GetInstance().cambio_activo = is_active;
-        GameplayManager.GetInstance().usarhabilidad = use_ability;
+        GameplayManager.GetInstance().ability_cooldown = c_cooldown;
+       
 
         if (is_active == true && Input.GetButtonDown("Habilidad1") && Init_Abi == true)
         {
@@ -48,6 +47,7 @@ public class AutoColor : MonoBehaviour
             use_ability = true;
             CreateEffect();
             Init_Abi = false;
+            GameplayManager.GetInstance().ActivateAbility();
         }
 
         RefreshCooldown();
@@ -66,9 +66,10 @@ public class AutoColor : MonoBehaviour
                 use_ability = false;
                 is_active = false;
                 c_cooldown = cooldown;
-                GameplayManager.GetInstance().CambioColor(is_active);
+             //   GameplayManager.GetInstance().CambioColor(is_active);
+                GameplayManager.GetInstance().DeactivateAbility();
 
-                Init_Abi = true;
+               Init_Abi = true;
                 dur = max_dur;
             }
         }
@@ -82,7 +83,7 @@ public class AutoColor : MonoBehaviour
         if (c_cooldown <= 0 && Init_Abi == true)
         {
             is_active = true;
-            GameplayManager.GetInstance().CambioColor(is_active);
+            GameplayManager.GetInstance().ResetAbility();
             c_cooldown = 0;
         }
     }

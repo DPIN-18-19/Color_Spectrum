@@ -4,10 +4,11 @@ using UnityEngine;
 
 public class activate_ParticleDie_B : MonoBehaviour {
     public ParticleSystem ParticleBlue;
+    public float TimeBetweenExplosion = 0.3f;
     
     // Use this for initialization
     void Start () {
-        Invoke("Activate_Effect", 0.3f);
+        Invoke("Activate_Effect", TimeBetweenExplosion);
     }
 
 
