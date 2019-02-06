@@ -19,13 +19,11 @@ public class SceneMan : MonoBehaviour
 
     public void ToLevel1()
     {
-        SceneManager.LoadScene("Pruebas_CinemaMachine");
+        SceneManager.LoadScene("Nivel_1");
     }
     public void ToCustomizacion()
     {
-        SceneManager.LoadScene("Drag and Drop MINe" +
-            "" +
-            "");
+        SceneManager.LoadScene("Customizacion");
     }
 
     public void NextLevel(string name)
