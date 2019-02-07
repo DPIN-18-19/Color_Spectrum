@@ -825,6 +825,7 @@ GameObject:
   - component: {fileID: 46102015}
   - component: {fileID: 46102017}
   - component: {fileID: 46102016}
+  - component: {fileID: 46102018}
   m_Layer: 5
   m_Name: Shotgun
   m_TagString: Untagged
@@ -887,6 +888,17 @@ CanvasRenderer:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 46102014}
   m_CullTransparentMesh: 0
+--- !u!225 &46102018
+CanvasGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 46102014}
+  m_Enabled: 1
+  m_Alpha: 1
+  m_Interactable: 1
+  m_BlocksRaycasts: 1
+  m_IgnoreParentGroups: 0
 --- !u!1 &47983501
 GameObject:
   m_ObjectHideFlags: 0
@@ -3923,6 +3935,7 @@ GameObject:
   - component: {fileID: 195652742}
   - component: {fileID: 195652744}
   - component: {fileID: 195652743}
+  - component: {fileID: 195652745}
   m_Layer: 5
   m_Name: Pistol Image
   m_TagString: Untagged
@@ -3985,6 +3998,17 @@ CanvasRenderer:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 195652741}
   m_CullTransparentMesh: 0
+--- !u!225 &195652745
+CanvasGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 195652741}
+  m_Enabled: 1
+  m_Alpha: 1
+  m_Interactable: 1
+  m_BlocksRaycasts: 1
+  m_IgnoreParentGroups: 0
 --- !u!1 &196137354
 GameObject:
   m_ObjectHideFlags: 0
@@ -18752,6 +18776,7 @@ MonoBehaviour:
   t_health: {fileID: 1179071496}
   health: 0
   max_health: 50
+  ability_cooldown: 0
   t_dash_cooldown: {fileID: 782861864}
   dash_cooldown: 0
   dash_activo: 0
@@ -40228,6 +40253,7 @@ GameObject:
   - component: {fileID: 2081633842}
   - component: {fileID: 2081633844}
   - component: {fileID: 2081633843}
+  - component: {fileID: 2081633845}
   m_Layer: 5
   m_Name: Sniper
   m_TagString: Untagged
@@ -40290,6 +40316,17 @@ CanvasRenderer:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 2081633841}
   m_CullTransparentMesh: 0
+--- !u!225 &2081633845
+CanvasGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 2081633841}
+  m_Enabled: 1
+  m_Alpha: 1
+  m_Interactable: 1
+  m_BlocksRaycasts: 1
+  m_IgnoreParentGroups: 0
 --- !u!1 &2083878581
 GameObject:
   m_ObjectHideFlags: 0

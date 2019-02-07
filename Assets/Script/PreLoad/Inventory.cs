@@ -22,6 +22,6 @@ public class Inventory : MonoBehaviour
         i_equipped_w.i_weapon_chips.Clear();
         i_equipped_w.i_weapon_chips.Add(i_weapons.i_weapon_chips[0]);
         i_equipped_w.i_weapon_chips.Add(i_weapons.i_weapon_chips[2]);
-        i_equipped_w.i_weapon_chips.Add(i_weapons.i_weapon_chips[1]);
+        //i_equipped_w.i_weapon_chips.Add(i_weapons.i_weapon_chips[1]);
     }
 }
