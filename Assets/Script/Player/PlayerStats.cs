@@ -25,9 +25,7 @@ public class PlayerStats : MonoBehaviour
         health = base_health;
         armor = base_armor;
         speed = base_speed;
-        Debug.Log(health);
         LoadChips();
-        Debug.Log(health);
 
     }
 	
@@ -39,7 +37,6 @@ public class PlayerStats : MonoBehaviour
 
     void LoadChips()
     {
-        Debug.Log(health);
         for(int i = 0; i < player_chips.chips.Count; ++i)
         {
             Debug.Log(i + " out of ME " + player_chips.chips.Count);
@@ -65,7 +62,6 @@ public class PlayerStats : MonoBehaviour
 
             ++num_chips;
         }
-        Debug.Log(health);
     }
 
     void ResetPlayer()

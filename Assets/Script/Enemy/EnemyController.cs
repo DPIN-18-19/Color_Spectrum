@@ -32,7 +32,7 @@ public class EnemyController : MonoBehaviour
     // Navmesh variables
 
     private NavMeshAgent nav_agent;             // Navmesh object
-    private GameObject target;                  // Move towards objective
+    public GameObject target;                  // Move towards objective
     //public Transform[] points;                  // Patrol points (unfinished)
     public GameObject home;                     // Enemy return point
 
@@ -105,7 +105,7 @@ public class EnemyController : MonoBehaviour
         anim = gameObject.GetComponent<Animator>();
         source = GetComponent<AudioSource>();
 
-        target = GameObject.FindWithTag("Player");
+        target = GameObject.Find("Player_Naomi");
         nav_agent = GetComponent<NavMeshAgent>();
 
         detect = GetComponent<DetectionController>();
@@ -325,7 +325,7 @@ public class EnemyController : MonoBehaviour
 
         if (detect.IsPlayerInFront() && detect.IsPlayerNear(sight_distance)) // && detect.IsPlayerOnSight(sight_distance))
         {
-            //Debug.Log("I see you");
+            Debug.Log("I see you");
             is_chasing = true;
             in_home = false;
         }
