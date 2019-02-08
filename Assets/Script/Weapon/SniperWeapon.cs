@@ -48,24 +48,23 @@ public class SniperWeapon : GunController
 
     void ReadyToFire()
     {
-        if (!is_ready && cadence <= 0)
+        if (!is_ready && cadence <= 0 && Input.GetButtonDown("Fire1"))
         {
+            source.PlayOneShot(FXShotEffect);
             is_ready = true;
             if (weapon_color == 0)
             {
-                Instantiate(ParticleFlash_Y, EffectTransform.position, EffectTransform.rotation);
-                source.PlayOneShot(FXShotEffect);
+                Instantiate(ParticleFlash_Y, EffectTransform.position, EffectTransform.rotation);  
             }
             if (weapon_color == 1)
             {
-                Instantiate(ParticleFlash_C, EffectTransform.position, EffectTransform.rotation);
-                source.PlayOneShot(FXShotEffect);
+                Instantiate(ParticleFlash_C, EffectTransform.position, EffectTransform.rotation); 
             }
             if (weapon_color == 2)
             {
-                Instantiate(ParticleFlash_M, EffectTransform.position, EffectTransform.rotation);
-                source.PlayOneShot(FXShotEffect);
+                Instantiate(ParticleFlash_M, EffectTransform.position, EffectTransform.rotation);   
             }
+           
         }
     }
 
