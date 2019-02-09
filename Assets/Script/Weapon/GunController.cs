@@ -106,7 +106,7 @@ public class GunController : MonoBehaviour
                     bullet_dir = angulo * bullet_dir;
 
                     //Debug.DrawLine(cam.GetMousePosInPlane(bullet_spawn_pistola.position), bullet_spawn_pistola.position, Color.cyan);
-                    Debug.Log("Color is " + weapon_color);
+                   // Debug.Log("Color is " + weapon_color);
                     bullet_shot.GetComponent<BulletController>().AddBulletInfo(weapon_color, bullet_speed, bullet_dir, bullet_damage, bullet_range, true);
 
                     --c_bullets;

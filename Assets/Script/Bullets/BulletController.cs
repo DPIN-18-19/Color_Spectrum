@@ -69,21 +69,22 @@ public class BulletController : MonoBehaviour
             YellowDestroyeffect = true;
             this.gameObject.tag = "Yellow";
             enemy_ignore = "EnemyYellow";
-            this.gameObject.layer = 11;             //- Take out layers
+            this.gameObject.layer = 8;             //- Take out layers
         }
         else if (n_color == 1)
         {
             BlueDestroyeffect = true;
             this.gameObject.tag = "Blue";
             enemy_ignore = "EnemyBlue";
-            this.gameObject.layer = 12;             //- Take out layers
+            this.gameObject.layer = 9;             //- Take out layers
         }
         else if (n_color == 2)
         {
+            Debug.Log("SoyColorRosa");
             PinkDestroyeffect = true;
             this.gameObject.tag = "Pink";
             enemy_ignore = "EnemyPink";
-            this.gameObject.layer = 13;             //- Take out layers
+            this.gameObject.layer = 10;             //- Take out layers
         }
 
         //- Take out layers sometime
@@ -114,6 +115,7 @@ public class BulletController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        
        // Debug.Log(YellowDestroyeffect);
         //Debug.Log("Update bullet");
         //Debug.Break();
@@ -144,13 +146,14 @@ public class BulletController : MonoBehaviour
     public virtual IEnumerator DestroyBullet()
     {
         yield return new WaitForSeconds(bullet_life_time);
-        Debug.Log("Out of time");
+       // Debug.Log("Out of time");
         Destroy(gameObject);
     }
 
 
     private void OnCollisionEnter(Collision col)
     {
+       
         //Debug.Log("Enter Collided with " + col.transform.gameObject.tag);
         //- Collision with player is not working
         // Same color obstacle collision
@@ -198,7 +201,7 @@ public class BulletController : MonoBehaviour
                 // Restoring player health
                 else
                 {
-                    Debug.Log("Paso");
+                 //   Debug.Log("Paso");
                     m_collider.enabled = !m_collider.enabled;
                     Trasparente = true;
                     Invoke("ReactivateCollision", 0.5f);
@@ -225,10 +228,12 @@ public class BulletController : MonoBehaviour
         // Collision with any other object
         else if (col.gameObject.tag.Contains("Enemy"))
         {
+           
             if (friendly)
             {
                 if (col.gameObject.GetComponent<EnemyHealthController>().IsWeak(gameObject.tag, gameObject.layer))
                 {
+                    Debug.Log("BalaIsWeak");
                     col.gameObject.GetComponent<EnemyHealthController>().GetDamage(bullet_damage);
 
                     if (YellowDestroyeffect)
@@ -249,8 +254,9 @@ public class BulletController : MonoBehaviour
                         Instantiate(DestroyEffectBlue.gameObject, transform.position, Quaternion.identity);
                         
                     }
-
+                    
                 }
+                
             }
             //LLevarselo al hijo
             if(Sniper == false)

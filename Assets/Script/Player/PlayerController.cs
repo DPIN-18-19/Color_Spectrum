@@ -75,7 +75,7 @@ public class PlayerController : MonoBehaviour {
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetMouseButtonDown(0) && Fire == true )
+        if (Input.GetButtonDown("Fire1") && Fire == true )
         {
             weapon.is_firing = true;
             isFiring = true;
@@ -83,7 +83,7 @@ public class PlayerController : MonoBehaviour {
             Fire = false;
         }
 
-        if (Input.GetMouseButtonUp(0) )
+        if (Input.GetButtonUp("Fire1") )
         {
             weapon.is_firing = false;
             isFiring = false;

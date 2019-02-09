@@ -66,23 +66,23 @@ public class ShotgunBullet : BulletController
         if (n_color == 0)
         {
             this.gameObject.tag = "Yellow";
-            this.gameObject.layer = 11;
+            this.gameObject.layer = 8;
             s_collider.gameObject.tag = "Yellow";
-            s_collider.gameObject.layer = 11;
+            s_collider.gameObject.layer = 8;
         }
         else if(n_color == 1)
         {
             this.gameObject.tag = "Blue";
-            this.gameObject.layer = 12;
+            this.gameObject.layer = 9;
             s_collider.gameObject.tag = "Blue";
-            s_collider.gameObject.layer = 12;
+            s_collider.gameObject.layer = 9;
         }
         else if(n_color == 2)
         {
             this.gameObject.tag = "Pink";
-            this.gameObject.layer = 13;
+            this.gameObject.layer = 10;
             s_collider.gameObject.tag = "Pink";
-            s_collider.gameObject.layer = 13;
+            s_collider.gameObject.layer = 10;
         }
 
 

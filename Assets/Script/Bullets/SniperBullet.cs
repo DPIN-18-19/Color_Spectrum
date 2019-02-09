@@ -44,19 +44,19 @@ public class SniperBullet : BulletController {
         if (n_color == 0)
         {
             this.gameObject.tag = "Yellow";
-            this.gameObject.layer = 11;
+            this.gameObject.layer = 8;
            
         }
         else if (n_color == 1)
         {
             this.gameObject.tag = "Blue";
-            this.gameObject.layer = 12;
+            this.gameObject.layer = 9;
            
         }
         else if (n_color == 2)
         {
             this.gameObject.tag = "Pink";
-            this.gameObject.layer = 13;
+            this.gameObject.layer = 10;
             
         }
 

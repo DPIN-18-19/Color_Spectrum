@@ -54,6 +54,7 @@ public class EnemyHealthController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        
         IsDead();
         HealthBar();
 
@@ -152,11 +153,21 @@ public class EnemyHealthController : MonoBehaviour
 
     public bool IsWeak(string other_tag, int other_layer)
     {
-
+        //Debug.Log(other_tag);
+        //Debug.Log(other_layer);
+        //Debug.Log("Damage Layer1" + damaging_layer1 + " Damage Layer2" + damaging_layer2);
+        //Debug.Log("Damage tag1" + damaging_tag1 + " Damage tag2" + damaging_tag2);
         if ((other_tag == damaging_tag1 && other_layer == damaging_layer1) || (other_tag == damaging_tag2 && other_layer == damaging_layer2))
+        {
+            Debug.Log("Hola1");
             return true;
+
+        }
         else
+        {
+            Debug.Log("Hola1");
             return false;
+        }
     }
 
     // Color dependent functions
@@ -165,8 +176,8 @@ public class EnemyHealthController : MonoBehaviour
     {
         damaging_tag1 = "Blue";
         damaging_tag2 = "Pink";
-        damaging_layer1 = 12;
-        damaging_layer2 = 13;
+        damaging_layer1 = 9;
+        damaging_layer2 = 10;
         enemy_color = 0;
     }
 
@@ -174,8 +185,8 @@ public class EnemyHealthController : MonoBehaviour
     {
         damaging_tag1 = "Pink";
         damaging_tag2 = "Yellow";
-        damaging_layer1 = 13;
-        damaging_layer2 = 11;
+        damaging_layer1 = 10;
+        damaging_layer2 = 8;
         enemy_color = 1;
     }
 
@@ -183,8 +194,8 @@ public class EnemyHealthController : MonoBehaviour
     {
         damaging_tag1 = "Blue";
         damaging_tag2 = "Yellow";
-        damaging_layer1 = 12;
-        damaging_layer2 = 11;
+        damaging_layer1 = 9;
+        damaging_layer2 = 8;
         enemy_color = 2;
     }
 }
