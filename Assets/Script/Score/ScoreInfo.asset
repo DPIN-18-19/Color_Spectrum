@@ -1,0 +1,71 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5bdced6d186b8ec469d2b23350422886, type: 3}
+  m_Name: ScoreInfo
+  m_EditorClassIdentifier: 
+  times:
+  - name: Time
+    minutes: 5
+    seconds: 55
+    multiplier: 1000
+  - name: Time
+    minutes: 6
+    seconds: 25
+    multiplier: 750
+  - name: Time
+    minutes: 6
+    seconds: 55
+    multiplier: 500
+  - name: Time
+    minutes: 7
+    seconds: 25
+    multiplier: 250
+  - name: Time
+    minutes: 7
+    seconds: 55
+    multiplier: 0
+  health:
+  - name: Damage
+    damage_times: 15
+    damage_score: 500
+  - name: Damage
+    damage_times: 20
+    damage_score: 400
+  - name: Damage
+    damage_times: 30
+    damage_score: 300
+  - name: Damage
+    damage_times: 40
+    damage_score: 200
+  - name: Damage
+    damage_times: 50
+    damage_score: 100
+  grades:
+  - name: Puntuacion
+    grade: S
+    score: 5500
+    mat: {fileID: 2100000, guid: a4cb68babefaa9441b62434b713e5b07, type: 2}
+  - name: Puntuacion
+    grade: A
+    score: 5100
+    mat: {fileID: 2100000, guid: e35922498e96a98498729916d76998ea, type: 2}
+  - name: Puntuacion
+    grade: B
+    score: 4800
+    mat: {fileID: 2100000, guid: 96bb17c081efcaf479167331c056f4e0, type: 2}
+  - name: Puntuacion
+    grade: C
+    score: 4350
+    mat: {fileID: 2100000, guid: 47df143e7f79a9147993f61a61dc095e, type: 2}
+  - name: Puntuacion
+    grade: D
+    score: 4100
+    mat: {fileID: 2100000, guid: 2ed27b7ed07568a49b9917de8963283b, type: 2}
