@@ -2,8 +2,9 @@
 using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
+using UnityEngine.EventSystems;
 
-public class SChipData : MonoBehaviour
+public class SChipData : MonoBehaviour, IPointerDownHandler
 {
     public enum ChipType
     {
@@ -20,12 +21,16 @@ public class SChipData : MonoBehaviour
     GameObject my_hover_tooltip;                    // Referencia al tooltip creado
 
     protected Transform canvas;                     // El canvas
+    Transform display_panel;
+    Transform outline;
 
     private void Start()
     {
         canvas = GetComponentInParent<Canvas>().transform;          // Coger el canvas de la interfaz
+        display_panel = GetComponentInParent<SChipPanel>().transform;
         price = transform.Find("PricePanel").GetComponentInChildren<TextMeshProUGUI>();
         WritePrice();
+        outline = transform.Find("Outline");
     }
 
     void WritePrice()
@@ -33,6 +38,21 @@ public class SChipData : MonoBehaviour
         price.text = data.price.ToString();
     }
 
+    public void OnPointerDown(PointerEventData eventData)
+    {
+        Debug.Log("I was selected " + data.price);
+
+        outline.gameObject.SetActive(true);
+        display_panel.GetComponent<SChipPanel>().ClearSelect();
+        display_panel.GetComponent<SChipPanel>().chip_to_buy.Clone(data);
+        display_panel.GetComponent<SChipPanel>().select_click = true;
+    }
+
+    public void DeselectChip()
+    {
+        Debug.Log("I was deselected " + data.price);
+        outline.gameObject.SetActive(false);
+    }
     //public void OnPointerEnter(PointerEventData p_event_data)
     //{
     //    // Evitar que se muestre un tooltip si ya se agarrando algo

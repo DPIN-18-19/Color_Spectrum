@@ -17,5 +17,16 @@ public class ChipData
 
     // Datos de tienda
     public float price;                     // Campo de tienda
+
+    public void Clone(ChipData other)
+    {
+        id = other.id;
+        name = other.name;
+        weight = other.weight;
+        player_stats = other.player_stats;
+        weapon_stats = other.weapon_stats;
+        equipped = other.equipped;
+        price = other.price;
+    }
 }
 

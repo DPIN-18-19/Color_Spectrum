@@ -194,8 +194,8 @@ MonoBehaviour:
   m_outlineColor:
     serializedVersion: 2
     rgba: 4278190080
-  m_fontSize: 24
-  m_fontSizeBase: 24
+  m_fontSize: 36
+  m_fontSizeBase: 36
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
@@ -247,7 +247,7 @@ MonoBehaviour:
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
   m_spriteAnimator: {fileID: 0}
-  m_isInputParsingRequired: 1
+  m_isInputParsingRequired: 0
   m_inputSource: 0
   m_hasFontAssetChanged: 0
   m_subTextObjects:
@@ -528,120 +528,6 @@ CanvasRenderer:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 389622816}
   m_CullTransparentMesh: 0
---- !u!1001 &530439691
-Prefab:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    m_TransformParent: {fileID: 825985153}
-    m_Modifications:
-    - target: {fileID: 224155972855216972, guid: 78133008dd301574bb652ede7ce54e75,
-        type: 2}
-      propertyPath: m_LocalPosition.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 224155972855216972, guid: 78133008dd301574bb652ede7ce54e75,
-        type: 2}
-      propertyPath: m_LocalPosition.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 224155972855216972, guid: 78133008dd301574bb652ede7ce54e75,
-        type: 2}
-      propertyPath: m_LocalPosition.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 224155972855216972, guid: 78133008dd301574bb652ede7ce54e75,
-        type: 2}
-      propertyPath: m_LocalRotation.x
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: 224155972855216972, guid: 78133008dd301574bb652ede7ce54e75,
-        type: 2}
-      propertyPath: m_LocalRotation.y
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: 224155972855216972, guid: 78133008dd301574bb652ede7ce54e75,
-        type: 2}
-      propertyPath: m_LocalRotation.z
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: 224155972855216972, guid: 78133008dd301574bb652ede7ce54e75,
-        type: 2}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 224155972855216972, guid: 78133008dd301574bb652ede7ce54e75,
-        type: 2}
-      propertyPath: m_RootOrder
-      value: 3
-      objectReference: {fileID: 0}
-    - target: {fileID: 224155972855216972, guid: 78133008dd301574bb652ede7ce54e75,
-        type: 2}
-      propertyPath: m_AnchoredPosition.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 224155972855216972, guid: 78133008dd301574bb652ede7ce54e75,
-        type: 2}
-      propertyPath: m_AnchoredPosition.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 224155972855216972, guid: 78133008dd301574bb652ede7ce54e75,
-        type: 2}
-      propertyPath: m_SizeDelta.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 224155972855216972, guid: 78133008dd301574bb652ede7ce54e75,
-        type: 2}
-      propertyPath: m_SizeDelta.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 224155972855216972, guid: 78133008dd301574bb652ede7ce54e75,
-        type: 2}
-      propertyPath: m_AnchorMin.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 224155972855216972, guid: 78133008dd301574bb652ede7ce54e75,
-        type: 2}
-      propertyPath: m_AnchorMin.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 224155972855216972, guid: 78133008dd301574bb652ede7ce54e75,
-        type: 2}
-      propertyPath: m_AnchorMax.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 224155972855216972, guid: 78133008dd301574bb652ede7ce54e75,
-        type: 2}
-      propertyPath: m_AnchorMax.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 224155972855216972, guid: 78133008dd301574bb652ede7ce54e75,
-        type: 2}
-      propertyPath: m_Pivot.x
-      value: 0.5
-      objectReference: {fileID: 0}
-    - target: {fileID: 224155972855216972, guid: 78133008dd301574bb652ede7ce54e75,
-        type: 2}
-      propertyPath: m_Pivot.y
-      value: 0.5
-      objectReference: {fileID: 0}
-    - target: {fileID: 1119851449315328, guid: 78133008dd301574bb652ede7ce54e75, type: 2}
-      propertyPath: m_Name
-      value: StoreChip
-      objectReference: {fileID: 0}
-    - target: {fileID: 114878240385243134, guid: 78133008dd301574bb652ede7ce54e75,
-        type: 2}
-      propertyPath: m_havePropertiesChanged
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 114878240385243134, guid: 78133008dd301574bb652ede7ce54e75,
-        type: 2}
-      propertyPath: m_isInputParsingRequired
-      value: 1
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
-  m_SourcePrefab: {fileID: 100100000, guid: 78133008dd301574bb652ede7ce54e75, type: 2}
-  m_IsPrefabAsset: 0
 --- !u!1 &610190442
 GameObject:
   m_ObjectHideFlags: 0
@@ -931,7 +817,7 @@ MonoBehaviour:
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
   m_spriteAnimator: {fileID: 0}
-  m_isInputParsingRequired: 1
+  m_isInputParsingRequired: 0
   m_inputSource: 0
   m_hasFontAssetChanged: 0
   m_subTextObjects:
@@ -1040,7 +926,6 @@ RectTransform:
   - {fileID: 1074397415}
   - {fileID: 389622817}
   - {fileID: 169208671}
-  - {fileID: 856115892}
   - {fileID: 1427688266}
   m_Father: {fileID: 0}
   m_RootOrder: 2
@@ -1050,11 +935,6 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0, y: 0}
---- !u!224 &856115892 stripped
-RectTransform:
-  m_CorrespondingSourceObject: {fileID: 224155972855216972, guid: 78133008dd301574bb652ede7ce54e75,
-    type: 2}
-  m_PrefabInternal: {fileID: 530439691}
 --- !u!1 &1057456206
 GameObject:
   m_ObjectHideFlags: 0
@@ -1289,7 +1169,7 @@ RectTransform:
   m_Children:
   - {fileID: 610190443}
   m_Father: {fileID: 825985153}
-  m_RootOrder: 4
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -1310,6 +1190,15 @@ MonoBehaviour:
   store_chips: {fileID: 11400000, guid: 584b5324b72862f45aecfab18aca5bf6, type: 2}
   schip_mould: {fileID: 1119851449315328, guid: 78133008dd301574bb652ede7ce54e75,
     type: 2}
+  chip_to_buy:
+    id: 
+    name: 
+    weight: 0
+    player_stats: []
+    weapon_stats: []
+    equipped: 0
+    price: 0
+  select_click: 0
 --- !u!114 &1427688268
 MonoBehaviour:
   m_ObjectHideFlags: 0
