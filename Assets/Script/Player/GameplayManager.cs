@@ -8,8 +8,8 @@ public class GameplayManager : MonoBehaviour
     static GameplayManager instance;
 
     Transform canvas;
-    
-   
+    public HealthController vida;
+
     public Text t_health;               // Player's health in UI
     public float health;
     public float max_health;
@@ -97,6 +97,8 @@ public class GameplayManager : MonoBehaviour
     // Use this for initialization
     void Awake ()
     {
+        vida = GameObject.Find("Player_Naomi").GetComponent<HealthController>();
+       
         instance = this;
 
         canvas = GameObject.Find("OldCanvas").transform;
@@ -113,6 +115,10 @@ public class GameplayManager : MonoBehaviour
         //y_frame.SetActive(true);
         //c_frame.SetActive(false);
         //m_frame.SetActive(false);
+    }
+    void Start()
+    {
+        max_health = vida.max_health;
     }
 
 
