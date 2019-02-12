@@ -291,19 +291,19 @@ RectTransform:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 169208670}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 800800375}
   - {fileID: 1380451720}
-  m_Father: {fileID: 825985153}
-  m_RootOrder: 1
+  m_Father: {fileID: 1427688266}
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 616.9, y: 444}
-  m_SizeDelta: {x: -1267.3, y: -936.5}
+  m_AnchoredPosition: {x: 584.7, y: 453.79996}
+  m_SizeDelta: {x: -996.90015, y: -576.02765}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &169208672
 MonoBehaviour:
@@ -447,7 +447,7 @@ RectTransform:
   m_Children:
   - {fileID: 97477924}
   m_Father: {fileID: 1427688266}
-  m_RootOrder: 1
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -569,7 +569,7 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1427688266}
-  m_RootOrder: 0
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
@@ -706,7 +706,7 @@ GameObject:
   - component: {fileID: 800800377}
   - component: {fileID: 800800376}
   m_Layer: 5
-  m_Name: Money_Number
+  m_Name: MoneyText
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -936,7 +936,6 @@ RectTransform:
   m_LocalScale: {x: 0, y: 0, z: 0}
   m_Children:
   - {fileID: 1074397415}
-  - {fileID: 169208671}
   - {fileID: 1427688266}
   m_Father: {fileID: 0}
   m_RootOrder: 2
@@ -1092,7 +1091,7 @@ GameObject:
   - component: {fileID: 1380451722}
   - component: {fileID: 1380451721}
   m_Layer: 5
-  m_Name: Money_Symbol
+  m_Name: MoneySymbol
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1162,7 +1161,7 @@ GameObject:
   - component: {fileID: 1427688268}
   - component: {fileID: 1427688267}
   m_Layer: 5
-  m_Name: DisplayWindow
+  m_Name: StoreWindow
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1178,10 +1177,11 @@ RectTransform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
+  - {fileID: 169208671}
   - {fileID: 610190443}
   - {fileID: 389622817}
   m_Father: {fileID: 825985153}
-  m_RootOrder: 2
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
