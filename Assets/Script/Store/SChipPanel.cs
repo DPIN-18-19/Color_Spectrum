@@ -7,6 +7,8 @@ public class SChipPanel : MonoBehaviour
 {
     [SerializeField]
     private ChipList store_chips;
+    [SerializeField]
+    private ChipList inventory_chips;
 
     public GameObject schip_mould;
 
@@ -15,6 +17,7 @@ public class SChipPanel : MonoBehaviour
 
     public ChipData chip_to_buy;
     public bool select_click = false;
+    public bool allow_click = true;
 
     private void Awake()
     {
@@ -22,8 +25,12 @@ public class SChipPanel : MonoBehaviour
         buy_b = transform.Find("BuyButton").GetComponent<Button>();
         LoadChips();
     }
-	
-	void LoadChips()
+
+    private void Start()
+    {
+    }
+
+    void LoadChips()
     {
         for(int i = 0; i < store_chips.chips.Count; ++i)
         {
@@ -37,9 +44,8 @@ public class SChipPanel : MonoBehaviour
     {
         if (Input.GetMouseButtonDown(0))
         {
-            if (chip_to_buy.id != "" && !select_click)
+            if (chip_to_buy.id != "" && !select_click && allow_click)
             {
-                Debug.Log("here");
                 ClearSelect();
             }
         }
@@ -64,5 +70,25 @@ public class SChipPanel : MonoBehaviour
                 chip_to_buy.id = "";
             }
         }
+    }
+
+    public void BuyItem()
+    {
+        ChipData bought = new ChipData();
+        bought.Clone(chip_to_buy);
+        inventory_chips.chips.Add(bought);
+
+        for(int i = 0; i < d_panel.childCount; ++i)
+        {
+            if(d_panel.GetChild(i).GetComponent<SChipData>().data.id == chip_to_buy.id)
+            {
+                Destroy(d_panel.GetChild(i).gameObject);
+                break;
+            }
+        }
+
+        int index = store_chips.chips.FindIndex(x => x.id == chip_to_buy.id);
+        store_chips.chips.RemoveAt(index);
+        chip_to_buy.id = "";
     }
 }

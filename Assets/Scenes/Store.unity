@@ -298,7 +298,7 @@ RectTransform:
   - {fileID: 800800375}
   - {fileID: 1380451720}
   m_Father: {fileID: 825985153}
-  m_RootOrder: 2
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
@@ -427,6 +427,7 @@ GameObject:
   - component: {fileID: 389622820}
   - component: {fileID: 389622819}
   - component: {fileID: 389622818}
+  - component: {fileID: 389622821}
   m_Layer: 5
   m_Name: BuyButton
   m_TagString: Untagged
@@ -440,17 +441,17 @@ RectTransform:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 389622816}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 97477924}
-  m_Father: {fileID: 825985153}
+  m_Father: {fileID: 1427688266}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 593.3, y: -441.2}
+  m_AnchoredPosition: {x: 561.1, y: -431.40002}
   m_SizeDelta: {x: 259.2, y: 81.9}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &389622818
@@ -528,6 +529,17 @@ CanvasRenderer:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 389622816}
   m_CullTransparentMesh: 0
+--- !u!114 &389622821
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 389622816}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4d4c15ceba2fe3d48b11f5a2f26cafc2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &610190442
 GameObject:
   m_ObjectHideFlags: 0
@@ -924,7 +936,6 @@ RectTransform:
   m_LocalScale: {x: 0, y: 0, z: 0}
   m_Children:
   - {fileID: 1074397415}
-  - {fileID: 389622817}
   - {fileID: 169208671}
   - {fileID: 1427688266}
   m_Father: {fileID: 0}
@@ -1168,8 +1179,9 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 610190443}
+  - {fileID: 389622817}
   m_Father: {fileID: 825985153}
-  m_RootOrder: 3
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -1188,6 +1200,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   store_chips: {fileID: 11400000, guid: 584b5324b72862f45aecfab18aca5bf6, type: 2}
+  inventory_chips: {fileID: 11400000, guid: 5b9508faadba3a54a865f1308d781cf5, type: 2}
   schip_mould: {fileID: 1119851449315328, guid: 78133008dd301574bb652ede7ce54e75,
     type: 2}
   chip_to_buy:
@@ -1199,6 +1212,7 @@ MonoBehaviour:
     equipped: 0
     price: 0
   select_click: 0
+  allow_click: 1
 --- !u!114 &1427688268
 MonoBehaviour:
   m_ObjectHideFlags: 0
