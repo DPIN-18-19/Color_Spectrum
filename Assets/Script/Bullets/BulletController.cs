@@ -145,7 +145,7 @@ public class BulletController : MonoBehaviour
     // If not collided with anything, destroy
     public virtual IEnumerator DestroyBullet()
     {
-        yield return new WaitForSeconds(bullet_life_time);
+        yield return new WaitForSeconds(bullet_life_time/1f);
        // Debug.Log("Out of time");
         Destroy(gameObject);
     }
@@ -354,10 +354,10 @@ public class BulletController : MonoBehaviour
 
     protected void MoveBullet()
     {
-        Vector3 final_pos = transform.position + bullet_dir * -bullet_speed * Time.deltaTime;
+        Vector3 final_pos = transform.position + bullet_dir * -bullet_speed * Time.deltaTime ;
         // Move only if no collision is found
         if (!PeekNextPosition(final_pos))
-            transform.position += bullet_dir * -bullet_speed * Time.deltaTime;
+            transform.position += bullet_dir * -bullet_speed * Time.deltaTime/10f;
     }
 
     // Check next position the bullet will move to
