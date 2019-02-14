@@ -12,8 +12,9 @@ public class SChipPanel : MonoBehaviour
 
     public GameObject schip_mould;
 
-    Transform d_panel;
+    Transform display_p;
     Button buy_b;
+    Transform money_p;
 
     public ChipData chip_to_buy;
     public bool select_click = false;
@@ -21,8 +22,9 @@ public class SChipPanel : MonoBehaviour
 
     private void Awake()
     {
-        d_panel = transform.Find("DisplayPanel");
+        display_p = transform.Find("DisplayPanel");
         buy_b = transform.Find("BuyButton").GetComponent<Button>();
+        money_p = transform.Find("MoneyPanel");
         LoadChips();
     }
 
@@ -35,7 +37,7 @@ public class SChipPanel : MonoBehaviour
         for(int i = 0; i < store_chips.chips.Count; ++i)
         {
             GameObject n_chip = Instantiate(schip_mould);
-            n_chip.transform.SetParent(d_panel);
+            n_chip.transform.SetParent(display_p);
             n_chip.GetComponent<SChipData>().data.Clone(store_chips.chips[i]);
         }
     }
@@ -57,16 +59,18 @@ public class SChipPanel : MonoBehaviour
             buy_b.interactable = false;
         else
             buy_b.interactable = true;
+
+        ItemPurchasable();
     }
 
     public void ClearSelect()
     {
-        for (int i = 0; i < d_panel.childCount; ++i)
+        for (int i = 0; i < display_p.childCount; ++i)
         {
-            Debug.Log(d_panel.GetChild(i).GetComponent<SChipData>().data.id);
-            if (d_panel.GetChild(i).GetComponent<SChipData>().data.id == chip_to_buy.id)
+            Debug.Log(display_p.GetChild(i).GetComponent<SChipData>().data.id);
+            if (display_p.GetChild(i).GetComponent<SChipData>().data.id == chip_to_buy.id)
             {
-                d_panel.GetChild(i).GetComponent<SChipData>().DeselectChip();
+                display_p.GetChild(i).GetComponent<SChipData>().DeselectChip();
                 chip_to_buy.id = "";
             }
         }
@@ -76,13 +80,14 @@ public class SChipPanel : MonoBehaviour
     {
         ChipData bought = new ChipData();
         bought.Clone(chip_to_buy);
+        money_p.GetComponent<MoneyPanel>().SpendMoney(bought.price);
         inventory_chips.chips.Add(bought);
 
-        for(int i = 0; i < d_panel.childCount; ++i)
+        for(int i = 0; i < display_p.childCount; ++i)
         {
-            if(d_panel.GetChild(i).GetComponent<SChipData>().data.id == chip_to_buy.id)
+            if(display_p.GetChild(i).GetComponent<SChipData>().data.id == chip_to_buy.id)
             {
-                Destroy(d_panel.GetChild(i).gameObject);
+                Destroy(display_p.GetChild(i).gameObject);
                 break;
             }
         }
@@ -90,5 +95,16 @@ public class SChipPanel : MonoBehaviour
         int index = store_chips.chips.FindIndex(x => x.id == chip_to_buy.id);
         store_chips.chips.RemoveAt(index);
         chip_to_buy.id = "";
+    }
+
+    void ItemPurchasable()
+    {
+        for (int i = 0; i < display_p.childCount; ++i)
+        {
+            if(money_p.GetComponent<MoneyPanel>().player_money < display_p.GetChild(i).GetComponent<SChipData>().data.price)
+            {
+                display_p.GetChild(i).GetComponent<SChipData>().MakeUnpurchaseable();
+            }
+        }
     }
 }
