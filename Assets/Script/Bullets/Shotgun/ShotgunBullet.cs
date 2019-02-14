@@ -7,7 +7,7 @@ public class ShotgunBullet : BulletController
     ////////////////////////////////////////////////////////////////////////
     // Shotgun Specific variables
 
-   public float increase_time = 0.3f;
+   public float increase_time = 20f;
     float fade_time = 0.15f;
     public bool is_lerping;
 
@@ -15,7 +15,11 @@ public class ShotgunBullet : BulletController
     SpriteRenderer m_sprite;
     ParticleSystem []m_particle;
 
-   
+
+
+    public float RalentizarBala;
+    float tiempoNormal = 1f;
+
 
 
     // Use this for initialization
@@ -28,8 +32,12 @@ public class ShotgunBullet : BulletController
         //m_particle.material.color = Color.yellow;
         //Debug.Log(s_collider.name);
 
+        
+
         InitBullet();
         ColorParticle();
+
+
     }
 
     private void Update()
@@ -93,7 +101,7 @@ public class ShotgunBullet : BulletController
 
         //// Non-color dependent variables
         //bullet_color = n_color;
-       
+        
         bullet_life_time = 0.6f;
     }
 
@@ -123,14 +131,14 @@ public class ShotgunBullet : BulletController
     // Incrementar gradualmente el tamaño del área de la escopeta
     IEnumerator LerpSize (float lerpDuration, Vector3 init_scale, Vector3 final_scale)
     {
-        float lerpStart_Time = Time.time;
-        float lerpProgress;
+        
+        float lerpProgress = 0;
         is_lerping = true;
 
         while (is_lerping)
         {
             yield return new WaitForEndOfFrame();
-            lerpProgress = Time.time - lerpStart_Time;
+            lerpProgress += Time.deltaTime/1f; //RalentizarCrecimiento
 
             transform.localScale = Vector3.Lerp(init_scale, final_scale, lerpProgress / lerpDuration);
 
