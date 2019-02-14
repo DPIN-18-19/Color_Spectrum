@@ -19,10 +19,11 @@ public class BulletController : MonoBehaviour
 
     //- Consider making just one variable
     public float wall_active_time = 0.2f;       // Time to get collision back after wall
+    float max_wall_active_time;
     public float enemy_active_time = 0.2f;      // Time to get collision back after enemy
     [HideInInspector]
     public string enemy_ignore;            // Enemy color to ignore collision with
-    [HideInInspector]
+   // [HideInInspector]
     public bool friendly;                 // Who shot the bullet? True: Player, False: Enemy
 
     protected Collider m_collider;            // Bullet collider
@@ -40,8 +41,18 @@ public class BulletController : MonoBehaviour
     private float MaxTimeTrasparenteMat;
     public bool Trasparente;
 
+    // Hablidad ralentizar bala
+     float ralentizarVelocidad =1f;
+     float ralentizarDestruccion = 1f;
+    float MaxRalentizarVelocidad;
+    float MaxralentizarDestruccion;
+    public float RalentizarVelBala;
+    public float RalentizarDesBala;
+   
+     Slow_Motion Ralentizar;
 
-    public PlayerRenderer MaterialsPlayer;
+
+     PlayerRenderer MaterialsPlayer;
 
     public bool Sniper;
 
@@ -50,9 +61,13 @@ public class BulletController : MonoBehaviour
     // Use this for initialization
     void Start()
     {
+        max_wall_active_time = wall_active_time;
+        MaxRalentizarVelocidad = ralentizarVelocidad;
+        MaxralentizarDestruccion = ralentizarDestruccion;
+
         m_collider = GetComponent<Collider>();
 
-
+        Ralentizar = GameObject.Find("Player_Naomi").GetComponent<Slow_Motion>();
         MaterialsPlayer = GameObject.Find("Player_Naomi").GetComponent<PlayerRenderer>();
         StartCoroutine(DestroyBullet());
     }
@@ -110,6 +125,10 @@ public class BulletController : MonoBehaviour
         bullet_life_time = bullet_range / Mathf.Abs(bullet_speed);
 
         friendly = n_friend;
+
+
+
+
     }
 
     // Update is called once per frame
@@ -140,12 +159,30 @@ public class BulletController : MonoBehaviour
         {
             Trasparente = false;
         }
+
+
+        //Condicion !friendly(Enemigo) Ralentizar.
+        if(!friendly && Ralentizar.ActivateAbility == true )
+        {
+            Debug.Log("Ralentizado");
+            ralentizarVelocidad = RalentizarVelBala;
+            ralentizarDestruccion = RalentizarDesBala;     
+        }
+        if (!friendly && Ralentizar.ActivateAbility == false )
+        {
+            Debug.Log("DejadoDeRalentizar");
+            ralentizarVelocidad = MaxRalentizarVelocidad;
+            ralentizarDestruccion = MaxralentizarDestruccion;  
+        }
+
+
+
     }
 
     // If not collided with anything, destroy
     public virtual IEnumerator DestroyBullet()
     {
-        yield return new WaitForSeconds(bullet_life_time/1f);
+        yield return new WaitForSeconds(bullet_life_time/ralentizarDestruccion);
        // Debug.Log("Out of time");
         Destroy(gameObject);
     }
@@ -153,7 +190,15 @@ public class BulletController : MonoBehaviour
 
     private void OnCollisionEnter(Collision col)
     {
-       
+        if (col.gameObject.tag == "Player" && this.gameObject.tag == "Pink" && !friendly && Ralentizar.ActivateAbility == true)
+        {
+            this.gameObject.layer = 10;
+        }
+        if (col.gameObject.tag == "Player" && this.gameObject.tag == "Pink" && !friendly && Ralentizar.ActivateAbility == false)
+        {
+            this.gameObject.layer = 16;
+        }
+
         //Debug.Log("Enter Collided with " + col.transform.gameObject.tag);
         //- Collision with player is not working
         // Same color obstacle collision
@@ -290,6 +335,8 @@ public class BulletController : MonoBehaviour
 
     void OnCollisionStay(Collision col)
     {
+       
+
         Debug.Log("Collided with " + col.transform.gameObject.tag);
 
         // Same color obstacle collision
@@ -357,7 +404,7 @@ public class BulletController : MonoBehaviour
         Vector3 final_pos = transform.position + bullet_dir * -bullet_speed * Time.deltaTime ;
         // Move only if no collision is found
         if (!PeekNextPosition(final_pos))
-            transform.position += bullet_dir * -bullet_speed * Time.deltaTime/10f;
+            transform.position += bullet_dir * -bullet_speed * Time.deltaTime/ ralentizarVelocidad;
     }
 
     // Check next position the bullet will move to
