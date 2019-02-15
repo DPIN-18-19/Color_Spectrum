@@ -5,11 +5,7 @@ using UnityEngine.UI;
 
 public class ScoreManager : MonoBehaviour
 {
-    public static ScoreManager Instance
-    {
-        get;
-        private set;
-    }
+    public static ScoreManager Instance { get; private set; }
     public Text Puntosdelnivel;
 
     //////////////////////////////////////
@@ -62,7 +58,8 @@ public class ScoreManager : MonoBehaviour
     {
         if (Instance == null)
             Instance = this;
-        
+        else
+            Destroy(gameObject);
     }
 
     // Use this for initialization

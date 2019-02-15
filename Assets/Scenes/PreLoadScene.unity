@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.18028378, g: 0.22571412, b: 0.30692285, a: 1}
+  m_IndirectSpecularColor: {r: 0.18028334, g: 0.2257134, b: 0.30692226, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -200,6 +200,7 @@ GameObject:
   - component: {fileID: 1477886907}
   - component: {fileID: 1477886906}
   - component: {fileID: 1477886905}
+  - component: {fileID: 1477886908}
   m_Layer: 0
   m_Name: __app
   m_TagString: Untagged
@@ -247,6 +248,25 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1477886908
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1477886904}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: eb51f3ce711999b40a67bdff58b7aad9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  base_health: 90
+  base_armor: 0
+  base_speed: 7
+  health: 0
+  armor: 0
+  speed: 0
+  player_chips: {fileID: 11400000, guid: 7a67465f0ad3b454795926c34a287cd0, type: 2}
+  money: 0
 --- !u!1 &1787395651
 GameObject:
   m_ObjectHideFlags: 0
@@ -274,7 +294,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 85471d12ac3994745b6db94916aa84cb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  l_name: Pruebas_CinemaMachine
 --- !u!4 &1787395653
 Transform:
   m_ObjectHideFlags: 0

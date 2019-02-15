@@ -22,6 +22,7 @@ public class ScoreScreen : MonoBehaviour
 	public void UpdateStats()
     {
         ScoreManager.Instance.CalculateFinalScore();
+        PlayerManager.Instance.AddMoney(ScoreManager.Instance.GetFinalScore());
         // Numero de golpes
         score_texts[0].text = ScoreManager.Instance.GetDamageCount().ToString();
         // Puntuacion de golpes
@@ -40,7 +41,17 @@ public class ScoreScreen : MonoBehaviour
         score_texts[7].text = ScoreManager.Instance.GetFinalGrade();
         score_texts[7].material = ScoreManager.Instance.QuickGetGradeMat();
 
-        GameObject.Find("GameManager").GetComponent<SceneMan>().Invoke("ToMenu", 7);
+        //GameObject.Find("GameManager").GetComponent<SceneMan>().Invoke("ToMenu", 7);
+        Debug.Log("This");
+        UnityEngine.SceneManagement.SceneManager.LoadScene("Store");
+        //this.Invoke("LoadNext", 3);
     }
-    
+
+    void LoadNext()
+    {
+
+        Debug.Log("This1");
+        UnityEngine.SceneManagement.SceneManager.LoadScene("Store");
+    }
+
 }

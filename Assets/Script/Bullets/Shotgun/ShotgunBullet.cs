@@ -10,14 +10,12 @@ public class ShotgunBullet : BulletController
     float increase_time = 0.4f;
     float fade_time = 0.15f;
     public bool is_lerping;
+    public bool is_waiting;
 
     private Collider s_collider;            // Bullet collider
     SpriteRenderer m_sprite;
     ParticleSystem []m_particle;
-
-   
-
-
+    
     // Use this for initialization
     void Start ()
     {
@@ -32,10 +30,6 @@ public class ShotgunBullet : BulletController
         ColorParticle();
     }
 
-    private void Update()
-    {
-       
-    }
     void ColorParticle()
     {
         if (bullet_color == 0)
@@ -85,7 +79,6 @@ public class ShotgunBullet : BulletController
             s_collider.gameObject.layer = 13;
         }
         
-
         ////- Take out layers sometime
         //// Enemy layers
         //if (!n_friend)
@@ -100,11 +93,26 @@ public class ShotgunBullet : BulletController
     // If not collided with anything, destroy
     public override IEnumerator DestroyBullet()
     {
-        yield return new WaitForSeconds(bullet_life_time);
-        Debug.Log("Out of time shotgun");
-        Color final = new Color(m_sprite.material.color.r, m_sprite.material.color.g, m_sprite.material.color.b, 0);
-        StartCoroutine(Lerp_MeshRenderer_Color(m_sprite, fade_time, m_sprite.material.color, final));
-        //Destroy(gameObject);
+        //yield return new WaitForSeconds(bullet_life_time);
+        //Debug.Log("Out of time shotgun");
+
+        is_waiting = true;
+        float progress = 0.0f;
+
+        while(is_waiting)
+        {
+            yield return new WaitForEndOfFrame();
+            progress += Time.deltaTime;
+
+            if(progress >= bullet_life_time)
+            {
+                is_waiting = false;
+
+                Color final = new Color(m_sprite.material.color.r, m_sprite.material.color.g, m_sprite.material.color.b, 0);
+                StartCoroutine(Lerp_MeshRenderer_Color(m_sprite, fade_time, m_sprite.material.color, final));
+            }
+        }
+        yield break;
     }
 
     // Preparar la bala de la escopeta

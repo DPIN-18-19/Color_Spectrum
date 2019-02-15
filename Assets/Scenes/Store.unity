@@ -351,7 +351,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7360239eafaeedb4f8a06e8e2c869f65, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  player_money: 1000
   spent: {fileID: 1713649815709280, guid: 4304e6d16d33df54c8f845ea44576045, type: 2}
 --- !u!1 &366607386
 GameObject:
@@ -708,6 +707,47 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 3
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &790786194
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 790786196}
+  - component: {fileID: 790786195}
+  m_Layer: 0
+  m_Name: ForcePreload
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &790786195
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 790786194}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1225e3ab3848a3645939d25dceade241, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  scene_start: 
+--- !u!4 &790786196
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 790786194}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 595.9282, y: 311.00208, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &800800374
 GameObject:

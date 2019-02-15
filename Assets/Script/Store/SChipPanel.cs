@@ -101,7 +101,7 @@ public class SChipPanel : MonoBehaviour
     {
         for (int i = 0; i < display_p.childCount; ++i)
         {
-            if(money_p.GetComponent<MoneyPanel>().player_money < display_p.GetChild(i).GetComponent<SChipData>().data.price)
+            if(PlayerManager.Instance.money < display_p.GetChild(i).GetComponent<SChipData>().data.price)
             {
                 display_p.GetChild(i).GetComponent<SChipData>().MakeUnpurchaseable();
             }
