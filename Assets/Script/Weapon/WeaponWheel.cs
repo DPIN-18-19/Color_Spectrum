@@ -102,7 +102,7 @@ public class WeaponWheel : MonoBehaviour
             weapon.GetNewWeapon(0);
             ability.ActivateAbility(eq_weapons.i_weapon_chips[0].ability_name);
 
-            Debug.Log("Gun selected");
+            //Debug.Log("Gun selected");
         }
         Resume();
     }

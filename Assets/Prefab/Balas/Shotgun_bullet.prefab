@@ -215,7 +215,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1016495751108764}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 23.257057, y: 0.34769, z: 0.29469824}
+  m_LocalPosition: {x: 32.668106, y: 0.34769046, z: 14.642832}
   m_LocalScale: {x: 1, y: 1.6145644, z: 1}
   m_Children:
   - {fileID: 4244887190290980}
@@ -419,10 +419,14 @@ MonoBehaviour:
   DestroyBulletFx: {fileID: 0}
   TimeTrasparenteMat: 0.4
   Trasparente: 0
-  MaterialsPlayer: {fileID: 0}
+  RalentizarVelBala: 2.7
+  RalentizarDesBala: 2.7
   Sniper: 0
   increase_time: 0.2
   is_lerping: 0
+  is_waiting: 0
+  RalentizarBala: 1
+  SlowBullet: 0
 --- !u!114 &114408738321576580
 MonoBehaviour:
   m_ObjectHideFlags: 1

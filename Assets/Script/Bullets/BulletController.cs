@@ -42,17 +42,17 @@ public class BulletController : MonoBehaviour
     public bool Trasparente;
 
     // Hablidad ralentizar bala
-     float ralentizarVelocidad =1f;
-     float ralentizarDestruccion = 1f;
-    float MaxRalentizarVelocidad;
+    protected float ralentizarVelocidad = 1f;
+    float ralentizarDestruccion = 1f;
+    protected float MaxRalentizarVelocidad;
     float MaxralentizarDestruccion;
     public float RalentizarVelBala;
     public float RalentizarDesBala;
    
-     Slow_Motion Ralentizar;
+    protected Slow_Motion Ralentizar;
 
 
-     PlayerRenderer MaterialsPlayer;
+    PlayerRenderer MaterialsPlayer;
 
     public bool Sniper;
 
@@ -134,7 +134,10 @@ public class BulletController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        if (Ralentizar.ActivateAbility == false && !friendly)
+        {
+            this.gameObject.layer = 16;
+        }
        // Debug.Log(YellowDestroyeffect);
         //Debug.Log("Update bullet");
         //Debug.Break();
@@ -159,8 +162,7 @@ public class BulletController : MonoBehaviour
         {
             Trasparente = false;
         }
-
-
+        
         //Condicion !friendly(Enemigo) Ralentizar.
         if(!friendly && Ralentizar.ActivateAbility == true )
         {
@@ -174,17 +176,23 @@ public class BulletController : MonoBehaviour
             ralentizarVelocidad = MaxRalentizarVelocidad;
             ralentizarDestruccion = MaxralentizarDestruccion;  
         }
-
-
-
     }
 
     // If not collided with anything, destroy
     public virtual IEnumerator DestroyBullet()
     {
-        yield return new WaitForSeconds(bullet_life_time/ralentizarDestruccion);
-       // Debug.Log("Out of time");
-        Destroy(gameObject);
+        if (Ralentizar.ActivateAbility == false)
+        {
+            yield return new WaitForSeconds(bullet_life_time);
+            // Debug.Log("Out of time");
+            Destroy(gameObject);
+        }
+        if(Ralentizar.ActivateAbility == true)
+        {
+            yield return new WaitForSeconds(bullet_life_time * RalentizarDesBala);
+            // Debug.Log("Out of time");
+            Destroy(gameObject);
+        }
     }
 
 
@@ -198,7 +206,22 @@ public class BulletController : MonoBehaviour
         {
             this.gameObject.layer = 16;
         }
-
+        if (col.gameObject.tag == "Player" && this.gameObject.tag == "Yellow" && !friendly && Ralentizar.ActivateAbility == true)
+        {
+            this.gameObject.layer = 8;
+        }
+        if (col.gameObject.tag == "Player" && this.gameObject.tag == "Yellow" && !friendly && Ralentizar.ActivateAbility == false)
+        {
+            this.gameObject.layer = 16;
+        }
+        if (col.gameObject.tag == "Player" && this.gameObject.tag == "Blue" && !friendly && Ralentizar.ActivateAbility == true)
+        {
+            this.gameObject.layer = 9;
+        }
+        if (col.gameObject.tag == "Player" && this.gameObject.tag == "Blue" && !friendly && Ralentizar.ActivateAbility == false)
+        {
+            this.gameObject.layer = 16;
+        }
         //Debug.Log("Enter Collided with " + col.transform.gameObject.tag);
         //- Collision with player is not working
         // Same color obstacle collision

@@ -21,6 +21,7 @@ GameObject:
   - component: {fileID: 4041050677686390}
   - component: {fileID: 198355179395765464}
   - component: {fileID: 199824740470857572}
+  - component: {fileID: 114240869073559132}
   m_Layer: 10
   m_Name: ParticleDeadPink
   m_TagString: Untagged
@@ -41,6 +42,18 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: -90, y: 0, z: 0}
+--- !u!114 &114240869073559132
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1309766319726190}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 09aa3084b3c10a941bf74b5e43b64e5a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  TiempoRalentizado: 0.5
 --- !u!198 &198355179395765464
 ParticleSystem:
   m_ObjectHideFlags: 1
@@ -49,7 +62,7 @@ ParticleSystem:
   m_GameObject: {fileID: 1309766319726190}
   serializedVersion: 5
   lengthInSec: 0.15
-  simulationSpeed: 1.8
+  simulationSpeed: 1
   stopAction: 2
   looping: 0
   prewarm: 0

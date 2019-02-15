@@ -2230,6 +2230,9 @@ MonoBehaviour:
   EffectDestroy: {fileID: 0}
   PosDeadParticle: {fileID: 0}
   isKamikaze: 0
+  SpeedSlow: 2.7
+  AnimSlow: 0.3
+  RalentizarRotar: 0
 --- !u!114 &114378762142519428
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -2291,10 +2294,10 @@ MonoBehaviour:
   EffectShot: {fileID: 4610589961880160}
   timeBetweenShorts: 2.25
   TimeShots: 2.25
-  TimeShotsMax: 2.25
   isShooting: 0
   ShellEjection: {fileID: 4189736180615208}
   FXShotEnemy: {fileID: 8300000, guid: dd51baefde0215445aba92c6f8953760, type: 3}
+  TiempoRalentizado: 2
   bullet_speed: 0.1
   bullet_dmg: 20
   bullet_range: 4

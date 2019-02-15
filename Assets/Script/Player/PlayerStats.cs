@@ -25,9 +25,9 @@ public class PlayerStats : MonoBehaviour
         health = base_health;
         armor = base_armor;
         speed = base_speed;
-        Debug.Log(health);
+        //Debug.Log(health);
         LoadChips();
-        Debug.Log(health);
+       // Debug.Log(health);
 
     }
 	

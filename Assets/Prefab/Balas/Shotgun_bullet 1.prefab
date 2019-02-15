@@ -126,7 +126,6 @@ GameObject:
   - component: {fileID: 64685362493689206}
   - component: {fileID: 114408738321576580}
   - component: {fileID: 54876726972923462}
-  - component: {fileID: 114606150923918236}
   m_Layer: 16
   m_Name: Cone_Down
   m_TagString: Untagged
@@ -437,12 +436,14 @@ MonoBehaviour:
   DestroyBulletFx: {fileID: 0}
   TimeTrasparenteMat: 0.4
   Trasparente: 0
-  RalentizarVelBala: 0
-  RalentizarDesBala: 0
+  RalentizarVelBala: 2.7
+  RalentizarDesBala: 2.7
   Sniper: 0
   increase_time: 0.2
   is_lerping: 0
-  RalentizarBala: 0
+  is_waiting: 0
+  RalentizarBala: 1
+  SlowBullet: 2.9
 --- !u!114 &114230178409546028
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -493,20 +494,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   TiempoRalentizado: 0.5
---- !u!114 &114606150923918236
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1603424198375044}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1e21234e3c8e43a6ad12673095f01bca, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  RunAtStart: 1
-  Delay: 0
-  LifeTime: 0.4
 --- !u!114 &114748877072394462
 MonoBehaviour:
   m_ObjectHideFlags: 1

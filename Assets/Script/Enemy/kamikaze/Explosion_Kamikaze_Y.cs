@@ -58,7 +58,8 @@ public class Explosion_Kamikaze_Y : MonoBehaviour {
                 {
                     Debug.Log("DañoAmariillo");
                     other.GetComponent<HealthController>().GetDamage(damage);
-                   
+                    Destroy(hit.collider.GetComponent<BoxCollider>());
+
                 }
                 Debug.Log(hit.transform.name);
                 // HacerDañoYellow();

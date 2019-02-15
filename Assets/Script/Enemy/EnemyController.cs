@@ -72,7 +72,7 @@ public class EnemyController : MonoBehaviour
     bool back_home = false;                 // Is enemy heading back home
     bool in_home = false;
     PatrolController patrol;
-
+  
     // Sound
 
     //public AudioClip FxDie;
@@ -94,14 +94,23 @@ public class EnemyController : MonoBehaviour
     public ParticleSystem EffectDestroy;
     public Transform PosDeadParticle;
     public bool isKamikaze;
-  
 
+    //RalentizarMovimiento
+    Slow_Motion Ralentizar;
+    public float SpeedSlow;
+   
+    private float MaxSpeedSlow;
+    public float AnimSlow;
+    private float MaxAnimSlow;
 
+    public float RalentizarRotar;
+    private float MaxRalentizarRotar;
     // private int despoint;
 
     // Use this for initialization
     void Start()
     {
+        Ralentizar = GameObject.Find("Player_Naomi").GetComponent<Slow_Motion>();
         anim = gameObject.GetComponent<Animator>();
         source = GetComponent<AudioSource>();
 
@@ -112,9 +121,14 @@ public class EnemyController : MonoBehaviour
         shot = GetComponent<ShotEnemy>();
 
         patrol = GetComponent<PatrolController>();
-
+        MaxSpeedSlow = nav_agent.speed;
+        MaxAnimSlow = anim.speed;
+      
         //DieEffect.Stop();
         EnemyColorData();
+
+        MaxRalentizarRotar = RalentizarRotar;
+        RalentizarRotar = 1;
     }
 
     void EnemyColorData()
@@ -228,7 +242,8 @@ public class EnemyController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        Debug.Log("Move");
+
+       // Debug.Log("Move");
         DetectPlayer();
         KeepDistance();
         ShootTarget();
@@ -267,7 +282,7 @@ public class EnemyController : MonoBehaviour
 
             float look = LookAtAxis(target.transform.position);
 
-            look = Mathf.LerpAngle(0, look, Time.deltaTime * 15.5f);
+            look = Mathf.LerpAngle(0, look, Time.deltaTime/RalentizarRotar * 15.5f);
             anim.SetFloat("EnemyTurn", look);
             //transform.rotation = Quaternion.LookRotation((target.transform.position - transform.position).normalized, Vector3.up);
             transform.Rotate(0, look, 0);
@@ -292,6 +307,23 @@ public class EnemyController : MonoBehaviour
         //{
         //    nav_agent.isStopped = true;
         //}
+
+        if(Ralentizar.ActivateAbility == true)
+        {
+            nav_agent.speed = SpeedSlow;
+            anim.speed = AnimSlow;
+            RalentizarRotar = MaxRalentizarRotar;
+            
+        }
+        if (Ralentizar.ActivateAbility == false)
+        {
+            nav_agent.speed = MaxSpeedSlow;
+            anim.speed = MaxAnimSlow;
+            RalentizarRotar = 1f;
+           
+        }
+
+
 
     }
 

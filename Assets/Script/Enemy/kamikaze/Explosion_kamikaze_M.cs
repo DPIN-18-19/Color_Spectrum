@@ -56,6 +56,7 @@ public class Explosion_kamikaze_M : MonoBehaviour {
                 if (hit.transform.gameObject.layer != 10)
                 {
                     other.GetComponent<HealthController>().GetDamage(damage);
+                    Destroy(hit.collider.GetComponent<BoxCollider>());
 
                 }
                 Debug.Log(hit.transform.name);

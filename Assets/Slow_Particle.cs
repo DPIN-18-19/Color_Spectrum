@@ -19,12 +19,12 @@ public class Slow_Particle : MonoBehaviour {
         var main = ps.main;
         if (Ralentizar.ActivateAbility == true)
         {
-            Debug.Log("RalentizadoEscopetaEffecto");
+           
             main.simulationSpeed = TiempoRalentizado;
         }
         if (Ralentizar.ActivateAbility == false)
         {
-            Debug.Log("RalentizadoEscopetaEffecto");
+            
             main.simulationSpeed = TiempoNormal;
         }
     }
