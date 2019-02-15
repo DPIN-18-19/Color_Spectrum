@@ -6,7 +6,7 @@ using UnityEngine.UI;
 public class ScoreManager : MonoBehaviour
 {
     public static ScoreManager Instance { get; private set; }
-    public Text Puntosdelnivel;
+    //public Text Puntosdelnivel;
 
     //////////////////////////////////////
     // Puntuacion
@@ -89,7 +89,7 @@ public class ScoreManager : MonoBehaviour
     void Update ()
     {
         CountTime();
-        Puntosdelnivel.text = enemy_score.ToString();
+        //Puntosdelnivel.text = enemy_score.ToString();
         //Debug.Log("Time " + GetTime());
     }
 

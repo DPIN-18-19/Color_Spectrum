@@ -5974,7 +5974,7 @@ GameObject:
   - component: {fileID: 332580144}
   - component: {fileID: 332580143}
   m_Layer: 5
-  m_Name: Text (2)
+  m_Name: Points_t
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -10399,6 +10399,47 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 1125381854366012, guid: ab6f325905c98ac408f2b4e4877cde2c,
     type: 2}
   m_PrefabInternal: {fileID: 1725914513}
+--- !u!1 &521548063
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 521548065}
+  - component: {fileID: 521548064}
+  m_Layer: 0
+  m_Name: ForcePreload
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &521548064
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 521548063}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1225e3ab3848a3645939d25dceade241, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  scene_start: 
+--- !u!4 &521548065
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 521548063}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 595.9282, y: 311.00208, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 44
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &522503602
 GameObject:
   m_ObjectHideFlags: 0
@@ -10637,6 +10678,7 @@ GameObject:
   - component: {fileID: 527895852}
   - component: {fileID: 527895854}
   - component: {fileID: 527895853}
+  - component: {fileID: 527895855}
   m_Layer: 5
   m_Name: Puntos
   m_TagString: Untagged
@@ -10701,6 +10743,17 @@ CanvasRenderer:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 527895851}
   m_CullTransparentMesh: 0
+--- !u!114 &527895855
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 527895851}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fbc5cbc59b166cc47b1b492947bd1316, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &529746073
 GameObject:
   m_ObjectHideFlags: 0
@@ -18754,7 +18807,6 @@ GameObject:
   m_Component:
   - component: {fileID: 713752295}
   - component: {fileID: 713752294}
-  - component: {fileID: 713752296}
   m_Layer: 0
   m_Name: GameplayManager
   m_TagString: Untagged
@@ -18837,19 +18889,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 29
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &713752296
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 713752293}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3eebae7aa5671e640a1371ceb62f59b8, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  Puntosdelnivel: {fileID: 332580143}
-  score_info: {fileID: 11400000, guid: 7f26f3d93515d9e4da31b29cd2b12a1f, type: 2}
 --- !u!1 &714238586
 GameObject:
   m_ObjectHideFlags: 0
