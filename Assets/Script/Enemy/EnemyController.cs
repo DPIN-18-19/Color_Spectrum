@@ -103,6 +103,7 @@ public class EnemyController : MonoBehaviour
     public float AnimSlow;
     private float MaxAnimSlow;
 
+    private float Slow_Rotation;
     public float RalentizarRotar;
     private float MaxRalentizarRotar;
     // private int despoint;
@@ -110,6 +111,8 @@ public class EnemyController : MonoBehaviour
     // Use this for initialization
     void Start()
     {
+        MaxRalentizarRotar = 1;
+
         Ralentizar = GameObject.Find("Player_Naomi").GetComponent<Slow_Motion>();
         anim = gameObject.GetComponent<Animator>();
         source = GetComponent<AudioSource>();
@@ -127,8 +130,8 @@ public class EnemyController : MonoBehaviour
         //DieEffect.Stop();
         EnemyColorData();
 
-        MaxRalentizarRotar = RalentizarRotar;
-        RalentizarRotar = 1;
+        
+       
     }
 
     void EnemyColorData()
@@ -242,8 +245,16 @@ public class EnemyController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (Ralentizar.ActivateAbility == true)
+        {
+            source.pitch = Ability_Time_Manager.Instance.FXRalentizado;
+        }
+        if (Ralentizar.ActivateAbility == false)
+        {
+            source.pitch = 1;
+        }
 
-       // Debug.Log("Move");
+        // Debug.Log("Move");
         DetectPlayer();
         KeepDistance();
         ShootTarget();
@@ -282,7 +293,7 @@ public class EnemyController : MonoBehaviour
 
             float look = LookAtAxis(target.transform.position);
 
-            look = Mathf.LerpAngle(0, look, Time.deltaTime/RalentizarRotar * 15.5f);
+            look = Mathf.LerpAngle(0, look, Time.deltaTime/ Slow_Rotation * 15.5f);
             anim.SetFloat("EnemyTurn", look);
             //transform.rotation = Quaternion.LookRotation((target.transform.position - transform.position).normalized, Vector3.up);
             transform.Rotate(0, look, 0);
@@ -310,16 +321,16 @@ public class EnemyController : MonoBehaviour
 
         if(Ralentizar.ActivateAbility == true)
         {
-            nav_agent.speed = SpeedSlow;
-            anim.speed = AnimSlow;
-            RalentizarRotar = MaxRalentizarRotar;
-            
+            nav_agent.speed = Ability_Time_Manager.Instance.Slow_Enemy_Speed;
+            anim.speed = Ability_Time_Manager.Instance.Slow_Enemy_Animation;
+            Slow_Rotation = Ability_Time_Manager.Instance.Slow_Enemy_Rotation;
+           
         }
         if (Ralentizar.ActivateAbility == false)
         {
             nav_agent.speed = MaxSpeedSlow;
             anim.speed = MaxAnimSlow;
-            RalentizarRotar = 1f;
+            Slow_Rotation = MaxRalentizarRotar;
            
         }
 

@@ -48,7 +48,7 @@ public class ShotgunBullet : BulletController
     {
        if(Ralentizar.ActivateAbility == true &&!friendly)
         {
-            TiempoRalentizado = SlowBullet;
+            TiempoRalentizado = Ability_Time_Manager.Instance.Slow_ShotgunBullet_Velocity;
         }
         if (Ralentizar.ActivateAbility == false && !friendly)
         {

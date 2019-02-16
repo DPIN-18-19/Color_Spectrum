@@ -8,6 +8,7 @@ public class activate_ParticleDie_B : MonoBehaviour {
     public bool Doit = true;
     private ParticleSystem ps;
     Slow_Motion Ralentizar;
+    
     // Use this for initialization
     void Start () {
         ps = GetComponent<ParticleSystem>();
@@ -21,7 +22,7 @@ public class activate_ParticleDie_B : MonoBehaviour {
         if (Ralentizar.ActivateAbility == true)
         {
            
-            main2.simulationSpeed = 0.5f;
+            main2.simulationSpeed = Ability_Time_Manager.Instance.RalentizarComprimir;
         }
         if (Ralentizar.ActivateAbility == false)
         {

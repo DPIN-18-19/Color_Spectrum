@@ -51,6 +51,7 @@ public class BulletController : MonoBehaviour
    
     protected Slow_Motion Ralentizar;
 
+    private AudioSource source;
 
     PlayerRenderer MaterialsPlayer;
 
@@ -61,6 +62,7 @@ public class BulletController : MonoBehaviour
     // Use this for initialization
     void Start()
     {
+        source = GetComponent<AudioSource>();
         max_wall_active_time = wall_active_time;
         MaxRalentizarVelocidad = ralentizarVelocidad;
         MaxralentizarDestruccion = ralentizarDestruccion;
@@ -134,6 +136,16 @@ public class BulletController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (Ralentizar.ActivateAbility == true && !friendly)
+        {
+            source.pitch = Ability_Time_Manager.Instance.FXRalentizado;
+        }
+        if (Ralentizar.ActivateAbility == false && !friendly)
+        {
+            source.pitch = 1;
+        }
+
+
         if (Ralentizar.ActivateAbility == false && !friendly)
         {
             this.gameObject.layer = 16;
@@ -167,8 +179,8 @@ public class BulletController : MonoBehaviour
         if(!friendly && Ralentizar.ActivateAbility == true )
         {
             Debug.Log("Ralentizado");
-            ralentizarVelocidad = RalentizarVelBala;
-            ralentizarDestruccion = RalentizarDesBala;     
+            ralentizarVelocidad = Ability_Time_Manager.Instance.Slow_Bullet_Velocity;
+            ralentizarDestruccion = Ability_Time_Manager.Instance.Slow_Bullet_Destroy;     
         }
         if (!friendly && Ralentizar.ActivateAbility == false )
         {
@@ -189,7 +201,7 @@ public class BulletController : MonoBehaviour
         }
         if(Ralentizar.ActivateAbility == true)
         {
-            yield return new WaitForSeconds(bullet_life_time * RalentizarDesBala);
+            yield return new WaitForSeconds(bullet_life_time * Ability_Time_Manager.Instance.Slow_Bullet_Destroy);
             // Debug.Log("Out of time");
             Destroy(gameObject);
         }

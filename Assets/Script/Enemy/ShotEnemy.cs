@@ -73,6 +73,15 @@ public class ShotEnemy : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (Ralentizar.ActivateAbility == true)
+        {
+            source.pitch = Ability_Time_Manager.Instance.FXRalentizado;
+        }
+        if (Ralentizar.ActivateAbility == false)
+        {
+            source.pitch = 1;
+        }
+
         timeBetweenShorts = timeBetweenShorts - Time.deltaTime;
 
         if (timeBetweenShorts < 0 && isShooting == true)
