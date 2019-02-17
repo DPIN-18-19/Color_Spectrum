@@ -16,12 +16,6 @@ public class ShowScore : MonoBehaviour
         lvl_trigger2.EnterArea += ShowScoreScreen;
     }
 	
-	// Update is called once per frame
-	void Update ()
-    {
-		
-	}
-
     void ShowScoreScreen()
     {
         ScoreScreen.SetActive(true);
