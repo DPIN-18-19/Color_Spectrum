@@ -15,6 +15,7 @@ public class SChipPanel : MonoBehaviour
     Transform display_p;
     Button buy_b;
     Transform money_p;
+    Transform info_p;
 
     public ChipData chip_to_buy;
     public bool select_click = false;
@@ -25,6 +26,7 @@ public class SChipPanel : MonoBehaviour
         display_p = transform.Find("DisplayPanel");
         buy_b = transform.Find("BuyButton").GetComponent<Button>();
         money_p = transform.Find("MoneyPanel");
+        info_p = transform.Find("InfoPanel");
         LoadChips();
     }
 
@@ -63,6 +65,12 @@ public class SChipPanel : MonoBehaviour
         ItemPurchasable();
     }
 
+    public void MakeSelection(ChipData selected)
+    {
+        chip_to_buy.Clone(selected);
+        info_p.GetComponent<InfoPanel>().ShowUpgrade(chip_to_buy);
+    }
+
     public void ClearSelect()
     {
         for (int i = 0; i < display_p.childCount; ++i)
@@ -74,6 +82,8 @@ public class SChipPanel : MonoBehaviour
                 chip_to_buy.id = "";
             }
         }
+
+        info_p.GetComponent<InfoPanel>().ShowDialogue();
     }
 
     public void BuyItem()

@@ -50,7 +50,7 @@ public class SChipData : MonoBehaviour, IPointerDownHandler
         {
             outline.gameObject.SetActive(true);
             display_panel.GetComponent<SChipPanel>().ClearSelect();
-            display_panel.GetComponent<SChipPanel>().chip_to_buy.Clone(data);
+            display_panel.GetComponent<SChipPanel>().MakeSelection(data);
             display_panel.GetComponent<SChipPanel>().select_click = true;
         }
     }
