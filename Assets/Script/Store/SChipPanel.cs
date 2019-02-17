@@ -24,9 +24,9 @@ public class SChipPanel : MonoBehaviour
     private void Awake()
     {
         display_p = transform.Find("DisplayPanel");
-        buy_b = transform.Find("BuyButton").GetComponent<Button>();
-        money_p = transform.Find("MoneyPanel");
-        info_p = transform.Find("InfoPanel");
+        buy_b = transform.parent.Find("BuyButton").GetComponent<Button>();
+        money_p = transform.parent.Find("MoneyPanel");
+        info_p = transform.parent.Find("InfoPanel");
         LoadChips();
     }
 
