@@ -18,9 +18,15 @@ public class DevPreload : MonoBehaviour
     {
         // Singleton Instace
         if (Instance == null)
+        {
+            Debug.Log("Instance");
             Instance = this;
+        }
         else
+        {
+            Debug.Log("Destroyed");
             Destroy(gameObject);
+        }
 
         scene_start = UnityEngine.SceneManagement.SceneManager.GetActiveScene().name;
 
@@ -30,7 +36,9 @@ public class DevPreload : MonoBehaviour
         GameObject check = GameObject.Find("__app");
         // If not, load Preload scene
         if (check == null)
+        {
+            Debug.Log("Herer " + scene_start);
             UnityEngine.SceneManagement.SceneManager.LoadScene("PreloadScene");
-
+        }
     }
 }

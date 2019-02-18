@@ -12,7 +12,7 @@ public class BuyButton : MonoBehaviour, IPointerEnterHandler, IPointerExitHandle
 	// Use this for initialization
 	void Start ()
     {
-        store_p = GetComponentInParent<SChipPanel>().transform;
+        store_p = transform.parent.Find("StoreWindow").GetComponent<SChipPanel>().transform;
         buy_b = GetComponent<Button>();
         buy_b.onClick.AddListener(ClickBuy);
     }

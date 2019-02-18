@@ -1,18 +1,19 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.EventSystems;
 
-public class LevelMiniature : MonoBehaviour
+public class LevelMiniature : MonoBehaviour, IPointerDownHandler
 {
     public LevelData data;
 
-	// Use this for initialization
-	void Start () {
-		
-	}
-	
-	// Update is called once per frame
-	void Update () {
-		
-	}
+    private void Start()
+    {
+        Debug.Log("Scene 6 was loaded");   
+    }
+
+    public void OnPointerDown(PointerEventData p_data)
+    {
+        LevelMenuManager.Instance.MakeSelection(data);
+    }
 }

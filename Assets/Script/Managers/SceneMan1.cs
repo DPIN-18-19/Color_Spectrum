@@ -27,7 +27,8 @@ public class SceneMan1 : MonoBehaviour
         Main_Menu,
         Pruebas_CinemaMachine,
         UnlockTestingLevel,
-        Store
+        Store,
+        LevelSelection
     }
     SceneIndex scene_to_load;
     

@@ -7,8 +7,10 @@ public class LoadScreen : MonoBehaviour
 {
     void OnEnable()
     {
+        Debug.Log("Loading " + SceneMan1.Instance.GetLoadScene().ToString());
         SceneManager.LoadSceneAsync(SceneMan1.Instance.GetLoadScene(), LoadSceneMode.Additive);
         SceneManager.sceneLoaded += FinishLoading;
+        
     }
     
     void FinishLoading(Scene scene, LoadSceneMode mode)
