@@ -33,6 +33,12 @@ namespace QFX.SFX
         public GameObject CloneParticleSystemBlue;
         public GameObject CloneParticleSystemYellow;
         public GameObject CloneParticleSystemPink;
+
+        public bool isExplosive;
+        public GameObject CloneParticleSystemExplosiveBlue;
+        public GameObject CloneParticleSystemExplosiveYellow;
+        public GameObject CloneParticleSystemExplosivePink;
+
         public MeshRenderer MeshRenderer;
         public SkinnedMeshRenderer SkinnedMeshRenderer;
 
@@ -49,6 +55,9 @@ namespace QFX.SFX
             new Dictionary<Renderer, Material[]>();
 
         private float _time;
+
+        public bool is_Explosive;
+        public GameObject Explosive;
 
         public override void Setup()
         {
@@ -159,8 +168,10 @@ namespace QFX.SFX
 
             if (!ShowCloneGameObject)
                 clone.SetActive(false);
+            if (isExplosive == false) {
             if (ColorPlayer.GetColor() == 0)
             {
+               
                 if (CloneParticleSystemYellow != null)
                
                     {
@@ -211,6 +222,65 @@ namespace QFX.SFX
 
                     ps.gameObject.SetActive(true);
                     ps.Play();
+                }
+            }
+        }
+            if (isExplosive == true)
+            {
+                if (ColorPlayer.GetColor() == 0)
+                {
+
+                    if (CloneParticleSystemExplosiveYellow != null)
+
+                    {
+                        var go = Instantiate(CloneParticleSystemExplosiveYellow, TargetGameObject.transform.position,
+                            TargetGameObject.transform.transform.rotation);
+                        var ps = go.GetComponent<ParticleSystem>();
+
+                        if (MeshRenderer != null)
+                            ParticleSystemMeshAttacher.Attach(ps, MeshRenderer, 0f);
+                        else if (SkinnedMeshRenderer != null)
+                            ParticleSystemMeshAttacher.Attach(ps, SkinnedMeshRenderer, 0f);
+
+                        ps.gameObject.SetActive(true);
+                        ps.Play();
+                    }
+                }
+                if (ColorPlayer.GetColor() == 1)
+                {
+                    if (CloneParticleSystemExplosiveBlue != null)
+
+                    {
+                        var go = Instantiate(CloneParticleSystemExplosiveBlue, TargetGameObject.transform.position,
+                            TargetGameObject.transform.transform.rotation);
+                        var ps = go.GetComponent<ParticleSystem>();
+
+                        if (MeshRenderer != null)
+                            ParticleSystemMeshAttacher.Attach(ps, MeshRenderer, 0f);
+                        else if (SkinnedMeshRenderer != null)
+                            ParticleSystemMeshAttacher.Attach(ps, SkinnedMeshRenderer, 0f);
+
+                        ps.gameObject.SetActive(true);
+                        ps.Play();
+                    }
+                }
+                if (ColorPlayer.GetColor() == 2)
+                {
+                    if (CloneParticleSystemExplosivePink != null)
+
+                    {
+                        var go = Instantiate(CloneParticleSystemExplosivePink, TargetGameObject.transform.position,
+                            TargetGameObject.transform.transform.rotation);
+                        var ps = go.GetComponent<ParticleSystem>();
+
+                        if (MeshRenderer != null)
+                            ParticleSystemMeshAttacher.Attach(ps, MeshRenderer, 0f);
+                        else if (SkinnedMeshRenderer != null)
+                            ParticleSystemMeshAttacher.Attach(ps, SkinnedMeshRenderer, 0f);
+
+                        ps.gameObject.SetActive(true);
+                        ps.Play();
+                    }
                 }
             }
 
