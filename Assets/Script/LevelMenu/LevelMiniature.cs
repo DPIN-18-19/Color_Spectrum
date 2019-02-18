@@ -2,7 +2,9 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PanelUpdate : MonoBehaviour {
+public class LevelMiniature : MonoBehaviour
+{
+    public LevelData data;
 
 	// Use this for initialization
 	void Start () {
