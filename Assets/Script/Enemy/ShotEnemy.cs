@@ -100,7 +100,7 @@ public class ShotEnemy : MonoBehaviour
         }
         if(Ralentizar.ActivateAbility == true)
         {
-            RalentizarDisparos = TiempoRalentizado;
+            RalentizarDisparos = Ability_Time_Manager.Instance.Slow_Enemy_Shoot;
         }
         if(Ralentizar.ActivateAbility == false)
         {
