@@ -5,17 +5,36 @@ using UnityEngine.SceneManagement;
 
 public class LoadScreen : MonoBehaviour
 {
-    void OnEnable()
+    AsyncOperation operation;
+
+    void Start()
     {
         Debug.Log("Loading");
-        SceneManager.LoadSceneAsync(SceneMan1.Instance.GetLoadScene(), LoadSceneMode.Additive);
-        SceneManager.sceneLoaded += FinishLoading;
-        
+        SceneManager.sceneLoaded += LoadScreenLoaded;
     }
     
+    void LoadAsync()
+    {
+        operation = SceneManager.LoadSceneAsync(SceneMan1.Instance.GetLoadScene(), LoadSceneMode.Additive);
+        SceneManager.sceneLoaded += FinishLoading;
+    }
+
     void FinishLoading(Scene scene, LoadSceneMode mode)
     {
-        SceneManager.sceneLoaded -= FinishLoading;
-        Destroy(this.gameObject);
+        if (scene.buildIndex == SceneMan1.Instance.GetLoadScene())
+        {
+            SceneManager.sceneLoaded -= FinishLoading;
+            SceneManager.sceneLoaded -= LoadScreenLoaded;
+            Destroy(gameObject);
+        }
+    }
+
+    void LoadScreenLoaded(Scene scene, LoadSceneMode mode)
+    {
+        if (scene.buildIndex == 1)
+        {
+            Debug.Log("Loading screen loaded");
+            LoadAsync();
+        }
     }
 }
