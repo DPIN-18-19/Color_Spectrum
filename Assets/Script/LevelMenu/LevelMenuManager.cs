@@ -9,17 +9,19 @@ public class LevelMenuManager : MonoBehaviour
 
     public LevelList levels_l;
     List<LevelMiniature> level_icons;
+    Transform info_p;
 
-    LevelData selection;
+    public LevelData selection;
 
     private void Awake()
     {
-        if (Instance != null)
+        if (Instance == null)
             Instance = this;
         else
             Destroy(gameObject);
-        
+
         level_icons = new List<LevelMiniature>();
+        selection.id = "";
     }
 
     private void Start()
@@ -31,7 +33,11 @@ public class LevelMenuManager : MonoBehaviour
     {
         if(scene.name == "LevelSelection")
         {
+            Debug.Log("Home");
             LoadLevelMenuData();
+            info_p = FindObjectOfType<LevelInfoPanel>().transform;
+            info_p.GetComponent<LevelInfoPanel>().Init();
+            info_p.gameObject.SetActive(false);
         }
     }
 
@@ -53,13 +59,27 @@ public class LevelMenuManager : MonoBehaviour
         return levels_l.levels[index];
     }
 
-    public void MakeSelection(LevelData data)
+    public bool MakeSelection(LevelData data)
     {
+        if (selection.id != "")
+            return false;
+
         selection.Clone(data);
+        info_p.gameObject.SetActive(true);
+        info_p.GetComponent<LevelInfoPanel>().UpdateInfo(selection);
+        return true;
     }
 
     public void Deselect()
     {
+        // Deseleccionar objeto específico
+        for(int i = 0; i < level_icons.Count; ++i)
+        {
+            if (level_icons[i].data.id == selection.id)
+                level_icons[i].Deselect();
+        }
+
         selection.id = "";
+        info_p.gameObject.SetActive(false);
     }
 }

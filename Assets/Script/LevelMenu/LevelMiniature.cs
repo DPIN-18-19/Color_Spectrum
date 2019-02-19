@@ -7,13 +7,27 @@ public class LevelMiniature : MonoBehaviour, IPointerDownHandler
 {
     public LevelData data;
 
+    Transform outline_i;
+    Transform locked_i;
+    Transform unlocked_i;
+
     private void Start()
     {
-        Debug.Log("Scene 6 was loaded");   
+        outline_i = transform.Find("Outline");
+        locked_i = transform.Find("Locked");
+        unlocked_i = transform.Find("Unlocked");
     }
 
     public void OnPointerDown(PointerEventData p_data)
     {
-        LevelMenuManager.Instance.MakeSelection(data);
+        if (LevelMenuManager.Instance.MakeSelection(data))
+        {
+            outline_i.gameObject.SetActive(true);
+        }
+    }
+
+    public void Deselect()
+    {
+        outline_i.gameObject.SetActive(false);
     }
 }

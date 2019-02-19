@@ -4,6 +4,9 @@ using UnityEngine;
 
 public class Inventory : MonoBehaviour
 {
+    public static Inventory Instance { get; private set; }
+
+
     [SerializeField]
     private AbilityList i_abilities;
     [SerializeField]
@@ -18,7 +21,11 @@ public class Inventory : MonoBehaviour
 
     private void Awake()
     {
-        Debug.Log("I was called");
+        if (Instance == null)
+            Instance = this;
+        else
+            Destroy(gameObject);
+
         i_equipped_w.i_weapon_chips.Clear();
         i_equipped_w.i_weapon_chips.Add(i_weapons.i_weapon_chips[0]);
         i_equipped_w.i_weapon_chips.Add(i_weapons.i_weapon_chips[2]);

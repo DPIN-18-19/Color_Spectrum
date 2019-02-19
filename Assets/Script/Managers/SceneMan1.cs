@@ -41,7 +41,6 @@ public class SceneMan1 : MonoBehaviour
     public void LoadSceneByName(string scene_name)
     {
         scene_to_load = (SceneIndex)System.Enum.Parse(typeof(SceneIndex), scene_name);
-        Debug.Log("To Load " + (int)scene_to_load + " " + scene_to_load);
         SceneManager.LoadScene("Loading");
     }
     

@@ -19,26 +19,28 @@ public class DevPreload : MonoBehaviour
         // Singleton Instace
         if (Instance == null)
         {
-            Debug.Log("Instance");
             Instance = this;
+            DontDestroyOnLoad(gameObject);
         }
         else
         {
-            Debug.Log("Destroyed");
             Destroy(gameObject);
+            return;
         }
 
         scene_start = UnityEngine.SceneManagement.SceneManager.GetActiveScene().name;
-
-        DontDestroyOnLoad(gameObject);
 
         // Search if object with DontDestroyOnLoad property was created
         GameObject check = GameObject.Find("__app");
         // If not, load Preload scene
         if (check == null)
         {
-            Debug.Log("Herer " + scene_start);
             UnityEngine.SceneManagement.SceneManager.LoadScene("PreloadScene");
         }
+    }
+
+    private void Start()
+    {
+        
     }
 }
