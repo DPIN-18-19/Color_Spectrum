@@ -13,13 +13,10 @@ using UnityEngine;
 
 [DisallowMultipleComponent]
 
-public class Outline : MonoBehaviour {
+public class Outline1 : MonoBehaviour {
   private static HashSet<Mesh> registeredMeshes = new HashSet<Mesh>();
-    private ColorChangingController ColorPlayer;
-    public Color OutlineColor1;
-    public Color OutlineColor2;
-    public Color OutlineColor3;
-    public enum Mode {
+
+  public enum Mode {
     OutlineAll,
     OutlineVisible,
     OutlineHidden,
@@ -42,9 +39,8 @@ public class Outline : MonoBehaviour {
       needsUpdate = true;
     }
   }
-    
 
-    public float OutlineWidth {
+  public float OutlineWidth {
     get { return outlineWidth; }
     set {
       outlineWidth = value;
@@ -63,9 +59,7 @@ public class Outline : MonoBehaviour {
   [SerializeField]
   private Color outlineColor = Color.white;
 
-   
-
-    [SerializeField, Range(0f, 10f)]
+  [SerializeField, Range(0f, 10f)]
   private float outlineWidth = 2f;
 
   [Header("Optional")]
@@ -80,19 +74,19 @@ public class Outline : MonoBehaviour {
   [SerializeField, HideInInspector]
   private List<ListVector3> bakeValues = new List<ListVector3>();
 
-  public Renderer[] renderers;
+  private Renderer[] renderers;
   private Material outlineMaskMaterial;
   private Material outlineFillMaterial;
 
   private bool needsUpdate;
 
   void Awake() {
-       ColorPlayer = GameObject.Find("Player_Naomi").GetComponent<ColorChangingController>();
-        // Cache renderers
-        //renderers = GetComponentsInChildren<Renderer>();
 
-        // Instantiate outline materials
-        outlineMaskMaterial = Instantiate(Resources.Load<Material>(@"Materials/OutlineMask"));
+    // Cache renderers
+    renderers = GetComponentsInChildren<Renderer>();
+
+    // Instantiate outline materials
+    outlineMaskMaterial = Instantiate(Resources.Load<Material>(@"Materials/OutlineMask"));
     outlineFillMaterial = Instantiate(Resources.Load<Material>(@"Materials/OutlineFill"));
 
     outlineMaskMaterial.name = "OutlineMask (Instance)";
@@ -136,27 +130,11 @@ public class Outline : MonoBehaviour {
   }
 
   void Update() {
-        if (ColorPlayer.GetColor() == 0)
-        {
-            outlineColor = OutlineColor1;
-            //outlineColor = Color.yellow;
-        }
-        if (ColorPlayer.GetColor() == 1)
-        {
-             outlineColor = OutlineColor2;
-           // outlineColor = Color.cyan;
-        }
-        if (ColorPlayer.GetColor() == 2)
-        {
-          //  outlineColor = Color.magenta;
-             outlineColor = OutlineColor3;
-        }
-        //if (needsUpdate) {
+    if (needsUpdate) {
       needsUpdate = false;
 
       UpdateMaterialProperties();
-           
-        //}
+    }
   }
 
   void OnDisable() {

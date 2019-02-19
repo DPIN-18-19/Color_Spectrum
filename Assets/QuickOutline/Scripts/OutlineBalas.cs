@@ -13,9 +13,9 @@ using UnityEngine;
 
 [DisallowMultipleComponent]
 
-public class Outline : MonoBehaviour {
+public class OutlineBalas : MonoBehaviour {
   private static HashSet<Mesh> registeredMeshes = new HashSet<Mesh>();
-    private ColorChangingController ColorPlayer;
+    private BulletController ColorBalas;
     public Color OutlineColor1;
     public Color OutlineColor2;
     public Color OutlineColor3;
@@ -80,14 +80,17 @@ public class Outline : MonoBehaviour {
   [SerializeField, HideInInspector]
   private List<ListVector3> bakeValues = new List<ListVector3>();
 
-  public Renderer[] renderers;
-  private Material outlineMaskMaterial;
+    private Renderer[] renderers;
+    private Material outlineMaskMaterial;
   private Material outlineFillMaterial;
 
   private bool needsUpdate;
 
   void Awake() {
-       ColorPlayer = GameObject.Find("Player_Naomi").GetComponent<ColorChangingController>();
+
+        renderers = GetComponentsInChildren<Renderer>();
+
+        ColorBalas = gameObject.GetComponent<BulletController>();
         // Cache renderers
         //renderers = GetComponentsInChildren<Renderer>();
 
@@ -136,17 +139,17 @@ public class Outline : MonoBehaviour {
   }
 
   void Update() {
-        if (ColorPlayer.GetColor() == 0)
+        if (ColorBalas.GetColor() == 0)
         {
             outlineColor = OutlineColor1;
             //outlineColor = Color.yellow;
         }
-        if (ColorPlayer.GetColor() == 1)
+        if (ColorBalas.GetColor() == 1)
         {
              outlineColor = OutlineColor2;
            // outlineColor = Color.cyan;
         }
-        if (ColorPlayer.GetColor() == 2)
+        if (ColorBalas.GetColor() == 2)
         {
           //  outlineColor = Color.magenta;
              outlineColor = OutlineColor3;

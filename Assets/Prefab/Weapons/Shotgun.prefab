@@ -51,6 +51,7 @@ GameObject:
   - component: {fileID: 4252851435847748}
   - component: {fileID: 82315048450426898}
   - component: {fileID: 114083553306766066}
+  - component: {fileID: 114829274941251538}
   m_Layer: 0
   m_Name: Shotgun
   m_TagString: Untagged
@@ -331,3 +332,25 @@ MonoBehaviour:
     type: 2}
   ParticleFlash_M: {fileID: 1338210207670200, guid: ef5aa0ae884507b4b936c3d10ad234b4,
     type: 2}
+--- !u!114 &114829274941251538
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1300654682825010}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bfa323a4f03be574f958c0b7ebea2875, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  OutlineColor1: {r: 1, g: 0.98039216, b: 0, a: 0.19607843}
+  OutlineColor2: {r: 0, g: 0.54509807, b: 1, a: 0.16078432}
+  OutlineColor3: {r: 1, g: 0, b: 0.77254903, a: 0.16862746}
+  outlineMode: 4
+  outlineColor: {r: 1, g: 1, b: 1, a: 1}
+  outlineWidth: 2
+  precomputeOutline: 0
+  bakeKeys: []
+  bakeValues: []
+  renderers:
+  - {fileID: 23012966468412456}

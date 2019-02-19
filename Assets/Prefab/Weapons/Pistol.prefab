@@ -22,6 +22,7 @@ GameObject:
   - component: {fileID: 95931968275894510}
   - component: {fileID: 114412055513001566}
   - component: {fileID: 82920170591949546}
+  - component: {fileID: 114476105487026288}
   m_Layer: 0
   m_Name: Pistol
   m_TagString: Untagged
@@ -825,3 +826,31 @@ MonoBehaviour:
     type: 2}
   ShellEfectPink: {fileID: 198076230649775678, guid: 3a875e93ad345f74b8662cfe669da381,
     type: 2}
+--- !u!114 &114476105487026288
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1055400125745396}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bfa323a4f03be574f958c0b7ebea2875, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  OutlineColor1: {r: 1, g: 0.98039216, b: 0, a: 0.19607843}
+  OutlineColor2: {r: 0, g: 0.54509807, b: 1, a: 0.16078432}
+  OutlineColor3: {r: 1, g: 0, b: 0.77254903, a: 0.16862746}
+  outlineMode: 4
+  outlineColor: {r: 1, g: 1, b: 1, a: 1}
+  outlineWidth: 2
+  precomputeOutline: 0
+  bakeKeys: []
+  bakeValues: []
+  renderers:
+  - {fileID: 23172765487910642}
+  - {fileID: 23448139486057100}
+  - {fileID: 23656999916009874}
+  - {fileID: 23293133152741256}
+  - {fileID: 23569365611020704}
+  - {fileID: 23924262744888292}
+  - {fileID: 23302312735053224}

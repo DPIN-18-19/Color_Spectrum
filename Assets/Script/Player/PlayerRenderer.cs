@@ -41,9 +41,14 @@ public class PlayerRenderer : MonoBehaviour
     public Material TrasparentYellow;
     public Material TrasparentBlue;
     public Material TrasparentPink;
+    Outline outline;
     // Use this for initialization
     void Start ()
     {
+
+
+        outline = gameObject.GetComponent<Outline>();
+        outline.enabled = true;
         // Subscribe to event
         ColorChangingController.Instance.ToYellow += ChangeToYellow;
         ColorChangingController.Instance.ToCyan += ChangeToCyan;

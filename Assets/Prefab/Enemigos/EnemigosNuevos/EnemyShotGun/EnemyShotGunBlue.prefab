@@ -969,6 +969,7 @@ GameObject:
   - component: {fileID: 114677830972877186}
   - component: {fileID: 114239547214041290}
   - component: {fileID: 114913855899260888}
+  - component: {fileID: 114607118698583550}
   m_Layer: 9
   m_Name: StarMarine
   m_TagString: EnemyBlue
@@ -1425,7 +1426,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1257885355601764}
   m_LocalRotation: {x: -0, y: -0.99878544, z: -0, w: 0.04927197}
-  m_LocalPosition: {x: 29.085197, y: 0.14763713, z: 11.347483}
+  m_LocalPosition: {x: 28.121552, y: 0.14763713, z: -8.8169155}
   m_LocalScale: {x: 1.9302557, y: 1.4431446, z: 1.7865485}
   m_Children:
   - {fileID: 224216206570433664}
@@ -2351,6 +2352,23 @@ MonoBehaviour:
   SpeedSlow: 2.7
   AnimSlow: 0.3
   RalentizarRotar: 0
+--- !u!114 &114607118698583550
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1885368775569004}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4200d387fd1ad1b48be6571f790af7a9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  outlineMode: 4
+  outlineColor: {r: 0, g: 0.53904295, b: 1, a: 0.22352941}
+  outlineWidth: 2
+  precomputeOutline: 0
+  bakeKeys: []
+  bakeValues: []
 --- !u!114 &114677830972877186
 MonoBehaviour:
   m_ObjectHideFlags: 1

@@ -26,6 +26,7 @@ GameObject:
   - component: {fileID: 54043415725198708}
   - component: {fileID: 96107334424617374}
   - component: {fileID: 82004546688392338}
+  - component: {fileID: 114537196343396460}
   m_Layer: 11
   m_Name: BulletYellow
   m_TagString: Yellow
@@ -61,7 +62,7 @@ MeshRenderer:
   m_ReflectionProbeUsage: 1
   m_RenderingLayerMask: 4294967295
   m_Materials:
-  - {fileID: 2100000, guid: d88ec5f6f06e64d4db6956c458f0b867, type: 2}
+  - {fileID: 2100000, guid: 44c2e440ab0d013449cfa8308164d9c4, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -214,7 +215,7 @@ TrailRenderer:
   m_ReflectionProbeUsage: 0
   m_RenderingLayerMask: 4294967295
   m_Materials:
-  - {fileID: 2100000, guid: d88ec5f6f06e64d4db6956c458f0b867, type: 2}
+  - {fileID: 2100000, guid: 44c2e440ab0d013449cfa8308164d9c4, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -323,6 +324,26 @@ MonoBehaviour:
   RalentizarVelBala: 0.5
   RalentizarDesBala: 0.5
   Sniper: 0
+--- !u!114 &114537196343396460
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1341849102906586}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c62da14a8b9247c4ca3e98f8c0caea67, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  OutlineColor1: {r: 1, g: 0.9685757, b: 0, a: 0.24313726}
+  OutlineColor2: {r: 0.07058823, g: 0.6471793, b: 1, a: 0.22352941}
+  OutlineColor3: {r: 1, g: 0, b: 0.77627563, a: 0.20392157}
+  outlineMode: 4
+  outlineColor: {r: 0, g: 0.5723033, b: 1, a: 0.3372549}
+  outlineWidth: 2
+  precomputeOutline: 0
+  bakeKeys: []
+  bakeValues: []
 --- !u!135 &135619003353237412
 SphereCollider:
   m_ObjectHideFlags: 1

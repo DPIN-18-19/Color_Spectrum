@@ -48,7 +48,7 @@ public class BulletController : MonoBehaviour
     float MaxralentizarDestruccion;
     public float RalentizarVelBala;
     public float RalentizarDesBala;
-   
+    private float i_cur_color;
     protected Slow_Motion Ralentizar;
 
     private AudioSource source;
@@ -84,6 +84,7 @@ public class BulletController : MonoBehaviour
         if (n_color == 0)
         {
             YellowDestroyeffect = true;
+            i_cur_color = 0;
             this.gameObject.tag = "Yellow";
             enemy_ignore = "EnemyYellow";
             this.gameObject.layer = 8;             //- Take out layers
@@ -91,6 +92,7 @@ public class BulletController : MonoBehaviour
         else if (n_color == 1)
         {
             BlueDestroyeffect = true;
+            i_cur_color = 1;
             this.gameObject.tag = "Blue";
             enemy_ignore = "EnemyBlue";
             this.gameObject.layer = 9;             //- Take out layers
@@ -98,6 +100,7 @@ public class BulletController : MonoBehaviour
         else if (n_color == 2)
         {
             Debug.Log("SoyColorRosa");
+            i_cur_color = 2;
             PinkDestroyeffect = true;
             this.gameObject.tag = "Pink";
             enemy_ignore = "EnemyPink";
@@ -188,6 +191,11 @@ public class BulletController : MonoBehaviour
             ralentizarVelocidad = MaxRalentizarVelocidad;
             ralentizarDestruccion = MaxralentizarDestruccion;  
         }
+    }
+
+    public float GetColor()
+    {
+        return i_cur_color;
     }
 
     // If not collided with anything, destroy

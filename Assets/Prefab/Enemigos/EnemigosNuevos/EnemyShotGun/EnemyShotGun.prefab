@@ -336,6 +336,7 @@ GameObject:
   - component: {fileID: 114380230565855306}
   - component: {fileID: 114008643862492288}
   - component: {fileID: 65336825947344644}
+  - component: {fileID: 114089814415277960}
   m_Layer: 8
   m_Name: StarMarine
   m_TagString: EnemyYellow
@@ -1189,7 +1190,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1872466038932122}
   m_LocalRotation: {x: -0, y: -0.99878544, z: -0, w: 0.04927197}
-  m_LocalPosition: {x: 19.22025, y: 0.14763713, z: 7.5223756}
+  m_LocalPosition: {x: 21.627113, y: 0.14763713, z: -8.876604}
   m_LocalScale: {x: 1.9302557, y: 1.4431446, z: 1.7865485}
   m_Children:
   - {fileID: 224864059562619286}
@@ -2196,6 +2197,23 @@ MonoBehaviour:
   TimeDamageMat: 0.4
   "Da\xF1o": 0
   score: 100
+--- !u!114 &114089814415277960
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1339830280688640}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4200d387fd1ad1b48be6571f790af7a9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  outlineMode: 4
+  outlineColor: {r: 1, g: 0.9791799, b: 0, a: 0.21568628}
+  outlineWidth: 2
+  precomputeOutline: 0
+  bakeKeys: []
+  bakeValues: []
 --- !u!114 &114315003816299428
 MonoBehaviour:
   m_ObjectHideFlags: 1
