@@ -281,7 +281,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3eebae7aa5671e640a1371ceb62f59b8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  score_info: {fileID: 11400000, guid: fc6ab15269a8e3d4b956dbc35defa7d0, type: 2}
+  score_data: {fileID: 11400000, guid: fc6ab15269a8e3d4b956dbc35defa7d0, type: 2}
+  grade_data: {fileID: 11400000, guid: 6a254c8836fa9cd4e80ddb1fef3468d5, type: 2}
 --- !u!114 &1477886910
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -316,9 +317,7 @@ MonoBehaviour:
     highscore: 0
     grade:
       name: 
-      grade: 
       score: 0
-      mat: {fileID: 0}
     unlock_require: []
 --- !u!1 &1787395651
 GameObject:
