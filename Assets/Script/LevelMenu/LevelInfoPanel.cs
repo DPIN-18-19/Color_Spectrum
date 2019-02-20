@@ -45,7 +45,10 @@ public class LevelInfoPanel : MonoBehaviour
         name_t.text = data.name;
         brief_t.text = data.brief;
         highscore_t.text = data.highscore.ToString();
-        grade_t.text = data.grade.grade;
+
+
+        //////////////////
+        grade_t.text = data.grade.name;
 
         scene_name = data.scene_name;
     }

@@ -6,7 +6,7 @@ using UnityEngine;
 public class ScoreGrade
 {
     public string name = "";
-    public string grade;
+    //public string grade;
     public int score;
-    public Material mat;
+    //public Material mat;
 }

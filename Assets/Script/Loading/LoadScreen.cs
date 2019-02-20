@@ -7,10 +7,12 @@ public class LoadScreen : MonoBehaviour
 {
     AsyncOperation operation;
 
-    void Start()
+    void OnEnable()
     {
         Debug.Log("Loading");
-        SceneManager.sceneLoaded += LoadScreenLoaded;
+        //SceneManager.sceneLoaded += LoadScreenLoaded;
+        operation = SceneManager.LoadSceneAsync(SceneMan1.Instance.GetLoadScene(), LoadSceneMode.Additive);
+        SceneManager.sceneLoaded += FinishLoading;
     }
     
     void LoadAsync()
@@ -24,17 +26,17 @@ public class LoadScreen : MonoBehaviour
         if (scene.buildIndex == SceneMan1.Instance.GetLoadScene())
         {
             SceneManager.sceneLoaded -= FinishLoading;
-            SceneManager.sceneLoaded -= LoadScreenLoaded;
+            //SceneManager.sceneLoaded -= LoadScreenLoaded;
             Destroy(gameObject);
         }
     }
 
-    void LoadScreenLoaded(Scene scene, LoadSceneMode mode)
-    {
-        if (scene.buildIndex == 1)
-        {
-            Debug.Log("Loading screen loaded");
-            LoadAsync();
-        }
-    }
+    //void LoadScreenLoaded(Scene scene, LoadSceneMode mode)
+    //{
+    //    if (scene.buildIndex == 1)
+    //    {
+    //        Debug.Log("Loading screen loaded");
+    //        LoadAsync();
+    //    }
+    //}
 }

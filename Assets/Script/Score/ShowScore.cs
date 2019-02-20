@@ -12,7 +12,7 @@ public class ShowScore : MonoBehaviour
     // Use this for initialization
     void Start ()
     {
-      //  lvl_trigger.KillWave += ShowScoreScreen;
+        //lvl_trigger.KillWave += ShowScoreScreen;
         lvl_trigger2.EnterArea += ShowScoreScreen;
     }
 	

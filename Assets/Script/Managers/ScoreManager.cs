@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class ScoreManager : MonoBehaviour
 {
@@ -10,8 +11,8 @@ public class ScoreManager : MonoBehaviour
 
     //////////////////////////////////////
     // Puntuacion
-
-    public ScoreList score_info;
+    public ScoreList score_data;
+    public GradeList grade_data;
 
     //////////////////////////////////////
     // Tiempo
@@ -66,14 +67,37 @@ public class ScoreManager : MonoBehaviour
     private void Start ()
     {
         InitScore();
-
+        
         time_info = new List<TimeMultiplier>();
         health_info = new List<HealthScore>();
         grade_info = new List<ScoreGrade>();
 
-        time_info.AddRange(score_info.times);
-        health_info.AddRange(score_info.health);
-        grade_info.AddRange(score_info.grades);
+        //time_info.AddRange(score_info.times);
+        //health_info.AddRange(score_info.health);
+        //grade_info.AddRange(score_info.grades);
+        SceneManager.sceneLoaded += OnGameSceneLoaded;
+    }
+    
+
+    void OnGameSceneLoaded(Scene scene, LoadSceneMode mode)
+    {
+        if (scene.buildIndex == 3)
+        {
+            ScoreScreen screen = FindObjectOfType<ScoreScreen>();
+            screen.Init();
+            screen.gameObject.SetActive(false);
+        }
+    }
+
+    public void LoadScoreData(ScoreList n_score)
+    {
+        score_data.Clone(n_score);
+        InitScore();
+        time_info.AddRange(score_data.times);
+        health_info.AddRange(score_data.health);
+        grade_info.AddRange(score_data.grades);
+
+        Debug.Log(score_data.times[0].name);
     }
 
     void InitScore()
@@ -214,7 +238,7 @@ public class ScoreManager : MonoBehaviour
 
     int GetHealthScore()
     {
-        Debug.Log(score_info.health.Count);
+        Debug.Log(score_data.health.Count);
         Debug.Log(health_info.Count);
 
         for(health_it = 0; health_it < health_info.Count; ++health_it)
@@ -245,7 +269,10 @@ public class ScoreManager : MonoBehaviour
         for (grade_it = 0; grade_it < grade_info.Count; ++grade_it)
         {
             if (final_score >= grade_info[grade_it].score)
-                return grade_info[grade_it].grade;
+            {
+                GradeData data = grade_data.GetGradeByName(grade_info[grade_it].name);
+                return data.grade;
+            }
         }
 
         return "F";
@@ -256,7 +283,10 @@ public class ScoreManager : MonoBehaviour
         if (grade_it == health_info.Count)
             return null;
         else
-            return grade_info[grade_it].mat;
+        {
+            GradeData data = grade_data.GetGradeByName(grade_info[grade_it].name);
+            return data.mat;
+        }
     }
 
     public int GetFinalScore()

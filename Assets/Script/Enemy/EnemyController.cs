@@ -207,34 +207,12 @@ public class EnemyController : MonoBehaviour
       //  gameObject.layer = 10;
         GameplayManager.GetInstance().ChangeColor(2);
     }
-
-
-
-
+    
     public void UpdateColor()
     {
         GetComponent<ColorChangingController>().ReColor();
     }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+    
 
     // Update is called once per frame
     void Update()
@@ -477,5 +455,13 @@ public class EnemyController : MonoBehaviour
         // Calculate Angle between current transform.front and object to look at
 
         return Vector3.SignedAngle(transform.forward, projection, Vector3.up) - 180;
+    }
+
+    private void OnDrawGizmosSelected()
+    {
+        Gizmos.color = Color.red;
+        Gizmos.DrawWireSphere(transform.position, sight_distance);
+        Gizmos.color = Color.green;
+        Gizmos.DrawWireSphere(transform.position, alert_distance);
     }
 }

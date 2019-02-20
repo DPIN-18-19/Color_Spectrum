@@ -8286,7 +8286,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 1879607868117152, guid: 61e4274564a957946935832bb478945a, type: 2}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 114828504717112866, guid: 61e4274564a957946935832bb478945a,
         type: 2}
@@ -8724,7 +8724,14 @@ Prefab:
       propertyPath: m_FontData.m_VerticalOverflow
       value: 1
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    - target: {fileID: 114032313120856530, guid: 61e4274564a957946935832bb478945a,
+        type: 2}
+      propertyPath: level_scores
+      value: 
+      objectReference: {fileID: 11400000, guid: 7f26f3d93515d9e4da31b29cd2b12a1f,
+        type: 2}
+    m_RemovedComponents:
+    - {fileID: 114032313120856530, guid: 61e4274564a957946935832bb478945a, type: 2}
   m_SourcePrefab: {fileID: 100100000, guid: 61e4274564a957946935832bb478945a, type: 2}
   m_IsPrefabAsset: 0
 --- !u!1 &429381114 stripped
@@ -23168,6 +23175,18 @@ RectTransform:
   m_CorrespondingSourceObject: {fileID: 224297539154137264, guid: 61e4274564a957946935832bb478945a,
     type: 2}
   m_PrefabInternal: {fileID: 428941106}
+--- !u!114 &1016820839
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1016820837}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c2d43434ef79b0e418a882c81dbf687d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  level_scores: {fileID: 11400000, guid: 7f26f3d93515d9e4da31b29cd2b12a1f, type: 2}
 --- !u!1 &1017504902
 GameObject:
   m_ObjectHideFlags: 0

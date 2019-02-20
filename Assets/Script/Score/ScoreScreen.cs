@@ -7,18 +7,23 @@ public class ScoreScreen : MonoBehaviour
 {
     List<Text> score_texts;
     bool do_once = true;
+    public ScoreList level_scores;
 
     private void Awake()
     {
-        score_texts = new List<Text>();
-        score_texts.AddRange(GetComponentsInChildren<Text>());
     }
 
-    // Use this for initialization
-    void Start ()
+    private void Start()
     {
     }
-	
+
+    public void Init()
+    {
+        score_texts = new List<Text>();
+        score_texts.AddRange(transform.Find("ModifiableTexts").GetComponentsInChildren<Text>());
+        ScoreManager.Instance.LoadScoreData(level_scores);
+    }
+
 	public void UpdateStats()
     {
         ScoreManager.Instance.CalculateFinalScore();
@@ -48,7 +53,8 @@ public class ScoreScreen : MonoBehaviour
 
     void LoadNext()
     {
-        UnityEngine.SceneManagement.SceneManager.LoadScene("Store");
+        SceneMan1.Instance.LoadSceneByName("Store");
+        //UnityEngine.SceneManagement.SceneManager.LoadScene("Store");
     }
 
 }
