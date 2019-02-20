@@ -278,6 +278,12 @@ public class ScoreManager : MonoBehaviour
         return "F";
     }
 
+    public GradeData GetGrade()
+    {
+        return grade_data.GetGradeByName(grade_info[grade_it].name);
+    }
+
+
     public Material QuickGetGradeMat()
     {
         if (grade_it == health_info.Count)

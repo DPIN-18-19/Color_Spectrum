@@ -15,7 +15,7 @@ public class LevelData
     public bool item_got;           // El objeto desbloqueable del nivel se ha obtenido
 
     public int highscore;           // Mayor puntuación obtenida
-    public ScoreGrade grade;        // Mayor nota obtenida
+    public GradeData grade;        // Mayor nota obtenida
 
     public List<string> unlock_require; // Nombres de niveles necesarios de completar para desbloquear
 

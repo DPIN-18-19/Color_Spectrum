@@ -82,4 +82,20 @@ public class LevelMenuManager : MonoBehaviour
         selection.id = "";
         info_p.gameObject.SetActive(false);
     }
+
+    public void UpdateScoreInfo()
+    {
+        for(int i = 0; i < levels_l.levels.Count; ++i)
+        {
+            if(levels_l.levels[i].id == selection.id)
+            {
+                levels_l.levels[i].highscore = ScoreManager.Instance.GetFinalScore();
+                levels_l.levels[i].grade = ScoreManager.Instance.GetGrade();
+
+                levels_l.levels[i].complete = true;
+
+                return;
+            }
+        }
+    }
 }

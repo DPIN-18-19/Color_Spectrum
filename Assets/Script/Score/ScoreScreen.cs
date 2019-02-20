@@ -28,6 +28,7 @@ public class ScoreScreen : MonoBehaviour
     {
         ScoreManager.Instance.CalculateFinalScore();
         PlayerManager.Instance.AddMoney(ScoreManager.Instance.GetFinalScore());
+        LevelMenuManager.Instance.UpdateScoreInfo();
         // Numero de golpes
         score_texts[0].text = ScoreManager.Instance.GetDamageCount().ToString();
         // Puntuacion de golpes
