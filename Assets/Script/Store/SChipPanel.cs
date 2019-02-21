@@ -13,6 +13,7 @@ public class SChipPanel : MonoBehaviour
     public GameObject schip_mould;          // Molde de chip tienda
 
     Transform display_p;        // Ventana de chips
+    Transform display_scroll;   // Scroll de ventana
     Button buy_b;               // Botón de compra
     Transform money_p;          // Ventana de dinero
     Transform info_p;           // Ventana de información de producto
@@ -20,14 +21,16 @@ public class SChipPanel : MonoBehaviour
     // Chip seleccionado
     public ChipData chip_to_buy;
 
-
     public bool select_click = false;   // Click de selección. Evitar varias operaciones con el mismo click.
     public bool allow_click = true;     // Permitir selección/deselección en ciertas áreas
+
+    public int scroll_min;              // Minimo numero de filas para incluir scroll
 
     private void Awake()
     {
         // Inicialización
         display_p = transform.Find("DisplayPanel");
+        display_scroll = transform.Find("DisplayScroll");
         buy_b = transform.parent.Find("BuyButton").GetComponent<Button>();
         money_p = transform.parent.Find("MoneyPanel");
         info_p = transform.parent.Find("InfoPanel");
@@ -42,6 +45,8 @@ public class SChipPanel : MonoBehaviour
             n_chip.transform.SetParent(display_p);
             n_chip.GetComponent<SChipData>().data.Clone(store_chips.chips[i]);
         }
+        
+        ItemPurchasable();
     }
 
     private void Update()
@@ -62,9 +67,6 @@ public class SChipPanel : MonoBehaviour
             buy_b.interactable = false;
         else
             buy_b.interactable = true;
-
-        // Move this to buy function and init
-        ItemPurchasable();
     }
 
     public void MakeSelection(ChipData selected)
@@ -116,6 +118,8 @@ public class SChipPanel : MonoBehaviour
         store_chips.chips.RemoveAt(index);
         // Reiniciar selección
         chip_to_buy.id = "";
+
+        ItemPurchasable();
     }
 
     // Comprobar si el jugador tiene dinero suficiente para cada objeto.
@@ -128,5 +132,24 @@ public class SChipPanel : MonoBehaviour
                 display_p.GetChild(i).GetComponent<SChipData>().MakeUnpurchaseable();
             }
         }
+    }
+
+    void RowsOnDisplay()
+    {
+        // Numero de items por fila
+        int row_size = display_p.GetComponent<GridLayoutGroup>().constraintCount;
+
+        // No hace falta scroll
+        if(display_p.childCount / row_size < scroll_min)
+        {
+            display_scroll.gameObject.SetActive(false);
+        }
+        else
+        {
+            display_scroll.gameObject.SetActive(true);
+        }
+
+        // Calculate height of the new rect
+        //display_p.GetComponent<RectTransform>().rect.height = 
     }
 }

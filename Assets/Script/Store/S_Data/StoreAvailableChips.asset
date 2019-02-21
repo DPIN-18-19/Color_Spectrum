@@ -13,9 +13,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   chips:
   - id: 1231
-    name: 
-    weight: 0
-    player_stats: []
-    weapon_stats: []
+    name: Green Chip
+    weight: 10
+    player_stats:
+    - stat_name: asda
+      stat_value: 12
+    weapon_stats:
+    - stat_name: dasda
+      stat_value: 32
     equipped: 0
     price: 487
