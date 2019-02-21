@@ -92,10 +92,13 @@ public class LevelMenuManager : MonoBehaviour
         {
             if(levels_l.levels[i].id == selection.id)
             {
-                levels_l.levels[i].highscore = ScoreManager.Instance.GetFinalScore();
-                levels_l.levels[i].grade.Clone(ScoreManager.Instance.GetGrade());
+                if (levels_l.levels[i].highscore < ScoreManager.Instance.GetFinalScore())
+                {
+                    levels_l.levels[i].highscore = ScoreManager.Instance.GetFinalScore();
+                    levels_l.levels[i].grade.Clone(ScoreManager.Instance.GetGrade());
 
-                levels_l.levels[i].complete = true;
+                    levels_l.levels[i].complete = true;
+                }
 
                 return;
             }
