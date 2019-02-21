@@ -81,7 +81,7 @@ public class ScoreManager : MonoBehaviour
 
     void OnGameSceneLoaded(Scene scene, LoadSceneMode mode)
     {
-        if (scene.buildIndex == 3)
+        if (scene.buildIndex == 3 || scene.buildIndex == 4)
         {
             ScoreScreen screen = FindObjectOfType<ScoreScreen>();
             screen.Init();
@@ -266,21 +266,23 @@ public class ScoreManager : MonoBehaviour
 
     string CalculateGrade()
     {
-        for (grade_it = 0; grade_it < grade_info.Count; ++grade_it)
+        for (grade_it = 0; grade_it < grade_info.Count -1; ++grade_it)
         {
             if (final_score >= grade_info[grade_it].score)
             {
-                GradeData data = grade_data.GetGradeByName(grade_info[grade_it].name);
+                GradeData data = grade_data.GetGradeByName(grade_info[grade_it].grade);
                 return data.grade;
             }
         }
 
-        return "F";
+        return grade_data.GetGradeByName(grade_info[grade_it].grade).grade;
     }
 
     public GradeData GetGrade()
     {
-        return grade_data.GetGradeByName(grade_info[grade_it].name);
+        Debug.Log("Grade_it is " + grade_it);
+        GradeData gr = grade_data.GetGradeByName(grade_info[grade_it].grade);
+        return gr;
     }
 
 
@@ -290,7 +292,7 @@ public class ScoreManager : MonoBehaviour
             return null;
         else
         {
-            GradeData data = grade_data.GetGradeByName(grade_info[grade_it].name);
+            GradeData data = grade_data.GetGradeByName(grade_info[grade_it].grade);
             return data.mat;
         }
     }

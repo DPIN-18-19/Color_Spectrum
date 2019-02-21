@@ -48,13 +48,13 @@ public class ScoreScreen : MonoBehaviour
         score_texts[7].material = ScoreManager.Instance.QuickGetGradeMat();
         
         //UnityEngine.SceneManagement.SceneManager.LoadScene("Store");
-        SceneMan1.Instance.LoadSceneByName("Store");
+        SceneMan1.Instance.LoadSceneByName("LevelSelection");
         //this.Invoke("LoadNext", 3);
     }
 
     void LoadNext()
     {
-        SceneMan1.Instance.LoadSceneByName("Store");
+        SceneMan1.Instance.LoadSceneByName("LevelSelection");
         //UnityEngine.SceneManagement.SceneManager.LoadScene("Store");
     }
 

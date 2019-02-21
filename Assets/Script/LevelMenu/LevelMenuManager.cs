@@ -43,6 +43,8 @@ public class LevelMenuManager : MonoBehaviour
 
     void LoadLevelMenuData()
     {
+        level_icons.Clear();
+
         // Search all level objects in scene
         level_icons.AddRange(FindObjectsOfType<LevelMiniature>());
 
@@ -51,6 +53,7 @@ public class LevelMenuManager : MonoBehaviour
         {
             level_icons[i].data.Clone(SearchData(level_icons[i].name));
         }
+        selection.id = "";
     }
 
     LevelData SearchData(string id)
@@ -90,7 +93,7 @@ public class LevelMenuManager : MonoBehaviour
             if(levels_l.levels[i].id == selection.id)
             {
                 levels_l.levels[i].highscore = ScoreManager.Instance.GetFinalScore();
-                levels_l.levels[i].grade = ScoreManager.Instance.GetGrade();
+                levels_l.levels[i].grade.Clone(ScoreManager.Instance.GetGrade());
 
                 levels_l.levels[i].complete = true;
 

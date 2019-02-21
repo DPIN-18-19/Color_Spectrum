@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.18028378, g: 0.22571412, b: 0.30692285, a: 1}
+  m_IndirectSpecularColor: {r: 0.18028334, g: 0.2257134, b: 0.30692226, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -498,9 +498,10 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 1879607868117152, guid: 61e4274564a957946935832bb478945a, type: 2}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 114032313120856530, guid: 61e4274564a957946935832bb478945a, type: 2}
   m_SourcePrefab: {fileID: 100100000, guid: 61e4274564a957946935832bb478945a, type: 2}
   m_IsPrefabAsset: 0
 --- !u!1 &843966692 stripped
@@ -513,6 +514,18 @@ RectTransform:
   m_CorrespondingSourceObject: {fileID: 224297539154137264, guid: 61e4274564a957946935832bb478945a,
     type: 2}
   m_PrefabInternal: {fileID: 843966691}
+--- !u!114 &843966694
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 843966692}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c2d43434ef79b0e418a882c81dbf687d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  level_scores: {fileID: 11400000, guid: 7f26f3d93515d9e4da31b29cd2b12a1f, type: 2}
 --- !u!1 &1361614345
 GameObject:
   m_ObjectHideFlags: 0
@@ -650,7 +663,6 @@ GameObject:
   - component: {fileID: 1855782359}
   - component: {fileID: 1855782358}
   - component: {fileID: 1855782357}
-  - component: {fileID: 1855782360}
   m_Layer: 5
   m_Name: Canvas
   m_TagString: Untagged
@@ -734,18 +746,6 @@ Canvas:
   m_SortingLayerID: 0
   m_SortingOrder: 0
   m_TargetDisplay: 0
---- !u!114 &1855782360
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1855782355}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3eebae7aa5671e640a1371ceb62f59b8, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  score_info: {fileID: 11400000, guid: 7f26f3d93515d9e4da31b29cd2b12a1f, type: 2}
 --- !u!1 &2077904973
 GameObject:
   m_ObjectHideFlags: 0

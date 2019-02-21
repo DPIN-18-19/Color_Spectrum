@@ -11,9 +11,11 @@ public class GradeList : ScriptableObject
 
     public GradeData GetGradeByName(string name)
     {
+        Debug.Log("Name received " + name);
+
         for(int i = 0; i < grades_l.Count; ++i)
         {
-            if (grades_l[i].name == name)
+            if (grades_l[i].grade == name)
                 return grades_l[i];
         }
 
