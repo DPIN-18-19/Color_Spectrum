@@ -60,9 +60,13 @@ public class BulletController : MonoBehaviour
     //////////////////////////////////////////////////////////////////////////////
 
     // Use this for initialization
-    void Start()
+    private void Awake()
     {
-        source = GetComponent<AudioSource>();
+        source = gameObject.GetComponent<AudioSource>();
+    }
+
+    void Start()
+    { 
         max_wall_active_time = wall_active_time;
         MaxRalentizarVelocidad = ralentizarVelocidad;
         MaxralentizarDestruccion = ralentizarDestruccion;

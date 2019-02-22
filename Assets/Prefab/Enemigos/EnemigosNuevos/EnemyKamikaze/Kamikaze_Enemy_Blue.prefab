@@ -2170,7 +2170,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1188930539753866}
   m_LocalRotation: {x: -0, y: -0.99878544, z: -0, w: 0.04927197}
-  m_LocalPosition: {x: 25.059021, y: 0.14763713, z: -7.0953465}
+  m_LocalPosition: {x: 17.37, y: 0.14763713, z: -14.74}
   m_LocalScale: {x: 1.9302571, y: 1.4431446, z: 1.7865499}
   m_Children:
   - {fileID: 224867109821607116}
@@ -2644,6 +2644,10 @@ MonoBehaviour:
   precomputeOutline: 0
   bakeKeys: []
   bakeValues: []
+  renderers:
+  - {fileID: 137588604243300328}
+  - {fileID: 137719874743876570}
+  - {fileID: 137027106180264260}
 --- !u!114 &114786753330652554
 MonoBehaviour:
   m_ObjectHideFlags: 1
