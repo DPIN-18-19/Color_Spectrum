@@ -25,4 +25,32 @@ public class GunData
 
     // Elelmentos de UI
     public Sprite display_icon;
+
+    // Datos de tienda
+    public float price;
+
+    public void Clone(GunData other)
+    {
+        name = other.name;
+
+        gun = other.gun;
+        bullet = other.bullet;
+
+        speed = other.speed;
+        damage = other.damage;
+        range = other.range;
+        spray = other.spray;
+        cadence = other.cadence;
+        num_bullets = other.num_bullets;
+        automatic = other.automatic;
+
+        weight = other.weight;
+        ability = other.ability;
+
+        fx_shot = other.fx_shot;
+
+        display_icon = other.display_icon;
+
+        price = other.price;
+    }
 }

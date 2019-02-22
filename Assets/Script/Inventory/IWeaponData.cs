@@ -5,18 +5,35 @@ using UnityEngine;
 [System.Serializable]
 public class IWeaponData
 {
-    public string id;
-    public GunData base_gun;
-    public AbilityData ability;
+    public string id;                       // Id de arma
+    public GunData base_gun;                // Datos de arma
+    public AbilityData ability;             // Datos de habilidad
     //public ChipData ability;
-    public string ability_name;
-    float org_cdc, org_dmg, org_rng;
-    public List<ChipData> added_chips;
-    public int slots = 3;
-    public bool equipped;
+    public string ability_name;             // Nombre de habilidad
+    float org_cdc, org_dmg, org_rng;        // Datos originales
+    public List<ChipData> added_chips;      // Chips aplicados a arma
+    public int slots = 3;                   // Numero ranuras de chip
+
+    public bool equipped;                   // Estado de equipado
+
+    public IWeaponData()
+    {
+        base_gun = new GunData();
+        ability = new AbilityData();
+        added_chips = new List<ChipData>();
+    }
 
     private void Start()
     {
+        org_cdc = base_gun.cadence;
+        org_dmg = base_gun.damage;
+        org_rng = base_gun.range;
+    }
+
+    public void NewGun(GunData n_gun)
+    {
+        base_gun.Clone(n_gun);
+
         org_cdc = base_gun.cadence;
         org_dmg = base_gun.damage;
         org_rng = base_gun.range;

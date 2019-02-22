@@ -1,91 +1,71 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using TMPro;
-using UnityEngine.EventSystems;
-using UnityEngine.UI;
 
-public class SChipData : MonoBehaviour, IPointerDownHandler
+[System.Serializable]
+public class SChipData
 {
-    public enum ChipType
+    public int store_id;
+
+    public enum SChipType
     {
         Upgrade,        // Normal
         Weapon,         // Chip de arma
         Ability         // Chip de habilidad
     }
-    public ChipType chip_type;      // Clase de chip
-    public ChipData data;
+    public SChipType schip_type;      // Clase de chip
+    public ChipData u_data;         // Datos de upgrade
+    public GunData g_data;          // Datos de arma
+    public AbilityData a_data;      // Datos de habilidad
 
-    TextMeshProUGUI price;
-    Image money_symbol;
+    public float price;
 
-    public GameObject hover_tooltip;                // Objeto con el que se creará el tooltip
-    GameObject my_hover_tooltip;                    // Referencia al tooltip creado
-
-    protected Transform canvas;                     // El canvas
-    Transform display_panel;
-    Transform outline;
-
-    bool purchasable = true;
-
-    private void Start()
+    public SChipData()
     {
-        canvas = GetComponentInParent<Canvas>().transform;          // Coger el canvas de la interfaz
-        display_panel = GetComponentInParent<SChipPanel>().transform;
-        price = transform.Find("PricePanel").GetComponentInChildren<TextMeshProUGUI>();
-        WritePrice();
-        money_symbol = transform.Find("PricePanel").Find("Symbol").GetComponent<Image>();
-        outline = transform.Find("Outline");
+        store_id = 0;
+
+        u_data = new ChipData();
+        g_data = new GunData();
+        a_data = new AbilityData();
+
+        price = 0;
     }
 
-    void WritePrice()
+    public void Clone(SChipData other)
     {
-        price.text = data.price.ToString();
-    }
+        store_id = other.store_id;
+        schip_type = other.schip_type;
 
-    public void OnPointerDown(PointerEventData eventData)
-    {
-        Debug.Log("I was selected " + data.price);
-        if (purchasable)
+        switch (schip_type)
         {
-            outline.gameObject.SetActive(true);
-            display_panel.GetComponent<SChipPanel>().ClearSelect();
-            display_panel.GetComponent<SChipPanel>().MakeSelection(data);
-            display_panel.GetComponent<SChipPanel>().select_click = true;
+            case SChipType.Upgrade:
+                u_data.Clone(other.u_data);
+                price = u_data.price;
+                break;
+            case SChipType.Weapon:
+                g_data.Clone(other.g_data);
+                price = g_data.price;
+                break;
+            case SChipType.Ability:
+                a_data.Clone(other.a_data);
+                price = a_data.price;
+                break;
         }
     }
 
-    public void DeselectChip()
-    {
-        Debug.Log("I was deselected " + data.price);
-        outline.gameObject.SetActive(false);
-    }
-
-    public void MakeUnpurchaseable()
-    {
-        if (purchasable)
-        {
-            purchasable = false;
-            Darken darkness = gameObject.AddComponent<Darken>();
-            darkness.DarkenColor(0.5f);
-
-            price.color = Color.red;
-            money_symbol.color = Color.red;
-        }
-    }
-    //public void OnPointerEnter(PointerEventData p_event_data)
+    //void SetChipData(ChipData other)
     //{
-    //    // Evitar que se muestre un tooltip si ya se agarrando algo
-    //    //if (!Input.GetMouseButton(0))
-    //    //{
-    //    //    my_hover_tooltip = Instantiate(hover_tooltip, p_event_data.position, Quaternion.identity);
-    //    //    my_hover_tooltip.transform.SetParent(canvas);
-    //    //}
+    //    schip_type = SChipType.Upgrade;
+    //    u_data.Clone(other);
     //}
-
-    //public void OnPointerExit(PointerEventData p_event_data)
+    //void SetChipData(GunData other)
     //{
-    //    //if (my_hover_tooltip)
-    //    //    my_hover_tooltip.GetComponent<HoverTooltip>().Leave();
+    //    schip_type = SChipType.Weapon;
+    //    g_data.Clone(other);
+    //}
+    //void SetChipData(AbilityData other)
+    //{
+    //    schip_type = SChipType.Ability;
+    //    a_data.Clone(other);
     //}
 }
