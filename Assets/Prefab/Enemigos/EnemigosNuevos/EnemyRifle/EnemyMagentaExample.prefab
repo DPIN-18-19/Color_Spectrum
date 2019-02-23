@@ -180,6 +180,7 @@ GameObject:
   - component: {fileID: 114284460066396250}
   - component: {fileID: 114670345576181710}
   - component: {fileID: 195332068051750856}
+  - component: {fileID: 114899828305093386}
   m_Layer: 10
   m_Name: Magenta Enemy
   m_TagString: EnemyPink
@@ -1381,7 +1382,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1929973850218482}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 18.455124, y: 0.14763665, z: -11.348087}
+  m_LocalPosition: {x: 16.772491, y: 0.14763713, z: -14.900347}
   m_LocalScale: {x: 1.2848799, y: 1.2848799, z: 1.2848799}
   m_Children:
   - {fileID: 224632376777443738}
@@ -1939,6 +1940,7 @@ MonoBehaviour:
   sight_distance: 25
   safe_distance: 6
   DontShot: 0
+  SonidoKi: {fileID: 0}
   renderersToChangeColor:
   - {fileID: 137628406115596774}
   - {fileID: 137084059849907714}
@@ -1952,6 +1954,9 @@ MonoBehaviour:
   EffectDestroy: {fileID: 0}
   PosDeadParticle: {fileID: 0}
   isKamikaze: 0
+  SpeedSlow: 2.3
+  AnimSlow: 0.3
+  RalentizarRotar: 0
 --- !u!114 &114291881362501500
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -2002,7 +2007,7 @@ MonoBehaviour:
       m_Calls: []
     m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
-  m_Sprite: {fileID: 21300000, guid: f854d3724d78e2e458f13e346b3f9245, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 918a5c618666a5047be56d99569558a6, type: 3}
   m_Type: 3
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -2093,15 +2098,32 @@ MonoBehaviour:
   EffectShot: {fileID: 4416590433704338}
   timeBetweenShorts: 1
   TimeShots: 1
-  TimeShotsMax: 1
   isShooting: 0
   ShellEjection: {fileID: 4083675218026622}
   FXShotEnemy: {fileID: 8300000, guid: 93bafb5448c982a449e63a3638736494, type: 3}
+  TiempoRalentizado: 2
   bullet_speed: 10
   bullet_dmg: 7
   bullet_range: 20
   bullet_friend: 0
   random: 0
+--- !u!114 &114899828305093386
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1220446860476136}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4200d387fd1ad1b48be6571f790af7a9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  outlineMode: 4
+  outlineColor: {r: 1, g: 0, b: 0.8506589, a: 0.19607843}
+  outlineWidth: 2
+  precomputeOutline: 0
+  bakeKeys: []
+  bakeValues: []
 --- !u!114 &114937876593474788
 MonoBehaviour:
   m_ObjectHideFlags: 1

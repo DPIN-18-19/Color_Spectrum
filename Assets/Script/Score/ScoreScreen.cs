@@ -7,21 +7,28 @@ public class ScoreScreen : MonoBehaviour
 {
     List<Text> score_texts;
     bool do_once = true;
+    public ScoreList level_scores;
 
     private void Awake()
     {
-        score_texts = new List<Text>();
-        score_texts.AddRange(GetComponentsInChildren<Text>());
     }
 
-    // Use this for initialization
-    void Start ()
+    private void Start()
     {
     }
-	
+
+    public void Init()
+    {
+        score_texts = new List<Text>();
+        score_texts.AddRange(transform.Find("ModifiableTexts").GetComponentsInChildren<Text>());
+        ScoreManager.Instance.LoadScoreData(level_scores);
+    }
+
 	public void UpdateStats()
     {
         ScoreManager.Instance.CalculateFinalScore();
+        PlayerManager.Instance.AddMoney(ScoreManager.Instance.GetFinalScore());
+        //LevelMenuManager.Instance.UpdateScoreInfo();
         // Numero de golpes
         score_texts[0].text = ScoreManager.Instance.GetDamageCount().ToString();
         // Puntuacion de golpes
@@ -39,8 +46,16 @@ public class ScoreScreen : MonoBehaviour
         // Nota final
         score_texts[7].text = ScoreManager.Instance.GetFinalGrade();
         score_texts[7].material = ScoreManager.Instance.QuickGetGradeMat();
-
-        GameObject.Find("GameManager").GetComponent<SceneMan>().Invoke("ToMenu", 7);
+        
+        //UnityEngine.SceneManagement.SceneManager.LoadScene("Store");
+        SceneMan1.Instance.LoadSceneByName("LevelSelection");
+        //this.Invoke("LoadNext", 3);
     }
-    
+
+    void LoadNext()
+    {
+        SceneMan1.Instance.LoadSceneByName("LevelSelection");
+        //UnityEngine.SceneManagement.SceneManager.LoadScene("Store");
+    }
+
 }

@@ -1209,6 +1209,7 @@ GameObject:
   - component: {fileID: 114079893585281526}
   - component: {fileID: 114813000233244430}
   - component: {fileID: 114591547160274246}
+  - component: {fileID: 114362728517551768}
   m_Layer: 9
   m_Name: Sci-fi NPC Humaniod
   m_TagString: EnemyBlue
@@ -2481,7 +2482,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1894679898562014}
   m_LocalRotation: {x: -0, y: -0.99939454, z: -0, w: -0.034793016}
-  m_LocalPosition: {x: 15.144886, y: 0.14763665, z: -40.46}
+  m_LocalPosition: {x: 19.13, y: 0.14763713, z: -41.04}
   m_LocalScale: {x: 1.2481819, y: 1.2803414, z: 1.4793196}
   m_Children:
   - {fileID: 224054358170626316}
@@ -2753,6 +2754,7 @@ MonoBehaviour:
   sight_distance: 25
   safe_distance: 3
   DontShot: 0
+  SonidoKi: {fileID: 0}
   renderersToChangeColor:
   - {fileID: 137820294783977392}
   - {fileID: 137176495161640782}
@@ -2769,6 +2771,32 @@ MonoBehaviour:
     type: 2}
   PosDeadParticle: {fileID: 4714761038862080}
   isKamikaze: 0
+  SpeedSlow: 3.1
+  AnimSlow: 0.3
+  RalentizarRotar: 0
+--- !u!114 &114362728517551768
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1925244923697522}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4200d387fd1ad1b48be6571f790af7a9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  outlineMode: 4
+  outlineColor: {r: 0, g: 0.53904295, b: 1, a: 0.09803922}
+  outlineWidth: 2
+  precomputeOutline: 0
+  bakeKeys: []
+  bakeValues: []
+  renderers:
+  - {fileID: 137176495161640782}
+  - {fileID: 137055812419294336}
+  - {fileID: 137820294783977392}
+  - {fileID: 137985240308208952}
+  - {fileID: 23611604157611988}
 --- !u!114 &114433030475669150
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -2816,10 +2844,10 @@ MonoBehaviour:
   EffectShot: {fileID: 4095912905321140}
   timeBetweenShorts: 1.5
   TimeShots: 1.5
-  TimeShotsMax: 1.5
   isShooting: 0
   ShellEjection: {fileID: 4803781515248106}
   FXShotEnemy: {fileID: 8300000, guid: 9ebf0ed6d21bf4042b79b58f35db6af8, type: 3}
+  TiempoRalentizado: 2
   bullet_speed: 10
   bullet_dmg: 10
   bullet_range: 20
@@ -2867,7 +2895,7 @@ MonoBehaviour:
       m_Calls: []
     m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
-  m_Sprite: {fileID: 21300000, guid: f854d3724d78e2e458f13e346b3f9245, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 918a5c618666a5047be56d99569558a6, type: 3}
   m_Type: 3
   m_PreserveAspect: 0
   m_FillCenter: 1

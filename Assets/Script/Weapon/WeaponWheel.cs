@@ -7,12 +7,12 @@ public class WeaponWheel : MonoBehaviour
 {
     Transform UI_weapon_wheel; //Imagen del panel de armas.
     List<Transform> UI_weapon_icons;
-    
+
     //public weapon_List gun_list;            // Lista de armas;
     public IWeaponChipList eq_weapons;
 
     public static bool GameIsPaused; //Booleano que detecta cuando esta activado o desactivado la rueda de armas.
-    
+
     //dash Sash;
     //HabilidadCambioColor CambioColor;
     WeaponController weapon;
@@ -40,7 +40,6 @@ public class WeaponWheel : MonoBehaviour
     {
         UpdateLook();
         Select_Weapon_0();
-        GameplayManager.GetInstance().DeactivateAbility();
     }
 
     void Update()
@@ -70,64 +69,80 @@ public class WeaponWheel : MonoBehaviour
         Time.timeScale = 1f;
         GameIsPaused = false;
     }
-    
+
     void UpdateLook()
     {
-        for(int i = 0; i < UI_weapon_icons.Count; ++i)
-        { 
+        for (int i = 0; i < UI_weapon_icons.Count; ++i)
+        {
             // Check if there are equipped weapons
             if (i < weapon.eq_weapons.i_weapon_chips.Count)
+            {
                 //UI_weapon_icons[i].GetComponent<Image>().sprite = gun_list.weapon_list[i].display_icon;
-            UI_weapon_icons[i].GetComponent<Image>().sprite = eq_weapons.i_weapon_chips[i].base_gun.display_icon;
+                UI_weapon_icons[i].GetComponent<Image>().sprite = eq_weapons.i_weapon_chips[i].base_gun.display_icon;
+                UI_weapon_icons[i].GetComponent<CanvasGroup>().alpha = 1.0f;
+            }
             else
+            {
                 UI_weapon_icons[i].GetComponent<Image>().sprite = null;
+                UI_weapon_icons[i].GetComponent<CanvasGroup>().alpha = 0.0f;
+            }
         }
     }
 
     public void Select_Weapon_0()
     {
-        //pistola
-        GameplayManager.GetInstance().ChangeGun(0, UI_weapon_icons[0].GetComponent<Image>().sprite);
-        GameplayManager.GetInstance().ChangeAbility(eq_weapons.i_weapon_chips[0].ability.display_icon, eq_weapons.i_weapon_chips[0].ability.is_instant);
-        //Sash.GetComponent<dash>().enabled = false;
-        //CambioColor.GetComponent<HabilidadCambioColor>().enabled = true;
+        if (eq_weapons.i_weapon_chips.Count >= 1)
+        {
+            //pistola
+            GameplayManager.GetInstance().ChangeGun(0, UI_weapon_icons[0].GetComponent<Image>().sprite);
+            GameplayManager.GetInstance().ChangeAbility(eq_weapons.i_weapon_chips[0].ability.display_icon, eq_weapons.i_weapon_chips[0].ability.is_instant);
+            //Sash.GetComponent<dash>().enabled = false;
+            //CambioColor.GetComponent<HabilidadCambioColor>().enabled = true;
 
-        weapon.GetNewWeapon(0);
-        ability.ActivateAbility(eq_weapons.i_weapon_chips[0].ability_name);
+            weapon.GetNewWeapon(0);
+            ability.ActivateAbility(eq_weapons.i_weapon_chips[0].ability_name);
 
-        Debug.Log("Gun selected");
+            //Debug.Log("Gun selected");
+        }
         Resume();
     }
 
     public void Select_Weapon_1()
     {
-        GameplayManager.GetInstance().ChangeGun(1, UI_weapon_icons[1].GetComponent<Image>().sprite);
-        GameplayManager.GetInstance().ChangeAbility(eq_weapons.i_weapon_chips[1].ability.display_icon, eq_weapons.i_weapon_chips[1].ability.is_instant);
-        //Sash.GetComponent<dash>().enabled = false;
-        //CambioColor.GetComponent<HabilidadCambioColor>().enabled = false;
-        //CambioColor.GetComponent<HabilidadCambioColor>().UsarHabilidad = false;
+        if (eq_weapons.i_weapon_chips.Count >= 2)
+        {
+            GameplayManager.GetInstance().ChangeGun(1, UI_weapon_icons[1].GetComponent<Image>().sprite);
+            GameplayManager.GetInstance().ChangeAbility(eq_weapons.i_weapon_chips[1].ability.display_icon, eq_weapons.i_weapon_chips[1].ability.is_instant);
+            //Sash.GetComponent<dash>().enabled = false;
+            //CambioColor.GetComponent<HabilidadCambioColor>().enabled = false;
+            //CambioColor.GetComponent<HabilidadCambioColor>().UsarHabilidad = false;
 
-        weapon.GetNewWeapon(1);
-        ability.ActivateAbility(eq_weapons.i_weapon_chips[1].ability_name);
+            weapon.GetNewWeapon(1);
+            ability.ActivateAbility(eq_weapons.i_weapon_chips[1].ability_name);
 
-        Debug.Log("Sniper selected");
+            Debug.Log("Sniper selected");
+        }
         Resume();
     }
 
     public void Select_Weapon_2()
     {
-        GameplayManager.GetInstance().ChangeGun(2, UI_weapon_icons[2].GetComponent<Image>().sprite);
-        GameplayManager.GetInstance().ChangeAbility(eq_weapons.i_weapon_chips[2].ability.display_icon, eq_weapons.i_weapon_chips[2].ability.is_instant);
-        //Sash.GetComponent<dash>().enabled = true;
-        //CambioColor.GetComponent<HabilidadCambioColor>().enabled = false;
-        //CambioColor.GetComponent<HabilidadCambioColor>().UsarHabilidad = false;
+        if (eq_weapons.i_weapon_chips.Count >= 3)
+        {
+            GameplayManager.GetInstance().ChangeGun(2, UI_weapon_icons[2].GetComponent<Image>().sprite);
+            GameplayManager.GetInstance().ChangeAbility(eq_weapons.i_weapon_chips[2].ability.display_icon, eq_weapons.i_weapon_chips[2].ability.is_instant);
+            //Sash.GetComponent<dash>().enabled = true;
+            //CambioColor.GetComponent<HabilidadCambioColor>().enabled = false;
+            //CambioColor.GetComponent<HabilidadCambioColor>().UsarHabilidad = false;
 
-        weapon.GetNewWeapon(2);
-        ability.ActivateAbility(eq_weapons.i_weapon_chips[2].ability_name);
+            weapon.GetNewWeapon(2);
+            ability.ActivateAbility(eq_weapons.i_weapon_chips[2].ability_name);
 
-        Debug.Log("Shotgun selected");
+            Debug.Log("Shotgun selected");
+        }
 
         Resume();
     }
 
 }
+

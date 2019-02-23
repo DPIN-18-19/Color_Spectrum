@@ -15,10 +15,13 @@ public class SniperWeapon : GunController
     public GameObject ParticleFlash_Y;
     public GameObject ParticleFlash_C;
     public GameObject ParticleFlash_M;
+    //Outline outline;
 
     // Use this for initialization
     void Start()
     {
+        //outline = gameObject.GetComponent<Outline>();
+        //outline.enabled = true;
         audiosource = GetComponent<AudioSource>();
         //base.Start();
         source = GetComponent<AudioSource>();

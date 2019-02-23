@@ -164,7 +164,7 @@ public class WeaponController : MonoBehaviour
         
         // Actualizar datos
         activated_weapon = id;
-        Debug.Log("MadeonGun: " + id);
+       // Debug.Log("MadeonGun: " + id);
         cur_weapon = eq_weapons.i_weapon_chips[id].base_gun;
 
         // Crear arma nueva como hijo

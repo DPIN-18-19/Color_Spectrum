@@ -41,6 +41,10 @@ public class HealthController : MonoBehaviour
 
     public PlayerJaneMoveController MovePlayer;
 
+    public float TimeGlichEffect;
+
+    public GameObject camera;
+
 
     //////////////////////////////////////////////////////////////////////////////
     void Awake()
@@ -189,6 +193,9 @@ public class HealthController : MonoBehaviour
 
             MaterialsPlayer.DamageColor();
 
+            camera.GetComponent<GlitchEffect>().enabled = true;
+            Invoke("DesactivateGlichEffect", TimeGlichEffect);
+
             ScoreManager.Instance.CountDamage(damage);
             Daño = true;
         }
@@ -257,5 +264,9 @@ public class HealthController : MonoBehaviour
     void ChangeToMagenta()
     {
         player_color = 2;
+    }
+    void DesactivateGlichEffect()
+    {
+        camera.GetComponent<GlitchEffect>().enabled = false;
     }
 }

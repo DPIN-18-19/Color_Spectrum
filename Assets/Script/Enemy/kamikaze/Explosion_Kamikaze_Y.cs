@@ -5,12 +5,13 @@ using UnityEngine;
 public class Explosion_Kamikaze_Y : MonoBehaviour {
     public AudioClip SonidoExplosion;
     AudioSource source;
-
+    Slow_Motion Ralentizar;
     public float damage;
    
     // Use this for initialization
     void Start()
     {
+        Ralentizar = GameObject.Find("Player_Naomi").GetComponent<Slow_Motion>();
         source = GetComponent<AudioSource>();
         source.PlayOneShot(SonidoExplosion);
     }
@@ -18,6 +19,14 @@ public class Explosion_Kamikaze_Y : MonoBehaviour {
     // Update is called once per frame
     void Update()
     {
+        if (Ralentizar.ActivateAbility == true)
+        {
+            source.pitch = Ability_Time_Manager.Instance.FXRalentizado;
+        }
+        if (Ralentizar.ActivateAbility == false)
+        {
+            source.pitch = 1;
+        }
         // DamageTime -= Time.deltaTime;
     }
     private void OnTriggerEnter(Collider other)
@@ -58,7 +67,8 @@ public class Explosion_Kamikaze_Y : MonoBehaviour {
                 {
                     Debug.Log("DañoAmariillo");
                     other.GetComponent<HealthController>().GetDamage(damage);
-                   
+                    Destroy(gameObject.GetComponent<BoxCollider>());
+
                 }
                 Debug.Log(hit.transform.name);
                 // HacerDañoYellow();

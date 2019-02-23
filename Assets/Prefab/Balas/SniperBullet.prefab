@@ -25,6 +25,7 @@ GameObject:
   - component: {fileID: 54141090821799508}
   - component: {fileID: 96134101624319264}
   - component: {fileID: 114676479876748746}
+  - component: {fileID: 114167561234455870}
   m_Layer: 11
   m_Name: SniperBullet
   m_TagString: Yellow
@@ -60,7 +61,7 @@ MeshRenderer:
   m_ReflectionProbeUsage: 1
   m_RenderingLayerMask: 4294967295
   m_Materials:
-  - {fileID: 2100000, guid: d88ec5f6f06e64d4db6956c458f0b867, type: 2}
+  - {fileID: 2100000, guid: 2d0ac1555fd56254c83e06f281b9678d, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -118,7 +119,7 @@ TrailRenderer:
   m_ReflectionProbeUsage: 0
   m_RenderingLayerMask: 4294967295
   m_Materials:
-  - {fileID: 2100000, guid: d88ec5f6f06e64d4db6956c458f0b867, type: 2}
+  - {fileID: 2100000, guid: 2d0ac1555fd56254c83e06f281b9678d, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -203,6 +204,26 @@ TrailRenderer:
   m_MinVertexDistance: 0.1
   m_Autodestruct: 0
   m_Emitting: 1
+--- !u!114 &114167561234455870
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1355325964623596}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c62da14a8b9247c4ca3e98f8c0caea67, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  OutlineColor1: {r: 1, g: 0.9572143, b: 0.023584902, a: 0.20392157}
+  OutlineColor2: {r: 0, g: 0.57686806, b: 1, a: 0.20392157}
+  OutlineColor3: {r: 1, g: 0.033018887, b: 0.8068096, a: 0.22352941}
+  outlineMode: 4
+  outlineColor: {r: 1, g: 1, b: 1, a: 1}
+  outlineWidth: 2
+  precomputeOutline: 0
+  bakeKeys: []
+  bakeValues: []
 --- !u!114 &114676479876748746
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -233,7 +254,8 @@ MonoBehaviour:
   DestroyBulletFx: {fileID: 0}
   TimeTrasparenteMat: 0
   Trasparente: 0
-  MaterialsPlayer: {fileID: 0}
+  RalentizarVelBala: 0
+  RalentizarDesBala: 0
   Sniper: 1
   RaycastEffect_Yellow: {fileID: 1944372459145808, guid: 74181cd3bd6fb24489ed7bf64459803d,
     type: 2}

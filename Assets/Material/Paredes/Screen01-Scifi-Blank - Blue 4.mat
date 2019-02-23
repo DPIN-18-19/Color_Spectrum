@@ -1,0 +1,217 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!21 &2100000
+Material:
+  serializedVersion: 6
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_Name: Screen01-Scifi-Blank - Blue 4
+  m_Shader: {fileID: 4800000, guid: 053e4279a99bc5f458a231ffe6a35ad0, type: 3}
+  m_ShaderKeywords: _MASKAPPEARAXIS_DISTANCE _MASKAPPEARAXIS_Y _SPECGLOSSMAP
+  m_LightmapFlags: 0
+  m_EnableInstancingVariants: 0
+  m_DoubleSidedGI: 0
+  m_CustomRenderQueue: -1
+  stringTagMap: {}
+  disabledShaderPasses: []
+  m_SavedProperties:
+    serializedVersion: 3
+    m_TexEnvs:
+    - _BumpMap:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _CracksTexture:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _DistortionMap:
+        m_Texture: {fileID: 2800000, guid: d784595d7b8bfef41ac0a5bd8fa0a662, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _EmissionMap:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _EmissionTexture:
+        m_Texture: {fileID: 2800000, guid: a016fe05856597449ace9b4d606b3fa0, type: 3}
+        m_Scale: {x: 0.33, y: 0.2}
+        m_Offset: {x: 0, y: 0}
+    - _FlickerTexture:
+        m_Texture: {fileID: 2800000, guid: 0d2e6e87394245dfa7a4f4cc25cbb9d3, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _GridTexture:
+        m_Texture: {fileID: 2800000, guid: eaca2f44f86a39242884d8b08999a841, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _HitTexture:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _HitWaveRampMap:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _MainTex:
+        m_Texture: {fileID: 2800000, guid: 2586db82a9cae8746ab1d762d953f09f, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _MaskTex:
+        m_Texture: {fileID: 2800000, guid: 7b885cdc8db9b1945bae9c14db99cd77, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _MetallicGlossMap:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _Noise:
+        m_Texture: {fileID: 2800000, guid: a7b8efd0e65da6b4cbfd2495f1cb8739, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _NoiseDistortionMap:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _NoiseMap:
+        m_Texture: {fileID: 2800000, guid: d784595d7b8bfef41ac0a5bd8fa0a662, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _PatternTexture1:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _PatternTexture2:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _PatternTexture3:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _SmokeTexture:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _tex4coord:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _tex4coord2:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _texcoord:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _texcoord2:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    m_Floats:
+    - _Alpha: 0.927
+    - _AlphaCutout: -1e+11
+    - _BlendOp: 0
+    - _BumpScale: 1
+    - _CameraFadingEnabled: 0
+    - _CameraFarFadeDistance: 2
+    - _CameraNearFadeDistance: 1
+    - _ColorMode: 0
+    - _CracksAdjust: 0
+    - _CracksPower: 0
+    - _Cull: 2
+    - _Cutoff: 0.89
+    - _DepthDistance: 0
+    - _DepthFadeExp: 5.316663
+    - _DissolveAmount: 0
+    - _DistortionBlend: 0.5
+    - _DistortionEnabled: 0
+    - _DistortionPower: 0
+    - _DistortionStrength: 1
+    - _DistortionStrengthScaled: 0
+    - _DstBlend: 0
+    - _EmissionEnabled: 0
+    - _FlipbookMode: 0
+    - _Float0: 0
+    - _FresnelOpacity: 0
+    - _FresnelPower: 1.84
+    - _FresnelScale: 0.304
+    - _Glitch: 1
+    - _GlitchSpeed: 50
+    - _Glossiness: 0.5
+    - _GlowOpacity: 0
+    - _GlowSize: 0.266
+    - _GlowSpeed: 0.3
+    - _GlowTiling: 1.76
+    - _GridOffsetX: 0
+    - _GridOffsetY: 0
+    - _GridTexturePow: 0
+    - _GridTilling: 0.2
+    - _HitWaveFade: 0.05
+    - _HitWaveMaxRadius: 0
+    - _InvFade: 1
+    - _LightingEnabled: 1
+    - _LinePower: 5
+    - _MaskAppearAxis: 2
+    - _MaskAppearInvert: 0
+    - _MaskAppearProgress: -0.03
+    - _MaskAppearStrength: 0.5
+    - _Metallic: 0
+    - _Mode: 0
+    - _NoiseDistortionPower: 0
+    - _NoiseDistortionTilling: 0.5
+    - _NoiseOffset: 0
+    - _NoisePower: 0.82
+    - _NoiseTilling: 0.5
+    - _OpacityPower: 0.958
+    - _PatternPower1: 0.1
+    - _PatternPower2: 0.1
+    - _PatternPower3: 0.1
+    - _Scan: 0.996
+    - _ScanAdd: 0.148
+    - _ScanSize: 0.502
+    - _ScanTiling: 34.6
+    - _SmokeTexturePower: 0
+    - _SoftParticlesEnabled: 0
+    - _SoftParticlesFarFadeDistance: 1
+    - _SoftParticlesNearFadeDistance: 0
+    - _SrcBlend: 1
+    - _TexSoftFactor: 0
+    - _UseFresnelOpacity: 0
+    - _UseGlowOpacity: 0
+    - _VertexOffset: 0
+    - _VertexOffsetAmount: 0
+    - _ZWrite: 1
+    - __dirty: 0
+    m_Colors:
+    - _CameraFadeParams: {r: 0, g: Infinity, b: 0, a: 0}
+    - _Color: {r: 0, g: 0.29803896, b: 1, a: 1}
+    - _ColorAddSubDiff: {r: 0, g: 0, b: 0, a: 0}
+    - _CracksColor: {r: 0, g: 0, b: 0, a: 0}
+    - _DepthColor: {r: 1, g: 1, b: 1, a: 1}
+    - _DisotrionColor: {r: 0, g: 0, b: 0, a: 0}
+    - _DissolveColor: {r: 1, g: 1, b: 1, a: 1}
+    - _EmisColor: {r: 0.19999996, g: 0.19999996, b: 0.19999996, a: 0}
+    - _EmissionColor: {r: 0, g: 4.9782553, b: 5.3720155, a: 1}
+    - _FlickerSpeed: {r: 0.1, g: 0.1, b: 0, a: 0}
+    - _FresnelColor: {r: 0, g: 0.06603775, b: 0.3679245, a: 1}
+    - _GlitchOffset: {r: 0.02, g: 0, b: 0, a: 0}
+    - _GlowColor: {r: 0, g: 0.32941177, b: 0.5019608, a: 1}
+    - _HitColor: {r: 0, g: 0, b: 0, a: 0}
+    - _MainColor: {r: 1, g: 1, b: 1, a: 1}
+    - _MainSpeed: {r: 0, g: 0, b: 0, a: 0}
+    - _NoiseDistortionSpeed: {r: 0, g: 0.2, b: 0, a: 0}
+    - _NoiseSpeed: {r: 0.2, g: 0, b: 0, a: 0}
+    - _PatternTexture1Speed: {r: 0.5, g: 0, b: 0, a: 0}
+    - _PatternTexture2Speed: {r: 0.5, g: 0, b: 0, a: 0}
+    - _PatternTexture3Speed: {r: 0.5, g: 0, b: 0, a: 0}
+    - _ScanSpeed: {r: 0, g: 0, b: 0, a: 0}
+    - _SmokeSpeed1: {r: 0.2, g: 0.2, b: 0, a: 0}
+    - _SmokeSpeed2: {r: -0.2, g: 0.2, b: 0, a: 0}
+    - _SoftParticleFadeParams: {r: 0, g: 0, b: 0, a: 0}
+    - _Speed: {r: 0, g: 0, b: 0, a: 0}
+    - _Tiling: {r: 1, g: 1, b: 0, a: 0}
+    - _TintColor: {r: 1, g: 1, b: 1, a: 0.5019608}
+    - _Vector0: {r: 0, g: 0, b: 0, a: 0}

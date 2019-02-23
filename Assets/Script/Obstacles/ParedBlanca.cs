@@ -26,7 +26,7 @@ public class ParedBlanca : MonoBehaviour
     }
     private void OnCollisionEnter(Collision col)
     {
-        if (col.gameObject.tag == "Blue" && col.gameObject.layer == 12 && CambiosColor < 1)
+        if (col.gameObject.tag == "Blue" && col.gameObject.layer == 9 && CambiosColor < 1)
         {
             gameObject.tag = "Blue";
             gameObject.layer = 9;
@@ -36,7 +36,7 @@ public class ParedBlanca : MonoBehaviour
             
             //
         }
-        else if (col.gameObject.tag == "Pink" && col.gameObject.layer == 13 && CambiosColor < 1)
+        else if (col.gameObject.tag == "Pink" && col.gameObject.layer == 10 && CambiosColor < 1)
         {
             gameObject.layer = 10;
             GetComponent<Renderer>().material = MaterialPink;
@@ -44,7 +44,7 @@ public class ParedBlanca : MonoBehaviour
             CambiosColor = CambiosColor + 1;
             gameObject.tag = "Pink";
         }
-        else if (col.gameObject.tag == "Yellow" && col.gameObject.layer == 11 && CambiosColor < 1)
+        else if (col.gameObject.tag == "Yellow" && col.gameObject.layer == 8 && CambiosColor < 1)
         {
             gameObject.layer = 8;
             GetComponent<Renderer>().material = MaterialYellow;
@@ -56,7 +56,7 @@ public class ParedBlanca : MonoBehaviour
 
     private void OnTriggerEnter(Collider col)
     {
-        if (col.gameObject.tag == "Blue" && col.gameObject.layer == 12 && CambiosColor < 1)
+        if (col.gameObject.tag == "Blue" && col.gameObject.layer == 9 && CambiosColor < 1)
         {
             gameObject.tag = "Blue";
             gameObject.layer = 9;
@@ -66,7 +66,7 @@ public class ParedBlanca : MonoBehaviour
 
             //
         }
-        else if (col.gameObject.tag == "Pink" && col.gameObject.layer == 13 && CambiosColor < 1)
+        else if (col.gameObject.tag == "Pink" && col.gameObject.layer == 10 && CambiosColor < 1)
         {
             gameObject.layer = 10;
             GetComponent<Renderer>().material = MaterialPink;
@@ -74,7 +74,7 @@ public class ParedBlanca : MonoBehaviour
             CambiosColor = CambiosColor + 1;
             gameObject.tag = "Pink";
         }
-        else if (col.gameObject.tag == "Yellow" && col.gameObject.layer == 11 && CambiosColor < 1)
+        else if (col.gameObject.tag == "Yellow" && col.gameObject.layer == 8 && CambiosColor < 1)
         {
             gameObject.layer = 8;
             GetComponent<Renderer>().material = MaterialYellow;
