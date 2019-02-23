@@ -28,7 +28,8 @@ public class ShotEnemy : MonoBehaviour
     public Transform EffectShot;
     public float timeBetweenShorts = 3;
     public float TimeShots;
-    public float TimeShotsMax = 1.5f;
+    private float TimeShotsMax;
+    private float TimeShotUltimate;
     public bool isShooting;
     //public GameObject EffectShot;
     //public float FlashTime;
@@ -36,6 +37,12 @@ public class ShotEnemy : MonoBehaviour
     public Transform ShellEjection;
     public AudioClip FXShotEnemy;
     private AudioSource source;
+
+
+    //Ralentizar
+    Slow_Motion Ralentizar;
+    private float RalentizarDisparos;
+    public float TiempoRalentizado;
 
     ///////////////////////////////////////////////
 
@@ -55,12 +62,26 @@ public class ShotEnemy : MonoBehaviour
     // Use this for initialization
     void Start()
     {
+        RalentizarDisparos = 1f;
+        Ralentizar = GameObject.Find("Player_Naomi").GetComponent<Slow_Motion>();
+        TimeShotsMax = TimeShots;
         timeBetweenShorts = TimeShots;
+        TimeShotUltimate = TimeShots;
+        
     }
 
     // Update is called once per frame
     void Update()
     {
+        if (Ralentizar.ActivateAbility == true)
+        {
+            source.pitch = Ability_Time_Manager.Instance.FXRalentizado;
+        }
+        if (Ralentizar.ActivateAbility == false)
+        {
+            source.pitch = 1;
+        }
+
         timeBetweenShorts = timeBetweenShorts - Time.deltaTime;
 
         if (timeBetweenShorts < 0 && isShooting == true)
@@ -74,8 +95,16 @@ public class ShotEnemy : MonoBehaviour
 
             bullet_shot.GetComponent<BulletController>().AddBulletInfo(bullet_color, -bullet_speed, bullet_dir, bullet_dmg, bullet_range, bullet_friend);   //- Create Gun Variables
             // Instantiate(Shell, ShellEjection.position, ShellEjection.rotation);
-            timeBetweenShorts = TimeShots;
+            timeBetweenShorts = TimeShots * RalentizarDisparos;
             // Invoke("QuitarEfecto", FlashTime);
+        }
+        if(Ralentizar.ActivateAbility == true)
+        {
+            RalentizarDisparos = Ability_Time_Manager.Instance.Slow_Enemy_Shoot;
+        }
+        if(Ralentizar.ActivateAbility == false)
+        {
+            RalentizarDisparos = 1f;
         }
     }
     void QuitarEfecto()

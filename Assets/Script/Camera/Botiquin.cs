@@ -11,6 +11,7 @@ public class Botiquin : MonoBehaviour {
     // Use this for initialization
     void Start () {
         source = GetComponent<AudioSource>();
+        vida = GameObject.Find("Player_Naomi").GetComponent<HealthController>();
     }
 	
 	// Update is called once per frame
@@ -19,7 +20,7 @@ public class Botiquin : MonoBehaviour {
 	}
     private void OnTriggerEnter(Collider col)
     {
-        if(col.gameObject.tag == "Player")
+        if(col.gameObject.tag == "Player" && vida.health < vida.max_health)
         {
             AudioSource.PlayClipAtPoint(SonidoCurar, transform.position);
             vida.RestoreHealth(Salud);

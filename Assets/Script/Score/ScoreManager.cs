@@ -2,20 +2,17 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class ScoreManager : MonoBehaviour
 {
-    public static ScoreManager Instance
-    {
-        get;
-        private set;
-    }
-    public Text Puntosdelnivel;
+    public static ScoreManager Instance { get; private set; }
+    //public Text Puntosdelnivel;
 
     //////////////////////////////////////
     // Puntuacion
-
-    public ScoreList score_info;
+    public ScoreList score_data;
+    public GradeList grade_data;
 
     //////////////////////////////////////
     // Tiempo
@@ -62,21 +59,46 @@ public class ScoreManager : MonoBehaviour
     {
         if (Instance == null)
             Instance = this;
-        
+        else
+            Destroy(gameObject);
     }
 
     // Use this for initialization
     private void Start ()
     {
         InitScore();
-
+        
         time_info = new List<TimeMultiplier>();
         health_info = new List<HealthScore>();
         grade_info = new List<ScoreGrade>();
 
-        time_info.AddRange(score_info.times);
-        health_info.AddRange(score_info.health);
-        grade_info.AddRange(score_info.grades);
+        //time_info.AddRange(score_info.times);
+        //health_info.AddRange(score_info.health);
+        //grade_info.AddRange(score_info.grades);
+        SceneManager.sceneLoaded += OnGameSceneLoaded;
+    }
+    
+
+    void OnGameSceneLoaded(Scene scene, LoadSceneMode mode)
+    {
+        // Reorganize game level scenes to be within a range
+        if (scene.buildIndex == 2 )
+        {
+            ScoreScreen screen = FindObjectOfType<ScoreScreen>();
+            screen.Init();
+            screen.gameObject.SetActive(false);
+        }
+    }
+
+    public void LoadScoreData(ScoreList n_score)
+    {
+        score_data.Clone(n_score);
+        InitScore();
+        time_info.AddRange(score_data.times);
+        health_info.AddRange(score_data.health);
+        grade_info.AddRange(score_data.grades);
+
+        Debug.Log(score_data.times[0].name);
     }
 
     void InitScore()
@@ -92,7 +114,7 @@ public class ScoreManager : MonoBehaviour
     void Update ()
     {
         CountTime();
-        Puntosdelnivel.text = enemy_score.ToString();
+        //Puntosdelnivel.text = enemy_score.ToString();
         //Debug.Log("Time " + GetTime());
     }
 
@@ -217,7 +239,7 @@ public class ScoreManager : MonoBehaviour
 
     int GetHealthScore()
     {
-        Debug.Log(score_info.health.Count);
+        Debug.Log(score_data.health.Count);
         Debug.Log(health_info.Count);
 
         for(health_it = 0; health_it < health_info.Count; ++health_it)
@@ -245,21 +267,35 @@ public class ScoreManager : MonoBehaviour
 
     string CalculateGrade()
     {
-        for (grade_it = 0; grade_it < grade_info.Count; ++grade_it)
+        for (grade_it = 0; grade_it < grade_info.Count -1; ++grade_it)
         {
             if (final_score >= grade_info[grade_it].score)
-                return grade_info[grade_it].grade;
+            {
+                GradeData data = grade_data.GetGradeByName(grade_info[grade_it].grade);
+                return data.grade;
+            }
         }
 
-        return "F";
+        return grade_data.GetGradeByName(grade_info[grade_it].grade).grade;
     }
+
+    public GradeData GetGrade()
+    {
+        Debug.Log("Grade_it is " + grade_it);
+        GradeData gr = grade_data.GetGradeByName(grade_info[grade_it].grade);
+        return gr;
+    }
+
 
     public Material QuickGetGradeMat()
     {
         if (grade_it == health_info.Count)
             return null;
         else
-            return grade_info[grade_it].mat;
+        {
+            GradeData data = grade_data.GetGradeByName(grade_info[grade_it].grade);
+            return data.mat;
+        }
     }
 
     public int GetFinalScore()

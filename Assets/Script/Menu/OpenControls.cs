@@ -11,6 +11,11 @@ public class OpenControls : MonoBehaviour {
     void Start () {
 		
 	}
+    private void Update()
+    {
+        Cursor.visible = true;
+        Cursor.lockState = CursorLockMode.None;
+    }
 
     // Update is called once per frame
     public void AbrirControls()

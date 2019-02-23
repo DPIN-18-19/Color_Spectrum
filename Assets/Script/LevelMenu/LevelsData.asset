@@ -1,0 +1,52 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e90b8ffff3ba3604a8cdedaf8d50c94e, type: 3}
+  m_Name: LevelsData
+  m_EditorClassIdentifier: 
+  levels:
+  - id: M_1
+    name: Chico
+    scene_name: Nivel_1
+    brief: Fourscore and seven years ago our fathers brought forth on this continent,
+      a new nation, conceived in Liberty, and dedicated to the proposition that all
+      men are created equal.
+    unlocked: 1
+    complete: 1
+    item_got: 0
+    highscore: 1500
+    grade:
+      grade: F
+      mat: {fileID: 2100000, guid: 2ed27b7ed07568a49b9917de8963283b, type: 2}
+    unlock_require: []
+  - id: M_2
+    name: Harpo
+    scene_name: Store
+    brief: 
+    unlocked: 0
+    complete: 0
+    item_got: 0
+    highscore: 0
+    grade:
+      grade: 
+      mat: {fileID: 0}
+    unlock_require: []
+  - id: M_3
+    name: Groucho
+    scene_name: 
+    brief: 
+    unlocked: 0
+    complete: 0
+    item_got: 0
+    highscore: 0
+    grade:
+      grade: 
+      mat: {fileID: 0}
+    unlock_require: []

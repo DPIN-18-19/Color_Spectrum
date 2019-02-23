@@ -88,6 +88,7 @@ public class PlayerJaneMoveController : MonoBehaviour {
     void SetUpAnimation()
     {
         anim = GetComponent<Animator>();
+        //Debug.Log("Hola");
 
         foreach (var childAnimator in GetComponentsInChildren<Animator>())
         {

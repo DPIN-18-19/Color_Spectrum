@@ -21,12 +21,13 @@ GameObject:
   - component: {fileID: 4775241834270318}
   - component: {fileID: 198908611744529508}
   - component: {fileID: 199393528946793072}
-  - component: {fileID: 135612961552435870}
-  - component: {fileID: 114766222067577954}
   - component: {fileID: 82283440218625300}
+  - component: {fileID: 65666139427879758}
+  - component: {fileID: 114766222067577954}
+  - component: {fileID: 114450026952788564}
   m_Layer: 0
   m_Name: ParticleDeadKamikazePink
-  m_TagString: Pink
+  m_TagString: Blue
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -38,12 +39,24 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1973397203347294}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 15.17, y: 4.529, z: -23.75}
+  m_LocalPosition: {x: 22.78, y: 4.8, z: -2.79}
   m_LocalScale: {x: 1, y: 1.671, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: -90, y: 0, z: 0}
+--- !u!65 &65666139427879758
+BoxCollider:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1973397203347294}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 8.22583, y: 3.74, z: 7.5634294}
+  m_Center: {x: 0.18078232, y: 0, z: -0.106117964}
 --- !u!82 &82283440218625300
 AudioSource:
   m_ObjectHideFlags: 1
@@ -139,6 +152,18 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &114450026952788564
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1973397203347294}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 09aa3084b3c10a941bf74b5e43b64e5a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  TiempoRalentizado: 0.5
 --- !u!114 &114766222067577954
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -150,20 +175,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9a4aac3db75bac34c86773b3444d5731, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  damage: 15
+  damage: 10
   SonidoExplosion: {fileID: 0}
---- !u!135 &135612961552435870
-SphereCollider:
-  m_ObjectHideFlags: 1
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1973397203347294}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 1
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Radius: 5.22012
-  m_Center: {x: 0, y: 0, z: 0.4895172}
 --- !u!198 &198908611744529508
 ParticleSystem:
   m_ObjectHideFlags: 1
@@ -172,7 +185,7 @@ ParticleSystem:
   m_GameObject: {fileID: 1973397203347294}
   serializedVersion: 5
   lengthInSec: 0.2
-  simulationSpeed: 1.8
+  simulationSpeed: 2
   stopAction: 2
   looping: 0
   prewarm: 0
@@ -183,7 +196,7 @@ ParticleSystem:
   startDelay:
     serializedVersion: 2
     minMaxState: 0
-    scalar: 0
+    scalar: 0.2
     minScalar: 0
     maxCurve:
       serializedVersion: 2
@@ -243,7 +256,7 @@ ParticleSystem:
     startLifetime:
       serializedVersion: 2
       minMaxState: 0
-      scalar: 3
+      scalar: 1.5
       minScalar: 0.7
       maxCurve:
         serializedVersion: 2
@@ -296,7 +309,7 @@ ParticleSystem:
     startSpeed:
       serializedVersion: 2
       minMaxState: 0
-      scalar: 14
+      scalar: 7
       minScalar: 30
       maxCurve:
         serializedVersion: 2
@@ -350,7 +363,7 @@ ParticleSystem:
       serializedVersion: 2
       minMaxState: 0
       minColor: {r: 1, g: 1, b: 1, a: 1}
-      maxColor: {r: 1, g: 1, b: 1, a: 1}
+      maxColor: {r: 1, g: 0, b: 0.84050083, a: 1}
       maxGradient:
         serializedVersion: 2
         key0: {r: 1, g: 1, b: 1, a: 1}
@@ -734,7 +747,7 @@ ParticleSystem:
     gravityModifier:
       serializedVersion: 2
       minMaxState: 0
-      scalar: 2
+      scalar: 1
       minScalar: 0
       maxCurve:
         serializedVersion: 2
@@ -818,7 +831,7 @@ ParticleSystem:
     sphericalDirectionAmount: 0
     randomPositionAmount: 0
     radius:
-      value: 0.25209555
+      value: 0.0001
       mode: 0
       spread: 0
       speed:
@@ -3630,7 +3643,7 @@ ParticleSystem:
         m_NumAlphaKeys: 2
     range: {x: 0, y: 1}
   CollisionModule:
-    enabled: 1
+    enabled: 0
     serializedVersion: 3
     type: 1
     collisionMode: 0

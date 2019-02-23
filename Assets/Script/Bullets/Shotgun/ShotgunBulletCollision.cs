@@ -28,6 +28,7 @@ public class ShotgunBulletCollision : MonoBehaviour
     void Update()
     {
      
+        
         if (Trasparente == true)
         {
             MaterialsPlayer.SameColor();

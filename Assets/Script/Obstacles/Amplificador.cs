@@ -28,7 +28,7 @@ public class Amplificador : MonoBehaviour {
     }
 	
 	// Update is called once per frame
-	void Update () {
+	void FixedUpdate () {
         PositionX += 0.01f * Time.deltaTime * 1f ; // poner 0.5f si es amplificador2
         Scalex += 0.01f * Time.deltaTime * velocidad;
         Scaley += 0.01f * Time.deltaTime * velocidad;

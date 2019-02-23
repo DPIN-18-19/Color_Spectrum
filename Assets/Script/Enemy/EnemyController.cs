@@ -32,7 +32,7 @@ public class EnemyController : MonoBehaviour
     // Navmesh variables
 
     private NavMeshAgent nav_agent;             // Navmesh object
-    public GameObject target;                  // Move towards objective
+    private GameObject target;                  // Move towards objective
     //public Transform[] points;                  // Patrol points (unfinished)
     public GameObject home;                     // Enemy return point
 
@@ -72,7 +72,7 @@ public class EnemyController : MonoBehaviour
     bool back_home = false;                 // Is enemy heading back home
     bool in_home = false;
     PatrolController patrol;
-
+  
     // Sound
 
     //public AudioClip FxDie;
@@ -94,27 +94,44 @@ public class EnemyController : MonoBehaviour
     public ParticleSystem EffectDestroy;
     public Transform PosDeadParticle;
     public bool isKamikaze;
-  
 
+    //RalentizarMovimiento
+    Slow_Motion Ralentizar;
+    public float SpeedSlow;
+   
+    private float MaxSpeedSlow;
+    public float AnimSlow;
+    private float MaxAnimSlow;
 
+    private float Slow_Rotation;
+    public float RalentizarRotar;
+    private float MaxRalentizarRotar;
     // private int despoint;
 
     // Use this for initialization
     void Start()
     {
+        MaxRalentizarRotar = 1;
+
+        Ralentizar = GameObject.Find("Player_Naomi").GetComponent<Slow_Motion>();
         anim = gameObject.GetComponent<Animator>();
         source = GetComponent<AudioSource>();
 
-        target = GameObject.Find("Player_Naomi");
+        target = GameObject.FindWithTag("Player");
         nav_agent = GetComponent<NavMeshAgent>();
 
         detect = GetComponent<DetectionController>();
         shot = GetComponent<ShotEnemy>();
 
         patrol = GetComponent<PatrolController>();
-
+        MaxSpeedSlow = nav_agent.speed;
+        MaxAnimSlow = anim.speed;
+      
         //DieEffect.Stop();
         EnemyColorData();
+
+        
+       
     }
 
     void EnemyColorData()
@@ -228,6 +245,16 @@ public class EnemyController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (Ralentizar.ActivateAbility == true)
+        {
+            source.pitch = Ability_Time_Manager.Instance.FXRalentizado;
+        }
+        if (Ralentizar.ActivateAbility == false)
+        {
+            source.pitch = 1;
+        }
+
+        // Debug.Log("Move");
         DetectPlayer();
         KeepDistance();
         ShootTarget();
@@ -266,7 +293,7 @@ public class EnemyController : MonoBehaviour
 
             float look = LookAtAxis(target.transform.position);
 
-            look = Mathf.LerpAngle(0, look, Time.deltaTime * 15.5f);
+            look = Mathf.LerpAngle(0, look, Time.deltaTime/ Slow_Rotation * 15.5f);
             anim.SetFloat("EnemyTurn", look);
             //transform.rotation = Quaternion.LookRotation((target.transform.position - transform.position).normalized, Vector3.up);
             transform.Rotate(0, look, 0);
@@ -291,6 +318,23 @@ public class EnemyController : MonoBehaviour
         //{
         //    nav_agent.isStopped = true;
         //}
+
+        if(Ralentizar.ActivateAbility == true)
+        {
+            nav_agent.speed = Ability_Time_Manager.Instance.Slow_Enemy_Speed;
+            anim.speed = Ability_Time_Manager.Instance.Slow_Enemy_Animation;
+            Slow_Rotation = Ability_Time_Manager.Instance.Slow_Enemy_Rotation;
+           
+        }
+        if (Ralentizar.ActivateAbility == false)
+        {
+            nav_agent.speed = MaxSpeedSlow;
+            anim.speed = MaxAnimSlow;
+            Slow_Rotation = MaxRalentizarRotar;
+           
+        }
+
+
 
     }
 
@@ -325,7 +369,7 @@ public class EnemyController : MonoBehaviour
 
         if (detect.IsPlayerInFront() && detect.IsPlayerNear(sight_distance)) // && detect.IsPlayerOnSight(sight_distance))
         {
-            Debug.Log("I see you");
+            //Debug.Log("I see you");
             is_chasing = true;
             in_home = false;
         }

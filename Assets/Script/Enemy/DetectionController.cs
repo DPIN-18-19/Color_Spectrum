@@ -18,7 +18,7 @@ public class DetectionController : MonoBehaviour
     // Use this for initialization
     void Start ()
     {
-        target = GameObject.Find("Player_Naomi");
+        target = GameObject.FindGameObjectWithTag("Player");
 	}
 	
 	// Update is called once per frame
@@ -31,15 +31,8 @@ public class DetectionController : MonoBehaviour
     {
         Vector3 target_distance = target.transform.position - transform.position;
 
-        if (distance == 26)
-        {
-            Debug.Log("Distance is " + distance);
-            Debug.Log("Target is " + target_distance.magnitude);
-        }
-
         if (target_distance.magnitude <= distance)
         {
-            Debug.Log("Hera");
             //is_chasing = true;          //- Move is_chasing somewhere else
             return true;
         }

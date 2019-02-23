@@ -21,6 +21,7 @@ GameObject:
   - component: {fileID: 4139983251047912}
   - component: {fileID: 114825409783908450}
   - component: {fileID: 114123899386814726}
+  - component: {fileID: 82335145636817886}
   m_Layer: 0
   m_Name: Shotgun_bullet 1
   m_TagString: Untagged
@@ -38,6 +39,7 @@ GameObject:
   - component: {fileID: 4864683784370712}
   - component: {fileID: 198104034624847602}
   - component: {fileID: 199406767875273844}
+  - component: {fileID: 114031274629569516}
   m_Layer: 4
   m_Name: ShotgunEffectCyan
   m_TagString: Untagged
@@ -55,6 +57,7 @@ GameObject:
   - component: {fileID: 4090440410523986}
   - component: {fileID: 198627593270496514}
   - component: {fileID: 199936229820136856}
+  - component: {fileID: 114877916246878248}
   m_Layer: 4
   m_Name: ShotgunEffectYellow
   m_TagString: Untagged
@@ -72,6 +75,7 @@ GameObject:
   - component: {fileID: 4221986030734828}
   - component: {fileID: 198930956326702978}
   - component: {fileID: 199948552755214644}
+  - component: {fileID: 114435278333706948}
   m_Layer: 0
   m_Name: ShotgunSmokeYellow
   m_TagString: Untagged
@@ -123,7 +127,6 @@ GameObject:
   - component: {fileID: 64685362493689206}
   - component: {fileID: 114408738321576580}
   - component: {fileID: 54876726972923462}
-  - component: {fileID: 114606150923918236}
   m_Layer: 16
   m_Name: Cone_Down
   m_TagString: Untagged
@@ -141,6 +144,7 @@ GameObject:
   - component: {fileID: 4839782578280838}
   - component: {fileID: 198046953440648826}
   - component: {fileID: 199538903475974460}
+  - component: {fileID: 114457283601012502}
   m_Layer: 0
   m_Name: ShotgunSmokeCyan
   m_TagString: Untagged
@@ -158,6 +162,7 @@ GameObject:
   - component: {fileID: 4109529866168714}
   - component: {fileID: 198183045284506982}
   - component: {fileID: 199183739464209454}
+  - component: {fileID: 114748877072394462}
   m_Layer: 4
   m_Name: ShotgunEffectMagenta
   m_TagString: Untagged
@@ -175,6 +180,7 @@ GameObject:
   - component: {fileID: 4965047066227622}
   - component: {fileID: 198147543897856598}
   - component: {fileID: 199050010628397154}
+  - component: {fileID: 114230178409546028}
   m_Layer: 0
   m_Name: ShotgunSmokeMagenta
   m_TagString: Untagged
@@ -327,7 +333,7 @@ MeshRenderer:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1603424198375044}
-  m_Enabled: 0
+  m_Enabled: 1
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
@@ -392,6 +398,113 @@ MeshCollider:
   m_CookingOptions: 14
   m_SkinWidth: 0.01
   m_Mesh: {fileID: 4300000, guid: 00da458dd4e802e45802fb4bade4da12, type: 3}
+--- !u!82 &82335145636817886
+AudioSource:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1016495751108764}
+  m_Enabled: 1
+  serializedVersion: 4
+  OutputAudioMixerGroup: {fileID: 0}
+  m_audioClip: {fileID: 0}
+  m_PlayOnAwake: 1
+  m_Volume: 1
+  m_Pitch: 1
+  Loop: 0
+  Mute: 0
+  Spatialize: 0
+  SpatializePostEffects: 0
+  Priority: 128
+  DopplerLevel: 1
+  MinDistance: 1
+  MaxDistance: 500
+  Pan2D: 0
+  rolloffMode: 0
+  BypassEffects: 0
+  BypassListenerEffects: 0
+  BypassReverbZones: 0
+  rolloffCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 1
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  panLevelCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  spreadCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  reverbZoneMixCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+--- !u!114 &114031274629569516
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1168254025821824}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 09aa3084b3c10a941bf74b5e43b64e5a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  TiempoRalentizado: 0.5
 --- !u!114 &114123899386814726
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -419,10 +532,26 @@ MonoBehaviour:
   DestroyBulletFx: {fileID: 0}
   TimeTrasparenteMat: 0.4
   Trasparente: 0
-  MaterialsPlayer: {fileID: 0}
+  RalentizarVelBala: 2.7
+  RalentizarDesBala: 2.7
   Sniper: 0
   increase_time: 0.2
   is_lerping: 0
+  is_waiting: 0
+  RalentizarBala: 1
+  SlowBullet: 2.9
+--- !u!114 &114230178409546028
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1962816302493214}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 09aa3084b3c10a941bf74b5e43b64e5a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  TiempoRalentizado: 0.5
 --- !u!114 &114408738321576580
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -437,20 +566,42 @@ MonoBehaviour:
   TimeTrasparenteMat: 0.3
   Trasparente: 0
   MaterialsPlayer: {fileID: 0}
---- !u!114 &114606150923918236
+--- !u!114 &114435278333706948
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1603424198375044}
+  m_GameObject: {fileID: 1354010537851502}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1e21234e3c8e43a6ad12673095f01bca, type: 3}
+  m_Script: {fileID: 11500000, guid: 09aa3084b3c10a941bf74b5e43b64e5a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  RunAtStart: 1
-  Delay: 0
-  LifeTime: 0.4
+  TiempoRalentizado: 0.5
+--- !u!114 &114457283601012502
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1829301136587588}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 09aa3084b3c10a941bf74b5e43b64e5a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  TiempoRalentizado: 0.5
+--- !u!114 &114748877072394462
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1865774619445598}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 09aa3084b3c10a941bf74b5e43b64e5a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  TiempoRalentizado: 0.5
 --- !u!114 &114825409783908450
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -465,6 +616,18 @@ MonoBehaviour:
   who: 2
   custom_target: {fileID: 0}
   Offset: {x: 0, y: 0, z: 0}
+--- !u!114 &114877916246878248
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1265790433321634}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 09aa3084b3c10a941bf74b5e43b64e5a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  TiempoRalentizado: 0.5
 --- !u!198 &198046953440648826
 ParticleSystem:
   m_ObjectHideFlags: 1

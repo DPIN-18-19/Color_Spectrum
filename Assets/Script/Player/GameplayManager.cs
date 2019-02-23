@@ -8,8 +8,8 @@ public class GameplayManager : MonoBehaviour
     static GameplayManager instance;
 
     Transform canvas;
-    
-   
+    public HealthController vida;
+
     public Text t_health;               // Player's health in UI
     public float health;
     public float max_health;
@@ -97,6 +97,8 @@ public class GameplayManager : MonoBehaviour
     // Use this for initialization
     void Awake ()
     {
+        vida = GameObject.Find("Player_Naomi").GetComponent<HealthController>();
+       
         instance = this;
 
         canvas = GameObject.Find("OldCanvas").transform;
@@ -113,6 +115,10 @@ public class GameplayManager : MonoBehaviour
         //y_frame.SetActive(true);
         //c_frame.SetActive(false);
         //m_frame.SetActive(false);
+    }
+    void Start()
+    {
+        max_health = vida.max_health;
     }
 
 
@@ -319,8 +325,10 @@ public class GameplayManager : MonoBehaviour
 
     public void DeactivateAbility()
     {
-        ability_icon.gameObject.AddComponent<Darken>();
-        ability_frame.gameObject.AddComponent<Darken>();
+        Darken d_icon = ability_icon.gameObject.AddComponent<Darken>();
+        Darken d_frame = ability_frame.gameObject.AddComponent<Darken>();
+        d_icon.DarkenColor(0.8f);
+        d_frame.DarkenColor(0.8f);
         t_ability_cooldown.gameObject.SetActive(true);
 
         // Ability needs a background

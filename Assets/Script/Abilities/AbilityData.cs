@@ -19,4 +19,24 @@ public class AbilityData
     // Inventory Data
     public float weight = 0.0f;
     public bool equipped;
+
+    // Datos de tienda
+    public float price;
+
+    public void Clone(AbilityData other)
+    {
+        id = other.id;
+        name = other.id;
+        is_instant = other.is_instant;
+
+        cooldown_dur = other.cooldown_dur;
+        active_dur = other.active_dur;
+
+        display_icon = other.display_icon;
+
+        weight = other.weight;
+        equipped = other.equipped;
+
+        price = other.price;
+    }
 }
