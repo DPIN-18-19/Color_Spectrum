@@ -117,7 +117,7 @@ public class EnemyController : MonoBehaviour
         anim = gameObject.GetComponent<Animator>();
         source = GetComponent<AudioSource>();
 
-        target = GameObject.FindWithTag("Player");
+        target = GameObject.Find("Player_Naomi");
         nav_agent = GetComponent<NavMeshAgent>();
 
         detect = GetComponent<DetectionController>();
@@ -129,9 +129,6 @@ public class EnemyController : MonoBehaviour
       
         //DieEffect.Stop();
         EnemyColorData();
-
-        
-       
     }
 
     void EnemyColorData()
@@ -369,13 +366,13 @@ public class EnemyController : MonoBehaviour
 
         if (detect.IsPlayerInFront() && detect.IsPlayerNear(sight_distance)) // && detect.IsPlayerOnSight(sight_distance))
         {
-            //Debug.Log("I see you");
+            Debug.Log("I see you");
             is_chasing = true;
             in_home = false;
         }
         else if (detect.IsPlayerNear(alert_distance) && detect.IsPlayerOnSight(sight_distance))
         {
-            //Debug.Log("You are near me");
+            Debug.Log("You are near me");
             is_chasing = true;
             in_home = false;
         }

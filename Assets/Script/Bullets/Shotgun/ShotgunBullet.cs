@@ -54,7 +54,6 @@ public class ShotgunBullet : BulletController
         {
             TiempoRalentizado = 1f;
         }
-        Debug.Log("Gonca11"+TiempoRalentizado);
     }
     void ColorParticle()
     {

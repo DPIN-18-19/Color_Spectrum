@@ -18,7 +18,7 @@ public class AbilityController : MonoBehaviour
     // Use this for initialization
     void Awake ()
     {
-        holder = GameObject.FindGameObjectWithTag("Player");
+        holder = GameObject.Find("Player_Naomi");
 
         a_dash = holder.GetComponent<dash>();
         a_autocolor = holder.GetComponent<AutoColor>();
@@ -37,7 +37,7 @@ public class AbilityController : MonoBehaviour
     {
         // Desactivar habilidad previa
         DeactivateAbility();
-        
+
         cur_ability = name;
 
         // Activar habilidad

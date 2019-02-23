@@ -128,10 +128,8 @@ public class EnemyHealthController : MonoBehaviour
         if (EnemyMaterials.GetColor() == 2)
         {
             EnemyMaterials.ChangeToDamagePink();
-            Debug.Log("DañoRosa");
         }
         Daño = true;
-        Debug.Log("Daño");
     }
 
     // Get back health
@@ -159,13 +157,10 @@ public class EnemyHealthController : MonoBehaviour
         //Debug.Log("Damage tag1" + damaging_tag1 + " Damage tag2" + damaging_tag2);
         if ((other_tag == damaging_tag1 && other_layer == damaging_layer1) || (other_tag == damaging_tag2 && other_layer == damaging_layer2))
         {
-            Debug.Log("Hola1");
             return true;
-
         }
         else
         {
-            Debug.Log("Hola1");
             return false;
         }
     }

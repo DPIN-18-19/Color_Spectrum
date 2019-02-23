@@ -100,6 +100,7 @@ public class WeaponWheel : MonoBehaviour
             //CambioColor.GetComponent<HabilidadCambioColor>().enabled = true;
 
             weapon.GetNewWeapon(0);
+
             ability.ActivateAbility(eq_weapons.i_weapon_chips[0].ability_name);
 
             //Debug.Log("Gun selected");
