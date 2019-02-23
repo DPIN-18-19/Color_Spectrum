@@ -11,15 +11,15 @@ public class Darken : MonoBehaviour
     private void Awake()
     {
         render_children = new List<Image>();
+        SearchRenderers();
     }
 
     // Use this for initialization
-    void Start ()
+    void Start()
     {
-        SearchRenderers();
-        DarkenColor();
+        //DarkenColor();
     }
-	
+
     void SearchRenderers()
     {
         render_children.Clear();
@@ -29,10 +29,13 @@ public class Darken : MonoBehaviour
             render_children.AddRange(GetComponentsInChildren<Image>());
     }
 
-    void DarkenColor()
+    public void DarkenColor(float dark)
     {
-        for(int i = 0; i < render_children.Count; ++i)
+        dark_percent = dark;
+        Debug.Log("Children " + render_children.Count);
+        for (int i = 0; i < render_children.Count; ++i)
         {
+            Debug.Log("hehe");
             render_children[i].color = new Color(render_children[i].color.r * (1 - dark_percent),
                                                 render_children[i].color.g * (1 - dark_percent),
                                                 render_children[i].color.b * (1 - dark_percent), render_children[i].color.a);

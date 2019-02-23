@@ -325,8 +325,10 @@ public class GameplayManager : MonoBehaviour
 
     public void DeactivateAbility()
     {
-        ability_icon.gameObject.AddComponent<Darken>();
-        ability_frame.gameObject.AddComponent<Darken>();
+        Darken d_icon = ability_icon.gameObject.AddComponent<Darken>();
+        Darken d_frame = ability_frame.gameObject.AddComponent<Darken>();
+        d_icon.DarkenColor(0.8f);
+        d_frame.DarkenColor(0.8f);
         t_ability_cooldown.gameObject.SetActive(true);
 
         // Ability needs a background

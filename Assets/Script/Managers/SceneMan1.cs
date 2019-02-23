@@ -27,10 +27,10 @@ public class SceneMan1 : MonoBehaviour
         Main_Menu,
         Nivel_1,
         //UnlockTestingLevel,
-        //Store,
-        //LevelSelection,
-       // PreparationMenu,
-        Customizacion
+        LevelSelection,
+        PreparationMenu,
+        Customizacion,
+        Store
     }
     SceneIndex scene_to_load;
     
