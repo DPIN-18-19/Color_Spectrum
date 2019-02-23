@@ -78,7 +78,7 @@ public class InfoPanel : MonoBehaviour
         ability_i.gameObject.SetActive(true);
 
         ability_i.transform.Find("Name_t").GetComponent<TextMeshProUGUI>().text = ability.name;
-        //ability_i.transform.Find("Price_t").GetComponent<TextMeshProUGUI>().text = ability.price.ToString();
+        ability_i.transform.Find("Price_t").GetComponent<TextMeshProUGUI>().text = ability.price.ToString();
 
     }
 

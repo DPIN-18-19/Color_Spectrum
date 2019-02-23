@@ -47,8 +47,8 @@ public class SChipData
                 price = g_data.price;
                 break;
             case SChipType.Ability:
-                //a_data.Clone(other.a_data);
-                //price = a_data.price;
+                a_data.Clone(other.a_data);
+                price = a_data.price;
                 break;
         }
     }
