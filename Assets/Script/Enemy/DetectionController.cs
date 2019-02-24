@@ -21,15 +21,9 @@ public class DetectionController : MonoBehaviour
         target = GameObject.Find("Player_Naomi");
 	}
 	
-	// Update is called once per frame
-	void Update ()
-    {
-		
-	}
-
     public bool IsPlayerNear(float distance)
     {
-        Vector3 target_distance = transform.position - target.transform.position;
+        Vector3 target_distance = target.transform.position - transform.position;
 
         if (target_distance.magnitude <= distance)
         {
@@ -46,7 +40,7 @@ public class DetectionController : MonoBehaviour
     // Detect player if on range of sight, obstacles between enemy and target are not considered
     public bool IsPlayerInFront()
     {
-        Vector3 target_dir = transform.position - target.transform.position;
+        Vector3 target_dir = target.transform.position - transform.position;
         //target_dir.Normalize();
 
         float target_angle = Vector3.Angle(transform.forward, target_dir.normalized);
@@ -69,7 +63,7 @@ public class DetectionController : MonoBehaviour
 
         //int layer_mask = 1 << 8;
 
-        Vector3 target_dir = transform.position - target.transform.position;
+        Vector3 target_dir = target.transform.position - transform.position;
 
         if (Physics.Raycast(transform.position, target_dir.normalized, out hit, distance))
         {

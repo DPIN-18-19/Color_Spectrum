@@ -366,13 +366,13 @@ public class EnemyController : MonoBehaviour
 
         if (detect.IsPlayerInFront() && detect.IsPlayerNear(sight_distance)) // && detect.IsPlayerOnSight(sight_distance))
         {
-            Debug.Log("I see you");
+            //Debug.Log("I see you");
             is_chasing = true;
             in_home = false;
         }
         else if (detect.IsPlayerNear(alert_distance) && detect.IsPlayerOnSight(sight_distance))
         {
-            Debug.Log("You are near me");
+            //Debug.Log("You are near me");
             is_chasing = true;
             in_home = false;
         }
