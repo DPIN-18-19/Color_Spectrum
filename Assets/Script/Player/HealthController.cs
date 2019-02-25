@@ -5,7 +5,7 @@ using UnityEngine;
 public class HealthController : MonoBehaviour
 {
     //public Text vida;             // Player's health in UI
-    float health;
+    public float health;
     float newHealth;                // Player's current health
     public float max_health;        // Player's maximum health
     public ColorChangingController cambioColor;
@@ -14,6 +14,7 @@ public class HealthController : MonoBehaviour
 
     // Dead variables
     public ParticleSystem [] die_effect;    // Effect particle array
+    public Transform PosParticleDead;
     int player_color;                       // Player's color
     public AudioClip FxDie;
     private AudioSource source;
@@ -22,7 +23,7 @@ public class HealthController : MonoBehaviour
     public ParticleSystem HealthBlue;
     public ParticleSystem HealthPink;
 
-    public PlayerController MaterialsPlayer;
+    public PlayerRenderer MaterialsPlayer;
 
     public float TimeDamageMat;
     private float MaxTimeDamageMat;
@@ -38,7 +39,13 @@ public class HealthController : MonoBehaviour
    
     public ColorChangingController BlackGlitch;
 
-    
+    public PlayerJaneMoveController MovePlayer;
+
+    public float TimeGlichEffect;
+
+    public GameObject camera;
+
+
     //////////////////////////////////////////////////////////////////////////////
     void Awake()
     {
@@ -57,8 +64,11 @@ public class HealthController : MonoBehaviour
         ColorChangingController.Instance.ToMagenta += ChangeToMagenta;
         if(GameplayManager.GetInstance() != null)
         GameplayManager.GetInstance().max_health = max_health;
+        MaterialsPlayer = GetComponent<PlayerRenderer>();
 
-
+        max_health = GetComponent<PlayerStats>().health;
+       // Debug.Log(max_health);
+        max_armor = GetComponent<PlayerStats>().armor;
         health = max_health;
         newHealth = health;
         armor = max_armor;
@@ -67,6 +77,7 @@ public class HealthController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+       // Debug.Log(health);
         IsDead();
         GameplayManager.GetInstance().health = health;
         health = Mathf.Lerp(health, newHealth, Time.deltaTime * 17);
@@ -87,34 +98,12 @@ public class HealthController : MonoBehaviour
             if (ParedNopasar == false)
             {
 
-                if (cambioColor.GetColor() == 0)
-                {
-                    MaterialsPlayer.RestoreChangeToYellow();
-                }
-                if (cambioColor.GetColor() == 1)
-                {
-                    MaterialsPlayer.RestoreChangeToCyan();
-                }
-                if (cambioColor.GetColor() == 2)
-                {
-                    MaterialsPlayer.RestoreChangeToMagenta();
-                }
+                MaterialsPlayer.ResetColor();
                 TimeDamageMat = MaxTimeDamageMat;
             }
             if(ParedNopasar == true)
             {
-                if (cambioColor.GetColor() == 0)
-                {
-                    MaterialsPlayer.ChangeToBlackYellow();
-                }
-                if (cambioColor.GetColor() == 1)
-                {
-                    MaterialsPlayer.ChangeToBlackBlue();
-                }
-                if (cambioColor.GetColor() == 2)
-                {
-                    MaterialsPlayer.ChangeToBlackPink();
-                }
+                MaterialsPlayer.BlackColor();
                 TimeDamageMat = MaxTimeDamageMat;
             }
         }
@@ -130,18 +119,7 @@ public class HealthController : MonoBehaviour
         }
         if (curar == false && TimeHealtheMat < 0)
         {
-            if (cambioColor.GetColor() == 0)
-            {
-                MaterialsPlayer.RestoreChangeToYellow();
-            }
-            if (cambioColor.GetColor() == 1)
-            {
-                MaterialsPlayer.RestoreChangeToCyan();
-            }
-            if (cambioColor.GetColor() == 2)
-            {
-                MaterialsPlayer.RestoreChangeToMagenta();
-            }
+            MaterialsPlayer.ResetColor();
             TimeHealtheMat = MaxTimeHealhthMat;
 
         }
@@ -156,69 +134,25 @@ public class HealthController : MonoBehaviour
             TimeGlitchtheMat += Time.deltaTime;
             if (TimeGlitchtheMat < MaxGlitchthMat)
             {
-                if (cambioColor.GetColor() == 0)
-                {
-                    MaterialsPlayer.ChangeToBlackGlitchYellow();
-                }
-                if (cambioColor.GetColor() == 1)
-                {
-                    MaterialsPlayer.ChangeToBlackGlitchBlue();
-                }
-                if (cambioColor.GetColor() == 2)
-                {
-                    MaterialsPlayer.ChangeToBlackGlitchPink();
-                }
+                MaterialsPlayer.BlackGlitchColor();
             }
             if (TimeGlitchtheMat > MaxGlitchthMat && Daño == false )
             {
-                if (cambioColor.GetColor() == 0)
-                {
-                    MaterialsPlayer.ChangeToBlackYellow();
-                }
-                if (cambioColor.GetColor() == 1)
-                {
-                    MaterialsPlayer.ChangeToBlackBlue();
-                }
-                if (cambioColor.GetColor() == 2)
-                {
-                    MaterialsPlayer.ChangeToBlackPink();
-                }
+                MaterialsPlayer.BlackColor();
             }
             if (TimeGlitchtheMat > MaxGlitchthMat && Daño == true)
             {
 
-                if (cambioColor.GetColor() == 0)
-                {
-                    MaterialsPlayer.ChangeToDamageYellow();
-                }
-                if (cambioColor.GetColor() == 1)
-                {
-                    MaterialsPlayer.ChangeToDamageBlue();
-                }
-                if (cambioColor.GetColor() == 2)
-                {
-                    MaterialsPlayer.ChangeToDamagePink();
-                }
+                MaterialsPlayer.DamageColor();
 
-               // TimeDamageMat -= Time.deltaTime;
+                // TimeDamageMat -= Time.deltaTime;
 
             }
 
 
             if (TimeGlitchtheMat > cambioColor.MaxDuracion)
             {
-                if (cambioColor.GetColor() == 0)
-                {
-                    MaterialsPlayer.RestoreChangeToYellow();
-                }
-                if (cambioColor.GetColor() == 1)
-                {
-                    MaterialsPlayer.RestoreChangeToCyan();
-                }
-                if (cambioColor.GetColor() == 2)
-                {
-                    MaterialsPlayer.RestoreChangeToMagenta();
-                }
+                MaterialsPlayer.ResetColor();
                 TimeGlitchtheMat = 0;
                 ParedNopasar = false;
             }
@@ -235,11 +169,15 @@ public class HealthController : MonoBehaviour
             {
                 //- Search a way to destroy die effect after finishing
 
-                Instantiate(die_effect[player_color].gameObject, transform.position, Quaternion.identity);
+                Instantiate(die_effect[player_color].gameObject, PosParticleDead.position, Quaternion.identity);
 
                 GameObject.Find("GameManager").GetComponent<SceneMan>().Invoke("ToMenu", 2);
 
-                Destroy(gameObject);
+                gameObject.SetActive(false);
+
+                MovePlayer.CanMove = false;
+
+               // Destroy(gameObject);
             }
         }
     }
@@ -253,19 +191,10 @@ public class HealthController : MonoBehaviour
         {
             newHealth = health - damage;
 
-            if (cambioColor.GetColor() == 0)
-            {
-                MaterialsPlayer.ChangeToDamageYellow();
+            MaterialsPlayer.DamageColor();
 
-            }
-            if (cambioColor.GetColor() == 1)
-            {
-                MaterialsPlayer.ChangeToDamageBlue();
-            }
-            if (cambioColor.GetColor() == 2)
-            {
-                MaterialsPlayer.ChangeToDamagePink();
-            }
+            camera.GetComponent<GlitchEffect>().enabled = true;
+            Invoke("DesactivateGlichEffect", TimeGlichEffect);
 
             ScoreManager.Instance.CountDamage(damage);
             Daño = true;
@@ -280,19 +209,19 @@ public class HealthController : MonoBehaviour
     {
         newHealth = health + cure;
         //health += cure;
+        MaterialsPlayer.HealthColor();
         if (cambioColor.GetColor() == 0)
         {
-            MaterialsPlayer.ChangeToHealthYellow();
+           
             Instantiate(HealthYellow.gameObject, transform.position, Quaternion.identity);
         }
         if (cambioColor.GetColor() == 1)
         {
-            MaterialsPlayer.ChangeToHealthBlue();
+           
             Instantiate(HealthBlue.gameObject, transform.position, Quaternion.identity);
         }
         if (cambioColor.GetColor() == 2)
         {
-            MaterialsPlayer.ChangeToHealthPink();
             Instantiate(HealthPink.gameObject, transform.position, Quaternion.identity);
         }
         curar = true;
@@ -335,5 +264,9 @@ public class HealthController : MonoBehaviour
     void ChangeToMagenta()
     {
         player_color = 2;
+    }
+    void DesactivateGlichEffect()
+    {
+        camera.GetComponent<GlitchEffect>().enabled = false;
     }
 }

@@ -10,6 +10,7 @@ public class PlayerJaneMoveController : MonoBehaviour {
     Animator anim;
     public bool Move;
     public CinemachineVirtualCamera Cam1;
+    public bool CanMove = true;
     //public float TimeStopGrenade;
 
     // Variables
@@ -23,7 +24,7 @@ public class PlayerJaneMoveController : MonoBehaviour {
     // Use this for initialization
     void Start()
     {
-       
+        move_speed = GetComponent<PlayerStats>().speed;
         // Initialize
         SetUpAnimation();
         anim.SetBool("Move", Move);
@@ -35,6 +36,7 @@ public class PlayerJaneMoveController : MonoBehaviour {
     // Update is called once per frame
     void Update()
     {
+        if(CanMove)
        Movement();
        // TimeStopGrenade += Time.deltaTime; 
 
@@ -86,7 +88,7 @@ public class PlayerJaneMoveController : MonoBehaviour {
     void SetUpAnimation()
     {
         anim = GetComponent<Animator>();
-        Debug.Log("Hola");
+        //Debug.Log("Hola");
 
         foreach (var childAnimator in GetComponentsInChildren<Animator>())
         {

@@ -18,11 +18,15 @@ public class PatrolController : MonoBehaviour
 
     private NavMeshAgent nav_agent;             // Navmesh object
 
+    Animator anim;
+   
+
 
     // Use this for initialization
     void Start()
     {
         nav_agent = GetComponent<NavMeshAgent>();
+        anim = gameObject.GetComponent<Animator>();
 
         if (is_patrol)
             ResetPatrol();

@@ -1,0 +1,64 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c7724e60527db6f4cad0787dccc03963, type: 3}
+  m_Name: InventoryChips
+  m_EditorClassIdentifier: 
+  chips:
+  - id: DamHelath1
+    name: Chip1
+    weight: 10
+    player_stats:
+    - stat_name: Health
+      stat_value: 10
+    weapon_stats:
+    - stat_name: Damage
+      stat_value: 5
+    equipped: 0
+  - id: DamHelath2
+    name: Chip2
+    weight: 10
+    player_stats:
+    - stat_name: Health
+      stat_value: 10
+    weapon_stats:
+    - stat_name: Damage
+      stat_value: 5
+    equipped: 0
+  - id: DamHelath3
+    name: Chip3
+    weight: 10
+    player_stats:
+    - stat_name: Health
+      stat_value: 10
+    weapon_stats:
+    - stat_name: Damage
+      stat_value: 5
+    equipped: 0
+  - id: DamHelath4
+    name: Chip4
+    weight: 10
+    player_stats:
+    - stat_name: Health
+      stat_value: 10
+    weapon_stats:
+    - stat_name: Damage
+      stat_value: 5
+    equipped: 0
+  - id: DamHelath5
+    name: Chip5
+    weight: 10
+    player_stats:
+    - stat_name: Health
+      stat_value: 10
+    weapon_stats:
+    - stat_name: Damage
+      stat_value: 5
+    equipped: 0

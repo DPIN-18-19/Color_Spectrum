@@ -93,6 +93,7 @@ GameObject:
   - component: {fileID: 114180784381337160}
   - component: {fileID: 65338167162807606}
   - component: {fileID: 82036581063209798}
+  - component: {fileID: 135319526778825716}
   m_Layer: 0
   m_Name: PS_Explosion_Grenade
   m_TagString: Untagged
@@ -107,7 +108,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1711926052611916}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 27.447346, y: 0.14763665, z: 9.918089}
+  m_LocalPosition: {x: 16.36863, y: 0.14763665, z: -21.103907}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4425483354477486}
@@ -177,10 +178,10 @@ BoxCollider:
   m_GameObject: {fileID: 1711926052611916}
   m_Material: {fileID: 0}
   m_IsTrigger: 1
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 2
   m_Size: {x: 9.984455, y: 10.627525, z: 10.179058}
-  m_Center: {x: 0.02327156, y: 0.52142143, z: 0.087249756}
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!82 &82036581063209798
 AudioSource:
   m_ObjectHideFlags: 1
@@ -190,7 +191,7 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 0}
+  m_audioClip: {fileID: 8300000, guid: 35959eed556ccab48b6ae1200c042c41, type: 3}
   m_PlayOnAwake: 1
   m_Volume: 1
   m_Pitch: 1
@@ -399,6 +400,18 @@ MonoBehaviour:
   RunAtStart: 1
   Delay: 0
   LifeTime: 1
+--- !u!135 &135319526778825716
+SphereCollider:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1711926052611916}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 6.051797
+  m_Center: {x: -0.069, y: 0, z: 0}
 --- !u!198 &198023094416583394
 ParticleSystem:
   m_ObjectHideFlags: 1

@@ -57,11 +57,13 @@ public class EnemyController : MonoBehaviour
 
     // Shooting
     ShotEnemy shot;                             // Enemy's gun
+    public bool DontShot;
     //public ParticleSystem DieEffect;            // Die particles
     //public bool Stop;                         // (Unused)
     bool friendly_fire;                         // Friendly fire
 
-
+    public AudioClip SonidoKi;
+   
 
     // AI variables
 
@@ -70,7 +72,7 @@ public class EnemyController : MonoBehaviour
     bool back_home = false;                 // Is enemy heading back home
     bool in_home = false;
     PatrolController patrol;
-
+  
     // Sound
 
     //public AudioClip FxDie;
@@ -89,12 +91,29 @@ public class EnemyController : MonoBehaviour
     public Material DamageYellowMaterial;
     public Material DamagePinkMaterial;
 
+    public ParticleSystem EffectDestroy;
+    public Transform PosDeadParticle;
+    public bool isKamikaze;
 
+    //RalentizarMovimiento
+    Slow_Motion Ralentizar;
+    public float SpeedSlow;
+   
+    private float MaxSpeedSlow;
+    public float AnimSlow;
+    private float MaxAnimSlow;
+
+    private float Slow_Rotation;
+    public float RalentizarRotar;
+    private float MaxRalentizarRotar;
     // private int despoint;
 
     // Use this for initialization
     void Start()
     {
+        MaxRalentizarRotar = 1;
+
+        Ralentizar = GameObject.Find("Player_Naomi").GetComponent<Slow_Motion>();
         anim = gameObject.GetComponent<Animator>();
         source = GetComponent<AudioSource>();
 
@@ -105,9 +124,14 @@ public class EnemyController : MonoBehaviour
         shot = GetComponent<ShotEnemy>();
 
         patrol = GetComponent<PatrolController>();
-
+        MaxSpeedSlow = nav_agent.speed;
+        MaxAnimSlow = anim.speed;
+      
         //DieEffect.Stop();
         EnemyColorData();
+
+        
+       
     }
 
     void EnemyColorData()
@@ -136,7 +160,7 @@ public class EnemyController : MonoBehaviour
         }
 
        // gameObject.layer = 8;
-        GameplayManager.GetInstance().ChangeColor(0);
+       
         // Yellow Layer
     }
     public void RestoreChangeToMagenta()
@@ -150,7 +174,7 @@ public class EnemyController : MonoBehaviour
         }
 
       //  gameObject.layer = 10;
-        GameplayManager.GetInstance().ChangeColor(2);
+        
     }
     public void RestoreChangeToCyan()
     {
@@ -162,7 +186,7 @@ public class EnemyController : MonoBehaviour
         }
 
       //  gameObject.layer = 9;
-        GameplayManager.GetInstance().ChangeColor(1); // Cyan Layer
+       
     }
 
 
@@ -179,7 +203,7 @@ public class EnemyController : MonoBehaviour
         }
 
        // gameObject.layer = 8;
-        GameplayManager.GetInstance().ChangeColor(0);
+       
     }
     public void ChangeToDamageBlue()
     {
@@ -192,7 +216,7 @@ public class EnemyController : MonoBehaviour
         }
 
        // gameObject.layer = 9;
-        GameplayManager.GetInstance().ChangeColor(1);
+        
     }
     public void ChangeToDamagePink()
     {
@@ -205,7 +229,7 @@ public class EnemyController : MonoBehaviour
         }
 
       //  gameObject.layer = 10;
-        GameplayManager.GetInstance().ChangeColor(2);
+       
     }
 
 
@@ -218,27 +242,19 @@ public class EnemyController : MonoBehaviour
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
     // Update is called once per frame
     void Update()
     {
+        if (Ralentizar.ActivateAbility == true)
+        {
+            source.pitch = Ability_Time_Manager.Instance.FXRalentizado;
+        }
+        if (Ralentizar.ActivateAbility == false)
+        {
+            source.pitch = 1;
+        }
+
+        // Debug.Log("Move");
         DetectPlayer();
         KeepDistance();
         ShootTarget();
@@ -266,6 +282,7 @@ public class EnemyController : MonoBehaviour
         if (back_home == true)
         {
             nav_agent.SetDestination(home.transform.position);
+            if(DontShot == false)
             shot.isShooting = false;
         }
 
@@ -276,7 +293,7 @@ public class EnemyController : MonoBehaviour
 
             float look = LookAtAxis(target.transform.position);
 
-            look = Mathf.LerpAngle(0, look, Time.deltaTime * 15.5f);
+            look = Mathf.LerpAngle(0, look, Time.deltaTime/ Slow_Rotation * 15.5f);
             anim.SetFloat("EnemyTurn", look);
             //transform.rotation = Quaternion.LookRotation((target.transform.position - transform.position).normalized, Vector3.up);
             transform.Rotate(0, look, 0);
@@ -284,7 +301,8 @@ public class EnemyController : MonoBehaviour
             AttackStopPlayer = true;
             anim.SetBool("AttackStop", AttackStopPlayer);
 
-            nav_agent.isStopped = true;
+            nav_agent.velocity = Vector3.zero;
+            nav_agent.isStopped = true; // Se para el enemigo
         }
 
         if (in_home)
@@ -300,6 +318,23 @@ public class EnemyController : MonoBehaviour
         //{
         //    nav_agent.isStopped = true;
         //}
+
+        if(Ralentizar.ActivateAbility == true)
+        {
+            nav_agent.speed = Ability_Time_Manager.Instance.Slow_Enemy_Speed;
+            anim.speed = Ability_Time_Manager.Instance.Slow_Enemy_Animation;
+            Slow_Rotation = Ability_Time_Manager.Instance.Slow_Enemy_Rotation;
+           
+        }
+        if (Ralentizar.ActivateAbility == false)
+        {
+            nav_agent.speed = MaxSpeedSlow;
+            anim.speed = MaxAnimSlow;
+            Slow_Rotation = MaxRalentizarRotar;
+           
+        }
+
+
 
     }
 
@@ -348,25 +383,48 @@ public class EnemyController : MonoBehaviour
 
     private void KeepDistance()
     {
-        if (detect.IsPlayerNear(safe_distance))
+        if (isKamikaze == false)
         {
-            look_target = true;
+            if (detect.IsPlayerNear(safe_distance))
+            {
+                look_target = true;
+
+            }
+            else
+                look_target = false;
         }
-        else
-            look_target = false;
+        if(isKamikaze == true)
+        {
+            if (detect.IsPlayerNear(safe_distance))
+            {
+                look_target = true;
+                Invoke("DestroyEnemy", 1.5f);
+                nav_agent.velocity = Vector3.zero;
+                source.PlayOneShot(SonidoKi);
+
+            }
+           // else
+              //  look_target = false;
+        }
     }
 
     private void ShootTarget()
     {
         if (detect.IsPlayerInFront() && detect.IsPlayerOnSight(sight_distance))
         {
-            shot.isShooting = true;
-            shot.random = false;
+            if (DontShot == false)
+            {
+                shot.isShooting = true;
+                shot.random = false;
+            }
         }
         else
         {
             //shot.isShooting = false;
-            shot.random = true;
+            if (DontShot == false)
+            {
+                shot.random = true;
+            }
         }
     }
 
@@ -476,5 +534,11 @@ public class EnemyController : MonoBehaviour
         // Calculate Angle between current transform.front and object to look at
 
         return Vector3.SignedAngle(transform.forward, projection, Vector3.up) - 180;
+    }
+    public void DestroyEnemy()
+    {
+        //Efecto de particulas de explosion
+        Instantiate(EffectDestroy.gameObject, PosDeadParticle.transform.position, Quaternion.identity);
+        Destroy(transform.parent.gameObject);
     }
 }
