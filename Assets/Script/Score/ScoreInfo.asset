@@ -14,50 +14,50 @@ MonoBehaviour:
   times:
   - name: Time
     minutes: 5
-    seconds: 55
+    seconds: 0
     multiplier: 1000
   - name: Time
-    minutes: 6
-    seconds: 25
+    minutes: 5
+    seconds: 30
     multiplier: 750
   - name: Time
     minutes: 6
-    seconds: 55
+    seconds: 0
     multiplier: 500
   - name: Time
     minutes: 7
-    seconds: 25
+    seconds: 0
     multiplier: 250
   - name: Time
-    minutes: 7
-    seconds: 55
+    minutes: 8
+    seconds: 0
     multiplier: 0
   health:
   - name: Damage
-    damage_times: 15
+    damage_times: 16
     damage_score: 500
   - name: Damage
-    damage_times: 20
+    damage_times: 21
     damage_score: 400
   - name: Damage
-    damage_times: 30
+    damage_times: 26
     damage_score: 300
   - name: Damage
-    damage_times: 40
+    damage_times: 31
     damage_score: 200
   - name: Damage
-    damage_times: 50
+    damage_times: 36
     damage_score: 100
   grades:
   - grade: S
-    score: 8400
+    score: 7400
   - grade: A
-    score: 8000
-  - grade: B
-    score: 7700
-  - grade: C
-    score: 7250
-  - grade: D
     score: 7000
+  - grade: B
+    score: 6700
+  - grade: C
+    score: 6350
+  - grade: D
+    score: 6000
   - grade: F
     score: 0

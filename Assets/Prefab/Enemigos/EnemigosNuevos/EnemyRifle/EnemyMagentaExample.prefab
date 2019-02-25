@@ -1382,7 +1382,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1929973850218482}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 16.772491, y: 0.14763713, z: -14.900347}
+  m_LocalPosition: {x: 46.791256, y: -47.2, z: -22.033554}
   m_LocalScale: {x: 1.2848799, y: 1.2848799, z: 1.2848799}
   m_Children:
   - {fileID: 224632376777443738}
@@ -2096,14 +2096,14 @@ MonoBehaviour:
   bullet: {fileID: 1630379668744072, guid: d59c53fa4931c994a9da4bf1cf0d6112, type: 2}
   FirePos: {fileID: 4032013597196822}
   EffectShot: {fileID: 4416590433704338}
-  timeBetweenShorts: 1
-  TimeShots: 1
+  timeBetweenShorts: 0.5
+  TimeShots: 0.5
   isShooting: 0
   ShellEjection: {fileID: 4083675218026622}
   FXShotEnemy: {fileID: 8300000, guid: 93bafb5448c982a449e63a3638736494, type: 3}
   TiempoRalentizado: 2
   bullet_speed: 10
-  bullet_dmg: 7
+  bullet_dmg: 5
   bullet_range: 20
   bullet_friend: 0
   random: 0

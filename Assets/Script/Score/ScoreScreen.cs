@@ -22,6 +22,7 @@ public class ScoreScreen : MonoBehaviour
         score_texts = new List<Text>();
         score_texts.AddRange(transform.Find("ModifiableTexts").GetComponentsInChildren<Text>());
         ScoreManager.Instance.LoadScoreData(level_scores);
+
     }
 
 	public void UpdateStats()
@@ -48,8 +49,8 @@ public class ScoreScreen : MonoBehaviour
         score_texts[7].material = ScoreManager.Instance.QuickGetGradeMat();
         
         //UnityEngine.SceneManagement.SceneManager.LoadScene("Store");
-        SceneMan1.Instance.LoadSceneByName("LevelSelection");
-        //this.Invoke("LoadNext", 3);
+        //SceneMan1.Instance.LoadSceneByName("LevelSelection");
+        this.Invoke("LoadNext", 5);
     }
 
     void LoadNext()

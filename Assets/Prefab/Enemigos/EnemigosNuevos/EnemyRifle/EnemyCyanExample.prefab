@@ -1191,9 +1191,9 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1357271386326440}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 16.38224, y: 0.14763713, z: -16.777466}
-  m_LocalScale: {x: 1.2848799, y: 1.2848799, z: 1.2848799}
+  m_LocalRotation: {x: -0, y: -0.7071068, z: -0, w: 0.7071068}
+  m_LocalPosition: {x: 51.85423, y: -47.2, z: -79.27513}
+  m_LocalScale: {x: 1.2848804, y: 1.2848799, z: 1.2848804}
   m_Children:
   - {fileID: 224331454503627512}
   - {fileID: 4986471611901210}
@@ -1201,7 +1201,7 @@ Transform:
   - {fileID: 4230227851582562}
   m_Father: {fileID: 0}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: -90, z: 0}
 --- !u!4 &4347985009237776
 Transform:
   m_ObjectHideFlags: 1
@@ -1931,9 +1931,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1baa2c15fb894ee4c907596f32dcc8e0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  patrol_points:
-  - {fileID: 4754105215833310}
-  - {fileID: 4806100680505152}
+  patrol_points: []
   wait_time: 0
   patrol_speed: 1
   is_patrol: 1
@@ -2138,14 +2136,14 @@ MonoBehaviour:
   bullet: {fileID: 1630379668744072, guid: d59c53fa4931c994a9da4bf1cf0d6112, type: 2}
   FirePos: {fileID: 4974154606234192}
   EffectShot: {fileID: 4075531568489904}
-  timeBetweenShorts: 1
-  TimeShots: 1
+  timeBetweenShorts: 0.5
+  TimeShots: 0.5
   isShooting: 0
   ShellEjection: {fileID: 4925927403032078}
   FXShotEnemy: {fileID: 8300000, guid: 93bafb5448c982a449e63a3638736494, type: 3}
   TiempoRalentizado: 2
   bullet_speed: 10
-  bullet_dmg: 7
+  bullet_dmg: 5
   bullet_range: 20
   bullet_friend: 0
   random: 0
