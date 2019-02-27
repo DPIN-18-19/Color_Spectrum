@@ -40,7 +40,7 @@ MonoBehaviour:
         stationaryBlending: 0.95
         motionBlending: 0.85
   ambientOcclusion:
-    m_Enabled: 1
+    m_Enabled: 0
     m_Settings:
       intensity: 1
       radius: 0.3
@@ -69,13 +69,13 @@ MonoBehaviour:
       screenEdgeMask:
         intensity: 0.03
   depthOfField:
-    m_Enabled: 0
+    m_Enabled: 1
     m_Settings:
       focusDistance: 1
       aperture: 1
-      focalLength: 1
+      focalLength: 11
       useCameraFov: 0
-      kernelSize: 0
+      kernelSize: 2
   motionBlur:
     m_Enabled: 1
     m_Settings:
@@ -102,12 +102,12 @@ MonoBehaviour:
       bloom:
         intensity: 0.5
         threshold: 1.1
-        softKnee: 0.785
-        radius: 7
+        softKnee: 1
+        radius: 2.81
         antiFlicker: 1
       lensDirt:
         texture: {fileID: 2800000, guid: a2960ffde020f27409e070d92fb2e00b, type: 3}
-        intensity: 5
+        intensity: 3
   colorGrading:
     m_Enabled: 1
     m_Settings:
@@ -122,15 +122,15 @@ MonoBehaviour:
       basic:
         postExposure: 0
         temperature: 0
-        tint: -39
+        tint: -20
         hueShift: 0
-        saturation: 0.7
-        contrast: 1.02
+        saturation: 0.777
+        contrast: 1.175
       channelMixer:
-        red: {x: 1, y: 0, z: 0}
-        green: {x: 0, y: 1, z: 0}
-        blue: {x: 0, y: 0, z: 1}
-        currentEditingChannel: 0
+        red: {x: 2, y: 0, z: 0}
+        green: {x: 0, y: 2, z: 0}
+        blue: {x: 0, y: 0, z: 2}
+        currentEditingChannel: 2
       colorWheels:
         mode: 1
         log:
@@ -156,14 +156,14 @@ MonoBehaviour:
               inWeight: 0.33333334
               outWeight: 0.33333334
             - serializedVersion: 3
-              time: 1
-              value: 1
-              inSlope: 1
-              outSlope: 0
+              time: 0.99011856
+              value: 0.77366257
+              inSlope: 0.42870995
+              outSlope: 0.42870995
               tangentMode: 0
               weightedMode: 0
-              inWeight: 0.33333334
-              outWeight: 0.33333334
+              inWeight: 0
+              outWeight: 0
             m_PreInfinity: 2
             m_PostInfinity: 2
             m_RotationOrder: 0
@@ -184,14 +184,14 @@ MonoBehaviour:
               inWeight: 0.33333334
               outWeight: 0.33333334
             - serializedVersion: 3
-              time: 1
-              value: 1
-              inSlope: 1
-              outSlope: 1
+              time: 0.67391306
+              value: 0.93004113
+              inSlope: 0.4931779
+              outSlope: 0.4931779
               tangentMode: 0
               weightedMode: 0
-              inWeight: 0.33333334
-              outWeight: 0.33333334
+              inWeight: 0
+              outWeight: 0
             m_PreInfinity: 2
             m_PostInfinity: 2
             m_RotationOrder: 4
@@ -212,14 +212,14 @@ MonoBehaviour:
               inWeight: 0.33333334
               outWeight: 0.33333334
             - serializedVersion: 3
-              time: 1
-              value: 1
+              time: 0.7450593
+              value: 0.69135803
               inSlope: 1
               outSlope: 1
               tangentMode: 0
               weightedMode: 0
-              inWeight: 0.33333334
-              outWeight: 0.33333334
+              inWeight: 0
+              outWeight: 0
             m_PreInfinity: 2
             m_PostInfinity: 2
             m_RotationOrder: 4
@@ -242,12 +242,12 @@ MonoBehaviour:
             - serializedVersion: 3
               time: 1
               value: 1
-              inSlope: 1
-              outSlope: 1
+              inSlope: 0.72880673
+              outSlope: 0.72880673
               tangentMode: 0
               weightedMode: 0
-              inWeight: 0.33333334
-              outWeight: 0.33333334
+              inWeight: 0
+              outWeight: 0
             m_PreInfinity: 2
             m_PostInfinity: 2
             m_RotationOrder: 4
@@ -296,19 +296,19 @@ MonoBehaviour:
           m_Range: 1
         e_CurrentEditingCurve: 0
         e_CurveY: 1
-        e_CurveR: 0
-        e_CurveG: 0
-        e_CurveB: 0
+        e_CurveR: 1
+        e_CurveG: 1
+        e_CurveB: 1
   userLut:
     m_Enabled: 0
     m_Settings:
-      lut: {fileID: 2800000, guid: e45483e270a314c4bbc6e317771d56ab, type: 3}
+      lut: {fileID: 0}
       contribution: 0.577
   chromaticAberration:
     m_Enabled: 1
     m_Settings:
       spectralTexture: {fileID: 0}
-      intensity: 0.5
+      intensity: 0.756
   grain:
     m_Enabled: 1
     m_Settings:
@@ -320,14 +320,14 @@ MonoBehaviour:
     m_Enabled: 1
     m_Settings:
       mode: 0
-      color: {r: 0, g: 0, b: 0, a: 1}
+      color: {r: 0.33962262, g: 0.33962262, b: 0.33962262, a: 1}
       center: {x: 0.5, y: 0.5}
       intensity: 0.45
-      smoothness: 0.378
+      smoothness: 0.669
       roundness: 1
       mask: {fileID: 0}
       opacity: 1
-      rounded: 0
+      rounded: 1
   dithering:
     m_Enabled: 0
   monitors:

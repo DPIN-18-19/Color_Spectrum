@@ -140,7 +140,7 @@ public class Tutorial_Manager : MonoBehaviour {
                 break;
 
             case 18:
-                F2_Chips_Habilidad1_text.text = "Al igual que el chip de arma consta de 3 partes: un marco, un color y un icono para cada habilidad.";
+                F2_Chips_Habilidad1_text.text = "Al igual que el chip de arma, consta de 3 partes: un marco, un color y un icono para cada habilidad.";
                 break;
 
             case 19:
@@ -164,7 +164,7 @@ public class Tutorial_Manager : MonoBehaviour {
                 break;
 
             case 24:
-                F2_Chips_Mod2_text.text = "Por ejemplo, este chip en el arma aumentara su daño.";
+                F2_Chips_Mod2_text.text = "Por ejemplo, este chip en el arma aumentara su dano.";
                 break;
 
             case 25:
