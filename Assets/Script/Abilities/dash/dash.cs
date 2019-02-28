@@ -11,7 +11,7 @@ using QFXToolKit;
         private float dashTime;
         public float Cooldown;
         private float Max_Cooldown;
-        public PlayerJaneMoveController MovePlayer;
+        public PlayerMove MovePlayer;
         public Rigidbody rb;
         public bool SePuedeUsar;
         public AudioClip FxDash;

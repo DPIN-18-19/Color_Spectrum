@@ -2,10 +2,13 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerRotation : MonoBehaviour {
+public class PlayerRotation : MonoBehaviour
+{
+    public Camera cam;
     public ShowScore score;
-   public Camera cam;
-    public Menu_Pausa Pausa;
+    public Menu_Pausa pause;
+    public Transform weapon_pos;
+
     private void Start()
    
     {
@@ -23,12 +26,14 @@ public class PlayerRotation : MonoBehaviour {
         // Calculate ray from mouse position 
         Ray cam_ray = cam.ScreenPointToRay(Input.mousePosition);
         // Cam1.m_Lens
-        Plane ground_plane = new Plane(Vector3.up, transform.position);
+        Vector3 plane_pos = new Vector3(transform.position.x, weapon_pos.position.y, transform.position.z);
+        Plane ground_plane = new Plane(Vector3.up, plane_pos);
         float ray_length;
 
+        Debug.Log(ground_plane.distance);
         Debug.DrawLine(cam_ray.origin, cam_ray.direction * 100, Color.red);
 
-        if (ground_plane.Raycast(cam_ray, out ray_length) && Pausa.GameIsPaused == false && score.is_paused == false)
+        if (ground_plane.Raycast(cam_ray, out ray_length) && pause.GameIsPaused == false && score.is_paused == false)
         {
             Vector3 point_to_look = cam_ray.GetPoint(ray_length);
             Debug.DrawLine(cam_ray.origin, point_to_look, Color.blue);

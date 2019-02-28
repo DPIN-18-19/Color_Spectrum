@@ -39,7 +39,7 @@ public class HealthController : MonoBehaviour
    
     public ColorChangingController BlackGlitch;
 
-    public PlayerJaneMoveController MovePlayer;
+    public PlayerMove MovePlayer;
 
     public float TimeGlichEffect;
 

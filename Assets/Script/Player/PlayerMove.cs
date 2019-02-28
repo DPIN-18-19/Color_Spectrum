@@ -3,7 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 using Cinemachine;
 
-public class PlayerJaneMoveController : MonoBehaviour {
+public class PlayerMove : MonoBehaviour
+{
     //Components
     private Rigidbody rb;
     private Camera cam;
