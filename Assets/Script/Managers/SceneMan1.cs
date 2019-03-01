@@ -57,4 +57,9 @@ public class SceneMan1 : MonoBehaviour
     {
         return (int)scene_to_load;
     }
+
+    public void ExitGame()
+    {
+        Application.Quit();
+    }
 }
