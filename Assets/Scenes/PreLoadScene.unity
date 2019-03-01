@@ -265,10 +265,11 @@ MonoBehaviour:
   base_health: 90
   base_armor: 0
   base_speed: 7
-  health: 0
-  armor: 0
+  health: 70
+  armor: 20
   speed: 0
   player_chips: {fileID: 11400000, guid: 7a67465f0ad3b454795926c34a287cd0, type: 2}
+  equipped_weapons: {fileID: 11400000, guid: 055e05b6fd4971a4db4fa3adbc10bca2, type: 2}
   money: 1000
 --- !u!114 &1477886909
 MonoBehaviour:
@@ -283,6 +284,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   score_data: {fileID: 11400000, guid: fc6ab15269a8e3d4b956dbc35defa7d0, type: 2}
   grade_data: {fileID: 11400000, guid: 6a254c8836fa9cd4e80ddb1fef3468d5, type: 2}
+  is_result_active: 0
 --- !u!114 &1477886910
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -316,8 +318,8 @@ MonoBehaviour:
     item_got: 0
     highscore: 0
     grade:
-      name: 
-      score: 0
+      grade: 
+      mat: {fileID: 0}
     unlock_require: []
 --- !u!1 &1787395651
 GameObject:

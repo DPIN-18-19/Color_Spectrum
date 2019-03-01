@@ -51,7 +51,7 @@ public class WeaponController : MonoBehaviour
        
         source = GetComponent<AudioSource>();
         render_children = new List<Renderer>();
-        GetNewWeapon(activated_weapon);
+        //GetNewWeapon(activated_weapon);
         //contShoot = gunlist.weaponList[2].num_disparos;
         //pistola = true;
     }
@@ -176,9 +176,9 @@ public class WeaponController : MonoBehaviour
         // Incluir datos de materiales
         SearchRenderers();
         gun.GetComponent<GunController>().UpdateColor(GetComponentInParent<PlayerRenderer>().cur_color);
-        // Activar habilidad
-        //GetComponent<AbilityController>().ActivateAbility(cur_weapon.ability);
 
+        // Actualizar plano de rotacion
+        transform.parent.GetComponent<PlayerRotation>().SetNewGunHeight(gun.transform.Find("FirePos"));
     }
 
     void SearchRenderers()

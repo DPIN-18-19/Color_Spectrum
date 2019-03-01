@@ -7,10 +7,10 @@ public class HealthController : MonoBehaviour
     //public Text vida;             // Player's health in UI
     public float health;
     float newHealth;                // Player's current health
-    public float max_health;        // Player's maximum health
+    public float max_health = 10;   // Player's maximum health
     public ColorChangingController cambioColor;
     float armor;                    // Player's current armor
-    public float max_armor;         // Player's maximum armor
+    public float max_armor = 10;    // Player's maximum armor
 
     // Dead variables
     public ParticleSystem [] die_effect;    // Effect particle array
@@ -66,9 +66,11 @@ public class HealthController : MonoBehaviour
         GameplayManager.GetInstance().max_health = max_health;
         MaterialsPlayer = GetComponent<PlayerRenderer>();
 
-        max_health = GetComponent<PlayerStats>().health;
-       // Debug.Log(max_health);
-        max_armor = GetComponent<PlayerStats>().armor;
+        if (PlayerManager.Instance != null)
+        {
+            max_health = PlayerManager.Instance.health;
+            max_armor = PlayerManager.Instance.armor;
+        }
         health = max_health;
         newHealth = health;
         armor = max_armor;

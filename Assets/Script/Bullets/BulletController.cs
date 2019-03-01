@@ -103,7 +103,6 @@ public class BulletController : MonoBehaviour
         }
         else if (n_color == 2)
         {
-            Debug.Log("SoyColorRosa");
             i_cur_color = 2;
             PinkDestroyeffect = true;
             this.gameObject.tag = "Pink";
@@ -359,21 +358,18 @@ public class BulletController : MonoBehaviour
             if (YellowDestroyeffect)
             {
                 Instantiate(DestroyEffectYellow.gameObject, transform.position, Quaternion.identity);
-                Debug.Log("destroy bullet");
                 Destroy(gameObject);
                 //AudioSource.PlayClipAtPoint(DestroyBulletFx, transform.position);
             }
             if (PinkDestroyeffect)
             {
                 Instantiate(DestroyEffectPink.gameObject, transform.position, Quaternion.identity);
-                Debug.Log("destroy bullet");
                 Destroy(gameObject);
               //  AudioSource.PlayClipAtPoint(DestroyBulletFx, transform.position);
             }
             if (BlueDestroyeffect)
             {
                 Instantiate(DestroyEffectBlue.gameObject, transform.position, Quaternion.identity);
-                Debug.Log("destroy bullet");
                 Destroy(gameObject);
               //  AudioSource.PlayClipAtPoint(DestroyBulletFx, transform.position);
             }

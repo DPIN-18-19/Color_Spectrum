@@ -25,7 +25,7 @@ public class PlayerMove : MonoBehaviour
     // Use this for initialization
     void Start()
     {
-        move_speed = GetComponent<PlayerStats>().speed;
+        move_speed = PlayerManager.Instance.speed;
         // Initialize
         SetUpAnimation();
         anim.SetBool("Move", Move);

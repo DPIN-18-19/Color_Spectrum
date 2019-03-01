@@ -26,6 +26,9 @@ public class PlayerManager : MonoBehaviour
     ChipList player_chips;
     int num_chips = 0;
 
+    [SerializeField]
+    IWeaponChipList equipped_weapons;
+
     public float money = 0;
 
     // Use this for initialization
@@ -92,6 +95,11 @@ public class PlayerManager : MonoBehaviour
     {
         if (player_chips.chips.Count != num_chips)
             ReloadChips();
+    }
+
+    public int GetNumWeapons()
+    {
+        return equipped_weapons.i_weapon_chips.Count;
     }
 
     public void AddMoney(float obtained)

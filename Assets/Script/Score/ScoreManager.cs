@@ -48,10 +48,10 @@ public class ScoreManager : MonoBehaviour
     string final_grade;
     List<ScoreGrade> grade_info;
     int grade_it;
-    
+
     //////////////////////////////////////
     // Estadísticas
-
+    public bool is_result_active = false;
 
     //////////////////////////////////////
 
@@ -82,12 +82,14 @@ public class ScoreManager : MonoBehaviour
     void OnGameSceneLoaded(Scene scene, LoadSceneMode mode)
     {
         // Reorganize game level scenes to be within a range
-        if (scene.buildIndex == 2 )
+        if (scene.buildIndex <= 7 && scene.buildIndex >= 7)
         {
             ScoreScreen screen = FindObjectOfType<ScoreScreen>();
             screen.Init();
             screen.gameObject.SetActive(false);
         }
+
+        is_result_active = false;
     }
 
     public void LoadScoreData(ScoreList n_score)
@@ -98,7 +100,7 @@ public class ScoreManager : MonoBehaviour
         health_info.AddRange(score_data.health);
         grade_info.AddRange(score_data.grades);
 
-        Debug.Log(score_data.times[0].name);
+        //Debug.Log(score_data.times[0].name);
     }
 
     void InitScore()
