@@ -5,13 +5,14 @@ using UnityEngine.UI;
 
 public class EnemyHealthController : MonoBehaviour
 {
+    ///////////////////////////////////////////////////////////////
+    // Tags y Layers de dano
     string damaging_tag1;
     string damaging_tag2;
     int damaging_layer1;
     int damaging_layer2;
-    public Transform PosDeadParticle;
-    ///////////////////////////////////////////////////////////////
 
+    ///////////////////////////////////////////////////////////////
     // Health variables
     float health;
     float newHealth;                // Player's current health
@@ -19,18 +20,16 @@ public class EnemyHealthController : MonoBehaviour
 
     ///////////////////////////////////////////////////////////////
     // Canvas
-
     public Image health_bar;
 
     ///////////////////////////////////////////////////////////////
-
     // Dead variables
+    public Transform PosDeadParticle;
     public ParticleSystem[] die_effect;     // Effect particle array
-    int enemy_color;                        // Enemy's color
     public AudioClip FxDie;
     private AudioSource source;
 
-    public EnemyController EnemyMaterials;
+    EnemyRenderer enemy_materials;
     public float TimeDamageMat;
     private float MaxTimeDamageMat;
     public bool Daño;
@@ -41,31 +40,30 @@ public class EnemyHealthController : MonoBehaviour
     void Awake()
     {
         source = GetComponent<AudioSource>();
-
     }
     // Use this for initialization
     void Start()
     {
+        enemy_materials = GetComponent<EnemyRenderer>();
+
         MaxTimeDamageMat = TimeDamageMat;
         health = max_health;
         newHealth = health;
+        DamageColorsData();
     }
 
     // Update is called once per frame
     void Update()
     {
-        
         IsDead();
         HealthBar();
 
         //health = Mathf.Lerp(health, newHealth, Time.deltaTime * 17);
         if (health > max_health)
             health = max_health;
-        if (health < 0)
-        {
-            health = 0;
-        }
 
+        if (health < 0)
+            health = 0;
 
         if(Daño == true)
         {
@@ -73,18 +71,20 @@ public class EnemyHealthController : MonoBehaviour
         }
         if (Daño == false && TimeDamageMat <= 0)
         {
-            if (EnemyMaterials.GetColor() == 0)
-            {
-                EnemyMaterials.RestoreChangeToYellow();
-            }
-            if (EnemyMaterials.GetColor() == 1)
-            {
-                EnemyMaterials.RestoreChangeToCyan();
-            }
-            if (EnemyMaterials.GetColor() == 2)
-            {
-                EnemyMaterials.RestoreChangeToMagenta();
-            }
+            enemy_materials.NeutralColor();
+
+            //if (EnemyMaterials.GetColor() == 0)
+            //{
+            //    EnemyMaterials.RestoreChangeToYellow();
+            //}
+            //if (EnemyMaterials.GetColor() == 1)
+            //{
+            //    EnemyMaterials.RestoreChangeToCyan();
+            //}
+            //if (EnemyMaterials.GetColor() == 2)
+            //{
+            //    EnemyMaterials.RestoreChangeToMagenta();
+            //}
 
             TimeDamageMat = MaxTimeDamageMat;
         }
@@ -99,6 +99,7 @@ public class EnemyHealthController : MonoBehaviour
     {
         if (health <= 0.4)
         {
+            int enemy_color = GetComponent<EnemyController>().GetColor();
             //AudioSource.PlayClipAtPoint(FxDie, transform.position);
             if (enemy_color < die_effect.Length)
             {
@@ -117,19 +118,20 @@ public class EnemyHealthController : MonoBehaviour
         health_bar.fillAmount = health / max_health;
 
 
-        if (EnemyMaterials.GetColor() == 0)
-        {
-            EnemyMaterials.ChangeToDamageYellow();
-        }
-        if (EnemyMaterials.GetColor() == 1)
-        {
-            EnemyMaterials.ChangeToDamageBlue();
-        }
-        if (EnemyMaterials.GetColor() == 2)
-        {
-            EnemyMaterials.ChangeToDamagePink();
-            Debug.Log("DañoRosa");
-        }
+        enemy_materials.DamageColor();
+        //if (EnemyMaterials.GetColor() == 0)
+        //{
+        //    EnemyMaterials.ChangeToDamageYellow();
+        //}
+        //if (EnemyMaterials.GetColor() == 1)
+        //{
+        //    EnemyMaterials.ChangeToDamageBlue();
+        //}
+        //if (EnemyMaterials.GetColor() == 2)
+        //{
+        //    EnemyMaterials.ChangeToDamagePink();
+        //    Debug.Log("DañoRosa");
+        //}
         Daño = true;
         Debug.Log("Daño");
     }
@@ -172,30 +174,31 @@ public class EnemyHealthController : MonoBehaviour
 
     // Color dependent functions
 
-    public void ChangeToYellow()
+    void DamageColorsData()
     {
-        damaging_tag1 = "Blue";
-        damaging_tag2 = "Pink";
-        damaging_layer1 = 9;
-        damaging_layer2 = 10;
-        enemy_color = 0;
-    }
-
-    public void ChangeToCyan()
-    {
-        damaging_tag1 = "Pink";
-        damaging_tag2 = "Yellow";
-        damaging_layer1 = 10;
-        damaging_layer2 = 8;
-        enemy_color = 1;
-    }
-
-    public void ChangeToMagenta()
-    {
-        damaging_tag1 = "Blue";
-        damaging_tag2 = "Yellow";
-        damaging_layer1 = 9;
-        damaging_layer2 = 8;
-        enemy_color = 2;
+        switch (GetComponent<EnemyController>().GetColor())
+        {
+            // Color Yellow data
+            case 0:
+                damaging_tag1 = "Blue";
+                damaging_tag2 = "Pink";
+                damaging_layer1 = 9;
+                damaging_layer2 = 10;
+                break;
+            // Color Cyan data
+            case 1:
+                damaging_tag1 = "Pink";
+                damaging_tag2 = "Yellow";
+                damaging_layer1 = 10;
+                damaging_layer2 = 8;
+                break;
+            // Color Magenta data
+            case 2:
+                damaging_tag1 = "Blue";
+                damaging_tag2 = "Yellow";
+                damaging_layer1 = 9;
+                damaging_layer2 = 8;
+                break;
+        }
     }
 }

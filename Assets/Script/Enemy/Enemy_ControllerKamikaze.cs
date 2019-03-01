@@ -114,18 +114,18 @@ public class Enemy_ControllerKamikaze : MonoBehaviour {
 
     void EnemyColorData()
     {
-        if (cur_color == Colors.Yellow)
-        {
-            GetComponent<EnemyHealthControllerKamikaze>().ChangeToYellow();
-        }
-        else if (cur_color == Colors.Magenta)
-        {
-            GetComponent<EnemyHealthController>().ChangeToMagenta();
-        }
-        else if (cur_color == Colors.Cyan)
-        {
-            GetComponent<EnemyHealthController>().ChangeToCyan();
-        }
+        //if (cur_color == Colors.Yellow)
+        //{
+        //    GetComponent<EnemyHealthControllerKamikaze>().ChangeToYellow();
+        //}
+        //else if (cur_color == Colors.Magenta)
+        //{
+        //    GetComponent<EnemyHealthController>().ChangeToMagenta();
+        //}
+        //else if (cur_color == Colors.Cyan)
+        //{
+        //    GetComponent<EnemyHealthController>().ChangeToCyan();
+        //}
     }
 
     public void RestoreChangeToYellow()

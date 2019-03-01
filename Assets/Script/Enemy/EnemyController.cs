@@ -14,38 +14,36 @@ public class EnemyController : MonoBehaviour
         Cyan,           // Cyan = 1
         Magenta         // Magenta = 2
     };
+    public Colors cur_color;               // Current selected color
 
-    public Colors cur_color = Colors.Yellow;                    // Current selected color
-
-    string damaging_tag1;
-    string damaging_tag2;
-    int damaging_layer1;
-    int damaging_layer2;
-
+    // Tags y Layers daninos para el enemigo
+    //string damaging_tag1;
+    //string damaging_tag2;
+    //int damaging_layer1;
+    //int damaging_layer2;
 
     /////////////////////////////////////////////////////
-
+    // Animation
     public bool AttackMovePlayer;
     public bool AttackStopPlayer;
     Animator anim;
-
+    
+    /////////////////////////////////////////////////////
     // Navmesh variables
-
     private NavMeshAgent nav_agent;             // Navmesh object
     private GameObject target;                  // Move towards objective
     //public Transform[] points;                  // Patrol points (unfinished)
     public GameObject home;                     // Enemy return point
 
     // Moving variables
-
     public float chase_speed = 7;
 
     // Target Detection
-    //public float home_distance;                 // Distance the enemy can be from home
-    public float alert_distance;                // Distance at which the enemy detects the player by getting near
-    public float sight_distance;                // Distance at which the enemy detects the player by sight
-    //public float sight_angle;                   // Enemy field of view
-    //float listen_distance;                      // Distance at which the enemy detects the player by noise
+    //public float home_distance;                   // Distance the enemy can be from home
+    public float alert_distance;                    // Distance at which the enemy detects the player by getting near
+    public float sight_distance;                    // Distance at which the enemy detects the player by sight
+    //public float sight_angle;                     // Enemy field of view
+    //float listen_distance;                        // Distance at which the enemy detects the player by noise
     //bool chase_by_near;
     //bool chase_on_sight;
 
@@ -54,7 +52,7 @@ public class EnemyController : MonoBehaviour
     // Chasing
     public float safe_distance;                 // Distance the enemy can be from the player
 
-
+    //////////////////////////////////////////////////
     // Shooting
     ShotEnemy shot;                             // Enemy's gun
     public bool DontShot;
@@ -63,10 +61,9 @@ public class EnemyController : MonoBehaviour
     bool friendly_fire;                         // Friendly fire
 
     public AudioClip SonidoKi;
-   
-
-    // AI variables
-
+    
+    //////////////////////////////////////////////////
+    // Behaviour variables
     bool is_chasing;                        // Is enemy moving towards objective
     bool look_target = false;               // Rotate enemy when going after player
     bool back_home = false;                 // Is enemy heading back home
@@ -78,10 +75,10 @@ public class EnemyController : MonoBehaviour
     //public AudioClip FxDie;
     private AudioSource source;
 
-
+    //////////////////////////////////////////////////
+    // Borrar 
     [SerializeField]
     public List<Renderer> renderersToChangeColor;
-
 
     public Material Blue_Material;
     public Material Yellow_Material;
@@ -93,8 +90,11 @@ public class EnemyController : MonoBehaviour
 
     public ParticleSystem EffectDestroy;
     public Transform PosDeadParticle;
+    //////////////////////////////////////////////////
+
     public bool isKamikaze;
 
+    ///////////////////////////////////////////////////////
     //RalentizarMovimiento
     Slow_Motion Ralentizar;
     public float SpeedSlow;
@@ -107,140 +107,46 @@ public class EnemyController : MonoBehaviour
     public float RalentizarRotar;
     private float MaxRalentizarRotar;
     // private int despoint;
-
-    // Use this for initialization
+    
     void Start()
     {
-        MaxRalentizarRotar = 1;
-
-        Ralentizar = GameObject.Find("Player_Naomi").GetComponent<Slow_Motion>();
         anim = gameObject.GetComponent<Animator>();
         source = GetComponent<AudioSource>();
-
-        target = GameObject.FindWithTag("Player");
         nav_agent = GetComponent<NavMeshAgent>();
-
         detect = GetComponent<DetectionController>();
         shot = GetComponent<ShotEnemy>();
-
         patrol = GetComponent<PatrolController>();
+        Ralentizar = GameObject.Find("Player_Naomi").GetComponent<Slow_Motion>();
+
+        MaxRalentizarRotar = 1;
+        target = GameObject.FindWithTag("Player");
         MaxSpeedSlow = nav_agent.speed;
         MaxAnimSlow = anim.speed;
       
-        //DieEffect.Stop();
-        EnemyColorData();
-
-        
-       
+        // DieEffect.Stop();
+        // EnemyColorData();
     }
 
-    void EnemyColorData()
-    {
-        if (cur_color == Colors.Yellow)
-        {
-            GetComponent<EnemyHealthController>().ChangeToYellow();
-        }
-        else if (cur_color == Colors.Magenta)
-        {
-            GetComponent<EnemyHealthController>().ChangeToMagenta();
-        }
-        else if (cur_color == Colors.Cyan)
-        {
-            GetComponent<EnemyHealthController>().ChangeToCyan();
-        }
-    }
-
-    public void RestoreChangeToYellow()
-    {
-        foreach (Renderer r in renderersToChangeColor)
-        {
-            r.material = Yellow_Material;    // Apply player material
-            //Instantiate(Change_effectYellow.gameObject, transform.position, Quaternion.identity);
-            //   Debug.Log("Change to yellow");
-        }
-
-       // gameObject.layer = 8;
-       
-        // Yellow Layer
-    }
-    public void RestoreChangeToMagenta()
-    {
-        foreach (Renderer r in renderersToChangeColor)
-        {
-            // Magenta Layer
-            r.material = Pink_Material;      // Apply player material
-                                             //  Debug.Log("Change to magenta");
-                                             //  Instantiate(Change_effectPink.gameObject, transform.position, Quaternion.identity);
-        }
-
-      //  gameObject.layer = 10;
-        
-    }
-    public void RestoreChangeToCyan()
-    {
-        foreach (Renderer r in renderersToChangeColor)
-        {
-            r.material = Blue_Material;      // Apply player material
-                                             //  Debug.Log("Change to cyan");
-                                             //Instantiate(Change_effectBlue.gameObject, transform.position, Quaternion.identity);
-        }
-
-      //  gameObject.layer = 9;
-       
-    }
-
-
-
-
-    public void ChangeToDamageYellow()
-    {
-        foreach (Renderer r in renderersToChangeColor)
-        {
-            // Magenta Layer
-            r.material = DamageYellowMaterial;      // Apply player material
-                                                    //  Debug.Log("Change to magenta");
-                                                    //  Instantiate(Change_effectPink.gameObject, transform.position, Quaternion.identity);
-        }
-
-       // gameObject.layer = 8;
-       
-    }
-    public void ChangeToDamageBlue()
-    {
-        foreach (Renderer r in renderersToChangeColor)
-        {
-            // Magenta Layer
-            r.material = DamageBlueMaterial;      // Apply player material
-                                                  //  Debug.Log("Change to magenta");
-                                                  //  Instantiate(Change_effectPink.gameObject, transform.position, Quaternion.identity);
-        }
-
-       // gameObject.layer = 9;
-        
-    }
-    public void ChangeToDamagePink()
-    {
-        foreach (Renderer r in renderersToChangeColor)
-        {
-            // Magenta Layer
-            r.material = DamagePinkMaterial;      // Apply player material
-                                                  //  Debug.Log("Change to magenta");
-                                                  //  Instantiate(Change_effectPink.gameObject, transform.position, Quaternion.identity);
-        }
-
-      //  gameObject.layer = 10;
-       
-    }
-
-
-
-
+    //void EnemyColorData()
+    //{
+    //    if (cur_color == Colors.Yellow)
+    //    {
+    //        GetComponent<EnemyHealthController>().ChangeToYellow();
+    //    }
+    //    else if (cur_color == Colors.Magenta)
+    //    {
+    //        GetComponent<EnemyHealthController>().ChangeToMagenta();
+    //    }
+    //    else if (cur_color == Colors.Cyan)
+    //    {
+    //        GetComponent<EnemyHealthController>().ChangeToCyan();
+    //    }
+    //}
+    
     public void UpdateColor()
     {
         GetComponent<ColorChangingController>().ReColor();
     }
-
-
 
     // Update is called once per frame
     void Update()
@@ -276,8 +182,8 @@ public class EnemyController : MonoBehaviour
 
             if (patrol != null)
                 patrol.is_patrol = false;
-
         }
+
         // Go back home
         if (back_home == true)
         {
@@ -331,11 +237,7 @@ public class EnemyController : MonoBehaviour
             nav_agent.speed = MaxSpeedSlow;
             anim.speed = MaxAnimSlow;
             Slow_Rotation = MaxRalentizarRotar;
-           
         }
-
-
-
     }
 
     private void OnTriggerEnter(Collider col)

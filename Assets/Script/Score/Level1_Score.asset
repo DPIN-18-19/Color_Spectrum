@@ -1,0 +1,63 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5bdced6d186b8ec469d2b23350422886, type: 3}
+  m_Name: Level1_Score
+  m_EditorClassIdentifier: 
+  times:
+  - name: Time
+    minutes: 5
+    seconds: 0
+    multiplier: 1000
+  - name: Time
+    minutes: 5
+    seconds: 30
+    multiplier: 750
+  - name: Time
+    minutes: 6
+    seconds: 0
+    multiplier: 500
+  - name: Time
+    minutes: 7
+    seconds: 0
+    multiplier: 250
+  - name: Time
+    minutes: 8
+    seconds: 0
+    multiplier: 0
+  health:
+  - name: Damage
+    damage_times: 16
+    damage_score: 500
+  - name: Damage
+    damage_times: 21
+    damage_score: 400
+  - name: Damage
+    damage_times: 26
+    damage_score: 300
+  - name: Damage
+    damage_times: 31
+    damage_score: 200
+  - name: Damage
+    damage_times: 36
+    damage_score: 100
+  grades:
+  - grade: S
+    score: 7400
+  - grade: A
+    score: 7000
+  - grade: B
+    score: 6700
+  - grade: C
+    score: 6350
+  - grade: D
+    score: 6000
+  - grade: F
+    score: 0
