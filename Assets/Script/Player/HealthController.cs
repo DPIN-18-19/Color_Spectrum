@@ -173,7 +173,8 @@ public class HealthController : MonoBehaviour
 
                 Instantiate(die_effect[player_color].gameObject, PosParticleDead.position, Quaternion.identity);
 
-                GameObject.Find("GameManager").GetComponent<SceneMan>().Invoke("ToMenu", 2);
+                //GameObject.Find("GameManager").GetComponent<SceneMan>().Invoke("ToMenu", 2);
+                SceneMan1.Instance.LoadSceneByName("Main_Menu");
 
                 gameObject.SetActive(false);
 

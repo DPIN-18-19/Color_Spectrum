@@ -2,7 +2,8 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class OpenControls : MonoBehaviour {
+public class OpenControls : MonoBehaviour
+{
     public GameObject Controles;
     public GameObject BandaNegra;
     public GameObject Botones;

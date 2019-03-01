@@ -204,6 +204,7 @@ GameObject:
   - component: {fileID: 1477886908}
   - component: {fileID: 1477886909}
   - component: {fileID: 1477886911}
+  - component: {fileID: 1477886912}
   m_Layer: 0
   m_Name: __app
   m_TagString: Untagged
@@ -321,6 +322,21 @@ MonoBehaviour:
       grade: 
       mat: {fileID: 0}
     unlock_require: []
+--- !u!114 &1477886912
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1477886904}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6660513006a07db4cb87bfd021567346, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  pause_p: {fileID: 0}
+  controls_p: {fileID: 0}
+  buttons_p: {fileID: 0}
+  is_pause: 0
 --- !u!1 &1787395651
 GameObject:
   m_ObjectHideFlags: 0

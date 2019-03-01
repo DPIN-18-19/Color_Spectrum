@@ -5795,11 +5795,11 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4976748514391118, guid: 17637a8ec01a52745a5eedcf0fbf50e3, type: 2}
       propertyPath: m_LocalRotation.y
-      value: 0.000036343867
+      value: 0.000038973056
       objectReference: {fileID: 0}
     - target: {fileID: 4976748514391118, guid: 17637a8ec01a52745a5eedcf0fbf50e3, type: 2}
       propertyPath: m_LocalRotation.z
-      value: -0.000023625593
+      value: -0.000024883415
       objectReference: {fileID: 0}
     - target: {fileID: 4976748514391118, guid: 17637a8ec01a52745a5eedcf0fbf50e3, type: 2}
       propertyPath: m_LocalRotation.w
@@ -6273,7 +6273,7 @@ GameObject:
   - component: {fileID: 154571116}
   - component: {fileID: 154571115}
   m_Layer: 5
-  m_Name: Ir al menu
+  m_Name: Menu_b
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -6350,18 +6350,7 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 154571117}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 711317925}
-        m_MethodName: ToMenu
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []
     m_TypeName: UnityEngine.UI.Button+ButtonClickedEvent, UnityEngine.UI, Version=1.0.0.0,
       Culture=neutral, PublicKeyToken=null
 --- !u!114 &154571117
@@ -12797,6 +12786,11 @@ Prefab:
   m_Modification:
     m_TransformParent: {fileID: 1557483314}
     m_Modifications:
+    - target: {fileID: 114132006623181124, guid: 3504afba2bfa0b34997ef796de06ecf1,
+        type: 2}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 224632299710924468, guid: 3504afba2bfa0b34997ef796de06ecf1,
         type: 2}
       propertyPath: m_LocalPosition.x
@@ -12891,7 +12885,39 @@ Prefab:
         type: 2}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
-      objectReference: {fileID: 711317928}
+      objectReference: {fileID: 0}
+    - target: {fileID: 1940161565019966, guid: 3504afba2bfa0b34997ef796de06ecf1, type: 2}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1940161565019966, guid: 3504afba2bfa0b34997ef796de06ecf1, type: 2}
+      propertyPath: m_Name
+      value: Controls_p
+      objectReference: {fileID: 0}
+    - target: {fileID: 1205521536670624, guid: 3504afba2bfa0b34997ef796de06ecf1, type: 2}
+      propertyPath: m_Name
+      value: MainPause_b
+      objectReference: {fileID: 0}
+    - target: {fileID: 114132006623181124, guid: 3504afba2bfa0b34997ef796de06ecf1,
+        type: 2}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: VolverMenu
+      objectReference: {fileID: 0}
+    - target: {fileID: 114132006623181124, guid: 3504afba2bfa0b34997ef796de06ecf1,
+        type: 2}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 114132006623181124, guid: 3504afba2bfa0b34997ef796de06ecf1,
+        type: 2}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
+    - target: {fileID: 114132006623181124, guid: 3504afba2bfa0b34997ef796de06ecf1,
+        type: 2}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 3504afba2bfa0b34997ef796de06ecf1, type: 2}
   m_IsPrefabAsset: 0
@@ -14166,8 +14192,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 417897784}
+  - component: {fileID: 417897785}
   m_Layer: 5
-  m_Name: Botones
+  m_Name: Buttons_p
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -14195,6 +14222,17 @@ RectTransform:
   m_AnchoredPosition: {x: 5, y: -37}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &417897785
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 417897783}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5fc228ad2c23eff489f66b1c60d1b2d7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &419145926
 GameObject:
   m_ObjectHideFlags: 0
@@ -23593,9 +23631,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 711317926}
-  - component: {fileID: 711317925}
   - component: {fileID: 711317927}
-  - component: {fileID: 711317928}
   m_Layer: 0
   m_Name: GameManager
   m_TagString: Untagged
@@ -23603,18 +23639,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &711317925
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 711317924}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 53a0eeadbb2abc04d9b4e30c9f3d677f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  cur_level: 
 --- !u!4 &711317926
 Transform:
   m_ObjectHideFlags: 0
@@ -23639,21 +23663,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 947b86a3710f014458c864fba90adf76, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &711317928
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 711317924}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8c6dcd0b3884d2c42b8dbf0bf8bd74c5, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  Pausa_Menu: {fileID: 1557483313}
-  Controles: {fileID: 1688205466}
-  Botones: {fileID: 417897783}
-  GameIsPaused: 0
 --- !u!1 &712482091
 GameObject:
   m_ObjectHideFlags: 0
@@ -23694,7 +23703,6 @@ GameObject:
   m_Component:
   - component: {fileID: 713752295}
   - component: {fileID: 713752294}
-  - component: {fileID: 713752296}
   m_Layer: 0
   m_Name: GameplayManager
   m_TagString: Untagged
@@ -23778,20 +23786,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &713752296
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 713752293}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3eebae7aa5671e640a1371ceb62f59b8, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  score_data: {fileID: 0}
-  grade_data: {fileID: 0}
-  is_result_active: 0
 --- !u!1 &714238586
 GameObject:
   m_ObjectHideFlags: 0
@@ -25840,7 +25834,7 @@ Prefab:
         type: 2}
       propertyPath: Pausa
       value: 
-      objectReference: {fileID: 711317928}
+      objectReference: {fileID: 0}
     - target: {fileID: 4324163761819268, guid: 174ff3d6ddba8a74e893e379fd644d46, type: 2}
       propertyPath: m_LocalRotation.y
       value: 1
@@ -25862,7 +25856,7 @@ Prefab:
         type: 2}
       propertyPath: pause
       value: 
-      objectReference: {fileID: 711317928}
+      objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 114900255989158358, guid: 174ff3d6ddba8a74e893e379fd644d46, type: 2}
   m_SourcePrefab: {fileID: 100100000, guid: 174ff3d6ddba8a74e893e379fd644d46, type: 2}
@@ -42206,7 +42200,7 @@ GameObject:
   - component: {fileID: 1260072534}
   - component: {fileID: 1260072533}
   m_Layer: 5
-  m_Name: Volver al Juego
+  m_Name: Resume_b
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -42283,18 +42277,7 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1260072535}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 711317928}
-        m_MethodName: Resume
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []
     m_TypeName: UnityEngine.UI.Button+ButtonClickedEvent, UnityEngine.UI, Version=1.0.0.0,
       Culture=neutral, PublicKeyToken=null
 --- !u!114 &1260072535
@@ -50858,12 +50841,12 @@ GameObject:
   m_Component:
   - component: {fileID: 1557483314}
   m_Layer: 5
-  m_Name: Menu_Pausa
+  m_Name: Pause_Menu
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &1557483314
 RectTransform:
   m_ObjectHideFlags: 0
@@ -54370,7 +54353,7 @@ GameObject:
   - component: {fileID: 1676260503}
   - component: {fileID: 1676260502}
   m_Layer: 5
-  m_Name: Controles
+  m_Name: Controls_b
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -54447,18 +54430,7 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1676260504}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 711317928}
-        m_MethodName: Controls
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []
     m_TypeName: UnityEngine.UI.Button+ButtonClickedEvent, UnityEngine.UI, Version=1.0.0.0,
       Culture=neutral, PublicKeyToken=null
 --- !u!114 &1676260504
@@ -54898,6 +54870,17 @@ RectTransform:
   m_CorrespondingSourceObject: {fileID: 224632299710924468, guid: 3504afba2bfa0b34997ef796de06ecf1,
     type: 2}
   m_PrefabInternal: {fileID: 375616407}
+--- !u!114 &1688205468
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1688205466}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5fc228ad2c23eff489f66b1c60d1b2d7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1689068310 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 1797101446497448, guid: 7f9064efd292f0c44a61e62765ad1d35,
@@ -61523,11 +61506,11 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4317092712101460, guid: 7f9064efd292f0c44a61e62765ad1d35, type: 2}
       propertyPath: m_LocalRotation.y
-      value: 0.000036343867
+      value: 0.000038973056
       objectReference: {fileID: 0}
     - target: {fileID: 4317092712101460, guid: 7f9064efd292f0c44a61e62765ad1d35, type: 2}
       propertyPath: m_LocalRotation.z
-      value: -0.000023625593
+      value: -0.000024883415
       objectReference: {fileID: 0}
     - target: {fileID: 4317092712101460, guid: 7f9064efd292f0c44a61e62765ad1d35, type: 2}
       propertyPath: m_LocalRotation.w
