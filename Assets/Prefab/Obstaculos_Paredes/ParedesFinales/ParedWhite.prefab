@@ -120,6 +120,7 @@ GameObject:
   - component: {fileID: 114655104174721434}
   - component: {fileID: 114332034729352358}
   - component: {fileID: 65782372933529252}
+  - component: {fileID: 65131268001613246}
   m_Layer: 20
   m_Name: Screen01-Scifi-Blank
   m_TagString: Untagged
@@ -146,9 +147,9 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1059669509099316}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 18.95, y: -0.92188716, z: 5.926071}
-  m_LocalScale: {x: 0.8009943, y: 0.73162, z: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -4.67, y: 1.8579366, z: -0.18}
+  m_LocalScale: {x: 0.76228, y: 0.69135165, z: 1}
   m_Children:
   - {fileID: 4511872870140974}
   m_Father: {fileID: 0}
@@ -308,6 +309,18 @@ MeshFilter:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1856553436062826}
   m_Mesh: {fileID: 4300000, guid: c904691a89833d64f8eeb5a8d8b34e22, type: 3}
+--- !u!65 &65131268001613246
+BoxCollider:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1856553436062826}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 3.9999995, y: 15.955005, z: 4.1293697}
+  m_Center: {x: -0.0000018845845, y: 0.095364906, z: -0.06468427}
 --- !u!65 &65782372933529252
 BoxCollider:
   m_ObjectHideFlags: 1
@@ -318,8 +331,8 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 4.02918, y: 11.201358, z: 3.7266386}
-  m_Center: {x: 0.0013563322, y: -0.6202574, z: -0.16986468}
+  m_Size: {x: 3.867652, y: 15.916526, z: 3.828032}
+  m_Center: {x: -0.02568783, y: 0.11714897, z: -0.22056158}
 --- !u!95 &95404677764778546
 Animator:
   serializedVersion: 3

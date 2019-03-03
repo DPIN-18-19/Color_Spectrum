@@ -10,7 +10,8 @@ public class PlayerJaneMoveController : MonoBehaviour {
     Animator anim;
     public bool Move;
     public CinemachineVirtualCamera Cam1;
-
+    public bool CanMove = true;
+    //public float TimeStopGrenade;
 
     // Variables
     public float move_speed;            // PLayer's speed
@@ -23,7 +24,7 @@ public class PlayerJaneMoveController : MonoBehaviour {
     // Use this for initialization
     void Start()
     {
-       
+        move_speed = GetComponent<PlayerStats>().speed;
         // Initialize
         SetUpAnimation();
         anim.SetBool("Move", Move);
@@ -35,14 +36,18 @@ public class PlayerJaneMoveController : MonoBehaviour {
     // Update is called once per frame
     void Update()
     {
+        if(CanMove)
        Movement();
-       //Rotation();
+       // TimeStopGrenade += Time.deltaTime; 
+
+        //Rotation();
     }
 
     private void FixedUpdate()
     {
 
         rb.velocity = move_velocity;
+        
     }
 
     float animHorizontal = 0;
@@ -63,14 +68,27 @@ public class PlayerJaneMoveController : MonoBehaviour {
         Vector3 relativevelocity = transform.InverseTransformDirection(new Vector3(horizontal, 0, vertical));
         animHorizontal = Mathf.Lerp(animHorizontal, relativevelocity.x, animInterpolation * Time.deltaTime);
         animVertical = Mathf.Lerp(animVertical, relativevelocity.z, animInterpolation * Time.deltaTime);
+       
+        Move = true;
+        if (horizontal == 0 && vertical == 0)
+        {
+            Move = false;
+        }
+       // if (TimeStopGrenade < 1)
+       // {
+       //     move_velocity = move_dir * 0;
+       // }
 
         anim.SetFloat("VelocidadX", animHorizontal);
         anim.SetFloat("VelocidadZ", animVertical);
+        anim.SetBool("Move", Move);
+
+        
     }
     void SetUpAnimation()
     {
         anim = GetComponent<Animator>();
-        Debug.Log("Hola");
+        //Debug.Log("Hola");
 
         foreach (var childAnimator in GetComponentsInChildren<Animator>())
         {

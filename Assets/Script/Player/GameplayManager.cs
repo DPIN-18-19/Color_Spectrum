@@ -7,35 +7,59 @@ public class GameplayManager : MonoBehaviour
 {
     static GameplayManager instance;
 
+    Transform canvas;
+    public HealthController vida;
 
     public Text t_health;               // Player's health in UI
     public float health;
     public float max_health;
 
+    // Abilities data
+    Transform t_ability_cooldown;
+    public float ability_cooldown;
+    Transform ability_frame;
+    Transform ability_background;
+    bool use_bckgrnd = false;
+    
     public Text t_dash_cooldown;       // Player´s dash cooldown in UI
     public float dash_cooldown;
     public bool dash_activo;
+
+    public Text t_grenade_cooldown;       // Player´s dash cooldown in UI
+    public float grenade_cooldown;
+    public bool grenade_activo;
 
     public Text t_cambio_cooldown;      // Player´s cambio color cooldown in UI
     public float cambio_cooldown;
     public bool cambio_activo;
     public bool usarhabilidad;
 
+    public Text t_Shield_cooldown;      // Player´s cambio color cooldown in UI
+    public float shield_cooldown;
+    public bool Shield_activo;
+    public bool usarhabilidadShield;
+
     //HUD Skills icons
+    Transform ability_icon;
     public GameObject dash_icon;        //Icon DAsh
     public GameObject no_dash_icon;     //Icon No dash
     public GameObject cambio_icon;      //Icon Cambio
     public GameObject no_cambio_icon;   //Icon No cambio
     public GameObject Cambio_Activo;
+    public GameObject Grenade_icon;        //Icon DAsh
+    public GameObject no_Grenade_icon;
+    public GameObject shield_icon;      //Icon Cambio
+    public GameObject no_shield_icon;   //Icon No cambio
+    public GameObject Shield_Activo;
     
-
-
     // public GameObject father;
-
     public GameObject dash_father;      //Padre de ambos dash
-    public GameObject cambio_father;    //Padre de ambos cambios
+    public GameObject cambio_father;
+    public GameObject Grenade_father;
+    public GameObject Shield_father;//Padre de ambos cambios
 
     //HUD Guns icons
+    Transform gun_icon;
     public GameObject Pistol;        //Icon Pistol
     public GameObject Sniper;        //Icon Sniper
     public GameObject Escopeta;      //Icon Escopeta
@@ -64,8 +88,6 @@ public class GameplayManager : MonoBehaviour
     public GameObject inferior_icon;
     public GameObject activo_icon;
    
-
-
     // HUD screen transparency
     ////- Take these out to HUD
     public GameObject y_frame;
@@ -73,10 +95,19 @@ public class GameplayManager : MonoBehaviour
     public GameObject m_frame;
 
     // Use this for initialization
-    void Start ()
+    void Awake ()
     {
+        vida = GameObject.Find("Player_Naomi").GetComponent<HealthController>();
+       
         instance = this;
 
+        canvas = GameObject.Find("OldCanvas").transform;
+        gun_icon = canvas.Find("GunsIcons");
+        Transform ability = canvas.Find("Ability");
+        ability_frame = ability.Find("Frame");
+        ability_background = ability.Find("Background");
+        t_ability_cooldown = ability.Find("Cooldown");
+        ability_icon = ability.Find("AbilityIcon");
         //y_icon.SetActive(true);
         //c_icon.SetActive(false);
         //m_icon.SetActive(false);
@@ -84,6 +115,10 @@ public class GameplayManager : MonoBehaviour
         //y_frame.SetActive(true);
         //c_frame.SetActive(false);
         //m_frame.SetActive(false);
+    }
+    void Start()
+    {
+        max_health = vida.max_health;
     }
 
 
@@ -100,8 +135,11 @@ public class GameplayManager : MonoBehaviour
     void FixedUpdate()
     {
         t_health.text = "" + Mathf.RoundToInt(health);
-        t_dash_cooldown.text = "" + Mathf.RoundToInt(dash_cooldown);
-        t_cambio_cooldown.text = "" + Mathf.RoundToInt(cambio_cooldown);
+        //t_dash_cooldown.text = "" + Mathf.RoundToInt(dash_cooldown);
+        //t_cambio_cooldown.text = "" + Mathf.RoundToInt(cambio_cooldown);
+        //t_grenade_cooldown.text = "" + Mathf.RoundToInt(grenade_cooldown);
+        //t_Shield_cooldown.text = "" + Mathf.RoundToInt(shield_cooldown);
+        t_ability_cooldown.GetComponent<Text>().text = "" + Mathf.RoundToInt(ability_cooldown);
 
         Health_bar.GetComponent<Image>().fillAmount = Map(health, 0, max_health, 0, 1);
 
@@ -114,28 +152,46 @@ public class GameplayManager : MonoBehaviour
         if (health > 25)
             changefullhealth();
 
-        if (usarhabilidad == true )
-        {
-            Cambio_Activo.GetComponent<Image>().material = midhealth;
-        }
-        if(cambio_activo == true && usarhabilidad == false)
-        {
-            Cambio_Activo.GetComponent<Image>().material = fullhealth;
-        }
-        if(cambio_activo == false){
-            Cambio_Activo.GetComponent<Image>().material = NullActivo;
-        }
+        // Ability background update
+        // Autocolor
+        //if (usarhabilidad == true )
+        //{
+        //    Cambio_Activo.GetComponent<Image>().material = midhealth;
+        //}
+        //if(cambio_activo == true && usarhabilidad == false)
+        //{
+        //    Cambio_Activo.GetComponent<Image>().material = fullhealth;
+        //}
+        //if(cambio_activo == false){
+        //    Cambio_Activo.GetComponent<Image>().material = NullActivo;
+        //}
+        //// Shield
+        //if (usarhabilidadShield == true)
+        //{
+        //    Shield_Activo.GetComponent<Image>().material = midhealth;
+        //}
+        //if (Shield_activo == true && usarhabilidadShield == false)
+        //{
+        //    Shield_Activo.GetComponent<Image>().material = fullhealth;
+        //}
+        //if (Shield_activo == false)
+        //{
+        //    Shield_Activo.GetComponent<Image>().material = NullActivo;
+        //}
+
         //vida.text = Vida.ToString();
         //textvida.text = "= " + Vida.ToString();
     }
 
     // Update accordingly to color
-
     private float Map (float value, float inMin, float inMax, float outMin, float outMax)
     {
         return (value - inMin) * (outMax - outMin) / (inMax - inMin) + outMin;
     }
-    
+
+    ////////////////////////////////////////////////////////////////////////
+    // Swap colors
+
     public void ChangeColor(int color)
     {
         DeactivateAll();
@@ -172,7 +228,7 @@ public class GameplayManager : MonoBehaviour
                 inferior_icon.GetComponent<Image>().material = magenta;
                 inferior_icon.transform.GetChild(0).GetComponent<Image>().material = magenta;
 
-               // father.transform.rotation = Quaternion.Euler(0, 0, 120);
+                // father.transform.rotation = Quaternion.Euler(0, 0, 120);
 
                 c_frame.SetActive(true);
                 break;
@@ -196,8 +252,11 @@ public class GameplayManager : MonoBehaviour
             default:
                 break;
         }
-
     }
+
+    ////////////////////////////////////////////////////////////////////////
+    // Update Health Color
+
     public void changemidhealth()
     {
         Health_icon.GetComponent<Image>().material = midhealth;
@@ -216,70 +275,153 @@ public class GameplayManager : MonoBehaviour
         Health_bar.GetComponent<Image>().material = fullhealth;
     }
 
-    public void ChangeGun (int gun)
+    ////////////////////////////////////////////////////////////////////////
+    // Swap wearables icons  
+
+    public void ChangeGun (int gun, Sprite s_weapon)
     {
-        DesactivateAllGuns();
-        switch (gun)
+        //DesactivateAllGuns();
+        //switch (gun)
+        //{
+        //    case 0:
+        //        //Pistol.SetActive(true);
+        //        Shield_father.SetActive(true);
+        //        break;
+        //    case 1:
+        //        //Sniper.SetActive(true);
+        //        cambio_father.SetActive(true);
+        //        break;
+        //    case 2:
+        //        //Escopeta.SetActive(true);
+        //        Grenade_father.SetActive(true);
+        //        break;
+        //}
+
+        gun_icon.GetComponent<Image>().sprite = s_weapon;
+    }
+
+    public void ChangeAbility(Sprite s_ability, bool bckgrnd)
+    {
+        // If any abilities were equipped
+        if(s_ability == null)
         {
-            case 0:
-                Pistol.SetActive(true);
-                cambio_father.SetActive(true);
-                break;
-            case 1:
-                Sniper.SetActive(true);
-                break;
-            case 2:
-                Escopeta.SetActive(true);
-                dash_father.SetActive(true);
-                break;
+            ability_icon.gameObject.SetActive(false);
+            ability_background.gameObject.SetActive(false);
+            return;
+        }
+
+        ability_icon.gameObject.SetActive(true);
+        ability_icon.GetComponent<Image>().sprite = s_ability;
+        use_bckgrnd = !bckgrnd;
+
+        if (!bckgrnd)
+            ability_background.gameObject.SetActive(true);
+        else
+            ability_background.gameObject.SetActive(false);
+    }
+
+    //////////////////////////////////////////////////
+    // Ability Icons
+
+    public void DeactivateAbility()
+    {
+        Darken d_icon = ability_icon.gameObject.AddComponent<Darken>();
+        Darken d_frame = ability_frame.gameObject.AddComponent<Darken>();
+        d_icon.DarkenColor(0.8f);
+        d_frame.DarkenColor(0.8f);
+        t_ability_cooldown.gameObject.SetActive(true);
+
+        // Ability needs a background
+        if (use_bckgrnd)
+            ability_background.gameObject.SetActive(false);
+    }
+
+    public void ActivateAbility()
+    {
+        if(use_bckgrnd)
+        {
+            ability_background.gameObject.GetComponent<Image>().material = midhealth;
         }
     }
 
-    public void Dash(bool activo)
+    public void ResetAbility()
     {
-       switch (activo)
+        Destroy(ability_icon.GetComponent<Darken>());
+        Destroy(ability_frame.GetComponent<Darken>());
+        ability_icon.GetComponent<Image>().color = Color.white;
+        ability_frame.GetComponent<Image>().color = Color.white;
+        t_ability_cooldown.gameObject.SetActive(false);
+
+        // Ability needs a background
+        if (use_bckgrnd)
         {
-            case false:   //if(cambio_activo == false)
-        {
-            Debug.LogError("Entra en cooldown");
-            dash_icon.SetActive(false);
-            no_dash_icon.SetActive(true);
-            break;
+            ability_background.gameObject.SetActive(true);
+            ability_background.gameObject.GetComponent<Image>().material = fullhealth;
         }
-
-
-            case true:    //if (cambio_activo == true)
-        {
-            Debug.LogError("Se puede activar");
-            dash_icon.SetActive(true);
-            no_dash_icon.SetActive(false);
-            break;
-
-        }
-    } 
-         
     }
 
-    public void CambioColor(bool activo)
-    {
-        switch (activo)
-        {
-            case false:
-                cambio_icon.SetActive(false);
-                no_cambio_icon.SetActive(true);
-                break;
-            case true:
-                cambio_icon.SetActive(true);
-                no_cambio_icon.SetActive(false);
-                break;
-        }
+    //public void Dash(bool activo)
+    //{
+    //    if (!activo)
+    //    {
+    //        dash_icon.SetActive(false);
+    //        no_dash_icon.SetActive(true);
+    //    }
+    //    else
+    //    { 
+    //        dash_icon.SetActive(true);
+    //        no_dash_icon.SetActive(false);
+    //    }     
+    //}
 
-    }
+    //public void Grenade(bool activo)
+    //{
+    //    if (!activo)
+    //    {
+    //        Grenade_icon.SetActive(false);
+    //        no_Grenade_icon.SetActive(true);
+    //    }
+    //    else
+    //    {
+    //        Grenade_icon.SetActive(true);
+    //        no_Grenade_icon.SetActive(false);
+    //    }
+    //}
+
+    //public void CambioColor(bool activo)
+    //{
+    //    if (!activo)
+    //    {
+    //        cambio_icon.SetActive(false);
+    //        no_cambio_icon.SetActive(true);
+    //    }
+    //    else
+    //    {
+    //        cambio_icon.SetActive(true);
+    //        no_cambio_icon.SetActive(false);
+    //    }
+    //}
+
+    //public void Shield(bool activo)
+    //{
+    //    if (activo)
+    //    {
+    //        shield_icon.SetActive(false);
+    //        no_shield_icon.SetActive(true);
+    //    }
+    //    else
+    //    {
+    //        shield_icon.SetActive(true);
+    //        no_shield_icon.SetActive(false);
+    //    }
+    //}
+
+    ////////////////////////////////////////////////////////////////////////
 
     void DeactivateAll()
     {
         //y_icon.SetActive(false);
-       // c_icon.SetActive(false);
+        // c_icon.SetActive(false);
         //m_icon.SetActive(false);
 
         y_frame.SetActive(false);
@@ -287,13 +429,14 @@ public class GameplayManager : MonoBehaviour
         m_frame.SetActive(false);
     }
 
-    void DesactivateAllGuns()
-    {
-        Pistol.SetActive(false);
-        Escopeta.SetActive(false);
-        Sniper.SetActive(false);
+    //void DesactivateAllGuns()
+    //{
+    //    Pistol.SetActive(false);
+    //    Escopeta.SetActive(false);
+    //    Sniper.SetActive(false);
 
-        dash_father.SetActive(false);
-        cambio_father.SetActive(false);
-    }
+    //    Grenade_father.SetActive(false);
+    //    cambio_father.SetActive(false);
+    //    Shield_father.SetActive(false);
+    //}
 }

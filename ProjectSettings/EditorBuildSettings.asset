@@ -5,16 +5,31 @@ EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Scenes:
-  - enabled: 0
-    path: Assets/Scenes/SampleScene.unity
-    guid: 99c9720ab356a0642a771bea13969a05
-  - enabled: 0
-    path: Assets/Scenes/Pruebas.unity
-    guid: 73d995eb6905f65498dda28decf2cc59
   - enabled: 1
-    path: Assets/Scenes/Main_Menu.unity
-    guid: d1354a4e7f425b645b185bb07c4cbbe9
+    path: Assets/Scenes/PreLoadScene.unity
+    guid: a9ae94f466fa2e4489a7271840c962ed
   - enabled: 1
-    path: Assets/Scenes/Hologram_Shader.unity
+    path: Assets/Scenes/Menus/Main_Menu.unity
+    guid: fb1b0fc553477ed41b834c8c7592984e
+  - enabled: 0
+    path: Assets/Scenes/Niveles/Obsoleto.unity
     guid: f70ae9d280d9adf41b86a2f3f2184c54
+  - enabled: 1
+    path: Assets/Scenes/Niveles/Nivel_1.unity
+    guid: 886b8b1aa45e58148bb5ce6323ae97ca
+  - enabled: 1
+    path: Assets/Scenes/LevelSelection.unity
+    guid: 03adb41847971b643868a2f5fff8aa65
+  - enabled: 1
+    path: Assets/Scenes/Menus/Customizacion.unity
+    guid: 67218be9d66fee14cb68d06d49f3c74c
+  - enabled: 1
+    path: Assets/Scenes/PreparationMenu.unity
+    guid: 48925f10c81f8f347bd5375005933efb
+  - enabled: 1
+    path: Assets/Scenes/Store.unity
+    guid: daa7e4090d5e93f41a598d2bab86e783
+  - enabled: 1
+    path: Assets/Scenes/Niveles/Nivel_2.unity
+    guid: 2d61981fb94a7704382dae8d07b2e2bd
   m_configObjects: {}

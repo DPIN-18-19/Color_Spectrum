@@ -1,10 +1,13 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class GameManController : MonoBehaviour {
 
     SceneMan scenem;
+
+   
 
 	// Use this for initialization
 	void Start ()
@@ -15,15 +18,31 @@ public class GameManController : MonoBehaviour {
     // Update is called once per frame
     private void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Escape))
+       /*if (Input.GetKeyDown(KeyCode.Escape))
         {
-            scenem.ToMenu();
-        }
+            if (GameIsPaused == false)
+                Pause();
 
-        if (Input.GetKeyDown(KeyCode.R))
+            if (GameIsPaused == true)
+                Resume();
+
+        }
+        */
+       /*if (Input.GetKeyDown(KeyCode.R))
         {
 
-            scenem.ToLevel1();
+            /scenem.ToLevel1();
         }
+        */
     }
+
+    public void ToMenu()
+    {
+        scenem.ToMenu();
+    }
+    public void Reset()
+    {
+        scenem.ResetLevel();
+    }
+    
 }

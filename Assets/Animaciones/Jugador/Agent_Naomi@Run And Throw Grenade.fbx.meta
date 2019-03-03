@@ -168,7 +168,7 @@ ModelImporter:
     - serializedVersion: 16
       name: Run And Throw Grenade
       takeName: mixamo.com
-      firstFrame: 0
+      firstFrame: 69
       lastFrame: 176
       wrapMode: 0
       orientationOffsetY: 0
@@ -176,8 +176,8 @@ ModelImporter:
       cycleOffset: 0
       loop: 0
       hasAdditiveReferencePose: 0
-      loopTime: 1
-      loopBlend: 1
+      loopTime: 0
+      loopBlend: 0
       loopBlendOrientation: 0
       loopBlendPositionY: 0
       loopBlendPositionXZ: 0
@@ -189,8 +189,140 @@ ModelImporter:
       bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
       curves: []
       events: []
-      transformMask: []
-      maskType: 3
+      transformMask:
+      - path: 
+        weight: 1
+      - path: agentnaomi_Hips
+        weight: 0
+      - path: agentnaomi_Hips/agentnaomi_LeftUpLeg
+        weight: 0
+      - path: agentnaomi_Hips/agentnaomi_LeftUpLeg/agentnaomi_LeftLeg
+        weight: 0
+      - path: agentnaomi_Hips/agentnaomi_LeftUpLeg/agentnaomi_LeftLeg/agentnaomi_LeftFoot
+        weight: 0
+      - path: agentnaomi_Hips/agentnaomi_LeftUpLeg/agentnaomi_LeftLeg/agentnaomi_LeftFoot/agentnaomi_LeftToeBase
+        weight: 0
+      - path: agentnaomi_Hips/agentnaomi_LeftUpLeg/agentnaomi_LeftLeg/agentnaomi_LeftFoot/agentnaomi_LeftToeBase/agentnaomi_LeftToe_End
+        weight: 0
+      - path: agentnaomi_Hips/agentnaomi_RightUpLeg
+        weight: 0
+      - path: agentnaomi_Hips/agentnaomi_RightUpLeg/agentnaomi_RightLeg
+        weight: 0
+      - path: agentnaomi_Hips/agentnaomi_RightUpLeg/agentnaomi_RightLeg/agentnaomi_RightFoot
+        weight: 0
+      - path: agentnaomi_Hips/agentnaomi_RightUpLeg/agentnaomi_RightLeg/agentnaomi_RightFoot/agentnaomi_RightToeBase
+        weight: 0
+      - path: agentnaomi_Hips/agentnaomi_RightUpLeg/agentnaomi_RightLeg/agentnaomi_RightFoot/agentnaomi_RightToeBase/agentnaomi_RightToe_End
+        weight: 0
+      - path: agentnaomi_Hips/agentnaomi_Spine
+        weight: 1
+      - path: agentnaomi_Hips/agentnaomi_Spine/agentnaomi_Spine1
+        weight: 1
+      - path: agentnaomi_Hips/agentnaomi_Spine/agentnaomi_Spine1/agentnaomi_Spine2
+        weight: 1
+      - path: agentnaomi_Hips/agentnaomi_Spine/agentnaomi_Spine1/agentnaomi_Spine2/agentnaomi_LeftShoulder
+        weight: 1
+      - path: agentnaomi_Hips/agentnaomi_Spine/agentnaomi_Spine1/agentnaomi_Spine2/agentnaomi_LeftShoulder/agentnaomi_LeftArm
+        weight: 1
+      - path: agentnaomi_Hips/agentnaomi_Spine/agentnaomi_Spine1/agentnaomi_Spine2/agentnaomi_LeftShoulder/agentnaomi_LeftArm/agentnaomi_LeftForeArm
+        weight: 1
+      - path: agentnaomi_Hips/agentnaomi_Spine/agentnaomi_Spine1/agentnaomi_Spine2/agentnaomi_LeftShoulder/agentnaomi_LeftArm/agentnaomi_LeftForeArm/agentnaomi_LeftHand
+        weight: 1
+      - path: agentnaomi_Hips/agentnaomi_Spine/agentnaomi_Spine1/agentnaomi_Spine2/agentnaomi_LeftShoulder/agentnaomi_LeftArm/agentnaomi_LeftForeArm/agentnaomi_LeftHand/agentnaomi_LeftHandIndex1
+        weight: 1
+      - path: agentnaomi_Hips/agentnaomi_Spine/agentnaomi_Spine1/agentnaomi_Spine2/agentnaomi_LeftShoulder/agentnaomi_LeftArm/agentnaomi_LeftForeArm/agentnaomi_LeftHand/agentnaomi_LeftHandIndex1/agentnaomi_LeftHandIndex2
+        weight: 1
+      - path: agentnaomi_Hips/agentnaomi_Spine/agentnaomi_Spine1/agentnaomi_Spine2/agentnaomi_LeftShoulder/agentnaomi_LeftArm/agentnaomi_LeftForeArm/agentnaomi_LeftHand/agentnaomi_LeftHandIndex1/agentnaomi_LeftHandIndex2/agentnaomi_LeftHandIndex3
+        weight: 1
+      - path: agentnaomi_Hips/agentnaomi_Spine/agentnaomi_Spine1/agentnaomi_Spine2/agentnaomi_LeftShoulder/agentnaomi_LeftArm/agentnaomi_LeftForeArm/agentnaomi_LeftHand/agentnaomi_LeftHandIndex1/agentnaomi_LeftHandIndex2/agentnaomi_LeftHandIndex3/agentnaomi_LeftHandIndex4
+        weight: 1
+      - path: agentnaomi_Hips/agentnaomi_Spine/agentnaomi_Spine1/agentnaomi_Spine2/agentnaomi_LeftShoulder/agentnaomi_LeftArm/agentnaomi_LeftForeArm/agentnaomi_LeftHand/agentnaomi_LeftHandMiddle1
+        weight: 1
+      - path: agentnaomi_Hips/agentnaomi_Spine/agentnaomi_Spine1/agentnaomi_Spine2/agentnaomi_LeftShoulder/agentnaomi_LeftArm/agentnaomi_LeftForeArm/agentnaomi_LeftHand/agentnaomi_LeftHandMiddle1/agentnaomi_LeftHandMiddle2
+        weight: 1
+      - path: agentnaomi_Hips/agentnaomi_Spine/agentnaomi_Spine1/agentnaomi_Spine2/agentnaomi_LeftShoulder/agentnaomi_LeftArm/agentnaomi_LeftForeArm/agentnaomi_LeftHand/agentnaomi_LeftHandMiddle1/agentnaomi_LeftHandMiddle2/agentnaomi_LeftHandMiddle3
+        weight: 1
+      - path: agentnaomi_Hips/agentnaomi_Spine/agentnaomi_Spine1/agentnaomi_Spine2/agentnaomi_LeftShoulder/agentnaomi_LeftArm/agentnaomi_LeftForeArm/agentnaomi_LeftHand/agentnaomi_LeftHandMiddle1/agentnaomi_LeftHandMiddle2/agentnaomi_LeftHandMiddle3/agentnaomi_LeftHandMiddle4
+        weight: 1
+      - path: agentnaomi_Hips/agentnaomi_Spine/agentnaomi_Spine1/agentnaomi_Spine2/agentnaomi_LeftShoulder/agentnaomi_LeftArm/agentnaomi_LeftForeArm/agentnaomi_LeftHand/agentnaomi_LeftHandPinky1
+        weight: 1
+      - path: agentnaomi_Hips/agentnaomi_Spine/agentnaomi_Spine1/agentnaomi_Spine2/agentnaomi_LeftShoulder/agentnaomi_LeftArm/agentnaomi_LeftForeArm/agentnaomi_LeftHand/agentnaomi_LeftHandPinky1/agentnaomi_LeftHandPinky2
+        weight: 1
+      - path: agentnaomi_Hips/agentnaomi_Spine/agentnaomi_Spine1/agentnaomi_Spine2/agentnaomi_LeftShoulder/agentnaomi_LeftArm/agentnaomi_LeftForeArm/agentnaomi_LeftHand/agentnaomi_LeftHandPinky1/agentnaomi_LeftHandPinky2/agentnaomi_LeftHandPinky3
+        weight: 1
+      - path: agentnaomi_Hips/agentnaomi_Spine/agentnaomi_Spine1/agentnaomi_Spine2/agentnaomi_LeftShoulder/agentnaomi_LeftArm/agentnaomi_LeftForeArm/agentnaomi_LeftHand/agentnaomi_LeftHandPinky1/agentnaomi_LeftHandPinky2/agentnaomi_LeftHandPinky3/agentnaomi_LeftHandPinky4
+        weight: 1
+      - path: agentnaomi_Hips/agentnaomi_Spine/agentnaomi_Spine1/agentnaomi_Spine2/agentnaomi_LeftShoulder/agentnaomi_LeftArm/agentnaomi_LeftForeArm/agentnaomi_LeftHand/agentnaomi_LeftHandRing1
+        weight: 1
+      - path: agentnaomi_Hips/agentnaomi_Spine/agentnaomi_Spine1/agentnaomi_Spine2/agentnaomi_LeftShoulder/agentnaomi_LeftArm/agentnaomi_LeftForeArm/agentnaomi_LeftHand/agentnaomi_LeftHandRing1/agentnaomi_LeftHandRing2
+        weight: 1
+      - path: agentnaomi_Hips/agentnaomi_Spine/agentnaomi_Spine1/agentnaomi_Spine2/agentnaomi_LeftShoulder/agentnaomi_LeftArm/agentnaomi_LeftForeArm/agentnaomi_LeftHand/agentnaomi_LeftHandRing1/agentnaomi_LeftHandRing2/agentnaomi_LeftHandRing3
+        weight: 1
+      - path: agentnaomi_Hips/agentnaomi_Spine/agentnaomi_Spine1/agentnaomi_Spine2/agentnaomi_LeftShoulder/agentnaomi_LeftArm/agentnaomi_LeftForeArm/agentnaomi_LeftHand/agentnaomi_LeftHandRing1/agentnaomi_LeftHandRing2/agentnaomi_LeftHandRing3/agentnaomi_LeftHandRing4
+        weight: 1
+      - path: agentnaomi_Hips/agentnaomi_Spine/agentnaomi_Spine1/agentnaomi_Spine2/agentnaomi_LeftShoulder/agentnaomi_LeftArm/agentnaomi_LeftForeArm/agentnaomi_LeftHand/agentnaomi_LeftHandThumb1
+        weight: 1
+      - path: agentnaomi_Hips/agentnaomi_Spine/agentnaomi_Spine1/agentnaomi_Spine2/agentnaomi_LeftShoulder/agentnaomi_LeftArm/agentnaomi_LeftForeArm/agentnaomi_LeftHand/agentnaomi_LeftHandThumb1/agentnaomi_LeftHandThumb2
+        weight: 1
+      - path: agentnaomi_Hips/agentnaomi_Spine/agentnaomi_Spine1/agentnaomi_Spine2/agentnaomi_LeftShoulder/agentnaomi_LeftArm/agentnaomi_LeftForeArm/agentnaomi_LeftHand/agentnaomi_LeftHandThumb1/agentnaomi_LeftHandThumb2/agentnaomi_LeftHandThumb3
+        weight: 1
+      - path: agentnaomi_Hips/agentnaomi_Spine/agentnaomi_Spine1/agentnaomi_Spine2/agentnaomi_LeftShoulder/agentnaomi_LeftArm/agentnaomi_LeftForeArm/agentnaomi_LeftHand/agentnaomi_LeftHandThumb1/agentnaomi_LeftHandThumb2/agentnaomi_LeftHandThumb3/agentnaomi_LeftHandThumb4
+        weight: 1
+      - path: agentnaomi_Hips/agentnaomi_Spine/agentnaomi_Spine1/agentnaomi_Spine2/agentnaomi_Neck
+        weight: 1
+      - path: agentnaomi_Hips/agentnaomi_Spine/agentnaomi_Spine1/agentnaomi_Spine2/agentnaomi_Neck/agentnaomi_Head
+        weight: 1
+      - path: agentnaomi_Hips/agentnaomi_Spine/agentnaomi_Spine1/agentnaomi_Spine2/agentnaomi_Neck/agentnaomi_Head/agentnaomi_HeadTop_End
+        weight: 1
+      - path: agentnaomi_Hips/agentnaomi_Spine/agentnaomi_Spine1/agentnaomi_Spine2/agentnaomi_RightShoulder
+        weight: 1
+      - path: agentnaomi_Hips/agentnaomi_Spine/agentnaomi_Spine1/agentnaomi_Spine2/agentnaomi_RightShoulder/agentnaomi_RightArm
+        weight: 1
+      - path: agentnaomi_Hips/agentnaomi_Spine/agentnaomi_Spine1/agentnaomi_Spine2/agentnaomi_RightShoulder/agentnaomi_RightArm/agentnaomi_RightForeArm
+        weight: 1
+      - path: agentnaomi_Hips/agentnaomi_Spine/agentnaomi_Spine1/agentnaomi_Spine2/agentnaomi_RightShoulder/agentnaomi_RightArm/agentnaomi_RightForeArm/agentnaomi_RightHand
+        weight: 1
+      - path: agentnaomi_Hips/agentnaomi_Spine/agentnaomi_Spine1/agentnaomi_Spine2/agentnaomi_RightShoulder/agentnaomi_RightArm/agentnaomi_RightForeArm/agentnaomi_RightHand/agentnaomi_RightHandIndex1
+        weight: 1
+      - path: agentnaomi_Hips/agentnaomi_Spine/agentnaomi_Spine1/agentnaomi_Spine2/agentnaomi_RightShoulder/agentnaomi_RightArm/agentnaomi_RightForeArm/agentnaomi_RightHand/agentnaomi_RightHandIndex1/agentnaomi_RightHandIndex2
+        weight: 1
+      - path: agentnaomi_Hips/agentnaomi_Spine/agentnaomi_Spine1/agentnaomi_Spine2/agentnaomi_RightShoulder/agentnaomi_RightArm/agentnaomi_RightForeArm/agentnaomi_RightHand/agentnaomi_RightHandIndex1/agentnaomi_RightHandIndex2/agentnaomi_RightHandIndex3
+        weight: 1
+      - path: agentnaomi_Hips/agentnaomi_Spine/agentnaomi_Spine1/agentnaomi_Spine2/agentnaomi_RightShoulder/agentnaomi_RightArm/agentnaomi_RightForeArm/agentnaomi_RightHand/agentnaomi_RightHandIndex1/agentnaomi_RightHandIndex2/agentnaomi_RightHandIndex3/agentnaomi_RightHandIndex4
+        weight: 1
+      - path: agentnaomi_Hips/agentnaomi_Spine/agentnaomi_Spine1/agentnaomi_Spine2/agentnaomi_RightShoulder/agentnaomi_RightArm/agentnaomi_RightForeArm/agentnaomi_RightHand/agentnaomi_RightHandMiddle1
+        weight: 1
+      - path: agentnaomi_Hips/agentnaomi_Spine/agentnaomi_Spine1/agentnaomi_Spine2/agentnaomi_RightShoulder/agentnaomi_RightArm/agentnaomi_RightForeArm/agentnaomi_RightHand/agentnaomi_RightHandMiddle1/agentnaomi_RightHandMiddle2
+        weight: 1
+      - path: agentnaomi_Hips/agentnaomi_Spine/agentnaomi_Spine1/agentnaomi_Spine2/agentnaomi_RightShoulder/agentnaomi_RightArm/agentnaomi_RightForeArm/agentnaomi_RightHand/agentnaomi_RightHandMiddle1/agentnaomi_RightHandMiddle2/agentnaomi_RightHandMiddle3
+        weight: 1
+      - path: agentnaomi_Hips/agentnaomi_Spine/agentnaomi_Spine1/agentnaomi_Spine2/agentnaomi_RightShoulder/agentnaomi_RightArm/agentnaomi_RightForeArm/agentnaomi_RightHand/agentnaomi_RightHandMiddle1/agentnaomi_RightHandMiddle2/agentnaomi_RightHandMiddle3/agentnaomi_RightHandMiddle4
+        weight: 1
+      - path: agentnaomi_Hips/agentnaomi_Spine/agentnaomi_Spine1/agentnaomi_Spine2/agentnaomi_RightShoulder/agentnaomi_RightArm/agentnaomi_RightForeArm/agentnaomi_RightHand/agentnaomi_RightHandPinky1
+        weight: 1
+      - path: agentnaomi_Hips/agentnaomi_Spine/agentnaomi_Spine1/agentnaomi_Spine2/agentnaomi_RightShoulder/agentnaomi_RightArm/agentnaomi_RightForeArm/agentnaomi_RightHand/agentnaomi_RightHandPinky1/agentnaomi_RightHandPinky2
+        weight: 1
+      - path: agentnaomi_Hips/agentnaomi_Spine/agentnaomi_Spine1/agentnaomi_Spine2/agentnaomi_RightShoulder/agentnaomi_RightArm/agentnaomi_RightForeArm/agentnaomi_RightHand/agentnaomi_RightHandPinky1/agentnaomi_RightHandPinky2/agentnaomi_RightHandPinky3
+        weight: 1
+      - path: agentnaomi_Hips/agentnaomi_Spine/agentnaomi_Spine1/agentnaomi_Spine2/agentnaomi_RightShoulder/agentnaomi_RightArm/agentnaomi_RightForeArm/agentnaomi_RightHand/agentnaomi_RightHandPinky1/agentnaomi_RightHandPinky2/agentnaomi_RightHandPinky3/agentnaomi_RightHandPinky4
+        weight: 1
+      - path: agentnaomi_Hips/agentnaomi_Spine/agentnaomi_Spine1/agentnaomi_Spine2/agentnaomi_RightShoulder/agentnaomi_RightArm/agentnaomi_RightForeArm/agentnaomi_RightHand/agentnaomi_RightHandRing1
+        weight: 1
+      - path: agentnaomi_Hips/agentnaomi_Spine/agentnaomi_Spine1/agentnaomi_Spine2/agentnaomi_RightShoulder/agentnaomi_RightArm/agentnaomi_RightForeArm/agentnaomi_RightHand/agentnaomi_RightHandRing1/agentnaomi_RightHandRing2
+        weight: 1
+      - path: agentnaomi_Hips/agentnaomi_Spine/agentnaomi_Spine1/agentnaomi_Spine2/agentnaomi_RightShoulder/agentnaomi_RightArm/agentnaomi_RightForeArm/agentnaomi_RightHand/agentnaomi_RightHandRing1/agentnaomi_RightHandRing2/agentnaomi_RightHandRing3
+        weight: 1
+      - path: agentnaomi_Hips/agentnaomi_Spine/agentnaomi_Spine1/agentnaomi_Spine2/agentnaomi_RightShoulder/agentnaomi_RightArm/agentnaomi_RightForeArm/agentnaomi_RightHand/agentnaomi_RightHandRing1/agentnaomi_RightHandRing2/agentnaomi_RightHandRing3/agentnaomi_RightHandRing4
+        weight: 1
+      - path: agentnaomi_Hips/agentnaomi_Spine/agentnaomi_Spine1/agentnaomi_Spine2/agentnaomi_RightShoulder/agentnaomi_RightArm/agentnaomi_RightForeArm/agentnaomi_RightHand/agentnaomi_RightHandThumb1
+        weight: 1
+      - path: agentnaomi_Hips/agentnaomi_Spine/agentnaomi_Spine1/agentnaomi_Spine2/agentnaomi_RightShoulder/agentnaomi_RightArm/agentnaomi_RightForeArm/agentnaomi_RightHand/agentnaomi_RightHandThumb1/agentnaomi_RightHandThumb2
+        weight: 1
+      - path: agentnaomi_Hips/agentnaomi_Spine/agentnaomi_Spine1/agentnaomi_Spine2/agentnaomi_RightShoulder/agentnaomi_RightArm/agentnaomi_RightForeArm/agentnaomi_RightHand/agentnaomi_RightHandThumb1/agentnaomi_RightHandThumb2/agentnaomi_RightHandThumb3
+        weight: 1
+      - path: agentnaomi_Hips/agentnaomi_Spine/agentnaomi_Spine1/agentnaomi_Spine2/agentnaomi_RightShoulder/agentnaomi_RightArm/agentnaomi_RightForeArm/agentnaomi_RightHand/agentnaomi_RightHandThumb1/agentnaomi_RightHandThumb2/agentnaomi_RightHandThumb3/agentnaomi_RightHandThumb4
+        weight: 1
+      maskType: 0
       maskSource: {instanceID: 0}
       additiveReferencePoseFrame: 0
     isReadable: 1
@@ -236,7 +368,7 @@ ModelImporter:
     armStretch: 0.05
     legStretch: 0.05
     feetSpacing: 0
-    rootMotionBoneName: 
+    rootMotionBoneName: agentnaomi_Hips
     hasTranslationDoF: 0
     hasExtraRoot: 0
     skeletonHasParents: 1
