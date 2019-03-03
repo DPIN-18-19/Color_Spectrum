@@ -8,7 +8,7 @@ public class ScoreScreen : MonoBehaviour
     List<Text> score_texts;
     bool do_once = true;
     public ScoreList level_scores;
-
+    public string SiguienteNivel;
     private void Awake()
     {
     }
@@ -55,7 +55,7 @@ public class ScoreScreen : MonoBehaviour
 
     void LoadNext()
     {
-        SceneMan1.Instance.LoadSceneByName("LevelSelection");
+        SceneMan1.Instance.LoadSceneByName(SiguienteNivel);
         //UnityEngine.SceneManagement.SceneManager.LoadScene("Store");
     }
 

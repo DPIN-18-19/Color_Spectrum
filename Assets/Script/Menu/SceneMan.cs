@@ -35,6 +35,10 @@ public class SceneMan : MonoBehaviour
     {
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
     }
+    public void ToTutorial()
+    {
+        SceneManager.LoadScene("Tutorial");
+    }
     public void ExitGame()
     {
         Application.Quit();

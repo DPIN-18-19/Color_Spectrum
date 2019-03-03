@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0, g: 0, b: 0, a: 1}
+  m_IndirectSpecularColor: {r: 0.0012671872, g: 0.0047247675, b: 0.017804531, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -89,7 +89,7 @@ LightmapSettings:
     m_PVRFilteringAtrousPositionSigmaIndirect: 2
     m_PVRFilteringAtrousPositionSigmaAO: 1
     m_ShowResolutionOverlay: 1
-  m_LightingDataAsset: {fileID: 112003552, guid: d4a2258fd72319245aef91866ee5134f,
+  m_LightingDataAsset: {fileID: 112000322, guid: c80dff146d4582f438f04439d837f8cf,
     type: 2}
   m_UseShadowmask: 0
 --- !u!196 &4
@@ -5159,6 +5159,7 @@ MonoBehaviour:
   MovePlayer: {fileID: 957099236}
   TimeGlichEffect: 0.6
   camera: {fileID: 1522268809}
+  isdead: 0
 --- !u!1001 &140701372
 Prefab:
   m_ObjectHideFlags: 0
@@ -12496,7 +12497,7 @@ GameObject:
   - component: {fileID: 332580144}
   - component: {fileID: 332580143}
   m_Layer: 5
-  m_Name: Text (2)
+  m_Name: PuntosEnemigos
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -16928,6 +16929,11 @@ Prefab:
       value: 
       objectReference: {fileID: 11400000, guid: 16d174d3fb649c94cbc02d95a5ebd3fc,
         type: 2}
+    - target: {fileID: 114173447040913276, guid: b9bd7efdfa4304a4690dc79f1ec1e096,
+        type: 2}
+      propertyPath: SiguienteNivel
+      value: Main_Menu
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b9bd7efdfa4304a4690dc79f1ec1e096, type: 2}
   m_IsPrefabAsset: 0
@@ -35291,7 +35297,7 @@ MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 957099235}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 9b052b931ce361047a43cc68de8e1d53, type: 3}
   m_Name: 
