@@ -15344,7 +15344,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!108 &400893590
 Light:
   m_ObjectHideFlags: 0
@@ -35169,9 +35169,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7fda10ad2f5b42b4b952aa0ae87a64c3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  score: {fileID: 283122470}
   cam: {fileID: 1523893353}
-  Pausa: {fileID: 711317928}
+  score: {fileID: 283122470}
+  pause: {fileID: 711317928}
 --- !u!114 &957099245
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -54805,7 +54805,7 @@ MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1522268809}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: ff26db721962cdf4a8edcdfa9a767d2a, type: 3}
   m_Name: 
@@ -56090,8 +56090,8 @@ Transform:
   m_Children:
   - {fileID: 1267158182}
   - {fileID: 1786044301}
-  - {fileID: 215795437}
   - {fileID: 406670586}
+  - {fileID: 215795437}
   - {fileID: 1929793870}
   - {fileID: 565015301}
   - {fileID: 1300403272}

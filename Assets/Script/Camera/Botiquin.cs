@@ -5,7 +5,7 @@ using UnityEngine;
 
 public class Botiquin : MonoBehaviour {
     public float Salud;
-    public HealthController vida;
+    private HealthController vida;
     public AudioClip SonidoCurar;
     AudioSource source;
     // Use this for initialization
@@ -20,7 +20,7 @@ public class Botiquin : MonoBehaviour {
 	}
     private void OnTriggerEnter(Collider col)
     {
-        if(col.gameObject.tag == "Player" && vida.health < vida.max_health)
+        if(col.gameObject.tag == "Player" )
         {
             AudioSource.PlayClipAtPoint(SonidoCurar, transform.position);
             vida.RestoreHealth(Salud);
