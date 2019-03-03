@@ -14,7 +14,7 @@ public class SceneMan : MonoBehaviour
 
     public void ToMenu()
     {
-        SceneManager.LoadScene("Main Menu");
+        SceneManager.LoadScene("Main_Menu");
     }
 
     public void ToLevel1()

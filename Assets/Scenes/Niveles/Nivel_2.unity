@@ -5022,11 +5022,11 @@ MonoBehaviour:
   CloneParticleSystemPink: {fileID: 1638840181763304, guid: b36009580cf2cea4fac50860c2ee2bcb,
     type: 2}
   isExplosive: 1
-  CloneParticleSystemExplosiveBlue: {fileID: 1638840181763304, guid: eec706632e2dc00429f5cf61e0db320b,
+  CloneParticleSystemExplosiveBlue: {fileID: 1638840181763304, guid: ebc73f0b2583de840b8ed008791b77d6,
     type: 2}
-  CloneParticleSystemExplosiveYellow: {fileID: 1638840181763304, guid: 5124dfb21673ab0449e5b3e39edc81ee,
+  CloneParticleSystemExplosiveYellow: {fileID: 1638840181763304, guid: 164c1b10b51070244b1868ead5adf346,
     type: 2}
-  CloneParticleSystemExplosivePink: {fileID: 1638840181763304, guid: 3aa0b37d0b82d6545b8117a4b5494fa1,
+  CloneParticleSystemExplosivePink: {fileID: 1638840181763304, guid: 0db4655a17112244db4bac59ad4e52b4,
     type: 2}
   MeshRenderer: {fileID: 0}
   SkinnedMeshRenderer: {fileID: 1288860419}
@@ -29513,6 +29513,48 @@ Prefab:
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 0926b60762e6c4e4596671daa6cca815, type: 2}
   m_IsPrefabAsset: 0
+--- !u!1001 &800717383
+Prefab:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 4794550987394892, guid: f2b10ef7c58db6948be13046d5feb551, type: 2}
+      propertyPath: m_LocalPosition.x
+      value: 18.08
+      objectReference: {fileID: 0}
+    - target: {fileID: 4794550987394892, guid: f2b10ef7c58db6948be13046d5feb551, type: 2}
+      propertyPath: m_LocalPosition.y
+      value: 9.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 4794550987394892, guid: f2b10ef7c58db6948be13046d5feb551, type: 2}
+      propertyPath: m_LocalPosition.z
+      value: -2.37
+      objectReference: {fileID: 0}
+    - target: {fileID: 4794550987394892, guid: f2b10ef7c58db6948be13046d5feb551, type: 2}
+      propertyPath: m_LocalRotation.x
+      value: 0.59855306
+      objectReference: {fileID: 0}
+    - target: {fileID: 4794550987394892, guid: f2b10ef7c58db6948be13046d5feb551, type: 2}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4794550987394892, guid: f2b10ef7c58db6948be13046d5feb551, type: 2}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4794550987394892, guid: f2b10ef7c58db6948be13046d5feb551, type: 2}
+      propertyPath: m_LocalRotation.w
+      value: 0.8010832
+      objectReference: {fileID: 0}
+    - target: {fileID: 4794550987394892, guid: f2b10ef7c58db6948be13046d5feb551, type: 2}
+      propertyPath: m_RootOrder
+      value: 13
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: f2b10ef7c58db6948be13046d5feb551, type: 2}
+  m_IsPrefabAsset: 0
 --- !u!1 &801046546
 GameObject:
   m_ObjectHideFlags: 0
@@ -34932,6 +34974,8 @@ MonoBehaviour:
   Move: 0
   Cam1: {fileID: 0}
   CanMove: 1
+  score: {fileID: 283122470}
+  pause: {fileID: 711317928}
   move_speed: 7
   move_dir: {x: 0, y: 0, z: 0}
   animInterpolation: 10

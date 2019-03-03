@@ -26,7 +26,7 @@ public class ShowScore : MonoBehaviour
     {
         ScoreScreen.SetActive(true);
         ScoreScreen.GetComponentInChildren<ScoreScreen>().UpdateStats();
-        Time.timeScale = 0.0f;
+       // Time.timeScale = 0.0f;
         is_paused = true;
     }
 }

@@ -12,6 +12,10 @@ public class ScoreScreen : MonoBehaviour
     private void Awake()
     {
     }
+    private void Update()
+    {
+        Invoke("LoadNext", 5);
+    }
 
     private void Start()
     {
@@ -50,11 +54,12 @@ public class ScoreScreen : MonoBehaviour
         
         //UnityEngine.SceneManagement.SceneManager.LoadScene("Store");
         //SceneMan1.Instance.LoadSceneByName("LevelSelection");
-        this.Invoke("LoadNext", 5);
+       
     }
 
     void LoadNext()
     {
+        Debug.Log("Mevoy");
         SceneMan1.Instance.LoadSceneByName(SiguienteNivel);
         //UnityEngine.SceneManagement.SceneManager.LoadScene("Store");
     }

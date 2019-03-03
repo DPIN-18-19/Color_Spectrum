@@ -1802,6 +1802,7 @@ GameObject:
   - component: {fileID: 504410673}
   - component: {fileID: 504410672}
   - component: {fileID: 504410676}
+  - component: {fileID: 504410677}
   m_Layer: 5
   m_Name: Canvas
   m_TagString: Untagged
@@ -1902,6 +1903,17 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   cur_level: Pruebas_CinemaMachine
+--- !u!114 &504410677
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 504410671}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1b5d5587834d6cf44963813ba5d178e6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &530621452
 GameObject:
   m_ObjectHideFlags: 0
