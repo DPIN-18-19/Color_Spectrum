@@ -2175,6 +2175,10 @@ Prefab:
       propertyPath: m_Name
       value: EnemyShotGunBlue (3)
       objectReference: {fileID: 0}
+    - target: {fileID: 1288256790575720, guid: f7d24ab93b118c14baac142f65e585d2, type: 2}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f7d24ab93b118c14baac142f65e585d2, type: 2}
   m_IsPrefabAsset: 0
@@ -3833,6 +3837,10 @@ Prefab:
       propertyPath: m_Name
       value: EnemyPistolBlue (9)
       objectReference: {fileID: 0}
+    - target: {fileID: 1948979633452620, guid: 15ce4d217d726f04782ac5667cbf2681, type: 2}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 15ce4d217d726f04782ac5667cbf2681, type: 2}
   m_IsPrefabAsset: 0
@@ -4265,8 +4273,8 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 8, y: 4, z: 0.0000006556511}
-  m_Center: {x: -4.0186767e-15, y: 2, z: 0.15000033}
+  m_Size: {x: 36.027756, y: 4, z: 4.7678323}
+  m_Center: {x: 14.0138855, y: 2, z: -2.2339165}
 --- !u!23 &122589554
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -4384,6 +4392,10 @@ Prefab:
     - target: {fileID: 1894679898562014, guid: 15ce4d217d726f04782ac5667cbf2681, type: 2}
       propertyPath: m_Name
       value: EnemyPistolBlue (4)
+      objectReference: {fileID: 0}
+    - target: {fileID: 1948979633452620, guid: 15ce4d217d726f04782ac5667cbf2681, type: 2}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 15ce4d217d726f04782ac5667cbf2681, type: 2}
@@ -5329,7 +5341,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4342055927496440, guid: 17637a8ec01a52745a5eedcf0fbf50e3, type: 2}
       propertyPath: m_RootOrder
-      value: 3
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 114440213896972292, guid: 17637a8ec01a52745a5eedcf0fbf50e3,
         type: 2}
@@ -5403,6 +5415,12 @@ Prefab:
     - {fileID: 114150066478688188, guid: 17637a8ec01a52745a5eedcf0fbf50e3, type: 2}
   m_SourcePrefab: {fileID: 100100000, guid: 17637a8ec01a52745a5eedcf0fbf50e3, type: 2}
   m_IsPrefabAsset: 0
+--- !u!114 &145560888 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 114440213896972292, guid: 17637a8ec01a52745a5eedcf0fbf50e3,
+    type: 2}
+  m_PrefabInternal: {fileID: 145560887}
+  m_Script: {fileID: 11500000, guid: 45e653bab7fb20e499bda25e1b646fea, type: 3}
 --- !u!1 &146364733
 GameObject:
   m_ObjectHideFlags: 0
@@ -7259,6 +7277,10 @@ Prefab:
       propertyPath: patrol_points.Array.data[1]
       value: 
       objectReference: {fileID: 150690326}
+    - target: {fileID: 1243001294749562, guid: 9623e3858bcaaab4fa5a99237d248001, type: 2}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 9623e3858bcaaab4fa5a99237d248001, type: 2}
   m_IsPrefabAsset: 0
@@ -7883,6 +7905,10 @@ Prefab:
     - target: {fileID: 1790026940658642, guid: 53e97b5d69c9fe044b8921e45304407d, type: 2}
       propertyPath: m_Name
       value: EnemyPistolYellow (9)
+      objectReference: {fileID: 0}
+    - target: {fileID: 1731119808182542, guid: 53e97b5d69c9fe044b8921e45304407d, type: 2}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 53e97b5d69c9fe044b8921e45304407d, type: 2}
@@ -9521,8 +9547,8 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 8, y: 4, z: 0.0000006556511}
-  m_Center: {x: -4.0186767e-15, y: 2, z: 0.15000033}
+  m_Size: {x: 20.156303, y: 4, z: 7.1621246}
+  m_Center: {x: -6.0781517, y: 2, z: -3.4310617}
 --- !u!23 &246566424
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -10973,6 +10999,10 @@ Prefab:
       propertyPath: m_Name
       value: EnemyPistolYellow (7)
       objectReference: {fileID: 0}
+    - target: {fileID: 1731119808182542, guid: 53e97b5d69c9fe044b8921e45304407d, type: 2}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 53e97b5d69c9fe044b8921e45304407d, type: 2}
   m_IsPrefabAsset: 0
@@ -11288,6 +11318,10 @@ Prefab:
     - target: {fileID: 1894679898562014, guid: 15ce4d217d726f04782ac5667cbf2681, type: 2}
       propertyPath: m_Name
       value: EnemyPistolBlue (9)
+      objectReference: {fileID: 0}
+    - target: {fileID: 1948979633452620, guid: 15ce4d217d726f04782ac5667cbf2681, type: 2}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 15ce4d217d726f04782ac5667cbf2681, type: 2}
@@ -13005,8 +13039,8 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 8, y: 4, z: 0.0000006556511}
-  m_Center: {x: -4.0186767e-15, y: 2, z: 0.15000033}
+  m_Size: {x: 8, y: 4, z: 24.096596}
+  m_Center: {x: 0, y: 2, z: -11.898296}
 --- !u!23 &351906347
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -13653,6 +13687,10 @@ Prefab:
       propertyPath: patrol_points.Array.data[1]
       value: 
       objectReference: {fileID: 1819090851}
+    - target: {fileID: 1785790644295296, guid: d92bfdf7587833b4d833a06dcbe863ba, type: 2}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: d92bfdf7587833b4d833a06dcbe863ba, type: 2}
   m_IsPrefabAsset: 0
@@ -13913,6 +13951,10 @@ Prefab:
     - target: {fileID: 1790026940658642, guid: 53e97b5d69c9fe044b8921e45304407d, type: 2}
       propertyPath: m_Name
       value: EnemyPistolYellow (5)
+      objectReference: {fileID: 0}
+    - target: {fileID: 1731119808182542, guid: 53e97b5d69c9fe044b8921e45304407d, type: 2}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 53e97b5d69c9fe044b8921e45304407d, type: 2}
@@ -14385,7 +14427,7 @@ GameObject:
   - component: {fileID: 375566576}
   - component: {fileID: 375566575}
   m_Layer: 0
-  m_Name: Wall (22)
+  m_Name: Wall Collider
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -14416,8 +14458,8 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 8, y: 4, z: 0.0000006556511}
-  m_Center: {x: -4.0186767e-15, y: 2, z: 0.15000033}
+  m_Size: {x: 16.042088, y: 4, z: 12.044582}
+  m_Center: {x: 4.021046, y: 2, z: 6.1610165}
 --- !u!23 &375566576
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -15330,72 +15372,6 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 4788500530251002, guid: cecf69cfc2b37704e93b800b439d3b57,
     type: 2}
   m_PrefabInternal: {fileID: 783715964}
---- !u!1 &400893589
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 400893591}
-  - component: {fileID: 400893590}
-  m_Layer: 0
-  m_Name: Directional Light
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 0
---- !u!108 &400893590
-Light:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 400893589}
-  m_Enabled: 1
-  serializedVersion: 8
-  m_Type: 1
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_Intensity: 1
-  m_Range: 10
-  m_SpotAngle: 30
-  m_CookieSize: 10
-  m_Shadows:
-    m_Type: 0
-    m_Resolution: -1
-    m_CustomResolution: -1
-    m_Strength: 1
-    m_Bias: 0.05
-    m_NormalBias: 0.4
-    m_NearPlane: 0.2
-  m_Cookie: {fileID: 0}
-  m_DrawHalo: 0
-  m_Flare: {fileID: 0}
-  m_RenderMode: 0
-  m_CullingMask:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_Lightmapping: 4
-  m_LightShadowCasterMode: 0
-  m_AreaSize: {x: 1, y: 1}
-  m_BounceIntensity: 1
-  m_ColorTemperature: 6570
-  m_UseColorTemperature: 0
-  m_ShadowRadius: 0
-  m_ShadowAngle: 0
---- !u!4 &400893591
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 400893589}
-  m_LocalRotation: {x: 0.40821788, y: -0.23456968, z: 0.10938163, w: 0.8754261}
-  m_LocalPosition: {x: 15.994399, y: 13.094097, z: 42.431896}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_RootOrder: 10
-  m_LocalEulerAnglesHint: {x: 50, y: -30, z: 0}
 --- !u!1001 &401553666
 Prefab:
   m_ObjectHideFlags: 0
@@ -16343,6 +16319,10 @@ Prefab:
       propertyPath: m_Name
       value: EnemyPistolYellow (4)
       objectReference: {fileID: 0}
+    - target: {fileID: 1731119808182542, guid: 53e97b5d69c9fe044b8921e45304407d, type: 2}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 53e97b5d69c9fe044b8921e45304407d, type: 2}
   m_IsPrefabAsset: 0
@@ -16623,7 +16603,7 @@ GameObject:
   - component: {fileID: 421272344}
   - component: {fileID: 421272343}
   m_Layer: 0
-  m_Name: Wall (18)
+  m_Name: Wall
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -17229,6 +17209,10 @@ Prefab:
       propertyPath: m_Name
       value: EnemyPistolPink (3)
       objectReference: {fileID: 0}
+    - target: {fileID: 1785790644295296, guid: d92bfdf7587833b4d833a06dcbe863ba, type: 2}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: d92bfdf7587833b4d833a06dcbe863ba, type: 2}
   m_IsPrefabAsset: 0
@@ -17658,6 +17642,10 @@ Prefab:
     - target: {fileID: 1894679898562014, guid: 15ce4d217d726f04782ac5667cbf2681, type: 2}
       propertyPath: m_Name
       value: EnemyPistolBlue (3)
+      objectReference: {fileID: 0}
+    - target: {fileID: 1948979633452620, guid: 15ce4d217d726f04782ac5667cbf2681, type: 2}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 15ce4d217d726f04782ac5667cbf2681, type: 2}
@@ -20522,6 +20510,10 @@ Prefab:
       propertyPath: m_Name
       value: EnemyPistolBlue (7)
       objectReference: {fileID: 0}
+    - target: {fileID: 1948979633452620, guid: 15ce4d217d726f04782ac5667cbf2681, type: 2}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 15ce4d217d726f04782ac5667cbf2681, type: 2}
   m_IsPrefabAsset: 0
@@ -20580,7 +20572,7 @@ GameObject:
   - component: {fileID: 544366831}
   - component: {fileID: 544366830}
   m_Layer: 0
-  m_Name: Wall (5)
+  m_Name: Wall
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -20611,8 +20603,8 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 4, y: 4, z: 0.000000834465}
-  m_Center: {x: 0, y: 2, z: 0.0000008046627}
+  m_Size: {x: 4, y: 4, z: 11.933363}
+  m_Center: {x: 2.7948313e-14, y: 2, z: -5.966682}
 --- !u!23 &544366831
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -20766,6 +20758,10 @@ Prefab:
     - target: {fileID: 1790026940658642, guid: 53e97b5d69c9fe044b8921e45304407d, type: 2}
       propertyPath: m_Name
       value: EnemyPistolYellow (14)
+      objectReference: {fileID: 0}
+    - target: {fileID: 1731119808182542, guid: 53e97b5d69c9fe044b8921e45304407d, type: 2}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 53e97b5d69c9fe044b8921e45304407d, type: 2}
@@ -21447,8 +21443,8 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 8, y: 4, z: 0.0000006556511}
-  m_Center: {x: -4.0186767e-15, y: 2, z: 0.15000033}
+  m_Size: {x: 31.984251, y: 4, z: 6.0437546}
+  m_Center: {x: 11.992129, y: 2, z: -2.8718767}
 --- !u!23 &563181559
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -21885,6 +21881,10 @@ Prefab:
     - target: {fileID: 4629025996165434, guid: 53e97b5d69c9fe044b8921e45304407d, type: 2}
       propertyPath: m_LocalEulerAnglesHint.y
       value: 86.012
+      objectReference: {fileID: 0}
+    - target: {fileID: 1731119808182542, guid: 53e97b5d69c9fe044b8921e45304407d, type: 2}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 53e97b5d69c9fe044b8921e45304407d, type: 2}
@@ -23370,7 +23370,7 @@ GameObject:
   - component: {fileID: 634489981}
   - component: {fileID: 634489980}
   m_Layer: 0
-  m_Name: Wall (10)
+  m_Name: Wall
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -23527,7 +23527,7 @@ GameObject:
   - component: {fileID: 638260740}
   - component: {fileID: 638260739}
   m_Layer: 0
-  m_Name: Wall (12)
+  m_Name: Wall
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -24682,6 +24682,10 @@ Prefab:
       propertyPath: m_Name
       value: EnemyPistolPink (5)
       objectReference: {fileID: 0}
+    - target: {fileID: 1785790644295296, guid: d92bfdf7587833b4d833a06dcbe863ba, type: 2}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: d92bfdf7587833b4d833a06dcbe863ba, type: 2}
   m_IsPrefabAsset: 0
@@ -25579,6 +25583,10 @@ Prefab:
       propertyPath: m_Name
       value: EnemyShotGunBlue (4)
       objectReference: {fileID: 0}
+    - target: {fileID: 1288256790575720, guid: f7d24ab93b118c14baac142f65e585d2, type: 2}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f7d24ab93b118c14baac142f65e585d2, type: 2}
   m_IsPrefabAsset: 0
@@ -25605,7 +25613,7 @@ GameObject:
   - component: {fileID: 708045174}
   - component: {fileID: 708045173}
   m_Layer: 0
-  m_Name: Wall (13)
+  m_Name: Wall
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -25695,7 +25703,7 @@ GameObject:
   - component: {fileID: 709245821}
   - component: {fileID: 709245820}
   m_Layer: 0
-  m_Name: Wall (9)
+  m_Name: Wall
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -26380,6 +26388,10 @@ Prefab:
       propertyPath: renderersToChangeColor.Array.data[1]
       value: 
       objectReference: {fileID: 1442203051}
+    - target: {fileID: 1243001294749562, guid: 9623e3858bcaaab4fa5a99237d248001, type: 2}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 9623e3858bcaaab4fa5a99237d248001, type: 2}
   m_IsPrefabAsset: 0
@@ -29047,6 +29059,10 @@ Prefab:
       propertyPath: m_Name
       value: EnemyPistolYellow (11)
       objectReference: {fileID: 0}
+    - target: {fileID: 1731119808182542, guid: 53e97b5d69c9fe044b8921e45304407d, type: 2}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 53e97b5d69c9fe044b8921e45304407d, type: 2}
   m_IsPrefabAsset: 0
@@ -29550,7 +29566,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4794550987394892, guid: f2b10ef7c58db6948be13046d5feb551, type: 2}
       propertyPath: m_RootOrder
-      value: 13
+      value: 11
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f2b10ef7c58db6948be13046d5feb551, type: 2}
@@ -30416,6 +30432,10 @@ Prefab:
       propertyPath: m_Name
       value: EnemyPistolPink (7)
       objectReference: {fileID: 0}
+    - target: {fileID: 1785790644295296, guid: d92bfdf7587833b4d833a06dcbe863ba, type: 2}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: d92bfdf7587833b4d833a06dcbe863ba, type: 2}
   m_IsPrefabAsset: 0
@@ -31204,7 +31224,7 @@ Transform:
   - {fileID: 508467597}
   - {fileID: 237443385}
   m_Father: {fileID: 0}
-  m_RootOrder: 12
+  m_RootOrder: 10
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &851716210
 GameObject:
@@ -31689,6 +31709,10 @@ Prefab:
       propertyPath: patrol_points.Array.data[1]
       value: 
       objectReference: {fileID: 92766415}
+    - target: {fileID: 1243001294749562, guid: 9623e3858bcaaab4fa5a99237d248001, type: 2}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 9623e3858bcaaab4fa5a99237d248001, type: 2}
   m_IsPrefabAsset: 0
@@ -32030,7 +32054,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 2
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &881895132
 GameObject:
@@ -32566,7 +32590,7 @@ GameObject:
   - component: {fileID: 888607400}
   - component: {fileID: 888607399}
   m_Layer: 0
-  m_Name: Wall (16)
+  m_Name: Wall
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -32785,7 +32809,7 @@ RectTransform:
   - {fileID: 1481315048}
   - {fileID: 1225663837}
   m_Father: {fileID: 0}
-  m_RootOrder: 6
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
@@ -33980,6 +34004,10 @@ Prefab:
       propertyPath: m_Name
       value: EnemyPistolPink (3)
       objectReference: {fileID: 0}
+    - target: {fileID: 1785790644295296, guid: d92bfdf7587833b4d833a06dcbe863ba, type: 2}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: d92bfdf7587833b4d833a06dcbe863ba, type: 2}
   m_IsPrefabAsset: 0
@@ -34061,6 +34089,10 @@ Prefab:
     - target: {fileID: 1894679898562014, guid: 15ce4d217d726f04782ac5667cbf2681, type: 2}
       propertyPath: m_Name
       value: EnemyPistolBlue (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 1948979633452620, guid: 15ce4d217d726f04782ac5667cbf2681, type: 2}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 15ce4d217d726f04782ac5667cbf2681, type: 2}
@@ -34824,6 +34856,10 @@ Prefab:
       propertyPath: m_Name
       value: EnemyPistolBlue (5)
       objectReference: {fileID: 0}
+    - target: {fileID: 1948979633452620, guid: 15ce4d217d726f04782ac5667cbf2681, type: 2}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 15ce4d217d726f04782ac5667cbf2681, type: 2}
   m_IsPrefabAsset: 0
@@ -34972,7 +35008,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Move: 0
-  Cam1: {fileID: 0}
+  Cam1: {fileID: 145560888}
   CanMove: 1
   score: {fileID: 283122470}
   pause: {fileID: 711317928}
@@ -38411,6 +38447,10 @@ Prefab:
       propertyPath: m_Name
       value: EnemyPistolYellow (13)
       objectReference: {fileID: 0}
+    - target: {fileID: 1731119808182542, guid: 53e97b5d69c9fe044b8921e45304407d, type: 2}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 53e97b5d69c9fe044b8921e45304407d, type: 2}
   m_IsPrefabAsset: 0
@@ -38627,6 +38667,10 @@ Prefab:
     - target: {fileID: 1257885355601764, guid: f7d24ab93b118c14baac142f65e585d2, type: 2}
       propertyPath: m_Name
       value: EnemyShotGunBlue (4)
+      objectReference: {fileID: 0}
+    - target: {fileID: 1288256790575720, guid: f7d24ab93b118c14baac142f65e585d2, type: 2}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f7d24ab93b118c14baac142f65e585d2, type: 2}
@@ -39536,6 +39580,10 @@ Prefab:
       propertyPath: patrol_points.Array.data[1]
       value: 
       objectReference: {fileID: 116656056}
+    - target: {fileID: 1288256790575720, guid: f7d24ab93b118c14baac142f65e585d2, type: 2}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f7d24ab93b118c14baac142f65e585d2, type: 2}
   m_IsPrefabAsset: 0
@@ -40048,6 +40096,10 @@ Prefab:
     - target: {fileID: 1790026940658642, guid: 53e97b5d69c9fe044b8921e45304407d, type: 2}
       propertyPath: m_Name
       value: EnemyPistolYellow (10)
+      objectReference: {fileID: 0}
+    - target: {fileID: 1731119808182542, guid: 53e97b5d69c9fe044b8921e45304407d, type: 2}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 53e97b5d69c9fe044b8921e45304407d, type: 2}
@@ -42091,6 +42143,10 @@ Prefab:
       propertyPath: m_Name
       value: EnemyPistolYellow (11)
       objectReference: {fileID: 0}
+    - target: {fileID: 1731119808182542, guid: 53e97b5d69c9fe044b8921e45304407d, type: 2}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 53e97b5d69c9fe044b8921e45304407d, type: 2}
   m_IsPrefabAsset: 0
@@ -43879,7 +43935,7 @@ GameObject:
   - component: {fileID: 1217728423}
   - component: {fileID: 1217728422}
   m_Layer: 0
-  m_Name: Wall (2)
+  m_Name: Wall
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -43910,8 +43966,8 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 4, y: 4, z: 0.000000834465}
-  m_Center: {x: 0, y: 2, z: 0.0000008046627}
+  m_Size: {x: 4, y: 4, z: 16.01289}
+  m_Center: {x: 9.1723504e-17, y: 2, z: -8.006445}
 --- !u!23 &1217728423
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -44173,7 +44229,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 11
+  m_RootOrder: 9
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1224689388
 GameObject:
@@ -45305,6 +45361,10 @@ Prefab:
       propertyPath: m_Name
       value: EnemyPistolBlue (6)
       objectReference: {fileID: 0}
+    - target: {fileID: 1948979633452620, guid: 15ce4d217d726f04782ac5667cbf2681, type: 2}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 15ce4d217d726f04782ac5667cbf2681, type: 2}
   m_IsPrefabAsset: 0
@@ -45645,6 +45705,10 @@ Prefab:
     - target: {fileID: 1257885355601764, guid: f7d24ab93b118c14baac142f65e585d2, type: 2}
       propertyPath: m_Name
       value: EnemyShotGunBlue (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 1288256790575720, guid: f7d24ab93b118c14baac142f65e585d2, type: 2}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f7d24ab93b118c14baac142f65e585d2, type: 2}
@@ -47196,6 +47260,10 @@ Prefab:
       propertyPath: m_Name
       value: EnemyPistolYellow (12)
       objectReference: {fileID: 0}
+    - target: {fileID: 1731119808182542, guid: 53e97b5d69c9fe044b8921e45304407d, type: 2}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 53e97b5d69c9fe044b8921e45304407d, type: 2}
   m_IsPrefabAsset: 0
@@ -48555,6 +48623,10 @@ Prefab:
       propertyPath: m_Name
       value: EnemyPistolYellow (2)
       objectReference: {fileID: 0}
+    - target: {fileID: 1731119808182542, guid: 53e97b5d69c9fe044b8921e45304407d, type: 2}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 53e97b5d69c9fe044b8921e45304407d, type: 2}
   m_IsPrefabAsset: 0
@@ -49177,6 +49249,10 @@ Prefab:
       propertyPath: m_Name
       value: EnemyPistolPink (1)
       objectReference: {fileID: 0}
+    - target: {fileID: 1785790644295296, guid: d92bfdf7587833b4d833a06dcbe863ba, type: 2}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: d92bfdf7587833b4d833a06dcbe863ba, type: 2}
   m_IsPrefabAsset: 0
@@ -49303,6 +49379,10 @@ Prefab:
     - target: {fileID: 1257885355601764, guid: f7d24ab93b118c14baac142f65e585d2, type: 2}
       propertyPath: m_Name
       value: EnemyShotGunBlue (5)
+      objectReference: {fileID: 0}
+    - target: {fileID: 1288256790575720, guid: f7d24ab93b118c14baac142f65e585d2, type: 2}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f7d24ab93b118c14baac142f65e585d2, type: 2}
@@ -49869,7 +49949,7 @@ Transform:
   - {fileID: 1923851887}
   - {fileID: 887065117}
   m_Father: {fileID: 0}
-  m_RootOrder: 9
+  m_RootOrder: 8
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1372506286
 GameObject:
@@ -50645,6 +50725,10 @@ Prefab:
     - target: {fileID: 1790026940658642, guid: 53e97b5d69c9fe044b8921e45304407d, type: 2}
       propertyPath: m_Name
       value: EnemyPistolYellow (3)
+      objectReference: {fileID: 0}
+    - target: {fileID: 1731119808182542, guid: 53e97b5d69c9fe044b8921e45304407d, type: 2}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 53e97b5d69c9fe044b8921e45304407d, type: 2}
@@ -52949,6 +53033,10 @@ Prefab:
       propertyPath: m_Name
       value: EnemyPistolBlue (8)
       objectReference: {fileID: 0}
+    - target: {fileID: 1948979633452620, guid: 15ce4d217d726f04782ac5667cbf2681, type: 2}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 15ce4d217d726f04782ac5667cbf2681, type: 2}
   m_IsPrefabAsset: 0
@@ -53930,6 +54018,10 @@ Prefab:
       propertyPath: patrol_points.Array.data[1]
       value: 
       objectReference: {fileID: 1027768222}
+    - target: {fileID: 1243001294749562, guid: 9623e3858bcaaab4fa5a99237d248001, type: 2}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 9623e3858bcaaab4fa5a99237d248001, type: 2}
   m_IsPrefabAsset: 0
@@ -54363,6 +54455,7 @@ Transform:
   - {fileID: 1298809770}
   - {fileID: 2123116466}
   - {fileID: 1565724489}
+  - {fileID: 1745633213}
   m_Father: {fileID: 444602359}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -54733,6 +54826,10 @@ Prefab:
     - target: {fileID: 1894679898562014, guid: 15ce4d217d726f04782ac5667cbf2681, type: 2}
       propertyPath: m_Name
       value: EnemyPistolBlue (2)
+      objectReference: {fileID: 0}
+    - target: {fileID: 1948979633452620, guid: 15ce4d217d726f04782ac5667cbf2681, type: 2}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 15ce4d217d726f04782ac5667cbf2681, type: 2}
@@ -55483,6 +55580,10 @@ Prefab:
       propertyPath: m_LocalScale.z
       value: 1.7865499
       objectReference: {fileID: 0}
+    - target: {fileID: 1044910141389622, guid: 53da20dcce1fa0b46a2b8abe8fde157d, type: 2}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 53da20dcce1fa0b46a2b8abe8fde157d, type: 2}
   m_IsPrefabAsset: 0
@@ -55748,7 +55849,7 @@ Transform:
   - {fileID: 586038056}
   - {fileID: 1620679132}
   m_Father: {fileID: 0}
-  m_RootOrder: 7
+  m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1544037573
 GameObject:
@@ -56648,6 +56749,10 @@ Prefab:
     - target: {fileID: 1790026940658642, guid: 53e97b5d69c9fe044b8921e45304407d, type: 2}
       propertyPath: m_Name
       value: EnemyPistolYellow (6)
+      objectReference: {fileID: 0}
+    - target: {fileID: 1731119808182542, guid: 53e97b5d69c9fe044b8921e45304407d, type: 2}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 53e97b5d69c9fe044b8921e45304407d, type: 2}
@@ -57944,6 +58049,10 @@ Prefab:
     - target: {fileID: 1220717223002304, guid: d92bfdf7587833b4d833a06dcbe863ba, type: 2}
       propertyPath: m_Name
       value: EnemyPistolPink (2)
+      objectReference: {fileID: 0}
+    - target: {fileID: 1785790644295296, guid: d92bfdf7587833b4d833a06dcbe863ba, type: 2}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: d92bfdf7587833b4d833a06dcbe863ba, type: 2}
@@ -59413,7 +59522,7 @@ GameObject:
   - component: {fileID: 1632830752}
   - component: {fileID: 1632830751}
   m_Layer: 0
-  m_Name: Wall (14)
+  m_Name: Wall
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -59772,6 +59881,10 @@ Prefab:
     - target: {fileID: 1257885355601764, guid: f7d24ab93b118c14baac142f65e585d2, type: 2}
       propertyPath: m_Name
       value: EnemyShotGunBlue (2)
+      objectReference: {fileID: 0}
+    - target: {fileID: 1288256790575720, guid: f7d24ab93b118c14baac142f65e585d2, type: 2}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f7d24ab93b118c14baac142f65e585d2, type: 2}
@@ -60173,7 +60286,7 @@ GameObject:
   - component: {fileID: 1655596009}
   - component: {fileID: 1655596008}
   m_Layer: 0
-  m_Name: Wall (19)
+  m_Name: Wall
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -62218,6 +62331,10 @@ Prefab:
       propertyPath: m_Name
       value: EnemyPistolPink (4)
       objectReference: {fileID: 0}
+    - target: {fileID: 1785790644295296, guid: d92bfdf7587833b4d833a06dcbe863ba, type: 2}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: d92bfdf7587833b4d833a06dcbe863ba, type: 2}
   m_IsPrefabAsset: 0
@@ -62370,6 +62487,10 @@ Prefab:
     - target: {fileID: 4180760728127242, guid: 53da20dcce1fa0b46a2b8abe8fde157d, type: 2}
       propertyPath: m_LocalScale.z
       value: 1.7865499
+      objectReference: {fileID: 0}
+    - target: {fileID: 1044910141389622, guid: 53da20dcce1fa0b46a2b8abe8fde157d, type: 2}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 53da20dcce1fa0b46a2b8abe8fde157d, type: 2}
@@ -62754,7 +62875,7 @@ GameObject:
   - component: {fileID: 1713915110}
   - component: {fileID: 1713915109}
   m_Layer: 0
-  m_Name: Wall (11)
+  m_Name: Wall
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -62844,7 +62965,7 @@ GameObject:
   - component: {fileID: 1714163705}
   - component: {fileID: 1714163704}
   m_Layer: 0
-  m_Name: Wall (1)
+  m_Name: Wall
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -62875,8 +62996,8 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 4, y: 4, z: 0.000000834465}
-  m_Center: {x: 0, y: 2, z: 0.0000008046627}
+  m_Size: {x: 4, y: 4, z: 15.865228}
+  m_Center: {x: -9.574657e-16, y: 2, z: -7.932615}
 --- !u!23 &1714163705
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -63337,8 +63458,8 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 8, y: 4, z: 0.0000006556511}
-  m_Center: {x: -4.0186767e-15, y: 2, z: 0.15000033}
+  m_Size: {x: 8, y: 4, z: 20.060123}
+  m_Center: {x: 2.6717357e-14, y: 2, z: -9.880065}
 --- !u!23 &1728467017
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -63620,6 +63741,10 @@ Prefab:
       propertyPath: patrol_points.Array.data[1]
       value: 
       objectReference: {fileID: 958622746}
+    - target: {fileID: 1948979633452620, guid: 15ce4d217d726f04782ac5667cbf2681, type: 2}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 15ce4d217d726f04782ac5667cbf2681, type: 2}
   m_IsPrefabAsset: 0
@@ -63694,6 +63819,11 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 4792088292628820, guid: b246e24975c84f04e8058ce62607c82b,
     type: 2}
   m_PrefabInternal: {fileID: 1498805689}
+--- !u!4 &1745633213 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 4984665918754920, guid: 0e7aa168858c31d4e989ceb1f9f97f41,
+    type: 2}
+  m_PrefabInternal: {fileID: 1970766158}
 --- !u!1001 &1747687870
 Prefab:
   m_ObjectHideFlags: 0
@@ -63938,6 +64068,10 @@ Prefab:
     - target: {fileID: 1220717223002304, guid: d92bfdf7587833b4d833a06dcbe863ba, type: 2}
       propertyPath: m_Name
       value: EnemyPistolPink (6)
+      objectReference: {fileID: 0}
+    - target: {fileID: 1785790644295296, guid: d92bfdf7587833b4d833a06dcbe863ba, type: 2}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: d92bfdf7587833b4d833a06dcbe863ba, type: 2}
@@ -64477,6 +64611,10 @@ Prefab:
     - target: {fileID: 1790026940658642, guid: 53e97b5d69c9fe044b8921e45304407d, type: 2}
       propertyPath: m_Name
       value: EnemyPistolYellow (13)
+      objectReference: {fileID: 0}
+    - target: {fileID: 1731119808182542, guid: 53e97b5d69c9fe044b8921e45304407d, type: 2}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 53e97b5d69c9fe044b8921e45304407d, type: 2}
@@ -66677,6 +66815,10 @@ Prefab:
       propertyPath: patrol_points.Array.data[1]
       value: 
       objectReference: {fileID: 264258555}
+    - target: {fileID: 1044910141389622, guid: 53da20dcce1fa0b46a2b8abe8fde157d, type: 2}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 53da20dcce1fa0b46a2b8abe8fde157d, type: 2}
   m_IsPrefabAsset: 0
@@ -67048,6 +67190,10 @@ Prefab:
       propertyPath: patrol_points.Array.data[1]
       value: 
       objectReference: {fileID: 1674333637}
+    - target: {fileID: 1243001294749562, guid: 9623e3858bcaaab4fa5a99237d248001, type: 2}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 9623e3858bcaaab4fa5a99237d248001, type: 2}
   m_IsPrefabAsset: 0
@@ -68066,7 +68212,7 @@ GameObject:
   - component: {fileID: 1855352101}
   - component: {fileID: 1855352100}
   m_Layer: 0
-  m_Name: Wall (6)
+  m_Name: Wall
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -68989,7 +69135,7 @@ Transform:
   m_Children:
   - {fileID: 70008239}
   m_Father: {fileID: 0}
-  m_RootOrder: 5
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &1876408338 stripped
 Transform:
@@ -69174,7 +69320,7 @@ Transform:
   - {fileID: 191636097}
   - {fileID: 1233917744}
   m_Father: {fileID: 0}
-  m_RootOrder: 8
+  m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &1879292527
 Prefab:
@@ -71972,7 +72118,7 @@ GameObject:
   - component: {fileID: 1943297493}
   - component: {fileID: 1943297492}
   m_Layer: 0
-  m_Name: Wall (15)
+  m_Name: Wall
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -72062,7 +72208,7 @@ GameObject:
   - component: {fileID: 1944245978}
   - component: {fileID: 1944245977}
   m_Layer: 0
-  m_Name: Wall (3)
+  m_Name: Wall
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -72556,8 +72702,8 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 8, y: 4, z: 0.0000006556511}
-  m_Center: {x: -4.0186767e-15, y: 2, z: 0.15000033}
+  m_Size: {x: 16.15738, y: 4, z: 20.125038}
+  m_Center: {x: 4.0786896, y: 2, z: -9.912518}
 --- !u!23 &1953272305
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -72874,6 +73020,10 @@ Prefab:
     - target: {fileID: 1790026940658642, guid: 53e97b5d69c9fe044b8921e45304407d, type: 2}
       propertyPath: m_Name
       value: EnemyPistolYellow (12)
+      objectReference: {fileID: 0}
+    - target: {fileID: 1731119808182542, guid: 53e97b5d69c9fe044b8921e45304407d, type: 2}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 53e97b5d69c9fe044b8921e45304407d, type: 2}
@@ -73214,8 +73364,8 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 8, y: 4, z: 0.0000006556511}
-  m_Center: {x: -4.0186767e-15, y: 2, z: 0.15000033}
+  m_Size: {x: 20.111855, y: 4, z: 9.183197}
+  m_Center: {x: -6.0559273, y: 2, z: -4.441597}
 --- !u!23 &1969244490
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -73369,6 +73519,10 @@ Prefab:
       propertyPath: m_Name
       value: EnemyPistolYellow (8)
       objectReference: {fileID: 0}
+    - target: {fileID: 1731119808182542, guid: 53e97b5d69c9fe044b8921e45304407d, type: 2}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 53e97b5d69c9fe044b8921e45304407d, type: 2}
   m_IsPrefabAsset: 0
@@ -73377,31 +73531,31 @@ Prefab:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Modification:
-    m_TransformParent: {fileID: 0}
+    m_TransformParent: {fileID: 1498666405}
     m_Modifications:
     - target: {fileID: 4984665918754920, guid: 0e7aa168858c31d4e989ceb1f9f97f41, type: 2}
       propertyPath: m_LocalPosition.x
-      value: 19.939
+      value: 23.539099
       objectReference: {fileID: 0}
     - target: {fileID: 4984665918754920, guid: 0e7aa168858c31d4e989ceb1f9f97f41, type: 2}
       propertyPath: m_LocalPosition.y
-      value: -0.55829
+      value: -48.24629
       objectReference: {fileID: 0}
     - target: {fileID: 4984665918754920, guid: 0e7aa168858c31d4e989ceb1f9f97f41, type: 2}
       propertyPath: m_LocalPosition.z
-      value: 111.488
+      value: -70.852
       objectReference: {fileID: 0}
     - target: {fileID: 4984665918754920, guid: 0e7aa168858c31d4e989ceb1f9f97f41, type: 2}
       propertyPath: m_LocalRotation.x
-      value: 0
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: 4984665918754920, guid: 0e7aa168858c31d4e989ceb1f9f97f41, type: 2}
       propertyPath: m_LocalRotation.y
-      value: 0
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: 4984665918754920, guid: 0e7aa168858c31d4e989ceb1f9f97f41, type: 2}
       propertyPath: m_LocalRotation.z
-      value: 0
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: 4984665918754920, guid: 0e7aa168858c31d4e989ceb1f9f97f41, type: 2}
       propertyPath: m_LocalRotation.w
@@ -73409,7 +73563,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4984665918754920, guid: 0e7aa168858c31d4e989ceb1f9f97f41, type: 2}
       propertyPath: m_RootOrder
-      value: 1
+      value: 15
       objectReference: {fileID: 0}
     - target: {fileID: 4984665918754920, guid: 0e7aa168858c31d4e989ceb1f9f97f41, type: 2}
       propertyPath: m_LocalScale.x
@@ -73431,7 +73585,7 @@ GameObject:
   - component: {fileID: 1971816988}
   - component: {fileID: 1971816987}
   m_Layer: 0
-  m_Name: Wall (17)
+  m_Name: Wall
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -73462,8 +73616,8 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 4, y: 4, z: 0.000000834465}
-  m_Center: {x: 0, y: 2, z: 0.0000008046627}
+  m_Size: {x: 16.189157, y: 4, z: 7.38966}
+  m_Center: {x: 6.094577, y: 2, z: 3.6856446}
 --- !u!23 &1971816988
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -73742,6 +73896,10 @@ Prefab:
       propertyPath: patrol_points.Array.data[1]
       value: 
       objectReference: {fileID: 550546935}
+    - target: {fileID: 1243001294749562, guid: 9623e3858bcaaab4fa5a99237d248001, type: 2}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 9623e3858bcaaab4fa5a99237d248001, type: 2}
   m_IsPrefabAsset: 0
@@ -73984,7 +74142,7 @@ GameObject:
   - component: {fileID: 1988918538}
   - component: {fileID: 1988918537}
   m_Layer: 0
-  m_Name: Wall (4)
+  m_Name: Wall
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -77330,7 +77488,7 @@ Transform:
   - {fileID: 2057890209}
   - {fileID: 1965474204}
   m_Father: {fileID: 0}
-  m_RootOrder: 4
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &2094581177
 Prefab:
