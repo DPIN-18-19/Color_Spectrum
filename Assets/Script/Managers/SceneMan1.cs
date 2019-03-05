@@ -5,6 +5,8 @@ using UnityEngine.SceneManagement;
 
 public class SceneMan1 : MonoBehaviour
 {
+    float TimRestart= 1.5f;
+    public bool isdead = false;
     //////////////////////////////////////////////////////
     // Singleton architecture
     public static SceneMan1 Instance { get; private set; }
@@ -15,6 +17,20 @@ public class SceneMan1 : MonoBehaviour
             Instance = this;
         else
             Destroy(gameObject);
+    }
+    private void Update()
+    {
+        if (isdead)
+        {
+            TimRestart -= Time.deltaTime;
+        }
+        if(TimRestart <= 0)
+        {
+            TimRestart = 2;
+            isdead = false;
+            SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+
+        }
     }
 
     //////////////////////////////////////////////////////
@@ -47,13 +63,14 @@ public class SceneMan1 : MonoBehaviour
         SceneManager.LoadScene(scene_name);
     }
     
-    void ReloadCurrentScene()
+    public void ReloadCurrentScene()
     {
-        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+        isdead = true;
     }
     
     public int GetLoadScene()
     {
         return (int)scene_to_load;
     }
+    
 }
