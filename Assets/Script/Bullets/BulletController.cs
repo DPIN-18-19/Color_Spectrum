@@ -54,6 +54,8 @@ public class BulletController : MonoBehaviour
     private AudioSource source;
 
     PlayerRenderer MaterialsPlayer;
+    
+   
 
     public bool Sniper;
 
@@ -74,6 +76,7 @@ public class BulletController : MonoBehaviour
         m_collider = GetComponent<Collider>();
 
         Ralentizar = GameObject.Find("Player_Naomi").GetComponent<Slow_Motion>();
+        
         MaterialsPlayer = GameObject.Find("Player_Naomi").GetComponent<PlayerRenderer>();
         StartCoroutine(DestroyBullet());
     }
@@ -143,19 +146,22 @@ public class BulletController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Ralentizar.ActivateAbility == true && !friendly)
+        if (SceneMan1.Instance.isdead == false)
         {
-            source.pitch = Ability_Time_Manager.Instance.FXRalentizado;
-        }
-        if (Ralentizar.ActivateAbility == false && !friendly)
-        {
-            source.pitch = 1;
-        }
+            if (Ralentizar.ActivateAbility == true && !friendly)
+            {
+                source.pitch = Ability_Time_Manager.Instance.FXRalentizado;
+            }
+            if (Ralentizar.ActivateAbility == false && !friendly)
+            {
+                source.pitch = 1;
+            }
 
 
-        if (Ralentizar.ActivateAbility == false && !friendly)
-        {
-            this.gameObject.layer = 16;
+            if (Ralentizar.ActivateAbility == false && !friendly)
+            {
+                this.gameObject.layer = 16;
+            }
         }
        // Debug.Log(YellowDestroyeffect);
         //Debug.Log("Update bullet");

@@ -14,7 +14,7 @@ public class SceneMan : MonoBehaviour
 
     public void ToMenu()
     {
-        SceneManager.LoadScene("Main Menu");
+        SceneManager.LoadScene("Main_Menu");
     }
 
     public void ToLevel1()
@@ -34,6 +34,10 @@ public class SceneMan : MonoBehaviour
     public void ResetLevel()
     {
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+    }
+    public void ToTutorial()
+    {
+        SceneManager.LoadScene("Tutorial");
     }
     public void ExitGame()
     {

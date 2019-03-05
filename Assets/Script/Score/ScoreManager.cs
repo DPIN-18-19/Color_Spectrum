@@ -10,6 +10,7 @@ public class ScoreManager : MonoBehaviour
     //public Text Puntosdelnivel;
 
     //////////////////////////////////////
+    GameObject PuntosEnemigos;
     // Puntuacion
     public ScoreList score_data;
     public GradeList grade_data;
@@ -48,7 +49,7 @@ public class ScoreManager : MonoBehaviour
     string final_grade;
     List<ScoreGrade> grade_info;
     int grade_it;
-    
+   
     //////////////////////////////////////
     // Estadísticas
 
@@ -82,12 +83,15 @@ public class ScoreManager : MonoBehaviour
     void OnGameSceneLoaded(Scene scene, LoadSceneMode mode)
     {
         // Reorganize game level scenes to be within a range
-        if (scene.buildIndex == 2 )
+        if (scene.buildIndex == 2 || scene.buildIndex == 7)
         {
             ScoreScreen screen = FindObjectOfType<ScoreScreen>();
             screen.Init();
             screen.gameObject.SetActive(false);
+            PuntosEnemigos = GameObject.Find("PuntosEnemigos");
         }
+        else
+            PuntosEnemigos = null;
     }
 
     public void LoadScoreData(ScoreList n_score)
@@ -114,7 +118,8 @@ public class ScoreManager : MonoBehaviour
     void Update ()
     {
         CountTime();
-        //Puntosdelnivel.text = enemy_score.ToString();
+        if( PuntosEnemigos != null)
+        PuntosEnemigos.GetComponent<Text>().text = enemy_score.ToString();
         //Debug.Log("Time " + GetTime());
     }
 
