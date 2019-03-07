@@ -6,7 +6,7 @@ Material:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
-  m_Name: Mat_E_Rifle_Y
+  m_Name: Mat_E_Rifle_Damage_Y
   m_Shader: {fileID: 4800000, guid: 053e4279a99bc5f458a231ffe6a35ad0, type: 3}
   m_ShaderKeywords: _EMISSION _MASKAPPEARAXIS_DISTANCE _MASKAPPEARAXIS_NONE _NORMALMAP
     _SPECGLOSSMAP
@@ -71,10 +71,6 @@ Material:
         m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
-    - _MaskAppearNoise:
-        m_Texture: {fileID: 2800000, guid: 0aadcba748987a64db7e670239291cf8, type: 3}
-        m_Scale: {x: 8, y: 8}
-        m_Offset: {x: 0, y: 0}
     - _MetallicGlossMap:
         m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
@@ -122,29 +118,24 @@ Material:
     - _Cutoff: 0.5
     - _DetailMode: 0
     - _DetailNormalMapScale: 1
-    - _DissolveAmount: 0.58
     - _DstBlend: 0
     - _FresnelOpacity: 0
     - _FresnelPower: 2.07
     - _FresnelScale: 1
-    - _Glitch: 1
+    - _Glitch: 0.303
     - _GlitchInterval: 0.972
     - _GlitchSpeed: 50
     - _GlossMapScale: 0.725
     - _Glossiness: 0.281
     - _GlossyReflections: 1
     - _GlowOpacity: 0
-    - _GlowSize: 0.728
-    - _GlowSpeed: 0.4
+    - _GlowSize: 1
+    - _GlowSpeed: 1.5
     - _GlowTiling: 0.74
     - _HasAnimatedAlbedo: 0
     - _HasAnimatedEmission: 0
     - _HasTransmission: 1
     - _LightProbeScale: 1
-    - _MaskAppearAxis: 0
-    - _MaskAppearInvert: 0
-    - _MaskAppearProgress: 1.5
-    - _MaskAppearStrength: 0
     - _MetaDiffuseScale: 1
     - _MetaEmissionScale: 1
     - _MetaMetallicSoup: 1
@@ -167,8 +158,6 @@ Material:
     - _TransmissionThicknessScale: 1
     - _UVDetailMask: 0
     - _UVSec: 0
-    - _UseFresnelOpacity: 0
-    - _UseGlowOpacity: 0
     - _VertexOcclusionPower: 1
     - _ZWrite: 1
     - __dirty: 0
@@ -178,12 +167,11 @@ Material:
     - _AnimatedUVRange: {r: 0.5, g: 0.05, b: 0.05, a: 0.1}
     - _AnimatedUVScaleOffset: {r: 1, g: 1, b: 0, a: 0}
     - _Color: {r: 1, g: 1, b: 1, a: 1}
-    - _DissolveColor: {r: 0, g: 2.7241373, b: 5, a: 1}
-    - _EmissionColor: {r: 0.4339623, g: 0.18227233, b: 0, a: 0.92156863}
-    - _FlickerSpeed: {r: 0.01, g: 0.01, b: 0, a: 0}
-    - _FresnelColor: {r: 7.3772106, g: 4.3259034, b: 0, a: 1}
-    - _GlitchOffset: {r: 0.02, g: 0, b: 0, a: 0}
-    - _GlowColor: {r: 0.05490196, g: 0.03307805, b: 0, a: 1}
+    - _EmissionColor: {r: 0.047169805, g: 0.03361303, b: 0.0242524, a: 1}
+    - _FlickerSpeed: {r: 0.1, g: 0.1, b: 0, a: 0}
+    - _FresnelColor: {r: 3.4415908, g: 2.8469703, b: 0, a: 1}
+    - _GlitchOffset: {r: 0.09, g: 0.09, b: 0.09, a: 0}
+    - _GlowColor: {r: 0.7490196, g: 0, b: 0.043137256, a: 1}
     - _GlowColorm: {r: 0.34558794, g: 0.5125757, b: 1, a: 1}
     - _GlowSpeed: {r: 0, g: 2, b: 0, a: 0}
     - _MainColor: {r: 0.35294116, g: 0.35294116, b: 0.35294116, a: 1}
