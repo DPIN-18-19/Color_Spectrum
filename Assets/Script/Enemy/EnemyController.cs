@@ -22,17 +22,19 @@ public class EnemyController : MonoBehaviour
     //int damaging_layer1;
     //int damaging_layer2;
 
+        // Borrar
     /////////////////////////////////////////////////////
     // Animation
     public bool AttackMovePlayer;
     public bool AttackStopPlayer;
     Animator anim;
     
+    // Borrar
     /////////////////////////////////////////////////////
     // Navmesh variables
     private NavMeshAgent nav_agent;             // Navmesh object
     private GameObject target;                  // Move towards objective
-    //public Transform[] points;                  // Patrol points (unfinished)
+    //public Transform[] points;                // Patrol points (unfinished)
     public GameObject home;                     // Enemy return point
 
     // Moving variables
@@ -40,16 +42,21 @@ public class EnemyController : MonoBehaviour
 
     // Target Detection
     //public float home_distance;                   // Distance the enemy can be from home
+
+    // Borrar
     public float alert_distance;                    // Distance at which the enemy detects the player by getting near
     public float sight_distance;                    // Distance at which the enemy detects the player by sight
+
     //public float sight_angle;                     // Enemy field of view
     //float listen_distance;                        // Distance at which the enemy detects the player by noise
     //bool chase_by_near;
     //bool chase_on_sight;
 
+    // Borrar
     DetectionController detect;
 
     // Chasing
+    // Borrar
     public float safe_distance;                 // Distance the enemy can be from the player
 
     //////////////////////////////////////////////////
@@ -62,6 +69,7 @@ public class EnemyController : MonoBehaviour
 
     public AudioClip SonidoKi;
     
+    // Borrar
     //////////////////////////////////////////////////
     // Behaviour variables
     bool is_chasing;                        // Is enemy moving towards objective
@@ -110,12 +118,12 @@ public class EnemyController : MonoBehaviour
     
     void Start()
     {
-        anim = gameObject.GetComponent<Animator>();
-        source = GetComponent<AudioSource>();
-        nav_agent = GetComponent<NavMeshAgent>();
-        detect = GetComponent<DetectionController>();
-        shot = GetComponent<ShotEnemy>();
-        patrol = GetComponent<PatrolController>();
+        //anim = gameObject.GetComponent<Animator>();
+        //source = GetComponent<AudioSource>();
+        //nav_agent = GetComponent<NavMeshAgent>();
+        //detect = GetComponent<DetectionController>();
+        //shot = GetComponent<ShotEnemy>();
+        //patrol = GetComponent<PatrolController>();
         Ralentizar = GameObject.Find("Player_Naomi").GetComponent<Slow_Motion>();
 
         MaxRalentizarRotar = 1;
@@ -160,65 +168,65 @@ public class EnemyController : MonoBehaviour
             source.pitch = 1;
         }
 
-        // Debug.Log("Move");
-        DetectPlayer();
-        KeepDistance();
-        ShootTarget();
-        IsInHome();
-        IsPatrol();
+        //// Debug.Log("Move");
+        //DetectPlayer();
+        //KeepDistance();
+        //ShootTarget();
+        //IsInHome();
+        //IsPatrol();
 
-        // Go after player
-        if (is_chasing == true)
-        {
-            nav_agent.SetDestination(target.transform.position);
-            //nav_agent.speed = chase_speed;
+        //// Go after player
+        //if (is_chasing == true)
+        //{
+        //    nav_agent.SetDestination(target.transform.position);
+        //    //nav_agent.speed = chase_speed;
 
-            AttackMovePlayer = true;
-            anim.SetBool("Attack", AttackMovePlayer);
-            AttackStopPlayer = false;
-            anim.SetBool("AttackStop", AttackStopPlayer);
+        //    AttackMovePlayer = true;
+        //    anim.SetBool("Attack", AttackMovePlayer);
+        //    AttackStopPlayer = false;
+        //    anim.SetBool("AttackStop", AttackStopPlayer);
 
-            nav_agent.isStopped = false;
+        //    nav_agent.isStopped = false;
 
-            if (patrol != null)
-                patrol.is_patrol = false;
-        }
+        //    if (patrol != null)
+        //        patrol.is_patrol = false;
+        //}
 
-        // Go back home
-        if (back_home == true)
-        {
-            nav_agent.SetDestination(home.transform.position);
-            if(DontShot == false)
-            shot.isShooting = false;
-        }
+        //// Go back home
+        //if (back_home == true)
+        //{
+        //    nav_agent.SetDestination(home.transform.position);
+        //    if(DontShot == false)
+        //    shot.isShooting = false;
+        //}
 
-        // Rotate towards player instantly
-        if (look_target == true)
-        {
-            //transform.LookAt(target.transform.position);
+        //// Rotate towards player instantly
+        //if (look_target == true)
+        //{
+        //    //transform.LookAt(target.transform.position);
 
-            float look = LookAtAxis(target.transform.position);
+        //    float look = LookAtAxis(target.transform.position);
 
-            look = Mathf.LerpAngle(0, look, Time.deltaTime/ Slow_Rotation * 15.5f);
-            anim.SetFloat("EnemyTurn", look);
-            //transform.rotation = Quaternion.LookRotation((target.transform.position - transform.position).normalized, Vector3.up);
-            transform.Rotate(0, look, 0);
+        //    look = Mathf.LerpAngle(0, look, Time.deltaTime/ Slow_Rotation * 15.5f);
+        //    anim.SetFloat("EnemyTurn", look);
+        //    //transform.rotation = Quaternion.LookRotation((target.transform.position - transform.position).normalized, Vector3.up);
+        //    transform.Rotate(0, look, 0);
 
-            AttackStopPlayer = true;
-            anim.SetBool("AttackStop", AttackStopPlayer);
+        //    AttackStopPlayer = true;
+        //    anim.SetBool("AttackStop", AttackStopPlayer);
 
-            nav_agent.velocity = Vector3.zero;
-            nav_agent.isStopped = true; // Se para el enemigo
-        }
+        //    nav_agent.velocity = Vector3.zero;
+        //    nav_agent.isStopped = true; // Se para el enemigo
+        //}
 
-        if (in_home)
-        {
-            if (patrol != null && !patrol.is_patrol)
-            {
-                AttackMovePlayer = false;
-                anim.SetBool("Attack", AttackMovePlayer);
-            }
-        }
+        //if (in_home)
+        //{
+        //    if (patrol != null && !patrol.is_patrol)
+        //    {
+        //        AttackMovePlayer = false;
+        //        anim.SetBool("Attack", AttackMovePlayer);
+        //    }
+        //}
         // Freeze in navmesh
         //if (Stop == true)
         //{
@@ -260,120 +268,120 @@ public class EnemyController : MonoBehaviour
     }
 
 
-    // Player Detection
-    private void DetectPlayer()
-    {
-        if (is_chasing && !detect.IsPlayerNear(sight_distance))
-        {
-            is_chasing = false;
-            back_home = true;
-        }
+    //// Player Detection
+    //private void DetectPlayer()
+    //{
+    //    if (is_chasing && !detect.IsPlayerNear(sight_distance))
+    //    {
+    //        is_chasing = false;
+    //        back_home = true;
+    //    }
 
-        if (detect.IsPlayerInFront() && detect.IsPlayerNear(sight_distance)) // && detect.IsPlayerOnSight(sight_distance))
-        {
-            //Debug.Log("I see you");
-            is_chasing = true;
-            in_home = false;
-        }
-        else if (detect.IsPlayerNear(alert_distance) && detect.IsPlayerOnSight(sight_distance))
-        {
-            //Debug.Log("You are near me");
-            is_chasing = true;
-            in_home = false;
-        }
-    }
+    //    if (detect.IsPlayerInFront() && detect.IsPlayerNear(sight_distance)) // && detect.IsPlayerOnSight(sight_distance))
+    //    {
+    //        //Debug.Log("I see you");
+    //        is_chasing = true;
+    //        in_home = false;
+    //    }
+    //    else if (detect.IsPlayerNear(alert_distance) && detect.IsPlayerOnSight(sight_distance))
+    //    {
+    //        //Debug.Log("You are near me");
+    //        is_chasing = true;
+    //        in_home = false;
+    //    }
+    //}
 
-    private void KeepDistance()
-    {
-        if (isKamikaze == false)
-        {
-            if (detect.IsPlayerNear(safe_distance))
-            {
-                look_target = true;
+    //private void KeepDistance()
+    //{
+    //    if (isKamikaze == false)
+    //    {
+    //        if (detect.IsPlayerNear(safe_distance))
+    //        {
+    //            look_target = true;
 
-            }
-            else
-                look_target = false;
-        }
-        if(isKamikaze == true)
-        {
-            if (detect.IsPlayerNear(safe_distance))
-            {
-                look_target = true;
-                Invoke("DestroyEnemy", 1.5f);
-                nav_agent.velocity = Vector3.zero;
-                source.PlayOneShot(SonidoKi);
+    //        }
+    //        else
+    //            look_target = false;
+    //    }
+    //    if(isKamikaze == true)
+    //    {
+    //        if (detect.IsPlayerNear(safe_distance))
+    //        {
+    //            look_target = true;
+    //            Invoke("DestroyEnemy", 1.5f);
+    //            nav_agent.velocity = Vector3.zero;
+    //            source.PlayOneShot(SonidoKi);
 
-            }
-           // else
-              //  look_target = false;
-        }
-    }
+    //        }
+    //       // else
+    //          //  look_target = false;
+    //    }
+    //}
 
-    private void ShootTarget()
-    {
-        if (detect.IsPlayerInFront() && detect.IsPlayerOnSight(sight_distance))
-        {
-            if (DontShot == false)
-            {
-                shot.isShooting = true;
-                shot.random = false;
-            }
-        }
-        else
-        {
-            //shot.isShooting = false;
-            if (DontShot == false)
-            {
-                shot.random = true;
-            }
-        }
-    }
+    //private void ShootTarget()
+    //{
+    //    if (detect.IsPlayerInFront() && detect.IsPlayerOnSight(sight_distance))
+    //    {
+    //        if (DontShot == false)
+    //        {
+    //            shot.isShooting = true;
+    //            shot.random = false;
+    //        }
+    //    }
+    //    else
+    //    {
+    //        //shot.isShooting = false;
+    //        if (DontShot == false)
+    //        {
+    //            shot.random = true;
+    //        }
+    //    }
+    //}
 
-    private void IsHomeFar()
-    {
-        Vector3 home_distance = transform.position - home.transform.position;
+    //private void IsHomeFar()
+    //{
+    //    Vector3 home_distance = transform.position - home.transform.position;
 
-        if (home_distance.magnitude <= sight_distance)
-        {
-            is_chasing = true;
-        }
-        else
-        {
-            is_chasing = false;
-        }
-    }
+    //    if (home_distance.magnitude <= sight_distance)
+    //    {
+    //        is_chasing = true;
+    //    }
+    //    else
+    //    {
+    //        is_chasing = false;
+    //    }
+    //}
 
-    private void IsInHome()
-    {
-        if (back_home)
-        {
-           // Debug.Log("here");
-            float dist = nav_agent.remainingDistance;
-            if (dist != Mathf.Infinity /*&& nav_agent.pathStatus == NavMeshPathStatus.PathComplete*/ && nav_agent.remainingDistance == 0)
-            {
-                //Debug.Log("Home reached");
-                back_home = false;
-                in_home = true;
+    //private void IsInHome()
+    //{
+    //    if (back_home)
+    //    {
+    //       // Debug.Log("here");
+    //        float dist = nav_agent.remainingDistance;
+    //        if (dist != Mathf.Infinity /*&& nav_agent.pathStatus == NavMeshPathStatus.PathComplete*/ && nav_agent.remainingDistance == 0)
+    //        {
+    //            //Debug.Log("Home reached");
+    //            back_home = false;
+    //            in_home = true;
 
-                if (patrol != null)
-                {
-                   // Debug.Log("Start again");
-                    patrol.is_patrol = true;
-                    patrol.ResetPatrol();
-                }
-            }
-        }
-    }
+    //            if (patrol != null)
+    //            {
+    //               // Debug.Log("Start again");
+    //                patrol.is_patrol = true;
+    //                patrol.ResetPatrol();
+    //            }
+    //        }
+    //    }
+    //}
 
-    void IsPatrol()
-    {
-        if (patrol != null && patrol.is_patrol)
-        {
-            AttackMovePlayer = true;
-            anim.SetBool("Attack", AttackMovePlayer);
-        }
-    }
+    //void IsPatrol()
+    //{
+    //    if (patrol != null && patrol.is_patrol)
+    //    {
+    //        AttackMovePlayer = true;
+    //        anim.SetBool("Attack", AttackMovePlayer);
+    //    }
+    //}
 
     private void OnCollisionEnter(Collision col)
     {
@@ -427,16 +435,16 @@ public class EnemyController : MonoBehaviour
     }
 
 
-    //- Make a utilities script
-    public float LookAtAxis(Vector3 look_at)
-    {
-        // Calculate point to look at
-        Vector3 projection = Vector3.ProjectOnPlane(transform.position - look_at, transform.up);
+    ////- Make a utilities script
+    //public float LookAtAxis(Vector3 look_at)
+    //{
+    //    // Calculate point to look at
+    //    Vector3 projection = Vector3.ProjectOnPlane(transform.position - look_at, transform.up);
 
-        // Calculate Angle between current transform.front and object to look at
+    //    // Calculate Angle between current transform.front and object to look at
 
-        return Vector3.SignedAngle(transform.forward, projection, Vector3.up) - 180;
-    }
+    //    return Vector3.SignedAngle(transform.forward, projection, Vector3.up) - 180;
+    //}
     public void DestroyEnemy()
     {
         //Efecto de particulas de explosion
