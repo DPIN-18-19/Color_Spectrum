@@ -117,7 +117,7 @@ public class EnemyBehaviour : MonoBehaviour
         // Realizar disparos continuos
         if (detect.IsPlayerInFront() && detect.IsPlayerOnSight(sight_distance))
         {
-            shot.isShooting = true;
+            shot.is_shooting = true;
             shot.random = false;
         }
         // Realizar disparos aleatorios
@@ -148,9 +148,7 @@ public class EnemyBehaviour : MonoBehaviour
         //nav_agent.speed = chase_speed;
 
         attack_moving = true;
-        //anim.SetBool("Attack", AttackMoving);
         attack_in_place = false;
-        //anim.SetBool("AttackStop", AttackStopPlayer);
 
         nav_agent.isStopped = false;
 
@@ -162,7 +160,7 @@ public class EnemyBehaviour : MonoBehaviour
     void IsRetreating()
     {
         nav_agent.SetDestination(home.transform.position);
-        shot.isShooting = false;
+        shot.is_shooting = false;
 
         float dist = nav_agent.remainingDistance; // Distancia restante hasta objetivo
         if (dist != Mathf.Infinity && nav_agent.remainingDistance <= 5.0f /*&& nav_agent.pathStatus == NavMeshPathStatus.PathComplete*/)
@@ -183,25 +181,16 @@ public class EnemyBehaviour : MonoBehaviour
     void IsPatrolling()
     {
         attack_moving = true;
-        //anim.SetBool("Attack", AttackMovePlayer);
     }
 
     // Estado "Mirar"
     void IsLooking()
     {
-        //transform.LookAt(target.transform.position);
-
         correct_look = LookAtAxis(target.transform.position);
-
-        correct_look = Mathf.LerpAngle(0, correct_look, Time.deltaTime / Slow_Rotation * 15.5f);
-
-        //anim.SetFloat("EnemyTurn", look);
-
-        //transform.rotation = Quaternion.LookRotation((target.transform.position - transform.position).normalized, Vector3.up);
+        correct_look = Mathf.LerpAngle(0, correct_look, Time.deltaTime);// / Slow_Rotation * 15.5f);
         transform.Rotate(0, correct_look, 0);
 
         attack_in_place = true;
-        //anim.SetBool("AttackStop", AttackStopPlayer);
 
         nav_agent.velocity = Vector3.zero;
         nav_agent.isStopped = true; // Se para el enemigo
@@ -211,10 +200,7 @@ public class EnemyBehaviour : MonoBehaviour
     void IsInHome()
     {
         if (patrol != null && !patrol.is_patrol)
-        {
             attack_moving = false;
-            //anim.SetBool("Attack", AttackMovePlayer);
-        }
     }
     
     // Actualizar estado animacion

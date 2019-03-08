@@ -4,176 +4,204 @@ using UnityEngine;
 
 public class ShotEnemy : MonoBehaviour
 {
+
+    ////////////////////////////////////////////////
+    // Datos de bala
+    [Header ("Informacion de Bala")]
+    public GameObject bullet;               // Objeto bala
+    public float bullet_speed = 10;         // Velocidad de bala
+    public float bullet_dmg = 5;            // Dano de bala
+    public float bullet_range = 20;         // Rango de bala
+    public bool bullet_friend = false;      // Bando de bala
+
+    public Transform weapon;            // Arma de enemigo
+    Transform fire_pos;                 // Posicion de salida de bala
+    Transform effect_pos;               // Posicion de efecto disparo
+    Transform shell_pos;                // Posicion de salida casquillo
+
+    private float shot_c;                   // Contador tiempo entre disparos
+    [SerializeField]
+    private float shot_dur;                 // Duracion normal entre disparos
+    [SerializeField]
+    private float shot_dur_max;             // Duracion maxima entre disparos
+
+    [HideInInspector]
+    public bool random = false;         // Tipo de disparo aleatorio
+
+    [HideInInspector]
+    public bool is_shooting;            // Estado "Disparando"
+
+    ////////////////////////////////////////////////
     // Color
     int bullet_color;
 
+    // Material de balas
+    [Header("Elementos de Color")]
     public Material yellow_mat;
     public Material cyan_mat;
     public Material magenta_mat;
 
+    // Efecto de disparo
+    public ParticleSystem shot_effect_y;
+    public ParticleSystem shot_effect_c;
+    public ParticleSystem shot_effect_m;
 
-    public ParticleSystem Shot_effectYellow;
-    public ParticleSystem Shot_effectBlue;
-    public ParticleSystem Shot_effectPink;
-
-    public ParticleSystem ShellEfectYellow;
-    public ParticleSystem ShellEfectBlue;
-    public ParticleSystem ShellEfectPink;
-
+    // Casquillo de bala
+    public ParticleSystem shell_efect_y;
+    public ParticleSystem shell_efect_c;
+    public ParticleSystem shell_efect_m;
 
     ////////////////////////////////////////////////
-
-    public GameObject bullet;
-    public Transform FirePos;
-    public Transform EffectShot;
-    public float timeBetweenShorts = 3;
-    public float TimeShots;
-    private float TimeShotsMax;
-    private float TimeShotUltimate;
-    public bool isShooting;
-    //public GameObject EffectShot;
-    //public float FlashTime;
-    // public Transform Shell;
-    public Transform ShellEjection;
+    // Audio
+    private AudioSource a_source;
+    [Header("Efectos de Sonido")]
     public AudioClip FXShotEnemy;
-    private AudioSource source;
 
-
+    ///////////////////////////////////////////////
     //Ralentizar
     Slow_Motion Ralentizar;
     private float RalentizarDisparos;
+    [Header("Habilidad Ralentizar")]
     public float TiempoRalentizado;
 
-    ///////////////////////////////////////////////
-
-    public float bullet_speed = 10;
-    public float bullet_dmg = 5;
-    public float bullet_range = 20;
-    public bool bullet_friend = false;
-
     //////////////////////////////////////////////
-
-    public bool random = false;
-
-    void Awake()
-    {
-        source = GetComponent<AudioSource>();
-    }
-    // Use this for initialization
+    
     void Start()
     {
+        a_source = GetComponent<AudioSource>();
+
+        fire_pos = weapon.Find("FirePos");
+        effect_pos = weapon.Find("EffectPos");
+        shell_pos = weapon.Find("ShellPos");
+        
+        shot_c = shot_dur;
+
         RalentizarDisparos = 1f;
         Ralentizar = GameObject.Find("Player_Naomi").GetComponent<Slow_Motion>();
-        TimeShotsMax = TimeShots;
-        timeBetweenShorts = TimeShots;
-        TimeShotUltimate = TimeShots;
-        
+
+        TakeColor();
     }
 
     // Update is called once per frame
     void Update()
     {
         if (Ralentizar.ActivateAbility == true)
-        {
-            source.pitch = Ability_Time_Manager.Instance.FXRalentizado;
-        }
+            a_source.pitch = Ability_Time_Manager.Instance.FXRalentizado;
         if (Ralentizar.ActivateAbility == false)
-        {
-            source.pitch = 1;
-        }
+            a_source.pitch = 1;
 
-        timeBetweenShorts = timeBetweenShorts - Time.deltaTime;
+        shot_c -= Time.deltaTime;
 
-        if (timeBetweenShorts < 0 && isShooting == true)
+        // Realizar disparo
+        if (shot_c < 0 && is_shooting == true)
         {
             AddaptColor();
-            source.PlayOneShot(FXShotEnemy);
-            // EffectShot.SetActive(true);
-            GameObject bullet_shot = Instantiate(bullet, FirePos.position, FirePos.rotation);
-            //bullet_shot.GetComponent<BulletController>().AddBulletInfo(bullet_color,10, 5,20,false);   //- Create Gun Variables
+            a_source.PlayOneShot(FXShotEnemy);
+
+            GameObject bullet_shot = Instantiate(bullet, fire_pos.position, fire_pos.rotation);
             Vector3 bullet_dir = transform.forward;
+            bullet_shot.GetComponent<BulletController>().
+                        AddBulletInfo(bullet_color, -bullet_speed,
+                        bullet_dir, bullet_dmg, bullet_range, bullet_friend);   //- Create Gun Variables
 
-            bullet_shot.GetComponent<BulletController>().AddBulletInfo(bullet_color, -bullet_speed, bullet_dir, bullet_dmg, bullet_range, bullet_friend);   //- Create Gun Variables
-            // Instantiate(Shell, ShellEjection.position, ShellEjection.rotation);
-            timeBetweenShorts = TimeShots * RalentizarDisparos;
-            // Invoke("QuitarEfecto", FlashTime);
+            // Calculo de tiempo siguiente disparo
+            shot_c = NextShotTime() * RalentizarDisparos;
         }
+
         if(Ralentizar.ActivateAbility == true)
-        {
             RalentizarDisparos = Ability_Time_Manager.Instance.Slow_Enemy_Shoot;
-        }
         if(Ralentizar.ActivateAbility == false)
-        {
             RalentizarDisparos = 1f;
-        }
-    }
-    void QuitarEfecto()
-    {
-        // EffectShot.SetActive(false);
     }
 
-    // Change colors of bullet
-    void AddaptColor()
+    // Clase de tiempo entre disparos
+    float NextShotTime()
+    {
+        if (!random)
+            return shot_dur;
+        else
+            return Random.Range(shot_dur, shot_dur_max);
+    }
+
+    void TakeColor()
     {
         bullet_color = gameObject.GetComponent<EnemyController>().GetColor();
 
         switch (bullet_color)
         {
+            // Amarillo
             case 0:
                 if (bullet.GetComponent<Renderer>() != null)
-
-                bullet.GetComponent<Renderer>().material = yellow_mat;
+                    bullet.GetComponent<Renderer>().material = yellow_mat;
 
                 if (bullet.GetComponent<TrailRenderer>() != null)
-
                     bullet.GetComponent<TrailRenderer>().material = yellow_mat;
-
-                Instantiate(Shot_effectYellow.gameObject, EffectShot.position, EffectShot.rotation);
-
-                Instantiate(ShellEfectYellow.gameObject, ShellEjection.position, ShellEjection.rotation);
                 break;
+            // Cyan
             case 1:
                 if (bullet.GetComponent<Renderer>() != null)
-
                     bullet.GetComponent<Renderer>().material = cyan_mat;
 
                 if (bullet.GetComponent<TrailRenderer>() != null)
-
                     bullet.GetComponent<TrailRenderer>().material = cyan_mat;
-
-                Instantiate(Shot_effectBlue.gameObject, EffectShot.position, EffectShot.rotation);
-
-                Instantiate(ShellEfectBlue.gameObject, ShellEjection.position, ShellEjection.rotation);
                 break;
+            // Magenta
             case 2:
                 if (bullet.GetComponent<Renderer>() != null)
-
-                bullet.GetComponent<Renderer>().material = magenta_mat;
+                    bullet.GetComponent<Renderer>().material = magenta_mat;
 
                 if (bullet.GetComponent<TrailRenderer>() != null)
-
                     bullet.GetComponent<TrailRenderer>().material = magenta_mat;
-
-                Instantiate(Shot_effectPink.gameObject, EffectShot.position, EffectShot.rotation);
-
-                Instantiate(ShellEfectPink.gameObject, ShellEjection.position, ShellEjection.rotation);
-
                 break;
-            default:
-                Debug.Log("Hello");
-                break;
+
         }
     }
 
-    void NextShotTime()
+    // Change colors of bullet
+    void AddaptColor()
     {
-        if (!random)
+        //bullet_color = gameObject.GetComponent<EnemyController>().GetColor();
+
+        switch (bullet_color)
         {
-            timeBetweenShorts = TimeShots;
-        }
-        else
-        {
-            timeBetweenShorts = Random.Range(TimeShots, TimeShotsMax);
+            // Amarillo
+            case 0:
+                //if (bullet.GetComponent<Renderer>() != null)
+                //    bullet.GetComponent<Renderer>().material = yellow_mat;
+
+                //if (bullet.GetComponent<TrailRenderer>() != null)
+                //    bullet.GetComponent<TrailRenderer>().material = yellow_mat;
+
+                // Crear efectos adicionales de disparo
+                Instantiate(shot_effect_y.gameObject, effect_pos.position, effect_pos.rotation);
+                Instantiate(shell_efect_y.gameObject, shell_pos.position, shell_pos.rotation);
+                break;
+            // Cyan
+            case 1:
+                //if (bullet.GetComponent<Renderer>() != null)
+                //    bullet.GetComponent<Renderer>().material = cyan_mat;
+
+                //if (bullet.GetComponent<TrailRenderer>() != null)
+                //    bullet.GetComponent<TrailRenderer>().material = cyan_mat;
+
+                // Crear efectos adicionales de disparo
+                Instantiate(shot_effect_c.gameObject, effect_pos.position, effect_pos.rotation);
+                Instantiate(shell_efect_c.gameObject, shell_pos.position, shell_pos.rotation);
+                break;
+            // Magenta
+            case 2:
+                //if (bullet.GetComponent<Renderer>() != null)
+                //    bullet.GetComponent<Renderer>().material = magenta_mat;
+
+                //if (bullet.GetComponent<TrailRenderer>() != null)
+                //    bullet.GetComponent<TrailRenderer>().material = magenta_mat;
+
+                // Crear efectos adicionales de disparo
+                Instantiate(shot_effect_m.gameObject, effect_pos.position, effect_pos.rotation);
+                Instantiate(shell_efect_m.gameObject, shell_pos.position, shell_pos.rotation);
+                break;
+            default:
+                break;
         }
     }
 }

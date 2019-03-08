@@ -251,7 +251,7 @@ public class Enemy_ControllerKamikaze : MonoBehaviour {
         {
             nav_agent.SetDestination(home.transform.position);
             if (DontShot == false)
-                shot.isShooting = false;
+                shot.is_shooting = false;
         }
 
         // Rotate towards player instantly
@@ -351,7 +351,7 @@ public class Enemy_ControllerKamikaze : MonoBehaviour {
         {
             if (DontShot == false)
             {
-                shot.isShooting = true;
+                shot.is_shooting = true;
                 shot.random = false;
             }
         }

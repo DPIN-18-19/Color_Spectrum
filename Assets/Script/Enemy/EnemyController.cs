@@ -126,10 +126,10 @@ public class EnemyController : MonoBehaviour
         //patrol = GetComponent<PatrolController>();
         Ralentizar = GameObject.Find("Player_Naomi").GetComponent<Slow_Motion>();
 
-        MaxRalentizarRotar = 1;
-        target = GameObject.FindWithTag("Player");
-        MaxSpeedSlow = nav_agent.speed;
-        MaxAnimSlow = anim.speed;
+        ////MaxRalentizarRotar = 1;
+        //////target = GameObject.FindWithTag("Player");
+        ////MaxSpeedSlow = nav_agent.speed;
+        ////MaxAnimSlow = anim.speed;
       
         // DieEffect.Stop();
         // EnemyColorData();
@@ -159,14 +159,14 @@ public class EnemyController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Ralentizar.ActivateAbility == true)
-        {
-            source.pitch = Ability_Time_Manager.Instance.FXRalentizado;
-        }
-        if (Ralentizar.ActivateAbility == false)
-        {
-            source.pitch = 1;
-        }
+        ////if (Ralentizar.ActivateAbility == true)
+        ////{
+        ////    source.pitch = Ability_Time_Manager.Instance.FXRalentizado;
+        ////}
+        ////if (Ralentizar.ActivateAbility == false)
+        ////{
+        ////    source.pitch = 1;
+        ////}
 
         //// Debug.Log("Move");
         //DetectPlayer();
@@ -233,19 +233,19 @@ public class EnemyController : MonoBehaviour
         //    nav_agent.isStopped = true;
         //}
 
-        if(Ralentizar.ActivateAbility == true)
-        {
-            nav_agent.speed = Ability_Time_Manager.Instance.Slow_Enemy_Speed;
-            anim.speed = Ability_Time_Manager.Instance.Slow_Enemy_Animation;
-            Slow_Rotation = Ability_Time_Manager.Instance.Slow_Enemy_Rotation;
+        ////if(Ralentizar.ActivateAbility == true)
+        ////{
+        ////    nav_agent.speed = Ability_Time_Manager.Instance.Slow_Enemy_Speed;
+        ////    anim.speed = Ability_Time_Manager.Instance.Slow_Enemy_Animation;
+        ////    Slow_Rotation = Ability_Time_Manager.Instance.Slow_Enemy_Rotation;
            
-        }
-        if (Ralentizar.ActivateAbility == false)
-        {
-            nav_agent.speed = MaxSpeedSlow;
-            anim.speed = MaxAnimSlow;
-            Slow_Rotation = MaxRalentizarRotar;
-        }
+        ////}
+        ////if (Ralentizar.ActivateAbility == false)
+        ////{
+        ////    nav_agent.speed = MaxSpeedSlow;
+        ////    anim.speed = MaxAnimSlow;
+        ////    Slow_Rotation = MaxRalentizarRotar;
+        ////}
     }
 
     private void OnTriggerEnter(Collider col)
