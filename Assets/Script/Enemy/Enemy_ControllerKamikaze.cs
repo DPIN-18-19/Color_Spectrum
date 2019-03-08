@@ -243,7 +243,7 @@ public class Enemy_ControllerKamikaze : MonoBehaviour {
             nav_agent.isStopped = false;
 
             if (patrol != null)
-                patrol.is_patrol = false;
+                patrol.is_patrolling = false;
 
         }
         // Go back home
@@ -277,7 +277,7 @@ public class Enemy_ControllerKamikaze : MonoBehaviour {
 
         if (in_home)
         {
-            if (patrol != null && !patrol.is_patrol)
+            if (patrol != null && !patrol.is_patrolling)
             {
                 AttackMovePlayer = false;
                 anim.SetBool("Attack", AttackMovePlayer);
@@ -394,7 +394,7 @@ public class Enemy_ControllerKamikaze : MonoBehaviour {
                 if (patrol != null)
                 {
                     // Debug.Log("Start again");
-                    patrol.is_patrol = true;
+                    patrol.is_patrolling = true;
                     patrol.ResetPatrol();
                 }
             }
@@ -403,7 +403,7 @@ public class Enemy_ControllerKamikaze : MonoBehaviour {
 
     void IsPatrol()
     {
-        if (patrol != null && patrol.is_patrol)
+        if (patrol != null && patrol.is_patrolling)
         {
             AttackMovePlayer = true;
             anim.SetBool("Attack", AttackMovePlayer);

@@ -9,7 +9,7 @@ public class EnemyBehaviour : MonoBehaviour
     // Variables de componentes
     protected NavMeshAgent nav_agent;               // Objeto navmesh
     protected DetectionController detect;           // Deteccion
-    EnemyWeapon shot;                                 // Pistola
+    EnemyWeapon shot;                               // Pistola
     PatrolController patrol;                        // Patrulla
     Animator anim;                                  // Animacion
     protected AudioSource a_source;                 // Audio
@@ -67,7 +67,7 @@ public class EnemyBehaviour : MonoBehaviour
         if (is_retreat)
             IsRetreating();
         // Realizar "Patrullar"
-        if(patrol != null && patrol.is_patrol)
+        if(patrol != null && patrol.is_patrolling)
             IsPatrolling();
         // Realizar "Mirar"
         if(is_looking)
@@ -155,7 +155,7 @@ public class EnemyBehaviour : MonoBehaviour
         nav_agent.isStopped = false;
 
         if (patrol != null)
-            patrol.is_patrol = false;
+            patrol.is_patrolling = false;
     }
 
     // Estado "Regresar"
@@ -173,7 +173,7 @@ public class EnemyBehaviour : MonoBehaviour
             // Retornar a patrulla si debe
             if (patrol != null)
             {
-                patrol.is_patrol = true;
+                patrol.is_patrolling = true;
                 patrol.ResetPatrol();
             }
         }
@@ -201,7 +201,7 @@ public class EnemyBehaviour : MonoBehaviour
     // Estado "EnCasa"
     void IsInHome()
     {
-        if (patrol != null && !patrol.is_patrol)
+        if (patrol != null && !patrol.is_patrolling)
             attack_moving = false;
     }
     
