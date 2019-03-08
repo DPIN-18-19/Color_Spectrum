@@ -1265,7 +1265,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!1 &1954867720134270
 GameObject:
   m_ObjectHideFlags: 1
@@ -2220,7 +2220,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1308662797967840}
   m_LocalRotation: {x: -0, y: -0.7016744, z: 0, w: -0.7124978}
-  m_LocalPosition: {x: 1.04, y: 0.511, z: 1.83}
+  m_LocalPosition: {x: 1.026, y: 0.464, z: 1.78}
   m_LocalScale: {x: 0.8005598, y: 0.7810417, z: 0.6765918}
   m_Children:
   - {fileID: 4803781515248106}
@@ -2481,9 +2481,9 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1894679898562014}
-  m_LocalRotation: {x: -0, y: -0.99939454, z: -0, w: -0.034793016}
-  m_LocalPosition: {x: 19.13, y: 0.14763713, z: -41.04}
-  m_LocalScale: {x: 1.2481819, y: 1.2803414, z: 1.4793196}
+  m_LocalRotation: {x: 0, y: -1, z: 0, w: 0}
+  m_LocalPosition: {x: 7.41, y: 0.48799896, z: 28.412514}
+  m_LocalScale: {x: 1.2481824, y: 1.2803414, z: 1.47932}
   m_Children:
   - {fileID: 224054358170626316}
   - {fileID: 4416554905743860}
@@ -2491,7 +2491,7 @@ Transform:
   - {fileID: 4345563881583594}
   m_Father: {fileID: 0}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: -180, z: 0}
 --- !u!4 &4980928310713654
 Transform:
   m_ObjectHideFlags: 1
@@ -2585,8 +2585,8 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 0.5427656, y: 2.104978, z: 0.56636894}
-  m_Center: {x: 0.0032931713, y: 1.0501533, z: 0.018448262}
+  m_Size: {x: 1.5184625, y: 2.1049783, z: 1.3199874}
+  m_Center: {x: 0.048880335, y: 1.0501533, z: -0.006373217}
 --- !u!82 &82496302387991160
 AudioSource:
   m_ObjectHideFlags: 1
@@ -2760,10 +2760,11 @@ MonoBehaviour:
   - {fileID: 137176495161640782}
   - {fileID: 137055812419294336}
   - {fileID: 23611604157611988}
-  Blue_Material: {fileID: 2100000, guid: 045c46877d9f968428ffaac0cbbc2b72, type: 2}
+  - {fileID: 137985240308208952}
+  Blue_Material: {fileID: 2100000, guid: 49954b06e073e3c46af74fc9e8fa5257, type: 2}
   Yellow_Material: {fileID: 2100000, guid: 96683e285bdc6dc4497745a0cd47f05b, type: 2}
   Pink_Material: {fileID: 2100000, guid: 98d36da6d9f400f42b1e07defaf6246d, type: 2}
-  DamageBlueMaterial: {fileID: 2100000, guid: e43fa4d0447b95a429af486a124f30ee, type: 2}
+  DamageBlueMaterial: {fileID: 2100000, guid: 64e658d554c261640ab0a87671e7b6b3, type: 2}
   DamageYellowMaterial: {fileID: 2100000, guid: 390f52499765b494aa1d60c6885adbad,
     type: 2}
   DamagePinkMaterial: {fileID: 2100000, guid: beda41a991a501d478b05666e5ba2f20, type: 2}
@@ -2791,12 +2792,6 @@ MonoBehaviour:
   precomputeOutline: 0
   bakeKeys: []
   bakeValues: []
-  renderers:
-  - {fileID: 137176495161640782}
-  - {fileID: 137055812419294336}
-  - {fileID: 137820294783977392}
-  - {fileID: 137985240308208952}
-  - {fileID: 23611604157611988}
 --- !u!114 &114433030475669150
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -2873,7 +2868,7 @@ MonoBehaviour:
   - {fileID: 198960496170012676, guid: 6b023f22181b1d640a11c4ae1a24ade8, type: 2}
   FxDie: {fileID: 0}
   EnemyMaterials: {fileID: 114090430353400568}
-  TimeDamageMat: 0.4
+  TimeDamageMat: 0.65
   "Da\xF1o": 0
   score: 100
 --- !u!114 &114645177037812472
@@ -2914,9 +2909,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1baa2c15fb894ee4c907596f32dcc8e0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  patrol_points:
-  - {fileID: 4184501367832760}
-  - {fileID: 4791694597909668}
+  patrol_points: []
   wait_time: 0
   patrol_speed: 2
   is_patrol: 1

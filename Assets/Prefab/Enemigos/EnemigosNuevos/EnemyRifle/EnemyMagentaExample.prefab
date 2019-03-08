@@ -1382,7 +1382,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1929973850218482}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 46.791256, y: -47.2, z: -22.033554}
+  m_LocalPosition: {x: 10.578235, y: 0.48799896, z: 55.255978}
   m_LocalScale: {x: 1.2848799, y: 1.2848799, z: 1.2848799}
   m_Children:
   - {fileID: 224632376777443738}
@@ -1787,8 +1787,8 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 1, y: 2.104978, z: 1}
-  m_Center: {x: 0, y: 1.0501531, z: -0}
+  m_Size: {x: 1.5848846, y: 2.1049778, z: 1.5975246}
+  m_Center: {x: -0.0027455026, y: 1.0501531, z: 0.005768506}
 --- !u!82 &82479958111313594
 AudioSource:
   m_ObjectHideFlags: 1
@@ -2064,7 +2064,7 @@ MonoBehaviour:
   - {fileID: 198960496170012676, guid: 6b023f22181b1d640a11c4ae1a24ade8, type: 2}
   FxDie: {fileID: 0}
   EnemyMaterials: {fileID: 114284460066396250}
-  TimeDamageMat: 0.4
+  TimeDamageMat: 0.5
   "Da\xF1o": 0
   score: 100
 --- !u!114 &114670345576181710
@@ -2078,9 +2078,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5e6e62700134e404d8bd51107b5ff240, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  yellow_mat: {fileID: 2100000, guid: 5a96abfc6a74b1841ba0d0201453881b, type: 2}
+  yellow_mat: {fileID: 2100000, guid: d88ec5f6f06e64d4db6956c458f0b867, type: 2}
   cyan_mat: {fileID: 2100000, guid: 95506bf5b0569b94f91203cd4b7bf4f4, type: 2}
-  magenta_mat: {fileID: 2100000, guid: a3bb50ec3e1a5b5419ae6870033ad15d, type: 2}
+  magenta_mat: {fileID: 2100000, guid: 2d0ac1555fd56254c83e06f281b9678d, type: 2}
   Shot_effectYellow: {fileID: 198534960484000138, guid: f3dd52b642049b24b810219ac86f23ec,
     type: 2}
   Shot_effectBlue: {fileID: 198857426217267120, guid: 36020c596b143aa41b0a3ec20a2be32c,
