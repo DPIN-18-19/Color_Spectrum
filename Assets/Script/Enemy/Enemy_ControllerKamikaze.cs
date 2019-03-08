@@ -56,7 +56,7 @@ public class Enemy_ControllerKamikaze : MonoBehaviour {
 
 
     // Shooting
-    ShotEnemy shot;                             // Enemy's gun
+    EnemyWeapon shot;                             // Enemy's gun
     public bool DontShot;
     //public ParticleSystem DieEffect;            // Die particles
     //public bool Stop;                         // (Unused)
@@ -104,7 +104,7 @@ public class Enemy_ControllerKamikaze : MonoBehaviour {
         nav_agent = GetComponent<UnityEngine.AI.NavMeshAgent>();
 
         detect = GetComponent<DetectionController>();
-        shot = GetComponent<ShotEnemy>();
+        shot = GetComponent<EnemyWeapon>();
 
         patrol = GetComponent<PatrolController>();
 

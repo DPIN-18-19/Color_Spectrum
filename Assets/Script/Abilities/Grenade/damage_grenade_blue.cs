@@ -34,7 +34,7 @@ public class damage_grenade_blue : MonoBehaviour {
                 if (hit.transform.gameObject.tag != "Yellow" && hit.transform.gameObject.tag != "Pink")
                 {
                     Debug.Log("DañoBlue");
-                    other.GetComponent<EnemyHealthController>().GetDamage(damage);
+                    other.GetComponent<EnemyHealth>().GetDamage(damage);
                 }
                 Debug.Log(hit.transform.name);
                 // HacerDañoYellow();

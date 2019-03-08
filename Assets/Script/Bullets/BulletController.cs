@@ -322,10 +322,10 @@ public class BulletController : MonoBehaviour
            
             if (friendly)
             {
-                if (col.gameObject.GetComponent<EnemyHealthController>().IsWeak(gameObject.tag, gameObject.layer))
+                if (col.gameObject.GetComponent<EnemyHealth>().IsWeak(gameObject.tag, gameObject.layer))
                 {
                     Debug.Log("BalaIsWeak");
-                    col.gameObject.GetComponent<EnemyHealthController>().GetDamage(bullet_damage);
+                    col.gameObject.GetComponent<EnemyHealth>().GetDamage(bullet_damage);
 
                     if (YellowDestroyeffect)
                     {
@@ -425,8 +425,8 @@ public class BulletController : MonoBehaviour
         else if (col.gameObject.tag.Contains("Enemy"))
         {
             Debug.Log("Enemy hit");
-            if (col.gameObject.GetComponent<EnemyHealthController>().IsWeak(gameObject.tag, gameObject.layer))
-                col.gameObject.GetComponent<EnemyHealthController>().GetDamage(bullet_damage);
+            if (col.gameObject.GetComponent<EnemyHealth>().IsWeak(gameObject.tag, gameObject.layer))
+                col.gameObject.GetComponent<EnemyHealth>().GetDamage(bullet_damage);
 
             Destroy(gameObject);
         }

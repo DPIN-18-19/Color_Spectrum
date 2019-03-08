@@ -61,7 +61,7 @@ public class EnemyController : MonoBehaviour
 
     //////////////////////////////////////////////////
     // Shooting
-    ShotEnemy shot;                             // Enemy's gun
+    EnemyWeapon shot;                             // Enemy's gun
     public bool DontShot;
     //public ParticleSystem DieEffect;            // Die particles
     //public bool Stop;                         // (Unused)

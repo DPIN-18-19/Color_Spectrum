@@ -9,13 +9,15 @@ public class EnemyBehaviour : MonoBehaviour
     // Variables de componentes
     protected NavMeshAgent nav_agent;               // Objeto navmesh
     protected DetectionController detect;           // Deteccion
-    ShotEnemy shot;                                 // Pistola
+    EnemyWeapon shot;                                 // Pistola
     PatrolController patrol;                        // Patrulla
     Animator anim;                                  // Animacion
     protected AudioSource a_source;                 // Audio
     
-    private GameObject target;              // Objetivo de enemigo
-    public Transform home;                  // Punto de regreso de enemigo
+    //////////////////////////////////////////////////
+    // Variables de informacion
+    GameObject target;              // Objetivo de enemigo
+    Transform home;                  // Punto de regreso de enemigo
     
     public float alert_distance;                // Distancia que el enemigo detecta por acercarse
     public float sight_distance;                // Distancia que el enemigo detecta por visión
@@ -40,7 +42,7 @@ public class EnemyBehaviour : MonoBehaviour
         // Inicializar variables componentes
         nav_agent = GetComponent<NavMeshAgent>();
         detect = GetComponent<DetectionController>();
-        shot = GetComponent<ShotEnemy>();
+        shot = GetComponent<EnemyWeapon>();
         patrol = GetComponent<PatrolController>();
         anim = GetComponent<Animator>();
         a_source = GetComponent<AudioSource>();
