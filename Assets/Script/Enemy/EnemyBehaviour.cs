@@ -13,15 +13,24 @@ public class EnemyBehaviour : MonoBehaviour
     PatrolController patrol;                        // Patrulla
     Animator anim;                                  // Animacion
     protected AudioSource a_source;                 // Audio
-    
+
+    //////////////////////////////////////////////////
+    // Variables de customizacion
+    //public float home_distance;                 // Distancia a la que el enemigo puede estar de casa
+    ////public float sight_angle;                   // Campo de visión del enemigo
+    //float listen_distance;                      // Distancia a la que el enemigo puede detectar algo
+    bool can_detect_near;
+    bool can_see;
+
     //////////////////////////////////////////////////
     // Variables de informacion
     GameObject target;              // Objetivo de enemigo
     Transform home;                  // Punto de regreso de enemigo
-    
+    [Header ("Metricas de deteccion")]
     public float alert_distance;                // Distancia que el enemigo detecta por acercarse
     public float sight_distance;                // Distancia que el enemigo detecta por visión
     public float safe_distance;                 // Distancia que el enemigo mantiene del jugador
+    public float sight_angle;                   // Angulo de vision del enemigo
 
     //////////////////////////////////////////////////
     // Variables de comportamiento
@@ -91,7 +100,7 @@ public class EnemyBehaviour : MonoBehaviour
             is_retreat = true;
         }
         // Comprobar si enemigo ve a jugador
-        if (detect.IsPlayerInFront() && detect.IsPlayerNear(sight_distance)) // && detect.IsPlayerOnSight(sight_distance))
+        if (detect.IsPlayerInFront(sight_angle) && detect.IsPlayerNear(sight_distance)) // && detect.IsPlayerOnSight(sight_distance))
         {
             is_chasing = true;
             in_home = false;
@@ -117,7 +126,7 @@ public class EnemyBehaviour : MonoBehaviour
     void ShootTarget()
     {
         // Realizar disparos continuos
-        if (detect.IsPlayerInFront() && detect.IsPlayerOnSight(sight_distance))
+        if (detect.IsPlayerInFront(sight_angle) && detect.IsPlayerOnSight(sight_distance))
         {
             shot.is_shooting = true;
             shot.random = false;

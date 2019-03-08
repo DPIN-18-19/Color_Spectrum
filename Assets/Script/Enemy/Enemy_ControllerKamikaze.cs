@@ -320,7 +320,7 @@ public class Enemy_ControllerKamikaze : MonoBehaviour {
             back_home = true;
         }
 
-        if (detect.IsPlayerInFront() && detect.IsPlayerNear(sight_distance)) // && detect.IsPlayerOnSight(sight_distance))
+        if (detect.IsPlayerInFront(30) && detect.IsPlayerNear(sight_distance)) // && detect.IsPlayerOnSight(sight_distance))
         {
             //Debug.Log("I see you");
             is_chasing = true;
@@ -347,7 +347,7 @@ public class Enemy_ControllerKamikaze : MonoBehaviour {
 
     private void ShootTarget()
     {
-        if (detect.IsPlayerInFront() && detect.IsPlayerOnSight(sight_distance))
+        if (detect.IsPlayerInFront(30) && detect.IsPlayerOnSight(sight_distance))
         {
             if (DontShot == false)
             {
