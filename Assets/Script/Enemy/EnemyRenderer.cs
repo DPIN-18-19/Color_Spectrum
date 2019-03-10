@@ -24,7 +24,6 @@ public class EnemyRenderer : MonoBehaviour
     public Material DamagePinkMaterial;
 
     //Outline outline;
-
     private void Start()
     {
         cur_color = GetComponent<EnemyController>().GetColor();

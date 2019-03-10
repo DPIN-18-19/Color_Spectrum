@@ -69,7 +69,6 @@ public class PlayerRotation : MonoBehaviour
 
     public void SetNewGunHeight(Transform pos)
     {
-        Debug.Log("Here");
         weapon_height = pos.position.y;
     }
 }

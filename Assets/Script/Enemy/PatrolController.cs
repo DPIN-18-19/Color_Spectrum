@@ -72,7 +72,7 @@ public class PatrolController : MonoBehaviour
     // Comprobar si se ha alcanzado el siguiente punto
     void CheckArrived()
     {
-        if (is_waiting)
+        if (!is_waiting)
         {
             float dist = nav_agent.remainingDistance;
             if (dist != Mathf.Infinity && nav_agent.remainingDistance <= 0.5f /*&& nav_agent.pathStatus == NavMeshPathStatus.PathComplete*/ )

@@ -9,28 +9,33 @@ public class EnemyBehaviour : MonoBehaviour
     // Variables de componentes
     protected NavMeshAgent nav_agent;               // Objeto navmesh
     protected DetectionController detect;           // Deteccion
-    EnemyWeapon shot;                               // Pistola
-    PatrolController patrol;                        // Patrulla
-    Animator anim;                                  // Animacion
+    protected EnemyWeapon shot;                     // Pistola
+    protected PatrolController patrol;              // Patrulla
+    protected Animator anim;                        // Animacion
     protected AudioSource a_source;                 // Audio
 
     //////////////////////////////////////////////////
     // Variables de customizacion
-    //public float home_distance;                 // Distancia a la que el enemigo puede estar de casa
-    ////public float sight_angle;                   // Campo de visión del enemigo
-    //float listen_distance;                      // Distancia a la que el enemigo puede detectar algo
-    bool can_detect_near;
-    bool can_see;
+    [Header("Customizacion de estados")]
+    [SerializeField]
+    private bool can_detect_near = true;               // Puede detectar por cercanía
+    [SerializeField]
+    private bool can_see = true;                       // Puede detectar por vista
+    [SerializeField]
+    private bool can_shoot = true;                     // Puede disparar
+    [SerializeField]
+    private bool can_move = true;                      // Puede moverse
 
     //////////////////////////////////////////////////
     // Variables de informacion
-    GameObject target;              // Objetivo de enemigo
-    Transform home;                  // Punto de regreso de enemigo
+    protected GameObject target;                // Objetivo de enemigo
+    protected Transform home;                   // Punto de regreso de enemigo
     [Header ("Metricas de deteccion")]
     public float alert_distance;                // Distancia que el enemigo detecta por acercarse
-    public float sight_distance;                // Distancia que el enemigo detecta por visión
+    public float sight_distance;                // Distancia que el enemigo detecta por vision
     public float safe_distance;                 // Distancia que el enemigo mantiene del jugador
     public float sight_angle;                   // Angulo de vision del enemigo
+    public float lost_distance;                 // Distancia que tras alejarse, el enemigo pierde interes
 
     //////////////////////////////////////////////////
     // Variables de comportamiento
@@ -42,9 +47,24 @@ public class EnemyBehaviour : MonoBehaviour
     
     /////////////////////////////////////////////////////
     // Variables de animacion
-    bool attack_moving;             // Pose de atacar desplazandose
-    bool attack_in_place;           // Pose de atacar quieto
+    [HideInInspector]
+    public bool attack_moving;             // Pose de atacar desplazandose
+    [HideInInspector]
+    public bool attack_in_place;           // Pose de atacar quieto
     float correct_look;             // Aplicar animacion de rotacion
+
+    ///////////////////////////////////////////////////////
+    //RalentizarMovimiento
+    Slow_Motion Ralentizar;
+    public float SpeedSlow;
+
+    private float MaxSpeedSlow;
+    public float AnimSlow;
+    private float MaxAnimSlow;
+
+    private float Slow_Rotation;
+    public float RalentizarRotar;
+    private float MaxRalentizarRotar;
 
     private void Start()
     {
@@ -59,6 +79,16 @@ public class EnemyBehaviour : MonoBehaviour
         // Inicializar objetos objetivo
         target = GameObject.FindWithTag("Player");
         home = transform.parent.Find("EnemyHome");
+
+        if (!can_move)
+            nav_agent.speed = 0;
+
+        Ralentizar = target.GetComponentInChildren<Slow_Motion>();
+        // Habilidad ralentizar
+        MaxRalentizarRotar = 1;
+        //target = GameObject.FindWithTag("Player");
+        MaxSpeedSlow = nav_agent.speed;
+        MaxAnimSlow = anim.speed;
     }
 
     private void Update()
@@ -66,7 +96,8 @@ public class EnemyBehaviour : MonoBehaviour
         // Cambiadores de estado
         DetectPlayer();
         KeepDistance();
-        ShootTarget();
+        if(can_shoot)
+            ShootTarget();
 
         // Estados de enemigo
         // Realizar "Perseguir"
@@ -86,6 +117,22 @@ public class EnemyBehaviour : MonoBehaviour
             IsInHome();
 
         UpdateAnimState();
+
+        // Habilidad ralentizar
+        if (Ralentizar.ActivateAbility == true)
+        {
+            a_source.pitch = Ability_Time_Manager.Instance.FXRalentizado;
+            nav_agent.speed = Ability_Time_Manager.Instance.Slow_Enemy_Speed;
+            anim.speed = Ability_Time_Manager.Instance.Slow_Enemy_Animation;
+            Slow_Rotation = Ability_Time_Manager.Instance.Slow_Enemy_Rotation;
+        }
+        if (Ralentizar.ActivateAbility == false)
+        {
+            a_source.pitch = 1;
+            nav_agent.speed = MaxSpeedSlow;
+            anim.speed = MaxAnimSlow;
+            Slow_Rotation = MaxRalentizarRotar;
+        }
     }
 
     ////////////////////////////////////////////////////////////////////
@@ -94,23 +141,28 @@ public class EnemyBehaviour : MonoBehaviour
     private void DetectPlayer()
     {
         // En estado "Perseguir", no se ve al jugador
-        if (is_chasing && !detect.IsPlayerNear(sight_distance))
+        if (is_chasing && !detect.IsPlayerNear(lost_distance))
         {
             is_chasing = false;
             is_retreat = true;
         }
-        // Comprobar si enemigo ve a jugador
-        if (detect.IsPlayerInFront(sight_angle) && detect.IsPlayerNear(sight_distance)) // && detect.IsPlayerOnSight(sight_distance))
-        {
-            is_chasing = true;
-            in_home = false;
-        }
-        // Comprobar si enemigo detecta jugador cerca. No detecta si hay obstáculo en medio.
-        else if (detect.IsPlayerNear(alert_distance) && detect.IsPlayerOnSight(sight_distance))
-        {
-            is_chasing = true;
-            in_home = false;
-        }
+
+        if(can_see)
+            // Comprobar si enemigo ve a jugador
+            if (detect.IsPlayerInFront(sight_angle) && detect.IsPlayerNear(sight_distance) && detect.IsPlayerOnSight(sight_distance))
+            {
+                Debug.Log("I see");
+                is_chasing = true;
+                in_home = false;
+            }
+
+        if(can_detect_near)
+            // Comprobar si enemigo detecta jugador cerca. No detecta si hay obstáculo en medio.
+            if (detect.IsPlayerNear(alert_distance) && detect.IsPlayerOnSight(sight_distance))
+            {
+                is_chasing = true;
+                in_home = false;
+            }
     }
 
     // El enemigo se encuentra en la distancia de seguridad
@@ -123,7 +175,7 @@ public class EnemyBehaviour : MonoBehaviour
     }
 
     // Realizar disparos 
-    void ShootTarget()
+    protected virtual void ShootTarget()
     {
         // Realizar disparos continuos
         if (detect.IsPlayerInFront(sight_angle) && detect.IsPlayerOnSight(sight_distance))
@@ -133,10 +185,7 @@ public class EnemyBehaviour : MonoBehaviour
         }
         // Realizar disparos aleatorios
         else
-        {
-            //shot.isShooting = false;
             shot.random = true;
-        }
     }
 
     // El enemigo está lejos de su punto de retorno
@@ -198,7 +247,7 @@ public class EnemyBehaviour : MonoBehaviour
     void IsLooking()
     {
         correct_look = LookAtAxis(target.transform.position);
-        correct_look = Mathf.LerpAngle(0, correct_look, Time.deltaTime);// / Slow_Rotation * 15.5f);
+        correct_look = Mathf.LerpAngle(0, correct_look, Time.deltaTime / Slow_Rotation * 15.5f);
         transform.Rotate(0, correct_look, 0);
 
         attack_in_place = true;
