@@ -26,6 +26,7 @@ public class UnlockMan : MonoBehaviour
             Destroy(gameObject);
     }
 
+    // Descbloqueo mediante puntuacion
     public void ScoreLevelUnlock(string level_name)
     {
         int index = GetUnlockIndex(level_name);
@@ -61,6 +62,7 @@ public class UnlockMan : MonoBehaviour
         }
     }
 
+    // Desbloqueo de objetos de tienda
     public void StoreUnlock(string level_name)
     {
         int index = GetUnlockIndex(level_name);
@@ -102,6 +104,7 @@ public class UnlockMan : MonoBehaviour
         }
     }
 
+    // Buscar indice de desbloqueables por nombre de nivel
     int GetUnlockIndex(string level_name)
     {
         for(int i = 0; i < unlock_per_level.unlock_l.Count; ++i)
@@ -112,6 +115,7 @@ public class UnlockMan : MonoBehaviour
         return -1;
     }
 
+    // Generar identificador para objeto de tienda
     int GenerateStoreId()
     {
         bool valid_id = false;
