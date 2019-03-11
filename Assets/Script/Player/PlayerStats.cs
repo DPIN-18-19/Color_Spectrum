@@ -39,7 +39,7 @@ public class PlayerStats : MonoBehaviour
 
     void LoadChips()
     {
-        Debug.Log(health);
+        //Debug.Log(health);
         for(int i = 0; i < player_chips.chips.Count; ++i)
         {
             Debug.Log(i + " out of ME " + player_chips.chips.Count);
@@ -65,7 +65,7 @@ public class PlayerStats : MonoBehaviour
 
             ++num_chips;
         }
-        Debug.Log(health);
+        //Debug.Log(health);
     }
 
     void ResetPlayer()

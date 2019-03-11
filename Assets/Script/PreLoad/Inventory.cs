@@ -18,7 +18,7 @@ public class Inventory : MonoBehaviour
 
     private void Awake()
     {
-        Debug.Log("I was called");
+        //Debug.Log("I was called");
         i_equipped_w.i_weapon_chips.Clear();
         i_equipped_w.i_weapon_chips.Add(i_weapons.i_weapon_chips[0]);
         i_equipped_w.i_weapon_chips.Add(i_weapons.i_weapon_chips[2]);

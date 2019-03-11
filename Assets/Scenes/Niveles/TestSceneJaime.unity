@@ -3482,7 +3482,6 @@ MonoBehaviour:
   isShooting: 0
   ShellEjection: {fileID: 1969426201}
   FXShotEnemy: {fileID: 8300000, guid: 93bafb5448c982a449e63a3638736494, type: 3}
-  TiempoRalentizado: 2
   bullet_speed: 10
   bullet_dmg: 5
   bullet_range: 20
@@ -14567,7 +14566,6 @@ MonoBehaviour:
   isShooting: 0
   ShellEjection: {fileID: 391578170}
   FXShotEnemy: {fileID: 8300000, guid: 93bafb5448c982a449e63a3638736494, type: 3}
-  TiempoRalentizado: 2
   bullet_speed: 10
   bullet_dmg: 5
   bullet_range: 20
@@ -21779,7 +21777,6 @@ MonoBehaviour:
   isShooting: 0
   ShellEjection: {fileID: 1538140337}
   FXShotEnemy: {fileID: 8300000, guid: 93bafb5448c982a449e63a3638736494, type: 3}
-  TiempoRalentizado: 2
   bullet_speed: 10
   bullet_dmg: 5
   bullet_range: 20
@@ -25194,7 +25191,6 @@ MonoBehaviour:
   isShooting: 0
   ShellEjection: {fileID: 399114355}
   FXShotEnemy: {fileID: 8300000, guid: dd51baefde0215445aba92c6f8953760, type: 3}
-  TiempoRalentizado: 2
   bullet_speed: 0.1
   bullet_dmg: 20
   bullet_range: 4
@@ -68307,7 +68303,6 @@ MonoBehaviour:
   isShooting: 0
   ShellEjection: {fileID: 1988407476}
   FXShotEnemy: {fileID: 8300000, guid: dd51baefde0215445aba92c6f8953760, type: 3}
-  TiempoRalentizado: 2
   bullet_speed: 0.1
   bullet_dmg: 20
   bullet_range: 4
@@ -75368,37 +75363,37 @@ Prefab:
         type: 2}
       propertyPath: m_Materials.Array.data[0]
       value: 
-      objectReference: {fileID: 2100000, guid: 4e3b9a6ce4471864893fc30ebf395ed1, type: 2}
+      objectReference: {fileID: 2100000, guid: cdc0d532051888a49a9081ae663f8803, type: 2}
     - target: {fileID: 23555967613637586, guid: b896cfdaa2ba53745835db0f0a05c097,
         type: 2}
       propertyPath: m_Materials.Array.data[0]
       value: 
-      objectReference: {fileID: 2100000, guid: 0f7d7dad4f402324f91386b0b85b472b, type: 2}
+      objectReference: {fileID: 2100000, guid: cdc0d532051888a49a9081ae663f8803, type: 2}
     - target: {fileID: 23666512066304138, guid: b896cfdaa2ba53745835db0f0a05c097,
         type: 2}
       propertyPath: m_Materials.Array.data[0]
       value: 
-      objectReference: {fileID: 2100000, guid: 0f7d7dad4f402324f91386b0b85b472b, type: 2}
+      objectReference: {fileID: 2100000, guid: cdc0d532051888a49a9081ae663f8803, type: 2}
     - target: {fileID: 23043914622197096, guid: b896cfdaa2ba53745835db0f0a05c097,
         type: 2}
       propertyPath: m_Materials.Array.data[0]
       value: 
-      objectReference: {fileID: 2100000, guid: 0f7d7dad4f402324f91386b0b85b472b, type: 2}
+      objectReference: {fileID: 2100000, guid: cdc0d532051888a49a9081ae663f8803, type: 2}
     - target: {fileID: 23989255066409370, guid: b896cfdaa2ba53745835db0f0a05c097,
         type: 2}
       propertyPath: m_Materials.Array.data[0]
       value: 
-      objectReference: {fileID: 2100000, guid: 0f7d7dad4f402324f91386b0b85b472b, type: 2}
+      objectReference: {fileID: 2100000, guid: cdc0d532051888a49a9081ae663f8803, type: 2}
     - target: {fileID: 23012015374312824, guid: b896cfdaa2ba53745835db0f0a05c097,
         type: 2}
       propertyPath: m_Materials.Array.data[0]
       value: 
-      objectReference: {fileID: 2100000, guid: 4e3b9a6ce4471864893fc30ebf395ed1, type: 2}
+      objectReference: {fileID: 2100000, guid: cdc0d532051888a49a9081ae663f8803, type: 2}
     - target: {fileID: 23805604130421572, guid: b896cfdaa2ba53745835db0f0a05c097,
         type: 2}
       propertyPath: m_Materials.Array.data[0]
       value: 
-      objectReference: {fileID: 2100000, guid: 4e3b9a6ce4471864893fc30ebf395ed1, type: 2}
+      objectReference: {fileID: 2100000, guid: cdc0d532051888a49a9081ae663f8803, type: 2}
     m_RemovedComponents:
     - {fileID: 95638822747148630, guid: b896cfdaa2ba53745835db0f0a05c097, type: 2}
   m_SourcePrefab: {fileID: 100100000, guid: b896cfdaa2ba53745835db0f0a05c097, type: 2}
@@ -83013,7 +83008,7 @@ MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1721451222}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: ff26db721962cdf4a8edcdfa9a767d2a, type: 3}
   m_Name: 
@@ -83675,7 +83670,6 @@ MonoBehaviour:
   isShooting: 0
   ShellEjection: {fileID: 973614413}
   FXShotEnemy: {fileID: 8300000, guid: 9ebf0ed6d21bf4042b79b58f35db6af8, type: 3}
-  TiempoRalentizado: 2
   bullet_speed: 10
   bullet_dmg: 10
   bullet_range: 20
@@ -89416,7 +89410,6 @@ MonoBehaviour:
   isShooting: 0
   ShellEjection: {fileID: 289743918}
   FXShotEnemy: {fileID: 8300000, guid: 93bafb5448c982a449e63a3638736494, type: 3}
-  TiempoRalentizado: 2
   bullet_speed: 10
   bullet_dmg: 5
   bullet_range: 20

@@ -191,13 +191,13 @@ public class BulletController : MonoBehaviour
         //Condicion !friendly(Enemigo) Ralentizar.
         if(!friendly && Ralentizar.ActivateAbility == true )
         {
-            Debug.Log("Ralentizado");
+            //Debug.Log("Ralentizado");
             ralentizarVelocidad = Ability_Time_Manager.Instance.Slow_Bullet_Velocity;
             ralentizarDestruccion = Ability_Time_Manager.Instance.Slow_Bullet_Destroy;     
         }
         if (!friendly && Ralentizar.ActivateAbility == false )
         {
-            Debug.Log("DejadoDeRalentizar");
+            //Debug.Log("DejadoDeRalentizar");
             ralentizarVelocidad = MaxRalentizarVelocidad;
             ralentizarDestruccion = MaxralentizarDestruccion;  
         }
@@ -365,21 +365,21 @@ public class BulletController : MonoBehaviour
             if (YellowDestroyeffect)
             {
                 Instantiate(DestroyEffectYellow.gameObject, transform.position, Quaternion.identity);
-                Debug.Log("destroy bullet");
+                //Debug.Log("destroy bullet");
                 Destroy(gameObject);
                 //AudioSource.PlayClipAtPoint(DestroyBulletFx, transform.position);
             }
             if (PinkDestroyeffect)
             {
                 Instantiate(DestroyEffectPink.gameObject, transform.position, Quaternion.identity);
-                Debug.Log("destroy bullet");
+               // Debug.Log("destroy bullet");
                 Destroy(gameObject);
               //  AudioSource.PlayClipAtPoint(DestroyBulletFx, transform.position);
             }
             if (BlueDestroyeffect)
             {
                 Instantiate(DestroyEffectBlue.gameObject, transform.position, Quaternion.identity);
-                Debug.Log("destroy bullet");
+              //  Debug.Log("destroy bullet");
                 Destroy(gameObject);
               //  AudioSource.PlayClipAtPoint(DestroyBulletFx, transform.position);
             }
