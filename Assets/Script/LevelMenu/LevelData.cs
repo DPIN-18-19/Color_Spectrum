@@ -5,7 +5,7 @@ using UnityEngine;
 [System.Serializable]
 public class LevelData
 {
-    public string id;               // Nombre identificador del nivel
+    public int id;                  // Nombre identificador del nivel
     public string name;             // Nombre del nivel en el juego
     public string scene_name;       // Nombre de la escena del nivel
     public string brief;            // Descripción del nivel
@@ -17,7 +17,7 @@ public class LevelData
     public int highscore;           // Mayor puntuación obtenida
     public GradeData grade;        // Mayor nota obtenida
 
-    public List<string> unlock_require; // Nombres de niveles necesarios de completar para desbloquear
+    public List<int> unlock_require; // Nombres de niveles necesarios de completar para desbloquear
 
     public void Clone(LevelData other)
     {
