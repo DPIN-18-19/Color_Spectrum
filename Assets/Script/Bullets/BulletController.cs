@@ -326,7 +326,10 @@ public class BulletController : MonoBehaviour
         // Collision with any other object
         else if (col.gameObject.tag.Contains("Enemy"))
         {
-           
+            Vector3 rotParticle = col.contacts[0].normal;
+            Transform bulletRot = gameObject.transform;
+            float Angle = Vector3.SignedAngle(gameObject.transform.forward, rotParticle, Vector3.up);
+
             if (friendly)
             {
                 if (col.gameObject.GetComponent<EnemyHealthController>().IsWeak(gameObject.tag, gameObject.layer))
@@ -336,21 +339,21 @@ public class BulletController : MonoBehaviour
 
                     if (YellowDestroyeffect)
                     {
-                        Instantiate(DestroyEffectYellow.gameObject, transform.position, Quaternion.identity);
-                        
+                        Instantiate(DestroyEffectYellow.gameObject, transform.position, Quaternion.LookRotation(Quaternion.Euler(0, Angle, 0) * transform.forward, Vector3.up));
+
 
 
                     }
                     if (PinkDestroyeffect)
                     {
-                        Instantiate(DestroyEffectPink.gameObject, transform.position, Quaternion.identity);
-                       
-                       
+                        Instantiate(DestroyEffectPink.gameObject, transform.position, Quaternion.LookRotation(Quaternion.Euler(0, Angle, 0) * transform.forward, Vector3.up));
+
+
                     }
                     if (BlueDestroyeffect)
                     {
-                        Instantiate(DestroyEffectBlue.gameObject, transform.position, Quaternion.identity);
-                        
+                        Instantiate(DestroyEffectBlue.gameObject, transform.position, Quaternion.LookRotation(Quaternion.Euler(0, Angle, 0) * transform.forward, Vector3.up));
+
                     }
                     
                 }
@@ -362,24 +365,29 @@ public class BulletController : MonoBehaviour
         }
         else
         {
+            Vector3 rotParticle = col.contacts[0].normal;
+            Transform bulletRot = gameObject.transform;
+            float Angle = Vector3.SignedAngle(gameObject.transform.forward,rotParticle,Vector3.up);
+           // bulletRot.LookAt(col.contacts[0].);
             if (YellowDestroyeffect)
             {
-                Instantiate(DestroyEffectYellow.gameObject, transform.position, Quaternion.identity);
-                //Debug.Log("destroy bullet");
+                Instantiate(DestroyEffectYellow.gameObject, transform.position,Quaternion.LookRotation(Quaternion.Euler(0,Angle, 0)* transform.forward, Vector3.up));
+                
+               
                 Destroy(gameObject);
                 //AudioSource.PlayClipAtPoint(DestroyBulletFx, transform.position);
             }
             if (PinkDestroyeffect)
             {
-                Instantiate(DestroyEffectPink.gameObject, transform.position, Quaternion.identity);
-               // Debug.Log("destroy bullet");
+                Instantiate(DestroyEffectPink.gameObject, transform.position, Quaternion.LookRotation(Quaternion.Euler(0, Angle, 0) * transform.forward, Vector3.up));
+                // Debug.Log("destroy bullet");
                 Destroy(gameObject);
               //  AudioSource.PlayClipAtPoint(DestroyBulletFx, transform.position);
             }
             if (BlueDestroyeffect)
             {
-                Instantiate(DestroyEffectBlue.gameObject, transform.position, Quaternion.identity);
-              //  Debug.Log("destroy bullet");
+                Instantiate(DestroyEffectBlue.gameObject, transform.position, Quaternion.LookRotation(Quaternion.Euler(0, Angle, 0) * transform.forward, Vector3.up));
+                //  Debug.Log("destroy bullet");
                 Destroy(gameObject);
               //  AudioSource.PlayClipAtPoint(DestroyBulletFx, transform.position);
             }
@@ -466,7 +474,7 @@ public class BulletController : MonoBehaviour
    protected bool PeekNextPosition(Vector3 f_pos)
     {
         RaycastHit hit;
-
+        
         Vector3 ray_dir = transform.position - f_pos;
         float dist = Vector3.Distance(transform.position, f_pos);
 
