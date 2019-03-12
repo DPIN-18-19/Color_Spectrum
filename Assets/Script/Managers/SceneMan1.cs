@@ -23,7 +23,7 @@ public class SceneMan1 : MonoBehaviour
     public enum SceneIndex
     {
         PreLoadScene,
-       // Loading,
+        Loading,
         Main_Menu,
         PreparationMenu,
         LevelSelection,
@@ -43,9 +43,9 @@ public class SceneMan1 : MonoBehaviour
     
     public void LoadSceneByName(string scene_name)
     {
-        //scene_to_load = (SceneIndex)System.Enum.Parse(typeof(SceneIndex), scene_name);
-        //SceneManager.LoadScene("Loading");
-        SceneManager.LoadScene(scene_name);
+        scene_to_load = (SceneIndex)System.Enum.Parse(typeof(SceneIndex), scene_name);
+        SceneManager.LoadScene("Loading");
+        //SceneManager.LoadScene(scene_name);
     }
     
     void ReloadCurrentScene()

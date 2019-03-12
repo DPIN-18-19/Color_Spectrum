@@ -30,7 +30,7 @@ public class PauseMan : MonoBehaviour
     void OnGameLoaded(Scene scene, LoadSceneMode mode)
     {
         // Comprobar escenas con menú de pausa
-        if (scene.buildIndex >= 6 && scene.buildIndex <= 7)
+        if (scene.buildIndex >= 7 && scene.buildIndex <= 8)
         {
             // Inicializar panel pausa
             pause_p = GameObject.Find("Pause_Menu").transform;
