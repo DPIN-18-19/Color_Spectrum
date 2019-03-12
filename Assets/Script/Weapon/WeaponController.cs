@@ -70,18 +70,21 @@ public class WeaponController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (is_firing)
+        if (gun != null)
         {
-            //Debug.Log(gun.GetComponent<GunController>().GetType().Name);
-            gun.GetComponent<GunController>().FireBullet();
-            //FireWeapon();
-            // True  automatica, False manual 
-            //is_firing = true;
-        }
-        else
-            gun.GetComponent<GunController>().TriggerRelease();
+            if (is_firing)
+            {
+                //Debug.Log(gun.GetComponent<GunController>().GetType().Name);
+                gun.GetComponent<GunController>().FireBullet();
+                //FireWeapon();
+                // True  automatica, False manual 
+                //is_firing = true;
+            }
+            else
+                gun.GetComponent<GunController>().TriggerRelease();
 
-        gun.GetComponent<GunController>().UpdateCadence();
+            gun.GetComponent<GunController>().UpdateCadence();
+        }
     }
 
     //void FireWeapon()

@@ -4,10 +4,9 @@ using UnityEngine;
 
 public class EnemyWeapon : MonoBehaviour
 {
-
     ////////////////////////////////////////////////
     // Datos de bala
-    [Header ("Informacion de Bala")]
+    [Header("Informacion de Bala")]
     public GameObject bullet;               // Objeto bala
     public float bullet_speed = 10;         // Velocidad de bala
     public float bullet_dmg = 5;            // Dano de bala
@@ -65,7 +64,7 @@ public class EnemyWeapon : MonoBehaviour
     public float TiempoRalentizado;
 
     //////////////////////////////////////////////
-    
+
     void Start()
     {
         a_source = GetComponent<AudioSource>();
@@ -73,9 +72,9 @@ public class EnemyWeapon : MonoBehaviour
         fire_pos = weapon.Find("FirePos");
         effect_pos = weapon.Find("EffectPos");
         shell_pos = weapon.Find("ShellPos");
-        
+
         shot_c = shot_dur;
-        bullet_color = gameObject.GetComponent<EnemyController>().GetColor();
+        bullet_color = gameObject.GetComponent<Enemy>().GetColor();
 
         RalentizarDisparos = 1f;
         Ralentizar = GameObject.Find("Player_Naomi").GetComponent<Slow_Motion>();
@@ -108,9 +107,9 @@ public class EnemyWeapon : MonoBehaviour
             shot_c = NextShotTime() * RalentizarDisparos;
         }
 
-        if(Ralentizar.ActivateAbility == true)
+        if (Ralentizar.ActivateAbility == true)
             RalentizarDisparos = Ability_Time_Manager.Instance.Slow_Enemy_Shoot;
-        if(Ralentizar.ActivateAbility == false)
+        if (Ralentizar.ActivateAbility == false)
             RalentizarDisparos = 1f;
     }
 

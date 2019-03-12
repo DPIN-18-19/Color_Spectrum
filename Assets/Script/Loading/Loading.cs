@@ -5,58 +5,73 @@ using UnityEngine.SceneManagement;
 
 public class Loading : MonoBehaviour
 {
-    AsyncOperation operation;
+    AsyncOperation loading;
+    AsyncOperation unloading;
 
-    void OnEnable()
+    // Loading is done in Start due to Unity bugs
+    // https://issuetracker.unity3d.com/issues/loadsceneasync-allowsceneactivation-flag-is-ignored-in-awake
+    void Start()
     {
         Debug.Log("Loading " + SceneMan1.Instance.GetLoadScene());
-        //SceneManager.sceneLoaded += LoadScreenLoaded;
-        operation = SceneManager.LoadSceneAsync(SceneMan1.Instance.GetLoadScene(), LoadSceneMode.Additive);
-        operation.allowSceneActivation = false;
-        //StartCoroutine(Progress());
+        loading = SceneManager.LoadSceneAsync(SceneMan1.Instance.GetLoadScene(), LoadSceneMode.Additive);
+        loading.allowSceneActivation = false;
+        StartCoroutine(LoadingNewScene());
         //SceneManager.sceneLoaded += LoadScreenLoaded;
     }
 
-
-    IEnumerator Progress()
+    // Loading is done in Update due to Unity bugs
+    // https://issuetracker.unity3d.com/issues/loadsceneasync-allowsceneactivation-flag-is-ignored-in-awake
+    private void Update()
     {
-        while(!operation.isDone)
+        if(loading.isDone)
+            unloading = SceneManager.UnloadSceneAsync("Loading");
+    }
+
+    //void LoadScreenLoaded(Scene scene, LoadSceneMode mode)
+    //{
+    //    if (scene.buildIndex == 1)
+    //    {
+    //        Debug.Log("Loading screen loaded");
+    //        SceneManager.SetActiveScene(scene);
+    //        LoadAsync();
+    //    }
+    //}
+
+    //void LoadAsync()
+    //{
+    //    Debug.Log("Loading " + SceneMan1.Instance.GetLoadScene());
+    //    loading = SceneManager.LoadSceneAsync(SceneMan1.Instance.GetLoadScene(), LoadSceneMode.Additive);
+    //    loading.allowSceneActivation = false;
+    //    //SceneManager.sceneLoaded += FinishLoading;
+    //    StartCoroutine(Progress());
+    //}
+
+    IEnumerator LoadingNewScene()
+    {
+        while(!loading.isDone)
         {
-            Debug.Log("Progress " + operation.progress);
-            if(operation.progress >= 0.9f)
+            Debug.Log("Progress " + loading.progress.ToString());
+            if(loading.progress >= 0.9f)
             {
-                Debug.Log("Almost done");
-                operation.allowSceneActivation = true;
-                SceneManager.UnloadSceneAsync("Loading");
+                Debug.Log("I'm ready");
+                loading.allowSceneActivation = true;
+                //unloading = SceneManager.UnloadSceneAsync("Loading");
             }
             yield return null;
         }
     }
-    void LoadAsync()
-    {
-        Debug.Log("Loading " + SceneMan1.Instance.GetLoadScene());
-        operation = SceneManager.LoadSceneAsync(SceneMan1.Instance.GetLoadScene(), LoadSceneMode.Additive);
-        SceneManager.sceneLoaded += FinishLoading;
-    }
 
-    void FinishLoading(Scene scene, LoadSceneMode mode)
-    {
-        Debug.Log("Scene loaded is " + scene.buildIndex + "Scene should be " + SceneMan1.Instance.GetLoadScene());
-        if (scene.buildIndex == SceneMan1.Instance.GetLoadScene())
-        {
-            SceneManager.sceneLoaded -= FinishLoading;
-            //SceneManager.sceneLoaded -= LoadScreenLoaded;
-            //Destroy(gameObject);
-            SceneManager.UnloadSceneAsync("Loading");
-        }
-    }
 
-    void LoadScreenLoaded(Scene scene, LoadSceneMode mode)
-    {
-        if (scene.buildIndex == 1)
-        {
-            Debug.Log("Loading screen loaded");
-            LoadAsync();
-        }
-    }
+    //void FinishLoading(Scene scene, LoadSceneMode mode)
+    //{
+    //    Debug.Log("Scene loaded is " + scene.buildIndex + "Scene should be " + SceneMan1.Instance.GetLoadScene());
+    //    if (scene.buildIndex == SceneMan1.Instance.GetLoadScene())
+    //    {
+    //        SceneManager.sceneLoaded -= FinishLoading;
+    //        SceneManager.SetActiveScene(scene);
+    //        //SceneManager.sceneLoaded -= LoadScreenLoaded;
+    //        //Destroy(gameObject);
+    //        SceneManager.UnloadSceneAsync("Loading");
+    //    }
+    //}
 }

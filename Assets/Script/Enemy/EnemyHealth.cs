@@ -95,7 +95,7 @@ public class EnemyHealth : MonoBehaviour
         if (health <= 0.4f)
         {
             // Realizar muerte
-            int enemy_color = GetComponent<EnemyController>().GetColor();
+            int enemy_color = GetComponent<Enemy>().GetColor();
             Instantiate(die_effect[enemy_color].gameObject, dead_pos.transform.position, Quaternion.identity);
             ScoreManager.Instance.CountEnemy(score);
             Destroy(transform.parent.gameObject);
@@ -137,7 +137,7 @@ public class EnemyHealth : MonoBehaviour
     // Actualizar debilidades de enemigo
     void DamageColorsData()
     {
-        switch (GetComponent<EnemyController>().GetColor())
+        switch (GetComponent<Enemy>().GetColor())
         {
             // Datos color amarillo
             case 0:

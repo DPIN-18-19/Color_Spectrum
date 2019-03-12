@@ -73,7 +73,7 @@ public class DetectionController : MonoBehaviour
 
             // Se puede ver a través del obstáculo
             if (obstacle_dist < target_dir.magnitude)
-                if (GetComponent<EnemyController>().cur_color.ToString() != hits[i].transform.gameObject.tag)
+                if (GetComponent<Enemy>().cur_color.ToString() != hits[i].transform.gameObject.tag)
                     return false;
         }
         return true;
