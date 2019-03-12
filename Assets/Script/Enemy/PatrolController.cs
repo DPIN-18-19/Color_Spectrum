@@ -5,73 +5,104 @@ using UnityEngine.AI;
 
 public class PatrolController : MonoBehaviour
 {
-
-    public Transform[] patrol_points;
-    int first_patrol = 0;
-    float cur_patrol;
-
-    public float wait_time = 0;
-
-    public float patrol_speed = 5;
-
-    public bool is_patrol = true;
-
-    private NavMeshAgent nav_agent;             // Navmesh object
-
+    ///////////////////////////////////////////////////////////////
+    // Variables de componentes
+    private NavMeshAgent nav_agent;             // Objeto navmesh
     Animator anim;
-   
+    
+    ///////////////////////////////////////////////////////////////
+    // Estado de patrulla
+    List<Transform> patrol_points_l;       // Puntos de patrulla
+    float cur_patrol;                       // Actual punto de patrulla
+    [HideInInspector]
+    public bool is_patrolling = true;       // El enemigo está en el estado "Patrulla"
 
+    [Header("Datos de patrulla")]
+    public float patrol_speed = 5;          // Velocidad de patrulla
+    float wait_c;                       // Contador de espera
+    public float wait_dur;              // Duracion de espera
+    bool is_waiting;                        // Estado "Vigilando"
 
-    // Use this for initialization
+    ///////////////////////////////////////////////////////////////
     void Start()
     {
+        // Inicializar componentes
         nav_agent = GetComponent<NavMeshAgent>();
         anim = gameObject.GetComponent<Animator>();
 
-        if (is_patrol)
-            ResetPatrol();
+        // Inicializar datos
+        SearchPatrolPoints();
+        ResetPatrol();
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (is_patrol)
-        {
+        if (is_patrolling)
             CheckArrived();
-        }
 
+        if (is_waiting)
+            IsWaiting();
     }
 
+    // Buscar todos los puntos de patrulla
+    void SearchPatrolPoints()
+    {
+        patrol_points_l = new List<Transform>();
+        Transform patrol_p = transform.parent.Find("PatrolPoints");
+
+        for(int i = 0; i < patrol_p.childCount; ++i)
+            patrol_points_l.Add(patrol_p.GetChild(i));
+    }
+
+    // Reiniciar patrulla
     public void ResetPatrol()
     {
-        if (patrol_points.Length != 0)
+        if (patrol_points_l.Count != 0)
         {
-            cur_patrol = first_patrol;
-            nav_agent.SetDestination(patrol_points[(int)cur_patrol].position);
+            cur_patrol = 0;
+            nav_agent.SetDestination(patrol_points_l[(int)cur_patrol].position);
+            wait_c = wait_dur;
             //nav_agent.speed = patrol_speed;
         }
         else
-            is_patrol = false;
+            is_patrolling = false;
     }
-
-
+    
+    // Comprobar si se ha alcanzado el siguiente punto
     void CheckArrived()
     {
-        float dist = nav_agent.remainingDistance;
-        if (dist != Mathf.Infinity /*&& nav_agent.pathStatus == NavMeshPathStatus.PathComplete*/ && nav_agent.remainingDistance == 0)
+        if (!is_waiting)
         {
-            //Debug.Log("Destination reached: " + cur_patrol);
-            Invoke("ChooseNextPatrol", wait_time);
+            float dist = nav_agent.remainingDistance;
+            if (dist != Mathf.Infinity && nav_agent.remainingDistance <= 0.5f /*&& nav_agent.pathStatus == NavMeshPathStatus.PathComplete*/ )
+            {
+                is_waiting = true;
+            }
         }
     }
+    
+    // Estado de "Vigilar"
+    void IsWaiting()
+    {
+        wait_c -= Time.deltaTime;
+
+        if (wait_c <= 0.1f)
+        {
+            wait_c = wait_dur;
+            is_waiting = false;
+            ChooseNextPatrol();
+        }
+    }
+
+    // Seleccionar siguiente punto de patrulla
     void ChooseNextPatrol()
     {
-        if (patrol_points.Length != 0)
+        if (patrol_points_l.Count != 0)
         {
-            float length = patrol_points.Length;
+            float length = patrol_points_l.Count;
             cur_patrol = Mathf.Repeat(++cur_patrol, length);
-
-            nav_agent.SetDestination(patrol_points[(int)cur_patrol].position);
+            nav_agent.SetDestination(patrol_points_l[(int)cur_patrol].position);
         }
     }
 }

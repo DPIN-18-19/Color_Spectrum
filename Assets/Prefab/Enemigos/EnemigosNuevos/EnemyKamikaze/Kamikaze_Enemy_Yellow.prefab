@@ -1191,10 +1191,13 @@ GameObject:
   - component: {fileID: 65935828392511064}
   - component: {fileID: 82640707692602206}
   - component: {fileID: 195479245429673996}
+  - component: {fileID: 114399277109222586}
+  - component: {fileID: 114016080445463818}
+  - component: {fileID: 114133175637823412}
+  - component: {fileID: 114013547265249400}
+  - component: {fileID: 114547591754714378}
   - component: {fileID: 114159645160395186}
   - component: {fileID: 114902999419397938}
-  - component: {fileID: 114399277109222586}
-  - component: {fileID: 114880180216168824}
   - component: {fileID: 114676607417690662}
   m_Layer: 8
   m_Name: Enemy_Kamikaze_Y
@@ -2480,6 +2483,55 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!114 &114013547265249400
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1976232950419454}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 62cc23658d5fbe04e9500fc1c9fd4b84, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  max_health: 0
+  health_bar: {fileID: 0}
+  in_damage_dur: 0
+  die_effect: []
+  score: 100
+  die_fx: {fileID: 0}
+--- !u!114 &114016080445463818
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1976232950419454}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5088dd01fe25e5a4f9f44665013d2dbc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  cur_color: 0
+  chase_speed: 7
+--- !u!114 &114133175637823412
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1976232950419454}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: db2212615987d1b4f8e79078854d72b8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  renderersToChangeColor: []
+  cur_color: 0
+  Blue_Material: {fileID: 0}
+  Yellow_Material: {fileID: 0}
+  Pink_Material: {fileID: 0}
+  DamageBlueMaterial: {fileID: 0}
+  DamageYellowMaterial: {fileID: 0}
+  DamagePinkMaterial: {fileID: 0}
 --- !u!114 &114159645160395186
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -2491,8 +2543,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6d88ed46b05bc33409727aec25b3bfb5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  home_distance: 0
-  sight_angle: 25
 --- !u!114 &114194509172134144
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -2610,6 +2660,29 @@ MonoBehaviour:
   m_FillAmount: 1
   m_FillClockwise: 1
   m_FillOrigin: 0
+--- !u!114 &114547591754714378
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1976232950419454}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cb5b429b5a587cd488de69fa8d64f829, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  can_detect_near: 1
+  can_see: 1
+  can_shoot: 1
+  can_move: 1
+  alert_distance: 0
+  sight_distance: 0
+  safe_distance: 0
+  sight_angle: 0
+  lost_distance: 0
+  attack_moving: 0
+  attack_in_place: 0
+  SonidoKi: {fileID: 0}
 --- !u!114 &114676607417690662
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -2654,29 +2727,6 @@ MonoBehaviour:
   m_FillAmount: 1
   m_FillClockwise: 1
   m_FillOrigin: 0
---- !u!114 &114880180216168824
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1976232950419454}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 62cc23658d5fbe04e9500fc1c9fd4b84, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  PosDeadParticle: {fileID: 4552691832218364}
-  max_health: 1
-  health_bar: {fileID: 114542580671078998}
-  die_effect:
-  - {fileID: 198132939129357452, guid: c7fa281c20ea23f48975212857638425, type: 2}
-  - {fileID: 198410871006054420, guid: 5e64849e24a3b3949a4999b2eb9ef198, type: 2}
-  - {fileID: 198960496170012676, guid: 6b023f22181b1d640a11c4ae1a24ade8, type: 2}
-  FxDie: {fileID: 0}
-  EnemyMaterials: {fileID: 114399277109222586}
-  TimeDamageMat: 0
-  "Da\xF1o": 0
-  score: 100
 --- !u!114 &114902999419397938
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -2688,12 +2738,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1baa2c15fb894ee4c907596f32dcc8e0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  patrol_points:
-  - {fileID: 4093459032076508}
-  - {fileID: 4680139519593026}
-  wait_time: 0
+  is_patrolling: 1
   patrol_speed: 5
-  is_patrol: 1
+  wait_dur: 0
 --- !u!137 &137418321302225630
 SkinnedMeshRenderer:
   m_ObjectHideFlags: 1

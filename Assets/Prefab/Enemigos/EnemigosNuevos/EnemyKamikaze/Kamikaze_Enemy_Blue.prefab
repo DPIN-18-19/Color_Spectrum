@@ -614,10 +614,13 @@ GameObject:
   - component: {fileID: 65708918995599630}
   - component: {fileID: 82911400981961700}
   - component: {fileID: 195071780707179218}
+  - component: {fileID: 114245556977973878}
+  - component: {fileID: 114028697221889846}
+  - component: {fileID: 114298743973084030}
+  - component: {fileID: 114753789180693858}
+  - component: {fileID: 114845304566043652}
   - component: {fileID: 114989584842500210}
   - component: {fileID: 114669166550037608}
-  - component: {fileID: 114245556977973878}
-  - component: {fileID: 114117678507899356}
   - component: {fileID: 114748106271523268}
   m_Layer: 9
   m_Name: Enemy_Kamikaze_B
@@ -2480,7 +2483,7 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
---- !u!114 &114117678507899356
+--- !u!114 &114028697221889846
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_CorrespondingSourceObject: {fileID: 0}
@@ -2488,21 +2491,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 1442508236185160}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 62cc23658d5fbe04e9500fc1c9fd4b84, type: 3}
+  m_Script: {fileID: 11500000, guid: 5088dd01fe25e5a4f9f44665013d2dbc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  PosDeadParticle: {fileID: 4909395379921194}
-  max_health: 1
-  health_bar: {fileID: 114214069521137900}
-  die_effect:
-  - {fileID: 198132939129357452, guid: c7fa281c20ea23f48975212857638425, type: 2}
-  - {fileID: 198054349827780410, guid: fa64fe53c5ee98f4fb9f271e995c0b7f, type: 2}
-  - {fileID: 198960496170012676, guid: 6b023f22181b1d640a11c4ae1a24ade8, type: 2}
-  FxDie: {fileID: 0}
-  EnemyMaterials: {fileID: 114245556977973878}
-  TimeDamageMat: 0
-  "Da\xF1o": 0
-  score: 100
+  cur_color: 0
+  chase_speed: 7
 --- !u!114 &114214069521137900
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -2596,6 +2589,25 @@ MonoBehaviour:
   SpeedSlow: 3.7
   AnimSlow: 0.3
   RalentizarRotar: 0
+--- !u!114 &114298743973084030
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1442508236185160}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: db2212615987d1b4f8e79078854d72b8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  renderersToChangeColor: []
+  cur_color: 0
+  Blue_Material: {fileID: 0}
+  Yellow_Material: {fileID: 0}
+  Pink_Material: {fileID: 0}
+  DamageBlueMaterial: {fileID: 0}
+  DamageYellowMaterial: {fileID: 0}
+  DamagePinkMaterial: {fileID: 0}
 --- !u!114 &114365820864182724
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -2621,12 +2633,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1baa2c15fb894ee4c907596f32dcc8e0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  patrol_points:
-  - {fileID: 4382133445386638}
-  - {fileID: 4151846775918726}
-  wait_time: 0
+  is_patrolling: 1
   patrol_speed: 5
-  is_patrol: 1
+  wait_dur: 0
 --- !u!114 &114748106271523268
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -2644,6 +2653,23 @@ MonoBehaviour:
   precomputeOutline: 0
   bakeKeys: []
   bakeValues: []
+--- !u!114 &114753789180693858
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1442508236185160}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 62cc23658d5fbe04e9500fc1c9fd4b84, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  max_health: 0
+  health_bar: {fileID: 0}
+  in_damage_dur: 0
+  die_effect: []
+  score: 100
+  die_fx: {fileID: 0}
 --- !u!114 &114786753330652554
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -2665,6 +2691,29 @@ MonoBehaviour:
   m_FallbackScreenDPI: 96
   m_DefaultSpriteDPI: 96
   m_DynamicPixelsPerUnit: 1
+--- !u!114 &114845304566043652
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1442508236185160}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cb5b429b5a587cd488de69fa8d64f829, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  can_detect_near: 1
+  can_see: 1
+  can_shoot: 1
+  can_move: 1
+  alert_distance: 0
+  sight_distance: 0
+  safe_distance: 0
+  sight_angle: 0
+  lost_distance: 0
+  attack_moving: 0
+  attack_in_place: 0
+  SonidoKi: {fileID: 0}
 --- !u!114 &114979034490046300
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -2692,8 +2741,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6d88ed46b05bc33409727aec25b3bfb5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  home_distance: 0
-  sight_angle: 25
 --- !u!137 &137027106180264260
 SkinnedMeshRenderer:
   m_ObjectHideFlags: 1

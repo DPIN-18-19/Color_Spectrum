@@ -86,9 +86,9 @@ public class ShotgunBulletCollision : MonoBehaviour
         {
             if (bullet.friendly)
             {
-                if (col.gameObject.GetComponent<EnemyHealthController>().IsWeak(gameObject.tag, gameObject.layer))
+                if (col.gameObject.GetComponent<EnemyHealth>().IsWeak(gameObject.tag, gameObject.layer))
                 {
-                    col.gameObject.GetComponent<EnemyHealthController>().GetDamage(bullet.bullet_damage);
+                    col.gameObject.GetComponent<EnemyHealth>().GetDamage(bullet.bullet_damage);
                 }
             }
 

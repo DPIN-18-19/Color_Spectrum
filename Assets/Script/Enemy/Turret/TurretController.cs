@@ -31,21 +31,21 @@ public class TurretController : MonoBehaviour
     {
         return (int)cur_color;
     }
-    void EnemyColorData()
-    {
-        if (cur_color == Colors.Yellow)
-        {
-            GetComponent<EnemyHealthController>().ChangeToYellow();
-        }
-        else if (cur_color == Colors.Magenta)
-        {
-            GetComponent<EnemyHealthController>().ChangeToMagenta();
-        }
-        else if (cur_color == Colors.Cyan)
-        {
-            GetComponent<EnemyHealthController>().ChangeToCyan();
-        }
-    }
+    //void EnemyColorData()
+    //{
+    //    if (cur_color == Colors.Yellow)
+    //    {
+    //        GetComponent<EnemyHealth>().ChangeToYellow();
+    //    }
+    //    else if (cur_color == Colors.Magenta)
+    //    {
+    //        GetComponent<EnemyHealth>().ChangeToMagenta();
+    //    }
+    //    else if (cur_color == Colors.Cyan)
+    //    {
+    //        GetComponent<EnemyHealth>().ChangeToCyan();
+    //    }
+    //}
 
     public void RestoreChangeToYellow()
     {

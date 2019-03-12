@@ -71,10 +71,10 @@ public class FollowTarget : MonoBehaviour
     {
         target = transform.parent.GetComponentInChildren<EnemyController>().transform.Find("HeadBob").gameObject;
     }
-    void TargetIsEnenmyKamikaze()
-    {
-        target = transform.parent.GetComponentInChildren<EnemyHealthControllerKamikaze>().transform.Find("HeadBob").gameObject;
-    }
+    //void TargetIsEnenmyKamikaze()
+    //{
+    //    target = transform.parent.GetComponentInChildren<EnemyHealthControllerKamikaze>().transform.Find("HeadBob").gameObject;
+    //}
 
     // Seguir a elemento escogido
     void TargetIsCustom()
