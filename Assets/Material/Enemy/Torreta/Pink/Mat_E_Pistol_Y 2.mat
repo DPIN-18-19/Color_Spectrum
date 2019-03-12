@@ -6,10 +6,10 @@ Material:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
-  m_Name: Mat_E_Rifle_Y 1
+  m_Name: Mat_E_Pistol_Y 2
   m_Shader: {fileID: 4800000, guid: 053e4279a99bc5f458a231ffe6a35ad0, type: 3}
-  m_ShaderKeywords: _EMISSION _MASKAPPEARAXIS_DISTANCE _MASKAPPEARAXIS_NONE _NORMALMAP
-    _SPECGLOSSMAP
+  m_ShaderKeywords: _EMISSION _FRESNELOPACITY_ON _MASKAPPEARAXIS_DISTANCE _MASKAPPEARAXIS_NONE
+    _NORMALMAP _SPECGLOSSMAP
   m_LightmapFlags: 1
   m_EnableInstancingVariants: 1
   m_DoubleSidedGI: 0
@@ -124,8 +124,8 @@ Material:
     - _DetailNormalMapScale: 1
     - _DissolveAmount: 0.58
     - _DstBlend: 0
-    - _FresnelOpacity: 0
-    - _FresnelPower: 2.07
+    - _FresnelOpacity: 1
+    - _FresnelPower: 0.76
     - _FresnelScale: 1
     - _Glitch: 1
     - _GlitchInterval: 0.972
@@ -134,8 +134,8 @@ Material:
     - _Glossiness: 0.281
     - _GlossyReflections: 1
     - _GlowOpacity: 0
-    - _GlowSize: 0.728
-    - _GlowSpeed: 0.6
+    - _GlowSize: 1
+    - _GlowSpeed: 0.8
     - _GlowTiling: 0.74
     - _HasAnimatedAlbedo: 0
     - _HasAnimatedEmission: 0
@@ -157,8 +157,8 @@ Material:
     - _Parallax: 0.02
     - _ReflectionProbeBoost: 1
     - _Rim: 9.8
-    - _Scan: 0.75
-    - _ScanTiling: 86.8
+    - _Scan: 0.326
+    - _ScanTiling: 69
     - _Smoothness: 1
     - _SmoothnessTextureChannel: 0
     - _SpecularHighlights: 1
@@ -179,11 +179,11 @@ Material:
     - _AnimatedUVScaleOffset: {r: 1, g: 1, b: 0, a: 0}
     - _Color: {r: 1, g: 1, b: 1, a: 1}
     - _DissolveColor: {r: 0, g: 2.7241373, b: 5, a: 1}
-    - _EmissionColor: {r: 0.2830189, g: 0.16456994, b: 0.0146849435, a: 0.92156863}
+    - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
     - _FlickerSpeed: {r: 0.01, g: 0.01, b: 0, a: 0}
-    - _FresnelColor: {r: 1.1353015, g: 0.6657265, b: 0, a: 1}
+    - _FresnelColor: {r: 3.3851614, g: 0, b: 1.3663745, a: 1}
     - _GlitchOffset: {r: 0.02, g: 0, b: 0, a: 0}
-    - _GlowColor: {r: 2.1185474, g: 1.0980952, b: 0, a: 1}
+    - _GlowColor: {r: 0.18867922, g: 0, b: 0.12676886, a: 1}
     - _GlowColorm: {r: 0.34558794, g: 0.5125757, b: 1, a: 1}
     - _GlowSpeed: {r: 0, g: 2, b: 0, a: 0}
     - _MainColor: {r: 0.35294116, g: 0.35294116, b: 0.35294116, a: 1}
