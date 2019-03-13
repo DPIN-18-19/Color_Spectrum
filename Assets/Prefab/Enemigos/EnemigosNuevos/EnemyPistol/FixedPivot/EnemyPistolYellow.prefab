@@ -76,6 +76,8 @@ GameObject:
   - component: {fileID: 114517284197318874}
   - component: {fileID: 114069641029646374}
   - component: {fileID: 65129346924022552}
+  - component: {fileID: 114526584583759332}
+  - component: {fileID: 114304614019665126}
   m_Layer: 8
   m_Name: Sci-fi NPC Humaniod
   m_TagString: EnemyYellow
@@ -2771,13 +2773,13 @@ MonoBehaviour:
   - {fileID: 137070438636633726}
   - {fileID: 23359388106122436}
   - {fileID: 137832728083115824}
-  Blue_Material: {fileID: 2100000, guid: 045c46877d9f968428ffaac0cbbc2b72, type: 2}
+  Blue_Material: {fileID: 2100000, guid: 49954b06e073e3c46af74fc9e8fa5257, type: 2}
   Yellow_Material: {fileID: 2100000, guid: e3f6cefb012926043851fce3b2b9a31e, type: 2}
-  Pink_Material: {fileID: 2100000, guid: 98d36da6d9f400f42b1e07defaf6246d, type: 2}
-  DamageBlueMaterial: {fileID: 2100000, guid: e43fa4d0447b95a429af486a124f30ee, type: 2}
+  Pink_Material: {fileID: 2100000, guid: ef5060120e74e4d4299960e7cd1fafbe, type: 2}
+  DamageBlueMaterial: {fileID: 2100000, guid: 64e658d554c261640ab0a87671e7b6b3, type: 2}
   DamageYellowMaterial: {fileID: 2100000, guid: fabf4cdaffc4fc14ab579db968159865,
     type: 2}
-  DamagePinkMaterial: {fileID: 2100000, guid: beda41a991a501d478b05666e5ba2f20, type: 2}
+  DamagePinkMaterial: {fileID: 2100000, guid: d41ed77301cc9c048a334a542f27ecf5, type: 2}
   EffectDestroy: {fileID: 0}
   PosDeadParticle: {fileID: 0}
   isKamikaze: 0
@@ -2811,12 +2813,28 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1baa2c15fb894ee4c907596f32dcc8e0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  patrol_points:
-  - {fileID: 4908146122572782}
-  - {fileID: 4442565508204672}
-  wait_time: 0
+  is_patrolling: 1
   patrol_speed: 2
-  is_patrol: 1
+  wait_dur: 0
+--- !u!114 &114304614019665126
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1017789431719204}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: db2212615987d1b4f8e79078854d72b8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  renderersToChangeColor: []
+  cur_color: 0
+  Blue_Material: {fileID: 0}
+  Yellow_Material: {fileID: 0}
+  Pink_Material: {fileID: 0}
+  DamageBlueMaterial: {fileID: 0}
+  DamageYellowMaterial: {fileID: 0}
+  DamagePinkMaterial: {fileID: 0}
 --- !u!114 &114388704301693216
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -2828,8 +2846,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6d88ed46b05bc33409727aec25b3bfb5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  home_distance: 0
-  sight_angle: 30
 --- !u!114 &114517284197318874
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -2841,18 +2857,28 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 62cc23658d5fbe04e9500fc1c9fd4b84, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  PosDeadParticle: {fileID: 4468705089306652}
   max_health: 10
   health_bar: {fileID: 114581326059887058}
+  in_damage_dur: 0
   die_effect:
   - {fileID: 198085412305327686, guid: d1f231a539122664c86f0a6a6a456157, type: 2}
   - {fileID: 198410871006054420, guid: 5e64849e24a3b3949a4999b2eb9ef198, type: 2}
   - {fileID: 198410871006054420, guid: 5e64849e24a3b3949a4999b2eb9ef198, type: 2}
-  FxDie: {fileID: 0}
-  EnemyMaterials: {fileID: 114082013251691886}
-  TimeDamageMat: 0.65
-  "Da\xF1o": 0
   score: 100
+  die_fx: {fileID: 0}
+--- !u!114 &114526584583759332
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1017789431719204}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5088dd01fe25e5a4f9f44665013d2dbc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  cur_color: 0
+  chase_speed: 7
 --- !u!114 &114581326059887058
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -2935,7 +2961,6 @@ MonoBehaviour:
   isShooting: 0
   ShellEjection: {fileID: 4672531568414996}
   FXShotEnemy: {fileID: 8300000, guid: 9ebf0ed6d21bf4042b79b58f35db6af8, type: 3}
-  TiempoRalentizado: 2
   bullet_speed: 10
   bullet_dmg: 10
   bullet_range: 20

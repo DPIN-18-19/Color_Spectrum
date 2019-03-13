@@ -51,8 +51,9 @@ public class PatrolController : MonoBehaviour
         patrol_points_l = new List<Transform>();
         Transform patrol_p = transform.parent.Find("PatrolPoints");
 
-        for(int i = 0; i < patrol_p.childCount; ++i)
-            patrol_points_l.Add(patrol_p.GetChild(i));
+        if(patrol_p != null)
+            for(int i = 0; i < patrol_p.childCount; ++i)
+                patrol_points_l.Add(patrol_p.GetChild(i));
     }
 
     // Reiniciar patrulla

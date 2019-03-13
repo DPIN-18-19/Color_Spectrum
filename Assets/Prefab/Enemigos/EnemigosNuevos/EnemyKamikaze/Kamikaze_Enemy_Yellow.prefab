@@ -81,7 +81,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4267209650238440}
   m_Layer: 8
-  m_Name: EnemyHome (1)
+  m_Name: EnemyHome
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -216,7 +216,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4599591936420158}
   m_Layer: 8
-  m_Name: PatrolPoints (1)
+  m_Name: PatrolPoints
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1191,7 +1191,6 @@ GameObject:
   - component: {fileID: 65935828392511064}
   - component: {fileID: 82640707692602206}
   - component: {fileID: 195479245429673996}
-  - component: {fileID: 114399277109222586}
   - component: {fileID: 114016080445463818}
   - component: {fileID: 114133175637823412}
   - component: {fileID: 114013547265249400}
@@ -1231,7 +1230,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4552691832218364}
   m_Layer: 9
-  m_Name: DeadEffect (2)
+  m_Name: DieEffectPos
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1327,7 +1326,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1249020732091164}
   m_LocalRotation: {x: -0, y: -0.99878544, z: -0, w: 0.04927197}
-  m_LocalPosition: {x: 12.51269, y: 0.48799896, z: 55.656433}
+  m_LocalPosition: {x: -40.81, y: 0.349, z: 5.842}
   m_LocalScale: {x: 1.9302571, y: 1.4431446, z: 1.7865499}
   m_Children:
   - {fileID: 224913975888545262}
@@ -2495,9 +2494,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   max_health: 0
-  health_bar: {fileID: 0}
-  in_damage_dur: 0
-  die_effect: []
+  health_bar: {fileID: 114542580671078998}
+  in_damage_dur: 0.65
+  die_effect:
+  - {fileID: 198132939129357452, guid: c7fa281c20ea23f48975212857638425, type: 2}
+  - {fileID: 198054349827780410, guid: fa64fe53c5ee98f4fb9f271e995c0b7f, type: 2}
+  - {fileID: 198279765054647224, guid: 67f05d1749a57e241bf4b834e5cdcc8e, type: 2}
   score: 100
   die_fx: {fileID: 0}
 --- !u!114 &114016080445463818
@@ -2526,12 +2528,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   renderersToChangeColor: []
   cur_color: 0
-  Blue_Material: {fileID: 0}
-  Yellow_Material: {fileID: 0}
-  Pink_Material: {fileID: 0}
-  DamageBlueMaterial: {fileID: 0}
-  DamageYellowMaterial: {fileID: 0}
-  DamagePinkMaterial: {fileID: 0}
+  Blue_Material: {fileID: 2100000, guid: 98327bf370af82d48b3bcee88e91ae11, type: 2}
+  Yellow_Material: {fileID: 2100000, guid: 35cdbc7ab7f40b94c833258f8455b207, type: 2}
+  Pink_Material: {fileID: 2100000, guid: b86706a9663d40642bd1ba3680574d4e, type: 2}
+  DamageBlueMaterial: {fileID: 2100000, guid: ddb750c2306a8dd45a02db3f1e7090c3, type: 2}
+  DamageYellowMaterial: {fileID: 2100000, guid: 7ac3a7aa4f5223f4c9a9f7424f18ea8d,
+    type: 2}
+  DamagePinkMaterial: {fileID: 2100000, guid: 932dc70665a94764e94bd56cf504986c, type: 2}
 --- !u!114 &114159645160395186
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -2564,45 +2567,6 @@ MonoBehaviour:
   m_FallbackScreenDPI: 96
   m_DefaultSpriteDPI: 96
   m_DynamicPixelsPerUnit: 1
---- !u!114 &114399277109222586
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1976232950419454}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3267b229c41a24e4396494be715b5327, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  cur_color: 0
-  AttackMovePlayer: 0
-  AttackStopPlayer: 0
-  home: {fileID: 0}
-  chase_speed: 7
-  alert_distance: 10
-  sight_distance: 25
-  safe_distance: 2
-  DontShot: 1
-  SonidoKi: {fileID: 8300000, guid: fe48dd5c2c3483343ab9a2d7cc6e17a9, type: 3}
-  renderersToChangeColor:
-  - {fileID: 137925970085398328}
-  - {fileID: 137418321302225630}
-  - {fileID: 137935515039918890}
-  Blue_Material: {fileID: 2100000, guid: 98327bf370af82d48b3bcee88e91ae11, type: 2}
-  Yellow_Material: {fileID: 2100000, guid: 35cdbc7ab7f40b94c833258f8455b207, type: 2}
-  Pink_Material: {fileID: 2100000, guid: b86706a9663d40642bd1ba3680574d4e, type: 2}
-  DamageBlueMaterial: {fileID: 2100000, guid: ddb750c2306a8dd45a02db3f1e7090c3, type: 2}
-  DamageYellowMaterial: {fileID: 2100000, guid: 7ac3a7aa4f5223f4c9a9f7424f18ea8d,
-    type: 2}
-  DamagePinkMaterial: {fileID: 2100000, guid: 932dc70665a94764e94bd56cf504986c, type: 2}
-  EffectDestroy: {fileID: 198132939129357452, guid: c7fa281c20ea23f48975212857638425,
-    type: 2}
-  PosDeadParticle: {fileID: 4552691832218364}
-  isKamikaze: 1
-  SpeedSlow: 3.7
-  AnimSlow: 0.3
-  RalentizarRotar: 0
 --- !u!114 &114404513179000100
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -2675,11 +2639,11 @@ MonoBehaviour:
   can_see: 1
   can_shoot: 1
   can_move: 1
-  alert_distance: 0
-  sight_distance: 0
-  safe_distance: 0
-  sight_angle: 0
-  lost_distance: 0
+  alert_distance: 10
+  sight_distance: 25
+  safe_distance: 2
+  sight_angle: 30
+  lost_distance: 25
   attack_moving: 0
   attack_in_place: 0
   SonidoKi: {fileID: 0}

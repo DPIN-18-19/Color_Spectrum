@@ -24,7 +24,7 @@ public class EnemyBehaviour : MonoBehaviour
     [SerializeField]
     private bool can_shoot = true;                     // Puede disparar
     [SerializeField]
-    private bool can_move = true;                      // Puede moverse
+    protected bool can_move = true;                      // Puede moverse
 
     //////////////////////////////////////////////////
     // Variables de informacion
@@ -55,12 +55,12 @@ public class EnemyBehaviour : MonoBehaviour
 
     ///////////////////////////////////////////////////////
     //RalentizarMovimiento
-    Slow_Motion Ralentizar;
+   protected Slow_Motion Ralentizar;
 
-    private float MaxSpeedSlow;
-    private float MaxAnimSlow;
-    private float Slow_Rotation;
-    private float MaxRalentizarRotar;
+    protected  float MaxSpeedSlow;
+    protected  float MaxAnimSlow;
+    protected  float Slow_Rotation;
+    protected  float MaxRalentizarRotar;
 
     private void Start()
     {
@@ -73,13 +73,13 @@ public class EnemyBehaviour : MonoBehaviour
         a_source = GetComponent<AudioSource>();
 
         // Inicializar objetos objetivo
-        target = GameObject.FindWithTag("Player");
+        target = GameObject.Find("Player_Naomi");
         home = transform.parent.Find("EnemyHome");
 
         if (!can_move)
             nav_agent.speed = 0;
 
-        Ralentizar = target.GetComponentInChildren<Slow_Motion>();
+        Ralentizar = GameObject.Find("Player_Naomi").GetComponent<Slow_Motion>();
         // Habilidad ralentizar
         MaxRalentizarRotar = 1;
         //target = GameObject.FindWithTag("Player");
