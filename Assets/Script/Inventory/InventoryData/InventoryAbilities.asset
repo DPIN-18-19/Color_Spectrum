@@ -20,6 +20,7 @@ MonoBehaviour:
     display_icon: {fileID: 21300000, guid: 71eb9a28b160b524f84e25c84a779b53, type: 3}
     weight: 10
     equipped: 0
+    price: 0
   - id: Ability2
     name: AutoColor
     is_instant: 0
@@ -27,7 +28,8 @@ MonoBehaviour:
     active_dur: 5
     display_icon: {fileID: 21300000, guid: 2105f159727d2854c94d41eda3b85d43, type: 3}
     weight: 10
-    equipped: 1
+    equipped: 0
+    price: 0
   - id: Ability3
     name: Grenade
     is_instant: 1
@@ -35,7 +37,8 @@ MonoBehaviour:
     active_dur: 0
     display_icon: {fileID: 21300000, guid: 5348ecdc4efb60c498d75f2763571126, type: 3}
     weight: 10
-    equipped: 1
+    equipped: 0
+    price: 0
   - id: Ability4
     name: Shield
     is_instant: 0
@@ -43,4 +46,14 @@ MonoBehaviour:
     active_dur: 7
     display_icon: {fileID: 21300000, guid: 6f21ad8441bd7f8409798ee1681414cb, type: 3}
     weight: 10
-    equipped: 1
+    equipped: 0
+    price: 0
+  - id: Ability2
+    name: Ability2
+    is_instant: 0
+    cooldown_dur: 2
+    active_dur: 5
+    display_icon: {fileID: 21300000, guid: 2105f159727d2854c94d41eda3b85d43, type: 3}
+    weight: 10
+    equipped: 0
+    price: 234

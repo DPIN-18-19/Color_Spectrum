@@ -26,7 +26,12 @@ public class UnlockMan : MonoBehaviour
             Destroy(gameObject);
     }
 
-    // Descbloqueo mediante puntuacion
+    public void LevelUnlock()
+    {
+        LevelMenuManager.Instance.UnlockLevels();
+    }
+
+    // Desbloqueo mediante puntuacion
     public void ScoreLevelUnlock(string level_name)
     {
         int index = GetUnlockIndex(level_name);

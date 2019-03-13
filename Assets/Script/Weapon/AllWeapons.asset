@@ -1,0 +1,74 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a9a22b87f62ff954eb04b34bbfff3467, type: 3}
+  m_Name: AllWeapons
+  m_EditorClassIdentifier: 
+  weapons_l:
+  - name: Pistol
+    gun: {fileID: 1055400125745396, guid: c0a0f55248e1abb4ea0f68d4241c4c26, type: 2}
+    bullet: {fileID: 1341849102906586, guid: 5f318d6af04c9324ca8e2aeafad9039e, type: 2}
+    speed: 20
+    damage: 5
+    range: 7
+    spray: 1
+    cadence: 0.15
+    num_bullets: 1
+    automatic: 1
+    weight: 10
+    ability: Escudo
+    fx_shot: {fileID: 8300000, guid: 2c270755a083f394bb2ccf4037733bea, type: 3}
+    display_icon: {fileID: 0}
+    price: 123
+  - name: Sniper
+    gun: {fileID: 1019867649845852, guid: 8d3cf347f9da1ed4dbdfa37f9bbf9a39, type: 2}
+    bullet: {fileID: 1355325964623596, guid: 05f9ef38a4b74114a8e0984e4e975f1a, type: 2}
+    speed: 30
+    damage: 25
+    range: 30
+    spray: 1
+    cadence: 0.75
+    num_bullets: 1
+    automatic: 0
+    weight: 10
+    ability: CambioColor
+    fx_shot: {fileID: 8300000, guid: 358d64b831ae7734c95d9b884c8b2929, type: 3}
+    display_icon: {fileID: 0}
+    price: 234
+  - name: Shotgun
+    gun: {fileID: 1300654682825010, guid: 2c8dae5336223084e93d57e722c2aa71, type: 2}
+    bullet: {fileID: 1016495751108764, guid: a8918aa59657c00419227cda70639586, type: 2}
+    speed: 0.2
+    damage: 20
+    range: 5
+    spray: 0
+    cadence: 0.5
+    num_bullets: 1
+    automatic: 0
+    weight: 10
+    ability: Granada
+    fx_shot: {fileID: 8300000, guid: f6cb1f581b7444b23a05b613a16420d5, type: 3}
+    display_icon: {fileID: 0}
+    price: 345
+  - name: Rifle
+    gun: {fileID: 100000, guid: aca665157bf25fa4da0238eba93ead70, type: 3}
+    bullet: {fileID: 1341849102906586, guid: 5f318d6af04c9324ca8e2aeafad9039e, type: 2}
+    speed: 25
+    damage: 2
+    range: 7
+    spray: 15
+    cadence: 0.075
+    num_bullets: 2
+    automatic: 1
+    weight: 10
+    ability: Dash
+    fx_shot: {fileID: 0}
+    display_icon: {fileID: 0}
+    price: 386

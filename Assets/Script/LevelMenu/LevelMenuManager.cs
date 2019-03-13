@@ -89,6 +89,7 @@ public class LevelMenuManager : MonoBehaviour
         info_p.gameObject.SetActive(false);
     }
 
+    // Actualizar informacion de nivel
     public void UpdateScoreInfo()
     {
         for(int i = 0; i < levels_l.levels.Count; ++i)
@@ -99,9 +100,9 @@ public class LevelMenuManager : MonoBehaviour
                 {
                     levels_l.levels[i].highscore = ScoreManager.Instance.GetFinalScore();
                     levels_l.levels[i].grade.Clone(ScoreManager.Instance.GetGrade());
-
-                    levels_l.levels[i].complete = true;
                 }
+
+                levels_l.levels[i].complete = true;
 
                 return;
             }

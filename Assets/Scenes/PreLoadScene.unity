@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.12731749, g: 0.13414757, b: 0.1210787, a: 1}
+  m_IndirectSpecularColor: {r: 0.1273174, g: 0.13414761, b: 0.12107885, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -205,6 +205,7 @@ GameObject:
   - component: {fileID: 1477886909}
   - component: {fileID: 1477886911}
   - component: {fileID: 1477886912}
+  - component: {fileID: 1477886913}
   m_Layer: 0
   m_Name: __app
   m_TagString: Untagged
@@ -310,7 +311,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   levels_l: {fileID: 11400000, guid: 7fc357a451a611b428e20629bba19eb4, type: 2}
   selection:
-    id: 
+    id: 0
     name: 
     scene_name: 
     brief: 
@@ -321,7 +322,7 @@ MonoBehaviour:
     grade:
       grade: 
       mat: {fileID: 0}
-    unlock_require: []
+    unlock_require: 
 --- !u!114 &1477886912
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -337,6 +338,25 @@ MonoBehaviour:
   controls_p: {fileID: 0}
   buttons_p: {fileID: 0}
   is_pause: 0
+--- !u!114 &1477886913
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1477886904}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9547196d4bb3d84479c743503f72f510, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  unlock_per_level: {fileID: 11400000, guid: 72b31798a689e954f94dcca7eab2fd08, type: 2}
+  all_upgrades: {fileID: 11400000, guid: 0503ec33470c3e2498c84b33450e931e, type: 2}
+  all_weapons: {fileID: 11400000, guid: ba7f30af158a75949befad6352e3652f, type: 2}
+  all_abilities: {fileID: 11400000, guid: bbc629607e73a81448b651ad828e3bae, type: 2}
+  inv_upgrades: {fileID: 11400000, guid: 3d782b250553ded4e88b83270a30ca10, type: 2}
+  inv_weapons: {fileID: 11400000, guid: ec433dc75cb480c4f8e60395d5e95caf, type: 2}
+  inv_abilities: {fileID: 11400000, guid: e6a950d96ab8be44aae3fde64b0017dc, type: 2}
+  store_chips: {fileID: 11400000, guid: 90779ec8c7f2f214caa6cc2d37177fac, type: 2}
 --- !u!1 &1787395651
 GameObject:
   m_ObjectHideFlags: 0
