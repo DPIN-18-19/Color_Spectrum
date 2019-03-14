@@ -1206,10 +1206,14 @@ GameObject:
   - component: {fileID: 114440005286044350}
   - component: {fileID: 195005493212253232}
   - component: {fileID: 114090430353400568}
+  - component: {fileID: 114290431313549654}
   - component: {fileID: 114079893585281526}
   - component: {fileID: 114813000233244430}
   - component: {fileID: 114591547160274246}
   - component: {fileID: 114362728517551768}
+  - component: {fileID: 114569108253825420}
+  - component: {fileID: 114449285796001242}
+  - component: {fileID: 114326292819131404}
   m_Layer: 9
   m_Name: Sci-fi NPC Humaniod
   m_TagString: EnemyBlue
@@ -2732,8 +2736,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6d88ed46b05bc33409727aec25b3bfb5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  home_distance: 0
-  sight_angle: 30
 --- !u!114 &114090430353400568
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -2775,6 +2777,48 @@ MonoBehaviour:
   SpeedSlow: 3.1
   AnimSlow: 0.3
   RalentizarRotar: 0
+--- !u!114 &114290431313549654
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1925244923697522}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d532e6f915a9d524fb0e7591342a813d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  can_detect_near: 1
+  can_see: 1
+  can_shoot: 1
+  can_move: 1
+  alert_distance: 10
+  sight_distance: 25
+  safe_distance: 3
+  sight_angle: 25
+  lost_distance: 25
+  attack_moving: 0
+  attack_in_place: 0
+--- !u!114 &114326292819131404
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1925244923697522}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: db2212615987d1b4f8e79078854d72b8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  renderersToChangeColor: []
+  cur_color: 0
+  Blue_Material: {fileID: 2100000, guid: 49954b06e073e3c46af74fc9e8fa5257, type: 2}
+  Yellow_Material: {fileID: 2100000, guid: e3f6cefb012926043851fce3b2b9a31e, type: 2}
+  Pink_Material: {fileID: 2100000, guid: ef5060120e74e4d4299960e7cd1fafbe, type: 2}
+  DamageBlueMaterial: {fileID: 2100000, guid: 64e658d554c261640ab0a87671e7b6b3, type: 2}
+  DamageYellowMaterial: {fileID: 2100000, guid: fabf4cdaffc4fc14ab579db968159865,
+    type: 2}
+  DamagePinkMaterial: {fileID: 2100000, guid: d41ed77301cc9c048a334a542f27ecf5, type: 2}
 --- !u!114 &114362728517551768
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -2842,12 +2886,61 @@ MonoBehaviour:
   isShooting: 0
   ShellEjection: {fileID: 4803781515248106}
   FXShotEnemy: {fileID: 8300000, guid: 9ebf0ed6d21bf4042b79b58f35db6af8, type: 3}
-  TiempoRalentizado: 2
   bullet_speed: 10
   bullet_dmg: 10
   bullet_range: 20
   bullet_friend: 0
   random: 0
+--- !u!114 &114449285796001242
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1925244923697522}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5088dd01fe25e5a4f9f44665013d2dbc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  cur_color: 0
+  chase_speed: 7
+--- !u!114 &114569108253825420
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1925244923697522}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 12286fd311a27aa4298224c86ba03f36, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  bullet: {fileID: 1630379668744072, guid: d59c53fa4931c994a9da4bf1cf0d6112, type: 2}
+  bullet_speed: 10
+  bullet_dmg: 5
+  bullet_range: 20
+  bullet_friend: 0
+  weapon: {fileID: 0}
+  shot_dur: 1.5
+  shot_dur_max: 1.5
+  random: 0
+  is_shooting: 0
+  yellow_mat: {fileID: 2100000, guid: d88ec5f6f06e64d4db6956c458f0b867, type: 2}
+  cyan_mat: {fileID: 2100000, guid: 7ecbc580b62e10740878b3ba62cc0279, type: 2}
+  magenta_mat: {fileID: 2100000, guid: 376a1e887b15b78458b49d05ba2781c9, type: 2}
+  shot_effect_y: {fileID: 198534960484000138, guid: f3dd52b642049b24b810219ac86f23ec,
+    type: 2}
+  shot_effect_c: {fileID: 198857426217267120, guid: 36020c596b143aa41b0a3ec20a2be32c,
+    type: 2}
+  shot_effect_m: {fileID: 198178962905762056, guid: 9691f1331907a50498f57dc72b89f5dc,
+    type: 2}
+  shell_efect_y: {fileID: 198236717835626218, guid: 485aef8f70c9c974ab96492c7fd11b2c,
+    type: 2}
+  shell_efect_c: {fileID: 198834423430413478, guid: 93a8d38d779f61f4cbf4add2091be907,
+    type: 2}
+  shell_efect_m: {fileID: 198076230649775678, guid: 3a875e93ad345f74b8662cfe669da381,
+    type: 2}
+  FXShotEnemy: {fileID: 0}
 --- !u!114 &114591547160274246
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -2859,18 +2952,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 62cc23658d5fbe04e9500fc1c9fd4b84, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  PosDeadParticle: {fileID: 4714761038862080}
   max_health: 10
   health_bar: {fileID: 114645177037812472}
+  in_damage_dur: 0
   die_effect:
   - {fileID: 198085412305327686, guid: d1f231a539122664c86f0a6a6a456157, type: 2}
   - {fileID: 198410871006054420, guid: 5e64849e24a3b3949a4999b2eb9ef198, type: 2}
   - {fileID: 198960496170012676, guid: 6b023f22181b1d640a11c4ae1a24ade8, type: 2}
-  FxDie: {fileID: 0}
-  EnemyMaterials: {fileID: 114090430353400568}
-  TimeDamageMat: 0.65
-  "Da\xF1o": 0
   score: 100
+  die_fx: {fileID: 0}
 --- !u!114 &114645177037812472
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -2909,10 +2999,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1baa2c15fb894ee4c907596f32dcc8e0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  patrol_points: []
-  wait_time: 0
+  is_patrolling: 1
   patrol_speed: 2
-  is_patrol: 1
+  wait_dur: 0
 --- !u!114 &114828204220872990
 MonoBehaviour:
   m_ObjectHideFlags: 1

@@ -60,8 +60,8 @@ public class EnemyWeapon : MonoBehaviour
     //Ralentizar
     Slow_Motion Ralentizar;
     private float RalentizarDisparos;
-    [Header("Habilidad Ralentizar")]
-    public float TiempoRalentizado;
+    //[Header("Habilidad Ralentizar")]
+    //public float TiempoRalentizado;
 
     //////////////////////////////////////////////
 
@@ -70,7 +70,7 @@ public class EnemyWeapon : MonoBehaviour
         a_source = GetComponent<AudioSource>();
 
         fire_pos = weapon.Find("FirePos");
-        effect_pos = weapon.Find("EffectPos");
+        effect_pos = weapon.Find("ShotEffect");
         shell_pos = weapon.Find("ShellPos");
 
         shot_c = shot_dur;
