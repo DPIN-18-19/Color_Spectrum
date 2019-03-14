@@ -718,7 +718,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4432653494729024}
   m_Layer: 9
-  m_Name: DeadEffect
+  m_Name: DieEffectPos
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1385,7 +1385,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1929973850218482}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 10.578235, y: 0.48799896, z: 55.255978}
+  m_LocalPosition: {x: -45.48, y: 0.59, z: 7.88}
   m_LocalScale: {x: 1.2848799, y: 1.2848799, z: 1.2848799}
   m_Children:
   - {fileID: 224632376777443738}
@@ -1939,9 +1939,9 @@ MonoBehaviour:
   bullet_dmg: 5
   bullet_range: 20
   bullet_friend: 0
-  weapon: {fileID: 0}
-  shot_dur: 0
-  shot_dur_max: 0
+  weapon: {fileID: 4942983223075392}
+  shot_dur: 0.5
+  shot_dur_max: 0.5
   random: 0
   is_shooting: 0
   yellow_mat: {fileID: 2100000, guid: d88ec5f6f06e64d4db6956c458f0b867, type: 2}
@@ -1959,7 +1959,7 @@ MonoBehaviour:
     type: 2}
   shell_efect_m: {fileID: 198834423430413478, guid: 93a8d38d779f61f4cbf4add2091be907,
     type: 2}
-  FXShotEnemy: {fileID: 0}
+  FXShotEnemy: {fileID: 8300000, guid: 2c270755a083f394bb2ccf4037733bea, type: 3}
 --- !u!114 &114104946241433050
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1971,7 +1971,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5088dd01fe25e5a4f9f44665013d2dbc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  cur_color: 0
+  cur_color: 2
   chase_speed: 7
 --- !u!114 &114188129784888902
 MonoBehaviour:
@@ -2090,7 +2090,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   max_health: 15
   health_bar: {fileID: 114334616615874824}
-  in_damage_dur: 0
+  in_damage_dur: 0.65
   die_effect:
   - {fileID: 198960496170012676, guid: 6b023f22181b1d640a11c4ae1a24ade8, type: 2}
   - {fileID: 198960496170012676, guid: 6b023f22181b1d640a11c4ae1a24ade8, type: 2}
@@ -2164,7 +2164,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: db2212615987d1b4f8e79078854d72b8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  renderersToChangeColor: []
+  renderersToChangeColor:
+  - {fileID: 137628406115596774}
   cur_color: 0
   Blue_Material: {fileID: 2100000, guid: 9159bbef168212c41ac8e1bfa1ef8c90, type: 2}
   Yellow_Material: {fileID: 2100000, guid: 4473d2bd26aabc14cb3d1ef79cc67b65, type: 2}

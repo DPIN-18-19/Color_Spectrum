@@ -176,7 +176,7 @@ public class EnemyBehaviour : MonoBehaviour
         // Realizar disparos continuos
         if (detect.IsPlayerInFront(sight_angle) && detect.IsPlayerOnSight(sight_distance))
         {
-            shot.is_shooting = true;
+           
             shot.random = false;
         }
         // Realizar disparos aleatorios
@@ -202,7 +202,7 @@ public class EnemyBehaviour : MonoBehaviour
     {
         nav_agent.SetDestination(target.transform.position);
         //nav_agent.speed = chase_speed;
-
+        shot.is_shooting = true;
         attack_moving = true;
         attack_in_place = false;
 
