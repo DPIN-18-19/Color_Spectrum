@@ -216,7 +216,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4571146043565934}
   m_Layer: 8
-  m_Name: ShotEffect (2)
+  m_Name: ShotEffect
   m_TagString: EnemyYellow
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -715,7 +715,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4095106397132998}
   m_Layer: 8
-  m_Name: EffectDiePos (1)
+  m_Name: DieEffectPos
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -730,7 +730,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4359801446594668}
   m_Layer: 8
-  m_Name: EnemyHome (1)
+  m_Name: EnemyHome
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -775,7 +775,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4955352440219220}
   m_Layer: 8
-  m_Name: ShellPos (1)
+  m_Name: ShellPos
   m_TagString: EnemyYellow
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1051,9 +1051,7 @@ GameObject:
   - component: {fileID: 54126669049291610}
   - component: {fileID: 65958073038924230}
   - component: {fileID: 82346939780062538}
-  - component: {fileID: 114842067617788196}
   - component: {fileID: 195362693559611618}
-  - component: {fileID: 114816794093100728}
   - component: {fileID: 114480677220353506}
   - component: {fileID: 114500020720685558}
   - component: {fileID: 114402646260444824}
@@ -1173,7 +1171,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4113543143527396}
   m_Layer: 8
-  m_Name: FirePos (1)
+  m_Name: FirePos
   m_TagString: EnemyYellow
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2182,7 +2180,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1790026940658642}
   m_LocalRotation: {x: 0, y: 1, z: 0, w: 0}
-  m_LocalPosition: {x: 8.155479, y: 0.48799896, z: 29.22}
+  m_LocalPosition: {x: -44.94633, y: -0.93641186, z: 7.408119}
   m_LocalScale: {x: 1.2481817, y: 1.2803414, z: 1.4793193}
   m_Children:
   - {fileID: 224746787734099406}
@@ -2728,7 +2726,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: db2212615987d1b4f8e79078854d72b8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  renderersToChangeColor: []
+  renderersToChangeColor:
+  - {fileID: 137916985629218142}
+  - {fileID: 137832744929779164}
+  - {fileID: 137863729080488416}
+  - {fileID: 137268273223922450}
   cur_color: 0
   Blue_Material: {fileID: 2100000, guid: 49954b06e073e3c46af74fc9e8fa5257, type: 2}
   Yellow_Material: {fileID: 2100000, guid: e3f6cefb012926043851fce3b2b9a31e, type: 2}
@@ -2753,7 +2755,7 @@ MonoBehaviour:
   bullet_dmg: 5
   bullet_range: 20
   bullet_friend: 0
-  weapon: {fileID: 0}
+  weapon: {fileID: 4545918185209556}
   shot_dur: 1.5
   shot_dur_max: 1.5
   random: 0
@@ -2900,46 +2902,6 @@ MonoBehaviour:
   m_FillAmount: 1
   m_FillClockwise: 1
   m_FillOrigin: 0
---- !u!114 &114816794093100728
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1697590694143090}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3267b229c41a24e4396494be715b5327, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  cur_color: 0
-  AttackMovePlayer: 0
-  AttackStopPlayer: 0
-  home: {fileID: 1520215459859506}
-  chase_speed: 5
-  alert_distance: 10
-  sight_distance: 25
-  safe_distance: 3
-  DontShot: 0
-  SonidoKi: {fileID: 0}
-  renderersToChangeColor:
-  - {fileID: 137268273223922450}
-  - {fileID: 137916985629218142}
-  - {fileID: 137863729080488416}
-  - {fileID: 23607522309845768}
-  - {fileID: 137832744929779164}
-  Blue_Material: {fileID: 2100000, guid: 045c46877d9f968428ffaac0cbbc2b72, type: 2}
-  Yellow_Material: {fileID: 2100000, guid: e3f6cefb012926043851fce3b2b9a31e, type: 2}
-  Pink_Material: {fileID: 2100000, guid: 98d36da6d9f400f42b1e07defaf6246d, type: 2}
-  DamageBlueMaterial: {fileID: 2100000, guid: e43fa4d0447b95a429af486a124f30ee, type: 2}
-  DamageYellowMaterial: {fileID: 2100000, guid: fabf4cdaffc4fc14ab579db968159865,
-    type: 2}
-  DamagePinkMaterial: {fileID: 2100000, guid: beda41a991a501d478b05666e5ba2f20, type: 2}
-  EffectDestroy: {fileID: 0}
-  PosDeadParticle: {fileID: 0}
-  isKamikaze: 0
-  SpeedSlow: 3.1
-  AnimSlow: 0.3
-  RalentizarRotar: 0
 --- !u!114 &114824280721285828
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -2956,45 +2918,6 @@ MonoBehaviour:
   m_BlockingMask:
     serializedVersion: 2
     m_Bits: 4294967295
---- !u!114 &114842067617788196
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1697590694143090}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5e6e62700134e404d8bd51107b5ff240, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  yellow_mat: {fileID: 2100000, guid: 5a96abfc6a74b1841ba0d0201453881b, type: 2}
-  cyan_mat: {fileID: 2100000, guid: 95506bf5b0569b94f91203cd4b7bf4f4, type: 2}
-  magenta_mat: {fileID: 2100000, guid: a3bb50ec3e1a5b5419ae6870033ad15d, type: 2}
-  Shot_effectYellow: {fileID: 198534960484000138, guid: f3dd52b642049b24b810219ac86f23ec,
-    type: 2}
-  Shot_effectBlue: {fileID: 198857426217267120, guid: 36020c596b143aa41b0a3ec20a2be32c,
-    type: 2}
-  Shot_effectPink: {fileID: 198178962905762056, guid: 9691f1331907a50498f57dc72b89f5dc,
-    type: 2}
-  ShellEfectYellow: {fileID: 198236717835626218, guid: 485aef8f70c9c974ab96492c7fd11b2c,
-    type: 2}
-  ShellEfectBlue: {fileID: 198834423430413478, guid: 93a8d38d779f61f4cbf4add2091be907,
-    type: 2}
-  ShellEfectPink: {fileID: 198076230649775678, guid: 3a875e93ad345f74b8662cfe669da381,
-    type: 2}
-  bullet: {fileID: 1630379668744072, guid: d59c53fa4931c994a9da4bf1cf0d6112, type: 2}
-  FirePos: {fileID: 4113543143527396}
-  EffectShot: {fileID: 4571146043565934}
-  timeBetweenShorts: 1.5
-  TimeShots: 1.5
-  isShooting: 0
-  ShellEjection: {fileID: 4955352440219220}
-  FXShotEnemy: {fileID: 8300000, guid: 9ebf0ed6d21bf4042b79b58f35db6af8, type: 3}
-  bullet_speed: 10
-  bullet_dmg: 10
-  bullet_range: 20
-  bullet_friend: 0
-  random: 0
 --- !u!114 &114860260411323840
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -3008,7 +2931,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   max_health: 10
   health_bar: {fileID: 114536749717797828}
-  in_damage_dur: 0
+  in_damage_dur: 0.65
   die_effect:
   - {fileID: 198085412305327686, guid: d1f231a539122664c86f0a6a6a456157, type: 2}
   - {fileID: 198410871006054420, guid: 5e64849e24a3b3949a4999b2eb9ef198, type: 2}

@@ -793,7 +793,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4422990594546522}
   m_Layer: 9
-  m_Name: 'EffectDiePos '
+  m_Name: DieEffectPos
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2080,7 +2080,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1565936393995640}
   m_LocalRotation: {x: -0, y: 1, z: -0, w: 0}
-  m_LocalPosition: {x: -44.4, y: 0.07, z: 5.568164}
+  m_LocalPosition: {x: -45.056175, y: 0.38, z: 5.3328915}
   m_LocalScale: {x: 1.2481819, y: 1.2803414, z: 1.4793196}
   m_Children:
   - {fileID: 224999629395239160}
@@ -2771,7 +2771,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: db2212615987d1b4f8e79078854d72b8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  renderersToChangeColor: []
+  renderersToChangeColor:
+  - {fileID: 137079776697271050}
+  - {fileID: 137251587275303482}
+  - {fileID: 137286426846619274}
+  - {fileID: 137954017896859484}
   cur_color: 0
   Blue_Material: {fileID: 2100000, guid: 49954b06e073e3c46af74fc9e8fa5257, type: 2}
   Yellow_Material: {fileID: 2100000, guid: e3f6cefb012926043851fce3b2b9a31e, type: 2}
@@ -2905,7 +2909,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   max_health: 10
   health_bar: {fileID: 114437734137085608}
-  in_damage_dur: 0
+  in_damage_dur: 0.65
   die_effect:
   - {fileID: 198085412305327686, guid: d1f231a539122664c86f0a6a6a456157, type: 2}
   - {fileID: 198410871006054420, guid: 5e64849e24a3b3949a4999b2eb9ef198, type: 2}
