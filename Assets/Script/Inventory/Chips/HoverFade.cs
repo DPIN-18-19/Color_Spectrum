@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class HoverTooltip : MonoBehaviour
+public class HoverFade : MonoBehaviour
 {
     float show_delay = 1.0f;
     float to_visible_dur = 0.5f;
