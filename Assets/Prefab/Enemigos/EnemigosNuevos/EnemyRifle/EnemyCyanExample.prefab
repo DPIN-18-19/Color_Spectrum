@@ -370,7 +370,6 @@ GameObject:
   - component: {fileID: 54563390832448622}
   - component: {fileID: 82703486757117434}
   - component: {fileID: 65096253547016106}
-  - component: {fileID: 114782436770797736}
   - component: {fileID: 195920785272990774}
   - component: {fileID: 114866012904814802}
   - component: {fileID: 114291458353245580}
@@ -1938,6 +1937,7 @@ MonoBehaviour:
   can_see: 1
   can_shoot: 1
   can_move: 1
+  can_rotate: 1
   alert_distance: 10
   sight_distance: 25
   safe_distance: 6
@@ -2163,45 +2163,6 @@ MonoBehaviour:
   m_FillAmount: 1
   m_FillClockwise: 1
   m_FillOrigin: 0
---- !u!114 &114782436770797736
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1427712856690658}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5e6e62700134e404d8bd51107b5ff240, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  yellow_mat: {fileID: 2100000, guid: d88ec5f6f06e64d4db6956c458f0b867, type: 2}
-  cyan_mat: {fileID: 2100000, guid: 95506bf5b0569b94f91203cd4b7bf4f4, type: 2}
-  magenta_mat: {fileID: 2100000, guid: 2d0ac1555fd56254c83e06f281b9678d, type: 2}
-  Shot_effectYellow: {fileID: 198534960484000138, guid: f3dd52b642049b24b810219ac86f23ec,
-    type: 2}
-  Shot_effectBlue: {fileID: 198857426217267120, guid: 36020c596b143aa41b0a3ec20a2be32c,
-    type: 2}
-  Shot_effectPink: {fileID: 198178962905762056, guid: 9691f1331907a50498f57dc72b89f5dc,
-    type: 2}
-  ShellEfectYellow: {fileID: 198236717835626218, guid: 485aef8f70c9c974ab96492c7fd11b2c,
-    type: 2}
-  ShellEfectBlue: {fileID: 198834423430413478, guid: 93a8d38d779f61f4cbf4add2091be907,
-    type: 2}
-  ShellEfectPink: {fileID: 198076230649775678, guid: 3a875e93ad345f74b8662cfe669da381,
-    type: 2}
-  bullet: {fileID: 1630379668744072, guid: d59c53fa4931c994a9da4bf1cf0d6112, type: 2}
-  FirePos: {fileID: 4974154606234192}
-  EffectShot: {fileID: 4075531568489904}
-  timeBetweenShorts: 0.5
-  TimeShots: 0.5
-  isShooting: 0
-  ShellEjection: {fileID: 4925927403032078}
-  FXShotEnemy: {fileID: 8300000, guid: 93bafb5448c982a449e63a3638736494, type: 3}
-  bullet_speed: 10
-  bullet_dmg: 5
-  bullet_range: 20
-  bullet_friend: 0
-  random: 0
 --- !u!114 &114866012904814802
 MonoBehaviour:
   m_ObjectHideFlags: 1

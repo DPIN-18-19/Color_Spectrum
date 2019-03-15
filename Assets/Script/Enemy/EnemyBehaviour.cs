@@ -20,11 +20,13 @@ public class EnemyBehaviour : MonoBehaviour
     [SerializeField]
     private bool can_detect_near = true;               // Puede detectar por cercanía
     [SerializeField]
-    private bool can_see = true;                       // Puede detectar por vista
+    protected bool can_see = true;                       // Puede detectar por vista                
     [SerializeField]
-    private bool can_shoot = true;                     // Puede disparar
+    protected bool can_shoot = true;                     // Puede disparar
     [SerializeField]
     protected bool can_move = true;                      // Puede moverse
+    [SerializeField]
+    protected bool can_rotate = true;
 
     //////////////////////////////////////////////////
     // Variables de informacion
@@ -39,10 +41,10 @@ public class EnemyBehaviour : MonoBehaviour
 
     //////////////////////////////////////////////////
     // Variables de comportamiento
-    bool is_chasing;                        // El enemigo está en el estado "Perseguir"
-    bool is_retreat = false;                // El enemigo está en el estado "Regresar"
+    protected bool is_chasing;                        // El enemigo está en el estado "Perseguir"
+    protected bool is_retreat = false;                // El enemigo está en el estado "Regresar"
 
-    bool in_home = false;                       // El enemigo está en el estado "Casa"
+    protected bool in_home = false;                       // El enemigo está en el estado "Casa"
     protected bool is_looking = false;          // El enmigo está en el estado "Mirar"
     
     /////////////////////////////////////////////////////
@@ -106,7 +108,7 @@ public class EnemyBehaviour : MonoBehaviour
         if(patrol != null && patrol.is_patrolling)
             IsPatrolling();
         // Realizar "Mirar"
-        if(is_looking)
+        if(can_rotate && is_looking)
             IsLooking();
         // Realizar "EnCasa"
         if (in_home)
@@ -134,7 +136,7 @@ public class EnemyBehaviour : MonoBehaviour
     ////////////////////////////////////////////////////////////////////
     // Funciones cambiadores de estado
     // Deteccion de jugador
-    private void DetectPlayer()
+    protected virtual void DetectPlayer()
     {
         // En estado "Perseguir", no se ve al jugador
         if (is_chasing && !detect.IsPlayerNear(lost_distance))
@@ -198,7 +200,7 @@ public class EnemyBehaviour : MonoBehaviour
     ////////////////////////////////////////////////////////////////////
     // Funciones de estado
     // Estado "Perseguir"
-    void IsChasing()
+    protected void IsChasing()
     {
         nav_agent.SetDestination(target.transform.position);
         //nav_agent.speed = chase_speed;
@@ -213,7 +215,7 @@ public class EnemyBehaviour : MonoBehaviour
     }
 
     // Estado "Regresar"
-    void IsRetreating()
+    protected void IsRetreating()
     {
         nav_agent.SetDestination(home.transform.position);
         shot.is_shooting = false;
@@ -234,13 +236,13 @@ public class EnemyBehaviour : MonoBehaviour
     }
 
     // Estado "Patrullar"
-    void IsPatrolling()
+    protected void IsPatrolling()
     {
         attack_moving = true;
     }
 
     // Estado "Mirar"
-    void IsLooking()
+    protected void IsLooking()
     {
         correct_look = LookAtAxis(target.transform.position);
         correct_look = Mathf.LerpAngle(0, correct_look, Time.deltaTime / Slow_Rotation * 15.5f);
@@ -253,14 +255,14 @@ public class EnemyBehaviour : MonoBehaviour
     }
 
     // Estado "EnCasa"
-    void IsInHome()
+    protected void IsInHome()
     {
         if (patrol != null && !patrol.is_patrolling)
             attack_moving = false;
     }
     
     // Actualizar estado animacion
-    void UpdateAnimState()
+    protected  virtual void UpdateAnimState()
     {
         anim.SetBool("Attack", attack_moving);
         anim.SetBool("AttackStop", attack_in_place);

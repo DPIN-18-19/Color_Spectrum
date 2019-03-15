@@ -9,7 +9,7 @@ public class EnemyRenderer : MonoBehaviour
     public List<Renderer> renderersToChangeColor;
 
     // Material de enemigo
-    Material cur_mat;
+   protected Material cur_mat;
     [HideInInspector]
     public int cur_color;
 
@@ -31,7 +31,7 @@ public class EnemyRenderer : MonoBehaviour
     }
 
     // Aplicar color a todos los elementos del enemigo
-    void ApplyColor()
+    protected virtual void ApplyColor()
     {
         foreach (Renderer r in renderersToChangeColor)
         {
@@ -40,7 +40,7 @@ public class EnemyRenderer : MonoBehaviour
     }
 
     // Neutral
-    public void NeutralColor()
+    public virtual void NeutralColor()
     {
         switch (cur_color)
         {
@@ -58,7 +58,7 @@ public class EnemyRenderer : MonoBehaviour
     }
 
     // Dano
-    public void DamageColor()
+    public virtual void DamageColor()
     {
         switch (cur_color)
         {
