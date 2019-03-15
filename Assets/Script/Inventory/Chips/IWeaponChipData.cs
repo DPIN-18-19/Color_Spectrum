@@ -3,17 +3,17 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
 
-public class IAbiChipData : IChipData
+public class IWeaponChipData : IChipData
 {
-    public AbilityData abi_data;
-    public string abi_name;
+    IWeaponData w_data;
 
 	// Use this for initialization
 	void Start ()
     {
         canvas = GetComponentInParent<Canvas>().transform;          // Coger el canvas de la interfaz
+        w_data = GetComponent<IWeaponChipDrag>().w_data;
     }
-
+	
     public override void OnPointerEnter(PointerEventData p_event_data)
     {
         //Evitar que se muestre un tooltip si ya se agarrando algo
@@ -22,7 +22,7 @@ public class IAbiChipData : IChipData
             my_hover_tooltip = Instantiate(hover_tooltip, p_event_data.position, Quaternion.identity);
             my_hover_tooltip.transform.SetParent(canvas);
 
-            my_hover_tooltip.GetComponent<TooltipInfo>().ShowAbility(abi_data);
+            my_hover_tooltip.GetComponent<TooltipInfo>().ShowWeapon(w_data);
         }
     }
 }

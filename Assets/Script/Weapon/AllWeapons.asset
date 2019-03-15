@@ -25,7 +25,7 @@ MonoBehaviour:
     weight: 10
     ability: Escudo
     fx_shot: {fileID: 8300000, guid: 2c270755a083f394bb2ccf4037733bea, type: 3}
-    display_icon: {fileID: 0}
+    display_icon: {fileID: 21300000, guid: 8e577f360a54b53429fc885b761b5be1, type: 3}
     price: 123
   - name: Sniper
     gun: {fileID: 1019867649845852, guid: 8d3cf347f9da1ed4dbdfa37f9bbf9a39, type: 2}
@@ -40,7 +40,7 @@ MonoBehaviour:
     weight: 10
     ability: CambioColor
     fx_shot: {fileID: 8300000, guid: 358d64b831ae7734c95d9b884c8b2929, type: 3}
-    display_icon: {fileID: 0}
+    display_icon: {fileID: 21300000, guid: 349a3d69893536a40a18504e2e317eeb, type: 3}
     price: 234
   - name: Shotgun
     gun: {fileID: 1300654682825010, guid: 2c8dae5336223084e93d57e722c2aa71, type: 2}
@@ -55,7 +55,7 @@ MonoBehaviour:
     weight: 10
     ability: Granada
     fx_shot: {fileID: 8300000, guid: f6cb1f581b7444b23a05b613a16420d5, type: 3}
-    display_icon: {fileID: 0}
+    display_icon: {fileID: 21300000, guid: e28e5484729602447af2c3c86d2ff801, type: 3}
     price: 345
   - name: Rifle
     gun: {fileID: 100000, guid: aca665157bf25fa4da0238eba93ead70, type: 3}
@@ -69,6 +69,6 @@ MonoBehaviour:
     automatic: 1
     weight: 10
     ability: Dash
-    fx_shot: {fileID: 0}
-    display_icon: {fileID: 0}
+    fx_shot: {fileID: 8300000, guid: f6cb1f581b7444b23a05b613a16420d5, type: 3}
+    display_icon: {fileID: 21300000, guid: 859ade8b67854af4f890971b56c45cfb, type: 3}
     price: 386

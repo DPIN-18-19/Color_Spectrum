@@ -23,6 +23,7 @@ GameObject:
   - component: {fileID: 114984305727918122}
   - component: {fileID: 114469698128530492}
   - component: {fileID: 114800400913462580}
+  - component: {fileID: 225119431195295442}
   m_Layer: 5
   m_Name: WeaponToolTip
   m_TagString: Untagged
@@ -1268,3 +1269,14 @@ RectTransform:
   m_AnchoredPosition: {x: 60.3, y: 41.85}
   m_SizeDelta: {x: 109.41, y: 33.7}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!225 &225119431195295442
+CanvasGroup:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1088993472910828}
+  m_Enabled: 1
+  m_Alpha: 0
+  m_Interactable: 0
+  m_BlocksRaycasts: 0
+  m_IgnoreParentGroups: 0

@@ -14,6 +14,10 @@ public class AbilityData
     public float active_dur = 0.0f;
 
     // UI Data
+    [TextArea]
+    public string store_brief;
+    [TextArea]
+    public string tooltip_brief;
     public Sprite display_icon;
 
     // Inventory Data
