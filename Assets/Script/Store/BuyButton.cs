@@ -17,7 +17,6 @@ public class BuyButton : MonoBehaviour, IPointerEnterHandler, IPointerExitHandle
         buy_b.onClick.AddListener(ClickBuy);
     }
 	
-
     public void OnPointerEnter(PointerEventData p_data)
     {
         Debug.Log("In button");

@@ -37,7 +37,8 @@ public class LevelMenuManager : MonoBehaviour
             LoadLevelMenuData();
             info_p = FindObjectOfType<LevelInfoPanel>().transform;
             info_p.GetComponent<LevelInfoPanel>().Init();
-            info_p.gameObject.SetActive(false);
+            info_p.GetComponent<LevelInfoPanel>().TextDisappear();
+            //info_p.gameObject.SetActive(false);
         }
     }
 
@@ -67,11 +68,11 @@ public class LevelMenuManager : MonoBehaviour
 
     public bool MakeSelection(LevelData data)
     {
-        if (selection.id != -1)
-            return false;
-
+        //if (selection.id == data.id)
+        //    return false;
+        Deselect();
         selection.Clone(data);
-        info_p.gameObject.SetActive(true);
+        //info_p.gameObject.SetActive(true);
         info_p.GetComponent<LevelInfoPanel>().UpdateInfo(selection);
         return true;
     }
@@ -86,7 +87,7 @@ public class LevelMenuManager : MonoBehaviour
         }
 
         selection.id = -1;
-        info_p.gameObject.SetActive(false);
+        //info_p.gameObject.SetActive(false);
     }
 
     // Actualizar informacion de nivel
