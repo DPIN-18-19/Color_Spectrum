@@ -12,12 +12,13 @@ MonoBehaviour:
   m_Name: LevelsData
   m_EditorClassIdentifier: 
   levels:
-  - id: M_1
+  - id: 0
     name: Chico
     scene_name: Nivel_1
     brief: Fourscore and seven years ago our fathers brought forth on this continent,
       a new nation, conceived in Liberty, and dedicated to the proposition that all
       men are created equal.
+    unlock_score: 1000
     unlocked: 1
     complete: 1
     item_got: 0
@@ -25,23 +26,25 @@ MonoBehaviour:
     grade:
       grade: F
       mat: {fileID: 2100000, guid: 2ed27b7ed07568a49b9917de8963283b, type: 2}
-    unlock_require: []
-  - id: M_2
+    unlock_require: 
+  - id: 1
     name: Harpo
     scene_name: Store
     brief: 
-    unlocked: 0
+    unlock_score: 0
+    unlocked: 1
     complete: 0
     item_got: 0
     highscore: 0
     grade:
       grade: 
       mat: {fileID: 0}
-    unlock_require: []
-  - id: M_3
+    unlock_require: 00000000
+  - id: 2
     name: Groucho
     scene_name: 
     brief: 
+    unlock_score: 0
     unlocked: 0
     complete: 0
     item_got: 0
@@ -49,4 +52,4 @@ MonoBehaviour:
     grade:
       grade: 
       mat: {fileID: 0}
-    unlock_require: []
+    unlock_require: 0000000001000000

@@ -43,7 +43,8 @@ public class InventoryPanel : MonoBehaviour
             // Comprobar el estado "equipado" y crear copia
             if(i_chips.chips[i].equipped)
             {
-                n_chip.AddComponent<Darken>();
+                Darken d = n_chip.AddComponent<Darken>();
+                d.DarkenColor(0.5f);
                 Destroy(n_chip.GetComponent<IChipDrag>());
                 n_chip.transform.Find("Equipped").gameObject.SetActive(true);
             }
@@ -74,7 +75,8 @@ public class InventoryPanel : MonoBehaviour
             // Comprobar el estado "equipado" y crear copia
             if (i_weapons.i_weapon_chips[i].equipped)
             {
-                n_w_chip.AddComponent<Darken>();
+                Darken d = n_w_chip.AddComponent<Darken>();
+                d.DarkenColor(0.5f);
                 Destroy(n_w_chip.GetComponent<IWeaponChipDrag>());
                 n_w_chip.transform.Find("Equipped").gameObject.SetActive(true);
             }
@@ -97,7 +99,8 @@ public class InventoryPanel : MonoBehaviour
             // Comprobar el estado "equipado" y crear copia
             if (i_abilities.abi_list[i].equipped)
             {
-                n_w_chip.AddComponent<Darken>();
+                Darken d = n_w_chip.AddComponent<Darken>();
+                d.DarkenColor(0.5f);
                 Destroy(n_w_chip.GetComponent<IChipDrag>());
                 n_w_chip.transform.Find("Equipped").gameObject.SetActive(true);
             }

@@ -65,7 +65,8 @@ public class IChipDrag : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDra
             {
                 // Crear copia oscurecida
                 shadow_copy = Instantiate(gameObject);
-                shadow_copy.AddComponent<Darken>();                         // Componente oscurecer
+                shadow_copy.AddComponent<Darken>();                     // Componente oscurecer
+                shadow_copy.GetComponent<Darken>().DarkenColor(0.5f);
                 Destroy(shadow_copy.GetComponent<IChipDrag>());         // Eliminar componente que permite arrastrarlo
                 shadow_copy.transform.SetParent(inv_deck);
 

@@ -5,12 +5,11 @@ using UnityEngine.SceneManagement;
 
 public class SceneMan1 : MonoBehaviour
 {
-    float TimRestart= 1.5f;
-    public bool isdead = false;
     //////////////////////////////////////////////////////
     // Singleton architecture
     public static SceneMan1 Instance { get; private set; }
-
+    float TimRestart = 1.5f;
+    public bool isdead = false;
     private void Awake()
     {
         if (Instance == null)
@@ -24,7 +23,7 @@ public class SceneMan1 : MonoBehaviour
         {
             TimRestart -= Time.deltaTime;
         }
-        if(TimRestart <= 0)
+        if (TimRestart <= 0)
         {
             TimRestart = 2;
             isdead = false;
@@ -35,19 +34,23 @@ public class SceneMan1 : MonoBehaviour
 
     //////////////////////////////////////////////////////
     // Scene Handling
-    
+
     public enum SceneIndex
     {
         PreLoadScene,
-       // Loading,
+        Loading,
         Main_Menu,
-        Nivel_1,
-        //UnlockTestingLevel,
-        LevelSelection,
         PreparationMenu,
+        LevelSelection,
         Customizacion,
-        Store
+        Store,
+        Tuto_Customizacion,
+        Tutorial,
+        Nivel_1,
+        Nivel_2
+        //UnlockTestingLevel,
     }
+    
     SceneIndex scene_to_load;
     
     //public void LoadSceneByName(string scene_name)
@@ -58,19 +61,23 @@ public class SceneMan1 : MonoBehaviour
     
     public void LoadSceneByName(string scene_name)
     {
-        //scene_to_load = (SceneIndex)System.Enum.Parse(typeof(SceneIndex), scene_name);
-        //SceneManager.LoadScene("Loading");
-        SceneManager.LoadScene(scene_name);
+        scene_to_load = (SceneIndex)System.Enum.Parse(typeof(SceneIndex), scene_name);
+        SceneManager.LoadScene("Loading");
+        //SceneManager.LoadScene(scene_name);
     }
     
-    public void ReloadCurrentScene()
+    public  void ReloadCurrentScene()
     {
-        isdead = true;
+        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
     }
     
     public int GetLoadScene()
     {
         return (int)scene_to_load;
     }
-    
+
+    public void ExitGame()
+    {
+        Application.Quit();
+    }
 }

@@ -21,7 +21,7 @@ public class LevelMenuManager : MonoBehaviour
             Destroy(gameObject);
 
         level_icons = new List<LevelMiniature>();
-        selection.id = "";
+        selection.id = -1;
     }
 
     private void Start()
@@ -37,10 +37,12 @@ public class LevelMenuManager : MonoBehaviour
             LoadLevelMenuData();
             info_p = FindObjectOfType<LevelInfoPanel>().transform;
             info_p.GetComponent<LevelInfoPanel>().Init();
-            info_p.gameObject.SetActive(false);
+            info_p.GetComponent<LevelInfoPanel>().TextDisappear();
+            //info_p.gameObject.SetActive(false);
         }
     }
 
+    // Cargar datos de miniaturas
     void LoadLevelMenuData()
     {
         level_icons.Clear();
@@ -51,24 +53,26 @@ public class LevelMenuManager : MonoBehaviour
         // Insert level data
         for(int i = 0; i < level_icons.Count; ++i)
         {
+            // Cargar datos correctos mediante el nombre de objeto "miniatura"
             level_icons[i].data.Clone(SearchData(level_icons[i].name));
         }
-        selection.id = "";
+        selection.id = -1;
     }
 
+    // Buscar los datos de la miniatura
     LevelData SearchData(string id)
     {
-        int index = levels_l.levels.FindIndex(x => x.id == id);
+        int index = levels_l.levels.FindIndex(x => x.id.ToString() == id);
         return levels_l.levels[index];
     }
 
     public bool MakeSelection(LevelData data)
     {
-        if (selection.id != "")
-            return false;
-
+        //if (selection.id == data.id)
+        //    return false;
+        Deselect();
         selection.Clone(data);
-        info_p.gameObject.SetActive(true);
+        //info_p.gameObject.SetActive(true);
         info_p.GetComponent<LevelInfoPanel>().UpdateInfo(selection);
         return true;
     }
@@ -82,10 +86,11 @@ public class LevelMenuManager : MonoBehaviour
                 level_icons[i].Deselect();
         }
 
-        selection.id = "";
-        info_p.gameObject.SetActive(false);
+        selection.id = -1;
+        //info_p.gameObject.SetActive(false);
     }
 
+    // Actualizar informacion de nivel
     public void UpdateScoreInfo()
     {
         for(int i = 0; i < levels_l.levels.Count; ++i)
@@ -96,11 +101,42 @@ public class LevelMenuManager : MonoBehaviour
                 {
                     levels_l.levels[i].highscore = ScoreManager.Instance.GetFinalScore();
                     levels_l.levels[i].grade.Clone(ScoreManager.Instance.GetGrade());
-
-                    levels_l.levels[i].complete = true;
                 }
 
+                levels_l.levels[i].complete = true;
+
                 return;
+            }
+        }
+    }
+
+    // Comprobar si es necesario desbloquear nuevos niveles
+    public void UnlockLevels()
+    {
+        // Comprobar todos los niveles que faltan por desbloquear
+        for(int i = 0; i < levels_l.levels.Count; ++i)
+        {
+            if(!levels_l.levels[i].unlocked)
+            {
+                // Niveles requeridos para desbloqueo
+                List<int> requirements = levels_l.levels[i].unlock_require;
+                // El nivel puede ser desbloqueado
+                bool will_unlock = true;
+
+                // Comprobar qu los niveles requeridos han sido completados
+                for(int j = 0; j < requirements.Count; ++j)
+                {
+                    if (!levels_l.levels[requirements[j]].complete)
+                    {
+                        // Uno de los requerimientos no se ha cumplido
+                        will_unlock = false;
+                        break;
+                    }
+                }
+
+                // Desbloquear nivel
+                if (will_unlock)
+                    levels_l.levels[i].unlocked = true;
             }
         }
     }
