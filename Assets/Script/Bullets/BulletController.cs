@@ -257,7 +257,7 @@ public class BulletController : MonoBehaviour
         // Same color obstacle collision
         if (col.gameObject.tag == gameObject.tag)
         {
-            Debug.Log("Collided with a wall");
+           // Debug.Log("Collided with a wall");
             if (m_collider == null)
                 Debug.Log("Error");
             m_collider.enabled = !m_collider.enabled;

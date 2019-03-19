@@ -14,8 +14,13 @@ public class TurretWeapon : EnemyWeapon
     private float shot_dur_max_1;
     [SerializeField]
     float late_shot = 0.1f;
+    [SerializeField]
+    float late_shot_1 = 0.1f;
 
     public bool shot_right;
+    public bool FirstShot;
+
+    
     // Use this for initialization
     void  Start()
     {
@@ -43,48 +48,64 @@ public class TurretWeapon : EnemyWeapon
             a_source.pitch = Ability_Time_Manager.Instance.FXRalentizado;
         if (Ralentizar.ActivateAbility == false)
             a_source.pitch = 1;
-        
+
         // Realizar disparo
-        if (!shot_right)
-        {
+
+        //if(!FirstShot)
+        // {
+        //     shot_c = late_shot;
+        //     shot_c_1 = late_shot_1;
+        // }
+        //if (FirstShot)
+        //{
+        //    ResetTurret();
+        //}
+       // Debug.Log(shot_c);
+       
+            if (!shot_right)
+            {
+           
             shot_c -= Time.deltaTime;
 
-            if (shot_c < 0 && is_shooting == true)
-            {
-                AddaptColor();
-                a_source.PlayOneShot(FXShotEnemy);
+                if (shot_c < 0 && is_shooting == true)
+                {
+                    AddaptColor();
+                    a_source.PlayOneShot(FXShotEnemy);
 
-                GameObject bullet_shot = Instantiate(bullet, fire_pos.position, fire_pos.rotation);
-                Vector3 bullet_dir = transform.forward;
-                bullet_shot.GetComponent<BulletController>().
-                            AddBulletInfo(bullet_color, -bullet_speed,
-                            bullet_dir, bullet_dmg, bullet_range, bullet_friend);   //- Create Gun Variables
+                    GameObject bullet_shot = Instantiate(bullet, fire_pos.position, fire_pos.rotation);
+                    Vector3 bullet_dir = transform.forward;
+                    bullet_shot.GetComponent<BulletController>().
+                                AddBulletInfo(bullet_color, -bullet_speed,
+                                bullet_dir, bullet_dmg, bullet_range, bullet_friend);   //- Create Gun Variables
 
-                // Calculo de tiempo siguiente disparo
-                shot_c_1 = NextShotTime_1() * RalentizarDisparos;
-                shot_right = false;
-            }
-        }
-        else
-        {
-            shot_c_1 -= Time.deltaTime;
-
-            if (shot_c_1 < 0 && is_shooting == true)
-            {
-                AddaptColor();
-                a_source.PlayOneShot(FXShotEnemy);
-
-                GameObject bullet_shot = Instantiate(bullet, fire_pos_1.position, fire_pos_1.rotation);
-                Vector3 bullet_dir = transform.forward;
-                bullet_shot.GetComponent<BulletController>().
-                            AddBulletInfo(bullet_color, -bullet_speed,
-                            bullet_dir, bullet_dmg, bullet_range, bullet_friend);   //- Create Gun Variables
-
-                // Calculo de tiempo siguiente disparo
-                shot_c = NextShotTime() * RalentizarDisparos;
+                    // Calculo de tiempo siguiente disparo
+                    shot_c_1 = NextShotTime_1() * RalentizarDisparos;
+               
                 shot_right = true;
+                }
             }
-        }
+            else
+            {
+           
+                shot_c_1 -= Time.deltaTime;
+
+                if (shot_c_1 < 0 && is_shooting == true)
+                {
+                    AddaptColor();
+                    a_source.PlayOneShot(FXShotEnemy);
+
+                    GameObject bullet_shot = Instantiate(bullet, fire_pos_1.position, fire_pos_1.rotation);
+                    Vector3 bullet_dir = transform.forward;
+                    bullet_shot.GetComponent<BulletController>().
+                                AddBulletInfo(bullet_color, -bullet_speed,
+                                bullet_dir, bullet_dmg, bullet_range, bullet_friend);   //- Create Gun Variables
+
+                    // Calculo de tiempo siguiente disparo
+                    shot_c = NextShotTime() * RalentizarDisparos;
+                    shot_right = false;
+                }
+            }
+        
 
 
 
@@ -102,7 +123,7 @@ public class TurretWeapon : EnemyWeapon
     }
     protected override void AddaptColor()
     {
-        Debug.Log("AddaptColorTurret");
+       // Debug.Log("AddaptColorTurret");
         //bullet_color = gameObject.GetComponent<EnemyController>().GetColor();
 
         switch (bullet_color)
@@ -150,8 +171,10 @@ public class TurretWeapon : EnemyWeapon
 
     public void ResetTurret()
     {
+        //shot_c = shot_dur;
+        //shot_c_1 = shot_dur_1;
         shot_c = late_shot;
-        shot_c_1 = shot_dur_1;
+        shot_c_1 = late_shot_1;
         shot_right = false;
     }
 

@@ -53,7 +53,7 @@ public class EnemyBehaviour : MonoBehaviour
     public bool attack_moving;             // Pose de atacar desplazandose
     [HideInInspector]
     public bool attack_in_place;           // Pose de atacar quieto
-    float correct_look;             // Aplicar animacion de rotacion
+    protected float correct_look;             // Aplicar animacion de rotacion
 
     ///////////////////////////////////////////////////////
     //RalentizarMovimiento
@@ -143,6 +143,7 @@ public class EnemyBehaviour : MonoBehaviour
         {
             is_chasing = false;
             is_retreat = true;
+            Debug.Log("Retreat2");
         }
 
         if(can_see)
@@ -242,7 +243,7 @@ public class EnemyBehaviour : MonoBehaviour
     }
 
     // Estado "Mirar"
-    protected void IsLooking()
+    protected virtual void IsLooking()
     {
         correct_look = LookAtAxis(target.transform.position);
         correct_look = Mathf.LerpAngle(0, correct_look, Time.deltaTime / Slow_Rotation * 15.5f);
