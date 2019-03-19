@@ -224,7 +224,8 @@ public class ScoreManager : MonoBehaviour
     {
         for(time_it = 0; time_it < time_info.Count; ++time_it)
         {
-            if (GetMinutes() <= time_info[time_it].minutes && GetSeconds() <= time_info[time_it].seconds)
+            if (GetMinutes() < time_info[time_it].minutes 
+                || GetMinutes() == time_info[time_it].minutes && GetSeconds() <= time_info[time_it].seconds)
                 return time_info[time_it].multiplier;
         }
         
