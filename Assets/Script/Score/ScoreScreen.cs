@@ -8,13 +8,9 @@ public class ScoreScreen : MonoBehaviour
     List<Text> score_texts;
     bool do_once = true;
     public ScoreList level_scores;
-    public string SiguienteNivel;
+
     private void Awake()
     {
-    }
-    private void Update()
-    {
-        Invoke("LoadNext", 5);
     }
 
     private void Start()
@@ -26,13 +22,12 @@ public class ScoreScreen : MonoBehaviour
         score_texts = new List<Text>();
         score_texts.AddRange(transform.Find("ModifiableTexts").GetComponentsInChildren<Text>());
         ScoreManager.Instance.LoadScoreData(level_scores);
-
     }
 
 	public void UpdateStats()
     {
         ScoreManager.Instance.CalculateFinalScore();
-        PlayerManager.Instance.AddMoney(ScoreManager.Instance.GetFinalScore());
+
         //LevelMenuManager.Instance.UpdateScoreInfo();
         // Numero de golpes
         score_texts[0].text = ScoreManager.Instance.GetDamageCount().ToString();
@@ -51,16 +46,29 @@ public class ScoreScreen : MonoBehaviour
         // Nota final
         score_texts[7].text = ScoreManager.Instance.GetFinalGrade();
         score_texts[7].material = ScoreManager.Instance.QuickGetGradeMat();
+
+
+        // Actualizar estadísticas
+        PlayerManager.Instance.AddMoney(ScoreManager.Instance.GetFinalScore());
+        LevelMenuManager.Instance.UpdateScoreInfo();
+
+        // Actualizar desbloqueables
+        UnlockMan.Instance.LevelUnlock();
+        UnlockMan.Instance.StoreUnlock(LevelMenuManager.Instance.selection.name);
         
+        if(LevelMenuManager.Instance.selection.unlock_score <= ScoreManager.Instance.GetFinalScore())
+            UnlockMan.Instance.ScoreLevelUnlock(LevelMenuManager.Instance.selection.name);
+
+
         //UnityEngine.SceneManagement.SceneManager.LoadScene("Store");
-        //SceneMan1.Instance.LoadSceneByName("LevelSelection");
-       
+        SceneMan1.Instance.LoadSceneByName("LevelSelection");
+
+        //this.Invoke("LoadNext", 5);
     }
 
     void LoadNext()
     {
-        Debug.Log("Mevoy");
-        SceneMan1.Instance.LoadSceneByName(SiguienteNivel);
+        SceneMan1.Instance.LoadSceneByName("LevelSelection");
         //UnityEngine.SceneManagement.SceneManager.LoadScene("Store");
     }
 

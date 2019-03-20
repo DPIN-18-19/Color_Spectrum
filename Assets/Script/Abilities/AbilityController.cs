@@ -54,7 +54,8 @@ public class AbilityController : MonoBehaviour
                 a_grenade.enabled = true;
                 break;
             case "Shield":
-                a_shield.enabled = true;
+
+
                 break;
             default:
                 cur_ability = "";

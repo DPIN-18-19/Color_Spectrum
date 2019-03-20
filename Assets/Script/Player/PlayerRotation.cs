@@ -9,8 +9,7 @@ public class PlayerRotation : MonoBehaviour
     private float weapon_height;    // Altura del arma
 
     // Use managers better at some point
-    public ShowScore score;
-    public Menu_Pausa pause;
+   
 
 
     private void Start()
@@ -37,7 +36,7 @@ public class PlayerRotation : MonoBehaviour
     void Rotation()
     {
         //if (!PauseMan.Instance.is_pause && !ScoreManager.Instance.is_result_active)
-        if(!pause.GameIsPaused && !score.is_paused)
+        if(!PauseMan.Instance.is_pause && !ScoreManager.Instance.is_result_active)
         {
             // Calcular rayo de colisión de puntero en el espacio de la cámara
             Ray cam_ray = cam.ScreenPointToRay(Input.mousePosition);

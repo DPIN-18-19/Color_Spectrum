@@ -191,13 +191,13 @@ public class BulletController : MonoBehaviour
         //Condicion !friendly(Enemigo) Ralentizar.
         if(!friendly && Ralentizar.ActivateAbility == true )
         {
-            Debug.Log("Ralentizado");
+            //Debug.Log("Ralentizado");
             ralentizarVelocidad = Ability_Time_Manager.Instance.Slow_Bullet_Velocity;
             ralentizarDestruccion = Ability_Time_Manager.Instance.Slow_Bullet_Destroy;     
         }
         if (!friendly && Ralentizar.ActivateAbility == false )
         {
-            Debug.Log("DejadoDeRalentizar");
+            //Debug.Log("DejadoDeRalentizar");
             ralentizarVelocidad = MaxRalentizarVelocidad;
             ralentizarDestruccion = MaxralentizarDestruccion;  
         }
@@ -257,7 +257,7 @@ public class BulletController : MonoBehaviour
         // Same color obstacle collision
         if (col.gameObject.tag == gameObject.tag)
         {
-            Debug.Log("Collided with a wall");
+           // Debug.Log("Collided with a wall");
             if (m_collider == null)
                 Debug.Log("Error");
             m_collider.enabled = !m_collider.enabled;
@@ -326,31 +326,34 @@ public class BulletController : MonoBehaviour
         // Collision with any other object
         else if (col.gameObject.tag.Contains("Enemy"))
         {
-           
+            Vector3 rotParticle = col.contacts[0].normal;
+            Transform bulletRot = gameObject.transform;
+            float Angle = Vector3.SignedAngle(gameObject.transform.forward, rotParticle, Vector3.up);
+
             if (friendly)
             {
-                if (col.gameObject.GetComponent<EnemyHealthController>().IsWeak(gameObject.tag, gameObject.layer))
+                if (col.gameObject.GetComponent<EnemyHealth>().IsWeak(gameObject.tag, gameObject.layer))
                 {
                     Debug.Log("BalaIsWeak");
-                    col.gameObject.GetComponent<EnemyHealthController>().GetDamage(bullet_damage);
+                    col.gameObject.GetComponent<EnemyHealth>().GetDamage(bullet_damage);
 
                     if (YellowDestroyeffect)
                     {
-                        Instantiate(DestroyEffectYellow.gameObject, transform.position, Quaternion.identity);
-                        
+                        Instantiate(DestroyEffectYellow.gameObject, transform.position, Quaternion.LookRotation(Quaternion.Euler(0, Angle, 0) * transform.forward, Vector3.up));
+
 
 
                     }
                     if (PinkDestroyeffect)
                     {
-                        Instantiate(DestroyEffectPink.gameObject, transform.position, Quaternion.identity);
-                       
-                       
+                        Instantiate(DestroyEffectPink.gameObject, transform.position, Quaternion.LookRotation(Quaternion.Euler(0, Angle, 0) * transform.forward, Vector3.up));
+
+
                     }
                     if (BlueDestroyeffect)
                     {
-                        Instantiate(DestroyEffectBlue.gameObject, transform.position, Quaternion.identity);
-                        
+                        Instantiate(DestroyEffectBlue.gameObject, transform.position, Quaternion.LookRotation(Quaternion.Euler(0, Angle, 0) * transform.forward, Vector3.up));
+
                     }
                     
                 }
@@ -362,24 +365,29 @@ public class BulletController : MonoBehaviour
         }
         else
         {
+            Vector3 rotParticle = col.contacts[0].normal;
+            Transform bulletRot = gameObject.transform;
+            float Angle = Vector3.SignedAngle(gameObject.transform.forward,rotParticle,Vector3.up);
+           // bulletRot.LookAt(col.contacts[0].);
             if (YellowDestroyeffect)
             {
-                Instantiate(DestroyEffectYellow.gameObject, transform.position, Quaternion.identity);
-                Debug.Log("destroy bullet");
+                Instantiate(DestroyEffectYellow.gameObject, transform.position,Quaternion.LookRotation(Quaternion.Euler(0,Angle, 0)* transform.forward, Vector3.up));
+                
+               
                 Destroy(gameObject);
                 //AudioSource.PlayClipAtPoint(DestroyBulletFx, transform.position);
             }
             if (PinkDestroyeffect)
             {
-                Instantiate(DestroyEffectPink.gameObject, transform.position, Quaternion.identity);
-                Debug.Log("destroy bullet");
+                Instantiate(DestroyEffectPink.gameObject, transform.position, Quaternion.LookRotation(Quaternion.Euler(0, Angle, 0) * transform.forward, Vector3.up));
+                // Debug.Log("destroy bullet");
                 Destroy(gameObject);
               //  AudioSource.PlayClipAtPoint(DestroyBulletFx, transform.position);
             }
             if (BlueDestroyeffect)
             {
-                Instantiate(DestroyEffectBlue.gameObject, transform.position, Quaternion.identity);
-                Debug.Log("destroy bullet");
+                Instantiate(DestroyEffectBlue.gameObject, transform.position, Quaternion.LookRotation(Quaternion.Euler(0, Angle, 0) * transform.forward, Vector3.up));
+                //  Debug.Log("destroy bullet");
                 Destroy(gameObject);
               //  AudioSource.PlayClipAtPoint(DestroyBulletFx, transform.position);
             }
@@ -435,8 +443,8 @@ public class BulletController : MonoBehaviour
         else if (col.gameObject.tag.Contains("Enemy"))
         {
             Debug.Log("Enemy hit");
-            if (col.gameObject.GetComponent<EnemyHealthController>().IsWeak(gameObject.tag, gameObject.layer))
-                col.gameObject.GetComponent<EnemyHealthController>().GetDamage(bullet_damage);
+            if (col.gameObject.GetComponent<EnemyHealth>().IsWeak(gameObject.tag, gameObject.layer))
+                col.gameObject.GetComponent<EnemyHealth>().GetDamage(bullet_damage);
 
             Destroy(gameObject);
         }
@@ -466,7 +474,7 @@ public class BulletController : MonoBehaviour
    protected bool PeekNextPosition(Vector3 f_pos)
     {
         RaycastHit hit;
-
+        
         Vector3 ray_dir = transform.position - f_pos;
         float dist = Vector3.Distance(transform.position, f_pos);
 

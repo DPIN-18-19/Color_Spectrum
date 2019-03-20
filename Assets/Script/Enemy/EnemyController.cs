@@ -128,27 +128,27 @@ public class EnemyController : MonoBehaviour
         MaxAnimSlow = anim.speed;
       
         //DieEffect.Stop();
-        EnemyColorData();
+      //  EnemyColorData();
 
         
        
     }
 
-    void EnemyColorData()
-    {
-        if (cur_color == Colors.Yellow)
-        {
-            GetComponent<EnemyHealthController>().ChangeToYellow();
-        }
-        else if (cur_color == Colors.Magenta)
-        {
-            GetComponent<EnemyHealthController>().ChangeToMagenta();
-        }
-        else if (cur_color == Colors.Cyan)
-        {
-            GetComponent<EnemyHealthController>().ChangeToCyan();
-        }
-    }
+    //void EnemyColorData()
+    //{
+    //    if (cur_color == Colors.Yellow)
+    //    {
+    //        GetComponent<EnemyHealth>().ChangeToYellow();
+    //    }
+    //    else if (cur_color == Colors.Magenta)
+    //    {
+    //        GetComponent<EnemyHealth>().ChangeToMagenta();
+    //    }
+    //    else if (cur_color == Colors.Cyan)
+    //    {
+    //        GetComponent<EnemyHealth>().ChangeToCyan();
+    //    }
+    //}
 
     public void RestoreChangeToYellow()
     {
@@ -275,7 +275,7 @@ public class EnemyController : MonoBehaviour
             nav_agent.isStopped = false;
 
             if (patrol != null)
-                patrol.is_patrol = false;
+                patrol.is_patrolling = false;
 
         }
         // Go back home
@@ -307,7 +307,7 @@ public class EnemyController : MonoBehaviour
 
         if (in_home)
         {
-            if (patrol != null && !patrol.is_patrol)
+            if (patrol != null && !patrol.is_patrolling)
             {
                 AttackMovePlayer = false;
                 anim.SetBool("Attack", AttackMovePlayer);
@@ -367,7 +367,7 @@ public class EnemyController : MonoBehaviour
             back_home = true;
         }
 
-        if (detect.IsPlayerInFront() && detect.IsPlayerNear(sight_distance)) // && detect.IsPlayerOnSight(sight_distance))
+        if (detect.IsPlayerInFront(10) && detect.IsPlayerNear(sight_distance)) // && detect.IsPlayerOnSight(sight_distance))
         {
             //Debug.Log("I see you");
             is_chasing = true;
@@ -410,7 +410,7 @@ public class EnemyController : MonoBehaviour
 
     private void ShootTarget()
     {
-        if (detect.IsPlayerInFront() && detect.IsPlayerOnSight(sight_distance))
+        if (detect.IsPlayerInFront(10) && detect.IsPlayerOnSight(sight_distance))
         {
             if (DontShot == false)
             {
@@ -457,7 +457,7 @@ public class EnemyController : MonoBehaviour
                 if (patrol != null)
                 {
                    // Debug.Log("Start again");
-                    patrol.is_patrol = true;
+                    patrol.is_patrolling = true;
                     patrol.ResetPatrol();
                 }
             }
@@ -466,7 +466,7 @@ public class EnemyController : MonoBehaviour
 
     void IsPatrol()
     {
-        if (patrol != null && patrol.is_patrol)
+        if (patrol != null && patrol.is_patrolling)
         {
             AttackMovePlayer = true;
             anim.SetBool("Attack", AttackMovePlayer);

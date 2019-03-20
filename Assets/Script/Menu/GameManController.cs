@@ -3,17 +3,18 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class GameManController : MonoBehaviour {
+public class GameManController : MonoBehaviour
+{
 
-    SceneMan scenem;
+    //SceneMan scenem;
 
    
 
 	// Use this for initialization
-	void Start ()
-    {
-        scenem = GetComponent<SceneMan>();
-	}
+	//void Start ()
+ //   {
+ //       scenem = GetComponent<SceneMan>();
+	//}
 
     // Update is called once per frame
     private void Update()
@@ -36,13 +37,13 @@ public class GameManController : MonoBehaviour {
         */
     }
 
-    public void ToMenu()
-    {
-        scenem.ToMenu();
-    }
-    public void Reset()
-    {
-        scenem.ResetLevel();
-    }
+    //public void ToMenu()
+    //{
+    //    scenem.ToMenu();
+    //}
+    //public void Reset()
+    //{
+    //    scenem.ResetLevel();
+    //}
     
 }

@@ -17,7 +17,7 @@ public class IChipData : MonoBehaviour, IPointerEnterHandler, IPointerExitHandle
     //public string ability = "Dash";
 
     public GameObject hover_tooltip;                // Objeto con el que se creará el tooltip
-    GameObject my_hover_tooltip;                    // Referencia al tooltip creado
+    protected GameObject my_hover_tooltip;                    // Referencia al tooltip creado
 
     protected Transform canvas;                     // El canvas
 
@@ -26,19 +26,21 @@ public class IChipData : MonoBehaviour, IPointerEnterHandler, IPointerExitHandle
         canvas = GetComponentInParent<Canvas>().transform;          // Coger el canvas de la interfaz
     }
 
-    public void OnPointerEnter(PointerEventData p_event_data)
+    public virtual void OnPointerEnter(PointerEventData p_event_data)
     {
-        // Evitar que se muestre un tooltip si ya se agarrando algo
-        //if (!Input.GetMouseButton(0))
-        //{
-        //    my_hover_tooltip = Instantiate(hover_tooltip, p_event_data.position, Quaternion.identity);
-        //    my_hover_tooltip.transform.SetParent(canvas);
-        //}
+        //Evitar que se muestre un tooltip si ya se agarrando algo
+        if (!Input.GetMouseButton(0))
+        {
+            my_hover_tooltip = Instantiate(hover_tooltip, p_event_data.position, Quaternion.identity);
+            my_hover_tooltip.transform.SetParent(canvas);
+            
+            my_hover_tooltip.GetComponent<TooltipInfo>().ShowUpgrade(data);
+        }
     }
 
-    public void OnPointerExit(PointerEventData p_event_data)
+    public virtual void OnPointerExit(PointerEventData p_event_data)
     {
-        //if (my_hover_tooltip)
-        //    my_hover_tooltip.GetComponent<HoverTooltip>().Leave();
+        if (my_hover_tooltip)
+            my_hover_tooltip.GetComponent<HoverFade>().Leave();
     }
 }

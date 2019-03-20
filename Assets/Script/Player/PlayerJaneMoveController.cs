@@ -12,8 +12,7 @@ public class PlayerJaneMoveController : MonoBehaviour {
     public CinemachineVirtualCamera Cam1;
     public bool CanMove = true;
     //public float TimeStopGrenade;
-    public ShowScore score;
-    public Menu_Pausa pause;
+
     // Variables
     public float move_speed;            // PLayer's speed
    
@@ -60,7 +59,7 @@ public class PlayerJaneMoveController : MonoBehaviour {
 
     void Movement()
     {
-        if (!pause.GameIsPaused && !score.is_paused)
+        if (!PauseMan.Instance.is_pause && !ScoreManager.Instance.is_result_active)
         {
 
             float horizontal = Input.GetAxisRaw("Horizontal");

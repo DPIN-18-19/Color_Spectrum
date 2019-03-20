@@ -14,10 +14,10 @@ namespace QFXToolKit
 
         private void OnTriggerEnter(Collider collision)
         {
-            if (collision.gameObject.layer != 11 )
+            if (collision.gameObject.layer != 8 )
             {
-                if (collision.gameObject.layer != 13 )
-                    if (collision.gameObject.layer != 12 )
+                if (collision.gameObject.layer != 9 )
+                    if (collision.gameObject.layer != 10 )
                     {
                         {
                             Debug.Log("AnimacionEscudo");

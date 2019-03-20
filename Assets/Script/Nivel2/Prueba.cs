@@ -22,7 +22,7 @@ public class Prueba : MonoBehaviour {
         if (terminales.Count <= 1)
             Activar();
 
-        Debug.Log(terminales.Count);
+        //Debug.Log(terminales.Count);
 
         if (terminales[0] == null)
             terminales.RemoveAt(0);
