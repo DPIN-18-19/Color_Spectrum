@@ -64,7 +64,7 @@ public class TurretWeapon : EnemyWeapon
        
             if (!shot_right)
             {
-           
+            Debug.Log("EstoyDisparando" + is_shooting);
             shot_c -= Time.deltaTime;
 
                 if (shot_c < 0 && is_shooting == true)
