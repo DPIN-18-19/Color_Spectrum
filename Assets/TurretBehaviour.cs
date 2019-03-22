@@ -8,7 +8,7 @@ public class TurretBehaviour : EnemyBehaviour
     TurretWeapon shot_turret;
     protected Animator anim_turret;
     public GameObject turret;
-    public GameObject RotateTurret;
+   
     private Vector3 InitialRotate;
     // Use this for initialization
     private void Start()
