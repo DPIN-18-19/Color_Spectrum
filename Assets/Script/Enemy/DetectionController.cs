@@ -53,6 +53,7 @@ public class DetectionController : MonoBehaviour
 
         for(int i = 0; i < hits.Length; ++i)
         {
+            Debug.Log("Collided with " + hits[i].transform.name);
             // Buscar al jugador
             if (hits[i].transform.gameObject.tag == target.tag)
                 my_target = i;
@@ -61,21 +62,28 @@ public class DetectionController : MonoBehaviour
         // El usuario no ha detectado al objetivo
         if (hits.Length == 0 || my_target == hits.Length)
             return false;
-        
+
         // Comprobar si existe un objeto entre jugador y enemigo
         for (int i = 0; i < hits.Length; ++i)
         {
             // No comprobar objetivo de nuevo
             if (i == my_target)
                 continue;
+            else
+            { 
 
-            float obstacle_dist = Vector3.Distance(transform.position, hits[i].point);
+                float obstacle_dist = Vector3.Distance(transform.position, hits[i].point);
 
-            // Se puede ver a través del obstáculo
-            if (obstacle_dist < target_dir.magnitude)
-                if (GetComponent<Enemy>().cur_color.ToString() != hits[i].transform.gameObject.tag)
-                    return false;
+                // Se puede ver a través del obstáculo
+                if (obstacle_dist < target_dir.magnitude)
+                    if (GetComponent<Enemy>().cur_color.ToString() != hits[i].transform.gameObject.tag)
+                    {
+                        Debug.Log("Object " + hits[i].transform.name + " is in front.");
+                        return false;
+                    }
+            }
         }
+
         return true;
     }
 }

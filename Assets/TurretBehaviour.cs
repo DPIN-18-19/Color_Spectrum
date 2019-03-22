@@ -50,12 +50,12 @@ public class TurretBehaviour : EnemyBehaviour
             // Realizar "Perseguir"
             if (is_chasing)
                 IsChasing();
-        // Realizar "Regresar"
-        if (is_retreat)
-        {
-            Debug.Log("Turret is retreat " + is_retreat);
-            RotateBack();
-        }
+            // Realizar "Regresar"
+            if (is_retreat)
+            {
+                Debug.Log("Turret is retreat " + is_retreat);
+                RotateBack();
+            }
             // Realizar "Patrullar"
             if (patrol != null && patrol.is_patrolling)
                 IsPatrolling();
@@ -94,18 +94,16 @@ public class TurretBehaviour : EnemyBehaviour
             is_retreat = true;
         }
 
-        if (can_see)
+        if (can_see && !is_chasing)
             // Comprobar si enemigo ve a jugador
             if (detect.IsPlayerInFront(sight_angle) && detect.IsPlayerNear(sight_distance) && detect.IsPlayerOnSight(sight_distance))
             {
-              //Debug.Log("I see");
+                Debug.Log("I see");
                 is_chasing = true;
-                in_home = false;
                /*shot_turret.FirstShot = true;  */// True el booleano para que para que dispare por primera vez la torreta
-
             }
 
-        if (is_chasing && (!detect.IsPlayerNear(lost_distance) || !detect.IsPlayerInFront(sight_angle)))
+        if (is_chasing && (!detect.IsPlayerNear(lost_distance) || !detect.IsPlayerInFront(sight_angle) || !detect.IsPlayerOnSight(sight_distance)))
         {
             is_chasing = false;
             attack_moving = false;
@@ -125,19 +123,21 @@ public class TurretBehaviour : EnemyBehaviour
     {
         anim_turret.SetBool("Attack", attack_moving);
     }
-    protected override void IsLooking()
+    protected override void IsChasing()
     {
+        shot.is_shooting = true;
+        attack_moving = true;
+        attack_in_place = false;
+
         correct_look = LookAtAxis(target.transform.position);
         correct_look = Mathf.LerpAngle(0, correct_look, Time.deltaTime / Slow_Rotation * 15.5f);
         transform.Rotate(0, correct_look, 0);
-
-     
     }
     private void RotateBack()
     {
         //correct_look = LookAtAxis(InitialRotate);
         correct_look = Vector3.SignedAngle(transform.forward, InitialRotate, Vector3.up);
-        Debug.Log("Rotation "+correct_look);
+        //Debug.Log("Rotation "+correct_look);
         if (Mathf.Abs(correct_look) <= 0.2f)
         {
             Debug.Log("Paso por aqui");
@@ -150,6 +150,15 @@ public class TurretBehaviour : EnemyBehaviour
         //transform.rotation = Quaternion.LookRotation(Quaternion.Euler(0, correct_look, 0), Vector3.up);
         transform.Rotate(0, correct_look, 0);
     }
+
+    void OnDrawGizmos()
+    {
+        Gizmos.color = Color.red;
+        Gizmos.DrawWireSphere(transform.position, alert_distance);
+        Gizmos.color = Color.blue;
+        Gizmos.DrawWireSphere(transform.position, sight_distance);
+    }
+
+    //correct_look = LookAtAxis(target.transform.position);
+    //correct_look = Mathf.LerpAngle(0, correct_look, Time.deltaTime / Slow_Rotation* 15.5f);
 }
-//correct_look = LookAtAxis(target.transform.position);
-//correct_look = Mathf.LerpAngle(0, correct_look, Time.deltaTime / Slow_Rotation* 15.5f);
