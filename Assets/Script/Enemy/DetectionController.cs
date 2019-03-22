@@ -66,16 +66,23 @@ public class DetectionController : MonoBehaviour
         for (int i = 0; i < hits.Length; ++i)
         {
             // No comprobar objetivo de nuevo
-            if (i == my_target)
-                continue;
+            if (i != my_target)
+            {
+                float obstacle_dist = Vector3.Distance(transform.position, hits[i].point);
 
-            float obstacle_dist = Vector3.Distance(transform.position, hits[i].point);
-
-            // Se puede ver a través del obstáculo
-            if (obstacle_dist < target_dir.magnitude)
-                if (GetComponent<Enemy>().cur_color.ToString() != hits[i].transform.gameObject.tag)
-                    return false;
+                // Se puede ver a través del obstáculo
+                if (obstacle_dist < target_dir.magnitude)
+                    if (GetComponent<Enemy>().cur_color.ToString() != hits[i].transform.gameObject.tag)
+                    {
+                        Debug.Log("Obstacle " + hits[i].transform.name + " is in front");
+                        return false;
+                    }
+                    else
+                        Debug.Log("Obstacle " + hits[i].transform.name + " is not in front");
+            }
+            Debug.Log("Obstacle " + hits[i].transform.name + " is checked");
         }
+
         return true;
     }
 }

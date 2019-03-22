@@ -38,14 +38,17 @@ public class EnemyBehaviour : MonoBehaviour
     public float safe_distance;                 // Distancia que el enemigo mantiene del jugador
     public float sight_angle;                   // Angulo de vision del enemigo
     public float lost_distance;                 // Distancia que tras alejarse, el enemigo pierde interes
+    int stuck_phase;                            // Fase de "Atascado". 0:Disparo 1:Quieto 2:Fuera
+    float stuck_shot;                           // Si se atasca, tiempo que sigue disparando en la dirección que mira
+    float stuck_hold;                           // Si se atasca, tiempo que permanece quieto antes de regresar
 
     //////////////////////////////////////////////////
     // Variables de comportamiento
-    protected bool is_chasing;                        // El enemigo está en el estado "Perseguir"
-    protected bool is_retreat = false;                // El enemigo está en el estado "Regresar"
-
-    protected bool in_home = false;                       // El enemigo está en el estado "Casa"
-    protected bool is_looking = false;          // El enmigo está en el estado "Mirar"
+    protected bool is_chasing;                      // El enemigo está en el estado "Perseguir"
+    protected bool is_retreat = false;              // El enemigo está en el estado "Regresar"
+    protected bool in_home = false;                 // El enemigo está en el estado "Casa"
+    protected bool is_looking = false;              // El enemigo está en el estado "Mirar"
+    protected bool is_stuck = false;                // El enemigo está en el eestado "Atascado"
     
     /////////////////////////////////////////////////////
     // Variables de animacion
@@ -57,7 +60,7 @@ public class EnemyBehaviour : MonoBehaviour
 
     ///////////////////////////////////////////////////////
     //RalentizarMovimiento
-   protected Slow_Motion Ralentizar;
+    protected Slow_Motion Ralentizar;
 
     protected  float MaxSpeedSlow;
     protected  float MaxAnimSlow;
@@ -113,6 +116,9 @@ public class EnemyBehaviour : MonoBehaviour
         // Realizar "EnCasa"
         if (in_home)
             IsInHome();
+        // Realizar "Atascado"
+        if (is_stuck)
+            IsStuck();
 
         UpdateAnimState();
 
@@ -146,22 +152,25 @@ public class EnemyBehaviour : MonoBehaviour
             Debug.Log("Retreat2");
         }
 
-        if(can_see)
-            // Comprobar si enemigo ve a jugador
-            if (detect.IsPlayerInFront(sight_angle) && detect.IsPlayerNear(sight_distance) && detect.IsPlayerOnSight(sight_distance))
-            {
-                Debug.Log("I see");
-                is_chasing = true;
-                in_home = false;
-            }
+        if (!is_chasing && !is_stuck)
+        {
+            if (can_see)
+                // Comprobar si enemigo ve a jugador
+                if (detect.IsPlayerInFront(sight_angle) && detect.IsPlayerNear(sight_distance) && detect.IsPlayerOnSight(sight_distance))
+                {
+                    Debug.Log("I see");
+                    is_chasing = true;
+                    in_home = false;
+                }
 
-        if(can_detect_near)
-            // Comprobar si enemigo detecta jugador cerca. No detecta si hay obstáculo en medio.
-            if (detect.IsPlayerNear(alert_distance) && detect.IsPlayerOnSight(sight_distance))
-            {
-                is_chasing = true;
-                in_home = false;
-            }
+            if (can_detect_near)
+                // Comprobar si enemigo detecta jugador cerca. No detecta si hay obstáculo en medio.
+                if (detect.IsPlayerNear(alert_distance) && detect.IsPlayerOnSight(sight_distance))
+                {
+                    is_chasing = true;
+                    in_home = false;
+                }
+        }
     }
 
     // El enemigo se encuentra en la distancia de seguridad
@@ -178,10 +187,7 @@ public class EnemyBehaviour : MonoBehaviour
     {
         // Realizar disparos continuos
         if (detect.IsPlayerInFront(sight_angle) && detect.IsPlayerOnSight(sight_distance))
-        {
-           
             shot.random = false;
-        }
         // Realizar disparos aleatorios
         else
             shot.random = true;
@@ -196,6 +202,20 @@ public class EnemyBehaviour : MonoBehaviour
             is_chasing = true;
         else
             is_chasing = false;
+    }
+
+    private void OnCollisionEnter(Collision other)
+    {
+        // Collision with a colored wall
+        if(other.transform.name.Contains("Pared"))
+        {
+            is_looking = true;
+            is_stuck = true;
+            stuck_phase = 0;
+            attack_in_place = true;
+            stuck_shot = 2;
+            Debug.Log("Stuck shot");
+        }
     }
 
     ////////////////////////////////////////////////////////////////////
@@ -262,6 +282,39 @@ public class EnemyBehaviour : MonoBehaviour
             attack_moving = false;
     }
     
+    void IsStuck()
+    {
+        // Wait to stop shooting
+        if (stuck_phase == 0)
+        {
+            stuck_shot -= Time.deltaTime;
+
+            if(stuck_shot <= 0)
+            {
+                stuck_phase = 1;
+                is_chasing = false;
+                shot.is_shooting = false;
+                stuck_hold = 3;
+                Debug.Log("Stuck hold");
+            }
+        }
+        // Wait to return home
+        else if (stuck_phase == 1)
+        {
+            stuck_hold -= Time.deltaTime;
+
+            if(stuck_hold <= 0)
+            {
+                Debug.Log("Get back");
+                is_looking = false;
+                is_retreat = true;
+                is_stuck = false;
+                stuck_phase = 2;
+                attack_in_place = false;
+            }
+        }
+    }
+
     // Actualizar estado animacion
     protected  virtual void UpdateAnimState()
     {
@@ -282,4 +335,6 @@ public class EnemyBehaviour : MonoBehaviour
         // Calculate Angle between current transform.front and object to look at
         return Vector3.SignedAngle(transform.forward, projection, Vector3.up) - 180;
     }
+
+
 }
