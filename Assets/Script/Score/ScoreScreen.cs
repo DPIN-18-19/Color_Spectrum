@@ -22,7 +22,6 @@ public class ScoreScreen : MonoBehaviour
         score_texts = new List<Text>();
         score_texts.AddRange(transform.Find("ModifiableTexts").GetComponentsInChildren<Text>());
         ScoreManager.Instance.LoadScoreData(level_scores);
-
     }
 
 	public void UpdateStats()

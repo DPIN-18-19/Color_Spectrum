@@ -15,7 +15,7 @@ public class throw_gre : MonoBehaviour {
     public bool AnimMoveGranada;
     public float ThrowForce = 10f;
     public float TiempoAnimRetardo;
-    public PlayerMove PlayerMove;
+    public PlayerJaneMoveController PlayerMove;
     public float Cooldown;
     private float MaxCooldown;
     public WeaponController weapon;

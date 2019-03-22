@@ -20,6 +20,16 @@ public class KamikazeBehaviour : EnemyBehaviour
         // Inicializar objetos objetivo
         target = GameObject.FindWithTag("Player");
         home = transform.parent.Find("EnemyHome");
+
+        if (!can_move)
+            nav_agent.speed = 0;
+
+        Ralentizar = GameObject.Find("Player_Naomi").GetComponent<Slow_Motion>();
+        // Habilidad ralentizar
+        MaxRalentizarRotar = 1;
+        //target = GameObject.FindWithTag("Player");
+        MaxSpeedSlow = nav_agent.speed;
+        MaxAnimSlow = anim.speed;
     }
 
     protected override void KeepDistance()
@@ -35,5 +45,11 @@ public class KamikazeBehaviour : EnemyBehaviour
 
     protected override void ShootTarget()
     {
+    }
+
+    public void DestroyEnemy()
+    {
+        //Efecto de particulas de explosion
+        GetComponent <EnemyHealth>().GetDamage(1);
     }
 }

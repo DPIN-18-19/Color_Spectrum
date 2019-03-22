@@ -19,7 +19,7 @@ public class NextLevel : MonoBehaviour
     {
         if (other.GetComponent<PlayerController>())
         {
-            Debug.Log("theefsad");
+           
             //Destroy(gm.gameObject);
             //scene_man.NextLevel(next_name);
         }

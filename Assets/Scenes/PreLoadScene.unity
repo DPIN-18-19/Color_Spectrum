@@ -204,8 +204,8 @@ GameObject:
   - component: {fileID: 1477886908}
   - component: {fileID: 1477886909}
   - component: {fileID: 1477886911}
-  - component: {fileID: 1477886912}
   - component: {fileID: 1477886913}
+  - component: {fileID: 1477886912}
   m_Layer: 0
   m_Name: __app
   m_TagString: Untagged
@@ -267,11 +267,11 @@ MonoBehaviour:
   base_health: 90
   base_armor: 0
   base_speed: 7
-  health: 70
-  armor: 20
-  speed: 5
-  player_chips: {fileID: 11400000, guid: 7a67465f0ad3b454795926c34a287cd0, type: 2}
+  health: 0
+  armor: 0
+  speed: 0
   equipped_weapons: {fileID: 11400000, guid: 055e05b6fd4971a4db4fa3adbc10bca2, type: 2}
+  player_chips: {fileID: 11400000, guid: 7a67465f0ad3b454795926c34a287cd0, type: 2}
   money: 1000
 --- !u!114 &1477886909
 MonoBehaviour:
@@ -298,6 +298,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 904107a92b2fc02458a7cd68f7161f14, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  isdead: 0
 --- !u!114 &1477886911
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -315,6 +316,7 @@ MonoBehaviour:
     name: 
     scene_name: 
     brief: 
+    unlock_score: 0
     unlocked: 0
     complete: 0
     item_got: 0
@@ -324,21 +326,6 @@ MonoBehaviour:
       mat: {fileID: 0}
     unlock_require: 
 --- !u!114 &1477886912
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1477886904}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6660513006a07db4cb87bfd021567346, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  pause_p: {fileID: 0}
-  controls_p: {fileID: 0}
-  buttons_p: {fileID: 0}
-  is_pause: 0
---- !u!114 &1477886913
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -357,6 +344,21 @@ MonoBehaviour:
   inv_weapons: {fileID: 11400000, guid: ec433dc75cb480c4f8e60395d5e95caf, type: 2}
   inv_abilities: {fileID: 11400000, guid: e6a950d96ab8be44aae3fde64b0017dc, type: 2}
   store_chips: {fileID: 11400000, guid: 90779ec8c7f2f214caa6cc2d37177fac, type: 2}
+--- !u!114 &1477886913
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1477886904}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6660513006a07db4cb87bfd021567346, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  pause_p: {fileID: 0}
+  controls_p: {fileID: 0}
+  buttons_p: {fileID: 0}
+  is_pause: 0
 --- !u!1 &1787395651
 GameObject:
   m_ObjectHideFlags: 0

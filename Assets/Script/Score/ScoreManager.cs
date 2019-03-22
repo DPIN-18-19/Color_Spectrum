@@ -82,9 +82,9 @@ public class ScoreManager : MonoBehaviour
     void OnGameSceneLoaded(Scene scene, LoadSceneMode mode)
     {
         // Reorganize game level scenes to be within a range
-        if (scene.buildIndex <= 8 && scene.buildIndex >= 8)
+        if (scene.buildIndex >= 8 && scene.buildIndex <= 10)
         {
-            ScoreScreen screen = FindObjectOfType<ScoreScreen>();
+            ScoreScreen screen = GameObject.Find("FinalScoreScreen").GetComponent<ScoreScreen>();
             screen.Init();
             screen.gameObject.SetActive(false);
         }

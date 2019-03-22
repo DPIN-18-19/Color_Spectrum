@@ -286,8 +286,7 @@ MonoBehaviour:
     player_stats: []
     weapon_stats: []
     equipped: 0
-    price: 0
-  hover_tooltip: {fileID: 1869052718353540, guid: 6c6b894a629d10040bc9c3a843259dfa,
+  hover_tooltip: {fileID: 1576484268447382, guid: 3c73a0ed91ce99e428131382824e9011,
     type: 2}
   abi_data:
     id: 
@@ -295,12 +294,9 @@ MonoBehaviour:
     is_instant: 1
     cooldown_dur: 0
     active_dur: 0
-    store_brief: 
-    tooltip_brief: 
     display_icon: {fileID: 0}
     weight: 0
     equipped: 0
-    price: 0
   abi_name: 
 --- !u!114 &114886854874988660
 MonoBehaviour:
@@ -373,10 +369,10 @@ RectTransform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: 0}
+  m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!224 &224643118302399830
 RectTransform:

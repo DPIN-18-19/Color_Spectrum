@@ -20,11 +20,13 @@ public class EnemyBehaviour : MonoBehaviour
     [SerializeField]
     private bool can_detect_near = true;               // Puede detectar por cercanía
     [SerializeField]
-    private bool can_see = true;                       // Puede detectar por vista
+    protected bool can_see = true;                       // Puede detectar por vista                
     [SerializeField]
-    private bool can_shoot = true;                     // Puede disparar
+    protected bool can_shoot = true;                     // Puede disparar
     [SerializeField]
-    private bool can_move = true;                      // Puede moverse
+    protected bool can_move = true;                      // Puede moverse
+    [SerializeField]
+    protected bool can_rotate = true;
 
     //////////////////////////////////////////////////
     // Variables de informacion
@@ -39,10 +41,10 @@ public class EnemyBehaviour : MonoBehaviour
 
     //////////////////////////////////////////////////
     // Variables de comportamiento
-    bool is_chasing;                        // El enemigo está en el estado "Perseguir"
-    bool is_retreat = false;                // El enemigo está en el estado "Regresar"
+    protected bool is_chasing;                        // El enemigo está en el estado "Perseguir"
+    protected bool is_retreat = false;                // El enemigo está en el estado "Regresar"
 
-    bool in_home = false;                       // El enemigo está en el estado "Casa"
+    protected bool in_home = false;                       // El enemigo está en el estado "Casa"
     protected bool is_looking = false;          // El enmigo está en el estado "Mirar"
     
     /////////////////////////////////////////////////////
@@ -51,20 +53,16 @@ public class EnemyBehaviour : MonoBehaviour
     public bool attack_moving;             // Pose de atacar desplazandose
     [HideInInspector]
     public bool attack_in_place;           // Pose de atacar quieto
-    float correct_look;             // Aplicar animacion de rotacion
+    protected float correct_look;             // Aplicar animacion de rotacion
 
     ///////////////////////////////////////////////////////
     //RalentizarMovimiento
-    Slow_Motion Ralentizar;
-    public float SpeedSlow;
+   protected Slow_Motion Ralentizar;
 
-    private float MaxSpeedSlow;
-    public float AnimSlow;
-    private float MaxAnimSlow;
-
-    private float Slow_Rotation;
-    public float RalentizarRotar;
-    private float MaxRalentizarRotar;
+    protected  float MaxSpeedSlow;
+    protected  float MaxAnimSlow;
+    protected  float Slow_Rotation;
+    protected  float MaxRalentizarRotar;
 
     private void Start()
     {
@@ -77,13 +75,13 @@ public class EnemyBehaviour : MonoBehaviour
         a_source = GetComponent<AudioSource>();
 
         // Inicializar objetos objetivo
-        target = GameObject.FindWithTag("Player");
+        target = GameObject.Find("Player_Naomi");
         home = transform.parent.Find("EnemyHome");
 
         if (!can_move)
             nav_agent.speed = 0;
 
-        Ralentizar = target.GetComponentInChildren<Slow_Motion>();
+        Ralentizar = GameObject.Find("Player_Naomi").GetComponent<Slow_Motion>();
         // Habilidad ralentizar
         MaxRalentizarRotar = 1;
         //target = GameObject.FindWithTag("Player");
@@ -110,7 +108,7 @@ public class EnemyBehaviour : MonoBehaviour
         if(patrol != null && patrol.is_patrolling)
             IsPatrolling();
         // Realizar "Mirar"
-        if(is_looking)
+        if(can_rotate && is_looking)
             IsLooking();
         // Realizar "EnCasa"
         if (in_home)
@@ -138,13 +136,14 @@ public class EnemyBehaviour : MonoBehaviour
     ////////////////////////////////////////////////////////////////////
     // Funciones cambiadores de estado
     // Deteccion de jugador
-    private void DetectPlayer()
+    protected virtual void DetectPlayer()
     {
         // En estado "Perseguir", no se ve al jugador
         if (is_chasing && !detect.IsPlayerNear(lost_distance))
         {
             is_chasing = false;
             is_retreat = true;
+            Debug.Log("Retreat2");
         }
 
         if(can_see)
@@ -180,7 +179,7 @@ public class EnemyBehaviour : MonoBehaviour
         // Realizar disparos continuos
         if (detect.IsPlayerInFront(sight_angle) && detect.IsPlayerOnSight(sight_distance))
         {
-            shot.is_shooting = true;
+           
             shot.random = false;
         }
         // Realizar disparos aleatorios
@@ -202,11 +201,11 @@ public class EnemyBehaviour : MonoBehaviour
     ////////////////////////////////////////////////////////////////////
     // Funciones de estado
     // Estado "Perseguir"
-    void IsChasing()
+    protected void IsChasing()
     {
         nav_agent.SetDestination(target.transform.position);
         //nav_agent.speed = chase_speed;
-
+        shot.is_shooting = true;
         attack_moving = true;
         attack_in_place = false;
 
@@ -217,7 +216,7 @@ public class EnemyBehaviour : MonoBehaviour
     }
 
     // Estado "Regresar"
-    void IsRetreating()
+    protected void IsRetreating()
     {
         nav_agent.SetDestination(home.transform.position);
         shot.is_shooting = false;
@@ -238,13 +237,13 @@ public class EnemyBehaviour : MonoBehaviour
     }
 
     // Estado "Patrullar"
-    void IsPatrolling()
+    protected void IsPatrolling()
     {
         attack_moving = true;
     }
 
     // Estado "Mirar"
-    void IsLooking()
+    protected virtual void IsLooking()
     {
         correct_look = LookAtAxis(target.transform.position);
         correct_look = Mathf.LerpAngle(0, correct_look, Time.deltaTime / Slow_Rotation * 15.5f);
@@ -257,14 +256,14 @@ public class EnemyBehaviour : MonoBehaviour
     }
 
     // Estado "EnCasa"
-    void IsInHome()
+    protected void IsInHome()
     {
         if (patrol != null && !patrol.is_patrolling)
             attack_moving = false;
     }
     
     // Actualizar estado animacion
-    void UpdateAnimState()
+    protected  virtual void UpdateAnimState()
     {
         anim.SetBool("Attack", attack_moving);
         anim.SetBool("AttackStop", attack_in_place);

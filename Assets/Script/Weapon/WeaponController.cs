@@ -51,7 +51,7 @@ public class WeaponController : MonoBehaviour
        
         source = GetComponent<AudioSource>();
         render_children = new List<Renderer>();
-        //GetNewWeapon(activated_weapon);
+        GetNewWeapon(activated_weapon);
         //contShoot = gunlist.weaponList[2].num_disparos;
         //pistola = true;
     }
@@ -70,21 +70,18 @@ public class WeaponController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (gun != null)
+        if (is_firing)
         {
-            if (is_firing)
-            {
-                //Debug.Log(gun.GetComponent<GunController>().GetType().Name);
-                gun.GetComponent<GunController>().FireBullet();
-                //FireWeapon();
-                // True  automatica, False manual 
-                //is_firing = true;
-            }
-            else
-                gun.GetComponent<GunController>().TriggerRelease();
-
-            gun.GetComponent<GunController>().UpdateCadence();
+            //Debug.Log(gun.GetComponent<GunController>().GetType().Name);
+            gun.GetComponent<GunController>().FireBullet();
+            //FireWeapon();
+            // True  automatica, False manual 
+            //is_firing = true;
         }
+        else
+            gun.GetComponent<GunController>().TriggerRelease();
+
+        gun.GetComponent<GunController>().UpdateCadence();
     }
 
     //void FireWeapon()
@@ -179,8 +176,10 @@ public class WeaponController : MonoBehaviour
         // Incluir datos de materiales
         SearchRenderers();
         gun.GetComponent<GunController>().UpdateColor(GetComponentInParent<PlayerRenderer>().cur_color);
+        // Activar habilidad
+        //GetComponent<AbilityController>().ActivateAbility(cur_weapon.ability);
 
-        // Actualizar plano de rotacion
+        //Actualizar PLano de Rotacion
         transform.parent.GetComponent<PlayerRotation>().SetNewGunHeight(gun.transform.Find("FirePos"));
     }
 

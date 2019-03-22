@@ -14,13 +14,13 @@ public class EnemyWeapon : MonoBehaviour
     public bool bullet_friend = false;      // Bando de bala
 
     public Transform weapon;            // Arma de enemigo
-    Transform fire_pos;                 // Posicion de salida de bala
-    Transform effect_pos;               // Posicion de efecto disparo
+    protected Transform fire_pos;                 // Posicion de salida de bala
+    protected Transform effect_pos;               // Posicion de efecto disparo
     Transform shell_pos;                // Posicion de salida casquillo
 
-    private float shot_c;                   // Contador tiempo entre disparos
+    protected float shot_c;                   // Contador tiempo entre disparos
     [SerializeField]
-    private float shot_dur;                 // Duracion normal entre disparos
+    protected float shot_dur;                 // Duracion normal entre disparos
     [SerializeField]
     private float shot_dur_max;             // Duracion maxima entre disparos
 
@@ -32,7 +32,7 @@ public class EnemyWeapon : MonoBehaviour
 
     ////////////////////////////////////////////////
     // Color
-    int bullet_color;
+    protected int bullet_color;
 
     // Material de balas
     [Header("Elementos de Color")]
@@ -52,16 +52,16 @@ public class EnemyWeapon : MonoBehaviour
 
     ////////////////////////////////////////////////
     // Audio
-    private AudioSource a_source;
+    protected AudioSource a_source;
     [Header("Efectos de Sonido")]
     public AudioClip FXShotEnemy;
 
     ///////////////////////////////////////////////
     //Ralentizar
-    Slow_Motion Ralentizar;
-    private float RalentizarDisparos;
-    [Header("Habilidad Ralentizar")]
-    public float TiempoRalentizado;
+    protected Slow_Motion Ralentizar;
+    protected float RalentizarDisparos;
+    //[Header("Habilidad Ralentizar")]
+    //public float TiempoRalentizado;
 
     //////////////////////////////////////////////
 
@@ -70,7 +70,7 @@ public class EnemyWeapon : MonoBehaviour
         a_source = GetComponent<AudioSource>();
 
         fire_pos = weapon.Find("FirePos");
-        effect_pos = weapon.Find("EffectPos");
+        effect_pos = weapon.Find("ShotEffect");
         shell_pos = weapon.Find("ShellPos");
 
         shot_c = shot_dur;
@@ -114,7 +114,7 @@ public class EnemyWeapon : MonoBehaviour
     }
 
     // Clase de tiempo entre disparos
-    float NextShotTime()
+    protected float NextShotTime()
     {
         if (!random)
             return shot_dur;
@@ -123,10 +123,10 @@ public class EnemyWeapon : MonoBehaviour
     }
 
     // Change colors of bullet
-    void AddaptColor()
+    protected virtual void AddaptColor()
     {
         //bullet_color = gameObject.GetComponent<EnemyController>().GetColor();
-
+       
         switch (bullet_color)
         {
             // Amarillo

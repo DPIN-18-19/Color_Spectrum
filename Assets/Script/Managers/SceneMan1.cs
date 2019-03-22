@@ -8,7 +8,8 @@ public class SceneMan1 : MonoBehaviour
     //////////////////////////////////////////////////////
     // Singleton architecture
     public static SceneMan1 Instance { get; private set; }
-
+    float TimRestart = 1.5f;
+    public bool isdead = false;
     private void Awake()
     {
         if (Instance == null)
@@ -16,10 +17,24 @@ public class SceneMan1 : MonoBehaviour
         else
             Destroy(gameObject);
     }
+    private void Update()
+    {
+        if (isdead)
+        {
+            TimRestart -= Time.deltaTime;
+        }
+        if (TimRestart <= 0)
+        {
+            TimRestart = 2;
+            isdead = false;
+            SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+
+        }
+    }
 
     //////////////////////////////////////////////////////
     // Scene Handling
-    
+
     public enum SceneIndex
     {
         PreLoadScene,
@@ -29,10 +44,13 @@ public class SceneMan1 : MonoBehaviour
         LevelSelection,
         Customizacion,
         Store,
+        Tuto_Customizacion,
         Tutorial,
-        Nivel_1
+        Nivel_1,
+        Nivel_2
         //UnlockTestingLevel,
     }
+    
     SceneIndex scene_to_load;
     
     //public void LoadSceneByName(string scene_name)
@@ -48,7 +66,7 @@ public class SceneMan1 : MonoBehaviour
         //SceneManager.LoadScene(scene_name);
     }
     
-    void ReloadCurrentScene()
+    public  void ReloadCurrentScene()
     {
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
     }

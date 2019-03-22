@@ -54,6 +54,8 @@ public class BulletController : MonoBehaviour
     private AudioSource source;
 
     PlayerRenderer MaterialsPlayer;
+    
+   
 
     public bool Sniper;
 
@@ -74,6 +76,7 @@ public class BulletController : MonoBehaviour
         m_collider = GetComponent<Collider>();
 
         Ralentizar = GameObject.Find("Player_Naomi").GetComponent<Slow_Motion>();
+        
         MaterialsPlayer = GameObject.Find("Player_Naomi").GetComponent<PlayerRenderer>();
         StartCoroutine(DestroyBullet());
     }
@@ -103,6 +106,7 @@ public class BulletController : MonoBehaviour
         }
         else if (n_color == 2)
         {
+            Debug.Log("SoyColorRosa");
             i_cur_color = 2;
             PinkDestroyeffect = true;
             this.gameObject.tag = "Pink";
@@ -142,19 +146,22 @@ public class BulletController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Ralentizar.ActivateAbility == true && !friendly)
+        if (SceneMan1.Instance.isdead == false)
         {
-            source.pitch = Ability_Time_Manager.Instance.FXRalentizado;
-        }
-        if (Ralentizar.ActivateAbility == false && !friendly)
-        {
-            source.pitch = 1;
-        }
+            if (Ralentizar.ActivateAbility == true && !friendly)
+            {
+                source.pitch = Ability_Time_Manager.Instance.FXRalentizado;
+            }
+            if (Ralentizar.ActivateAbility == false && !friendly)
+            {
+                source.pitch = 1;
+            }
 
 
-        if (Ralentizar.ActivateAbility == false && !friendly)
-        {
-            this.gameObject.layer = 16;
+            if (Ralentizar.ActivateAbility == false && !friendly)
+            {
+                this.gameObject.layer = 16;
+            }
         }
        // Debug.Log(YellowDestroyeffect);
         //Debug.Log("Update bullet");
@@ -184,13 +191,13 @@ public class BulletController : MonoBehaviour
         //Condicion !friendly(Enemigo) Ralentizar.
         if(!friendly && Ralentizar.ActivateAbility == true )
         {
-            Debug.Log("Ralentizado");
+            //Debug.Log("Ralentizado");
             ralentizarVelocidad = Ability_Time_Manager.Instance.Slow_Bullet_Velocity;
             ralentizarDestruccion = Ability_Time_Manager.Instance.Slow_Bullet_Destroy;     
         }
         if (!friendly && Ralentizar.ActivateAbility == false )
         {
-            Debug.Log("DejadoDeRalentizar");
+            //Debug.Log("DejadoDeRalentizar");
             ralentizarVelocidad = MaxRalentizarVelocidad;
             ralentizarDestruccion = MaxralentizarDestruccion;  
         }
@@ -250,7 +257,7 @@ public class BulletController : MonoBehaviour
         // Same color obstacle collision
         if (col.gameObject.tag == gameObject.tag)
         {
-            Debug.Log("Collided with a wall");
+           // Debug.Log("Collided with a wall");
             if (m_collider == null)
                 Debug.Log("Error");
             m_collider.enabled = !m_collider.enabled;
@@ -319,7 +326,10 @@ public class BulletController : MonoBehaviour
         // Collision with any other object
         else if (col.gameObject.tag.Contains("Enemy"))
         {
-           
+            Vector3 rotParticle = col.contacts[0].normal;
+            Transform bulletRot = gameObject.transform;
+            float Angle = Vector3.SignedAngle(gameObject.transform.forward, rotParticle, Vector3.up);
+
             if (friendly)
             {
                 if (col.gameObject.GetComponent<EnemyHealth>().IsWeak(gameObject.tag, gameObject.layer))
@@ -329,21 +339,21 @@ public class BulletController : MonoBehaviour
 
                     if (YellowDestroyeffect)
                     {
-                        Instantiate(DestroyEffectYellow.gameObject, transform.position, Quaternion.identity);
-                        
+                        Instantiate(DestroyEffectYellow.gameObject, transform.position, Quaternion.LookRotation(Quaternion.Euler(0, Angle, 0) * transform.forward, Vector3.up));
+
 
 
                     }
                     if (PinkDestroyeffect)
                     {
-                        Instantiate(DestroyEffectPink.gameObject, transform.position, Quaternion.identity);
-                       
-                       
+                        Instantiate(DestroyEffectPink.gameObject, transform.position, Quaternion.LookRotation(Quaternion.Euler(0, Angle, 0) * transform.forward, Vector3.up));
+
+
                     }
                     if (BlueDestroyeffect)
                     {
-                        Instantiate(DestroyEffectBlue.gameObject, transform.position, Quaternion.identity);
-                        
+                        Instantiate(DestroyEffectBlue.gameObject, transform.position, Quaternion.LookRotation(Quaternion.Euler(0, Angle, 0) * transform.forward, Vector3.up));
+
                     }
                     
                 }
@@ -355,21 +365,29 @@ public class BulletController : MonoBehaviour
         }
         else
         {
+            Vector3 rotParticle = col.contacts[0].normal;
+            Transform bulletRot = gameObject.transform;
+            float Angle = Vector3.SignedAngle(gameObject.transform.forward,rotParticle,Vector3.up);
+           // bulletRot.LookAt(col.contacts[0].);
             if (YellowDestroyeffect)
             {
-                Instantiate(DestroyEffectYellow.gameObject, transform.position, Quaternion.identity);
+                Instantiate(DestroyEffectYellow.gameObject, transform.position,Quaternion.LookRotation(Quaternion.Euler(0,Angle, 0)* transform.forward, Vector3.up));
+                
+               
                 Destroy(gameObject);
                 //AudioSource.PlayClipAtPoint(DestroyBulletFx, transform.position);
             }
             if (PinkDestroyeffect)
             {
-                Instantiate(DestroyEffectPink.gameObject, transform.position, Quaternion.identity);
+                Instantiate(DestroyEffectPink.gameObject, transform.position, Quaternion.LookRotation(Quaternion.Euler(0, Angle, 0) * transform.forward, Vector3.up));
+                // Debug.Log("destroy bullet");
                 Destroy(gameObject);
               //  AudioSource.PlayClipAtPoint(DestroyBulletFx, transform.position);
             }
             if (BlueDestroyeffect)
             {
-                Instantiate(DestroyEffectBlue.gameObject, transform.position, Quaternion.identity);
+                Instantiate(DestroyEffectBlue.gameObject, transform.position, Quaternion.LookRotation(Quaternion.Euler(0, Angle, 0) * transform.forward, Vector3.up));
+                //  Debug.Log("destroy bullet");
                 Destroy(gameObject);
               //  AudioSource.PlayClipAtPoint(DestroyBulletFx, transform.position);
             }
@@ -456,7 +474,7 @@ public class BulletController : MonoBehaviour
    protected bool PeekNextPosition(Vector3 f_pos)
     {
         RaycastHit hit;
-
+        
         Vector3 ray_dir = transform.position - f_pos;
         float dist = Vector3.Distance(transform.position, f_pos);
 

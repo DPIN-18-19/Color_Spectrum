@@ -7,10 +7,10 @@ public class HealthController : MonoBehaviour
     //public Text vida;             // Player's health in UI
     public float health;
     float newHealth;                // Player's current health
-    public float max_health = 10;   // Player's maximum health
+    public float max_health;        // Player's maximum health
     public ColorChangingController cambioColor;
     float armor;                    // Player's current armor
-    public float max_armor = 10;    // Player's maximum armor
+    public float max_armor;         // Player's maximum armor
 
     // Dead variables
     public ParticleSystem [] die_effect;    // Effect particle array
@@ -39,13 +39,15 @@ public class HealthController : MonoBehaviour
    
     public ColorChangingController BlackGlitch;
 
-    public PlayerMove MovePlayer;
+    public PlayerJaneMoveController MovePlayer;
 
     public float TimeGlichEffect;
 
     public GameObject camera;
 
 
+    float TimeToRestart = 2f;
+    public bool isdead = false;
     //////////////////////////////////////////////////////////////////////////////
     void Awake()
     {
@@ -66,11 +68,9 @@ public class HealthController : MonoBehaviour
         GameplayManager.GetInstance().max_health = max_health;
         MaterialsPlayer = GetComponent<PlayerRenderer>();
 
-        if (PlayerManager.Instance != null)
-        {
-            max_health = PlayerManager.Instance.health;
-            max_armor = PlayerManager.Instance.armor;
-        }
+        max_health = GetComponent<PlayerStats>().health;
+       // Debug.Log(max_health);
+        max_armor = GetComponent<PlayerStats>().armor;
         health = max_health;
         newHealth = health;
         armor = max_armor;
@@ -79,6 +79,10 @@ public class HealthController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if( isdead == true)
+        {
+            TimeToRestart -= Time.deltaTime;
+        }
        // Debug.Log(health);
         IsDead();
         GameplayManager.GetInstance().health = health;
@@ -164,8 +168,11 @@ public class HealthController : MonoBehaviour
     // Check if dead
     void IsDead()
     {
+       
+        float TimeToRestart;
         if (health <= 0.4)
         {
+            isdead = true;
             AudioSource.PlayClipAtPoint(FxDie, transform.position);
             if (player_color < die_effect.Length)
             {
@@ -173,8 +180,9 @@ public class HealthController : MonoBehaviour
 
                 Instantiate(die_effect[player_color].gameObject, PosParticleDead.position, Quaternion.identity);
 
-                //GameObject.Find("GameManager").GetComponent<SceneMan>().Invoke("ToMenu", 2);
-                SceneMan1.Instance.LoadSceneByName("Main_Menu");
+                //  GameObject.Find("GameManager").GetComponent<SceneMan>().Invoke("ToMenu", 2);
+
+                SceneMan1.Instance.ReloadCurrentScene();
 
                 gameObject.SetActive(false);
 

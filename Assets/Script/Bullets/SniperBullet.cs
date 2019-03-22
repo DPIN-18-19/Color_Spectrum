@@ -30,6 +30,7 @@ public class SniperBullet : BulletController {
             MoveEffectCian();
         if (bullet_color == 2)
             MoveEffectMagenta();
+        Invoke("DestroyBullet", 5f);
         Debug.Log(bullet_color);
     }
     public override void AddBulletInfo(int n_color, float n_increase_time, Vector3 n_dir, float n_damage, float n_range, bool n_friend)
@@ -85,6 +86,10 @@ public class SniperBullet : BulletController {
         // Move only if no collision is found
         if (!PeekNextPosition(final_pos))
             MyEffectMagenta.transform.position += bullet_dir * -bullet_speed * Time.deltaTime;
+    }
+    void DestroyBullet()
+    {
+        Destroy(gameObject);
     }
 
 }

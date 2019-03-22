@@ -21,13 +21,12 @@ public class PlayerManager : MonoBehaviour
     public float health;
     public float armor;
     public float speed;
+    [SerializeField]
+    IWeaponChipList equipped_weapons;
 
     [SerializeField]
     ChipList player_chips;
     int num_chips = 0;
-
-    [SerializeField]
-    IWeaponChipList equipped_weapons;
 
     public float money = 0;
 
@@ -97,11 +96,6 @@ public class PlayerManager : MonoBehaviour
             ReloadChips();
     }
 
-    public int GetNumWeapons()
-    {
-        return equipped_weapons.i_weapon_chips.Count;
-    }
-
     public void AddMoney(float obtained)
     {
         money += obtained;
@@ -110,5 +104,9 @@ public class PlayerManager : MonoBehaviour
     public void LoseMoney(float lost)
     {
         money -= lost;
+    }
+    public int GetNumWeapons()
+    {
+        return equipped_weapons.i_weapon_chips.Count;
     }
 }

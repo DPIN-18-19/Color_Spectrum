@@ -34,20 +34,19 @@ public class PlayerRenderer : MonoBehaviour
     public Material BlackGlitchBlueMaterial;
     public Material BlackGlitchPinkMaterial;
 
-    // Material Negro
     public Material BlackYellowMaterial;
     public Material BlackBlueMaterial;
     public Material BlackPinkMaterial;
 
-    // Material transparente
     public Material TrasparentYellow;
     public Material TrasparentBlue;
     public Material TrasparentPink;
-
     Outline outline;
     // Use this for initialization
     void Start ()
     {
+
+
         outline = gameObject.GetComponent<Outline>();
         outline.enabled = true;
         // Subscribe to event

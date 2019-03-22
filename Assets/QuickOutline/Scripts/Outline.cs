@@ -87,12 +87,12 @@ public class Outline : MonoBehaviour {
   private bool needsUpdate;
 
   void Awake() {
-    ColorPlayer = GameObject.Find("Player_Naomi").GetComponent<ColorChangingController>();
-    // Cache renderers
-    //renderers = GetComponentsInChildren<Renderer>();
+       ColorPlayer = GameObject.Find("Player_Naomi").GetComponent<ColorChangingController>();
+        // Cache renderers
+        //renderers = GetComponentsInChildren<Renderer>();
 
-    // Instantiate outline materials
-    outlineMaskMaterial = Instantiate(Resources.Load<Material>(@"Materials/OutlineMask"));
+        // Instantiate outline materials
+        outlineMaskMaterial = Instantiate(Resources.Load<Material>(@"Materials/OutlineMask"));
     outlineFillMaterial = Instantiate(Resources.Load<Material>(@"Materials/OutlineFill"));
 
     outlineMaskMaterial.name = "OutlineMask (Instance)";

@@ -92,6 +92,7 @@ public class GunController : MonoBehaviour
 
                 do
                 {
+                    Debug.Log(spawn.name);
                     GameObject bullet_shot = Instantiate(bullet, spawn.position, spawn.rotation);
                     source.PlayOneShot(fx_shot);
                     //Debug.Break();

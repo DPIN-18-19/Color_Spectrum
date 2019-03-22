@@ -43,7 +43,9 @@ public class Explosion_kamikaze_M : MonoBehaviour {
             {
                 if (hit.transform.gameObject.tag != "Yellow" && hit.transform.gameObject.tag != "Pink")
                 {
+                   
                     other.GetComponent<EnemyHealth>().GetDamage(damage);
+                   
                 }
                 Debug.Log(hit.transform.name);
                 // HacerDañoYellow();
