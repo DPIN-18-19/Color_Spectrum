@@ -215,6 +215,8 @@ public class BulletController : MonoBehaviour
     // If not collided with anything, destroy
     public virtual IEnumerator DestroyBullet()
     {
+        MaterialsPlayer.ResetColor();
+        Trasparente = false;
         if (Ralentizar.ActivateAbility == false)
         {
             yield return new WaitForSeconds(bullet_life_time);
