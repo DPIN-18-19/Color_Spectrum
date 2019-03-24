@@ -179,7 +179,6 @@ public class EnemyBehaviour : MonoBehaviour
         // Realizar disparos continuos
         if (detect.IsPlayerInFront(sight_angle) && detect.IsPlayerOnSight(sight_distance))
         {
-           
             shot.random = false;
         }
         // Realizar disparos aleatorios
@@ -201,7 +200,7 @@ public class EnemyBehaviour : MonoBehaviour
     ////////////////////////////////////////////////////////////////////
     // Funciones de estado
     // Estado "Perseguir"
-    protected void IsChasing()
+    protected virtual void IsChasing()
     {
         nav_agent.SetDestination(target.transform.position);
         //nav_agent.speed = chase_speed;

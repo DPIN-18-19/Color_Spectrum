@@ -8,6 +8,7 @@ public class ScoreScreen : MonoBehaviour
     List<Text> score_texts;
     bool do_once = true;
     public ScoreList level_scores;
+    public string NextLevel;
 
     private void Awake()
     {
@@ -23,8 +24,9 @@ public class ScoreScreen : MonoBehaviour
         score_texts.AddRange(transform.Find("ModifiableTexts").GetComponentsInChildren<Text>());
         ScoreManager.Instance.LoadScoreData(level_scores);
     }
+    
 
-	public void UpdateStats()
+    public void UpdateStats()
     {
         ScoreManager.Instance.CalculateFinalScore();
 
@@ -53,22 +55,22 @@ public class ScoreScreen : MonoBehaviour
         LevelMenuManager.Instance.UpdateScoreInfo();
 
         // Actualizar desbloqueables
-        UnlockMan.Instance.LevelUnlock();
-        UnlockMan.Instance.StoreUnlock(LevelMenuManager.Instance.selection.name);
+        //UnlockMan.Instance.LevelUnlock();
+        //UnlockMan.Instance.StoreUnlock(LevelMenuManager.Instance.selection.name);
         
-        if(LevelMenuManager.Instance.selection.unlock_score <= ScoreManager.Instance.GetFinalScore())
-            UnlockMan.Instance.ScoreLevelUnlock(LevelMenuManager.Instance.selection.name);
+        //if(LevelMenuManager.Instance.selection.unlock_score <= ScoreManager.Instance.GetFinalScore())
+        //    UnlockMan.Instance.ScoreLevelUnlock(LevelMenuManager.Instance.selection.name);
 
 
         //UnityEngine.SceneManagement.SceneManager.LoadScene("Store");
-        SceneMan1.Instance.LoadSceneByName("LevelSelection");
+        //SceneMan1.Instance.LoadSceneByName(NextLevel);
 
-        //this.Invoke("LoadNext", 5);
+        this.Invoke("LoadNext", 5);
     }
 
     void LoadNext()
     {
-        SceneMan1.Instance.LoadSceneByName("LevelSelection");
+        SceneMan1.Instance.LoadSceneByName(NextLevel);
         //UnityEngine.SceneManagement.SceneManager.LoadScene("Store");
     }
 

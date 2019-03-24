@@ -117,7 +117,14 @@ public class BulletController : MonoBehaviour
         //- Take out layers sometime
         // Enemy layers
         if (!n_friend)
-            this.gameObject.layer = 16;
+        {
+            if(n_color == 0)
+              this.gameObject.layer = 8;
+            if (n_color == 1)
+                this.gameObject.layer = 9;
+            if (n_color == 2)
+                this.gameObject.layer = 10;
+        }
 
         // Non-color dependent variables
         bullet_color = n_color;
@@ -158,10 +165,7 @@ public class BulletController : MonoBehaviour
             }
 
 
-            if (Ralentizar.ActivateAbility == false && !friendly)
-            {
-                this.gameObject.layer = 16;
-            }
+          
         }
        // Debug.Log(YellowDestroyeffect);
         //Debug.Log("Update bullet");
@@ -211,6 +215,8 @@ public class BulletController : MonoBehaviour
     // If not collided with anything, destroy
     public virtual IEnumerator DestroyBullet()
     {
+        MaterialsPlayer.ResetColor();
+        Trasparente = false;
         if (Ralentizar.ActivateAbility == false)
         {
             yield return new WaitForSeconds(bullet_life_time);
@@ -228,30 +234,7 @@ public class BulletController : MonoBehaviour
 
     private void OnCollisionEnter(Collision col)
     {
-        if (col.gameObject.tag == "Player" && this.gameObject.tag == "Pink" && !friendly && Ralentizar.ActivateAbility == true)
-        {
-            this.gameObject.layer = 10;
-        }
-        if (col.gameObject.tag == "Player" && this.gameObject.tag == "Pink" && !friendly && Ralentizar.ActivateAbility == false)
-        {
-            this.gameObject.layer = 16;
-        }
-        if (col.gameObject.tag == "Player" && this.gameObject.tag == "Yellow" && !friendly && Ralentizar.ActivateAbility == true)
-        {
-            this.gameObject.layer = 8;
-        }
-        if (col.gameObject.tag == "Player" && this.gameObject.tag == "Yellow" && !friendly && Ralentizar.ActivateAbility == false)
-        {
-            this.gameObject.layer = 16;
-        }
-        if (col.gameObject.tag == "Player" && this.gameObject.tag == "Blue" && !friendly && Ralentizar.ActivateAbility == true)
-        {
-            this.gameObject.layer = 9;
-        }
-        if (col.gameObject.tag == "Player" && this.gameObject.tag == "Blue" && !friendly && Ralentizar.ActivateAbility == false)
-        {
-            this.gameObject.layer = 16;
-        }
+       
         //Debug.Log("Enter Collided with " + col.transform.gameObject.tag);
         //- Collision with player is not working
         // Same color obstacle collision
@@ -263,7 +246,7 @@ public class BulletController : MonoBehaviour
             m_collider.enabled = !m_collider.enabled;
             Invoke("ReactivateCollision", wall_active_time);
         }
-
+        
 
        else if( bullet_color == 0 && col.gameObject.tag == "ParedNoCambioYellow")
         {
@@ -301,7 +284,7 @@ public class BulletController : MonoBehaviour
                 {
                  //   Debug.Log("Paso");
                     m_collider.enabled = !m_collider.enabled;
-                    Trasparente = true;
+                   
                     Invoke("ReactivateCollision", 0.5f);
                     //  col.gameObject.SendMessage("RestoreHealth", bullet_damage);
                 }
@@ -340,8 +323,6 @@ public class BulletController : MonoBehaviour
                     if (YellowDestroyeffect)
                     {
                         Instantiate(DestroyEffectYellow.gameObject, transform.position, Quaternion.LookRotation(Quaternion.Euler(0, Angle, 0) * transform.forward, Vector3.up));
-
-
 
                     }
                     if (PinkDestroyeffect)

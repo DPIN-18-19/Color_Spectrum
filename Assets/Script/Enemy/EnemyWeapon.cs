@@ -27,7 +27,7 @@ public class EnemyWeapon : MonoBehaviour
     [HideInInspector]
     public bool random = false;         // Tipo de disparo aleatorio
 
-    [HideInInspector]
+    //[HideInInspector]
     public bool is_shooting;            // Estado "Disparando"
 
     ////////////////////////////////////////////////
@@ -100,7 +100,8 @@ public class EnemyWeapon : MonoBehaviour
             GameObject bullet_shot = Instantiate(bullet, fire_pos.position, fire_pos.rotation);
             Vector3 bullet_dir = transform.forward;
             bullet_shot.GetComponent<BulletController>().
-                        AddBulletInfo(bullet_color, -bullet_speed,
+                        AddBulletInfo(bullet_color
+                        , -bullet_speed,
                         bullet_dir, bullet_dmg, bullet_range, bullet_friend);   //- Create Gun Variables
 
             // Calculo de tiempo siguiente disparo

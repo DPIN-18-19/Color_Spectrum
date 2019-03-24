@@ -14,13 +14,11 @@ public class TurretRenderer : EnemyRenderer
   
     // Use this for initialization
     void Start () {
-		
-	}
+        cur_color = GetComponent<Enemy>().GetColor();
+        NeutralColor();
+    }
 	
-	// Update is called once per frame
-	void Update () {
-		
-	}
+
     public override void NeutralColor()
     {
         switch (cur_color)
@@ -68,7 +66,7 @@ public class TurretRenderer : EnemyRenderer
                 break;
             case 2:
                 cur_mat = DamagePinkMaterial;       // Dano Magenta
-                cur_mat_Up = DamageBlueMaterial;
+                cur_mat_Up = DamagePinkMaterial;
                 break;
         }
         ApplyColor();

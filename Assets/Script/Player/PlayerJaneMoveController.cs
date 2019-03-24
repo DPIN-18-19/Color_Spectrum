@@ -88,6 +88,15 @@ public class PlayerJaneMoveController : MonoBehaviour {
             anim.SetBool("Move", Move);
 
         }
+        else
+        {
+            move_velocity = Vector3.zero;
+            anim.SetFloat("VelocidadX", 0);
+            anim.SetFloat("VelocidadZ", 0);
+            anim.SetBool("Move", false);
+        }
+        
+
     }
     void SetUpAnimation()
     {
