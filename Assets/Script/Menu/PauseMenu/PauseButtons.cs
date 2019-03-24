@@ -37,7 +37,7 @@ public class PauseButtons : MonoBehaviour
     }
     void ToMenu()
     {
-        SceneMan1.Instance.LoadSceneByName("Main_Menu");
+        SceneMan1.Instance.LoadSceneByName("LevelSelection");
     }
     void ToControls()
     {
