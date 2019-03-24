@@ -12,20 +12,20 @@ MonoBehaviour:
   m_Name: StoreChips
   m_EditorClassIdentifier: 
   schip_l:
-  - store_id: 3423
+  - store_id: 1
     schip_type: 0
     u_data:
       id: 
-      name: Upgrade 1
+      name: DH
       weight: 0
       player_stats:
       - stat_name: Health
-        stat_value: 12
+        stat_value: 15
       weapon_stats:
       - stat_name: Damage
-        stat_value: 0
+        stat_value: 15
       equipped: 0
-      price: 20
+      price: 10
     g_data:
       name: Pistol
       gun: {fileID: 0}
@@ -48,25 +48,27 @@ MonoBehaviour:
       is_instant: 1
       cooldown_dur: 0
       active_dur: 0
+      store_brief: 
+      tooltip_brief: 
       display_icon: {fileID: 0}
       weight: 0
       equipped: 0
       price: 17
-    price: 0
-  - store_id: 54
-    schip_type: 1
+    price: 5000
+  - store_id: 2
+    schip_type: 0
     u_data:
       id: 
-      name: Upgrade 1
+      name: DH
       weight: 0
       player_stats:
       - stat_name: Health
-        stat_value: 12
+        stat_value: 15
       weapon_stats:
       - stat_name: Damage
-        stat_value: 0
+        stat_value: 15
       equipped: 0
-      price: 20
+      price: 5000
     g_data:
       name: Pistol
       gun: {fileID: 0}
@@ -89,25 +91,27 @@ MonoBehaviour:
       is_instant: 1
       cooldown_dur: 0
       active_dur: 0
+      store_brief: 
+      tooltip_brief: 
       display_icon: {fileID: 0}
       weight: 0
       equipped: 0
       price: 17
     price: 0
-  - store_id: 3453
-    schip_type: 2
+  - store_id: 3
+    schip_type: 0
     u_data:
       id: 
-      name: Upgrade 1
+      name: DH
       weight: 0
       player_stats:
       - stat_name: Health
-        stat_value: 12
+        stat_value: 15
       weapon_stats:
       - stat_name: Damage
-        stat_value: 0
+        stat_value: 15
       equipped: 0
-      price: 20
+      price: 10
     g_data:
       name: Pistol
       gun: {fileID: 0}
@@ -130,8 +134,10 @@ MonoBehaviour:
       is_instant: 1
       cooldown_dur: 0
       active_dur: 0
+      store_brief: 
+      tooltip_brief: 
       display_icon: {fileID: 0}
       weight: 0
       equipped: 0
       price: 17
-    price: 0
+    price: 5000
