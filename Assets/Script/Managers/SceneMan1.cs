@@ -45,11 +45,11 @@ public class SceneMan1 : MonoBehaviour
         Customizacion,
         Store,
         Tuto_Customizacion,
-        Tutorial,
         Nivel_1,
         Nivel_2,
         Nivel_3,
         Nivel_4,
+        Tutorial,
         TestSceneJaime
 
         //UnlockTestingLevel,
