@@ -49,6 +49,7 @@ public class SceneMan1 : MonoBehaviour
         Nivel_1,
         Nivel_2,
         Nivel_3,
+        Nivel_4,
         TestSceneJaime
 
         //UnlockTestingLevel,
