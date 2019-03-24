@@ -34218,7 +34218,7 @@ MonoBehaviour:
   can_shoot: 1
   can_move: 0
   can_rotate: 0
-  alert_distance: 10
+  alert_distance: 0
   sight_distance: 25
   safe_distance: 50
   sight_angle: 25
@@ -35044,6 +35044,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bea6ec61edb923e4790121b714c8c5f8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  Points: {fileID: 0}
   vida: {fileID: 0}
   t_health: {fileID: 1179071496}
   health: 0
@@ -64220,7 +64221,7 @@ NavMeshAgent:
   m_Speed: 5
   m_Acceleration: 8
   avoidancePriority: 50
-  m_AngularSpeed: 0
+  m_AngularSpeed: 999
   m_StoppingDistance: 0
   m_AutoTraverseOffMeshLink: 0
   m_AutoBraking: 1

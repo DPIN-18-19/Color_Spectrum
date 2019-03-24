@@ -19,13 +19,14 @@ public class ShowScore : MonoBehaviour
 	void Update ()
     {
 		
+
 	}
 
     void ShowScoreScreen()
     {
         ScoreScreen.SetActive(true);
         ScoreScreen.GetComponentInChildren<ScoreScreen>().UpdateStats();
-        Time.timeScale = 0.0f;
+       // Time.timeScale = 0.0f;
         ScoreManager.Instance.is_result_active = true;
     }
 }
