@@ -38,7 +38,7 @@ public class EnemyBehaviour : MonoBehaviour
     public float safe_distance;                 // Distancia que el enemigo mantiene del jugador
     public float sight_angle;                   // Angulo de vision del enemigo
     public float lost_distance;                 // Distancia que tras alejarse, el enemigo pierde interes
-    int stuck_phase;                            // Fase de "Atascado". 0:Disparo 1:Quieto 2:Fuera
+    int stuck_phase = 2;                            // Fase de "Atascado". 0:Disparo 1:Quieto 2:Fuera
     float stuck_shot;                           // Si se atasca, tiempo que sigue disparando en la dirección que mira
     float stuck_hold;                           // Si se atasca, tiempo que permanece quieto antes de regresar
 
@@ -49,7 +49,10 @@ public class EnemyBehaviour : MonoBehaviour
     protected bool in_home = false;                 // El enemigo está en el estado "Casa"
     protected bool is_looking = false;              // El enemigo está en el estado "Mirar"
     protected bool is_stuck = false;                // El enemigo está en el eestado "Atascado"
-    
+
+    float checker_c;
+    Transform prev_position;
+
     /////////////////////////////////////////////////////
     // Variables de animacion
     [HideInInspector]
@@ -81,6 +84,9 @@ public class EnemyBehaviour : MonoBehaviour
         target = GameObject.Find("Player_Naomi");
         home = transform.parent.Find("EnemyHome");
 
+        checker_c = 0.5f;
+        prev_position = transform;
+
         if (!can_move)
             nav_agent.speed = 0;
 
@@ -99,6 +105,10 @@ public class EnemyBehaviour : MonoBehaviour
         KeepDistance();
         if(can_shoot)
             ShootTarget();
+        //if (!is_stuck && !is_retreat && checker_c <= 0)
+        //    CheckIfStuck();
+        //else
+        //    checker_c -= Time.deltaTime;
 
         // Estados de enemigo
         // Realizar "Perseguir"
@@ -152,7 +162,7 @@ public class EnemyBehaviour : MonoBehaviour
             Debug.Log("Retreat2");
         }
 
-        if (!is_chasing && !is_stuck)
+        if (!is_chasing)
         {
             if (can_see)
                 // Comprobar si enemigo ve a jugador
@@ -167,6 +177,7 @@ public class EnemyBehaviour : MonoBehaviour
                 // Comprobar si enemigo detecta jugador cerca. No detecta si hay obstáculo en medio.
                 if (detect.IsPlayerNear(alert_distance) && detect.IsPlayerOnSight(sight_distance))
                 {
+                    Debug.Log("I felt something near");
                     is_chasing = true;
                     in_home = false;
                 }
@@ -186,7 +197,7 @@ public class EnemyBehaviour : MonoBehaviour
     protected virtual void ShootTarget()
     {
         // Realizar disparos continuos
-        if (detect.IsPlayerInFront(sight_angle) && detect.IsPlayerOnSight(sight_distance))
+        if (detect.IsPlayerInFront(sight_angle))// && detect.IsPlayerOnSight(sight_distance))
             shot.random = false;
         // Realizar disparos aleatorios
         else
@@ -204,17 +215,39 @@ public class EnemyBehaviour : MonoBehaviour
             is_chasing = false;
     }
 
-    private void OnCollisionEnter(Collision other)
+    void CheckIfStuck()
+    {
+        if (Vector3.Distance(transform.position, prev_position.position) < 0.05f &&
+            Vector3.Angle(transform.forward, prev_position.forward) < 1)
+        {
+            if (stuck_phase != 0)
+            {
+                Debug.Log("Stuck hold");
+                is_looking = true;
+                is_stuck = true;
+                is_chasing = false;
+                stuck_phase = 0;
+                attack_in_place = true;
+                stuck_shot = 2;
+            }
+        }
+        else
+            prev_position = transform;
+
+        checker_c = 0.5f;
+    }
+
+    private void OnCollisionStay(Collision other)
     {
         // Collision with a colored wall
-        if(other.transform.name.Contains("Pared"))
+        if (other.transform.name.Contains("Pared"))
         {
-            is_looking = true;
-            is_stuck = true;
-            stuck_phase = 0;
-            attack_in_place = true;
-            stuck_shot = 2;
-            Debug.Log("Stuck shot");
+            if (!is_stuck && !is_retreat && checker_c <= 0 && Vector3.Angle(other.contacts[0].normal, -transform.forward) < 20)
+                CheckIfStuck();
+            else
+                checker_c -= Time.deltaTime;
+
+            //transform.position += (other.contacts[0].point - transform.position).normalized;
         }
     }
 
@@ -223,11 +256,13 @@ public class EnemyBehaviour : MonoBehaviour
     // Estado "Perseguir"
     protected void IsChasing()
     {
+        Debug.Log("I'm chasing");
         nav_agent.SetDestination(target.transform.position);
         //nav_agent.speed = chase_speed;
         shot.is_shooting = true;
         attack_moving = true;
         attack_in_place = false;
+        is_retreat = false;
 
         nav_agent.isStopped = false;
 
@@ -238,11 +273,12 @@ public class EnemyBehaviour : MonoBehaviour
     // Estado "Regresar"
     protected void IsRetreating()
     {
+        Debug.Log("I'm retreat");
         nav_agent.SetDestination(home.transform.position);
         shot.is_shooting = false;
 
         float dist = nav_agent.remainingDistance; // Distancia restante hasta objetivo
-        if (dist != Mathf.Infinity && nav_agent.remainingDistance <= 5.0f /*&& nav_agent.pathStatus == NavMeshPathStatus.PathComplete*/)
+        if (dist != Mathf.Infinity && nav_agent.remainingDistance <= 0.1f /*&& nav_agent.pathStatus == NavMeshPathStatus.PathComplete*/)
         {
             is_retreat = false;
             in_home = true;
@@ -278,8 +314,11 @@ public class EnemyBehaviour : MonoBehaviour
     // Estado "EnCasa"
     protected void IsInHome()
     {
+        Debug.Log("I'm home");
         if (patrol != null && !patrol.is_patrolling)
             attack_moving = false;
+
+        in_home = false;
     }
     
     void IsStuck()
@@ -291,11 +330,11 @@ public class EnemyBehaviour : MonoBehaviour
 
             if(stuck_shot <= 0)
             {
+                Debug.Log("Stuck hold");
                 stuck_phase = 1;
                 is_chasing = false;
                 shot.is_shooting = false;
                 stuck_hold = 3;
-                Debug.Log("Stuck hold");
             }
         }
         // Wait to return home
@@ -305,12 +344,14 @@ public class EnemyBehaviour : MonoBehaviour
 
             if(stuck_hold <= 0)
             {
-                Debug.Log("Get back");
+                Debug.Log("Go back");
                 is_looking = false;
                 is_retreat = true;
                 is_stuck = false;
                 stuck_phase = 2;
                 attack_in_place = false;
+                attack_moving = true;
+                nav_agent.isStopped = false;
             }
         }
     }
@@ -318,6 +359,7 @@ public class EnemyBehaviour : MonoBehaviour
     // Actualizar estado animacion
     protected  virtual void UpdateAnimState()
     {
+        //Debug.Log("Attack in place is " + attack_in_place);
         anim.SetBool("Attack", attack_moving);
         anim.SetBool("AttackStop", attack_in_place);
 

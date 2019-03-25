@@ -49,6 +49,7 @@ public class DetectionController : MonoBehaviour
         Vector3 target_dir = target.transform.position - transform.position;
         hits = Physics.RaycastAll(transform.position, target_dir.normalized, distance);
 
+        //Debug.Log("Number of obstacles " + hits.Length + " detected");
         int my_target = 0;
 
         for(int i = 0; i < hits.Length; ++i)
@@ -56,6 +57,8 @@ public class DetectionController : MonoBehaviour
             // Buscar al jugador
             if (hits[i].transform.gameObject.tag == target.tag)
                 my_target = i;
+            
+            //Debug.Log("Obstacle " + hits[i].transform.name + " detected");
         }
 
         // El usuario no ha detectado al objetivo
@@ -65,6 +68,7 @@ public class DetectionController : MonoBehaviour
         // Comprobar si existe un objeto entre jugador y enemigo
         for (int i = 0; i < hits.Length; ++i)
         {
+            //Debug.Log("Obstacle " + hits[i].transform.name + " is being checked");
             // No comprobar objetivo de nuevo
             if (i != my_target)
             {
@@ -74,13 +78,14 @@ public class DetectionController : MonoBehaviour
                 if (obstacle_dist < target_dir.magnitude)
                     if (GetComponent<Enemy>().cur_color.ToString() != hits[i].transform.gameObject.tag)
                     {
+                        Debug.Log("Comparing " + GetComponent<Enemy>().cur_color.ToString() + " with " + hits[i].transform.gameObject.tag);
                         Debug.Log("Obstacle " + hits[i].transform.name + " is in front");
                         return false;
                     }
-                    else
-                        Debug.Log("Obstacle " + hits[i].transform.name + " is not in front");
+                    //else
+                    //    Debug.Log("Obstacle " + hits[i].transform.name + " is not in front");
             }
-            Debug.Log("Obstacle " + hits[i].transform.name + " is checked");
+            //Debug.Log("Obstacle " + hits[i].transform.name + " is checked");
         }
 
         return true;

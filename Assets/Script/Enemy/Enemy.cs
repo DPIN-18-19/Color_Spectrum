@@ -8,8 +8,8 @@ public class Enemy : MonoBehaviour
     public enum Colors
     {
         Yellow,         // Yellow = 0
-        Cyan,           // Cyan = 1
-        Magenta         // Magenta = 2
+        Blue,           // Cyan = 1
+        Pink         // Magenta = 2
     };
     public Colors cur_color;        // Current selected color
     
