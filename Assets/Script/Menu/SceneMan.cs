@@ -43,7 +43,11 @@ public class SceneMan : MonoBehaviour
     {
         Application.Quit();
     }
-   
+    public void ToSelectMenu()
+    {
+        SceneManager.LoadScene("LevelSelection");
+    }
+
 
     // public void Controls()
 }

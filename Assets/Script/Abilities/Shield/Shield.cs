@@ -20,7 +20,7 @@ public class Shield : MonoBehaviour {
         if (col.gameObject.layer == 16)
         {
             Debug.Log("Escudo");
-            Destroy(col.gameObject);
+            Destroy(col.transform.parent.gameObject);
         }
     }
 }
