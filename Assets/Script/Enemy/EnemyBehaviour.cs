@@ -18,7 +18,7 @@ public class EnemyBehaviour : MonoBehaviour
     // Variables de customizacion
     [Header("Customizacion de estados")]
     [SerializeField]
-    private bool can_detect_near = true;               // Puede detectar por cercanía
+    protected bool can_detect_near = true;               // Puede detectar por cercanía
     [SerializeField]
     protected bool can_see = true;                       // Puede detectar por vista                
     [SerializeField]
@@ -215,7 +215,7 @@ public class EnemyBehaviour : MonoBehaviour
     }
 
     // Estado "Regresar"
-    protected void IsRetreating()
+    protected virtual void IsRetreating()
     {
         nav_agent.SetDestination(home.transform.position);
         shot.is_shooting = false;
