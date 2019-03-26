@@ -38250,7 +38250,6 @@ MonoBehaviour:
   isShooting: 0
   ShellEjection: {fileID: 4850328280525520}
   FXShotEnemy: {fileID: 8300000, guid: dd51baefde0215445aba92c6f8953760, type: 3}
-  TiempoRalentizado: 2
   bullet_speed: 0.1
   bullet_dmg: 20
   bullet_range: 4
@@ -38336,7 +38335,6 @@ MonoBehaviour:
   isShooting: 0
   ShellEjection: {fileID: 4700468932438896}
   FXShotEnemy: {fileID: 8300000, guid: 93bafb5448c982a449e63a3638736494, type: 3}
-  TiempoRalentizado: 2
   bullet_speed: 10
   bullet_dmg: 5
   bullet_range: 20
@@ -38428,18 +38426,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 62cc23658d5fbe04e9500fc1c9fd4b84, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  PosDeadParticle: {fileID: 4993139774156992}
   max_health: 15
   health_bar: {fileID: 114473890515465760}
+  in_damage_dur: 0
   die_effect:
   - {fileID: 198085412305327686, guid: d1f231a539122664c86f0a6a6a456157, type: 2}
   - {fileID: 198085412305327686, guid: d1f231a539122664c86f0a6a6a456157, type: 2}
   - {fileID: 198085412305327686, guid: d1f231a539122664c86f0a6a6a456157, type: 2}
-  FxDie: {fileID: 0}
-  EnemyMaterials: {fileID: 114954328591938658}
-  TimeDamageMat: 0.4
-  "Da\xF1o": 0
   score: 100
+  die_fx: {fileID: 0}
 --- !u!114 &114060957451720976
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -38502,8 +38497,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6d88ed46b05bc33409727aec25b3bfb5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  home_distance: 0
-  sight_angle: 25
 --- !u!114 &114065900570837612
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -38552,10 +38545,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1baa2c15fb894ee4c907596f32dcc8e0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  patrol_points: []
-  wait_time: 0
+  is_patrolling: 1
   patrol_speed: 1
-  is_patrol: 1
+  wait_dur: 0
 --- !u!114 &114090146705009512
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -38691,8 +38683,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6d88ed46b05bc33409727aec25b3bfb5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  home_distance: 0
-  sight_angle: 30
 --- !u!114 &114100925052987274
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -38923,8 +38913,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6d88ed46b05bc33409727aec25b3bfb5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  home_distance: 0
-  sight_angle: 30
 --- !u!114 &114212891675413562
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -39357,12 +39345,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1baa2c15fb894ee4c907596f32dcc8e0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  patrol_points:
-  - {fileID: 4298530068832672}
-  - {fileID: 4752869733126624}
-  wait_time: 0
+  is_patrolling: 1
   patrol_speed: 5
-  is_patrol: 1
+  wait_dur: 0
 --- !u!114 &114330440103544488
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -39445,10 +39430,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1baa2c15fb894ee4c907596f32dcc8e0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  patrol_points: []
-  wait_time: 0
+  is_patrolling: 1
   patrol_speed: 1
-  is_patrol: 1
+  wait_dur: 0
 --- !u!114 &114353166711259032
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -39483,7 +39467,6 @@ MonoBehaviour:
   isShooting: 0
   ShellEjection: {fileID: 4110451891778698}
   FXShotEnemy: {fileID: 8300000, guid: dd51baefde0215445aba92c6f8953760, type: 3}
-  TiempoRalentizado: 2
   bullet_speed: 0.1
   bullet_dmg: 20
   bullet_range: 4
@@ -39500,8 +39483,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6d88ed46b05bc33409727aec25b3bfb5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  home_distance: 0
-  sight_angle: 25
 --- !u!114 &114359356693871478
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -39513,8 +39494,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6d88ed46b05bc33409727aec25b3bfb5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  home_distance: 0
-  sight_angle: 30
 --- !u!114 &114378481854551458
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -39650,8 +39629,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6d88ed46b05bc33409727aec25b3bfb5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  home_distance: 0
-  sight_angle: 25
 --- !u!114 &114461699776991096
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -39755,18 +39732,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 62cc23658d5fbe04e9500fc1c9fd4b84, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  PosDeadParticle: {fileID: 4959659735358636}
   max_health: 25
   health_bar: {fileID: 114601959170684518}
+  in_damage_dur: 0
   die_effect:
   - {fileID: 198085412305327686, guid: d1f231a539122664c86f0a6a6a456157, type: 2}
   - {fileID: 198085412305327686, guid: d1f231a539122664c86f0a6a6a456157, type: 2}
   - {fileID: 198085412305327686, guid: d1f231a539122664c86f0a6a6a456157, type: 2}
-  FxDie: {fileID: 0}
-  EnemyMaterials: {fileID: 114289165817966734}
-  TimeDamageMat: 0.4
-  "Da\xF1o": 0
   score: 100
+  die_fx: {fileID: 0}
 --- !u!114 &114511363817001994
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -39831,12 +39805,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1baa2c15fb894ee4c907596f32dcc8e0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  patrol_points:
-  - {fileID: 4022561761643228}
-  - {fileID: 4362959368960578}
-  wait_time: 0
+  is_patrolling: 1
   patrol_speed: 5
-  is_patrol: 1
+  wait_dur: 0
 --- !u!114 &114524577534677422
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -39848,8 +39819,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6d88ed46b05bc33409727aec25b3bfb5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  home_distance: 0
-  sight_angle: 30
 --- !u!114 &114553494867757972
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -40035,7 +40004,6 @@ MonoBehaviour:
   isShooting: 0
   ShellEjection: {fileID: 4036204520771334}
   FXShotEnemy: {fileID: 8300000, guid: 93bafb5448c982a449e63a3638736494, type: 3}
-  TiempoRalentizado: 2
   bullet_speed: 10
   bullet_dmg: 5
   bullet_range: 20
@@ -40052,8 +40020,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6d88ed46b05bc33409727aec25b3bfb5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  home_distance: 0
-  sight_angle: 30
 --- !u!114 &114623815588134368
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -40065,18 +40031,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 62cc23658d5fbe04e9500fc1c9fd4b84, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  PosDeadParticle: {fileID: 4657118762095414}
   max_health: 10
   health_bar: {fileID: 114470283665917472}
+  in_damage_dur: 0
   die_effect:
   - {fileID: 198085412305327686, guid: d1f231a539122664c86f0a6a6a456157, type: 2}
   - {fileID: 198410871006054420, guid: 5e64849e24a3b3949a4999b2eb9ef198, type: 2}
   - {fileID: 198960496170012676, guid: 6b023f22181b1d640a11c4ae1a24ade8, type: 2}
-  FxDie: {fileID: 0}
-  EnemyMaterials: {fileID: 114970322199906250}
-  TimeDamageMat: 0.4
-  "Da\xF1o": 0
   score: 100
+  die_fx: {fileID: 0}
 --- !u!114 &114630907570868400
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -40157,12 +40120,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1baa2c15fb894ee4c907596f32dcc8e0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  patrol_points:
-  - {fileID: 4531751190380078}
-  - {fileID: 4055271601100528}
-  wait_time: 0
+  is_patrolling: 1
   patrol_speed: 0.5
-  is_patrol: 1
+  wait_dur: 0
 --- !u!114 &114662286393577902
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -40174,12 +40134,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1baa2c15fb894ee4c907596f32dcc8e0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  patrol_points:
-  - {fileID: 4223377600082388}
-  - {fileID: 4949358494837700}
-  wait_time: 0
+  is_patrolling: 1
   patrol_speed: 5
-  is_patrol: 1
+  wait_dur: 0
 --- !u!114 &114675009163286620
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -40191,18 +40148,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 62cc23658d5fbe04e9500fc1c9fd4b84, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  PosDeadParticle: {fileID: 4879305576038152}
   max_health: 15
   health_bar: {fileID: 114756500883914470}
+  in_damage_dur: 0
   die_effect:
   - {fileID: 198410871006054420, guid: 5e64849e24a3b3949a4999b2eb9ef198, type: 2}
   - {fileID: 198410871006054420, guid: 5e64849e24a3b3949a4999b2eb9ef198, type: 2}
   - {fileID: 198410871006054420, guid: 5e64849e24a3b3949a4999b2eb9ef198, type: 2}
-  FxDie: {fileID: 0}
-  EnemyMaterials: {fileID: 114649071572751838}
-  TimeDamageMat: 0.4
-  "Da\xF1o": 0
   score: 100
+  die_fx: {fileID: 0}
 --- !u!114 &114678163432577318
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -40230,12 +40184,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1baa2c15fb894ee4c907596f32dcc8e0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  patrol_points:
-  - {fileID: 4960261528214402}
-  - {fileID: 4377341011412396}
-  wait_time: 0
+  is_patrolling: 1
   patrol_speed: 2
-  is_patrol: 1
+  wait_dur: 0
 --- !u!114 &114705459198597254
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -40247,18 +40198,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 62cc23658d5fbe04e9500fc1c9fd4b84, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  PosDeadParticle: {fileID: 4944352373207442}
   max_health: 1
   health_bar: {fileID: 114090316837398926}
+  in_damage_dur: 0
   die_effect:
   - {fileID: 198132939129357452, guid: c7fa281c20ea23f48975212857638425, type: 2}
   - {fileID: 198410871006054420, guid: 5e64849e24a3b3949a4999b2eb9ef198, type: 2}
   - {fileID: 198279765054647224, guid: 67f05d1749a57e241bf4b834e5cdcc8e, type: 2}
-  FxDie: {fileID: 0}
-  EnemyMaterials: {fileID: 114915867994389058}
-  TimeDamageMat: 0
-  "Da\xF1o": 0
   score: 100
+  die_fx: {fileID: 0}
 --- !u!114 &114711839305553060
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -40373,7 +40321,6 @@ MonoBehaviour:
   isShooting: 0
   ShellEjection: {fileID: 4007999171178274}
   FXShotEnemy: {fileID: 8300000, guid: 93bafb5448c982a449e63a3638736494, type: 3}
-  TiempoRalentizado: 2
   bullet_speed: 10
   bullet_dmg: 5
   bullet_range: 20
@@ -40411,12 +40358,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1baa2c15fb894ee4c907596f32dcc8e0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  patrol_points:
-  - {fileID: 4297182029348810}
-  - {fileID: 4160132912763802}
-  wait_time: 0
+  is_patrolling: 1
   patrol_speed: 1
-  is_patrol: 1
+  wait_dur: 0
 --- !u!114 &114745258977203670
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -40516,7 +40460,6 @@ MonoBehaviour:
   isShooting: 0
   ShellEjection: {fileID: 4768480554459684}
   FXShotEnemy: {fileID: 8300000, guid: 93bafb5448c982a449e63a3638736494, type: 3}
-  TiempoRalentizado: 2
   bullet_speed: 10
   bullet_dmg: 5
   bullet_range: 20
@@ -40560,18 +40503,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 62cc23658d5fbe04e9500fc1c9fd4b84, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  PosDeadParticle: {fileID: 4814628289162402}
   max_health: 25
   health_bar: {fileID: 114956564347389754}
+  in_damage_dur: 0
   die_effect:
   - {fileID: 198960496170012676, guid: 6b023f22181b1d640a11c4ae1a24ade8, type: 2}
   - {fileID: 198960496170012676, guid: 6b023f22181b1d640a11c4ae1a24ade8, type: 2}
   - {fileID: 198960496170012676, guid: 6b023f22181b1d640a11c4ae1a24ade8, type: 2}
-  FxDie: {fileID: 0}
-  EnemyMaterials: {fileID: 114849179672072002}
-  TimeDamageMat: 0.4
-  "Da\xF1o": 0
   score: 100
+  die_fx: {fileID: 0}
 --- !u!114 &114776355107003176
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -40583,8 +40523,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6d88ed46b05bc33409727aec25b3bfb5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  home_distance: 0
-  sight_angle: 30
 --- !u!114 &114792605439681624
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -40617,12 +40555,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1baa2c15fb894ee4c907596f32dcc8e0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  patrol_points:
-  - {fileID: 4381839917634768}
-  - {fileID: 4656749723082056}
-  wait_time: 0
+  is_patrolling: 1
   patrol_speed: 0.5
-  is_patrol: 1
+  wait_dur: 0
 --- !u!114 &114796877101142320
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -40634,18 +40569,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 62cc23658d5fbe04e9500fc1c9fd4b84, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  PosDeadParticle: {fileID: 4665521521030462}
   max_health: 15
   health_bar: {fileID: 114885975243415090}
+  in_damage_dur: 0
   die_effect:
   - {fileID: 198410871006054420, guid: 5e64849e24a3b3949a4999b2eb9ef198, type: 2}
   - {fileID: 198410871006054420, guid: 5e64849e24a3b3949a4999b2eb9ef198, type: 2}
   - {fileID: 198410871006054420, guid: 5e64849e24a3b3949a4999b2eb9ef198, type: 2}
-  FxDie: {fileID: 0}
-  EnemyMaterials: {fileID: 114062594532670624}
-  TimeDamageMat: 0.4
-  "Da\xF1o": 0
   score: 100
+  die_fx: {fileID: 0}
 --- !u!114 &114817277737052918
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -40674,12 +40606,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1baa2c15fb894ee4c907596f32dcc8e0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  patrol_points:
-  - {fileID: 4760817520198882}
-  - {fileID: 4980092669460602}
-  wait_time: 0
+  is_patrolling: 1
   patrol_speed: 1
-  is_patrol: 1
+  wait_dur: 0
 --- !u!114 &114830437754137174
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -40846,18 +40775,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 62cc23658d5fbe04e9500fc1c9fd4b84, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  PosDeadParticle: {fileID: 4896144448717690}
   max_health: 15
   health_bar: {fileID: 114336190759155214}
+  in_damage_dur: 0
   die_effect:
   - {fileID: 198960496170012676, guid: 6b023f22181b1d640a11c4ae1a24ade8, type: 2}
   - {fileID: 198960496170012676, guid: 6b023f22181b1d640a11c4ae1a24ade8, type: 2}
   - {fileID: 198960496170012676, guid: 6b023f22181b1d640a11c4ae1a24ade8, type: 2}
-  FxDie: {fileID: 0}
-  EnemyMaterials: {fileID: 114262358017184074}
-  TimeDamageMat: 0.4
-  "Da\xF1o": 0
   score: 100
+  die_fx: {fileID: 0}
 --- !u!114 &114866121563420382
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -40949,18 +40875,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 62cc23658d5fbe04e9500fc1c9fd4b84, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  PosDeadParticle: {fileID: 4837834135557906}
   max_health: 1
   health_bar: {fileID: 114031789851631354}
+  in_damage_dur: 0
   die_effect:
   - {fileID: 198132939129357452, guid: c7fa281c20ea23f48975212857638425, type: 2}
   - {fileID: 198410871006054420, guid: 5e64849e24a3b3949a4999b2eb9ef198, type: 2}
   - {fileID: 198279765054647224, guid: 67f05d1749a57e241bf4b834e5cdcc8e, type: 2}
-  FxDie: {fileID: 0}
-  EnemyMaterials: {fileID: 114866121563420382}
-  TimeDamageMat: 0
-  "Da\xF1o": 0
   score: 100
+  die_fx: {fileID: 0}
 --- !u!114 &114897885422527604
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -41082,7 +41005,6 @@ MonoBehaviour:
   isShooting: 0
   ShellEjection: {fileID: 4346310405498644}
   FXShotEnemy: {fileID: 8300000, guid: 9ebf0ed6d21bf4042b79b58f35db6af8, type: 3}
-  TiempoRalentizado: 2
   bullet_speed: 10
   bullet_dmg: 10
   bullet_range: 20
@@ -41099,18 +41021,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 62cc23658d5fbe04e9500fc1c9fd4b84, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  PosDeadParticle: {fileID: 4433700995591352}
   max_health: 1
   health_bar: {fileID: 114273560142911482}
+  in_damage_dur: 0
   die_effect:
   - {fileID: 198132939129357452, guid: c7fa281c20ea23f48975212857638425, type: 2}
   - {fileID: 198410871006054420, guid: 5e64849e24a3b3949a4999b2eb9ef198, type: 2}
   - {fileID: 198960496170012676, guid: 6b023f22181b1d640a11c4ae1a24ade8, type: 2}
-  FxDie: {fileID: 0}
-  EnemyMaterials: {fileID: 114835582279624204}
-  TimeDamageMat: 0
-  "Da\xF1o": 0
   score: 100
+  die_fx: {fileID: 0}
 --- !u!114 &114928701697126236
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -41354,8 +41273,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6d88ed46b05bc33409727aec25b3bfb5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  home_distance: 0
-  sight_angle: 30
 --- !u!114 &114994002332639476
 MonoBehaviour:
   m_ObjectHideFlags: 1
