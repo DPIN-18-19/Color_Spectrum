@@ -5,6 +5,7 @@ using UnityEngine.AI;
 
 public class EnemyShieldBehaviur : EnemyBehaviour
 {
+    public float Rotation;
     public GameObject Shield;
 	// Use this for initialization
 	void Start () {
@@ -131,5 +132,16 @@ public class EnemyShieldBehaviur : EnemyBehaviour
                 patrol.ResetPatrol();
             }
         }
+    }
+    protected override void IsLooking()
+    {
+        correct_look = LookAtAxis(target.transform.position);
+        correct_look = Mathf.LerpAngle(0, correct_look, Time.deltaTime /Rotation * (Slow_Rotation * 15.5f));
+        transform.Rotate(0, correct_look, 0);
+
+        attack_in_place = true;
+
+        nav_agent.velocity = Vector3.zero;
+        nav_agent.isStopped = true; // Se para el enemigo
     }
 }

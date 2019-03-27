@@ -276,6 +276,7 @@ public class BulletController : MonoBehaviour
                 // Taking damage to player
                 if (col.gameObject.GetComponent<ColorChangingController>().GetColor() != bullet_color)
                 {
+                    
                     col.gameObject.SendMessage("GetDamage", bullet_damage);
                     Destroy(gameObject);
                 }
@@ -317,6 +318,7 @@ public class BulletController : MonoBehaviour
             {
                 if (col.gameObject.GetComponent<EnemyHealth>().IsWeak(gameObject.tag, gameObject.layer))
                 {
+                    Debug.Log("Ennmy collision " + col.gameObject.name);
                     Debug.Log("BalaIsWeak");
                     col.gameObject.GetComponent<EnemyHealth>().GetDamage(bullet_damage);
 
@@ -423,7 +425,7 @@ public class BulletController : MonoBehaviour
         // Collision with any other object
         else if (col.gameObject.tag.Contains("Enemy"))
         {
-            Debug.Log("Enemy hit");
+           
             if (col.gameObject.GetComponent<EnemyHealth>().IsWeak(gameObject.tag, gameObject.layer))
                 col.gameObject.GetComponent<EnemyHealth>().GetDamage(bullet_damage);
 
