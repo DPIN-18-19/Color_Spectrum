@@ -2568,6 +2568,8 @@ MonoBehaviour:
   die_effect:
   - {fileID: 198085412305327686, guid: d1f231a539122664c86f0a6a6a456157, type: 2}
   score: 100
+  PrefabPuntuacion: {fileID: 0}
+  PosPuntuacion: {fileID: 0}
   die_fx: {fileID: 0}
 --- !u!114 &114327035557699270
 MonoBehaviour:
@@ -2670,6 +2672,7 @@ MonoBehaviour:
   lost_distance: 25
   attack_moving: 0
   attack_in_place: 0
+  Rotation: 15
   Shield: {fileID: 1421867557289438}
 --- !u!114 &114769579381854702
 MonoBehaviour:

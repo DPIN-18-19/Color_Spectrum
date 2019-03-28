@@ -2516,6 +2516,8 @@ MonoBehaviour:
   - {fileID: 198410871006054420, guid: 5e64849e24a3b3949a4999b2eb9ef198, type: 2}
   - {fileID: 198960496170012676, guid: 6b023f22181b1d640a11c4ae1a24ade8, type: 2}
   score: 100
+  PrefabPuntuacion: {fileID: 0}
+  PosPuntuacion: {fileID: 0}
   die_fx: {fileID: 0}
 --- !u!114 &114122190744292678
 MonoBehaviour:
@@ -2708,6 +2710,7 @@ MonoBehaviour:
   lost_distance: 25
   attack_moving: 0
   attack_in_place: 0
+  Rotation: 15
   Shield: {fileID: 1785173065723918}
 --- !u!114 &114770849877252880
 MonoBehaviour:
