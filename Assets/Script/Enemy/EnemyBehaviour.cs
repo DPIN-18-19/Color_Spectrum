@@ -8,6 +8,7 @@ public class EnemyBehaviour : MonoBehaviour
     //////////////////////////////////////////////////
     // Variables de componentes
     protected NavMeshAgent nav_agent;               // Objeto navmesh
+    protected EnemyHealth health;                   // Salud
     protected DetectionController detect;           // Deteccion
     protected EnemyWeapon shot;                     // Pistola
     protected PatrolController patrol;              // Patrulla
@@ -27,10 +28,15 @@ public class EnemyBehaviour : MonoBehaviour
     protected bool can_move = true;                      // Puede moverse
     [SerializeField]
     protected bool can_rotate = true;
+    [SerializeField]
+    protected bool can_change_target = false;            // Puede cambiar de target al jugador
 
     //////////////////////////////////////////////////
     // Variables de informacion
-    protected GameObject target;                // Objetivo de enemigo
+    [Header("Objetivo")]
+    public Transform init_target;               // Objetivo de inicio
+    protected Transform target;                 // Objetivo de enemigo
+    
     protected Transform home;                   // Punto de regreso de enemigo
     [Header ("Metricas de deteccion")]
     public float alert_distance;                // Distancia que el enemigo detecta por acercarse
@@ -41,10 +47,10 @@ public class EnemyBehaviour : MonoBehaviour
 
     //////////////////////////////////////////////////
     // Variables de comportamiento
-    protected bool is_chasing;                        // El enemigo está en el estado "Perseguir"
-    protected bool is_retreat = false;                // El enemigo está en el estado "Regresar"
+    protected bool is_chasing;                          // El enemigo está en el estado "Perseguir"
+    protected bool is_retreat = false;                  // El enemigo está en el estado "Regresar"
 
-    protected bool in_home = false;                       // El enemigo está en el estado "Casa"
+    protected bool in_home = false;                     // El enemigo está en el estado "Casa"
     protected bool is_looking = false;          // El enmigo está en el estado "Mirar"
     
     /////////////////////////////////////////////////////
@@ -68,6 +74,7 @@ public class EnemyBehaviour : MonoBehaviour
     {
         // Inicializar variables componentes
         nav_agent = GetComponent<NavMeshAgent>();
+        health = GetComponent<EnemyHealth>();
         detect = GetComponent<DetectionController>();
         shot = GetComponent<EnemyWeapon>();
         patrol = GetComponent<PatrolController>();
@@ -75,8 +82,13 @@ public class EnemyBehaviour : MonoBehaviour
         a_source = GetComponent<AudioSource>();
 
         // Inicializar objetos objetivo
-        target = GameObject.Find("Player_Naomi");
+        //target = GameObject.Find(target_name).transform;
+        if(init_target == null)
+            init_target = GameObject.Find("Player_Naomi").transform;
+
+        target = init_target;
         home = transform.parent.Find("EnemyHome");
+        detect.SetTarget(target);
 
         if (!can_move)
             nav_agent.speed = 0;
@@ -96,6 +108,9 @@ public class EnemyBehaviour : MonoBehaviour
         KeepDistance();
         if(can_shoot)
             ShootTarget();
+        if (can_change_target)
+            ChangeTarget();
+        CheckBeacon();
 
         // Estados de enemigo
         // Realizar "Perseguir"
@@ -197,12 +212,34 @@ public class EnemyBehaviour : MonoBehaviour
             is_chasing = false;
     }
 
+    // Cambiar objetivo de disparo
+    void ChangeTarget()
+    {
+        if(health.GetInDamage())
+        {
+            target = GameObject.Find("Player_Naomi").transform;
+            detect.SetTarget(target);
+
+            // Cuando se cambia de objetivo, forzar a entrar en persecución con nuevo objetivo
+        }
+    }
+
+    void CheckBeacon()
+    {
+        // Tratar de buscar otra forma de detectar la eliminación de un target.
+        if(target.childCount == 0)
+        {
+            target = GameObject.Find("Player_Naomi").transform;
+            detect.SetTarget(target);
+        }
+    }
+
     ////////////////////////////////////////////////////////////////////
     // Funciones de estado
     // Estado "Perseguir"
     protected virtual void IsChasing()
     {
-        nav_agent.SetDestination(target.transform.position);
+        nav_agent.SetDestination(target.position);
         //nav_agent.speed = chase_speed;
         shot.is_shooting = true;
         attack_moving = true;
@@ -219,6 +256,13 @@ public class EnemyBehaviour : MonoBehaviour
     {
         nav_agent.SetDestination(home.transform.position);
         shot.is_shooting = false;
+
+        // Recuperar anterior objetivo
+        if(can_change_target)
+        {
+            target = init_target;
+            detect.SetTarget(target);
+        }
 
         float dist = nav_agent.remainingDistance; // Distancia restante hasta objetivo
         if (dist != Mathf.Infinity && nav_agent.remainingDistance <= 5.0f /*&& nav_agent.pathStatus == NavMeshPathStatus.PathComplete*/)
@@ -244,7 +288,7 @@ public class EnemyBehaviour : MonoBehaviour
     // Estado "Mirar"
     protected virtual void IsLooking()
     {
-        correct_look = LookAtAxis(target.transform.position);
+        correct_look = LookAtAxis(target.position);
         correct_look = Mathf.LerpAngle(0, correct_look, Time.deltaTime / Slow_Rotation * 15.5f);
         transform.Rotate(0, correct_look, 0);
 

@@ -44,7 +44,7 @@ public class EnemyHealth : MonoBehaviour
     [SerializeField]
     private AudioClip die_fx;               // Sonido muerte
 
-    //////////////////////////////////////////////////////////////////////////////
+    /////////////////////////////////////////////////////////////////////////
     void Start()
     {
         // Inicializar componentes
@@ -113,6 +113,12 @@ public class EnemyHealth : MonoBehaviour
         // Entrar estado "EnDano"
         enemy_materials.DamageColor();
         in_damage = true;
+    }
+    
+    // Gettor
+    public bool GetInDamage()
+    {
+        return in_damage;
     }
 
     // Actualizar estado de barra de salud

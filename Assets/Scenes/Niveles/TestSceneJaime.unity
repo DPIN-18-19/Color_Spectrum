@@ -4154,6 +4154,34 @@ MeshFilter:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 95564870}
   m_Mesh: {fileID: 4300000, guid: 79bfa92314a1d32478308c826162fe76, type: 3}
+--- !u!1 &97387813
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 97387814}
+  m_Layer: 0
+  m_Name: DieEffectPos
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &97387814
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 97387813}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 1.29, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 194875741}
+  m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &102731927
 GameObject:
   m_ObjectHideFlags: 0
@@ -5308,7 +5336,7 @@ Prefab:
     m_Modifications:
     - target: {fileID: 4642475799293108, guid: 3c63e8899bc71d347982e4fd5e44b84c, type: 2}
       propertyPath: m_LocalPosition.x
-      value: -46.41
+      value: -34.69
       objectReference: {fileID: 0}
     - target: {fileID: 4642475799293108, guid: 3c63e8899bc71d347982e4fd5e44b84c, type: 2}
       propertyPath: m_LocalPosition.y
@@ -5316,7 +5344,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4642475799293108, guid: 3c63e8899bc71d347982e4fd5e44b84c, type: 2}
       propertyPath: m_LocalPosition.z
-      value: 9.6
+      value: 11.72
       objectReference: {fileID: 0}
     - target: {fileID: 4642475799293108, guid: 3c63e8899bc71d347982e4fd5e44b84c, type: 2}
       propertyPath: m_LocalRotation.x
@@ -5348,8 +5376,26 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 1191697643154972, guid: 3c63e8899bc71d347982e4fd5e44b84c, type: 2}
       propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 114743790945610856, guid: 3c63e8899bc71d347982e4fd5e44b84c,
+        type: 2}
+      propertyPath: target_name
+      value: Beacon
+      objectReference: {fileID: 0}
+    - target: {fileID: 4280562029677696, guid: 3c63e8899bc71d347982e4fd5e44b84c, type: 2}
+      propertyPath: m_LocalPosition.x
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4280562029677696, guid: 3c63e8899bc71d347982e4fd5e44b84c, type: 2}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 114743790945610856, guid: 3c63e8899bc71d347982e4fd5e44b84c,
+        type: 2}
+      propertyPath: init_target
+      value: 
+      objectReference: {fileID: 194875741}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 3c63e8899bc71d347982e4fd5e44b84c, type: 2}
   m_IsPrefabAsset: 0
@@ -12266,8 +12312,10 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 194875741}
+  - component: {fileID: 194875742}
+  - component: {fileID: 194875743}
   m_Layer: 0
-  m_Name: Beacon
+  m_Name: BeaconFull
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -12285,9 +12333,39 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 1140134250}
+  - {fileID: 97387814}
   m_Father: {fileID: 0}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &194875742
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 194875740}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 626fef3444514d14b8d61f921e4c7509, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  beacon_name: 
+  max_health: 20
+  invincible_dur: 1
+  death_part: {fileID: 198085412305327686, guid: d1f231a539122664c86f0a6a6a456157,
+    type: 2}
+--- !u!136 &194875743
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 194875740}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 0
+  m_Radius: 0.2940607
+  m_Height: 2.67612
+  m_Direction: 1
+  m_Center: {x: 0, y: 1.2725543, z: 0.0050382614}
 --- !u!1 &196081351
 GameObject:
   m_ObjectHideFlags: 0
@@ -58550,8 +58628,10 @@ GameObject:
   - component: {fileID: 1140134250}
   - component: {fileID: 1140134252}
   - component: {fileID: 1140134251}
+  - component: {fileID: 1140134253}
+  - component: {fileID: 1140134254}
   m_Layer: 0
-  m_Name: Drum
+  m_Name: Beacon
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -58565,7 +58645,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1140134249}
   m_LocalRotation: {x: 0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -0, y: -0.004, z: 0}
+  m_LocalPosition: {x: -0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 2.8473, z: 1}
   m_Children: []
   m_Father: {fileID: 194875741}
@@ -58615,6 +58695,35 @@ MeshFilter:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1140134249}
   m_Mesh: {fileID: 4300004, guid: 53b1f77b5647461428c34dfc5bc3fc7f, type: 3}
+--- !u!136 &1140134253
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1140134249}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  m_Radius: 0.2940607
+  m_Height: 0.8850584
+  m_Direction: 1
+  m_Center: {x: 0, y: 0.43596765, z: 0}
+--- !u!114 &1140134254
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1140134249}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 626fef3444514d14b8d61f921e4c7509, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  beacon_name: 
+  max_health: 20
+  invincible_dur: 1
+  death_part: {fileID: 198085412305327686, guid: d1f231a539122664c86f0a6a6a456157,
+    type: 2}
 --- !u!1 &1142199076
 GameObject:
   m_ObjectHideFlags: 0
@@ -98836,6 +98945,10 @@ Prefab:
     - target: {fileID: 4336225069083232, guid: d59c53fa4931c994a9da4bf1cf0d6112, type: 2}
       propertyPath: m_RootOrder
       value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 1630379668744072, guid: d59c53fa4931c994a9da4bf1cf0d6112, type: 2}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: d59c53fa4931c994a9da4bf1cf0d6112, type: 2}

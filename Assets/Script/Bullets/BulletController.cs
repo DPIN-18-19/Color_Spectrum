@@ -288,8 +288,6 @@ public class BulletController : MonoBehaviour
                     Invoke("ReactivateCollision", 0.5f);
                     //  col.gameObject.SendMessage("RestoreHealth", bullet_damage);
                 }
-
-                
             }
             // Player bullet
             //- Bug here
@@ -322,26 +320,31 @@ public class BulletController : MonoBehaviour
 
                     if (YellowDestroyeffect)
                     {
-                        Instantiate(DestroyEffectYellow.gameObject, transform.position, Quaternion.LookRotation(Quaternion.Euler(0, Angle, 0) * transform.forward, Vector3.up));
-
+                        Instantiate(DestroyEffectYellow.gameObject, transform.position, 
+                            Quaternion.LookRotation(Quaternion.Euler(0, Angle, 0) * transform.forward, Vector3.up));
                     }
                     if (PinkDestroyeffect)
                     {
-                        Instantiate(DestroyEffectPink.gameObject, transform.position, Quaternion.LookRotation(Quaternion.Euler(0, Angle, 0) * transform.forward, Vector3.up));
-
-
+                        Instantiate(DestroyEffectPink.gameObject, transform.position, 
+                            Quaternion.LookRotation(Quaternion.Euler(0, Angle, 0) * transform.forward, Vector3.up));
                     }
                     if (BlueDestroyeffect)
                     {
-                        Instantiate(DestroyEffectBlue.gameObject, transform.position, Quaternion.LookRotation(Quaternion.Euler(0, Angle, 0) * transform.forward, Vector3.up));
-
+                        Instantiate(DestroyEffectBlue.gameObject, transform.position, 
+                            Quaternion.LookRotation(Quaternion.Euler(0, Angle, 0) * transform.forward, Vector3.up));
                     }
-                    
                 }
-                
             }
             //LLevarselo al hijo
             if(Sniper == false)
+            Destroy(gameObject);
+        }
+        // Colision contra una baliza
+        else if(col.transform.name.Contains("Beacon"))
+        {
+            if(!friendly)
+                col.transform.GetComponent<Beacon>().GetDamage(bullet_damage);
+            
             Destroy(gameObject);
         }
         else
@@ -352,33 +355,27 @@ public class BulletController : MonoBehaviour
            // bulletRot.LookAt(col.contacts[0].);
             if (YellowDestroyeffect)
             {
-                Instantiate(DestroyEffectYellow.gameObject, transform.position,Quaternion.LookRotation(Quaternion.Euler(0,Angle, 0)* transform.forward, Vector3.up));
-                
-               
+                Instantiate(DestroyEffectYellow.gameObject, transform.position,
+                    Quaternion.LookRotation(Quaternion.Euler(0,Angle, 0)* transform.forward, Vector3.up));
                 Destroy(gameObject);
-                //AudioSource.PlayClipAtPoint(DestroyBulletFx, transform.position);
             }
             if (PinkDestroyeffect)
             {
-                Instantiate(DestroyEffectPink.gameObject, transform.position, Quaternion.LookRotation(Quaternion.Euler(0, Angle, 0) * transform.forward, Vector3.up));
-                // Debug.Log("destroy bullet");
+                Instantiate(DestroyEffectPink.gameObject, transform.position, 
+                    Quaternion.LookRotation(Quaternion.Euler(0, Angle, 0) * transform.forward, Vector3.up));
                 Destroy(gameObject);
-              //  AudioSource.PlayClipAtPoint(DestroyBulletFx, transform.position);
             }
             if (BlueDestroyeffect)
             {
-                Instantiate(DestroyEffectBlue.gameObject, transform.position, Quaternion.LookRotation(Quaternion.Euler(0, Angle, 0) * transform.forward, Vector3.up));
-                //  Debug.Log("destroy bullet");
+                Instantiate(DestroyEffectBlue.gameObject, transform.position, 
+                    Quaternion.LookRotation(Quaternion.Euler(0, Angle, 0) * transform.forward, Vector3.up));
                 Destroy(gameObject);
-              //  AudioSource.PlayClipAtPoint(DestroyBulletFx, transform.position);
             }
         }
     }
 
     void OnCollisionStay(Collision col)
     {
-       
-
         Debug.Log("Collided with " + col.transform.gameObject.tag);
 
         // Same color obstacle collision
@@ -469,8 +466,6 @@ public class BulletController : MonoBehaviour
                 transform.position = hit.point;
                 return true;
             }
-
-
             return false;
         }
         else
