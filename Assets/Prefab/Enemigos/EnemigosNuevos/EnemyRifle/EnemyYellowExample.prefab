@@ -697,6 +697,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4704469636869080}
+  - component: {fileID: 114558695858376754}
   m_Layer: 8
   m_Name: HeadBob
   m_TagString: Untagged
@@ -1052,7 +1053,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1433354941003216}
   m_LocalRotation: {x: 0.6262939, y: -0.29784334, z: -0.64815825, w: -0.31454128}
-  m_LocalPosition: {x: 0.06721712, y: 0.02115796, z: -0.082705}
+  m_LocalPosition: {x: 0.06721693, y: 0.021156475, z: -0.082705}
   m_LocalScale: {x: 1, y: 0.99999994, z: 0.99999994}
   m_Children:
   - {fileID: 4341927096493766}
@@ -1450,7 +1451,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1191697643154972}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -40.8, y: 0.3, z: 7.65}
+  m_LocalPosition: {x: -40.35, y: 0.177, z: 9.47}
   m_LocalScale: {x: 1.2848802, y: 1.2848802, z: 1.2848802}
   m_Children:
   - {fileID: 224179895088217076}
@@ -1552,13 +1553,13 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1780794334978602}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 2.371, z: 0}
+  m_LocalRotation: {x: 0.41785914, y: 0, z: 0, w: 0.9085119}
+  m_LocalPosition: {x: 0, y: 2.23, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 4280562029677696}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 49.399, y: 0, z: 0}
 --- !u!4 &4711373776401440
 Transform:
   m_ObjectHideFlags: 1
@@ -2029,6 +2030,17 @@ MonoBehaviour:
   m_FallbackScreenDPI: 96
   m_DefaultSpriteDPI: 96
   m_DynamicPixelsPerUnit: 1
+--- !u!114 &114558695858376754
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1780794334978602}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b7a722582d59c334b91d4ad4e6808994, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &114719995922478350
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -2071,6 +2083,7 @@ MonoBehaviour:
   can_see: 1
   can_shoot: 1
   can_move: 1
+  can_rotate: 1
   alert_distance: 10
   sight_distance: 25
   safe_distance: 6
@@ -2150,6 +2163,11 @@ MonoBehaviour:
   - {fileID: 198085412305327686, guid: d1f231a539122664c86f0a6a6a456157, type: 2}
   - {fileID: 198085412305327686, guid: d1f231a539122664c86f0a6a6a456157, type: 2}
   score: 100
+  TextScore: {fileID: 102262678588124188, guid: b8341ad366c986f4ebd7b8dc81fb0ef8,
+    type: 2}
+  PrefabScore: {fileID: 1892186745157182, guid: b8341ad366c986f4ebd7b8dc81fb0ef8,
+    type: 2}
+  PosScore: {fileID: 4704469636869080}
   die_fx: {fileID: 0}
 --- !u!114 &114961599002813008
 MonoBehaviour:

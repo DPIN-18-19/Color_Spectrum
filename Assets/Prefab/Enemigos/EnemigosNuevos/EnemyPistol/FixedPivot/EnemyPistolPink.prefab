@@ -807,6 +807,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4516286943740850}
+  - component: {fileID: 114903146142245186}
   m_Layer: 10
   m_Name: HeadBob
   m_TagString: Untagged
@@ -1968,13 +1969,13 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1522148265279604}
-  m_LocalRotation: {x: -0, y: 0.99939454, z: -0, w: -0.034793016}
+  m_LocalRotation: {x: 0, y: 0.9085119, z: -0.41785914, w: 0}
   m_LocalPosition: {x: -0.091, y: 2.193, z: 0.059}
   m_LocalScale: {x: 1.0286658, y: 1.0026544, z: 0.86935616}
   m_Children: []
   m_Father: {fileID: 4486933113639108}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 49.399, y: 180, z: 0}
 --- !u!4 &4517824344665536
 Transform:
   m_ObjectHideFlags: 1
@@ -2080,7 +2081,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1565936393995640}
   m_LocalRotation: {x: -0, y: 1, z: -0, w: 0}
-  m_LocalPosition: {x: -45.056175, y: 0.38, z: 5.3328915}
+  m_LocalPosition: {x: -38.13, y: 0.27, z: 12.54}
   m_LocalScale: {x: 1.2481819, y: 1.2803414, z: 1.4793196}
   m_Children:
   - {fileID: 224999629395239160}
@@ -2896,6 +2897,17 @@ MonoBehaviour:
   m_FallbackScreenDPI: 96
   m_DefaultSpriteDPI: 96
   m_DynamicPixelsPerUnit: 1
+--- !u!114 &114903146142245186
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1522148265279604}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b7a722582d59c334b91d4ad4e6808994, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &114939624101082268
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -2915,6 +2927,11 @@ MonoBehaviour:
   - {fileID: 198410871006054420, guid: 5e64849e24a3b3949a4999b2eb9ef198, type: 2}
   - {fileID: 198960496170012676, guid: 6b023f22181b1d640a11c4ae1a24ade8, type: 2}
   score: 100
+  TextScore: {fileID: 102262678588124188, guid: b8341ad366c986f4ebd7b8dc81fb0ef8,
+    type: 2}
+  PrefabScore: {fileID: 1892186745157182, guid: b8341ad366c986f4ebd7b8dc81fb0ef8,
+    type: 2}
+  PosScore: {fileID: 4516286943740850}
   die_fx: {fileID: 0}
 --- !u!114 &114945170648301998
 MonoBehaviour:
@@ -2958,6 +2975,7 @@ MonoBehaviour:
   can_see: 1
   can_shoot: 1
   can_move: 1
+  can_rotate: 1
   alert_distance: 10
   sight_distance: 25
   safe_distance: 3

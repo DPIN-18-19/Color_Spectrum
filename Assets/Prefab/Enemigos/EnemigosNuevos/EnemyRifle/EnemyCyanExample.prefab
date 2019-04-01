@@ -94,6 +94,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4992479535215420}
+  - component: {fileID: 114209834308960754}
   m_Layer: 9
   m_Name: HeadBob
   m_TagString: EnemyBlue
@@ -1194,7 +1195,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1357271386326440}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -41.227406, y: 0.29999995, z: 5.67}
+  m_LocalPosition: {x: -42.31, y: 0.15, z: 8.451098}
   m_LocalScale: {x: 1.2848804, y: 1.2848799, z: 1.2848804}
   m_Children:
   - {fileID: 224331454503627512}
@@ -1744,13 +1745,13 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1097571776099116}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: 0.41785914, y: 0, z: 0, w: 0.9085119}
   m_LocalPosition: {x: 0, y: 2.371, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 4230227851582562}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 49.399, y: 0, z: 0}
 --- !u!4 &4998799285536170
 Transform:
   m_ObjectHideFlags: 1
@@ -1982,6 +1983,17 @@ MonoBehaviour:
   shell_efect_m: {fileID: 198834423430413478, guid: 93a8d38d779f61f4cbf4add2091be907,
     type: 2}
   FXShotEnemy: {fileID: 8300000, guid: 2c270755a083f394bb2ccf4037733bea, type: 3}
+--- !u!114 &114209834308960754
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1097571776099116}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b7a722582d59c334b91d4ad4e6808994, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &114291458353245580
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -2182,6 +2194,11 @@ MonoBehaviour:
   - {fileID: 198410871006054420, guid: 5e64849e24a3b3949a4999b2eb9ef198, type: 2}
   - {fileID: 198410871006054420, guid: 5e64849e24a3b3949a4999b2eb9ef198, type: 2}
   score: 100
+  TextScore: {fileID: 102262678588124188, guid: b8341ad366c986f4ebd7b8dc81fb0ef8,
+    type: 2}
+  PrefabScore: {fileID: 1892186745157182, guid: b8341ad366c986f4ebd7b8dc81fb0ef8,
+    type: 2}
+  PosScore: {fileID: 4992479535215420}
   die_fx: {fileID: 0}
 --- !u!137 &137746946079051952
 SkinnedMeshRenderer:

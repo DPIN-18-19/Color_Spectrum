@@ -38,8 +38,9 @@ public class EnemyHealth : MonoBehaviour
     Transform dead_pos;                     // Posicion de particulas de muerte
 
     public int score = 100;                 // Puntuacion de enemigo
-    public TextMesh PrefabPuntuacion;
-    public Transform PosPuntuacion;
+    public TextMesh TextScore;
+    public GameObject PrefabScore;
+    public Transform PosScore;
     
     ///////////////////////////////////////////////////////////////
     // Audio
@@ -100,8 +101,8 @@ public class EnemyHealth : MonoBehaviour
             int enemy_color = GetComponent<Enemy>().GetColor();
             Instantiate(die_effect[enemy_color].gameObject, dead_pos.transform.position, Quaternion.identity);
             ScoreManager.Instance.CountEnemy(score);
-            PrefabPuntuacion.GetComponent<TextMesh>().text = score.ToString();
-            Instantiate(PrefabPuntuacion, PosPuntuacion.transform.position, Quaternion.identity);
+            TextScore.GetComponent<TextMesh>().text = score.ToString();
+            Instantiate(PrefabScore, PosScore.transform.position, PosScore.transform.rotation);
             Destroy(transform.parent.gameObject);
         }
     }
