@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class ShieldDetect : DetectionController
 {
-    // Comprobar si el jugador esta en rango de vision.
+    // Comprobar si el target esta en rango de vision.
     // Se tienen en cuenta obstaculos entre usuario y objetivo.
     public bool IsOnSight(float distance, Transform n_target)
     {
@@ -16,9 +16,11 @@ public class ShieldDetect : DetectionController
 
         for (int i = 0; i < hits.Length; ++i)
         {
-            // Buscar al jugador
+            // Buscar al objetivo
             if (hits[i].transform.gameObject.tag == n_target.tag)
-                my_target = i;
+                // Comprobar que se trate del objetivo buscado, en caso que haya varios posibles en línea.
+                if (Vector3.Distance(hits[i].transform.position, n_target.position) < 0.1f)
+                    my_target = i;
         }
 
         // El usuario no ha detectado al objetivo
@@ -33,15 +35,17 @@ public class ShieldDetect : DetectionController
                 continue;
             else
             {
-
                 float obstacle_dist = Vector3.Distance(transform.position, hits[i].point);
 
                 // Se puede ver a través del obstáculo
                 if (obstacle_dist < target_dir.magnitude)
-                    if (GetComponent<Enemy>().cur_color.ToString() != hits[i].transform.gameObject.tag)
-                    {
-                        return false;
-                    }
+                    // Comprobar si el enemigo no es otro enemigo
+                    if(hits[i].transform.GetComponent<Enemy>() == null)
+                        // Comprobar si el obstáculo es de diferente color
+                        if (GetComponent<Enemy>().cur_color.ToString() != hits[i].transform.gameObject.tag)
+                        {
+                            return false;
+                        }
             }
         }
 
