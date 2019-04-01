@@ -102,7 +102,7 @@ public class EnemyHealth : MonoBehaviour
             Instantiate(die_effect[enemy_color].gameObject, dead_pos.transform.position, Quaternion.identity);
             ScoreManager.Instance.CountEnemy(score);
             TextScore.GetComponent<TextMesh>().text = score.ToString();
-            Instantiate(PrefabScore, PosScore.transform.position, PosScore.transform.rotation);
+            Instantiate(PrefabScore, PosScore.transform.position,Quaternion.Euler(PosScore.transform.rotation.x,transform.parent.rotation.y,PosScore.transform.rotation.z));
             Destroy(transform.parent.gameObject);
         }
     }
