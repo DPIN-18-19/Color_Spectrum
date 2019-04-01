@@ -305,8 +305,13 @@ public class EnemyBehaviour : MonoBehaviour
             attack_moving = false;
     }
     
+    public void IsProtected(Transform shield_pos)
+    {
+        nav_agent.SetDestination(shield_pos.position);
+    }
+
     // Actualizar estado animacion
-    protected  virtual void UpdateAnimState()
+    protected virtual void UpdateAnimState()
     {
         anim.SetBool("Attack", attack_moving);
         anim.SetBool("AttackStop", attack_in_place);
