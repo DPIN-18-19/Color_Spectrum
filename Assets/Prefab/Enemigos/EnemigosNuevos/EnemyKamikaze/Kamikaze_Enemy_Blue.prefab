@@ -897,6 +897,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4586789556559264}
+  - component: {fileID: 114220974337663812}
   m_Layer: 9
   m_Name: HeadBob
   m_TagString: Untagged
@@ -1987,13 +1988,13 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1592822019015432}
-  m_LocalRotation: {x: -0, y: -1, z: -0, w: 0}
+  m_LocalRotation: {x: 0.00000011647916, y: -0.9099613, z: 0.41469327, w: 0.00000025559018}
   m_LocalPosition: {x: 0, y: 2.780094, z: 0}
   m_LocalScale: {x: 1.1302383, y: 1.2092016, z: 0.9176974}
   m_Children: []
   m_Father: {fileID: 4033593834588506}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 49, y: -179.99998, z: 0}
 --- !u!4 &4603372156732608
 Transform:
   m_ObjectHideFlags: 1
@@ -2172,7 +2173,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1188930539753866}
   m_LocalRotation: {x: -0, y: -0.99878544, z: -0, w: 0.04927197}
-  m_LocalPosition: {x: -34.54, y: 0.22, z: 13.64}
+  m_LocalPosition: {x: -39.28, y: 0.24, z: 10.12}
   m_LocalScale: {x: 1.9302571, y: 1.4431446, z: 1.7865499}
   m_Children:
   - {fileID: 224867109821607116}
@@ -2549,6 +2550,17 @@ MonoBehaviour:
   m_FillAmount: 1
   m_FillClockwise: 1
   m_FillOrigin: 0
+--- !u!114 &114220974337663812
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1592822019015432}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b7a722582d59c334b91d4ad4e6808994, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &114298743973084030
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -2635,6 +2647,11 @@ MonoBehaviour:
   - {fileID: 198054349827780410, guid: fa64fe53c5ee98f4fb9f271e995c0b7f, type: 2}
   - {fileID: 198279765054647224, guid: 67f05d1749a57e241bf4b834e5cdcc8e, type: 2}
   score: 100
+  TextScore: {fileID: 102262678588124188, guid: b8341ad366c986f4ebd7b8dc81fb0ef8,
+    type: 2}
+  PrefabScore: {fileID: 1892186745157182, guid: b8341ad366c986f4ebd7b8dc81fb0ef8,
+    type: 2}
+  PosScore: {fileID: 4586789556559264}
   die_fx: {fileID: 0}
 --- !u!114 &114786753330652554
 MonoBehaviour:
@@ -2670,8 +2687,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   can_detect_near: 1
   can_see: 1
-  can_shoot: 1
+  can_shoot: 0
   can_move: 1
+  can_rotate: 1
   alert_distance: 10
   sight_distance: 25
   safe_distance: 2
@@ -2679,7 +2697,7 @@ MonoBehaviour:
   lost_distance: 25
   attack_moving: 0
   attack_in_place: 0
-  SonidoKi: {fileID: 0}
+  SonidoKi: {fileID: 8300000, guid: fa55aaad6aa020c4e8cddbc8e96cc302, type: 3}
 --- !u!114 &114979034490046300
 MonoBehaviour:
   m_ObjectHideFlags: 1

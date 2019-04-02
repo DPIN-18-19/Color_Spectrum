@@ -204,6 +204,7 @@ public class EnemyBehaviour : MonoBehaviour
     {
         nav_agent.SetDestination(target.transform.position);
         //nav_agent.speed = chase_speed;
+        if (shot) 
         shot.is_shooting = true;
         attack_moving = true;
         attack_in_place = false;
