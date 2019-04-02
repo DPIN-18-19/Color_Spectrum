@@ -42,7 +42,7 @@ public class ShotEnemy : MonoBehaviour
     //Ralentizar
     Slow_Motion Ralentizar;
     private float RalentizarDisparos;
-    public float TiempoRalentizado;
+   
 
     ///////////////////////////////////////////////
 

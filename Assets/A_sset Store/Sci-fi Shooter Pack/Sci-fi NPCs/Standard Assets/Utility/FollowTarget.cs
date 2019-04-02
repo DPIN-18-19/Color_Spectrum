@@ -69,12 +69,12 @@ public class FollowTarget : MonoBehaviour
     // Seguir a enemigo (asegurarse de que el objeto que sigue está dentro del enemigo, sino usar Custom)
     void TargetIsEnenmy()
     {
-        target = transform.parent.GetComponentInChildren<EnemyController>().transform.Find("HeadBob").gameObject;
+        target = transform.parent.GetComponentInChildren<Enemy>().transform.Find("HeadBob").gameObject;
     }
-    void TargetIsEnenmyKamikaze()
-    {
-        target = transform.parent.GetComponentInChildren<EnemyHealthControllerKamikaze>().transform.Find("HeadBob").gameObject;
-    }
+    //void TargetIsEnenmyKamikaze()
+    //{
+    //    target = transform.parent.GetComponentInChildren<EnemyHealthControllerKamikaze>().transform.Find("HeadBob").gameObject;
+    //}
 
     // Seguir a elemento escogido
     void TargetIsCustom()

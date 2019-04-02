@@ -48,10 +48,10 @@ public class ScoreManager : MonoBehaviour
     string final_grade;
     List<ScoreGrade> grade_info;
     int grade_it;
-    
+
     //////////////////////////////////////
     // Estadísticas
-
+    public bool is_result_active = false;
 
     //////////////////////////////////////
 
@@ -82,12 +82,14 @@ public class ScoreManager : MonoBehaviour
     void OnGameSceneLoaded(Scene scene, LoadSceneMode mode)
     {
         // Reorganize game level scenes to be within a range
-        if (scene.buildIndex == 2 )
+        if (scene.buildIndex >= 8 && scene.buildIndex <= 11)
         {
-            ScoreScreen screen = FindObjectOfType<ScoreScreen>();
+            ScoreScreen screen = GameObject.Find("FinalScoreScreen").GetComponent<ScoreScreen>();
             screen.Init();
             screen.gameObject.SetActive(false);
         }
+
+        is_result_active = false;
     }
 
     public void LoadScoreData(ScoreList n_score)
@@ -98,7 +100,7 @@ public class ScoreManager : MonoBehaviour
         health_info.AddRange(score_data.health);
         grade_info.AddRange(score_data.grades);
 
-        Debug.Log(score_data.times[0].name);
+        //Debug.Log(score_data.times[0].name);
     }
 
     void InitScore()
@@ -222,7 +224,8 @@ public class ScoreManager : MonoBehaviour
     {
         for(time_it = 0; time_it < time_info.Count; ++time_it)
         {
-            if (GetMinutes() <= time_info[time_it].minutes && GetSeconds() <= time_info[time_it].seconds)
+            if (GetMinutes() < time_info[time_it].minutes 
+                || GetMinutes() == time_info[time_it].minutes && GetSeconds() <= time_info[time_it].seconds)
                 return time_info[time_it].multiplier;
         }
         

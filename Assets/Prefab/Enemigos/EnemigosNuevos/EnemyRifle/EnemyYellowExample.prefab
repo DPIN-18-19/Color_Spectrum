@@ -874,13 +874,15 @@ GameObject:
   - component: {fileID: 54045900314068194}
   - component: {fileID: 82451249263059246}
   - component: {fileID: 65090948319179746}
-  - component: {fileID: 114770834044841098}
   - component: {fileID: 195077162324241324}
   - component: {fileID: 114892943162320820}
   - component: {fileID: 114287345875471720}
   - component: {fileID: 114463643269782434}
-  - component: {fileID: 114811683215061248}
   - component: {fileID: 114961599002813008}
+  - component: {fileID: 114252694240821046}
+  - component: {fileID: 114743790945610856}
+  - component: {fileID: 114025821181348390}
+  - component: {fileID: 114887944809635910}
   m_Layer: 8
   m_Name: Yellow Enemy
   m_TagString: EnemyYellow
@@ -942,7 +944,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4291877095443830}
   m_Layer: 9
-  m_Name: DeadEffect (1)
+  m_Name: DieEffectPos
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1014,7 +1016,7 @@ Transform:
   m_Children:
   - {fileID: 4601350493610792}
   m_Father: {fileID: 4369116406321320}
-  m_RootOrder: 1
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &4162261691807030
 Transform:
@@ -1027,7 +1029,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 4369116406321320}
-  m_RootOrder: 0
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &4163319545900468
 Transform:
@@ -1182,7 +1184,7 @@ Transform:
   m_LocalScale: {x: 0.94849825, y: 0.9484965, z: 0.9484961}
   m_Children: []
   m_Father: {fileID: 4369116406321320}
-  m_RootOrder: 2
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: -3.9470003, y: 0.57500005, z: 81.698006}
 --- !u!4 &4334444251850952
 Transform:
@@ -1238,7 +1240,7 @@ Transform:
   m_LocalScale: {x: 0.9485017, y: 0.9484938, z: 0.94850105}
   m_Children: []
   m_Father: {fileID: 4369116406321320}
-  m_RootOrder: 4
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: -3.9470003, y: 0.57500005, z: 81.698006}
 --- !u!4 &4369116406321320
 Transform:
@@ -1250,11 +1252,11 @@ Transform:
   m_LocalPosition: {x: -0.00000050700504, y: -0.0000005077466, z: 0.000000112986406}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
-  - {fileID: 4162261691807030}
-  - {fileID: 4122057250567742}
   - {fileID: 4322695921633738}
   - {fileID: 4404753483915346}
   - {fileID: 4348226123624218}
+  - {fileID: 4162261691807030}
+  - {fileID: 4122057250567742}
   m_Father: {fileID: 4922255412837662}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -1326,7 +1328,7 @@ Transform:
   m_LocalScale: {x: 0.94849724, y: 0.94849634, z: 0.9484964}
   m_Children: []
   m_Father: {fileID: 4369116406321320}
-  m_RootOrder: 3
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: -10.019, y: 90, z: 84.853004}
 --- !u!4 &4473080254509090
 Transform:
@@ -1447,8 +1449,8 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1191697643154972}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 16.49599, y: 0.14763713, z: -12.950735}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -40.8, y: 0.3, z: 7.65}
   m_LocalScale: {x: 1.2848802, y: 1.2848802, z: 1.2848802}
   m_Children:
   - {fileID: 224179895088217076}
@@ -1787,8 +1789,8 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 1, y: 2.104978, z: 1}
-  m_Center: {x: 0, y: 1.0501531, z: -0}
+  m_Size: {x: 1.5848846, y: 2.1049778, z: 1.5975246}
+  m_Center: {x: -0.0027455026, y: 1.0501531, z: 0.005768506}
 --- !u!82 &82451249263059246
 AudioSource:
   m_ObjectHideFlags: 1
@@ -1920,6 +1922,40 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!114 &114025821181348390
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1968884099248546}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: db2212615987d1b4f8e79078854d72b8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  renderersToChangeColor:
+  - {fileID: 137051320807939676}
+  cur_color: 0
+  Blue_Material: {fileID: 2100000, guid: 9159bbef168212c41ac8e1bfa1ef8c90, type: 2}
+  Yellow_Material: {fileID: 2100000, guid: 4473d2bd26aabc14cb3d1ef79cc67b65, type: 2}
+  Pink_Material: {fileID: 2100000, guid: 019eedb29f28bf049bfb3580b05d6ec4, type: 2}
+  DamageBlueMaterial: {fileID: 2100000, guid: db0c71efbfcab484d93720a649d3eac0, type: 2}
+  DamageYellowMaterial: {fileID: 2100000, guid: a3988eed9648ed2459ec19dcc59a2702,
+    type: 2}
+  DamagePinkMaterial: {fileID: 2100000, guid: 497fd88b7bfc08c40914abc2ccaaa0a6, type: 2}
+--- !u!114 &114252694240821046
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1968884099248546}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5088dd01fe25e5a4f9f44665013d2dbc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  cur_color: 0
+  chase_speed: 7
 --- !u!114 &114269921382385778
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1958,12 +1994,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1baa2c15fb894ee4c907596f32dcc8e0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  patrol_points:
-  - {fileID: 4190603258031192}
-  - {fileID: 4400686542929658}
-  wait_time: 0
+  is_patrolling: 1
   patrol_speed: 1
-  is_patrol: 1
+  wait_dur: 0
 --- !u!114 &114463643269782434
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1975,8 +2008,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6d88ed46b05bc33409727aec25b3bfb5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  home_distance: 0
-  sight_angle: 30
 --- !u!114 &114515573007618192
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -2025,7 +2056,7 @@ MonoBehaviour:
   m_FillAmount: 1
   m_FillClockwise: 1
   m_FillOrigin: 0
---- !u!114 &114770834044841098
+--- !u!114 &114743790945610856
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_CorrespondingSourceObject: {fileID: 0}
@@ -2033,38 +2064,20 @@ MonoBehaviour:
   m_GameObject: {fileID: 1968884099248546}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5e6e62700134e404d8bd51107b5ff240, type: 3}
+  m_Script: {fileID: 11500000, guid: d532e6f915a9d524fb0e7591342a813d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  yellow_mat: {fileID: 2100000, guid: 5a96abfc6a74b1841ba0d0201453881b, type: 2}
-  cyan_mat: {fileID: 2100000, guid: 95506bf5b0569b94f91203cd4b7bf4f4, type: 2}
-  magenta_mat: {fileID: 2100000, guid: a3bb50ec3e1a5b5419ae6870033ad15d, type: 2}
-  Shot_effectYellow: {fileID: 198534960484000138, guid: f3dd52b642049b24b810219ac86f23ec,
-    type: 2}
-  Shot_effectBlue: {fileID: 198857426217267120, guid: 36020c596b143aa41b0a3ec20a2be32c,
-    type: 2}
-  Shot_effectPink: {fileID: 198178962905762056, guid: 9691f1331907a50498f57dc72b89f5dc,
-    type: 2}
-  ShellEfectYellow: {fileID: 198236717835626218, guid: 485aef8f70c9c974ab96492c7fd11b2c,
-    type: 2}
-  ShellEfectBlue: {fileID: 198834423430413478, guid: 93a8d38d779f61f4cbf4add2091be907,
-    type: 2}
-  ShellEfectPink: {fileID: 198076230649775678, guid: 3a875e93ad345f74b8662cfe669da381,
-    type: 2}
-  bullet: {fileID: 1630379668744072, guid: d59c53fa4931c994a9da4bf1cf0d6112, type: 2}
-  FirePos: {fileID: 4322695921633738}
-  EffectShot: {fileID: 4348226123624218}
-  timeBetweenShorts: 1
-  TimeShots: 1
-  isShooting: 0
-  ShellEjection: {fileID: 4404753483915346}
-  FXShotEnemy: {fileID: 8300000, guid: 93bafb5448c982a449e63a3638736494, type: 3}
-  TiempoRalentizado: 2
-  bullet_speed: 10
-  bullet_dmg: 7
-  bullet_range: 20
-  bullet_friend: 0
-  random: 0
+  can_detect_near: 1
+  can_see: 1
+  can_shoot: 1
+  can_move: 1
+  alert_distance: 10
+  sight_distance: 25
+  safe_distance: 6
+  sight_angle: 25
+  lost_distance: 25
+  attack_moving: 0
+  attack_in_place: 0
 --- !u!114 &114794095612487266
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -2081,7 +2094,7 @@ MonoBehaviour:
   m_BlockingMask:
     serializedVersion: 2
     m_Bits: 4294967295
---- !u!114 &114811683215061248
+--- !u!114 &114887944809635910
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_CorrespondingSourceObject: {fileID: 0}
@@ -2089,35 +2102,35 @@ MonoBehaviour:
   m_GameObject: {fileID: 1968884099248546}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3267b229c41a24e4396494be715b5327, type: 3}
+  m_Script: {fileID: 11500000, guid: 12286fd311a27aa4298224c86ba03f36, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  cur_color: 0
-  AttackMovePlayer: 0
-  AttackStopPlayer: 0
-  home: {fileID: 1062411394553952}
-  chase_speed: 7
-  alert_distance: 10
-  sight_distance: 25
-  safe_distance: 6
-  DontShot: 0
-  SonidoKi: {fileID: 0}
-  renderersToChangeColor:
-  - {fileID: 137051320807939676}
-  - {fileID: 137700888464904124}
-  Blue_Material: {fileID: 2100000, guid: 9159bbef168212c41ac8e1bfa1ef8c90, type: 2}
-  Yellow_Material: {fileID: 2100000, guid: 4473d2bd26aabc14cb3d1ef79cc67b65, type: 2}
-  Pink_Material: {fileID: 2100000, guid: 019eedb29f28bf049bfb3580b05d6ec4, type: 2}
-  DamageBlueMaterial: {fileID: 2100000, guid: ddb750c2306a8dd45a02db3f1e7090c3, type: 2}
-  DamageYellowMaterial: {fileID: 2100000, guid: 7ac3a7aa4f5223f4c9a9f7424f18ea8d,
+  bullet: {fileID: 1630379668744072, guid: d59c53fa4931c994a9da4bf1cf0d6112, type: 2}
+  bullet_speed: 10
+  bullet_dmg: 5
+  bullet_range: 20
+  bullet_friend: 0
+  weapon: {fileID: 4369116406321320}
+  shot_dur: 0.5
+  shot_dur_max: 0.5
+  random: 0
+  is_shooting: 0
+  yellow_mat: {fileID: 2100000, guid: d88ec5f6f06e64d4db6956c458f0b867, type: 2}
+  cyan_mat: {fileID: 2100000, guid: 95506bf5b0569b94f91203cd4b7bf4f4, type: 2}
+  magenta_mat: {fileID: 2100000, guid: 2d0ac1555fd56254c83e06f281b9678d, type: 2}
+  shot_effect_y: {fileID: 198534960484000138, guid: f3dd52b642049b24b810219ac86f23ec,
     type: 2}
-  DamagePinkMaterial: {fileID: 2100000, guid: 932dc70665a94764e94bd56cf504986c, type: 2}
-  EffectDestroy: {fileID: 0}
-  PosDeadParticle: {fileID: 0}
-  isKamikaze: 0
-  SpeedSlow: 2.3
-  AnimSlow: 0.3
-  RalentizarRotar: 0
+  shot_effect_c: {fileID: 198857426217267120, guid: 36020c596b143aa41b0a3ec20a2be32c,
+    type: 2}
+  shot_effect_m: {fileID: 198178962905762056, guid: 9691f1331907a50498f57dc72b89f5dc,
+    type: 2}
+  shell_efect_y: {fileID: 198236717835626218, guid: 485aef8f70c9c974ab96492c7fd11b2c,
+    type: 2}
+  shell_efect_c: {fileID: 198076230649775678, guid: 3a875e93ad345f74b8662cfe669da381,
+    type: 2}
+  shell_efect_m: {fileID: 198834423430413478, guid: 93a8d38d779f61f4cbf4add2091be907,
+    type: 2}
+  FXShotEnemy: {fileID: 8300000, guid: 2c270755a083f394bb2ccf4037733bea, type: 3}
 --- !u!114 &114892943162320820
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -2129,18 +2142,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 62cc23658d5fbe04e9500fc1c9fd4b84, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  PosDeadParticle: {fileID: 4291877095443830}
   max_health: 15
   health_bar: {fileID: 114719995922478350}
+  in_damage_dur: 0.65
   die_effect:
   - {fileID: 198085412305327686, guid: d1f231a539122664c86f0a6a6a456157, type: 2}
   - {fileID: 198085412305327686, guid: d1f231a539122664c86f0a6a6a456157, type: 2}
   - {fileID: 198085412305327686, guid: d1f231a539122664c86f0a6a6a456157, type: 2}
-  FxDie: {fileID: 0}
-  EnemyMaterials: {fileID: 114811683215061248}
-  TimeDamageMat: 0.4
-  "Da\xF1o": 0
   score: 100
+  die_fx: {fileID: 0}
 --- !u!114 &114961599002813008
 MonoBehaviour:
   m_ObjectHideFlags: 1

@@ -5,11 +5,13 @@ using UnityEngine;
 [System.Serializable]
 public class LevelData
 {
-    public string id;               // Nombre identificador del nivel
+    public int id;                  // Nombre identificador del nivel
     public string name;             // Nombre del nivel en el juego
     public string scene_name;       // Nombre de la escena del nivel
+    [TextArea]
     public string brief;            // Descripción del nivel
 
+    public float unlock_score;      // Puntuación de desbloqueo de objetos
     public bool unlocked;           // El nivel está bloqueado
     public bool complete;           // El nivel se ha jugado una vez
     public bool item_got;           // El objeto desbloqueable del nivel se ha obtenido
@@ -17,7 +19,7 @@ public class LevelData
     public int highscore;           // Mayor puntuación obtenida
     public GradeData grade;        // Mayor nota obtenida
 
-    public List<string> unlock_require; // Nombres de niveles necesarios de completar para desbloquear
+    public List<int> unlock_require; // Nombres de niveles necesarios de completar para desbloquear
 
     public void Clone(LevelData other)
     {

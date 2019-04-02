@@ -7,6 +7,11 @@ public class GameplayManager : MonoBehaviour
 {
     static GameplayManager instance;
 
+    //HUD Puntuacion
+
+    public Text Points;
+
+
     Transform canvas;
     public HealthController vida;
 
@@ -130,10 +135,12 @@ public class GameplayManager : MonoBehaviour
     // Update is called once per frame
     void Update ()
     {
+
     }
 
     void FixedUpdate()
     {
+        Points.text = ScoreManager.Instance.GetEnemyScore().ToString();
         t_health.text = "" + Mathf.RoundToInt(health);
         //t_dash_cooldown.text = "" + Mathf.RoundToInt(dash_cooldown);
         //t_cambio_cooldown.text = "" + Mathf.RoundToInt(cambio_cooldown);

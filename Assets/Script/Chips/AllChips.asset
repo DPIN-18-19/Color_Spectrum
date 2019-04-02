@@ -12,19 +12,20 @@ MonoBehaviour:
   m_Name: AllChips
   m_EditorClassIdentifier: 
   chips:
-  - id: 0001
-    name: Chip1
-    weight: 10
+  - id: DamHeal1
+    name: DH 1
+    weight: 15
     player_stats:
     - stat_name: Health
-      stat_value: 10
+      stat_value: 20
     weapon_stats:
     - stat_name: Damage
-      stat_value: 10
+      stat_value: 20
     equipped: 0
-  - id: 2
+    price: 6000
+  - id: DamHealth2
     name: Chip2
-    weight: 20
+    weight: 15
     player_stats:
     - stat_name: Health
       stat_value: 20
@@ -32,13 +33,15 @@ MonoBehaviour:
     - stat_name: Damage
       stat_value: 20
     equipped: 0
-  - id: 3
+    price: 6000
+  - id: RangeVeloc1
     name: Chip3
-    weight: 30
+    weight: 15
     player_stats:
-    - stat_name: Health
-      stat_value: 30
+    - stat_name: Speed
+      stat_value: 5
     weapon_stats:
-    - stat_name: Damage
-      stat_value: 30
+    - stat_name: Cadency
+      stat_value: 0.1
     equipped: 0
+    price: 6000

@@ -15,7 +15,7 @@ public class PlayerJaneMoveController : MonoBehaviour {
 
     // Variables
     public float move_speed;            // PLayer's speed
-
+   
     public Vector3 move_dir;           // Player direction
     private Vector3 move_velocity;
     // Player new velocity vector
@@ -24,6 +24,7 @@ public class PlayerJaneMoveController : MonoBehaviour {
     // Use this for initialization
     void Start()
     {
+       
         move_speed = GetComponent<PlayerStats>().speed;
         // Initialize
         SetUpAnimation();
@@ -38,10 +39,10 @@ public class PlayerJaneMoveController : MonoBehaviour {
     {
         if(CanMove)
        Movement();
-       // TimeStopGrenade += Time.deltaTime; 
-
-        //Rotation();
-    }
+        // TimeStopGrenade += Time.deltaTime; 
+       
+            //Rotation();
+        }
 
     private void FixedUpdate()
     {
@@ -58,32 +59,44 @@ public class PlayerJaneMoveController : MonoBehaviour {
 
     void Movement()
     {
-        float horizontal = Input.GetAxisRaw("Horizontal");
-        float vertical = Input.GetAxisRaw("Vertical");
-
-        move_dir = new Vector3(horizontal, 0f, vertical);
-        move_dir.Normalize();
-        move_velocity = move_dir * move_speed;
-
-        Vector3 relativevelocity = transform.InverseTransformDirection(new Vector3(horizontal, 0, vertical));
-        animHorizontal = Mathf.Lerp(animHorizontal, relativevelocity.x, animInterpolation * Time.deltaTime);
-        animVertical = Mathf.Lerp(animVertical, relativevelocity.z, animInterpolation * Time.deltaTime);
-       
-        Move = true;
-        if (horizontal == 0 && vertical == 0)
+        if (!PauseMan.Instance.is_pause && !ScoreManager.Instance.is_result_active)
         {
-            Move = false;
+
+            float horizontal = Input.GetAxisRaw("Horizontal");
+            float vertical = Input.GetAxisRaw("Vertical");
+
+            move_dir = new Vector3(horizontal, 0f, vertical);
+            move_dir.Normalize();
+            move_velocity = move_dir * move_speed;
+
+            Vector3 relativevelocity = transform.InverseTransformDirection(new Vector3(horizontal, 0, vertical));
+            animHorizontal = Mathf.Lerp(animHorizontal, relativevelocity.x, animInterpolation * Time.deltaTime);
+            animVertical = Mathf.Lerp(animVertical, relativevelocity.z, animInterpolation * Time.deltaTime);
+
+            Move = true;
+            if (horizontal == 0 && vertical == 0)
+            {
+                Move = false;
+            }
+            // if (TimeStopGrenade < 1)
+            // {
+            //     move_velocity = move_dir * 0;
+            // }
+
+            anim.SetFloat("VelocidadX", animHorizontal);
+            anim.SetFloat("VelocidadZ", animVertical);
+            anim.SetBool("Move", Move);
+
         }
-       // if (TimeStopGrenade < 1)
-       // {
-       //     move_velocity = move_dir * 0;
-       // }
-
-        anim.SetFloat("VelocidadX", animHorizontal);
-        anim.SetFloat("VelocidadZ", animVertical);
-        anim.SetBool("Move", Move);
-
+        else
+        {
+            move_velocity = Vector3.zero;
+            anim.SetFloat("VelocidadX", 0);
+            anim.SetFloat("VelocidadZ", 0);
+            anim.SetBool("Move", false);
+        }
         
+
     }
     void SetUpAnimation()
     {

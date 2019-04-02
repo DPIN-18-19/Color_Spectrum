@@ -179,6 +179,8 @@ public class WeaponController : MonoBehaviour
         // Activar habilidad
         //GetComponent<AbilityController>().ActivateAbility(cur_weapon.ability);
 
+        //Actualizar PLano de Rotacion
+        transform.parent.GetComponent<PlayerRotation>().SetNewGunHeight(gun.transform.Find("FirePos"));
     }
 
     void SearchRenderers()

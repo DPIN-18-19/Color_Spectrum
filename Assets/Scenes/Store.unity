@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.18028334, g: 0.2257134, b: 0.30692226, a: 1}
+  m_IndirectSpecularColor: {r: 0.18028378, g: 0.22571412, b: 0.30692285, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -2893,9 +2893,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   store_chips: {fileID: 11400000, guid: 90779ec8c7f2f214caa6cc2d37177fac, type: 2}
-  inventory_upgrades: {fileID: 11400000, guid: 5b9508faadba3a54a865f1308d781cf5, type: 2}
-  inventory_weapons: {fileID: 11400000, guid: b72a5a2ffca1c944ab9dd1bf7615488c, type: 2}
-  inventory_abilities: {fileID: 11400000, guid: 40f28bdaa8ee2954697a289ad513ca25,
+  inventory_upgrades: {fileID: 11400000, guid: 3d782b250553ded4e88b83270a30ca10, type: 2}
+  inventory_weapons: {fileID: 11400000, guid: ec433dc75cb480c4f8e60395d5e95caf, type: 2}
+  inventory_abilities: {fileID: 11400000, guid: e6a950d96ab8be44aae3fde64b0017dc,
     type: 2}
   schip_mould: {fileID: 1119851449315328, guid: 78133008dd301574bb652ede7ce54e75,
     type: 2}
@@ -2932,6 +2932,8 @@ MonoBehaviour:
       is_instant: 1
       cooldown_dur: 0
       active_dur: 0
+      store_brief: 
+      tooltip_brief: 
       display_icon: {fileID: 0}
       weight: 0
       equipped: 0

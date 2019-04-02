@@ -27,6 +27,7 @@ GameObject:
   - component: {fileID: 114058179117497698}
   - component: {fileID: 114571231686222686}
   - component: {fileID: 114114598832503056}
+  - component: {fileID: 114438328696692612}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -40,8 +41,8 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1797101446497448}
-  m_LocalRotation: {x: 0.43157247, y: 0.0000057248735, z: -0.000008897639, w: 0.90207833}
-  m_LocalPosition: {x: 13.603735, y: 12.78176, z: -22.43}
+  m_LocalRotation: {x: 0.43157238, y: 0.000010431044, z: -0.000011240104, w: 0.9020784}
+  m_LocalPosition: {x: 8.493736, y: 12.78176, z: 44.45}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -56,7 +57,7 @@ Camera:
   m_Enabled: 1
   serializedVersion: 2
   m_ClearFlags: 1
-  m_BackGroundColor: {r: 0.19215687, g: 0.3019608, b: 0.4745098, a: 0}
+  m_BackGroundColor: {r: 0, g: 0, b: 0, a: 0}
   m_projectionMatrixMode: 1
   m_SensorSize: {x: 36, y: 24}
   m_LensShift: {x: 0, y: 0}
@@ -194,6 +195,23 @@ MonoBehaviour:
   m_BeforeTransparentBundles: []
   m_BeforeStackBundles: []
   m_AfterStackBundles: []
+--- !u!114 &114438328696692612
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1797101446497448}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 05246765a77428544952362003268349, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  displacementMap: {fileID: 2800000, guid: 7b885cdc8db9b1945bae9c14db99cd77, type: 3}
+  Shader: {fileID: 4800000, guid: fac62cadcbb46c5439f7d68f19444004, type: 3}
+  intensity: 1
+  flipIntensity: 0.131
+  colorIntensity: 0
+  TimeBetweenGlich: 0
 --- !u!114 &114571231686222686
 MonoBehaviour:
   m_ObjectHideFlags: 1

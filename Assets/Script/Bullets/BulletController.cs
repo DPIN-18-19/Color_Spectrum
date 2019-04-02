@@ -54,6 +54,8 @@ public class BulletController : MonoBehaviour
     private AudioSource source;
 
     PlayerRenderer MaterialsPlayer;
+    
+   
 
     public bool Sniper;
 
@@ -74,6 +76,7 @@ public class BulletController : MonoBehaviour
         m_collider = GetComponent<Collider>();
 
         Ralentizar = GameObject.Find("Player_Naomi").GetComponent<Slow_Motion>();
+        
         MaterialsPlayer = GameObject.Find("Player_Naomi").GetComponent<PlayerRenderer>();
         StartCoroutine(DestroyBullet());
     }
@@ -114,7 +117,14 @@ public class BulletController : MonoBehaviour
         //- Take out layers sometime
         // Enemy layers
         if (!n_friend)
-            this.gameObject.layer = 16;
+        {
+            if(n_color == 0)
+              this.gameObject.layer = 8;
+            if (n_color == 1)
+                this.gameObject.layer = 9;
+            if (n_color == 2)
+                this.gameObject.layer = 10;
+        }
 
         // Non-color dependent variables
         bullet_color = n_color;
@@ -143,19 +153,19 @@ public class BulletController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Ralentizar.ActivateAbility == true && !friendly)
+        if (SceneMan1.Instance.isdead == false)
         {
-            source.pitch = Ability_Time_Manager.Instance.FXRalentizado;
-        }
-        if (Ralentizar.ActivateAbility == false && !friendly)
-        {
-            source.pitch = 1;
-        }
+            if (Ralentizar.ActivateAbility == true && !friendly)
+            {
+                source.pitch = Ability_Time_Manager.Instance.FXRalentizado;
+            }
+            if (Ralentizar.ActivateAbility == false && !friendly)
+            {
+                source.pitch = 1;
+            }
 
 
-        if (Ralentizar.ActivateAbility == false && !friendly)
-        {
-            this.gameObject.layer = 16;
+          
         }
        // Debug.Log(YellowDestroyeffect);
         //Debug.Log("Update bullet");
@@ -185,13 +195,13 @@ public class BulletController : MonoBehaviour
         //Condicion !friendly(Enemigo) Ralentizar.
         if(!friendly && Ralentizar.ActivateAbility == true )
         {
-            Debug.Log("Ralentizado");
+            //Debug.Log("Ralentizado");
             ralentizarVelocidad = Ability_Time_Manager.Instance.Slow_Bullet_Velocity;
             ralentizarDestruccion = Ability_Time_Manager.Instance.Slow_Bullet_Destroy;     
         }
         if (!friendly && Ralentizar.ActivateAbility == false )
         {
-            Debug.Log("DejadoDeRalentizar");
+            //Debug.Log("DejadoDeRalentizar");
             ralentizarVelocidad = MaxRalentizarVelocidad;
             ralentizarDestruccion = MaxralentizarDestruccion;  
         }
@@ -205,6 +215,8 @@ public class BulletController : MonoBehaviour
     // If not collided with anything, destroy
     public virtual IEnumerator DestroyBullet()
     {
+        MaterialsPlayer.ResetColor();
+        Trasparente = false;
         if (Ralentizar.ActivateAbility == false)
         {
             yield return new WaitForSeconds(bullet_life_time);
@@ -222,42 +234,19 @@ public class BulletController : MonoBehaviour
 
     private void OnCollisionEnter(Collision col)
     {
-        if (col.gameObject.tag == "Player" && this.gameObject.tag == "Pink" && !friendly && Ralentizar.ActivateAbility == true)
-        {
-            this.gameObject.layer = 10;
-        }
-        if (col.gameObject.tag == "Player" && this.gameObject.tag == "Pink" && !friendly && Ralentizar.ActivateAbility == false)
-        {
-            this.gameObject.layer = 16;
-        }
-        if (col.gameObject.tag == "Player" && this.gameObject.tag == "Yellow" && !friendly && Ralentizar.ActivateAbility == true)
-        {
-            this.gameObject.layer = 8;
-        }
-        if (col.gameObject.tag == "Player" && this.gameObject.tag == "Yellow" && !friendly && Ralentizar.ActivateAbility == false)
-        {
-            this.gameObject.layer = 16;
-        }
-        if (col.gameObject.tag == "Player" && this.gameObject.tag == "Blue" && !friendly && Ralentizar.ActivateAbility == true)
-        {
-            this.gameObject.layer = 9;
-        }
-        if (col.gameObject.tag == "Player" && this.gameObject.tag == "Blue" && !friendly && Ralentizar.ActivateAbility == false)
-        {
-            this.gameObject.layer = 16;
-        }
+       
         //Debug.Log("Enter Collided with " + col.transform.gameObject.tag);
         //- Collision with player is not working
         // Same color obstacle collision
         if (col.gameObject.tag == gameObject.tag)
         {
-            Debug.Log("Collided with a wall");
+           // Debug.Log("Collided with a wall");
             if (m_collider == null)
                 Debug.Log("Error");
             m_collider.enabled = !m_collider.enabled;
             Invoke("ReactivateCollision", wall_active_time);
         }
-
+        
 
        else if( bullet_color == 0 && col.gameObject.tag == "ParedNoCambioYellow")
         {
@@ -295,7 +284,7 @@ public class BulletController : MonoBehaviour
                 {
                  //   Debug.Log("Paso");
                     m_collider.enabled = !m_collider.enabled;
-                    Trasparente = true;
+                   
                     Invoke("ReactivateCollision", 0.5f);
                     //  col.gameObject.SendMessage("RestoreHealth", bullet_damage);
                 }
@@ -320,31 +309,32 @@ public class BulletController : MonoBehaviour
         // Collision with any other object
         else if (col.gameObject.tag.Contains("Enemy"))
         {
-           
+            Vector3 rotParticle = col.contacts[0].normal;
+            Transform bulletRot = gameObject.transform;
+            float Angle = Vector3.SignedAngle(gameObject.transform.forward, rotParticle, Vector3.up);
+
             if (friendly)
             {
-                if (col.gameObject.GetComponent<EnemyHealthController>().IsWeak(gameObject.tag, gameObject.layer))
+                if (col.gameObject.GetComponent<EnemyHealth>().IsWeak(gameObject.tag, gameObject.layer))
                 {
                     Debug.Log("BalaIsWeak");
-                    col.gameObject.GetComponent<EnemyHealthController>().GetDamage(bullet_damage);
+                    col.gameObject.GetComponent<EnemyHealth>().GetDamage(bullet_damage);
 
                     if (YellowDestroyeffect)
                     {
-                        Instantiate(DestroyEffectYellow.gameObject, transform.position, Quaternion.identity);
-                        
-
+                        Instantiate(DestroyEffectYellow.gameObject, transform.position, Quaternion.LookRotation(Quaternion.Euler(0, Angle, 0) * transform.forward, Vector3.up));
 
                     }
                     if (PinkDestroyeffect)
                     {
-                        Instantiate(DestroyEffectPink.gameObject, transform.position, Quaternion.identity);
-                       
-                       
+                        Instantiate(DestroyEffectPink.gameObject, transform.position, Quaternion.LookRotation(Quaternion.Euler(0, Angle, 0) * transform.forward, Vector3.up));
+
+
                     }
                     if (BlueDestroyeffect)
                     {
-                        Instantiate(DestroyEffectBlue.gameObject, transform.position, Quaternion.identity);
-                        
+                        Instantiate(DestroyEffectBlue.gameObject, transform.position, Quaternion.LookRotation(Quaternion.Euler(0, Angle, 0) * transform.forward, Vector3.up));
+
                     }
                     
                 }
@@ -356,24 +346,29 @@ public class BulletController : MonoBehaviour
         }
         else
         {
+            Vector3 rotParticle = col.contacts[0].normal;
+            Transform bulletRot = gameObject.transform;
+            float Angle = Vector3.SignedAngle(gameObject.transform.forward,rotParticle,Vector3.up);
+           // bulletRot.LookAt(col.contacts[0].);
             if (YellowDestroyeffect)
             {
-                Instantiate(DestroyEffectYellow.gameObject, transform.position, Quaternion.identity);
-                Debug.Log("destroy bullet");
+                Instantiate(DestroyEffectYellow.gameObject, transform.position,Quaternion.LookRotation(Quaternion.Euler(0,Angle, 0)* transform.forward, Vector3.up));
+                
+               
                 Destroy(gameObject);
                 //AudioSource.PlayClipAtPoint(DestroyBulletFx, transform.position);
             }
             if (PinkDestroyeffect)
             {
-                Instantiate(DestroyEffectPink.gameObject, transform.position, Quaternion.identity);
-                Debug.Log("destroy bullet");
+                Instantiate(DestroyEffectPink.gameObject, transform.position, Quaternion.LookRotation(Quaternion.Euler(0, Angle, 0) * transform.forward, Vector3.up));
+                // Debug.Log("destroy bullet");
                 Destroy(gameObject);
               //  AudioSource.PlayClipAtPoint(DestroyBulletFx, transform.position);
             }
             if (BlueDestroyeffect)
             {
-                Instantiate(DestroyEffectBlue.gameObject, transform.position, Quaternion.identity);
-                Debug.Log("destroy bullet");
+                Instantiate(DestroyEffectBlue.gameObject, transform.position, Quaternion.LookRotation(Quaternion.Euler(0, Angle, 0) * transform.forward, Vector3.up));
+                //  Debug.Log("destroy bullet");
                 Destroy(gameObject);
               //  AudioSource.PlayClipAtPoint(DestroyBulletFx, transform.position);
             }
@@ -429,8 +424,8 @@ public class BulletController : MonoBehaviour
         else if (col.gameObject.tag.Contains("Enemy"))
         {
             Debug.Log("Enemy hit");
-            if (col.gameObject.GetComponent<EnemyHealthController>().IsWeak(gameObject.tag, gameObject.layer))
-                col.gameObject.GetComponent<EnemyHealthController>().GetDamage(bullet_damage);
+            if (col.gameObject.GetComponent<EnemyHealth>().IsWeak(gameObject.tag, gameObject.layer))
+                col.gameObject.GetComponent<EnemyHealth>().GetDamage(bullet_damage);
 
             Destroy(gameObject);
         }
@@ -460,7 +455,7 @@ public class BulletController : MonoBehaviour
    protected bool PeekNextPosition(Vector3 f_pos)
     {
         RaycastHit hit;
-
+        
         Vector3 ray_dir = transform.position - f_pos;
         float dist = Vector3.Distance(transform.position, f_pos);
 

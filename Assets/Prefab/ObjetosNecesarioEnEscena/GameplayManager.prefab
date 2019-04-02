@@ -1,0 +1,105 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1001 &100100000
+Prefab:
+  m_ObjectHideFlags: 1
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications: []
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 0}
+  m_RootGameObject: {fileID: 1587684352929578}
+  m_IsPrefabAsset: 1
+--- !u!1 &1587684352929578
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 4199896410693602}
+  - component: {fileID: 114075147856169942}
+  m_Layer: 0
+  m_Name: GameplayManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &4199896410693602
+Transform:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1587684352929578}
+  m_LocalRotation: {x: 0.59855306, y: -0, z: -0, w: 0.8010832}
+  m_LocalPosition: {x: 18.08, y: 9.5, z: -2.37}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &114075147856169942
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1587684352929578}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bea6ec61edb923e4790121b714c8c5f8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  vida: {fileID: 0}
+  t_health: {fileID: 0}
+  health: 0
+  max_health: 100
+  ability_cooldown: 0
+  t_dash_cooldown: {fileID: 0}
+  dash_cooldown: 0
+  dash_activo: 0
+  t_grenade_cooldown: {fileID: 0}
+  grenade_cooldown: 0
+  grenade_activo: 0
+  t_cambio_cooldown: {fileID: 0}
+  cambio_cooldown: 0
+  cambio_activo: 0
+  usarhabilidad: 0
+  t_Shield_cooldown: {fileID: 0}
+  shield_cooldown: 0
+  Shield_activo: 0
+  usarhabilidadShield: 0
+  dash_icon: {fileID: 0}
+  no_dash_icon: {fileID: 0}
+  cambio_icon: {fileID: 0}
+  no_cambio_icon: {fileID: 0}
+  Cambio_Activo: {fileID: 0}
+  Grenade_icon: {fileID: 0}
+  no_Grenade_icon: {fileID: 0}
+  shield_icon: {fileID: 0}
+  no_shield_icon: {fileID: 0}
+  Shield_Activo: {fileID: 0}
+  dash_father: {fileID: 0}
+  cambio_father: {fileID: 0}
+  Grenade_father: {fileID: 0}
+  Shield_father: {fileID: 0}
+  Pistol: {fileID: 0}
+  Sniper: {fileID: 0}
+  Escopeta: {fileID: 0}
+  Health_icon: {fileID: 0}
+  Health_bar: {fileID: 0}
+  fullhealth: {fileID: 2100000, guid: daa7b5d6547624b40bd9d4cd2b5a8905, type: 2}
+  midhealth: {fileID: 2100000, guid: 0e12c17008e385f4c8587f5a094ef13c, type: 2}
+  lowhealth: {fileID: 2100000, guid: e466b935676d45a43ba7f6e751d69529, type: 2}
+  NullActivo: {fileID: 2100000, guid: e51d2777f9c749640b36722e18e96dd0, type: 2}
+  cyan: {fileID: 2100000, guid: 194fb411f4ec8c443a22fd236f424a0d, type: 2}
+  yellow: {fileID: 2100000, guid: 454165495f762ba419f15ea93d366bc5, type: 2}
+  magenta: {fileID: 2100000, guid: e396ca539fd9f6345bc34aa9b51d3900, type: 2}
+  circle_icon: {fileID: 0}
+  superior_icon: {fileID: 0}
+  inferior_icon: {fileID: 0}
+  activo_icon: {fileID: 0}
+  y_frame: {fileID: 0}
+  c_frame: {fileID: 0}
+  m_frame: {fileID: 0}

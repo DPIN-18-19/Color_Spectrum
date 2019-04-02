@@ -33,11 +33,7 @@ public class Menu_Pausa : MonoBehaviour {
 
         if (Input.GetKeyUp(KeyCode.Escape))
             KeyDown = false;
-
-
     }
-   
-                
 
     public void Pause()
     {

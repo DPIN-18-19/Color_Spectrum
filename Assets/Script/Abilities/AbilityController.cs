@@ -56,6 +56,8 @@ public class AbilityController : MonoBehaviour
             case "Shield":
                 a_shield.enabled = true;
                 break;
+
+                break;
             default:
                 cur_ability = "";
                 //Debug.Log("Ability not found. Data received: " + name);

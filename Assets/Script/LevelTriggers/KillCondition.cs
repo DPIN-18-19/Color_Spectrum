@@ -74,7 +74,7 @@ public class KillCondition : MonoBehaviour
                 {
                     if (kill_enemies[i] == null)
                     {
-                        Debug.Log("Dead");
+                        //Debug.Log("Dead");
                         kill_enemies.RemoveAt(i);
                         break;
                     }
