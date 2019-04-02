@@ -5,83 +5,92 @@ using UnityEngine;
 public class ShieldCall : MonoBehaviour
 {
     Enemy enemy;
+    EnemyBehaviour behaviour;
     ShieldDetect detect;
-
+    
     //Transform shield_pos;
-
-    bool l_fill, r_fill;
+    float call_distance;
     
 	// Use this for initialization
 	void Start ()
     {
         enemy = transform.parent.GetComponent<Enemy>();
+        behaviour = transform.parent.GetComponent<EnemyBehaviour>();
         detect = transform.parent.GetComponent<ShieldDetect>();
 
+        call_distance = transform.parent.GetComponent<EnemyBehaviour>().alert_distance;
         //shield_pos = transform.Find("ShieldPos");	
-	}
-	
-	// Update is called once per frame
-	void Update ()
-    {
-		
 	}
 
     private void OnTriggerEnter(Collider other)
     {
         Debug.Log("Detected " + other.transform.name);
-        // Comprobar si se detecto enemigo del mismo color
-        if(other.transform.name.Contains("Enemy"))
+        if (behaviour.is_chasing)
         {
-            Debug.Log("Enemy was found");
-            if(other.GetComponent<Enemy>().GetColor() == enemy.GetColor())
+            // Comprobar si se detecto enemigo del mismo color
+            if (other.transform.name.Contains("Enemy"))
             {
-                Debug.Log("Enemy has same color");
-                // Comprobar validez del enemigo respecto posicion
-                if (detect.IsOnSight(GetComponent<SphereCollider>().radius, other.transform))
+                Debug.Log("Enemy was found");
+                Enemy other_enemy = other.GetComponent<Enemy>();
+                if (other_enemy != null && other_enemy.GetColor() == enemy.GetColor())
                 {
-                    Debug.Log("Enemy can reach");
-                    // Elegir punto a ocupar
-                    other.GetComponent<EnemyBehaviour>().IsProtected(ChooseSide(other.transform));
+                    Debug.Log("Enemy has same color");
+                    if (other_enemy.enemy_type <= Enemy.EnemyType.Shotgun)
+                    {
+                        if(!CheckOccupees(other.transform))
+                        Debug.Log("Enemy is of valid type");
+                        // Comprobar validez del enemigo respecto posicion
+                        if (detect.IsOnSight(call_distance, other.transform))
+                        {
+                            Debug.Log("Enemy can reach");
+                            // Elegir punto a ocupar
+                            ChooseSide(other.transform);
+                        }
+                    }
                 }
             }
         }
     }
 
-    Transform ChooseSide(Transform enemy)
+    bool CheckOccupees(Transform n_occupee)
     {
-        Transform l_shield = transform.GetChild(0);
-        Transform r_shield = transform.GetChild(1);
+        if (transform.GetChild(0).GetComponent<ShieldPos>().SameOccupee(n_occupee) || transform.GetChild(1).GetComponent<ShieldPos>().SameOccupee(n_occupee))
+            return true;
+        else
+            return false;
+    }
 
-        // Escudo izquierdo esta ocupado
-        if (l_fill)
+    void ChooseSide(Transform enemy)
+    {
+        ShieldPos l_shield = transform.GetChild(0).GetComponent<ShieldPos>();
+        ShieldPos r_shield = transform.GetChild(1).GetComponent<ShieldPos>();
+
+        // Escudo izquierdo esta ocupado, ocupar derecha
+        if (l_shield.occupied)
         {
-            r_fill = true;
-            return r_shield;
+            r_shield.Occupy(enemy);
         }
 
         // Escudo derecho esta ocupado
-        if(r_fill)
+        if(r_shield.occupied)
         {
-            l_fill = true;
-            return l_shield;
+            l_shield.Occupy(enemy);
         }
 
         Debug.Log("Inserting enemy");
         // Comprobar que lado se sitúa más cerca.
-        float l_dist = Vector3.Distance(l_shield.position, enemy.position);
-        float r_dist = Vector3.Distance(r_shield.position, enemy.position);
+        float l_dist = Vector3.Distance(l_shield.transform.position, enemy.position);
+        float r_dist = Vector3.Distance(r_shield.transform.position, enemy.position);
 
         // Lado izquierdo cerca
         if(l_dist <= r_dist)
         {
-            l_fill = true;
-            return l_shield;
+            l_shield.Occupy(enemy);
         }
         // Lado derecho cerca
         else
         {
-            r_fill = true;
-            return r_shield;
+            r_shield.Occupy(enemy);
         }
     }
 

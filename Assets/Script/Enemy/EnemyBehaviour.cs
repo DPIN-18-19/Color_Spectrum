@@ -47,11 +47,12 @@ public class EnemyBehaviour : MonoBehaviour
 
     //////////////////////////////////////////////////
     // Variables de comportamiento
-    protected bool is_chasing;                          // El enemigo está en el estado "Perseguir"
+    public bool is_chasing;                          // El enemigo está en el estado "Perseguir"
     protected bool is_retreat = false;                  // El enemigo está en el estado "Regresar"
 
     protected bool in_home = false;                     // El enemigo está en el estado "Casa"
-    protected bool is_looking = false;          // El enmigo está en el estado "Mirar"
+    public bool is_looking = false;                  // El enmigo está en el estado "Mirar"
+    protected bool is_protected = false;
     
     /////////////////////////////////////////////////////
     // Variables de animacion
@@ -105,7 +106,8 @@ public class EnemyBehaviour : MonoBehaviour
     {
         // Cambiadores de estado
         DetectPlayer();
-        KeepDistance();
+        if(!is_protected)
+            KeepDistance();
         if(can_shoot)
             ShootTarget();
         if (can_change_target)
@@ -161,22 +163,25 @@ public class EnemyBehaviour : MonoBehaviour
             Debug.Log("Retreat2");
         }
 
-        if(can_see)
-            // Comprobar si enemigo ve a jugador
-            if (detect.IsPlayerInFront(sight_angle) && detect.IsPlayerNear(sight_distance) && detect.IsPlayerOnSight(sight_distance))
-            {
-                Debug.Log("I see");
-                is_chasing = true;
-                in_home = false;
-            }
+        if (!is_protected)
+        {
+            if (can_see)
+                // Comprobar si enemigo ve a jugador
+                if (detect.IsPlayerInFront(sight_angle) && detect.IsPlayerNear(sight_distance) && detect.IsPlayerOnSight(sight_distance))
+                {
+                    Debug.Log("I see");
+                    is_chasing = true;
+                    in_home = false;
+                }
 
-        if(can_detect_near)
-            // Comprobar si enemigo detecta jugador cerca. No detecta si hay obstáculo en medio.
-            if (detect.IsPlayerNear(alert_distance) && detect.IsPlayerOnSight(sight_distance))
-            {
-                is_chasing = true;
-                in_home = false;
-            }
+            if (can_detect_near)
+                // Comprobar si enemigo detecta jugador cerca. No detecta si hay obstáculo en medio.
+                if (detect.IsPlayerNear(alert_distance) && detect.IsPlayerOnSight(sight_distance))
+                {
+                    is_chasing = true;
+                    in_home = false;
+                }
+        }
     }
 
     // El enemigo se encuentra en la distancia de seguridad
@@ -241,7 +246,10 @@ public class EnemyBehaviour : MonoBehaviour
     {
         nav_agent.SetDestination(target.position);
         //nav_agent.speed = chase_speed;
-        shot.is_shooting = true;
+
+        if(can_shoot)
+            shot.is_shooting = true;
+
         attack_moving = true;
         attack_in_place = false;
 
@@ -255,7 +263,9 @@ public class EnemyBehaviour : MonoBehaviour
     protected void IsRetreating()
     {
         nav_agent.SetDestination(home.transform.position);
-        shot.is_shooting = false;
+
+        if(can_shoot)
+            shot.is_shooting = false;
 
         // Recuperar anterior objetivo
         if(can_change_target)
@@ -279,6 +289,12 @@ public class EnemyBehaviour : MonoBehaviour
         }
     }
 
+    public void IsShooting(bool to_shot)
+    {
+        if (can_shoot)
+            shot.is_shooting = to_shot;
+    }
+
     // Estado "Patrullar"
     protected void IsPatrolling()
     {
@@ -292,10 +308,12 @@ public class EnemyBehaviour : MonoBehaviour
         correct_look = Mathf.LerpAngle(0, correct_look, Time.deltaTime / Slow_Rotation * 15.5f);
         transform.Rotate(0, correct_look, 0);
 
-        attack_in_place = true;
-
-        nav_agent.velocity = Vector3.zero;
-        nav_agent.isStopped = true; // Se para el enemigo
+        if (!is_protected)
+        {
+            attack_in_place = true;
+            nav_agent.velocity = Vector3.zero;
+            nav_agent.isStopped = true; // Se para el enemigo
+        }
     }
 
     // Estado "EnCasa"
@@ -305,8 +323,17 @@ public class EnemyBehaviour : MonoBehaviour
             attack_moving = false;
     }
     
+    // Estado "Protegido". El enemigo entra en el estado desde que comienza a acercarse a un punto de protección
     public void IsProtected(Transform shield_pos)
     {
+        // Dejar de patrullar
+        if (patrol != null)
+            patrol.is_patrolling = false;
+
+        is_chasing = false;
+        is_looking = false;
+        is_protected = true;
+        nav_agent.isStopped = false;
         nav_agent.SetDestination(shield_pos.position);
     }
 
