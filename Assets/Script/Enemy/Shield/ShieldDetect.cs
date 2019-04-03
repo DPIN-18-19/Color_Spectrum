@@ -14,10 +14,6 @@ public class ShieldDetect : DetectionController
 
         int my_target = 0;
 
-
-        Debug.Log("Magnitude is " + Vector3.Magnitude(target_dir));
-        Debug.Log("Distance is " + distance);
-
         for (int i = 0; i < hits.Length; ++i)
         {
             // Buscar al objetivo

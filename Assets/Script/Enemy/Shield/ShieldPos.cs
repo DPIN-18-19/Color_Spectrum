@@ -54,6 +54,7 @@ public class ShieldPos : MonoBehaviour
             if (occupee == null)
             {
                 occupied = false;
+                transform.parent.GetComponent<SphereCollider>().enabled = true;
             }
 
             is_empty_c = is_empty_dur;
@@ -62,7 +63,7 @@ public class ShieldPos : MonoBehaviour
 
     void IsPositioning()
     {
-        Debug.Log("Potitioning");
+        Debug.Log("Potitioning in " + transform.name);
 
         o_behaviour.IsProtected(transform);
         o_behaviour.IsShooting(false);
@@ -76,7 +77,7 @@ public class ShieldPos : MonoBehaviour
 
     void IsFollowing()
     {
-        Debug.Log("Following");
+        //Debug.Log("Following");
 
         o_behaviour.IsShooting(true);
 

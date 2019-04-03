@@ -21,7 +21,6 @@ public class ShieldCall : MonoBehaviour
         call_distance = transform.parent.GetComponent<EnemyBehaviour>().alert_distance;
         //shield_pos = transform.Find("ShieldPos");	
 	}
-
     private void OnTriggerEnter(Collider other)
     {
         Debug.Log("Detected " + other.transform.name);
@@ -68,13 +67,19 @@ public class ShieldCall : MonoBehaviour
         // Escudo izquierdo esta ocupado, ocupar derecha
         if (l_shield.occupied)
         {
+            Debug.Log("L was occupied, go for R");
             r_shield.Occupy(enemy);
+            DeactivateSearch();
+            return;
         }
 
         // Escudo derecho esta ocupado
         if(r_shield.occupied)
         {
+            Debug.Log("R was occupied, go for L");
             l_shield.Occupy(enemy);
+            DeactivateSearch();
+            return;
         }
 
         Debug.Log("Inserting enemy");
@@ -85,11 +90,13 @@ public class ShieldCall : MonoBehaviour
         // Lado izquierdo cerca
         if(l_dist <= r_dist)
         {
+            Debug.Log("L is near");
             l_shield.Occupy(enemy);
         }
         // Lado derecho cerca
         else
         {
+            Debug.Log("R is near");
             r_shield.Occupy(enemy);
         }
     }
