@@ -19,33 +19,15 @@ public class KillCondition : MonoBehaviour
 
     public event Condition KillWave;
     
-
     ///////////////////////////////////////
     // Eliminar elementos
     
     public List <GameObject> kill_enemies;
     bool kill_checking;
+    [HideInInspector]
+    public int kill_num = 0;
 
     ///////////////////////////////////////
-    // Entrar en un área
-
-    bool area_checking;
-
-    ///////////////////////////////////////
-
-
-    ///////////////////////////////////////
-
-    //public static LevelCondition Instance
-    //{
-    //    get;
-    //    private set;
-    //}
-
-    //public void Awake()
-    //{
-    //    Instance = this;
-    //}
 
     private void Start()
     {
@@ -68,7 +50,7 @@ public class KillCondition : MonoBehaviour
     {
         if (kill_checking)
         {
-            if (kill_enemies.Count != 0)
+            if (kill_enemies.Count != kill_num)
             {
                 for(int i = 0; i < kill_enemies.Count; ++i)
                 {
@@ -90,10 +72,4 @@ public class KillCondition : MonoBehaviour
             
         }
     }
-
-    //void CheckAreaTrigger()
-    //{
-
-    //}
-
 }
