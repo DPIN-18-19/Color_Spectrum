@@ -73,6 +73,7 @@ public class LevelMenuManager : MonoBehaviour
         Deselect();
         selection.Clone(data);
         //info_p.gameObject.SetActive(true);
+        info_p.GetComponent<LevelInfoPanel>().TextAppear();
         info_p.GetComponent<LevelInfoPanel>().UpdateInfo(selection);
         return true;
     }
@@ -87,7 +88,7 @@ public class LevelMenuManager : MonoBehaviour
         }
 
         selection.id = -1;
-        //info_p.gameObject.SetActive(false);
+        info_p.GetComponent<LevelInfoPanel>().TextDisappear();
     }
 
     // Actualizar informacion de nivel
