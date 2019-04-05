@@ -12,7 +12,6 @@ public class KamikazeBehaviour : EnemyBehaviour
         // Inicializar variables componentes
         nav_agent = GetComponent<NavMeshAgent>();
         detect = GetComponent<DetectionController>();
-        shot = GetComponent<EnemyWeapon>();
         patrol = GetComponent<PatrolController>();
         anim = GetComponent<Animator>();
         a_source = GetComponent<AudioSource>();

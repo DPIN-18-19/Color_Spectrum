@@ -76,6 +76,8 @@ public class Spawner : MonoBehaviour
         s_patrol.SetParent(enemy);
         Transform s_home = enemy.Find("EnemyHome");
         s_home = home;
+
+        GetComponentInParent<SpawnPoint>().IncludeEnemy(s_enemy);
     }
 
 

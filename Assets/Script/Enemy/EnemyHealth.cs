@@ -36,9 +36,14 @@ public class EnemyHealth : MonoBehaviour
     [Header("Elementos de Muerte")]
     public ParticleSystem[] die_effect;     // Effect particle array
     Transform dead_pos;                     // Posicion de particulas de muerte
-
-    public int score = 100;                 // Puntuacion de enemigo
     
+    ///////////////////////////////////////////////////////////////
+    // Variables de muerte
+    public int score = 100;                 // Puntuacion de enemigo
+    public TextMesh TextScore;              // Texto de puntuacion
+    public GameObject PrefabScore;          // Objeto puntuacion
+    public Transform PosScore;              // Posicion de score
+
     ///////////////////////////////////////////////////////////////
     // Audio
     [SerializeField]
@@ -97,7 +102,11 @@ public class EnemyHealth : MonoBehaviour
             // Realizar muerte
             int enemy_color = GetComponent<Enemy>().GetColor();
             Instantiate(die_effect[enemy_color].gameObject, dead_pos.transform.position, Quaternion.identity);
+
+            // Operaciones de puntuacion
             ScoreManager.Instance.CountEnemy(score);
+            TextScore.GetComponent<TextMesh>().text = score.ToString();
+            Instantiate(PrefabScore, PosScore.transform.position, Quaternion.Euler(PosScore.transform.rotation.x, transform.parent.rotation.y, PosScore.transform.rotation.z));
             Destroy(transform.parent.gameObject);
         }
     }

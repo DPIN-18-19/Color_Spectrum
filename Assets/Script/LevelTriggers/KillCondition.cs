@@ -72,4 +72,10 @@ public class KillCondition : MonoBehaviour
             
         }
     }
+
+    // Activar/desactivar 
+    public void SwitchKill()
+    {
+        kill_checking = !kill_checking;
+    }
 }

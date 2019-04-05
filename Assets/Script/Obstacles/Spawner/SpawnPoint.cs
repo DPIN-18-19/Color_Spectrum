@@ -4,42 +4,55 @@ using UnityEngine;
 
 public class SpawnPoint : MonoBehaviour
 {
-    public bool active;                // El spawn esta activado
-    List<Spawner> spawner_l;    // Posiciones de spawn
-    int spawner_it;
+    //////////////////////////////////////////////////////////
+    // Variables de spawnees
+    public List<Transform> spawnee_l;          // Enemigos posibles para spawnear
+    public List<Transform> spawn_patrols;      // Patrullas posibles
+    public List<Transform> spawn_homes;        // Origen de enemigos posibles
 
-    List<Transform> spawnee_l;
     [Tooltip("Insertar valor que ocupan enemigos en 'spawnee_l'. Para finalizar oleada, insertar '-1'.")]
-    public List<int> spawnee_order;
-    int spawnee_it;
+    public List<int> spawnee_order;     // Orden en el que spawnearan los enemigos
+    int spawnee_it;                     // Iterador de orden de spawnees
 
-    float next_spawn_c;
-    float next_spawn_dur;
+    //////////////////////////////////////////////////////////
+    // Variables generales
+    public bool active;                 // El spawn esta activado
+    List<Spawner> spawner_l;            // Posiciones de spawn
+    int spawner_it;                     // Iterador de posiciones de spawn
 
-    float next_wave_dur;
+    float next_spawn_c;                 // Contador de proximo spawn
+    public float next_spawn_dur;        // Duracion de proximo spawn
 
-    List<Transform> spawn_patrols;
-    List<Transform> spawn_homes;
-
-    bool can_reset;             // Resetear spawn al finalizar
-    
-    public enum NextWaveType
+    //////////////////////////////////////////////////////////
+    // Variables de comportamiento de oleadas
+    public enum WaveType
     {
         Time,                           // Comenzar tras un tiempo X
         KillAll,                        // Comenzar al terminar con todos en la oleada
         KillSome,                       // Comenzar al terminar con parte de oleada
         TimeForward                     // Comenzar tras tiempo X. Adelantar inicio si se ha terminado con todos de la oleada
     }
-    public NextWaveType start_wave;
+    public WaveType start_wave;         // Forma de inicio de oleada
 
-    KillCondition cond;
-    bool is_wave;
+    public float next_wave_dur;         // Duracion de proxima oleada
 
-    // Use this for initialization
+    List<KillCondition> wave_l;         // Lista de oleadas
+    int wave_it = 0;                    // Iterador de oleadas
+    bool is_wave;                       // Comprobador de si se esta realizando una oleada
+    
+    public bool can_reset;             // Resetear spawn al finalizar
+
+    //////////////////////////////////////////////////////////
+
     void Start ()
     {
         spawner_l.AddRange(transform.GetComponentsInChildren<Spawner>());
         spawner_it = 0;
+
+        if(start_wave != WaveType.Time)
+        {
+            wave_l = new List<KillCondition>();
+        }
 	}
 
 
@@ -48,12 +61,20 @@ public class SpawnPoint : MonoBehaviour
 		
 	}
     
+    void ActivateSpawn()
+    {
+        active = true;
+    }
+
     void DoSpawning()
     {
+        // Comprobar si hay activada una oleada y si empieza el siguiente spawn
         if(is_wave && next_spawn_c < 0)
         {
+            // Comprobar si proximo spawner esta desocupado
             if(spawner_l[spawner_it].CheckIfSpawning())
             {
+                // Comprobar si fin de oleada
                 if(spawnee_order[spawnee_it] == -1)
                 {
                     PrepareNextWave();
@@ -61,57 +82,89 @@ public class SpawnPoint : MonoBehaviour
                     return;
                 }
 
+                // Hacer spawn con datos de enemigo
                 int data = Random.Range(0, spawn_patrols.Count);
                 spawner_l[spawner_it].StartSpawning(spawnee_l[spawnee_order[spawnee_it]], spawn_patrols[data], spawn_homes[data]);
+
+                // Iterar siguiente spawn
                 spawner_it = (int)Mathf.Repeat(++spawner_it, spawner_l.Count);
                 next_spawn_c = next_spawn_dur;
                 ++spawnee_it;
 
+                // Comprobar si fin de spawner
                 if (spawnee_it >= spawnee_order.Count)
                     FinishSpawn();
             }
         }
     }
 
+    // Realizar operaciones al terminar datos de spawn
     void FinishSpawn()
     {
+        // Reiniciar spawn
         if(can_reset)
         {
             spawnee_it = 0;
             next_spawn_c = next_wave_dur;
         }
+        // Desactivarlo
         else
         {
             active = false;
         }
     }
 
+    // Realizar preparativos para siguiente oleada
     void PrepareNextWave()
     {
         is_wave = false;
 
         switch(start_wave)
         {
-            case NextWaveType.Time:
+            case WaveType.Time:
                 next_spawn_c = next_wave_dur;
                 break;
-            case NextWaveType.KillAll:
-                cond.KillWave += StartWave;
+            case WaveType.KillAll:
+                wave_l[wave_it].SwitchKill();
+                wave_l[wave_it].KillWave += StartWaveByKill;
                 break;
-            case NextWaveType.KillSome:
-                cond.KillWave += StartWave;
+            case WaveType.KillSome:
+                wave_l[wave_it].SwitchKill();
+                wave_l[wave_it].KillWave += StartWaveByKill;
                 break;
-            case NextWaveType.TimeForward:
+            case WaveType.TimeForward:
                 next_spawn_c = next_wave_dur;
-                cond.KillWave += StartWave;
+                wave_l[wave_it].SwitchKill();
+                wave_l[wave_it].KillWave += StartWaveByKill;
                 break;
         }
     }
 
-    void StartWave()
+    void StartWaveByTime()
     {
-        is_wave = true;
-        cond.KillWave -= StartWave;
+        if(next_spawn_c < 0)
+        {
+            is_wave = true;
+            ++wave_it;
+        }
     }
 
+    // Comenzar proxima oleada
+    void StartWaveByKill()
+    {
+        is_wave = true;
+        wave_l[wave_it].KillWave -= StartWaveByKill;  // Evitar que se vuelva a llamar la función
+        ++wave_it;
+
+        KillCondition n_kill = new KillCondition();
+        wave_l.Add(n_kill);
+        wave_l[wave_it].SwitchKill();
+    }
+
+    // Incluir enemigo en condicion de muertes
+    public void IncludeEnemy(Transform enemy)
+    {
+        if(start_wave != WaveType.Time)
+            wave_l[wave_it].kill_enemies.Add(enemy.gameObject);
+    }
 }
