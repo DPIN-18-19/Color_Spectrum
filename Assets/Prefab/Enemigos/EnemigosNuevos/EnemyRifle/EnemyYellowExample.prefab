@@ -884,6 +884,7 @@ GameObject:
   - component: {fileID: 114743790945610856}
   - component: {fileID: 114025821181348390}
   - component: {fileID: 114887944809635910}
+  - component: {fileID: 136657063681707900}
   m_Layer: 8
   m_Name: Yellow Enemy
   m_TagString: EnemyYellow
@@ -1451,7 +1452,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1191697643154972}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -40.35, y: 0.177, z: 9.47}
+  m_LocalPosition: {x: -43.247448, y: 0.17, z: 6.141827}
   m_LocalScale: {x: 1.2848802, y: 1.2848802, z: 1.2848802}
   m_Children:
   - {fileID: 224179895088217076}
@@ -1788,7 +1789,7 @@ BoxCollider:
   m_GameObject: {fileID: 1968884099248546}
   m_Material: {fileID: 0}
   m_IsTrigger: 0
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 2
   m_Size: {x: 1.5848846, y: 2.1049778, z: 1.5975246}
   m_Center: {x: -0.0027455026, y: 1.0501531, z: 0.005768506}
@@ -1955,6 +1956,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5088dd01fe25e5a4f9f44665013d2dbc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  enemy_type: 1
   cur_color: 0
   chase_speed: 7
 --- !u!114 &114269921382385778
@@ -2084,11 +2086,15 @@ MonoBehaviour:
   can_shoot: 1
   can_move: 1
   can_rotate: 1
+  can_change_target: 0
+  init_target: {fileID: 0}
   alert_distance: 10
   sight_distance: 25
   safe_distance: 6
   sight_angle: 25
   lost_distance: 25
+  is_chasing: 0
+  is_looking: 0
   attack_moving: 0
   attack_in_place: 0
 --- !u!114 &114794095612487266
@@ -2200,6 +2206,19 @@ MonoBehaviour:
   who: 1
   custom_target: {fileID: 0}
   Offset: {x: 0, y: 0, z: 0}
+--- !u!136 &136657063681707900
+CapsuleCollider:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1968884099248546}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  m_Radius: 0.82
+  m_Height: 2.104978
+  m_Direction: 1
+  m_Center: {x: 0, y: 1.050153, z: 0.005768506}
 --- !u!137 &137051320807939676
 SkinnedMeshRenderer:
   m_ObjectHideFlags: 1

@@ -1198,6 +1198,7 @@ GameObject:
   - component: {fileID: 114159645160395186}
   - component: {fileID: 114902999419397938}
   - component: {fileID: 114676607417690662}
+  - component: {fileID: 136774316192693018}
   m_Layer: 8
   m_Name: Enemy_Kamikaze_Y
   m_TagString: EnemyYellow
@@ -2365,7 +2366,7 @@ BoxCollider:
   m_GameObject: {fileID: 1976232950419454}
   m_Material: {fileID: 0}
   m_IsTrigger: 0
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 2
   m_Size: {x: 1.6634895, y: 2.104978, z: 1.51109}
   m_Center: {x: 0.09704761, y: 1.0501533, z: -0.03196757}
@@ -2518,6 +2519,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5088dd01fe25e5a4f9f44665013d2dbc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  enemy_type: 3
   cur_color: 0
   chase_speed: 7
 --- !u!114 &114133175637823412
@@ -2645,11 +2647,15 @@ MonoBehaviour:
   can_shoot: 0
   can_move: 1
   can_rotate: 1
+  can_change_target: 0
+  init_target: {fileID: 0}
   alert_distance: 10
   sight_distance: 25
   safe_distance: 2
   sight_angle: 30
   lost_distance: 25
+  is_chasing: 0
+  is_looking: 0
   attack_moving: 0
   attack_in_place: 0
   SonidoKi: {fileID: 8300000, guid: fa55aaad6aa020c4e8cddbc8e96cc302, type: 3}
@@ -2711,6 +2717,19 @@ MonoBehaviour:
   is_patrolling: 1
   patrol_speed: 5
   wait_dur: 0
+--- !u!136 &136774316192693018
+CapsuleCollider:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1976232950419454}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  m_Radius: 0.7
+  m_Height: 2.55
+  m_Direction: 1
+  m_Center: {x: 0.05, y: 1.23, z: 0.02}
 --- !u!137 &137418321302225630
 SkinnedMeshRenderer:
   m_ObjectHideFlags: 1

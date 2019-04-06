@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
 
-public class EnemyShieldBehaviour : EnemyBehaviour
+public class EnemyShieldBehaviur : EnemyBehaviour
 {
     public float Rotation;
     public GameObject Shield;

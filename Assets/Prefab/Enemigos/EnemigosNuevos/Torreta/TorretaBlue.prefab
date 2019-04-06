@@ -950,6 +950,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5088dd01fe25e5a4f9f44665013d2dbc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  enemy_type: 5
   cur_color: 1
   chase_speed: 7
 --- !u!114 &114102553307891748
@@ -1027,11 +1028,15 @@ MonoBehaviour:
   can_shoot: 1
   can_move: 0
   can_rotate: 1
+  can_change_target: 0
+  init_target: {fileID: 0}
   alert_distance: 10
   sight_distance: 25
   safe_distance: 6
   sight_angle: 45
   lost_distance: 25
+  is_chasing: 0
+  is_looking: 0
   attack_moving: 0
   attack_in_place: 0
   turret: {fileID: 1295568800249834}

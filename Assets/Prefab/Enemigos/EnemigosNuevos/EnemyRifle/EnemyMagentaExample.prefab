@@ -184,6 +184,7 @@ GameObject:
   - component: {fileID: 114188129784888902}
   - component: {fileID: 114921983902453206}
   - component: {fileID: 114080312657505250}
+  - component: {fileID: 136711375859060284}
   m_Layer: 10
   m_Name: Magenta Enemy
   m_TagString: EnemyPink
@@ -1386,7 +1387,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1929973850218482}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -37.99295, y: 0.36, z: 9.58}
+  m_LocalPosition: {x: -38.8854, y: 0.27, z: 10.64}
   m_LocalScale: {x: 1.2848799, y: 1.2848799, z: 1.2848799}
   m_Children:
   - {fileID: 224632376777443738}
@@ -1789,7 +1790,7 @@ BoxCollider:
   m_GameObject: {fileID: 1220446860476136}
   m_Material: {fileID: 0}
   m_IsTrigger: 0
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 2
   m_Size: {x: 1.5848846, y: 2.1049778, z: 1.5975246}
   m_Center: {x: -0.0027455026, y: 1.0501531, z: 0.005768506}
@@ -1972,6 +1973,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5088dd01fe25e5a4f9f44665013d2dbc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  enemy_type: 1
   cur_color: 2
   chase_speed: 7
 --- !u!114 &114188129784888902
@@ -1990,11 +1992,15 @@ MonoBehaviour:
   can_shoot: 1
   can_move: 1
   can_rotate: 1
+  can_change_target: 0
+  init_target: {fileID: 0}
   alert_distance: 10
   sight_distance: 25
   safe_distance: 6
   sight_angle: 25
   lost_distance: 25
+  is_chasing: 0
+  is_looking: 0
   attack_moving: 0
   attack_in_place: 0
 --- !u!114 &114291881362501500
@@ -2240,6 +2246,19 @@ MonoBehaviour:
   m_FallbackScreenDPI: 96
   m_DefaultSpriteDPI: 96
   m_DynamicPixelsPerUnit: 1
+--- !u!136 &136711375859060284
+CapsuleCollider:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1220446860476136}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  m_Radius: 0.82
+  m_Height: 2.104978
+  m_Direction: 1
+  m_Center: {x: 0, y: 1.050153, z: 0.005768506}
 --- !u!137 &137084059849907714
 SkinnedMeshRenderer:
   m_ObjectHideFlags: 1
