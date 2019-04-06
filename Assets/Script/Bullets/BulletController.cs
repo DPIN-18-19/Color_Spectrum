@@ -238,75 +238,54 @@ public class BulletController : MonoBehaviour
         //Debug.Log("Enter Collided with " + col.transform.gameObject.tag);
         //- Collision with player is not working
         // Same color obstacle collision
-        if (col.gameObject.tag == gameObject.tag)
-        {
-           // Debug.Log("Collided with a wall");
-            if (m_collider == null)
-                Debug.Log("Error");
-            m_collider.enabled = !m_collider.enabled;
-            Invoke("ReactivateCollision", wall_active_time);
-        }
+       // if (col.gameObject.tag == gameObject.tag)
+       // {
+       //    // Debug.Log("Collided with a wall");
+       //     if (m_collider == null)
+       //         Debug.Log("Error");
+       //     m_collider.enabled = !m_collider.enabled;
+       //     Invoke("ReactivateCollision", wall_active_time);
+       // }
         
 
-       else if( bullet_color == 0 && col.gameObject.tag == "ParedNoCambioYellow")
-        {
-            Debug.Log("Collided with a wall");
-            m_collider.enabled = !m_collider.enabled;
-            Invoke("ReactivateCollision", wall_active_time);
-        }
-       else if (bullet_color == 1 && col.gameObject.tag == "ParedNoCambioBlue")
-        {
-            Debug.Log("Collided with a wall");
-            m_collider.enabled = !m_collider.enabled;
-            Invoke("ReactivateCollision", wall_active_time);
-        }
-       else if (bullet_color == 2 && col.gameObject.tag == "ParedNoCambioPink")
-        {
-            Debug.Log("Collided with a wall");
-            m_collider.enabled = !m_collider.enabled;
-            Invoke("ReactivateCollision", wall_active_time);
-        }
+       //else if( bullet_color == 0 && col.gameObject.tag == "ParedNoCambioYellow")
+       // {
+       //     Debug.Log("Collided with a wall");
+       //     m_collider.enabled = !m_collider.enabled;
+       //     Invoke("ReactivateCollision", wall_active_time);
+       // }
+       //else if (bullet_color == 1 && col.gameObject.tag == "ParedNoCambioBlue")
+       // {
+       //     Debug.Log("Collided with a wall");
+       //     m_collider.enabled = !m_collider.enabled;
+       //     Invoke("ReactivateCollision", wall_active_time);
+       // }
+       //else if (bullet_color == 2 && col.gameObject.tag == "ParedNoCambioPink")
+       // {
+       //     Debug.Log("Collided with a wall");
+       //     m_collider.enabled = !m_collider.enabled;
+       //     Invoke("ReactivateCollision", wall_active_time);
+       // }
 
         // Collision with player
-        else if (col.gameObject.tag == "Player")
+         if (col.gameObject.tag == "Player")
         {
             // Enemy bullet
             if (!friendly)
             {
                 // Taking damage to player
                 if (col.gameObject.GetComponent<ColorChangingController>().GetColor() != bullet_color)
-                {
-                    
+                { 
                     col.gameObject.SendMessage("GetDamage", bullet_damage);
                     Destroy(gameObject);
-                }
-                // Restoring player health
-                else
-                {
-                 //   Debug.Log("Paso");
-                    m_collider.enabled = !m_collider.enabled;
-                   
-                    Invoke("ReactivateCollision", 0.5f);
-                    //  col.gameObject.SendMessage("RestoreHealth", bullet_damage);
-                }
-
-                
+                }   
             }
             // Player bullet
             //- Bug here
-            else
-            {
-                Debug.Log("collided with player");
-                m_collider.enabled = !m_collider.enabled;
-                Invoke("ReactivateCollision", 1);
-            }
+           
         }
         // Ignore enemies of same color
-        else if (col.gameObject.tag == enemy_ignore)
-        {
-            m_collider.enabled = !m_collider.enabled;
-            Invoke("ReactivateCollision", enemy_active_time);
-        }
+       
         // Collision with any other object
         else if (col.gameObject.tag.Contains("Enemy"))
         {
@@ -384,13 +363,8 @@ public class BulletController : MonoBehaviour
         Debug.Log("Collided with " + col.transform.gameObject.tag);
 
         // Same color obstacle collision
-        if (col.gameObject.tag == gameObject.tag)
-        {
-            m_collider.enabled = !m_collider.enabled;
-            Invoke("ReactivateCollision", wall_active_time);
-        }
         // Collision with player
-        else if (col.gameObject.tag == "Player")
+        if (col.gameObject.tag == "Player")
         {
             // Enemy bullet
             if (!friendly)
@@ -399,10 +373,7 @@ public class BulletController : MonoBehaviour
                 if (col.gameObject.GetComponent<ColorChangingController>().GetColor() != bullet_color)
                     col.gameObject.SendMessage("GetDamage", bullet_damage);
                 // Restoring player health
-                else
-                {
-                //   col.gameObject.SendMessage("RestoreHealth", bullet_damage);
-                }
+               
 
                 Debug.Log("Destry enemy bullet11");
                 Destroy(gameObject);
@@ -411,16 +382,16 @@ public class BulletController : MonoBehaviour
             //- Bug here
             else
             {
-                Debug.Log("collided with player");
-                m_collider.enabled = !m_collider.enabled;
-                Invoke("ReactivateCollision", 1);
+                //Debug.Log("collided with player");
+                //m_collider.enabled = !m_collider.enabled;
+                //Invoke("ReactivateCollision", 1);
             }
         }
         // Ignore enemies of same color
         else if (col.gameObject.tag == enemy_ignore)
         {
-            m_collider.enabled = !m_collider.enabled;
-            Invoke("ReactivateCollision", enemy_active_time);
+            //m_collider.enabled = !m_collider.enabled;
+            //Invoke("ReactivateCollision", enemy_active_time);
         }
         // Collision with any other object
         else if (col.gameObject.tag.Contains("Enemy"))

@@ -1218,10 +1218,8 @@ GameObject:
   - component: {fileID: 82562961155346170}
   - component: {fileID: 195738516287260522}
   - component: {fileID: 114049687870600914}
-  - component: {fileID: 114069158226120738}
   - component: {fileID: 114113202801607206}
   - component: {fileID: 114514233524314800}
-  - component: {fileID: 114833661718642198}
   - component: {fileID: 65064520721097870}
   - component: {fileID: 114563340962789566}
   - component: {fileID: 114327035557699270}
@@ -2676,20 +2674,6 @@ MonoBehaviour:
   m_FillAmount: 1
   m_FillClockwise: 1
   m_FillOrigin: 0
---- !u!114 &114069158226120738
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1968477653587132}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2a7b14b5eac32f04dad2a1ed405c3080, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  attack_moving: 0
-  attack_in_place: 0
-  Shield: {fileID: 1421867557289438}
 --- !u!114 &114113202801607206
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -2837,36 +2821,22 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2ef70b53672b2a24b9ba0ecf4f3422af, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  nav_agent: {fileID: 0}
-  detect: {fileID: 0}
-  shot: {fileID: 0}
-  patrol: {fileID: 0}
-  anim: {fileID: 0}
-  a_source: {fileID: 0}
   can_detect_near: 1
   can_see: 1
   can_shoot: 0
   can_move: 1
   can_rotate: 1
-  target: {fileID: 0}
-  home: {fileID: 0}
+  can_change_target: 0
+  init_target: {fileID: 0}
   alert_distance: 50
   sight_distance: 25
   safe_distance: 6
   sight_angle: 30
   lost_distance: 25
   is_chasing: 0
-  is_retreat: 0
-  in_home: 0
   is_looking: 0
   attack_moving: 0
   attack_in_place: 0
-  correct_look: 0
-  Ralentizar: {fileID: 0}
-  MaxSpeedSlow: 0
-  MaxAnimSlow: 0
-  Slow_Rotation: 0
-  MaxRalentizarRotar: 0
   Rotation: 15
   Shield: {fileID: 1421867557289438}
 --- !u!114 &114769579381854702
@@ -2896,17 +2866,6 @@ MonoBehaviour:
   m_FillAmount: 1
   m_FillClockwise: 1
   m_FillOrigin: 0
---- !u!114 &114833661718642198
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1968477653587132}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6d88ed46b05bc33409727aec25b3bfb5, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &114876632744879376
 MonoBehaviour:
   m_ObjectHideFlags: 1
