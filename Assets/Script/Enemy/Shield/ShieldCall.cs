@@ -7,9 +7,13 @@ public class ShieldCall : MonoBehaviour
     Enemy enemy;
     EnemyBehaviour behaviour;
     ShieldDetect detect;
-    
+    SphereCollider s_col;
+
     //Transform shield_pos;
     float call_distance;
+
+    bool is_calling;
+    float call_c, call_dur = 4.0f;
     
 	// Use this for initialization
 	void Start ()
@@ -17,10 +21,19 @@ public class ShieldCall : MonoBehaviour
         enemy = transform.parent.GetComponent<Enemy>();
         behaviour = transform.parent.GetComponent<EnemyBehaviour>();
         detect = transform.parent.GetComponent<ShieldDetect>();
+        s_col = GetComponent<SphereCollider>();
 
         call_distance = transform.parent.GetComponent<EnemyBehaviour>().alert_distance;
-        //shield_pos = transform.Find("ShieldPos");	
+        is_calling = true;
+        call_c = call_dur;
 	}
+
+    private void Update()
+    {
+        if (is_calling)
+            CheckCalling();
+    }
+
     private void OnTriggerEnter(Collider other)
     {
         Debug.Log("Detected " + other.transform.name);
@@ -34,16 +47,20 @@ public class ShieldCall : MonoBehaviour
                 if (other_enemy != null && other_enemy.GetColor() == enemy.GetColor())
                 {
                     Debug.Log("Enemy has same color");
+                    Debug.Log("Enemy type " + other_enemy.enemy_type);
                     if (other_enemy.enemy_type <= Enemy.EnemyType.Shotgun)
                     {
-                        if(!CheckOccupees(other.transform))
                         Debug.Log("Enemy is of valid type");
-                        // Comprobar validez del enemigo respecto posicion
-                        if (detect.IsOnSight(call_distance, other.transform))
+                        if (!CheckOccupees(other.transform))
                         {
-                            Debug.Log("Enemy can reach");
-                            // Elegir punto a ocupar
-                            ChooseSide(other.transform);
+                            Debug.Log("Enemy is not already in shield");
+                            // Comprobar validez del enemigo respecto posicion
+                            if (detect.IsOnSight(call_distance, other.transform))
+                            {
+                                Debug.Log("Enemy can reach");
+                                // Elegir punto a ocupar
+                                ChooseSide(other.transform);
+                            }
                         }
                     }
                 }
@@ -102,8 +119,35 @@ public class ShieldCall : MonoBehaviour
     }
 
     // Desactivar trigger
+    public void ActivateSearch()
+    {
+        is_calling = true;
+    }
+
+    // Desactivar trigger
     void DeactivateSearch()
     {
-        GetComponent<SphereCollider>().enabled = false;
+        is_calling = false;
+        s_col.enabled = false;
+    }
+
+    // Activar y deactivar colision para reducir numero de comprobaciones
+    void CheckCalling()
+    {
+        // Apagar colision en el proximo frame
+        if (s_col.enabled)
+        {
+            s_col.enabled = false;
+            call_c = call_dur;
+        }
+
+        call_c -= Time.deltaTime;
+
+        // Activar colision durante un frame
+        if(call_c < 0)
+        {
+            Debug.Log("Check shield");
+            s_col.enabled = true;
+        }
     }
 }

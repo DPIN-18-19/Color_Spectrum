@@ -1130,7 +1130,7 @@ GameObject:
   - component: {fileID: 114251416324134640}
   - component: {fileID: 136681442856548810}
   m_Layer: 10
-  m_Name: Sci-fi NPC Humaniod
+  m_Name: Enemy Pistol
   m_TagString: EnemyPink
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2826,11 +2826,15 @@ MonoBehaviour:
   can_shoot: 1
   can_move: 1
   can_rotate: 1
+  can_change_target: 0
+  init_target: {fileID: 0}
   alert_distance: 10
   sight_distance: 25
   safe_distance: 3
   sight_angle: 25
   lost_distance: 25
+  is_chasing: 0
+  is_looking: 0
   attack_moving: 0
   attack_in_place: 0
 --- !u!114 &114190232944648336
@@ -2994,6 +2998,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5088dd01fe25e5a4f9f44665013d2dbc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  enemy_type: 0
   cur_color: 2
   chase_speed: 7
 --- !u!136 &136681442856548810

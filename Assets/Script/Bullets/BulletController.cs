@@ -442,8 +442,6 @@ public class BulletController : MonoBehaviour
                 transform.position = hit.point;
                 return true;
             }
-
-
             return false;
         }
         else

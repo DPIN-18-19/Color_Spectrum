@@ -54,7 +54,7 @@ public class ShieldPos : MonoBehaviour
             if (occupee == null)
             {
                 occupied = false;
-                transform.parent.GetComponent<SphereCollider>().enabled = true;
+                transform.parent.GetComponent<ShieldCall>().ActivateSearch();
             }
 
             is_empty_c = is_empty_dur;
