@@ -182,7 +182,7 @@ public class HealthController : MonoBehaviour
 
                 //  GameObject.Find("GameManager").GetComponent<SceneMan>().Invoke("ToMenu", 2);
 
-                SceneMan1.Instance.ReloadCurrentScene();
+                SceneMan1.Instance.Dead();
 
                 gameObject.SetActive(false);
 

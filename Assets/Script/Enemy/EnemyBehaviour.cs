@@ -29,6 +29,8 @@ public class EnemyBehaviour : MonoBehaviour
     [SerializeField]
     protected bool can_rotate = true;
     [SerializeField]
+    public bool can_patrol = true;
+    [SerializeField]
     protected bool can_change_target = false;            // Puede cambiar de target al jugador
 
     //////////////////////////////////////////////////
@@ -86,7 +88,7 @@ public class EnemyBehaviour : MonoBehaviour
         patrol = GetComponent<PatrolController>();
         anim = GetComponent<Animator>();
         a_source = GetComponent<AudioSource>();
-
+        
         checker_c = 0.5f;
         prev_position = transform;
 
@@ -136,7 +138,7 @@ public class EnemyBehaviour : MonoBehaviour
         if (is_retreat)
             IsRetreating();
         // Realizar "Patrullar"
-        if (patrol != null && patrol.is_patrolling)
+        if (can_patrol && patrol != null && patrol.is_patrolling)
             IsPatrolling();
         // Realizar "Mirar"
         if (can_rotate && is_looking)
@@ -243,7 +245,6 @@ public class EnemyBehaviour : MonoBehaviour
         {
             target = GameObject.Find("Player_Naomi").transform;
             detect.SetTarget(target);
-
             // Cuando se cambia de objetivo, forzar a entrar en persecución con nuevo objetivo
         }
     }
@@ -312,7 +313,7 @@ public class EnemyBehaviour : MonoBehaviour
 
         nav_agent.isStopped = false;
 
-        if (patrol != null)
+        if (can_patrol && patrol != null)
             patrol.is_patrolling = false;
     }
 
@@ -338,7 +339,7 @@ public class EnemyBehaviour : MonoBehaviour
             in_home = true;
 
             // Retornar a patrulla si debe
-            if (patrol != null)
+            if (can_patrol && patrol != null)
             {
                 patrol.is_patrolling = true;
                 patrol.ResetPatrol();
@@ -376,7 +377,7 @@ public class EnemyBehaviour : MonoBehaviour
     // Estado "EnCasa"
     protected void IsInHome()
     {
-        if (patrol != null && !patrol.is_patrolling)
+        if (can_patrol && patrol != null && !patrol.is_patrolling)
             attack_moving = false;
 
         in_home = false;
@@ -422,7 +423,7 @@ public class EnemyBehaviour : MonoBehaviour
     public void IsProtected(Transform shield_pos)
     {
         // Dejar de patrullar
-        if (patrol != null)
+        if (can_patrol && patrol != null)
             patrol.is_patrolling = false;
 
         is_chasing = false;
