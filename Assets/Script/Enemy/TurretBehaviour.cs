@@ -23,8 +23,9 @@ public class TurretBehaviour : EnemyBehaviour
         a_source = GetComponent<AudioSource>();
         InitialRotate = transform.forward;
         // Inicializar objetos objetivo
-        target = GameObject.Find("Player_Naomi");
+        target = GameObject.Find("Player_Naomi").transform;
         home = transform.parent.Find("EnemyHome");
+        detect.SetTarget(target);
 
         if (!can_move)
             nav_agent.speed = 0;

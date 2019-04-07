@@ -9,13 +9,13 @@ public class PatrolController : MonoBehaviour
     // Variables de componentes
     private NavMeshAgent nav_agent;             // Objeto navmesh
     Animator anim;
-    
+    EnemyBehaviour behaviour;
     ///////////////////////////////////////////////////////////////
     // Estado de patrulla
     List<Transform> patrol_points_l;       // Puntos de patrulla
     float cur_patrol;                       // Actual punto de patrulla
     [HideInInspector]
-    public bool is_patrolling = true;       // El enemigo está en el estado "Patrulla"
+    public bool is_patrolling = false;       // El enemigo está en el estado "Patrulla"
 
     [Header("Datos de patrulla")]
     public float patrol_speed = 5;          // Velocidad de patrulla
@@ -29,20 +29,27 @@ public class PatrolController : MonoBehaviour
         // Inicializar componentes
         nav_agent = GetComponent<NavMeshAgent>();
         anim = gameObject.GetComponent<Animator>();
-
-        // Inicializar datos
-        SearchPatrolPoints();
-        ResetPatrol();
+        behaviour = GetComponent<EnemyBehaviour>();
+        if (behaviour.can_patrol)
+        {
+            is_patrolling = true;
+            // Inicializar datos
+            SearchPatrolPoints();
+            ResetPatrol();
+        }
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (is_patrolling)
-            CheckArrived();
+        if (behaviour.can_patrol)
+        {
+            if (is_patrolling)
+                CheckArrived();
 
-        if (is_waiting)
-            IsWaiting();
+            if (is_waiting)
+                IsWaiting();
+        }
     }
 
     // Buscar todos los puntos de patrulla
@@ -105,5 +112,6 @@ public class PatrolController : MonoBehaviour
             cur_patrol = Mathf.Repeat(++cur_patrol, length);
             nav_agent.SetDestination(patrol_points_l[(int)cur_patrol].position);
         }
+       
     }
 }

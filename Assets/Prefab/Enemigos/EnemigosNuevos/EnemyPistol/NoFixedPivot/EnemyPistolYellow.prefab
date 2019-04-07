@@ -275,6 +275,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4040891293692264}
+  - component: {fileID: 114480225475248164}
+  - component: {fileID: 114547513963593688}
   m_Layer: 8
   m_Name: HeadBob
   m_TagString: Untagged
@@ -1061,8 +1063,9 @@ GameObject:
   - component: {fileID: 114024316073811214}
   - component: {fileID: 114983435876639712}
   - component: {fileID: 114005116906911704}
+  - component: {fileID: 136705277407776212}
   m_Layer: 8
-  m_Name: Sci-fi NPC Humaniod
+  m_Name: Enemy Pistol
   m_TagString: EnemyYellow
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1391,13 +1394,13 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1179426233937134}
-  m_LocalRotation: {x: -0, y: 0.99939454, z: -0, w: -0.034793016}
+  m_LocalRotation: {x: 0, y: 0.9085119, z: -0.41785914, w: 0}
   m_LocalPosition: {x: -0.091, y: 2.193, z: 0.059}
   m_LocalScale: {x: 1.0286658, y: 1.0026544, z: 0.86935616}
   m_Children: []
   m_Father: {fileID: 4227187564286286}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 49.399, y: 180, z: 0}
 --- !u!4 &4043318564555306
 Transform:
   m_ObjectHideFlags: 1
@@ -1709,7 +1712,7 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1697590694143090}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -1.38, y: -0.053, z: -16.73}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
@@ -1722,7 +1725,7 @@ Transform:
   - {fileID: 4095106397132998}
   m_Father: {fileID: 4629025996165434}
   m_RootOrder: 3
-  m_LocalEulerAnglesHint: {x: 0, y: -183.98799, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &4232610510185474
 Transform:
   m_ObjectHideFlags: 1
@@ -2180,7 +2183,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1790026940658642}
   m_LocalRotation: {x: 0, y: 1, z: 0, w: 0}
-  m_LocalPosition: {x: -44.94633, y: -0.93641186, z: 7.408119}
+  m_LocalPosition: {x: 43.196537, y: 0.48799896, z: 107.53012}
   m_LocalScale: {x: 1.2481817, y: 1.2803414, z: 1.4793193}
   m_Children:
   - {fileID: 224746787734099406}
@@ -2598,7 +2601,7 @@ BoxCollider:
   m_GameObject: {fileID: 1697590694143090}
   m_Material: {fileID: 0}
   m_IsTrigger: 0
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 2
   m_Size: {x: 0.5427656, y: 2.104978, z: 0.56636894}
   m_Center: {x: 0.0032931713, y: 1.0501533, z: 0.018448262}
@@ -2828,6 +2831,17 @@ MonoBehaviour:
   m_FallbackScreenDPI: 96
   m_DefaultSpriteDPI: 96
   m_DynamicPixelsPerUnit: 1
+--- !u!114 &114480225475248164
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1179426233937134}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b7a722582d59c334b91d4ad4e6808994, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &114480677220353506
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -2843,11 +2857,16 @@ MonoBehaviour:
   can_see: 1
   can_shoot: 1
   can_move: 1
+  can_rotate: 1
+  can_change_target: 0
+  init_target: {fileID: 0}
   alert_distance: 10
   sight_distance: 25
   safe_distance: 3
   sight_angle: 25
   lost_distance: 25
+  is_chasing: 0
+  is_looking: 0
   attack_moving: 0
   attack_in_place: 0
 --- !u!114 &114495729513249416
@@ -2902,6 +2921,17 @@ MonoBehaviour:
   m_FillAmount: 1
   m_FillClockwise: 1
   m_FillOrigin: 0
+--- !u!114 &114547513963593688
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1179426233937134}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b7a722582d59c334b91d4ad4e6808994, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &114824280721285828
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -2937,6 +2967,11 @@ MonoBehaviour:
   - {fileID: 198410871006054420, guid: 5e64849e24a3b3949a4999b2eb9ef198, type: 2}
   - {fileID: 198960496170012676, guid: 6b023f22181b1d640a11c4ae1a24ade8, type: 2}
   score: 100
+  TextScore: {fileID: 102262678588124188, guid: b8341ad366c986f4ebd7b8dc81fb0ef8,
+    type: 2}
+  PrefabScore: {fileID: 1892186745157182, guid: b8341ad366c986f4ebd7b8dc81fb0ef8,
+    type: 2}
+  PosScore: {fileID: 4040891293692264}
   die_fx: {fileID: 0}
 --- !u!114 &114925009089707186
 MonoBehaviour:
@@ -2976,8 +3011,22 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5088dd01fe25e5a4f9f44665013d2dbc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  enemy_type: 0
   cur_color: 0
   chase_speed: 7
+--- !u!136 &136705277407776212
+CapsuleCollider:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1697590694143090}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  m_Radius: 0.67
+  m_Height: 2.104978
+  m_Direction: 1
+  m_Center: {x: 0.04, y: 1.050153, z: -0.006373217}
 --- !u!137 &137268273223922450
 SkinnedMeshRenderer:
   m_ObjectHideFlags: 1

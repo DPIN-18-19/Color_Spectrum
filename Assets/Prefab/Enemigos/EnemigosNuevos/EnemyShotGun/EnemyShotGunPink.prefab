@@ -293,6 +293,7 @@ GameObject:
   - component: {fileID: 114201576874957872}
   - component: {fileID: 114215045386713036}
   - component: {fileID: 114512985007895238}
+  - component: {fileID: 136222914688199360}
   m_Layer: 10
   m_Name: StarMarine
   m_TagString: EnemyPink
@@ -1818,7 +1819,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1406116036392918}
   m_LocalRotation: {x: -0, y: -0.99878544, z: -0, w: 0.04927197}
-  m_LocalPosition: {x: -38.5067, y: 0.29, z: 11.02}
+  m_LocalPosition: {x: -6.394192, y: 4.1482353, z: 88.43276}
   m_LocalScale: {x: 1.9302557, y: 1.4431446, z: 1.7865485}
   m_Children:
   - {fileID: 224412716943475338}
@@ -2043,7 +2044,7 @@ Rigidbody:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1183158271251846}
   serializedVersion: 2
-  m_Mass: 1000
+  m_Mass: 100000
   m_Drag: 96.41
   m_AngularDrag: 0
   m_UseGravity: 1
@@ -2059,7 +2060,7 @@ BoxCollider:
   m_GameObject: {fileID: 1183158271251846}
   m_Material: {fileID: 0}
   m_IsTrigger: 0
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 2
   m_Size: {x: 1.1847568, y: 2.0082886, z: 1.4881537}
   m_Center: {x: 0.03707419, y: 1.098498, z: 0.2619048}
@@ -2191,11 +2192,16 @@ MonoBehaviour:
   can_see: 1
   can_shoot: 1
   can_move: 1
+  can_rotate: 1
+  can_change_target: 0
+  init_target: {fileID: 0}
   alert_distance: 10
   sight_distance: 20
   safe_distance: 4
   sight_angle: 20
   lost_distance: 20
+  is_chasing: 0
+  is_looking: 0
   attack_moving: 0
   attack_in_place: 0
 --- !u!114 &114215045386713036
@@ -2273,6 +2279,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5088dd01fe25e5a4f9f44665013d2dbc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  enemy_type: 2
   cur_color: 2
   chase_speed: 7
 --- !u!114 &114512985007895238
@@ -2369,6 +2376,11 @@ MonoBehaviour:
   - {fileID: 198410871006054420, guid: 5e64849e24a3b3949a4999b2eb9ef198, type: 2}
   - {fileID: 198960496170012676, guid: 6b023f22181b1d640a11c4ae1a24ade8, type: 2}
   score: 100
+  TextScore: {fileID: 102262678588124188, guid: b8341ad366c986f4ebd7b8dc81fb0ef8,
+    type: 2}
+  PrefabScore: {fileID: 1892186745157182, guid: b8341ad366c986f4ebd7b8dc81fb0ef8,
+    type: 2}
+  PosScore: {fileID: 4244942768525526}
   die_fx: {fileID: 0}
 --- !u!114 &114799664392211150
 MonoBehaviour:
@@ -2436,6 +2448,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6d88ed46b05bc33409727aec25b3bfb5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!136 &136222914688199360
+CapsuleCollider:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1183158271251846}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  m_Radius: 0.59
+  m_Height: 2.008289
+  m_Direction: 1
+  m_Center: {x: 0.03707419, y: 1.01, z: 0.29}
 --- !u!137 &137151062406797292
 SkinnedMeshRenderer:
   m_ObjectHideFlags: 1
