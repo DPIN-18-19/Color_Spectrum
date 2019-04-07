@@ -278,7 +278,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4116672771775120, guid: 4bc70047ad600024eb722fae848c7fb8, type: 2}
       propertyPath: m_LocalPosition.y
-      value: -0.39172745
+      value: -0.56
       objectReference: {fileID: 0}
     - target: {fileID: 4116672771775120, guid: 4bc70047ad600024eb722fae848c7fb8, type: 2}
       propertyPath: m_LocalPosition.z
@@ -1173,7 +1173,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4137174757725912, guid: 45110e422b25e3d41ac560ba4c5c2906, type: 2}
       propertyPath: m_LocalPosition.y
-      value: -0.77972794
+      value: -0.94800186
       objectReference: {fileID: 0}
     - target: {fileID: 4137174757725912, guid: 45110e422b25e3d41ac560ba4c5c2906, type: 2}
       propertyPath: m_LocalPosition.z
@@ -6770,6 +6770,9 @@ MonoBehaviour:
   - {fileID: 198410871006054420, guid: 5e64849e24a3b3949a4999b2eb9ef198, type: 2}
   - {fileID: 198960496170012676, guid: 6b023f22181b1d640a11c4ae1a24ade8, type: 2}
   score: 100
+  TextScore: {fileID: 0}
+  PrefabScore: {fileID: 0}
+  PosScore: {fileID: 0}
   die_fx: {fileID: 0}
 --- !u!114 &113570682
 MonoBehaviour:
@@ -17082,6 +17085,9 @@ MonoBehaviour:
   - {fileID: 198410871006054420, guid: 5e64849e24a3b3949a4999b2eb9ef198, type: 2}
   - {fileID: 198410871006054420, guid: 5e64849e24a3b3949a4999b2eb9ef198, type: 2}
   score: 100
+  TextScore: {fileID: 0}
+  PrefabScore: {fileID: 0}
+  PosScore: {fileID: 0}
   die_fx: {fileID: 0}
 --- !u!114 &353711557
 MonoBehaviour:
@@ -20583,7 +20589,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 419145926}
   m_LocalRotation: {x: -0, y: -1, z: -0, w: 0.0000015199182}
-  m_LocalPosition: {x: 2.0980186, y: 0.2649994, z: 19.909988}
+  m_LocalPosition: {x: 2.0980186, y: 0.18, z: 19.909988}
   m_LocalScale: {x: 0.84481245, y: 1.1161, z: 1}
   m_Children:
   - {fileID: 1335338566}
@@ -23995,6 +24001,9 @@ MonoBehaviour:
   - {fileID: 198410871006054420, guid: 5e64849e24a3b3949a4999b2eb9ef198, type: 2}
   - {fileID: 198960496170012676, guid: 6b023f22181b1d640a11c4ae1a24ade8, type: 2}
   score: 100
+  TextScore: {fileID: 0}
+  PrefabScore: {fileID: 0}
+  PosScore: {fileID: 0}
   die_fx: {fileID: 0}
 --- !u!114 &494483005
 MonoBehaviour:
@@ -28288,6 +28297,9 @@ MonoBehaviour:
   - {fileID: 198410871006054420, guid: 5e64849e24a3b3949a4999b2eb9ef198, type: 2}
   - {fileID: 198410871006054420, guid: 5e64849e24a3b3949a4999b2eb9ef198, type: 2}
   score: 100
+  TextScore: {fileID: 0}
+  PrefabScore: {fileID: 0}
+  PosScore: {fileID: 0}
   die_fx: {fileID: 0}
 --- !u!114 &569262652
 MonoBehaviour:
@@ -29853,11 +29865,15 @@ MonoBehaviour:
   can_shoot: 1
   can_move: 1
   can_rotate: 1
+  can_change_target: 0
+  init_target: {fileID: 0}
   alert_distance: 10
   sight_distance: 25
   safe_distance: 3
   sight_angle: 25
   lost_distance: 25
+  is_chasing: 0
+  is_looking: 0
   attack_moving: 0
   attack_in_place: 0
 --- !u!114 &604440451
@@ -29897,6 +29913,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5088dd01fe25e5a4f9f44665013d2dbc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  enemy_type: 0
   cur_color: 1
   chase_speed: 7
 --- !u!114 &604440453
@@ -29937,6 +29954,9 @@ MonoBehaviour:
   - {fileID: 198410871006054420, guid: 5e64849e24a3b3949a4999b2eb9ef198, type: 2}
   - {fileID: 198960496170012676, guid: 6b023f22181b1d640a11c4ae1a24ade8, type: 2}
   score: 100
+  TextScore: {fileID: 0}
+  PrefabScore: {fileID: 0}
+  PosScore: {fileID: 0}
   die_fx: {fileID: 0}
 --- !u!114 &604440455
 MonoBehaviour:
@@ -33954,7 +33974,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4984665918754920, guid: 0e7aa168858c31d4e989ceb1f9f97f41, type: 2}
       propertyPath: m_LocalPosition.y
-      value: -0.7099991
+      value: -0.832
       objectReference: {fileID: 0}
     - target: {fileID: 4984665918754920, guid: 0e7aa168858c31d4e989ceb1f9f97f41, type: 2}
       propertyPath: m_LocalPosition.z
@@ -34293,11 +34313,15 @@ MonoBehaviour:
   can_shoot: 1
   can_move: 0
   can_rotate: 0
+  can_change_target: 0
+  init_target: {fileID: 0}
   alert_distance: 0
   sight_distance: 25
   safe_distance: 50
   sight_angle: 25
   lost_distance: 25
+  is_chasing: 0
+  is_looking: 0
   attack_moving: 0
   attack_in_place: 0
 --- !u!114 &698395421
@@ -34337,6 +34361,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5088dd01fe25e5a4f9f44665013d2dbc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  enemy_type: 0
   cur_color: 2
   chase_speed: 0
 --- !u!114 &698395423
@@ -34377,6 +34402,9 @@ MonoBehaviour:
   - {fileID: 198410871006054420, guid: 5e64849e24a3b3949a4999b2eb9ef198, type: 2}
   - {fileID: 198960496170012676, guid: 6b023f22181b1d640a11c4ae1a24ade8, type: 2}
   score: 100
+  TextScore: {fileID: 0}
+  PrefabScore: {fileID: 0}
+  PosScore: {fileID: 0}
   die_fx: {fileID: 0}
 --- !u!114 &698395425
 MonoBehaviour:
@@ -38065,7 +38093,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 765319941}
   m_LocalRotation: {x: -0, y: -0.7071068, z: -0, w: 0.7071068}
-  m_LocalPosition: {x: 7.18701, y: -0.71099854, z: 53.98002}
+  m_LocalPosition: {x: 7.18701, y: -0.832, z: 53.98002}
   m_LocalScale: {x: 0.77184963, y: 0.7049992, z: 0.9636142}
   m_Children:
   - {fileID: 316051523}
@@ -39546,11 +39574,15 @@ MonoBehaviour:
   can_shoot: 1
   can_move: 1
   can_rotate: 1
+  can_change_target: 0
+  init_target: {fileID: 0}
   alert_distance: 10
   sight_distance: 25
   safe_distance: 3
   sight_angle: 25
   lost_distance: 25
+  is_chasing: 0
+  is_looking: 0
   attack_moving: 0
   attack_in_place: 0
 --- !u!114 &799866337
@@ -39590,6 +39622,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5088dd01fe25e5a4f9f44665013d2dbc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  enemy_type: 0
   cur_color: 2
   chase_speed: 7
 --- !u!114 &799866339
@@ -39630,6 +39663,9 @@ MonoBehaviour:
   - {fileID: 198410871006054420, guid: 5e64849e24a3b3949a4999b2eb9ef198, type: 2}
   - {fileID: 198960496170012676, guid: 6b023f22181b1d640a11c4ae1a24ade8, type: 2}
   score: 100
+  TextScore: {fileID: 0}
+  PrefabScore: {fileID: 0}
+  PosScore: {fileID: 0}
   die_fx: {fileID: 0}
 --- !u!114 &799866341
 MonoBehaviour:
@@ -40798,7 +40834,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 813911004}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 13.77, y: -0.72800064, z: 90.24}
+  m_LocalPosition: {x: 13.77, y: -0.858, z: 90.24}
   m_LocalScale: {x: 0.7718494, y: 0.7049992, z: 0.963614}
   m_Children:
   - {fileID: 843797995}
@@ -44897,6 +44933,9 @@ MonoBehaviour:
   - {fileID: 198410871006054420, guid: 5e64849e24a3b3949a4999b2eb9ef198, type: 2}
   - {fileID: 198410871006054420, guid: 5e64849e24a3b3949a4999b2eb9ef198, type: 2}
   score: 100
+  TextScore: {fileID: 0}
+  PrefabScore: {fileID: 0}
+  PosScore: {fileID: 0}
   die_fx: {fileID: 0}
 --- !u!114 &900038774
 MonoBehaviour:
@@ -48279,6 +48318,9 @@ MonoBehaviour:
   - {fileID: 198410871006054420, guid: 5e64849e24a3b3949a4999b2eb9ef198, type: 2}
   - {fileID: 198410871006054420, guid: 5e64849e24a3b3949a4999b2eb9ef198, type: 2}
   score: 100
+  TextScore: {fileID: 0}
+  PrefabScore: {fileID: 0}
+  PosScore: {fileID: 0}
   die_fx: {fileID: 0}
 --- !u!114 &959375703
 MonoBehaviour:
@@ -49851,7 +49893,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4116672771775120, guid: 4bc70047ad600024eb722fae848c7fb8, type: 2}
       propertyPath: m_LocalPosition.y
-      value: -0.39172745
+      value: -0.46
       objectReference: {fileID: 0}
     - target: {fileID: 4116672771775120, guid: 4bc70047ad600024eb722fae848c7fb8, type: 2}
       propertyPath: m_LocalPosition.z
@@ -51947,7 +51989,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4137174757725912, guid: 45110e422b25e3d41ac560ba4c5c2906, type: 2}
       propertyPath: m_LocalPosition.y
-      value: -0.7779999
+      value: -0.91
       objectReference: {fileID: 0}
     - target: {fileID: 4137174757725912, guid: 45110e422b25e3d41ac560ba4c5c2906, type: 2}
       propertyPath: m_LocalPosition.z
@@ -54837,6 +54879,9 @@ MonoBehaviour:
   - {fileID: 198410871006054420, guid: 5e64849e24a3b3949a4999b2eb9ef198, type: 2}
   - {fileID: 198960496170012676, guid: 6b023f22181b1d640a11c4ae1a24ade8, type: 2}
   score: 100
+  TextScore: {fileID: 0}
+  PrefabScore: {fileID: 0}
+  PosScore: {fileID: 0}
   die_fx: {fileID: 0}
 --- !u!114 &1109511380
 MonoBehaviour:
@@ -59758,7 +59803,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1213101426}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 10.020001, y: -0.10499954, z: 58.370033}
+  m_LocalPosition: {x: 10.020001, y: -0.326, z: 58.370033}
   m_LocalScale: {x: 0.8448121, y: 1.1161, z: 1}
   m_Children:
   - {fileID: 333969098}
@@ -60657,6 +60702,9 @@ MonoBehaviour:
   - {fileID: 198410871006054420, guid: 5e64849e24a3b3949a4999b2eb9ef198, type: 2}
   - {fileID: 198960496170012676, guid: 6b023f22181b1d640a11c4ae1a24ade8, type: 2}
   score: 100
+  TextScore: {fileID: 0}
+  PrefabScore: {fileID: 0}
+  PosScore: {fileID: 0}
   die_fx: {fileID: 0}
 --- !u!114 &1229518002
 MonoBehaviour:
@@ -63911,7 +63959,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1291951802}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 13.81, y: -0.10499954, z: 58.37}
+  m_LocalPosition: {x: 13.81, y: -0.3260002, z: 58.37}
   m_LocalScale: {x: 0.84481007, y: 1.1161, z: 1}
   m_Children:
   - {fileID: 1373982932}
@@ -64143,11 +64191,15 @@ MonoBehaviour:
   can_shoot: 1
   can_move: 1
   can_rotate: 1
+  can_change_target: 0
+  init_target: {fileID: 0}
   alert_distance: 10
   sight_distance: 25
   safe_distance: 3
   sight_angle: 25
   lost_distance: 25
+  is_chasing: 0
+  is_looking: 0
   attack_moving: 0
   attack_in_place: 0
 --- !u!114 &1297438194
@@ -64187,6 +64239,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5088dd01fe25e5a4f9f44665013d2dbc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  enemy_type: 0
   cur_color: 0
   chase_speed: 7
 --- !u!65 &1297438196
@@ -64240,6 +64293,9 @@ MonoBehaviour:
   - {fileID: 198410871006054420, guid: 5e64849e24a3b3949a4999b2eb9ef198, type: 2}
   - {fileID: 198960496170012676, guid: 6b023f22181b1d640a11c4ae1a24ade8, type: 2}
   score: 100
+  TextScore: {fileID: 0}
+  PrefabScore: {fileID: 0}
+  PosScore: {fileID: 0}
   die_fx: {fileID: 0}
 --- !u!114 &1297438199
 MonoBehaviour:
@@ -70858,7 +70914,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &1439997499
 Transform:
   m_ObjectHideFlags: 0
@@ -74061,11 +74117,15 @@ MonoBehaviour:
   can_shoot: 1
   can_move: 1
   can_rotate: 1
+  can_change_target: 0
+  init_target: {fileID: 0}
   alert_distance: 10
   sight_distance: 25
   safe_distance: 3
   sight_angle: 25
   lost_distance: 25
+  is_chasing: 0
+  is_looking: 0
   attack_moving: 0
   attack_in_place: 0
 --- !u!114 &1496450621
@@ -74105,6 +74165,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5088dd01fe25e5a4f9f44665013d2dbc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  enemy_type: 0
   cur_color: 2
   chase_speed: 7
 --- !u!114 &1496450623
@@ -74145,6 +74206,9 @@ MonoBehaviour:
   - {fileID: 198410871006054420, guid: 5e64849e24a3b3949a4999b2eb9ef198, type: 2}
   - {fileID: 198960496170012676, guid: 6b023f22181b1d640a11c4ae1a24ade8, type: 2}
   score: 100
+  TextScore: {fileID: 0}
+  PrefabScore: {fileID: 0}
+  PosScore: {fileID: 0}
   die_fx: {fileID: 0}
 --- !u!114 &1496450625
 MonoBehaviour:
@@ -75493,7 +75557,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1524631348}
   m_LocalRotation: {x: -0, y: -1, z: -0, w: 0.0000015199182}
-  m_LocalPosition: {x: 5.9, y: 0.2649994, z: 19.91}
+  m_LocalPosition: {x: 5.9, y: 0.1800003, z: 19.91}
   m_LocalScale: {x: 0.8448104, y: 1.1161, z: 1.0000005}
   m_Children:
   - {fileID: 1377044394}
@@ -77364,11 +77428,15 @@ MonoBehaviour:
   can_shoot: 1
   can_move: 1
   can_rotate: 1
+  can_change_target: 0
+  init_target: {fileID: 0}
   alert_distance: 10
   sight_distance: 25
   safe_distance: 3
   sight_angle: 25
   lost_distance: 25
+  is_chasing: 0
+  is_looking: 0
   attack_moving: 0
   attack_in_place: 0
 --- !u!114 &1558646899
@@ -77408,6 +77476,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5088dd01fe25e5a4f9f44665013d2dbc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  enemy_type: 0
   cur_color: 0
   chase_speed: 7
 --- !u!65 &1558646901
@@ -77461,6 +77530,9 @@ MonoBehaviour:
   - {fileID: 198410871006054420, guid: 5e64849e24a3b3949a4999b2eb9ef198, type: 2}
   - {fileID: 198960496170012676, guid: 6b023f22181b1d640a11c4ae1a24ade8, type: 2}
   score: 100
+  TextScore: {fileID: 0}
+  PrefabScore: {fileID: 0}
+  PosScore: {fileID: 0}
   die_fx: {fileID: 0}
 --- !u!114 &1558646904
 MonoBehaviour:
@@ -78672,7 +78744,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &1582531765
 Transform:
   m_ObjectHideFlags: 0
@@ -84572,6 +84644,9 @@ MonoBehaviour:
   - {fileID: 198410871006054420, guid: 5e64849e24a3b3949a4999b2eb9ef198, type: 2}
   - {fileID: 198960496170012676, guid: 6b023f22181b1d640a11c4ae1a24ade8, type: 2}
   score: 100
+  TextScore: {fileID: 0}
+  PrefabScore: {fileID: 0}
+  PosScore: {fileID: 0}
   die_fx: {fileID: 0}
 --- !u!114 &1713186552
 MonoBehaviour:
@@ -88139,7 +88214,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1785859873}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 17.793, y: -0.41399765, z: 120.03}
+  m_LocalPosition: {x: 17.793, y: -0.579, z: 120.03}
   m_LocalScale: {x: 0.7718501, y: 0.81722, z: 0.96362}
   m_Children:
   - {fileID: 1601217161}
@@ -88972,6 +89047,9 @@ MonoBehaviour:
   - {fileID: 198410871006054420, guid: 5e64849e24a3b3949a4999b2eb9ef198, type: 2}
   - {fileID: 198960496170012676, guid: 6b023f22181b1d640a11c4ae1a24ade8, type: 2}
   score: 100
+  TextScore: {fileID: 0}
+  PrefabScore: {fileID: 0}
+  PosScore: {fileID: 0}
   die_fx: {fileID: 0}
 --- !u!114 &1804432077
 MonoBehaviour:
@@ -89753,7 +89831,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1817994515}
   m_LocalRotation: {x: -0, y: -0.7071068, z: -0, w: 0.7071068}
-  m_LocalPosition: {x: 7.4300127, y: -0.09799957, z: 65.976944}
+  m_LocalPosition: {x: 7.4300127, y: -0.29, z: 65.976944}
   m_LocalScale: {x: 0.84481186, y: 1.1161, z: 1}
   m_Children:
   - {fileID: 553044422}
@@ -90916,7 +90994,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1846053466}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 10.114003, y: -0.79800034, z: 44.510036}
+  m_LocalPosition: {x: 10.114003, y: -0.84, z: 44.510036}
   m_LocalScale: {x: 0.7718494, y: 0.8172217, z: 0.963614}
   m_Children:
   - {fileID: 1865131982}
@@ -95409,7 +95487,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1951224429}
   m_LocalRotation: {x: -0, y: -0.7071068, z: -0, w: 0.7071068}
-  m_LocalPosition: {x: 7.44, y: -0.7779999, z: 77.970024}
+  m_LocalPosition: {x: 7.44, y: -0.92, z: 77.970024}
   m_LocalScale: {x: 0.77184916, y: 0.8172217, z: 0.96361375}
   m_Children:
   - {fileID: 1918261578}
@@ -96809,7 +96887,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1990600293}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 13.990003, y: -0.41399765, z: 120.029015}
+  m_LocalPosition: {x: 13.990003, y: -0.57899857, z: 120.029015}
   m_LocalScale: {x: 0.7718499, y: 0.8172217, z: 0.9636145}
   m_Children:
   - {fileID: 997516832}
@@ -100657,7 +100735,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 2072601620}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 13.75, y: -0.79800034, z: 44.51}
+  m_LocalPosition: {x: 13.75, y: -0.84000015, z: 44.51}
   m_LocalScale: {x: 0.7718501, y: 0.81722, z: 0.96361005}
   m_Children:
   - {fileID: 52617721}
@@ -101358,11 +101436,15 @@ MonoBehaviour:
   can_shoot: 1
   can_move: 0
   can_rotate: 0
+  can_change_target: 0
+  init_target: {fileID: 0}
   alert_distance: 10
   sight_distance: 25
   safe_distance: 50
   sight_angle: 25
   lost_distance: 25
+  is_chasing: 0
+  is_looking: 0
   attack_moving: 0
   attack_in_place: 0
 --- !u!114 &2081727711
@@ -101402,6 +101484,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5088dd01fe25e5a4f9f44665013d2dbc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  enemy_type: 0
   cur_color: 0
   chase_speed: 0
 --- !u!65 &2081727713
@@ -101455,6 +101538,9 @@ MonoBehaviour:
   - {fileID: 198410871006054420, guid: 5e64849e24a3b3949a4999b2eb9ef198, type: 2}
   - {fileID: 198960496170012676, guid: 6b023f22181b1d640a11c4ae1a24ade8, type: 2}
   score: 100
+  TextScore: {fileID: 0}
+  PrefabScore: {fileID: 0}
+  PosScore: {fileID: 0}
   die_fx: {fileID: 0}
 --- !u!114 &2081727716
 MonoBehaviour:
