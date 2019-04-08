@@ -44,6 +44,8 @@ public class Tutorial_Manager : MonoBehaviour {
 
     public GameObject F3_Cierre;
 
+    public string Sig_Nivel;
+
     // Use this for initialization
     void Start () {
 		
@@ -200,7 +202,7 @@ public class Tutorial_Manager : MonoBehaviour {
                 break;
 
             case 33:
-                SceneManager.LoadScene("Customizacion");
+                SceneManager.LoadScene(Sig_Nivel);
                 break;
         }
     }
