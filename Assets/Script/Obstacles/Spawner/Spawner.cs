@@ -7,10 +7,10 @@ public class Spawner : MonoBehaviour
     bool is_spawning;
 
     float to_spawn_c;
-    float to_spawn_dur;
+    public float to_spawn_dur;
 
     float refresh_c;
-    float refresh_dur;
+    public float refresh_dur;
 
     bool is_preparing;
     bool is_refreshing;
@@ -79,6 +79,4 @@ public class Spawner : MonoBehaviour
 
         GetComponentInParent<SpawnPoint>().IncludeEnemy(s_enemy);
     }
-
-
 }

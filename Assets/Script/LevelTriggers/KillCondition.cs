@@ -7,14 +7,6 @@ public class KillCondition : MonoBehaviour
     ///////////////////////////////////////
     // Eventos
 
-    //public enum TriggerType
-    //{
-    //    KillWave,
-    //    AreaCollision
-    //}
-
-    //public TriggerType t_type;
-
     public delegate void Condition();
 
     public event Condition KillWave;
@@ -25,7 +17,7 @@ public class KillCondition : MonoBehaviour
     public List <GameObject> kill_enemies;
     bool kill_checking;
     [HideInInspector]
-    public int kill_num = 0;
+    public int survivour_num = 0;
 
     ///////////////////////////////////////
 
@@ -50,7 +42,7 @@ public class KillCondition : MonoBehaviour
     {
         if (kill_checking)
         {
-            if (kill_enemies.Count != kill_num)
+            if (kill_enemies.Count > survivour_num)
             {
                 for(int i = 0; i < kill_enemies.Count; ++i)
                 {
@@ -77,5 +69,10 @@ public class KillCondition : MonoBehaviour
     public void SwitchKill()
     {
         kill_checking = !kill_checking;
+    }
+
+    public void SurvivourAmount(int amount)
+    {
+        survivour_num = amount;
     }
 }
