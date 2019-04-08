@@ -184,6 +184,7 @@ GameObject:
   - component: {fileID: 114188129784888902}
   - component: {fileID: 114921983902453206}
   - component: {fileID: 114080312657505250}
+  - component: {fileID: 136711375859060284}
   m_Layer: 10
   m_Name: Magenta Enemy
   m_TagString: EnemyPink
@@ -471,6 +472,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4309907472971054}
+  - component: {fileID: 114948941240696128}
   m_Layer: 10
   m_Name: HeadBob
   m_TagString: EnemyPink
@@ -1275,13 +1277,13 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1436359470514634}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: 0.41785914, y: 0, z: 0, w: 0.9085119}
   m_LocalPosition: {x: 0, y: 2.371, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 4105761212294076}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 49.399, y: 0, z: 0}
 --- !u!4 &4337877942105634
 Transform:
   m_ObjectHideFlags: 1
@@ -1385,7 +1387,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1929973850218482}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -45.48, y: 0.59, z: 7.88}
+  m_LocalPosition: {x: -38.8854, y: 0.27, z: 10.64}
   m_LocalScale: {x: 1.2848799, y: 1.2848799, z: 1.2848799}
   m_Children:
   - {fileID: 224632376777443738}
@@ -1788,7 +1790,7 @@ BoxCollider:
   m_GameObject: {fileID: 1220446860476136}
   m_Material: {fileID: 0}
   m_IsTrigger: 0
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 2
   m_Size: {x: 1.5848846, y: 2.1049778, z: 1.5975246}
   m_Center: {x: -0.0027455026, y: 1.0501531, z: 0.005768506}
@@ -1971,6 +1973,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5088dd01fe25e5a4f9f44665013d2dbc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  enemy_type: 1
   cur_color: 2
   chase_speed: 7
 --- !u!114 &114188129784888902
@@ -1988,11 +1991,16 @@ MonoBehaviour:
   can_see: 1
   can_shoot: 1
   can_move: 1
+  can_rotate: 1
+  can_change_target: 0
+  init_target: {fileID: 0}
   alert_distance: 10
   sight_distance: 25
   safe_distance: 6
   sight_angle: 25
   lost_distance: 25
+  is_chasing: 0
+  is_looking: 0
   attack_moving: 0
   attack_in_place: 0
 --- !u!114 &114291881362501500
@@ -2096,6 +2104,11 @@ MonoBehaviour:
   - {fileID: 198960496170012676, guid: 6b023f22181b1d640a11c4ae1a24ade8, type: 2}
   - {fileID: 198960496170012676, guid: 6b023f22181b1d640a11c4ae1a24ade8, type: 2}
   score: 100
+  TextScore: {fileID: 102262678588124188, guid: b8341ad366c986f4ebd7b8dc81fb0ef8,
+    type: 2}
+  PrefabScore: {fileID: 1892186745157182, guid: b8341ad366c986f4ebd7b8dc81fb0ef8,
+    type: 2}
+  PosScore: {fileID: 4309907472971054}
   die_fx: {fileID: 0}
 --- !u!114 &114670345576181710
 MonoBehaviour:
@@ -2201,6 +2214,17 @@ MonoBehaviour:
   m_FillAmount: 1
   m_FillClockwise: 1
   m_FillOrigin: 0
+--- !u!114 &114948941240696128
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1436359470514634}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b7a722582d59c334b91d4ad4e6808994, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &114989065902480998
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -2222,6 +2246,19 @@ MonoBehaviour:
   m_FallbackScreenDPI: 96
   m_DefaultSpriteDPI: 96
   m_DynamicPixelsPerUnit: 1
+--- !u!136 &136711375859060284
+CapsuleCollider:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1220446860476136}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  m_Radius: 0.82
+  m_Height: 2.104978
+  m_Direction: 1
+  m_Center: {x: 0, y: 1.050153, z: 0.005768506}
 --- !u!137 &137084059849907714
 SkinnedMeshRenderer:
   m_ObjectHideFlags: 1

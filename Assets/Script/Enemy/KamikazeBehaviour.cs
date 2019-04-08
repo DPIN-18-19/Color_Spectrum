@@ -12,14 +12,14 @@ public class KamikazeBehaviour : EnemyBehaviour
         // Inicializar variables componentes
         nav_agent = GetComponent<NavMeshAgent>();
         detect = GetComponent<DetectionController>();
-        shot = GetComponent<EnemyWeapon>();
         patrol = GetComponent<PatrolController>();
         anim = GetComponent<Animator>();
         a_source = GetComponent<AudioSource>();
 
         // Inicializar objetos objetivo
-        target = GameObject.FindWithTag("Player");
+        target = GameObject.FindWithTag("Player").transform;
         home = transform.parent.Find("EnemyHome");
+        detect.SetTarget(target);
 
         if (!can_move)
             nav_agent.speed = 0;

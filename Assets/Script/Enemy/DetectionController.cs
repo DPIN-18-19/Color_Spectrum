@@ -4,19 +4,24 @@ using UnityEngine;
 
 public class DetectionController : MonoBehaviour
 {
-    GameObject target;                  // Objeto a detectar
+    Transform target;                  // Objeto a detectar
 
     // Use this for initialization
     void Start ()
     {
-        target = GameObject.FindGameObjectWithTag("Player");
+        //target = GameObject.FindGameObjectWithTag("Player").transform;
 	}
+
+    public void SetTarget(Transform n_target)
+    {
+        target = n_target;
+    }
 
     // Comprobar si el objetivo se encuentra cerca
     public bool IsPlayerNear(float distance)
     {
         // Distancia de usuario a objetivo
-        Vector3 target_distance = target.transform.position - transform.position;
+        Vector3 target_distance = target.position - transform.position;
 
         if (target_distance.magnitude <= distance)
             return true;
@@ -29,7 +34,7 @@ public class DetectionController : MonoBehaviour
     public bool IsPlayerInFront(float sight_angle)
     {
         // Calcular vector director a objetivo
-        Vector3 target_dir = target.transform.position - transform.position;
+        Vector3 target_dir = target.position - transform.position;
 
         target_dir.Normalize();
         // Calcular angulo de direccion
@@ -46,14 +51,13 @@ public class DetectionController : MonoBehaviour
     public bool IsPlayerOnSight(float distance)
     {
         RaycastHit[] hits;
-        Vector3 target_dir = target.transform.position - transform.position;
+        Vector3 target_dir = target.position - transform.position;
         hits = Physics.RaycastAll(transform.position, target_dir.normalized, distance);
 
         int my_target = 0;
 
         for(int i = 0; i < hits.Length; ++i)
         {
-            Debug.Log("Collided with " + hits[i].transform.name);
             // Buscar al jugador
             if (hits[i].transform.gameObject.tag == target.tag)
                 my_target = i;
@@ -67,9 +71,7 @@ public class DetectionController : MonoBehaviour
         for (int i = 0; i < hits.Length; ++i)
         {
             // No comprobar objetivo de nuevo
-            if (i == my_target)
-                continue;
-            else
+            if (i != my_target)
             { 
 
                 float obstacle_dist = Vector3.Distance(transform.position, hits[i].point);
@@ -78,7 +80,6 @@ public class DetectionController : MonoBehaviour
                 if (obstacle_dist < target_dir.magnitude)
                     if (GetComponent<Enemy>().cur_color.ToString() != hits[i].transform.gameObject.tag)
                     {
-                        Debug.Log("Object " + hits[i].transform.name + " is in front.");
                         return false;
                     }
             }

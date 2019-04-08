@@ -4,6 +4,17 @@ using UnityEngine;
 
 public class Enemy : MonoBehaviour
 {
+    public enum EnemyType
+    {
+        Pistol,
+        Rifle,
+        Shotgun,
+        Kamikaze,
+        Shield,
+        Turret
+    }
+    public EnemyType enemy_type;
+    
     // Colors
     public enum Colors
     {

@@ -27,7 +27,7 @@ public class SceneMan1 : MonoBehaviour
         {
             TimRestart = 2;
             isdead = false;
-            SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+            ReloadCurrentScene();
 
         }
     }
@@ -49,6 +49,7 @@ public class SceneMan1 : MonoBehaviour
         Nivel_2,
         Nivel_3,
         Nivel_4,
+        Nivel_6,
         Tutorial,
         TestSceneJaime
 
@@ -83,5 +84,9 @@ public class SceneMan1 : MonoBehaviour
     public void ExitGame()
     {
         Application.Quit();
+    }
+    public void Dead()
+    {
+        isdead = true;
     }
 }

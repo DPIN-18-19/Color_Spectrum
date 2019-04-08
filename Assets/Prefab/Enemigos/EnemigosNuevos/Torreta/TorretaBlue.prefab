@@ -169,7 +169,7 @@ GameObject:
   m_IsActive: 1
 --- !u!1 &1483842241950800
 GameObject:
-  m_ObjectHideFlags: 1
+  m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   serializedVersion: 6
@@ -243,6 +243,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 224571047847010634}
+  - component: {fileID: 114868197349351574}
   m_Layer: 9
   m_Name: HeadBob
   m_TagString: Untagged
@@ -327,10 +328,9 @@ Transform:
   - {fileID: 224571047847010634}
   - {fileID: 4025539707463834}
   - {fileID: 4845228012661184}
-  - {fileID: 224630555775325772}
   - {fileID: 4543957444554884}
   m_Father: {fileID: 4762395849759200}
-  m_RootOrder: 2
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &4137468582092880
 Transform:
@@ -424,7 +424,7 @@ Transform:
   m_LocalScale: {x: 1.0000005, y: 1, z: 1.0000005}
   m_Children: []
   m_Father: {fileID: 4071891299223178}
-  m_RootOrder: 4
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &4661650229488580
 Transform:
@@ -447,11 +447,12 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1129954393376660}
   m_LocalRotation: {x: 0, y: 0.7071068, z: 0, w: 0.7071068}
-  m_LocalPosition: {x: -45.58, y: 0.097, z: 4.86}
+  m_LocalPosition: {x: -46.138374, y: 0.21, z: 11.58}
   m_LocalScale: {x: 0.18972364, y: 0.18972364, z: 0.18972364}
   m_Children:
   - {fileID: 4287543549202208}
   - {fileID: 4888529617244222}
+  - {fileID: 224630555775325772}
   - {fileID: 4071891299223178}
   m_Father: {fileID: 0}
   m_RootOrder: 0
@@ -949,6 +950,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5088dd01fe25e5a4f9f44665013d2dbc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  enemy_type: 5
   cur_color: 1
   chase_speed: 7
 --- !u!114 &114102553307891748
@@ -1026,11 +1028,15 @@ MonoBehaviour:
   can_shoot: 1
   can_move: 0
   can_rotate: 1
+  can_change_target: 0
+  init_target: {fileID: 0}
   alert_distance: 10
   sight_distance: 25
   safe_distance: 6
   sight_angle: 45
   lost_distance: 25
+  is_chasing: 0
+  is_looking: 0
   attack_moving: 0
   attack_in_place: 0
   turret: {fileID: 1295568800249834}
@@ -1080,6 +1086,11 @@ MonoBehaviour:
   - {fileID: 198410871006054420, guid: 5e64849e24a3b3949a4999b2eb9ef198, type: 2}
   - {fileID: 198960496170012676, guid: 6b023f22181b1d640a11c4ae1a24ade8, type: 2}
   score: 100
+  TextScore: {fileID: 102262678588124188, guid: b8341ad366c986f4ebd7b8dc81fb0ef8,
+    type: 2}
+  PrefabScore: {fileID: 1892186745157182, guid: b8341ad366c986f4ebd7b8dc81fb0ef8,
+    type: 2}
+  PosScore: {fileID: 224571047847010634}
   die_fx: {fileID: 0}
 --- !u!114 &114575698103718260
 MonoBehaviour:
@@ -1153,6 +1164,17 @@ MonoBehaviour:
   late_shot_1: 0.1
   shot_right: 0
   FirstShot: 0
+--- !u!114 &114868197349351574
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1901380337135556}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b7a722582d59c334b91d4ad4e6808994, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &114929729066328112
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1246,13 +1268,13 @@ RectTransform:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1901380337135556}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: -0.295471, y: 0.64241487, z: -0.295471, w: -0.64241487}
   m_LocalPosition: {x: 0, y: 0, z: -0.06570835}
   m_LocalScale: {x: 5.270829, y: 5.2708244, z: 5.270829}
   m_Children: []
   m_Father: {fileID: 4071891299223178}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 49.399, y: 270, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 0.2200064, y: 11.569999}
@@ -1266,12 +1288,12 @@ RectTransform:
   m_GameObject: {fileID: 1483842241950800}
   m_LocalRotation: {x: -0, y: -0.7001205, z: -0, w: 0.7140247}
   m_LocalPosition: {x: 0, y: 0, z: 0.721787}
-  m_LocalScale: {x: 5.2708244, y: 5.2708244, z: 5.2708244}
+  m_LocalScale: {x: 5.270827, y: 5.2708244, z: 5.270827}
   m_Children:
   - {fileID: 224429922731125714}
   - {fileID: 224942436810740172}
-  m_Father: {fileID: 4071891299223178}
-  m_RootOrder: 3
+  m_Father: {fileID: 4762395849759200}
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: -88.873, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}

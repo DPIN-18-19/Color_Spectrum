@@ -62,7 +62,7 @@ public class LevelInfoPanel : MonoBehaviour, IPointerEnterHandler, IPointerExitH
         }
     }
 
-    void TextAppear()
+    public void TextAppear()
     {
         name_t.transform.gameObject.SetActive(true);
         highscore_t.transform.gameObject.SetActive(true);
