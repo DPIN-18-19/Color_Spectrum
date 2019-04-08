@@ -47,6 +47,10 @@ public class SceneMan : MonoBehaviour
     {
         SceneManager.LoadScene("LevelSelection");
     }
+    public void ToSubMenu()
+    {
+        SceneManager.LoadScene("PreparationMenu");
+    }
 
 
     // public void Controls()
