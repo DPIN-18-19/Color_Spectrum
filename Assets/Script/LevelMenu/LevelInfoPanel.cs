@@ -12,6 +12,7 @@ public class LevelInfoPanel : MonoBehaviour, IPointerEnterHandler, IPointerExitH
     TextMeshProUGUI brief_t;
     TextMeshProUGUI highscore_t;
     TextMeshProUGUI grade_t;
+    TextMeshProUGUI difficulty_t;
 
     // Other text
     Transform highscore;
@@ -44,6 +45,7 @@ public class LevelInfoPanel : MonoBehaviour, IPointerEnterHandler, IPointerExitH
         //brief_t = transform.Find("Brief_t").GetComponent<TextMeshProUGUI>();
         highscore_t = transform.Find("HighScore_t").GetComponent<TextMeshProUGUI>();
         grade_t = transform.Find("Grade_t").GetComponent<TextMeshProUGUI>();
+        difficulty_t = transform.Find("Difficulty_t").GetComponent<TextMeshProUGUI>();
 
         highscore = transform.Find("HighScore");
         grade = transform.Find("Grade");
@@ -70,6 +72,7 @@ public class LevelInfoPanel : MonoBehaviour, IPointerEnterHandler, IPointerExitH
         highscore.transform.gameObject.SetActive(true);
         grade.transform.gameObject.SetActive(true);
         go_b.transform.gameObject.SetActive(true);
+        difficulty_t.transform.gameObject.SetActive(true);
     }
 
     public void TextDisappear()
@@ -80,6 +83,7 @@ public class LevelInfoPanel : MonoBehaviour, IPointerEnterHandler, IPointerExitH
         highscore.transform.gameObject.SetActive(false);
         grade.transform.gameObject.SetActive(false);
         go_b.transform.gameObject.SetActive(false);
+        difficulty_t.transform.gameObject.SetActive(false);
     }
 
     public void UpdateInfo(LevelData data)
@@ -89,6 +93,7 @@ public class LevelInfoPanel : MonoBehaviour, IPointerEnterHandler, IPointerExitH
         name_t.text = data.name;
         //brief_t.text = data.brief;
         highscore_t.text = data.highscore.ToString();
+        difficulty_t.text = data.difficulty;
         
         if (!data.complete)
             grade_t.text = "-";

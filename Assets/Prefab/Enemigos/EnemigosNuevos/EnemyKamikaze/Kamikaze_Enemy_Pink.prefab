@@ -2495,7 +2495,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   enemy_type: 3
-  cur_color: 0
+  cur_color: 2
   chase_speed: 7
 --- !u!114 &114105158707673398
 MonoBehaviour:
@@ -2513,6 +2513,7 @@ MonoBehaviour:
   can_shoot: 0
   can_move: 1
   can_rotate: 1
+  can_patrol: 1
   can_change_target: 0
   init_target: {fileID: 0}
   alert_distance: 10
