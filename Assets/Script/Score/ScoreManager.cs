@@ -199,7 +199,7 @@ public class ScoreManager : MonoBehaviour
     {
         ++num_damaged;
         damage_amount += damage;
-        Debug.Log("Got Damaged: " + num_damaged + " Total lost: " + damage_amount);
+        //Debug.Log("Got Damaged: " + num_damaged + " Total lost: " + damage_amount);
     }
 
     public int GetDamageCount()

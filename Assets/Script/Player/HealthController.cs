@@ -48,6 +48,9 @@ public class HealthController : MonoBehaviour
 
     float TimeToRestart = 2f;
     public bool isdead = false;
+    public ParticleSystem DamageParticle;
+    public Transform PosDamageParticle;
+    bool InstanciateParticle = true;
     //////////////////////////////////////////////////////////////////////////////
     void Awake()
     {
@@ -79,7 +82,9 @@ public class HealthController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if( isdead == true)
+        //Debug.Log(TimeDamageMat);
+        Debug.Log(Daño);
+        if ( isdead == true)
         {
             TimeToRestart -= Time.deltaTime;
         }
@@ -96,14 +101,20 @@ public class HealthController : MonoBehaviour
 
         if(Daño == true) 
         {
+            
             TimeDamageMat -= Time.deltaTime;
+            MaterialsPlayer.DamageColor();
+            if (InstanciateParticle == true)
+            {
+                Instantiate(DamageParticle.gameObject, PosDamageParticle.transform.position, Quaternion.identity);
+                InstanciateParticle = false;
+            }
         }
 
-        if (Daño == false && TimeDamageMat < 0)
+        if (Daño == false)
         {
             if (ParedNopasar == false)
             {
-
                 MaterialsPlayer.ResetColor();
                 TimeDamageMat = MaxTimeDamageMat;
             }
@@ -112,6 +123,7 @@ public class HealthController : MonoBehaviour
                 MaterialsPlayer.BlackColor();
                 TimeDamageMat = MaxTimeDamageMat;
             }
+            InstanciateParticle = true;
         }
 
         if( TimeDamageMat < 0)
@@ -209,6 +221,9 @@ public class HealthController : MonoBehaviour
 
             ScoreManager.Instance.CountDamage(damage);
             Daño = true;
+          
+          
+            
         }
     }
 

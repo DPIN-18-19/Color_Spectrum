@@ -179,7 +179,7 @@ public class EnemyBehaviour : MonoBehaviour
         {
             is_chasing = false;
             is_retreat = true;
-            Debug.Log("Retreat2");
+           
         }
 
         if (!is_protected || !is_chasing)
@@ -188,7 +188,7 @@ public class EnemyBehaviour : MonoBehaviour
                 // Comprobar si enemigo ve a jugador
                 if (detect.IsPlayerInFront(sight_angle) && detect.IsPlayerNear(sight_distance) && detect.IsPlayerOnSight(sight_distance))
                 {
-                    Debug.Log("I see");
+                   
                     is_chasing = true;
                     in_home = false;
                 }
@@ -266,7 +266,7 @@ public class EnemyBehaviour : MonoBehaviour
         {
             if (stuck_phase != 0)
             {
-                Debug.Log("Stuck hold");
+                
                 is_looking = true;
                 is_stuck = true;
                 is_chasing = false;
