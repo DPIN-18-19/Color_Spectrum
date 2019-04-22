@@ -21,6 +21,7 @@ GameObject:
   - component: {fileID: 4969597137694400}
   - component: {fileID: 198201563028874890}
   - component: {fileID: 199327840429349436}
+  - component: {fileID: 114081596193025724}
   m_Layer: 0
   m_Name: EnergyExplosion
   m_TagString: Untagged
@@ -134,6 +135,20 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: -90, y: 0, z: 0}
+--- !u!114 &114081596193025724
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1552374363509782}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1e21234e3c8e43a6ad12673095f01bca, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  RunAtStart: 1
+  Delay: 0
+  LifeTime: 4
 --- !u!198 &198201563028874890
 ParticleSystem:
   m_ObjectHideFlags: 1

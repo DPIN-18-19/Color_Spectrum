@@ -72,6 +72,7 @@ GameObject:
   - component: {fileID: 4793388099753956}
   - component: {fileID: 198068847734173738}
   - component: {fileID: 199513007548350356}
+  - component: {fileID: 114836006532308160}
   m_Layer: 0
   m_Name: SpawnYellowShotGun
   m_TagString: Untagged
@@ -134,6 +135,20 @@ Transform:
   m_Father: {fileID: 4793388099753956}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &114836006532308160
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1627354934427258}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1e21234e3c8e43a6ad12673095f01bca, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  RunAtStart: 1
+  Delay: 0
+  LifeTime: 3
 --- !u!198 &198068847734173738
 ParticleSystem:
   m_ObjectHideFlags: 1
@@ -146,7 +161,7 @@ ParticleSystem:
   stopAction: 0
   looping: 0
   prewarm: 0
-  playOnAwake: 0
+  playOnAwake: 1
   useUnscaledTime: 0
   autoRandomSeed: 1
   useRigidbodyForVelocity: 1

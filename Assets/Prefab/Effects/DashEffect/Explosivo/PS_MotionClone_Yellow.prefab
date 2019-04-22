@@ -11,21 +11,21 @@ Prefab:
   m_SourcePrefab: {fileID: 0}
   m_RootGameObject: {fileID: 1638840181763304}
   m_IsPrefabAsset: 1
---- !u!1 &1611325357627026
+--- !u!1 &1186051775242770
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 4028968075736706}
-  - component: {fileID: 198593925670996702}
-  - component: {fileID: 199292270119654354}
-  - component: {fileID: 82450393909566328}
-  - component: {fileID: 65807366778633516}
-  - component: {fileID: 114635861539517382}
+  - component: {fileID: 4396200657943344}
+  - component: {fileID: 198891528144571064}
+  - component: {fileID: 199362161358355116}
+  - component: {fileID: 82809377990421072}
+  - component: {fileID: 65199348153480184}
+  - component: {fileID: 114079210932188930}
   m_Layer: 0
-  m_Name: ParticleFlashPink
+  m_Name: ParticleFlashYellow
   m_TagString: Blue
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -42,20 +42,20 @@ GameObject:
   - component: {fileID: 198930534529932508}
   - component: {fileID: 199675592884659352}
   - component: {fileID: 114616419352222446}
-  - component: {fileID: 65610465496992544}
+  - component: {fileID: 65141981708718468}
   m_Layer: 0
-  m_Name: PS_MotionClone 4
+  m_Name: PS_MotionClone_Yellow
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &4028968075736706
+--- !u!4 &4396200657943344
 Transform:
   m_ObjectHideFlags: 1
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1611325357627026}
+  m_GameObject: {fileID: 1186051775242770}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 3.23, y: 1, z: 0}
   m_LocalScale: {x: 1, y: 1.671, z: 1}
@@ -70,14 +70,14 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1638840181763304}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 23.785696, y: 0.643, z: 7.758856}
+  m_LocalPosition: {x: 26.063679, y: 1.85, z: 9.004821}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
-  - {fileID: 4028968075736706}
+  - {fileID: 4396200657943344}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!65 &65610465496992544
+--- !u!65 &65141981708718468
 BoxCollider:
   m_ObjectHideFlags: 1
   m_CorrespondingSourceObject: {fileID: 0}
@@ -89,24 +89,24 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 1.42, y: 0.97, z: 1.81}
   m_Center: {x: 3.23, y: 0, z: 0}
---- !u!65 &65807366778633516
+--- !u!65 &65199348153480184
 BoxCollider:
   m_ObjectHideFlags: 1
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1611325357627026}
+  m_GameObject: {fileID: 1186051775242770}
   m_Material: {fileID: 0}
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
   m_Size: {x: 8.22583, y: 3.74, z: 7.5634294}
   m_Center: {x: 0.18078232, y: 0, z: -0.106117964}
---- !u!82 &82450393909566328
+--- !u!82 &82809377990421072
 AudioSource:
   m_ObjectHideFlags: 1
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1611325357627026}
+  m_GameObject: {fileID: 1186051775242770}
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
@@ -196,6 +196,19 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &114079210932188930
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1186051775242770}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0cb4f9f98c6e44140bdd42ec29b6457c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  SonidoExplosion: {fileID: 0}
+  damage: 15
 --- !u!114 &114616419352222446
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -210,25 +223,12 @@ MonoBehaviour:
   RunAtStart: 1
   Delay: 0
   LifeTime: 4
---- !u!114 &114635861539517382
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1611325357627026}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: bfb21484664b9bf4bba60d63c3bec98a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  SonidoExplosion: {fileID: 0}
-  damage: 15
---- !u!198 &198593925670996702
+--- !u!198 &198891528144571064
 ParticleSystem:
   m_ObjectHideFlags: 1
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1611325357627026}
+  m_GameObject: {fileID: 1186051775242770}
   serializedVersion: 5
   lengthInSec: 0.2
   simulationSpeed: 1
@@ -9547,13 +9547,13 @@ ParticleSystem:
         m_PostInfinity: 2
         m_RotationOrder: 4
     vectorLabel1_3: W
---- !u!199 &199292270119654354
+--- !u!199 &199362161358355116
 ParticleSystemRenderer:
   serializedVersion: 6
   m_ObjectHideFlags: 1
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1611325357627026}
+  m_GameObject: {fileID: 1186051775242770}
   m_Enabled: 1
   m_CastShadows: 0
   m_ReceiveShadows: 0
@@ -9563,8 +9563,8 @@ ParticleSystemRenderer:
   m_ReflectionProbeUsage: 0
   m_RenderingLayerMask: 4294967295
   m_Materials:
-  - {fileID: 2100000, guid: d09689850eba78049a3a284511171d42, type: 2}
-  - {fileID: 2100000, guid: d09689850eba78049a3a284511171d42, type: 2}
+  - {fileID: 2100000, guid: c0283659bde8512479d67e9bc771db66, type: 2}
+  - {fileID: 2100000, guid: c0283659bde8512479d67e9bc771db66, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -9620,8 +9620,8 @@ ParticleSystemRenderer:
   m_ReflectionProbeUsage: 0
   m_RenderingLayerMask: 4294967295
   m_Materials:
-  - {fileID: 2100000, guid: 00e41ca8d7df19c448e483bd79085413, type: 2}
-  - {fileID: 2100000, guid: 00e41ca8d7df19c448e483bd79085413, type: 2}
+  - {fileID: 2100000, guid: 2ea1d211281a25c4088044c7d4fd78fd, type: 2}
+  - {fileID: 2100000, guid: 2ea1d211281a25c4088044c7d4fd78fd, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
