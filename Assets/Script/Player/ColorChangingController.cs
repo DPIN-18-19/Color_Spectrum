@@ -1,10 +1,4 @@
-﻿
-
-
-
-//Jaime
-
-using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -19,11 +13,10 @@ public class ColorChangingController : MonoBehaviour {
 
 
     public bool ParedCambioNo;
-    public SameColorPink ParedRosa;
     public float DuracionMismoColor;
     public float MaxDuracion;
 
-
+    private PlayerRenderer MaterialsPlayer;
 
     public Colors cur_color;                    // Current selected color
     int i_cur_color;                            // Current selected color (number)
@@ -34,8 +27,11 @@ public class ColorChangingController : MonoBehaviour {
     bool do_update;                             // Has color changed?
 
     public AudioClip FxCambioColor;
+    public AudioClip FxNoChangeColor;
     AudioSource source;
 
+
+    private bool DoOnce = true;
     //////////////////////////////////////////////////////////////////////////////
 
     // Events
@@ -54,6 +50,7 @@ public class ColorChangingController : MonoBehaviour {
 
     public void Awake()
     {
+           MaterialsPlayer = GetComponent<PlayerRenderer>();
         Instance = this;
         source = GetComponent<AudioSource>();
     }
@@ -61,6 +58,7 @@ public class ColorChangingController : MonoBehaviour {
     // Use this for initialization
     void Start ()
     {
+     
         num_colors = System.Enum.GetNames(typeof(Colors)).Length;
         do_update = true;
 
@@ -94,7 +92,7 @@ public class ColorChangingController : MonoBehaviour {
         if (Input.GetKeyDown(KeyCode.Q))
         {
             if (ParedCambioNo == false){
-
+               
                 i_cur_color = (int)cur_color;
             i_cur_color = Loop(i_cur_color - 1, num_colors);
             cur_color = (Colors)i_cur_color;
@@ -104,13 +102,21 @@ public class ColorChangingController : MonoBehaviour {
         }
         if(ParedCambioNo == true)
         {
+            if (DoOnce)
+            {
+                source.PlayOneShot(FxNoChangeColor);
+                DoOnce = false;
+            }
+
             DuracionMismoColor += Time.deltaTime;
             if(DuracionMismoColor > MaxDuracion)
             {
                ParedCambioNo = false;
                DuracionMismoColor = 0;
+                DoOnce = true;
+               
             }
-
+           
         }
     }
 
@@ -182,22 +188,21 @@ public class ColorChangingController : MonoBehaviour {
     {
         if(col.gameObject.tag == "ParedNoCambioRosa" && this.gameObject.layer == 10 )
         {
-            
-                ParedCambioNo = true;
+            ParedCambioNo = true;
                 Debug.Log("NoPasarRosa");
             
         }
         if (col.gameObject.tag == "ParedNoCambioAzul" && this.gameObject.layer == 9 )
         {
             
-                ParedCambioNo = true;
+            ParedCambioNo = true;
                 Debug.Log("NoPasarAzul");
             
         }
         if (col.gameObject.tag == "ParedNoCambioYellow" && this.gameObject.layer == 8 )
         {
             
-                ParedCambioNo = true;
+            ParedCambioNo = true;
                 Debug.Log("NoPasarYellow");
             
         }

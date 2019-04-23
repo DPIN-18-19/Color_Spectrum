@@ -21,11 +21,13 @@ public class throw_gre : MonoBehaviour {
     public WeaponController weapon;
     public bool NotFire;
     public bool SepuedeUsar;
+    private AudioSource source;
+    public AudioClip FX_Throw_gre;
 
     Animator anim;
     // Use this for initialization
     void Start () {
-
+        source = GetComponent<AudioSource>();
         anim = gameObject.GetComponent<Animator>();
         MaxCooldown = Cooldown;
        
@@ -55,7 +57,7 @@ public class throw_gre : MonoBehaviour {
             GameplayManager.GetInstance().DeactivateAbility();
             anim.SetBool("Granada", true);
             weapon.gun.SetActive(false);
-          
+            source.PlayOneShot(FX_Throw_gre,0.4f);
             Invoke("Granada", TiempoAnimRetardo);
             Invoke("ActivarArma", TiempoAnimRetardo+1f);
             Cooldown = MaxCooldown;

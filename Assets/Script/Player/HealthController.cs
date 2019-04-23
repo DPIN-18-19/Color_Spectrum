@@ -17,6 +17,10 @@ public class HealthController : MonoBehaviour
     public Transform PosParticleDead;
     int player_color;                       // Player's color
     public AudioClip FxDie;
+    public AudioClip FxDamage;
+    private bool FxDamageOnlyOne;
+
+
     private AudioSource source;
 
     public ParticleSystem HealthYellow;
@@ -44,7 +48,7 @@ public class HealthController : MonoBehaviour
     public float TimeGlichEffect;
 
     public GameObject camera;
-
+   
 
     float TimeToRestart = 2f;
     public bool isdead = false;
@@ -54,8 +58,8 @@ public class HealthController : MonoBehaviour
     //////////////////////////////////////////////////////////////////////////////
     void Awake()
     {
-        source = GetComponent<AudioSource>();
 
+        source = GetComponent<AudioSource>();
     }
     // Use this for initialization
     void Start ()
@@ -83,7 +87,7 @@ public class HealthController : MonoBehaviour
     void Update()
     {
         //Debug.Log(TimeDamageMat);
-        Debug.Log(Daño);
+       // Debug.Log(Daño);
         if ( isdead == true)
         {
             TimeToRestart -= Time.deltaTime;
@@ -101,7 +105,11 @@ public class HealthController : MonoBehaviour
 
         if(Daño == true) 
         {
-            
+            if (FxDamageOnlyOne)
+            {
+                source.PlayOneShot(FxDamage, 1f);
+                FxDamageOnlyOne = false;
+            }
             TimeDamageMat -= Time.deltaTime;
             MaterialsPlayer.DamageColor();
             if (InstanciateParticle == true)
@@ -113,6 +121,7 @@ public class HealthController : MonoBehaviour
 
         if (Daño == false)
         {
+            FxDamageOnlyOne = true;
             if (ParedNopasar == false)
             {
                 MaterialsPlayer.ResetColor();

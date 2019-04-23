@@ -180,7 +180,7 @@ public class ScoreManager : MonoBehaviour
     {
         ++num_enemies_defeated;
         enemy_score += score;
-        Debug.Log("Defeated: " + num_enemies_defeated + " Points: " + enemy_score);
+        //Debug.Log("Defeated: " + num_enemies_defeated + " Points: " + enemy_score);
     }
 
     public int GetEnemyCount()

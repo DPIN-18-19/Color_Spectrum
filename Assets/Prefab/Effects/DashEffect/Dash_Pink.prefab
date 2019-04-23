@@ -22,9 +22,9 @@ GameObject:
   - component: {fileID: 198930534529932508}
   - component: {fileID: 199675592884659352}
   - component: {fileID: 114616419352222446}
-  - component: {fileID: 65839512469596746}
+  - component: {fileID: 65610465496992544}
   m_Layer: 0
-  m_Name: PS_MotionClone 9
+  m_Name: Dash_Pink
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -37,13 +37,13 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1638840181763304}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -54.88363, y: 4.147999, z: 7.0926304}
+  m_LocalPosition: {x: -53.917355, y: 4.147999, z: 4.663844}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!65 &65839512469596746
+--- !u!65 &65610465496992544
 BoxCollider:
   m_ObjectHideFlags: 1
   m_CorrespondingSourceObject: {fileID: 0}
@@ -4810,8 +4810,8 @@ ParticleSystemRenderer:
   m_ReflectionProbeUsage: 0
   m_RenderingLayerMask: 4294967295
   m_Materials:
-  - {fileID: 2100000, guid: ccb2da44ba77329468419fa8a7f0ef30, type: 2}
-  - {fileID: 2100000, guid: ccb2da44ba77329468419fa8a7f0ef30, type: 2}
+  - {fileID: 2100000, guid: 00e41ca8d7df19c448e483bd79085413, type: 2}
+  - {fileID: 2100000, guid: 00e41ca8d7df19c448e483bd79085413, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0

@@ -297,8 +297,8 @@ public class BulletController : MonoBehaviour
             {
                 if (col.gameObject.GetComponent<EnemyHealth>().IsWeak(gameObject.tag, gameObject.layer))
                 {
-                    Debug.Log("Ennmy collision " + col.gameObject.name);
-                    Debug.Log("BalaIsWeak");
+                   // Debug.Log("Ennmy collision " + col.gameObject.name);
+                   // Debug.Log("BalaIsWeak");
                     col.gameObject.GetComponent<EnemyHealth>().GetDamage(bullet_damage);
 
                     if (YellowDestroyeffect)
