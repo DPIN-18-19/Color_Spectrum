@@ -19,6 +19,7 @@ public class Spawner : MonoBehaviour
     Transform enemy;                // Enemigo a spawnear
     Transform patrol;               // Patrulla asignada
     Transform home;                 // Origen de enemigo asignada
+    Transform particle;             // Particula asignada
 	
     public bool CheckIfSpawning()
     {
@@ -28,22 +29,30 @@ public class Spawner : MonoBehaviour
 	// Update is called once per frame
 	void Update ()
     {
+        // Estado "Preparando"
         if (is_preparing)
             IsPreparing();
 
+        // Estado "Terminando"
         if (is_refreshing)
             IsRefreshing();
 	}
 
-    public void StartSpawning(Transform n_enemy, Transform n_patrol, Transform n_home)
+    // Preparar spawner
+    public void StartSpawning(Transform n_enemy, Transform n_patrol, Transform n_home, Transform n_particle)
     {
+        // Reiniciar variables de spawner
         is_spawning = true;
         is_preparing = true;
         to_spawn_c = to_spawn_dur;
 
+        // Recoger datos de proximo spawnee
         enemy = n_enemy;
         patrol = n_patrol;
         home = n_home;
+        particle = n_particle;
+
+        Instantiate(particle, transform.Find("SpawnEffect").position, transform.rotation);
     }
 
     // Estado "Preparando"
@@ -69,38 +78,42 @@ public class Spawner : MonoBehaviour
         {
             is_spawning = false;
             is_refreshing = false;
-
         }
     }
 
     void SpawnEnemy()
     {
-        Transform s_enemy = Instantiate(enemy, transform);
+        Transform s_enemy = Instantiate(enemy, transform.GetChild(0));
 
         s_enemy.GetComponentInChildren<NavMeshAgent>().Warp(transform.position);
 
         // Patrol Points
         Transform s_patrol = s_enemy.Find("PatrolPoints");
 
-        // Clear prefab patrol points
+        // Eliminar puntos de patrulla de prefab
         for (int i = 0; i < s_patrol.childCount; ++i)
         {
             Debug.Log("Destroy child " + s_patrol.GetChild(i).name);
             Destroy(s_patrol.GetChild(i).gameObject);
+            s_patrol.GetChild(i).parent = null;
         }
-        // Insert new patrol points
+        // Insertar nuevos puntos de patrulla
         for (int i = 0; i < patrol.childCount; ++i)
         {
             Transform patrol_point = Instantiate(patrol.GetChild(i), patrol.transform);
             patrol_point.SetParent(s_patrol);
         }
 
-        // Home 
+        // Insertar nuevo punto origen 
         Transform s_home = s_enemy.Find("EnemyHome");
         s_home.position = home.position;
 
+        // Pausar la patrulla durante un tiempo
+        s_enemy.GetComponentInChildren<PatrolController>().PausePatrolBySpawn(2);
+
         Debug.Log("Instantiate Enemy");
 
+        // Incluir enemigo en contador de enemigos por oleadas
         GetComponentInParent<SpawnPoint>().IncludeEnemy(s_enemy);
     }
 }

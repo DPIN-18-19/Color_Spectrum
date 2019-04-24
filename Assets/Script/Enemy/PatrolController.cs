@@ -12,23 +12,32 @@ public class PatrolController : MonoBehaviour
     
     ///////////////////////////////////////////////////////////////
     // Estado de patrulla
-    List<Transform> patrol_points_l;       // Puntos de patrulla
+    List<Transform> patrol_points_l;        // Puntos de patrulla
     float cur_patrol;                       // Actual punto de patrulla
     [HideInInspector]
     public bool is_patrolling = true;       // El enemigo está en el estado "Patrulla"
 
     [Header("Datos de patrulla")]
     public float patrol_speed = 5;          // Velocidad de patrulla
-    float wait_c;                       // Contador de espera
-    public float wait_dur;              // Duracion de espera
+    float wait_c;                           // Contador de espera
+    public float wait_dur;                  // Duracion de espera
     bool is_waiting;                        // Estado "Vigilando"
+
+    ///////////////////////////////////////////////////////////////
+    // Comportamiento spawn
+    bool is_spawning;                       // Estado "Spawneando"
+    float spawn_c;                          // Contador de spawn
+    float spawn_dur;                        // Duracion de spawn
 
     ///////////////////////////////////////////////////////////////
     void Start()
     {
         // Inicializar componentes
-        nav_agent = GetComponent<NavMeshAgent>();
+        if (nav_agent == null)
+            nav_agent = GetComponent<NavMeshAgent>();
         anim = gameObject.GetComponent<Animator>();
+
+        Debug.Log("Starting");
 
         // Inicializar datos
         SearchPatrolPoints();
@@ -43,17 +52,27 @@ public class PatrolController : MonoBehaviour
 
         if (is_waiting)
             IsWaiting();
+
+        if (is_spawning)
+            IsSpawning();
     }
 
     // Buscar todos los puntos de patrulla
     void SearchPatrolPoints()
     {
-        patrol_points_l = new List<Transform>();
+        // Inicializar lista 
+        if (patrol_points_l == null)
+            patrol_points_l = new List<Transform>();
+        // Vaciar lista ya existente
+        else
+            patrol_points_l.Clear();
+
         Transform patrol_p = transform.parent.Find("PatrolPoints");
 
         if(patrol_p != null)
             for(int i = 0; i < patrol_p.childCount; ++i)
-                patrol_points_l.Add(patrol_p.GetChild(i));
+                if(patrol_p.GetChild(i) != null)
+                    patrol_points_l.Add(patrol_p.GetChild(i));
     }
 
     // Reiniciar patrulla
@@ -62,6 +81,7 @@ public class PatrolController : MonoBehaviour
         if (patrol_points_l.Count != 0)
         {
             cur_patrol = 0;
+            nav_agent.isStopped = false;
             nav_agent.SetDestination(patrol_points_l[(int)cur_patrol].position);
             wait_c = wait_dur;
             //nav_agent.speed = patrol_speed;
@@ -104,6 +124,36 @@ public class PatrolController : MonoBehaviour
             float length = patrol_points_l.Count;
             cur_patrol = Mathf.Repeat(++cur_patrol, length);
             nav_agent.SetDestination(patrol_points_l[(int)cur_patrol].position);
+        }
+    }
+
+    // Pausar patrulla por spawn
+    public void PausePatrolBySpawn(float n_spawn_dur)
+    {
+        is_spawning = true;
+        is_patrolling = false;
+        spawn_dur = n_spawn_dur;
+        spawn_c = spawn_dur;
+
+        if(nav_agent == null)
+            nav_agent = GetComponent<NavMeshAgent>();
+        // Parar en el sitio
+        nav_agent.velocity = Vector3.zero;
+        nav_agent.isStopped = true;
+    }
+
+    // Estado "Spawn"
+    void IsSpawning()
+    {
+        spawn_c -= Time.deltaTime;
+
+        if (spawn_c < 0.1f)
+        {
+            // Inicializar patrulla con nuevos puntos
+            SearchPatrolPoints();
+            ResetPatrol();
+            is_spawning = false;
+            is_patrolling = true;
         }
     }
 }

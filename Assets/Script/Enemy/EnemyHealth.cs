@@ -105,8 +105,8 @@ public class EnemyHealth : MonoBehaviour
 
             // Operaciones de puntuacion
             ScoreManager.Instance.CountEnemy(score);
-            TextScore.GetComponent<TextMesh>().text = score.ToString();
-            Instantiate(PrefabScore, PosScore.transform.position, Quaternion.Euler(PosScore.transform.rotation.x, transform.parent.rotation.y, PosScore.transform.rotation.z));
+            //TextScore.GetComponent<TextMesh>().text = score.ToString();
+            //Instantiate(PrefabScore, PosScore.transform.position, Quaternion.Euler(PosScore.transform.rotation.x, transform.parent.rotation.y, PosScore.transform.rotation.z));
             Destroy(transform.parent.gameObject);
         }
     }
