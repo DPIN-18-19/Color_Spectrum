@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class AreaCondition : MonoBehaviour
 {
-
     /////////////////////////////////////////////
     // Events
     public delegate void Condition();

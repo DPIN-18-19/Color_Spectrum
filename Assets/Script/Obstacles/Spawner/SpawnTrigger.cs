@@ -4,13 +4,14 @@ using UnityEngine;
 
 public class SpawnTrigger : MonoBehaviour
 {
-    AreaCondition area;
+    public AreaCondition area;
     SpawnPoint spawner;
     
 	// Use this for initialization
 	void Start ()
     {
-		area.
+        spawner = GetComponent<SpawnPoint>();
+        area.EnterArea += ActivateSpawn;
 	}
 
     void ActivateSpawn()

@@ -60,7 +60,7 @@ public class SpawnPoint : MonoBehaviour
         }
 
         // Quitar esto. Uso para testing
-        is_wave = true;
+        
 	}
 
 
@@ -73,6 +73,7 @@ public class SpawnPoint : MonoBehaviour
     
     public void ActivateSpawn()
     {
+        Debug.Log("Spawn is active");
         active = true;
         is_wave = true;
     }
@@ -80,14 +81,15 @@ public class SpawnPoint : MonoBehaviour
     void DoSpawning()
     {
         next_spawn_c -= Time.deltaTime;
-        Debug.Log("Spawn is active");
 
         // Comprobar si hay activada una oleada y si empieza el siguiente spawn
         if(is_wave && next_spawn_c < 0)
         {
+            Debug.Log("Spawn is working");
             // Comprobar si proximo spawner esta desocupado
-            if(spawner_l[spawner_it].CheckIfSpawning())
+            if(!spawner_l[spawner_it].CheckIfSpawning())
             {
+                Debug.Log("Make Spawn");
                 // Comprobar si fin de oleada
                 if(spawnee_order[spawnee_it] == -1)
                 {
@@ -100,10 +102,14 @@ public class SpawnPoint : MonoBehaviour
                 int data = Random.Range(0, spawn_patrols.Count);
                 spawner_l[spawner_it].StartSpawning(spawnee_l[spawnee_order[spawnee_it]], spawn_patrols[data], spawn_homes[data]);
 
+                Debug.Log("Spawn was made");
+
                 // Iterar siguiente spawn
                 spawner_it = (int)Mathf.Repeat(++spawner_it, spawner_l.Count);
                 next_spawn_c = next_spawn_dur;
                 ++spawnee_it;
+
+                Debug.Log("Preparing next spawn");
 
                 // Comprobar si fin de spawner
                 if (spawnee_it >= spawnee_order.Count)
