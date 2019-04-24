@@ -15,6 +15,7 @@ public class Dash_explosivo : MonoBehaviour
     public Rigidbody rb;
     public bool SePuedeUsar;
     public AudioClip FxDash;
+    public float VolumeFxDash = 1;
     public ControlledObject ControlledObject;
     public ColorChangingController ColorPlayer;
     public ParticleSystem ParticleDashExplosiveYellow;
@@ -69,7 +70,7 @@ public class Dash_explosivo : MonoBehaviour
             }
             if (UsarHabilidad)
             {
-                source.PlayOneShot(FxDash);
+                source.PlayOneShot(FxDash, VolumeFxDash);
                 rb.AddForce(MovePlayer.move_dir * (dashspeed * 100), ForceMode.Impulse);
                 // Dash particles
 

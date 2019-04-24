@@ -12,6 +12,7 @@ public class Slow_Motion : MonoBehaviour {
     private float Max_Duracion;
     private bool Init_Abi;
     public AudioClip ActivateSlowFx;
+    public float VolumeActivateSlowFx = 1f;
     AudioSource source;
     void Awake()
     {
@@ -31,7 +32,7 @@ public class Slow_Motion : MonoBehaviour {
         if (SePuedeUsar == true && Input.GetButtonDown("Habilidad1") && Init_Abi == true)
         {
 
-            source.PlayOneShot(ActivateSlowFx);
+            source.PlayOneShot(ActivateSlowFx, VolumeActivateSlowFx);
             DuracionHabilidad = Max_Duracion;
             ActivateAbility = true;
             Init_Abi = false;   

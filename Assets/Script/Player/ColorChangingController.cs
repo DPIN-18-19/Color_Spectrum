@@ -27,7 +27,9 @@ public class ColorChangingController : MonoBehaviour {
     bool do_update;                             // Has color changed?
 
     public AudioClip FxCambioColor;
+    public float VolumeFxCambioColor = 1;
     public AudioClip FxNoChangeColor;
+    public float VolumeFxNoChangeColor = 1;
     AudioSource source;
 
 
@@ -84,7 +86,7 @@ public class ColorChangingController : MonoBehaviour {
                 i_cur_color = Loop(i_cur_color + 1, num_colors);
                 cur_color = (Colors)i_cur_color;
                 do_update = true;
-                source.PlayOneShot(FxCambioColor);
+                source.PlayOneShot(FxCambioColor, VolumeFxCambioColor);
             }
         }
 
@@ -97,7 +99,7 @@ public class ColorChangingController : MonoBehaviour {
             i_cur_color = Loop(i_cur_color - 1, num_colors);
             cur_color = (Colors)i_cur_color;
             do_update = true;
-                source.PlayOneShot(FxCambioColor);
+                source.PlayOneShot(FxCambioColor, VolumeFxNoChangeColor);
             }
         }
         if(ParedCambioNo == true)

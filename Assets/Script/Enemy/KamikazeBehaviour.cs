@@ -6,6 +6,7 @@ using UnityEngine.AI;
 public class KamikazeBehaviour : EnemyBehaviour
 {
     public AudioClip SonidoKi;
+    public float FxSonidoKi = 1;
     private bool OnlyOne = true;
 
     private void Start()
@@ -42,7 +43,7 @@ public class KamikazeBehaviour : EnemyBehaviour
             nav_agent.velocity = Vector3.zero;
             if (OnlyOne)
             {
-                a_source.PlayOneShot(SonidoKi);
+                a_source.PlayOneShot(SonidoKi, FxSonidoKi);
                 OnlyOne = false;
             }
         }

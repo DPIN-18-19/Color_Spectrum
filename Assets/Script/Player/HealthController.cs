@@ -17,7 +17,9 @@ public class HealthController : MonoBehaviour
     public Transform PosParticleDead;
     int player_color;                       // Player's color
     public AudioClip FxDie;
+    public float VolumeFxDie = 1;
     public AudioClip FxDamage;
+    public float VolumeFxDamage = 1;
     private bool FxDamageOnlyOne;
 
 
@@ -107,7 +109,7 @@ public class HealthController : MonoBehaviour
         {
             if (FxDamageOnlyOne)
             {
-                source.PlayOneShot(FxDamage, 1f);
+                source.PlayOneShot(FxDamage, VolumeFxDamage);
                 FxDamageOnlyOne = false;
             }
             TimeDamageMat -= Time.deltaTime;
@@ -194,7 +196,7 @@ public class HealthController : MonoBehaviour
         if (health <= 0.4)
         {
             isdead = true;
-            AudioSource.PlayClipAtPoint(FxDie, transform.position);
+            AudioSource.PlayClipAtPoint(FxDie, transform.position, VolumeFxDie);
             if (player_color < die_effect.Length)
             {
                 //- Search a way to destroy die effect after finishing

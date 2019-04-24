@@ -36,6 +36,7 @@ public class BulletController : MonoBehaviour
     public ParticleSystem DestroyEffectBlue;
     private bool BlueDestroyeffect;
     public AudioClip DestroyBulletFx;
+    public float VolumeDestroyBulletFx = 1;
 
     public float TimeTrasparenteMat;
     private float MaxTimeTrasparenteMat;

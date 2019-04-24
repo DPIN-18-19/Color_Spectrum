@@ -5,6 +5,7 @@ using UnityEngine;
 public class SoundScore : MonoBehaviour
 {
     public AudioClip FxPuntuacion;
+    public float VolumeFxPuntuacion = 1f;
     private AudioSource source;
     public float DelaySound;
     private bool DoOnce = true;
@@ -22,7 +23,7 @@ public class SoundScore : MonoBehaviour
     void SonidoPuntuacion()
     {
         if (DoOnce)
-            source.PlayOneShot(FxPuntuacion, 1f);
+            source.PlayOneShot(FxPuntuacion, VolumeFxPuntuacion);
         DoOnce = false;
 
     }

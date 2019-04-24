@@ -5,8 +5,6 @@ using UnityEngine;
 public class Destroy_Terminal : MonoBehaviour {
 
     public ParticleSystem DestroyTerminal;
-    public AudioClip FxDestroyTerminal;
-   
     // Use this for initialization
     void Start () {
        
