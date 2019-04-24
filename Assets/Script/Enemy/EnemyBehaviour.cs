@@ -169,7 +169,7 @@ public class EnemyBehaviour : MonoBehaviour
                 // Comprobar si enemigo ve a jugador
                 if (detect.IsPlayerInFront(sight_angle) && detect.IsPlayerNear(sight_distance) && detect.IsPlayerOnSight(sight_distance))
                 {
-                    Debug.Log("I see");
+                    //Debug.Log("I see");
                     is_chasing = true;
                     in_home = false;
                 }

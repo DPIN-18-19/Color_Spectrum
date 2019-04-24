@@ -9,6 +9,7 @@ public class Spawner : MonoBehaviour
 
     float to_spawn_c;               // Contador estado "Preparando"
     public float to_spawn_dur;      // Duracion estado "Preparando"
+    public float spawn_pause;       // Pausa durante patrulla
 
     float refresh_c;                // Contador estado "Terminando"
     public float refresh_dur;       // Duracion estado "Terminando"
@@ -109,7 +110,7 @@ public class Spawner : MonoBehaviour
         s_home.position = home.position;
 
         // Pausar la patrulla durante un tiempo
-        s_enemy.GetComponentInChildren<PatrolController>().PausePatrolBySpawn(2);
+        s_enemy.GetComponentInChildren<PatrolController>().PausePatrolBySpawn(spawn_pause);
 
         Debug.Log("Instantiate Enemy");
 

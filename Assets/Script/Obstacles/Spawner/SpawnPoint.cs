@@ -47,7 +47,7 @@ public class SpawnPoint : MonoBehaviour
     public int survivour_num;           // Enemigos dentro de una oleada
 
     float kill_c;
-    float kill_dur = 2;
+    float kill_dur = 1;
 
 
     public bool can_reset;             // Resetear spawn al finalizar
@@ -80,8 +80,13 @@ public class SpawnPoint : MonoBehaviour
             {
                 if (start_wave == WaveType.Time)
                     StartWaveByTime();
-                else if (start_wave == WaveType.KillAll)
+                else if (start_wave == WaveType.KillAll || start_wave == WaveType.KillSome)
                     CheckKill();
+                else if(start_wave == WaveType.TimeForward)
+                {
+                    StartWaveByTime();
+                    CheckKill();
+                }
             }
         }
 	}
@@ -106,7 +111,10 @@ public class SpawnPoint : MonoBehaviour
             {
                 // Comprobar si fin de spawner
                 if (spawnee_it >= spawnee_order.Count)
+                {
                     FinishSpawn();
+                    return;
+                }
 
                 Debug.Log("Make Spawn " + spawnee_it);
                 // Comprobar si fin de oleada
@@ -170,14 +178,18 @@ public class SpawnPoint : MonoBehaviour
                 kill_c = kill_dur;
                 break;
             case WaveType.KillSome:
+                Debug.Log("Wave Kill Some " + wave_it);
                 wave_l[wave_it].SwitchKill();
                 wave_l[wave_it].SurvivourAmount(survivour_num);
                 wave_l[wave_it].KillWave += StartWaveByKill;
+                kill_c = kill_dur;
                 break;
             case WaveType.TimeForward:
+                Debug.Log("Wave Kill Time " + wave_it);
                 next_spawn_c = next_wave_dur;
                 wave_l[wave_it].SwitchKill();
                 wave_l[wave_it].KillWave += StartWaveByKill;
+                kill_c = kill_dur;
                 break;
         }
     }
@@ -188,6 +200,17 @@ public class SpawnPoint : MonoBehaviour
         if(next_spawn_c < 0)
         {
             is_wave = true;
+
+            // Evitar llamar al evento de la anterior oleada
+            if (start_wave == WaveType.TimeForward)
+            {
+                wave_l[wave_it].KillWave -= StartWaveByKill;
+
+                // Prepare next kill condition
+                KillCondition n_kill = new KillCondition();
+                wave_l.Add(n_kill);
+            }
+
             ++wave_it;
         }
     }
@@ -203,7 +226,12 @@ public class SpawnPoint : MonoBehaviour
         // Prepare next kill condition
         KillCondition n_kill = new KillCondition();
         wave_l.Add(n_kill);
-        //wave_l[wave_it].SwitchKill();
+
+        if (start_wave == WaveType.TimeForward)
+        {
+            next_spawn_c = 0;
+        }
+            //wave_l[wave_it].SwitchKill();
     }
 
     void CheckKill()

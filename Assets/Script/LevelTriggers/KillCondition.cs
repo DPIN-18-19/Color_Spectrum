@@ -64,7 +64,7 @@ public class KillCondition : MonoBehaviour
 
             if (kill_enemies.Count > survivour_num)
             {
-                Debug.Log("Enemies alive");
+                Debug.Log("Enemies alive " + kill_enemies.Count);
                 for (int i = 0; i < kill_enemies.Count; ++i)
                 {
                     if (kill_enemies[i] == null)
