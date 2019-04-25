@@ -18,6 +18,9 @@ public class Beacon : MonoBehaviour
     float invincible_c;             // Contador de invencibilidad
     bool is_invincible;             // Comprobador de invencibilidad
 
+    public bool isDamage;
+    
+
     // Death
     Transform death_pos;
     [SerializeField]
@@ -27,6 +30,7 @@ public class Beacon : MonoBehaviour
 	void Start ()
     {
         health = max_health;
+
 	}
 	
 	// Update is called once per frame
@@ -42,6 +46,7 @@ public class Beacon : MonoBehaviour
         // Comprobar estado de invencibilidad
         if(!is_invincible)
         {
+            isDamage = true;
             //Debug.Log("I got hit. Missing " + health);
             health -= damage;
             invincible_c = invincible_dur;

@@ -23,7 +23,7 @@ GameObject:
   - component: {fileID: 23896950360389504}
   - component: {fileID: 114223456977676012}
   m_Layer: 0
-  m_Name: Baliza (2)
+  m_Name: Material
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -73,6 +73,7 @@ GameObject:
   - component: {fileID: 4593324583466058}
   - component: {fileID: 33102866758373574}
   - component: {fileID: 23534329478366576}
+  - component: {fileID: 114894478771625264}
   m_Layer: 0
   m_Name: Baliza
   m_TagString: Untagged
@@ -92,7 +93,7 @@ Transform:
   m_Children:
   - {fileID: 4608706421216514}
   m_Father: {fileID: 4593324583466058}
-  m_RootOrder: 0
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &4593324583466058
 Transform:
@@ -104,8 +105,8 @@ Transform:
   m_LocalPosition: {x: -60.4, y: 0.23, z: 21.031889}
   m_LocalScale: {x: 2.521991, y: 0.6158993, z: 3.4422467}
   m_Children:
-  - {fileID: 4274999477043214}
   - {fileID: 4701529717494904}
+  - {fileID: 4274999477043214}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -129,11 +130,11 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1465140206190300}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 6.15, z: -0}
+  m_LocalPosition: {x: -0.368, y: 6.15, z: 0.684}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 4593324583466058}
-  m_RootOrder: 1
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!23 &23318891143629788
 MeshRenderer:
@@ -220,7 +221,7 @@ MeshRenderer:
   m_ReflectionProbeUsage: 1
   m_RenderingLayerMask: 4294967295
   m_Materials:
-  - {fileID: 0}
+  - {fileID: 2100000, guid: 725b490d8a0e3a945b2a0130801651fa, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -327,3 +328,15 @@ MonoBehaviour:
   colNumber: 0
   totalCells: 15
   fps: 8
+--- !u!114 &114894478771625264
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1631107790473390}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 90ab3e34968ed894ebe3b709c2574786, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  intensity: 1.2

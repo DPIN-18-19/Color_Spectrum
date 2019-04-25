@@ -144,6 +144,7 @@ public class HealthController : MonoBehaviour
        
         if (curar == true)
         {
+            MaterialsPlayer.HealthColor();
             TimeHealtheMat -= Time.deltaTime;
         }
         if (curar == false && TimeHealtheMat < 0)

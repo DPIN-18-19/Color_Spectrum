@@ -6362,6 +6362,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   kill_enemies:
   - {fileID: 0}
+  survivour_num: 0
 --- !u!4 &109129565
 Transform:
   m_ObjectHideFlags: 0
@@ -6531,7 +6532,6 @@ MonoBehaviour:
   TextScore: {fileID: 0}
   PrefabScore: {fileID: 0}
   PosScore: {fileID: 0}
-  die_fx: {fileID: 0}
 --- !u!114 &113570682
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -7934,7 +7934,6 @@ MonoBehaviour:
   CloneParticleSystemExplosivePink: {fileID: 0}
   MeshRenderer: {fileID: 0}
   SkinnedMeshRenderer: {fileID: 1288860419}
-  is_Explosive: 0
   Explosive: {fileID: 0}
 --- !u!1 &139745216
 GameObject:
@@ -7989,6 +7988,9 @@ MonoBehaviour:
   - {fileID: 198960496170012676, guid: 6b023f22181b1d640a11c4ae1a24ade8, type: 2}
   PosParticleDead: {fileID: 243727160}
   FxDie: {fileID: 8300000, guid: c38412696178e174f8fa3703b7b169b2, type: 3}
+  VolumeFxDie: 1
+  FxDamage: {fileID: 0}
+  VolumeFxDamage: 1
   HealthYellow: {fileID: 198945216879961990, guid: 79dcddc10e0bd5b4795b7bb169850ecf,
     type: 2}
   HealthBlue: {fileID: 198945216879961990, guid: 79dcddc10e0bd5b4795b7bb169850ecf,
@@ -8009,6 +8011,8 @@ MonoBehaviour:
   TimeGlichEffect: 0
   camera: {fileID: 1689068310}
   isdead: 0
+  DamageParticle: {fileID: 0}
+  PosDamageParticle: {fileID: 0}
 --- !u!1 &142146015
 GameObject:
   m_ObjectHideFlags: 0
@@ -10786,6 +10790,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Salud: 20
   SonidoCurar: {fileID: 8300000, guid: 0718da81df8f1564f8e22d32a708c949, type: 3}
+  VolumeSonidoCurar: 1
 --- !u!114 &216739576
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -16016,7 +16021,6 @@ MonoBehaviour:
   TextScore: {fileID: 0}
   PrefabScore: {fileID: 0}
   PosScore: {fileID: 0}
-  die_fx: {fileID: 0}
 --- !u!114 &353711557
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -22801,7 +22805,6 @@ MonoBehaviour:
   TextScore: {fileID: 0}
   PrefabScore: {fileID: 0}
   PosScore: {fileID: 0}
-  die_fx: {fileID: 0}
 --- !u!114 &494483005
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -26878,7 +26881,6 @@ MonoBehaviour:
   TextScore: {fileID: 0}
   PrefabScore: {fileID: 0}
   PosScore: {fileID: 0}
-  die_fx: {fileID: 0}
 --- !u!114 &569262652
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -28489,6 +28491,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   kill_enemies:
   - {fileID: 1185916294}
+  survivour_num: 0
 --- !u!4 &611296702
 Transform:
   m_ObjectHideFlags: 0
@@ -29474,6 +29477,7 @@ MonoBehaviour:
   - {fileID: 1971113500}
   - {fileID: 2056135298}
   - {fileID: 309905455}
+  survivour_num: 0
 --- !u!4 &644849653
 Transform:
   m_ObjectHideFlags: 0
@@ -32428,7 +32432,6 @@ MonoBehaviour:
   PrefabScore: {fileID: 1892186745157182, guid: b8341ad366c986f4ebd7b8dc81fb0ef8,
     type: 2}
   PosScore: {fileID: 1075857526}
-  die_fx: {fileID: 0}
 --- !u!114 &698395425
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -32516,6 +32519,7 @@ MonoBehaviour:
   shell_efect_m: {fileID: 198076230649775678, guid: 3a875e93ad345f74b8662cfe669da381,
     type: 2}
   FXShotEnemy: {fileID: 8300000, guid: 9ebf0ed6d21bf4042b79b58f35db6af8, type: 3}
+  VolumeFXShotEnemy: 1
 --- !u!82 &698395429
 AudioSource:
   m_ObjectHideFlags: 0
@@ -41923,7 +41927,6 @@ MonoBehaviour:
   TextScore: {fileID: 0}
   PrefabScore: {fileID: 0}
   PosScore: {fileID: 0}
-  die_fx: {fileID: 0}
 --- !u!114 &900038774
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -44606,6 +44609,7 @@ MonoBehaviour:
   rb: {fileID: 957099238}
   SePuedeUsar: 0
   FxDash: {fileID: 8300000, guid: 546d68f4a1cb4944b855d14fcead5300, type: 3}
+  VolumeFxDash: 1
   ControlledObject: {fileID: 135870536}
   ColorPlayer: {fileID: 957099239}
   ParticleDashYellow: {fileID: 198691134350173468, guid: 1743e4e7911e6ef4da6be02553230a4b,
@@ -44614,6 +44618,7 @@ MonoBehaviour:
     type: 2}
   ParticleDashPink: {fileID: 198691134350173468, guid: 3d63f2a617fba1845a4aaa8b39cb8c99,
     type: 2}
+  DashMotion: {fileID: 0}
   p_sys: {fileID: 1439803652329598, guid: 9114aa7b7cdad4d479ca9e38ba3b0335, type: 2}
 --- !u!54 &957099238
 Rigidbody:
@@ -44644,12 +44649,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ParedCambioNo: 0
-  ParedRosa: {fileID: 0}
   DuracionMismoColor: 0
   MaxDuracion: 4
   cur_color: 0
   init_color: 0
   FxCambioColor: {fileID: 8300000, guid: 95b0c667a5ca8f345b2798680b90ca1d, type: 3}
+  VolumeFxCambioColor: 1
+  FxNoChangeColor: {fileID: 0}
+  VolumeFxNoChangeColor: 1
 --- !u!114 &957099240
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -44668,6 +44675,7 @@ MonoBehaviour:
   Cooldown: 5
   DuracionHabilidad: 7
   ActivateShieldFx: {fileID: 8300000, guid: 0718da81df8f1564f8e22d32a708c949, type: 3}
+  VolumeActivateShieldFx: 0
   ObjectShield: {fileID: 1406051884050424, guid: 4627aa8f4a6facd4aa5106886b65e1b1,
     type: 2}
 --- !u!114 &957099241
@@ -44699,6 +44707,8 @@ MonoBehaviour:
   weapon: {fileID: 37913970}
   NotFire: 0
   SepuedeUsar: 0
+  FX_Throw_gre: {fileID: 0}
+  VolumeFX_Throw_gre: 1
   upForce: 5
 --- !u!82 &957099242
 AudioSource:
@@ -44814,6 +44824,7 @@ MonoBehaviour:
   dur: 4
   effect: {fileID: 1248072988339676, guid: 825ae2e87d3a6ee4e972d3a279b44a25, type: 2}
   FxHabilidad: {fileID: 8300000, guid: 29357947ef2d5b240874991898dde298, type: 3}
+  VolumeFxHabilidad: 1
   cambioColor: {fileID: 957099239}
 --- !u!114 &957099244
 MonoBehaviour:
@@ -44980,6 +44991,7 @@ MonoBehaviour:
   Cooldown: 5
   DuracionHabilidad: 10
   ActivateSlowFx: {fileID: 0}
+  VolumeActivateSlowFx: 1
 --- !u!1 &957132934
 GameObject:
   m_ObjectHideFlags: 0
@@ -45190,7 +45202,6 @@ MonoBehaviour:
   TextScore: {fileID: 0}
   PrefabScore: {fileID: 0}
   PosScore: {fileID: 0}
-  die_fx: {fileID: 0}
 --- !u!114 &959375703
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -51092,7 +51103,6 @@ MonoBehaviour:
   TextScore: {fileID: 0}
   PrefabScore: {fileID: 0}
   PosScore: {fileID: 0}
-  die_fx: {fileID: 0}
 --- !u!114 &1109511380
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -56489,7 +56499,6 @@ MonoBehaviour:
   TextScore: {fileID: 0}
   PrefabScore: {fileID: 0}
   PosScore: {fileID: 0}
-  die_fx: {fileID: 0}
 --- !u!114 &1229518002
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -59726,7 +59735,6 @@ MonoBehaviour:
   PrefabScore: {fileID: 1892186745157182, guid: b8341ad366c986f4ebd7b8dc81fb0ef8,
     type: 2}
   PosScore: {fileID: 1875573226}
-  die_fx: {fileID: 0}
 --- !u!114 &1297438199
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -59814,6 +59822,7 @@ MonoBehaviour:
   shell_efect_m: {fileID: 198076230649775678, guid: 3a875e93ad345f74b8662cfe669da381,
     type: 2}
   FXShotEnemy: {fileID: 8300000, guid: 9ebf0ed6d21bf4042b79b58f35db6af8, type: 3}
+  VolumeFXShotEnemy: 1
 --- !u!82 &1297438203
 AudioSource:
   m_ObjectHideFlags: 0
@@ -60249,6 +60258,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   kill_enemies:
   - {fileID: 0}
+  survivour_num: 0
 --- !u!1 &1301601357
 GameObject:
   m_ObjectHideFlags: 0
@@ -65281,6 +65291,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   kill_enemies:
   - {fileID: 349157089}
+  survivour_num: 0
 --- !u!4 &1428894434
 Transform:
   m_ObjectHideFlags: 0
@@ -66412,6 +66423,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Salud: 20
   SonidoCurar: {fileID: 8300000, guid: 0718da81df8f1564f8e22d32a708c949, type: 3}
+  VolumeSonidoCurar: 1
 --- !u!114 &1446509172
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -78041,7 +78053,6 @@ MonoBehaviour:
   TextScore: {fileID: 0}
   PrefabScore: {fileID: 0}
   PosScore: {fileID: 0}
-  die_fx: {fileID: 0}
 --- !u!114 &1713186552
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -82110,7 +82121,6 @@ MonoBehaviour:
   TextScore: {fileID: 0}
   PrefabScore: {fileID: 0}
   PosScore: {fileID: 0}
-  die_fx: {fileID: 0}
 --- !u!114 &1804432077
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -90506,6 +90516,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   kill_enemies:
   - {fileID: 1515431713}
+  survivour_num: 0
 --- !u!4 &2001984248
 Transform:
   m_ObjectHideFlags: 0
@@ -94055,7 +94066,6 @@ MonoBehaviour:
   PrefabScore: {fileID: 1892186745157182, guid: b8341ad366c986f4ebd7b8dc81fb0ef8,
     type: 2}
   PosScore: {fileID: 2015243207}
-  die_fx: {fileID: 0}
 --- !u!114 &2081727716
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -94143,6 +94153,7 @@ MonoBehaviour:
   shell_efect_m: {fileID: 198076230649775678, guid: 3a875e93ad345f74b8662cfe669da381,
     type: 2}
   FXShotEnemy: {fileID: 8300000, guid: 9ebf0ed6d21bf4042b79b58f35db6af8, type: 3}
+  VolumeFXShotEnemy: 1
 --- !u!82 &2081727720
 AudioSource:
   m_ObjectHideFlags: 0
@@ -95522,6 +95533,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Salud: 20
   SonidoCurar: {fileID: 8300000, guid: 0718da81df8f1564f8e22d32a708c949, type: 3}
+  VolumeSonidoCurar: 1
 --- !u!114 &2110012678
 MonoBehaviour:
   m_ObjectHideFlags: 0
