@@ -116,6 +116,8 @@ public class Spawner : MonoBehaviour
         if (Random.Range(0, 4) == 0)
             s_enemy.GetComponentInChildren<EnemyBehaviour>().can_change_target = true;
 
+        s_enemy.GetComponentInChildren<EnemyBehaviour>().PauseMoveBySpawn(spawn_pause);
+
         // Pausar la patrulla durante un tiempo
         s_enemy.GetComponentInChildren<PatrolController>().PausePatrolBySpawn(spawn_pause);
 

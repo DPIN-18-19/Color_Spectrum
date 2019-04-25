@@ -53,7 +53,13 @@ public class EnemyBehaviour : MonoBehaviour
     protected bool in_home = false;                     // El enemigo está en el estado "Casa"
     public bool is_looking = false;                  // El enmigo está en el estado "Mirar"
     protected bool is_protected = false;
-    
+
+    ///////////////////////////////////////////////////////////////
+    // Comportamiento spawn
+    bool is_spawning;                       // Estado "Spawneando"
+    float spawn_c;                          // Contador de spawn
+    float spawn_dur;                        // Duracion de spawn
+
     /////////////////////////////////////////////////////
     // Variables de animacion
     [HideInInspector]
@@ -92,7 +98,10 @@ public class EnemyBehaviour : MonoBehaviour
         detect.SetTarget(target);
 
         if (!can_move)
+        {
+            Debug.Log("Stop moving");
             nav_agent.speed = 0;
+        }
 
         Ralentizar = GameObject.Find("Player_Naomi").GetComponent<Slow_Motion>();
         // Habilidad ralentizar
@@ -130,6 +139,9 @@ public class EnemyBehaviour : MonoBehaviour
         // Realizar "EnCasa"
         if (in_home)
             IsInHome();
+        // Realizar estado "Spawnear"
+        if (is_spawning)
+            IsSpawning();
 
         UpdateAnimState();
 
@@ -169,7 +181,7 @@ public class EnemyBehaviour : MonoBehaviour
                 // Comprobar si enemigo ve a jugador
                 if (detect.IsPlayerInFront(sight_angle) && detect.IsPlayerNear(sight_distance) && detect.IsPlayerOnSight(sight_distance))
                 {
-                    //Debug.Log("I see");
+                    Debug.Log("I see");
                     is_chasing = true;
                     in_home = false;
                 }
@@ -245,21 +257,38 @@ public class EnemyBehaviour : MonoBehaviour
         }
     }
 
+    public void PauseMoveBySpawn(float n_spawn_dur)
+    {
+        can_move = false;
+        can_rotate = false;
+        can_shoot = false;
+        
+        is_spawning = true;
+        spawn_dur = n_spawn_dur;
+        spawn_c = spawn_dur;
+    }
+
     ////////////////////////////////////////////////////////////////////
     // Funciones de estado
     // Estado "Perseguir"
     protected virtual void IsChasing()
     {
-        nav_agent.SetDestination(target.position);
-        //nav_agent.speed = chase_speed;
+        if (can_move)
+        {
+            Debug.Log("Chasing");
+            nav_agent.SetDestination(target.position);
+            //nav_agent.speed = chase_speed;
 
-        if(can_shoot)
+            attack_moving = true;
+            attack_in_place = false;
+
+            nav_agent.isStopped = false;
+
+
+        }
+        
+        if (can_shoot)
             shot.is_shooting = true;
-
-        attack_moving = true;
-        attack_in_place = false;
-
-        nav_agent.isStopped = false;
 
         if (patrol != null)
             patrol.is_patrolling = false;
@@ -268,7 +297,10 @@ public class EnemyBehaviour : MonoBehaviour
     // Estado "Regresar"
     protected virtual void IsRetreating()
     {
-        nav_agent.SetDestination(home.transform.position);
+        if (can_move)
+        {
+            nav_agent.SetDestination(home.transform.position);
+        }
 
         if(can_shoot)
             shot.is_shooting = false;
@@ -310,15 +342,18 @@ public class EnemyBehaviour : MonoBehaviour
     // Estado "Mirar"
     protected virtual void IsLooking()
     {
-        correct_look = LookAtAxis(target.position);
-        correct_look = Mathf.LerpAngle(0, correct_look, Time.deltaTime / Slow_Rotation * 15.5f);
-        transform.Rotate(0, correct_look, 0);
-
-        if (!is_protected)
+        if (can_rotate)
         {
-            attack_in_place = true;
-            nav_agent.velocity = Vector3.zero;
-            nav_agent.isStopped = true; // Se para el enemigo
+            correct_look = LookAtAxis(target.position);
+            correct_look = Mathf.LerpAngle(0, correct_look, Time.deltaTime / Slow_Rotation * 15.5f);
+            transform.Rotate(0, correct_look, 0);
+
+            if (!is_protected)
+            {
+                attack_in_place = true;
+                nav_agent.velocity = Vector3.zero;
+                nav_agent.isStopped = true; // Se para el enemigo
+            }
         }
     }
 
@@ -341,6 +376,22 @@ public class EnemyBehaviour : MonoBehaviour
         is_protected = true;
         nav_agent.isStopped = false;
         nav_agent.SetDestination(shield_pos.position);
+    }
+    
+    // Estado "Spawn"
+    void IsSpawning()
+    {
+        spawn_c -= Time.deltaTime;
+
+        if (spawn_c < 0.1f)
+        {
+            Debug.Log("Spawn End");
+            // Iniciar movimiento de nuevo
+            can_move = true;
+            can_rotate = true;
+            can_shoot = true;
+            is_spawning = false;
+        }
     }
 
     // Actualizar estado animacion
