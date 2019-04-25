@@ -31,7 +31,7 @@ public class EnemyBehaviour : MonoBehaviour
     [SerializeField]
     public bool can_patrol = true;
     [SerializeField]
-    protected bool can_change_target = false;            // Puede cambiar de target al jugador
+    public bool can_change_target = false;            // Puede cambiar de target al jugador
 
     //////////////////////////////////////////////////
     // Variables de informacion
@@ -88,7 +88,7 @@ public class EnemyBehaviour : MonoBehaviour
         patrol = GetComponent<PatrolController>();
         anim = GetComponent<Animator>();
         a_source = GetComponent<AudioSource>();
-        
+
         checker_c = 0.5f;
         prev_position = transform;
 
@@ -179,7 +179,7 @@ public class EnemyBehaviour : MonoBehaviour
         {
             is_chasing = false;
             is_retreat = true;
-           
+
         }
 
         if (!is_protected || !is_chasing)
@@ -188,7 +188,7 @@ public class EnemyBehaviour : MonoBehaviour
                 // Comprobar si enemigo ve a jugador
                 if (detect.IsPlayerInFront(sight_angle) && detect.IsPlayerNear(sight_distance) && detect.IsPlayerOnSight(sight_distance))
                 {
-                   
+
                     is_chasing = true;
                     in_home = false;
                 }
@@ -266,7 +266,7 @@ public class EnemyBehaviour : MonoBehaviour
         {
             if (stuck_phase != 0)
             {
-                
+
                 is_looking = true;
                 is_stuck = true;
                 is_chasing = false;
