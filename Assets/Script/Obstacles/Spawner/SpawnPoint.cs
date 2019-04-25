@@ -12,6 +12,7 @@ public class SpawnPoint : MonoBehaviour
     public List<Transform> spawn_homes;         // Origen de enemigos posibles
     [Tooltip("Insertar tantas particulas como enemigos haya, aunque se repitan.")]
     public List<Transform> spawn_particles;     // Particulas de spawn
+    public Transform spawn_target;				// Target posible de enemigo spawneado
 
     [Tooltip("Insertar valor que ocupan enemigos en 'spawnee_l'. Para finalizar oleada, insertar '-1'.")]
     public List<int> spawnee_order;     // Orden en el que spawnearan los enemigos
@@ -54,23 +55,23 @@ public class SpawnPoint : MonoBehaviour
 
     //////////////////////////////////////////////////////////
 
-    void Start ()
+    void Start()
     {
         spawner_l = new List<Spawner>();
         spawner_l.AddRange(transform.GetComponentsInChildren<Spawner>());
         spawner_it = 0;
-        
+
         if (start_wave != WaveType.Time)
         {
             wave_l = new List<KillCondition>();
             KillCondition n_kill = new KillCondition();
             wave_l.Add(n_kill);
         }
-	}
+    }
 
 
-	// Update is called once per frame
-	void Update ()
+    // Update is called once per frame
+    void Update()
     {
         if (active)
         {
@@ -82,15 +83,15 @@ public class SpawnPoint : MonoBehaviour
                     StartWaveByTime();
                 else if (start_wave == WaveType.KillAll || start_wave == WaveType.KillSome)
                     CheckKill();
-                else if(start_wave == WaveType.TimeForward)
+                else if (start_wave == WaveType.TimeForward)
                 {
                     StartWaveByTime();
                     CheckKill();
                 }
             }
         }
-	}
-    
+    }
+
     public void ActivateSpawn()
     {
         Debug.Log("Spawn is active");
@@ -103,11 +104,11 @@ public class SpawnPoint : MonoBehaviour
         next_spawn_c -= Time.deltaTime;
 
         // Comprobar si hay activada una oleada y si empieza el siguiente spawn
-        if(is_wave && next_spawn_c < 0)
+        if (is_wave && next_spawn_c < 0)
         {
             Debug.Log("Spawn is working");
             // Comprobar si proximo spawner esta desocupado
-            if(!spawner_l[spawner_it].CheckIfSpawning())
+            if (!spawner_l[spawner_it].CheckIfSpawning())
             {
                 // Comprobar si fin de spawner
                 if (spawnee_it >= spawnee_order.Count)
@@ -118,7 +119,7 @@ public class SpawnPoint : MonoBehaviour
 
                 Debug.Log("Make Spawn " + spawnee_it);
                 // Comprobar si fin de oleada
-                if(spawnee_order[spawnee_it] == -1)
+                if (spawnee_order[spawnee_it] == -1)
                 {
                     PrepareNextWave();
                     ++spawnee_it;
@@ -127,7 +128,7 @@ public class SpawnPoint : MonoBehaviour
 
                 // Hacer spawn con datos de enemigo
                 int data = Random.Range(0, spawn_patrols.Count);
-                spawner_l[spawner_it].StartSpawning(spawnee_l[spawnee_order[spawnee_it]], spawn_patrols[data], spawn_homes[data], spawn_particles[spawnee_order[spawnee_it]]);
+                spawner_l[spawner_it].StartSpawning(spawnee_l[spawnee_order[spawnee_it]], spawn_patrols[data], spawn_homes[data], spawn_particles[spawnee_order[spawnee_it]], spawn_target);
 
                 Debug.Log("Spawn was made");
 
@@ -149,7 +150,7 @@ public class SpawnPoint : MonoBehaviour
     void FinishSpawn()
     {
         // Reiniciar spawn
-        if(can_reset)
+        if (can_reset)
         {
             spawnee_it = 0;
         }
@@ -165,7 +166,7 @@ public class SpawnPoint : MonoBehaviour
     {
         is_wave = false;
 
-        switch(start_wave)
+        switch (start_wave)
         {
             case WaveType.Time:
                 Debug.Log("Wave Time");
@@ -197,7 +198,7 @@ public class SpawnPoint : MonoBehaviour
     // Comenzar proxima oleada tras tiempo
     void StartWaveByTime()
     {
-        if(next_spawn_c < 0)
+        if (next_spawn_c < 0)
         {
             is_wave = true;
 
@@ -231,14 +232,14 @@ public class SpawnPoint : MonoBehaviour
         {
             next_spawn_c = 0;
         }
-            //wave_l[wave_it].SwitchKill();
+        //wave_l[wave_it].SwitchKill();
     }
 
     void CheckKill()
     {
         kill_c -= Time.deltaTime;
 
-        if(kill_c < 0)
+        if (kill_c < 0)
         {
             kill_c = kill_dur;
             wave_l[wave_it].CheckKillCondition();

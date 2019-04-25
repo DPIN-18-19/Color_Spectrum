@@ -29,7 +29,7 @@ public class EnemyBehaviour : MonoBehaviour
     [SerializeField]
     protected bool can_rotate = true;
     [SerializeField]
-    protected bool can_change_target = false;            // Puede cambiar de target al jugador
+    public bool can_change_target = false;            // Puede cambiar de target al jugador
 
     //////////////////////////////////////////////////
     // Variables de informacion
@@ -215,6 +215,12 @@ public class EnemyBehaviour : MonoBehaviour
             is_chasing = true;
         else
             is_chasing = false;
+    }
+
+    public void ResetTarget(Transform n_target)
+    {
+        init_target = n_target;
+        target = init_target;
     }
 
     // Cambiar objetivo de disparo

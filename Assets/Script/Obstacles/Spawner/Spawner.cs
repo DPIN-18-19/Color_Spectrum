@@ -21,14 +21,15 @@ public class Spawner : MonoBehaviour
     Transform patrol;               // Patrulla asignada
     Transform home;                 // Origen de enemigo asignada
     Transform particle;             // Particula asignada
-	
+    Transform target;               // Target asignado
+
     public bool CheckIfSpawning()
     {
         return is_spawning;
     }
 
-	// Update is called once per frame
-	void Update ()
+    // Update is called once per frame
+    void Update()
     {
         // Estado "Preparando"
         if (is_preparing)
@@ -37,10 +38,10 @@ public class Spawner : MonoBehaviour
         // Estado "Terminando"
         if (is_refreshing)
             IsRefreshing();
-	}
+    }
 
     // Preparar spawner
-    public void StartSpawning(Transform n_enemy, Transform n_patrol, Transform n_home, Transform n_particle)
+    public void StartSpawning(Transform n_enemy, Transform n_patrol, Transform n_home, Transform n_particle, Transform n_target)
     {
         // Reiniciar variables de spawner
         is_spawning = true;
@@ -52,6 +53,7 @@ public class Spawner : MonoBehaviour
         patrol = n_patrol;
         home = n_home;
         particle = n_particle;
+        target = n_target;
 
         Instantiate(particle, transform.Find("SpawnEffect").position, transform.rotation);
     }
@@ -63,7 +65,7 @@ public class Spawner : MonoBehaviour
         to_spawn_c -= Time.deltaTime;
 
         // Cambiar a estado "Terminando"
-        if(to_spawn_c < 0)
+        if (to_spawn_c < 0)
         {
             is_preparing = false;
             SpawnEnemy();           // Realizar spawn
@@ -108,6 +110,11 @@ public class Spawner : MonoBehaviour
         // Insertar nuevo punto origen 
         Transform s_home = s_enemy.Find("EnemyHome");
         s_home.position = home.position;
+
+        // Insertar nuevo target
+        s_enemy.GetComponentInChildren<EnemyBehaviour>().ResetTarget(target);
+        if (Random.Range(0, 4) == 0)
+            s_enemy.GetComponentInChildren<EnemyBehaviour>().can_change_target = true;
 
         // Pausar la patrulla durante un tiempo
         s_enemy.GetComponentInChildren<PatrolController>().PausePatrolBySpawn(spawn_pause);
