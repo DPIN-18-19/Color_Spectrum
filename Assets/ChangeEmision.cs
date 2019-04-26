@@ -6,7 +6,7 @@ public class ChangeEmision : MonoBehaviour {
 
     
     private float Timer;
-    public Beacon Baliza;
+    private Beacon Baliza;
     //public bool Damage;
     // Use this for initialization
     void Start () {

@@ -4,15 +4,17 @@ using UnityEngine;
 
 public class BeaconRenderer : MonoBehaviour {
 
-    Material m_Material;
+    Renderer m_Material;
     public Material NormalMat;
     public Material DamageMat;
-    public Beacon Baliza;
+    Beacon Baliza;
     public float TimeMaterialDamage;
     private float MaxTimeMaterialDamage;
     // Use this for initialization
-    void Start () {
-        m_Material = GetComponent<Renderer>().material;
+    void Start ()
+    {
+        Baliza = GetComponentInParent<Beacon>();
+        m_Material = GetComponent<Renderer>();
         MaxTimeMaterialDamage = TimeMaterialDamage;
     }
 	
@@ -20,12 +22,13 @@ public class BeaconRenderer : MonoBehaviour {
 	void Update () {
 		if (Baliza.isDamage)
         {
-            m_Material = DamageMat;
-            TimeMaterialDamage -= TimeMaterialDamage;
+            Debug.Log("ChangeMaterial");
+            m_Material.material = DamageMat;
+            TimeMaterialDamage -= Time.deltaTime;
         }
-        if(TimeMaterialDamage >= 0)
+        if(TimeMaterialDamage <= 0)
         {
-            m_Material = NormalMat;
+            m_Material.material = NormalMat;
             TimeMaterialDamage = MaxTimeMaterialDamage;
             Baliza.isDamage = false;
         }

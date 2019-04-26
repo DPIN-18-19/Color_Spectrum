@@ -84,9 +84,9 @@ public class Beacon : MonoBehaviour
 
     void IsDead()
     {
-        death_pos = transform.parent.Find("DieEffectPos");
+        death_pos = transform.Find("DieEffectPos");
         Instantiate(death_part, death_pos.position, Quaternion.identity);
-        DeactivateBeacon();
+        //DeactivateBeacon();
         Destroy(death_pos.gameObject);
         Destroy(this.gameObject);
     }
