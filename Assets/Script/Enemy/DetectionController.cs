@@ -75,7 +75,6 @@ public class DetectionController : MonoBehaviour
                 continue;
             else
             { 
-
                 float obstacle_dist = Vector3.Distance(transform.position, hits[i].point);
 
                 // Se puede ver a través del obstáculo

@@ -70,7 +70,7 @@ public class EnemyBehaviour : MonoBehaviour
 
     ///////////////////////////////////////////////////////
     //RalentizarMovimiento
-   protected Slow_Motion Ralentizar;
+    protected Slow_Motion Ralentizar;
 
     protected  float MaxSpeedSlow;
     protected  float MaxAnimSlow;
@@ -100,7 +100,11 @@ public class EnemyBehaviour : MonoBehaviour
         if (!can_move)
         {
             Debug.Log("Stop moving");
-            nav_agent.speed = 0;
+
+            if (is_spawning)
+                nav_agent.velocity = Vector3.zero;
+            else
+                nav_agent.speed = 0;
         }
 
         Ralentizar = GameObject.Find("Player_Naomi").GetComponent<Slow_Motion>();
@@ -283,8 +287,6 @@ public class EnemyBehaviour : MonoBehaviour
             attack_in_place = false;
 
             nav_agent.isStopped = false;
-
-
         }
         
         if (can_shoot)
@@ -297,6 +299,8 @@ public class EnemyBehaviour : MonoBehaviour
     // Estado "Regresar"
     protected virtual void IsRetreating()
     {
+        Debug.Log("Retreat");
+
         if (can_move)
         {
             nav_agent.SetDestination(home.transform.position);
@@ -336,7 +340,9 @@ public class EnemyBehaviour : MonoBehaviour
     // Estado "Patrullar"
     protected void IsPatrolling()
     {
+        Debug.Log("Patrol");
         attack_moving = true;
+        attack_in_place = false;
     }
 
     // Estado "Mirar"
@@ -360,8 +366,12 @@ public class EnemyBehaviour : MonoBehaviour
     // Estado "EnCasa"
     protected void IsInHome()
     {
-        if (patrol != null && !patrol.is_patrolling)
+        Debug.Log("Home");
+
+        if (patrol != null && patrol.is_patrolling == false)
+        {
             attack_moving = false;
+        }
     }
     
     // Estado "Protegido". El enemigo entra en el estado desde que comienza a acercarse a un punto de protección
@@ -391,6 +401,7 @@ public class EnemyBehaviour : MonoBehaviour
             can_rotate = true;
             can_shoot = true;
             is_spawning = false;
+            nav_agent.isStopped = false;
         }
     }
 

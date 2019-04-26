@@ -2809,6 +2809,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5088dd01fe25e5a4f9f44665013d2dbc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  enemy_type: 0
   cur_color: 2
   chase_speed: 7
 --- !u!114 &114437734137085608
@@ -2915,6 +2916,9 @@ MonoBehaviour:
   - {fileID: 198410871006054420, guid: 5e64849e24a3b3949a4999b2eb9ef198, type: 2}
   - {fileID: 198960496170012676, guid: 6b023f22181b1d640a11c4ae1a24ade8, type: 2}
   score: 100
+  TextScore: {fileID: 0}
+  PrefabScore: {fileID: 0}
+  PosScore: {fileID: 0}
   die_fx: {fileID: 0}
 --- !u!114 &114945170648301998
 MonoBehaviour:
@@ -2958,11 +2962,17 @@ MonoBehaviour:
   can_see: 1
   can_shoot: 1
   can_move: 1
+  can_rotate: 1
+  can_change_target: 0
+  speed: 5
+  init_target: {fileID: 0}
   alert_distance: 10
   sight_distance: 25
   safe_distance: 3
   sight_angle: 25
   lost_distance: 25
+  is_chasing: 0
+  is_looking: 0
   attack_moving: 0
   attack_in_place: 0
 --- !u!137 &137079776697271050

@@ -7095,7 +7095,7 @@ Prefab:
     m_Modifications:
     - target: {fileID: 4421888213126604, guid: 9ab20e45167ae3249a4a5b50f3cfb5d3, type: 2}
       propertyPath: m_LocalPosition.x
-      value: -45.48
+      value: -54.3
       objectReference: {fileID: 0}
     - target: {fileID: 4421888213126604, guid: 9ab20e45167ae3249a4a5b50f3cfb5d3, type: 2}
       propertyPath: m_LocalPosition.y
@@ -7103,7 +7103,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4421888213126604, guid: 9ab20e45167ae3249a4a5b50f3cfb5d3, type: 2}
       propertyPath: m_LocalPosition.z
-      value: 7.88
+      value: 26.59
       objectReference: {fileID: 0}
     - target: {fileID: 4421888213126604, guid: 9ab20e45167ae3249a4a5b50f3cfb5d3, type: 2}
       propertyPath: m_LocalRotation.x
@@ -7133,6 +7133,11 @@ Prefab:
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 114188129784888902, guid: 9ab20e45167ae3249a4a5b50f3cfb5d3,
+        type: 2}
+      propertyPath: init_target
+      value: 
+      objectReference: {fileID: 387367620}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 9ab20e45167ae3249a4a5b50f3cfb5d3, type: 2}
   m_IsPrefabAsset: 0
@@ -19638,6 +19643,11 @@ Transform:
   m_Father: {fileID: 1035269963}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!4 &387367620 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 4799260336148380, guid: e09ec697f48a0f848835cc4245c3d7aa,
+    type: 2}
+  m_PrefabInternal: {fileID: 928857062}
 --- !u!1001 &388581659
 Prefab:
   m_ObjectHideFlags: 0
@@ -47602,6 +47612,18 @@ Prefab:
       propertyPath: beacon_name
       value: A
       objectReference: {fileID: 0}
+    - target: {fileID: 1434281107605776, guid: e09ec697f48a0f848835cc4245c3d7aa, type: 2}
+      propertyPath: m_TagString
+      value: Beacon
+      objectReference: {fileID: 0}
+    - target: {fileID: 1838283426472962, guid: e09ec697f48a0f848835cc4245c3d7aa, type: 2}
+      propertyPath: m_TagString
+      value: Beacon
+      objectReference: {fileID: 0}
+    - target: {fileID: 1653731487689512, guid: e09ec697f48a0f848835cc4245c3d7aa, type: 2}
+      propertyPath: m_TagString
+      value: Beacon
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e09ec697f48a0f848835cc4245c3d7aa, type: 2}
   m_IsPrefabAsset: 0
@@ -52366,13 +52388,18 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 1357271386326440, guid: ba3ccd9899be08a4aaa69388922eda94, type: 2}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 114682790081600164, guid: ba3ccd9899be08a4aaa69388922eda94,
         type: 2}
       propertyPath: enemy_type
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 114047843885937194, guid: ba3ccd9899be08a4aaa69388922eda94,
+        type: 2}
+      propertyPath: init_target
+      value: 
+      objectReference: {fileID: 387367620}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ba3ccd9899be08a4aaa69388922eda94, type: 2}
   m_IsPrefabAsset: 0
@@ -87718,6 +87745,11 @@ Prefab:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 114051738010940234, guid: da68b54020d20ad439ac4c55ee67bbe3,
+        type: 2}
+      propertyPath: spawnee_order.Array.size
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 4289777150406664, guid: da68b54020d20ad439ac4c55ee67bbe3, type: 2}
       propertyPath: m_LocalPosition.x
       value: -61.06
@@ -87799,6 +87831,30 @@ Prefab:
         type: 2}
       propertyPath: spawn_pause
       value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 1402677022770860, guid: da68b54020d20ad439ac4c55ee67bbe3, type: 2}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 114051738010940234, guid: da68b54020d20ad439ac4c55ee67bbe3,
+        type: 2}
+      propertyPath: spawnee_order.Array.data[2]
+      value: -1
+      objectReference: {fileID: 0}
+    - target: {fileID: 114051738010940234, guid: da68b54020d20ad439ac4c55ee67bbe3,
+        type: 2}
+      propertyPath: spawnee_order.Array.data[4]
+      value: -1
+      objectReference: {fileID: 0}
+    - target: {fileID: 114051738010940234, guid: da68b54020d20ad439ac4c55ee67bbe3,
+        type: 2}
+      propertyPath: spawnee_order.Array.data[1]
+      value: -1
+      objectReference: {fileID: 0}
+    - target: {fileID: 114051738010940234, guid: da68b54020d20ad439ac4c55ee67bbe3,
+        type: 2}
+      propertyPath: start_wave
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: da68b54020d20ad439ac4c55ee67bbe3, type: 2}
