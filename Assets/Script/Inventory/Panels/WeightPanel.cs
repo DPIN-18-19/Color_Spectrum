@@ -10,7 +10,7 @@ public class WeightPanel : MonoBehaviour
     public ChipList character_p_chips;
 
     float weight = 0.01f;
-    public float max_weight = 100;
+    float max_weight = 100;
 
     TextMesh text;
     Image weight_bar;
@@ -20,7 +20,9 @@ public class WeightPanel : MonoBehaviour
     {
         weight_bar = transform.Find("WeightBar").GetComponent<Image>();
         weight_text = transform.Find("WeightText").GetComponent<TextMeshProUGUI>();
-        
+
+        max_weight = PlayerManager.Instance.weight;
+
         CalculateWeight();
     }
 

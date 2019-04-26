@@ -31,14 +31,30 @@ public class UnlockMan : MonoBehaviour
         LevelMenuManager.Instance.UnlockLevels();
     }
 
+    // Comprobacion del estado de desbloqueo por puntuacion de un nivel
+    public bool CheckScoreLevelUnlock(string level_name)
+    { 
+        // Recoger indice de desbloqueables
+        int index = GetUnlockIndex(level_name);
+
+        // Comprobar si el contenido ya fue desbloqueado
+        if (unlock_per_level.unlock_l[index].unlocked)
+            return false;
+        else
+            return true;
+    }
+
     // Desbloqueo mediante puntuacion
     public void ScoreLevelUnlock(string level_name)
     {
+        // Recoger indice de desbloqueables
         int index = GetUnlockIndex(level_name);
 
+        // Comprobar si el contenido ya fue desbloqueado
         if (!unlock_per_level.unlock_l[index].unlocked)
         {
             int it;     // Iterador
+            // Evitar que el contenido vuelva a desbloquearse
             unlock_per_level.unlock_l[index].unlocked = true;
 
             // Insertar chips bonus
@@ -64,13 +80,32 @@ public class UnlockMan : MonoBehaviour
                 data.Clone(all_abilities.SearchChipById(unlock_per_level.unlock_l[index].ability_ids[it]));
                 inv_abilities.abi_list.Add(data);
             }
+            
+            // Aplicar mejora de memoria RAM
+            PlayerManager.Instance.weight += unlock_per_level.unlock_l[index].weight;
         }
+    }
+
+    // Comprobar estado de desbloqueo de tienda de un nivel
+    public bool CheckStoreUnlock(string level_name)
+    {
+        // Recoger indice de desbloqueables
+        int index = GetUnlockIndex(level_name);
+
+        // Comprobar si el contenido ya fue desbloqueado
+        if (!unlock_per_level.unlock_l[index].s_unlocked)
+            return false;
+        else
+            return true;
     }
 
     // Desbloqueo de objetos de tienda
     public void StoreUnlock(string level_name)
     {
+        // Recoger indice de desbloqueables
         int index = GetUnlockIndex(level_name);
+
+        Debug.Log("Level index is "  + index);
 
         if (!unlock_per_level.unlock_l[index].s_unlocked)
         {

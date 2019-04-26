@@ -12,35 +12,31 @@ MonoBehaviour:
   m_Name: UnlockableData
   m_EditorClassIdentifier: 
   unlock_l:
-  - level_name: Chico
-    upgrade_ids:
-    - 3
-    weapon_ids:
-    - Pistol
-    ability_ids:
-    - Ability2
-    s_upgrade_ids:
-    - 3
-    - 1
-    s_weapon_ids:
-    - Pistol
-    s_ability_ids:
-    - Ability2
-    unlocked: 0
-    s_unlocked: 1
-  - level_name: Harpo
+  - level_name: Nivel_1
     upgrade_ids: []
     weapon_ids: []
     ability_ids: []
+    weight: 10
+    s_upgrade_ids: []
+    s_weapon_ids: []
+    s_ability_ids: []
+    unlocked: 1
+    s_unlocked: 1
+  - level_name: Nivel_2
+    upgrade_ids: []
+    weapon_ids: []
+    ability_ids: []
+    weight: 10
     s_upgrade_ids: []
     s_weapon_ids: []
     s_ability_ids: []
     unlocked: 0
     s_unlocked: 0
-  - level_name: Groucho
+  - level_name: Nivel_3
     upgrade_ids: []
     weapon_ids: []
     ability_ids: []
+    weight: 10
     s_upgrade_ids: []
     s_weapon_ids: []
     s_ability_ids: []
