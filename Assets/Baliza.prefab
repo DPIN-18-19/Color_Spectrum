@@ -120,7 +120,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1979382485913630}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 1.8, z: -0}
+  m_LocalPosition: {x: 0, y: 4.66, z: -0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 4593324583466058}
@@ -371,7 +371,7 @@ MonoBehaviour:
   healthbar: {fileID: 0}
   invincible_dur: 1
   isDamage: 0
-  death_part: {fileID: 198085412305327686, guid: d1f231a539122664c86f0a6a6a456157,
+  death_part: {fileID: 198308906954415650, guid: 7ed56f2f8d0d8af4f84c6bc4f80726f1,
     type: 2}
 --- !u!114 &114223456977676012
 MonoBehaviour:
@@ -403,7 +403,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   NormalMat: {fileID: 2100000, guid: 38620af22841e774f836714286482fdc, type: 2}
   DamageMat: {fileID: 2100000, guid: d56329b1a5bbf2044bd3a2171c0de36c, type: 2}
-  Baliza: {fileID: 114139974535039580}
   TimeMaterialDamage: 0.7
 --- !u!114 &114894478771625264
 MonoBehaviour:
@@ -416,4 +415,3 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 90ab3e34968ed894ebe3b709c2574786, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Damage: 0
