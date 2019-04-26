@@ -27,7 +27,7 @@ public class BeaconRenderer : MonoBehaviour {
         {
             m_Material = NormalMat;
             TimeMaterialDamage = MaxTimeMaterialDamage;
-            Baliza.isDamage = false
+            Baliza.isDamage = false;
         }
 
 	}

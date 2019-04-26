@@ -22,6 +22,7 @@ GameObject:
   - component: {fileID: 33103899095785310}
   - component: {fileID: 23896950360389504}
   - component: {fileID: 114223456977676012}
+  - component: {fileID: 114725869992470276}
   m_Layer: 0
   m_Name: Material
   m_TagString: Untagged
@@ -74,8 +75,25 @@ GameObject:
   - component: {fileID: 33102866758373574}
   - component: {fileID: 23534329478366576}
   - component: {fileID: 114894478771625264}
+  - component: {fileID: 65878147563018400}
+  - component: {fileID: 114139974535039580}
   m_Layer: 0
   m_Name: Baliza
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!1 &1979382485913630
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 4587397406062946}
+  m_Layer: 0
+  m_Name: DieEffectPos
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -95,6 +113,19 @@ Transform:
   m_Father: {fileID: 4593324583466058}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!4 &4587397406062946
+Transform:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1979382485913630}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 1.8, z: -0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 4593324583466058}
+  m_RootOrder: 2
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &4593324583466058
 Transform:
   m_ObjectHideFlags: 1
@@ -107,6 +138,7 @@ Transform:
   m_Children:
   - {fileID: 4701529717494904}
   - {fileID: 4274999477043214}
+  - {fileID: 4587397406062946}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -274,6 +306,18 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!65 &65878147563018400
+BoxCollider:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1631107790473390}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.83537513, y: 8.305258, z: 0.36754644}
+  m_Center: {x: 0, y: 4.152629, z: 0.000000007450581}
 --- !u!108 &108375357680646194
 Light:
   m_ObjectHideFlags: 1
@@ -311,6 +355,24 @@ Light:
   m_UseColorTemperature: 0
   m_ShadowRadius: 0
   m_ShadowAngle: 0
+--- !u!114 &114139974535039580
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1631107790473390}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 626fef3444514d14b8d61f921e4c7509, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  beacon_name: 
+  max_health: 20
+  healthbar: {fileID: 0}
+  invincible_dur: 1
+  isDamage: 0
+  death_part: {fileID: 198085412305327686, guid: d1f231a539122664c86f0a6a6a456157,
+    type: 2}
 --- !u!114 &114223456977676012
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -328,6 +390,21 @@ MonoBehaviour:
   colNumber: 0
   totalCells: 15
   fps: 8
+--- !u!114 &114725869992470276
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1430388397856502}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d9757361ddf60e1419675313e7b9f04d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  NormalMat: {fileID: 2100000, guid: 38620af22841e774f836714286482fdc, type: 2}
+  DamageMat: {fileID: 2100000, guid: d56329b1a5bbf2044bd3a2171c0de36c, type: 2}
+  Baliza: {fileID: 114139974535039580}
+  TimeMaterialDamage: 0.7
 --- !u!114 &114894478771625264
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -339,4 +416,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 90ab3e34968ed894ebe3b709c2574786, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  intensity: 1.2
+  Damage: 0

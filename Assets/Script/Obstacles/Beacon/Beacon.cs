@@ -1,6 +1,8 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
+using TMPro;
 
 public class Beacon : MonoBehaviour
 {
@@ -11,7 +13,11 @@ public class Beacon : MonoBehaviour
     // Health
     public float max_health;        // Vida de la baliza
     float health;
-    
+
+    public Image healthbar;
+    bool bar_active;
+    float bar_val;
+
     // Invincivility
     [SerializeField]
     float invincible_dur;           // Duracion de invencibilidad
@@ -19,38 +25,39 @@ public class Beacon : MonoBehaviour
     bool is_invincible;             // Comprobador de invencibilidad
 
     public bool isDamage;
-    
 
     // Death
     Transform death_pos;
     [SerializeField]
     ParticleSystem death_part;
 
-	// Use this for initialization
-	void Start ()
+    // Use this for initialization
+    void Start()
     {
         health = max_health;
+    }
 
-	}
-	
-	// Update is called once per frame
-	void Update ()
+    // Update is called once per frame
+    void Update()
     {
         if (is_invincible)
             IsInvincible();
-	}
+    }
 
     // Recibir dano
     public void GetDamage(float damage)
     {
         // Comprobar estado de invencibilidad
-        if(!is_invincible)
+        if (!is_invincible)
         {
+            Debug.Log("I got hit. Missing " + health);
             isDamage = true;
-            //Debug.Log("I got hit. Missing " + health);
             health -= damage;
             invincible_c = invincible_dur;
             is_invincible = true;
+
+            //if (bar_active)
+            //    UpdateHealthBar();
 
             if (health < 0)
                 IsDead();
@@ -59,7 +66,9 @@ public class Beacon : MonoBehaviour
 
     void UpdateHealthBar()
     {
-        float bar_val = health / max_health;
+        bar_val = health / max_health;
+
+        healthbar.fillAmount = health / max_health;
     }
 
     void IsInvincible()
@@ -77,7 +86,21 @@ public class Beacon : MonoBehaviour
     {
         death_pos = transform.parent.Find("DieEffectPos");
         Instantiate(death_part, death_pos.position, Quaternion.identity);
+        DeactivateBeacon();
         Destroy(death_pos.gameObject);
         Destroy(this.gameObject);
+    }
+
+    public void ActivateBeacon()
+    {
+        healthbar.transform.parent.gameObject.SetActive(true);
+        bar_active = true;
+        healthbar.transform.parent.Find("Name").GetComponent<TextMeshProUGUI>().text = beacon_name;
+    }
+
+    public void DeactivateBeacon()
+    {
+        healthbar.transform.parent.gameObject.SetActive(false);
+        bar_active = false;
     }
 }
