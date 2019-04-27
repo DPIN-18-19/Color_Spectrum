@@ -16,8 +16,8 @@ public class HealthController : MonoBehaviour
     public ParticleSystem [] die_effect;    // Effect particle array
     public Transform PosParticleDead;
     int player_color;                       // Player's color
-    public AudioClip FxDie;
-    public float VolumeFxDie = 1;
+  //  public AudioClip FxDie;
+  //  public float VolumeFxDie = 1;
     public AudioClip FxDamage;
     public float VolumeFxDamage = 1;
     private bool FxDamageOnlyOne;
@@ -197,7 +197,7 @@ public class HealthController : MonoBehaviour
         if (health <= 0.4)
         {
             isdead = true;
-            AudioSource.PlayClipAtPoint(FxDie, transform.position, VolumeFxDie);
+            //AudioSource.PlayClipAtPoint(FxDie, transform.position, VolumeFxDie);
             if (player_color < die_effect.Length)
             {
                 //- Search a way to destroy die effect after finishing
