@@ -56,7 +56,6 @@ GameObject:
   - component: {fileID: 4608706421216514}
   - component: {fileID: 33481128222791436}
   - component: {fileID: 23318891143629788}
-  - component: {fileID: 65116565860649346}
   m_Layer: 0
   m_Name: Cube
   m_TagString: Untagged
@@ -79,7 +78,7 @@ GameObject:
   - component: {fileID: 114139974535039580}
   m_Layer: 0
   m_Name: Baliza
-  m_TagString: Untagged
+  m_TagString: Beacon
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -133,7 +132,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1631107790473390}
   m_LocalRotation: {x: 0.000000021855694, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -60.4, y: 0.23, z: 21.031889}
+  m_LocalPosition: {x: -45.95, y: 0.23, z: 19.55}
   m_LocalScale: {x: 2.521991, y: 0.6158993, z: 3.4422467}
   m_Children:
   - {fileID: 4701529717494904}
@@ -294,18 +293,6 @@ MeshFilter:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1563249571776570}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
---- !u!65 &65116565860649346
-BoxCollider:
-  m_ObjectHideFlags: 1
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1563249571776570}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 1, y: 1, z: 1}
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!65 &65878147563018400
 BoxCollider:
   m_ObjectHideFlags: 1
@@ -367,7 +354,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   beacon_name: 
-  max_health: 20
+  max_health: 200
   healthbar: {fileID: 0}
   invincible_dur: 1
   isDamage: 0
@@ -403,7 +390,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   NormalMat: {fileID: 2100000, guid: 38620af22841e774f836714286482fdc, type: 2}
   DamageMat: {fileID: 2100000, guid: d56329b1a5bbf2044bd3a2171c0de36c, type: 2}
-  TimeMaterialDamage: 0.7
+  TimeMaterialDamage: 0.9
 --- !u!114 &114894478771625264
 MonoBehaviour:
   m_ObjectHideFlags: 1

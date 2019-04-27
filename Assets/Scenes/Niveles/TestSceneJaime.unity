@@ -1365,7 +1365,7 @@ Prefab:
     m_Modifications:
     - target: {fileID: 4593324583466058, guid: 8b2538b690a613740a06dd2ef13ec8a8, type: 2}
       propertyPath: m_LocalPosition.x
-      value: -60.4
+      value: -45.95
       objectReference: {fileID: 0}
     - target: {fileID: 4593324583466058, guid: 8b2538b690a613740a06dd2ef13ec8a8, type: 2}
       propertyPath: m_LocalPosition.y
@@ -1373,7 +1373,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4593324583466058, guid: 8b2538b690a613740a06dd2ef13ec8a8, type: 2}
       propertyPath: m_LocalPosition.z
-      value: 31.93
+      value: 19.55
       objectReference: {fileID: 0}
     - target: {fileID: 4593324583466058, guid: 8b2538b690a613740a06dd2ef13ec8a8, type: 2}
       propertyPath: m_LocalRotation.x
@@ -1397,10 +1397,6 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 1631107790473390, guid: 8b2538b690a613740a06dd2ef13ec8a8, type: 2}
       propertyPath: m_Name
-      value: Beacon
-      objectReference: {fileID: 0}
-    - target: {fileID: 1631107790473390, guid: 8b2538b690a613740a06dd2ef13ec8a8, type: 2}
-      propertyPath: m_TagString
       value: Beacon
       objectReference: {fileID: 0}
     m_RemovedComponents: []
@@ -82481,7 +82477,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &1758180940
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -90562,7 +90558,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4347722969757000, guid: ba3ccd9899be08a4aaa69388922eda94, type: 2}
       propertyPath: m_LocalPosition.y
-      value: -0.1707598
+      value: 0.109
       objectReference: {fileID: 0}
     - target: {fileID: 4347722969757000, guid: ba3ccd9899be08a4aaa69388922eda94, type: 2}
       propertyPath: m_LocalPosition.z
@@ -90597,6 +90593,15 @@ Prefab:
       propertyPath: init_target
       value: 
       objectReference: {fileID: 450993964}
+    - target: {fileID: 114047843885937194, guid: ba3ccd9899be08a4aaa69388922eda94,
+        type: 2}
+      propertyPath: can_change_target
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1357271386326440, guid: ba3ccd9899be08a4aaa69388922eda94, type: 2}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ba3ccd9899be08a4aaa69388922eda94, type: 2}
   m_IsPrefabAsset: 0
