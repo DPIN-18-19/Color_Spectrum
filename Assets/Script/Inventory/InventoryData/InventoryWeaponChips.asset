@@ -35,6 +35,8 @@ MonoBehaviour:
       is_instant: 1
       cooldown_dur: 4
       active_dur: 0
+      store_brief: 
+      tooltip_brief: 
       display_icon: {fileID: 21300000, guid: 6f21ad8441bd7f8409798ee1681414cb, type: 3}
       weight: 10
       equipped: 1
@@ -66,6 +68,8 @@ MonoBehaviour:
       is_instant: 0
       cooldown_dur: 2
       active_dur: 5
+      store_brief: 
+      tooltip_brief: 
       display_icon: {fileID: 21300000, guid: 2105f159727d2854c94d41eda3b85d43, type: 3}
       weight: 10
       equipped: 1
@@ -97,6 +101,8 @@ MonoBehaviour:
       is_instant: 1
       cooldown_dur: 4
       active_dur: 0
+      store_brief: 
+      tooltip_brief: 
       display_icon: {fileID: 21300000, guid: 5348ecdc4efb60c498d75f2763571126, type: 3}
       weight: 10
       equipped: 1
@@ -104,4 +110,37 @@ MonoBehaviour:
     ability_name: Grenade
     added_chips: []
     slots: 3
-    equipped: 1
+    equipped: 0
+  - id: Gun4
+    base_gun:
+      name: Rifle
+      gun: {fileID: 1884693661767280, guid: f6b50fdc03c91a24296e317ae2d0ca45, type: 2}
+      bullet: {fileID: 1341849102906586, guid: 5f318d6af04c9324ca8e2aeafad9039e, type: 2}
+      speed: 20
+      damage: 5
+      range: 10
+      spray: 1
+      cadence: 0.15
+      num_bullets: 1
+      automatic: 1
+      weight: 10
+      ability: 
+      fx_shot: {fileID: 8300000, guid: 2c270755a083f394bb2ccf4037733bea, type: 3}
+      display_icon: {fileID: 21300000, guid: 89a0dbf2839fc2742a15e15b81490290, type: 3}
+      price: 0
+    ability:
+      id: Ability3
+      name: Grenade
+      is_instant: 1
+      cooldown_dur: 4
+      active_dur: 0
+      store_brief: 
+      tooltip_brief: 
+      display_icon: {fileID: 21300000, guid: 5348ecdc4efb60c498d75f2763571126, type: 3}
+      weight: 10
+      equipped: 1
+      price: 0
+    ability_name: Grenade
+    added_chips: []
+    slots: 3
+    equipped: 0
