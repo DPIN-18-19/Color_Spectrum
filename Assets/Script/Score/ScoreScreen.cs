@@ -5,7 +5,9 @@ using UnityEngine.UI;
 
 public class ScoreScreen : MonoBehaviour
 {
-    List<Text> score_texts;
+    List<Text> score_texts;             // Textos de puntuacion
+    Transform item_unlock;              // Aviso de desbloqueo obtenido
+
     bool do_once = true;
     public ScoreList level_scores;
     public string NextLevel;
@@ -23,6 +25,9 @@ public class ScoreScreen : MonoBehaviour
         score_texts = new List<Text>();
         score_texts.AddRange(transform.Find("ModifiableTexts").GetComponentsInChildren<Text>());
         ScoreManager.Instance.LoadScoreData(level_scores);
+
+        item_unlock = transform.Find("ItemUnlock");
+        item_unlock.gameObject.SetActive(false);
     }
     
 
@@ -55,11 +60,17 @@ public class ScoreScreen : MonoBehaviour
         LevelMenuManager.Instance.UpdateScoreInfo();
 
         // Actualizar desbloqueables
-        //UnlockMan.Instance.LevelUnlock();
-        //UnlockMan.Instance.StoreUnlock(LevelMenuManager.Instance.selection.name);
-        
-        //if(LevelMenuManager.Instance.selection.unlock_score <= ScoreManager.Instance.GetFinalScore())
-        //    UnlockMan.Instance.ScoreLevelUnlock(LevelMenuManager.Instance.selection.name);
+        UnlockMan.Instance.LevelUnlock();
+        UnlockMan.Instance.StoreUnlock(LevelMenuManager.Instance.selection.name);
+
+        // Comprobar si puntuacion de desbloqueo fue superada
+        if (LevelMenuManager.Instance.selection.unlock_score <= ScoreManager.Instance.GetFinalScore())
+        {
+            if (UnlockMan.Instance.CheckScoreLevelUnlock(LevelMenuManager.Instance.selection.name))
+                ShowUnlock();
+
+            UnlockMan.Instance.ScoreLevelUnlock(LevelMenuManager.Instance.selection.name);
+        }
 
 
         //UnityEngine.SceneManagement.SceneManager.LoadScene("Store");
@@ -74,4 +85,9 @@ public class ScoreScreen : MonoBehaviour
         //UnityEngine.SceneManagement.SceneManager.LoadScene("Store");
     }
 
+    void ShowUnlock()
+    {
+        Debug.Log("Here");
+        item_unlock.gameObject.SetActive(true);
+    }
 }

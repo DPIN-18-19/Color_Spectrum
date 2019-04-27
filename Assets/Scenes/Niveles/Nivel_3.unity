@@ -3947,7 +3947,6 @@ MonoBehaviour:
     type: 2}
   MeshRenderer: {fileID: 0}
   SkinnedMeshRenderer: {fileID: 1288860419}
-  is_Explosive: 0
   Explosive: {fileID: 0}
 --- !u!1001 &137779376
 Prefab:
@@ -4087,7 +4086,8 @@ MonoBehaviour:
   - {fileID: 198410871006054420, guid: e8aea81e9760d524fa416e72fc23bcfa, type: 2}
   - {fileID: 198960496170012676, guid: 7efa9a88b93e80b469c213b03b15d1ae, type: 2}
   PosParticleDead: {fileID: 243727160}
-  FxDie: {fileID: 8300000, guid: c38412696178e174f8fa3703b7b169b2, type: 3}
+  FxDamage: {fileID: 0}
+  VolumeFxDamage: 1
   HealthYellow: {fileID: 198945216879961990, guid: 79dcddc10e0bd5b4795b7bb169850ecf,
     type: 2}
   HealthBlue: {fileID: 198945216879961990, guid: 79dcddc10e0bd5b4795b7bb169850ecf,
@@ -4108,6 +4108,8 @@ MonoBehaviour:
   TimeGlichEffect: 0.6
   camera: {fileID: 1522268809}
   isdead: 0
+  DamageParticle: {fileID: 0}
+  PosDamageParticle: {fileID: 0}
 --- !u!1001 &140209124
 Prefab:
   m_ObjectHideFlags: 0
@@ -17326,6 +17328,7 @@ MonoBehaviour:
   - {fileID: 1703324628}
   - {fileID: 68059322}
   - {fileID: 597803968}
+  survivour_num: 0
 --- !u!4 &610078246
 Transform:
   m_ObjectHideFlags: 0
@@ -17990,6 +17993,106 @@ MeshFilter:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 647098094}
   m_Mesh: {fileID: 4300004, guid: 53b1f77b5647461428c34dfc5bc3fc7f, type: 3}
+--- !u!1001 &651005845
+Prefab:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 1178205365}
+    m_Modifications:
+    - target: {fileID: 224944299115198906, guid: 71dea4c0fe2119f4eb7d47782ef01bfb,
+        type: 2}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 224944299115198906, guid: 71dea4c0fe2119f4eb7d47782ef01bfb,
+        type: 2}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 224944299115198906, guid: 71dea4c0fe2119f4eb7d47782ef01bfb,
+        type: 2}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 224944299115198906, guid: 71dea4c0fe2119f4eb7d47782ef01bfb,
+        type: 2}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 224944299115198906, guid: 71dea4c0fe2119f4eb7d47782ef01bfb,
+        type: 2}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 224944299115198906, guid: 71dea4c0fe2119f4eb7d47782ef01bfb,
+        type: 2}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 224944299115198906, guid: 71dea4c0fe2119f4eb7d47782ef01bfb,
+        type: 2}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 224944299115198906, guid: 71dea4c0fe2119f4eb7d47782ef01bfb,
+        type: 2}
+      propertyPath: m_RootOrder
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 224944299115198906, guid: 71dea4c0fe2119f4eb7d47782ef01bfb,
+        type: 2}
+      propertyPath: m_AnchoredPosition.x
+      value: 228.4
+      objectReference: {fileID: 0}
+    - target: {fileID: 224944299115198906, guid: 71dea4c0fe2119f4eb7d47782ef01bfb,
+        type: 2}
+      propertyPath: m_AnchoredPosition.y
+      value: -260
+      objectReference: {fileID: 0}
+    - target: {fileID: 224944299115198906, guid: 71dea4c0fe2119f4eb7d47782ef01bfb,
+        type: 2}
+      propertyPath: m_SizeDelta.x
+      value: 88.56
+      objectReference: {fileID: 0}
+    - target: {fileID: 224944299115198906, guid: 71dea4c0fe2119f4eb7d47782ef01bfb,
+        type: 2}
+      propertyPath: m_SizeDelta.y
+      value: 78.07
+      objectReference: {fileID: 0}
+    - target: {fileID: 224944299115198906, guid: 71dea4c0fe2119f4eb7d47782ef01bfb,
+        type: 2}
+      propertyPath: m_AnchorMin.x
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 224944299115198906, guid: 71dea4c0fe2119f4eb7d47782ef01bfb,
+        type: 2}
+      propertyPath: m_AnchorMin.y
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 224944299115198906, guid: 71dea4c0fe2119f4eb7d47782ef01bfb,
+        type: 2}
+      propertyPath: m_AnchorMax.x
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 224944299115198906, guid: 71dea4c0fe2119f4eb7d47782ef01bfb,
+        type: 2}
+      propertyPath: m_AnchorMax.y
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 224944299115198906, guid: 71dea4c0fe2119f4eb7d47782ef01bfb,
+        type: 2}
+      propertyPath: m_Pivot.x
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 224944299115198906, guid: 71dea4c0fe2119f4eb7d47782ef01bfb,
+        type: 2}
+      propertyPath: m_Pivot.y
+      value: 0.5
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 71dea4c0fe2119f4eb7d47782ef01bfb, type: 2}
+  m_IsPrefabAsset: 0
 --- !u!1 &651157497
 GameObject:
   m_ObjectHideFlags: 0
@@ -20641,6 +20744,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Salud: 20
   SonidoCurar: {fileID: 8300000, guid: 0718da81df8f1564f8e22d32a708c949, type: 3}
+  VolumeSonidoCurar: 1
 --- !u!114 &748638904
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -26899,6 +27003,7 @@ MonoBehaviour:
   rb: {fileID: 957099238}
   SePuedeUsar: 0
   FxDash: {fileID: 8300000, guid: 546d68f4a1cb4944b855d14fcead5300, type: 3}
+  VolumeFxDash: 1
   ControlledObject: {fileID: 135870536}
   ColorPlayer: {fileID: 957099239}
   ParticleDashYellow: {fileID: 198691134350173468, guid: 1743e4e7911e6ef4da6be02553230a4b,
@@ -26907,6 +27012,7 @@ MonoBehaviour:
     type: 2}
   ParticleDashPink: {fileID: 198691134350173468, guid: 3d63f2a617fba1845a4aaa8b39cb8c99,
     type: 2}
+  DashMotion: {fileID: 0}
   p_sys: {fileID: 1439803652329598, guid: 9114aa7b7cdad4d479ca9e38ba3b0335, type: 2}
 --- !u!54 &957099238
 Rigidbody:
@@ -26937,12 +27043,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ParedCambioNo: 0
-  ParedRosa: {fileID: 0}
   DuracionMismoColor: 0
   MaxDuracion: 4
   cur_color: 0
   init_color: 0
   FxCambioColor: {fileID: 8300000, guid: 95b0c667a5ca8f345b2798680b90ca1d, type: 3}
+  VolumeFxCambioColor: 1
+  FxNoChangeColor: {fileID: 0}
+  VolumeFxNoChangeColor: 1
 --- !u!114 &957099240
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -26961,6 +27069,7 @@ MonoBehaviour:
   Cooldown: 5
   DuracionHabilidad: 7
   ActivateShieldFx: {fileID: 8300000, guid: 0718da81df8f1564f8e22d32a708c949, type: 3}
+  VolumeActivateShieldFx: 0
   ObjectShield: {fileID: 1406051884050424, guid: 4627aa8f4a6facd4aa5106886b65e1b1,
     type: 2}
 --- !u!114 &957099241
@@ -26992,6 +27101,8 @@ MonoBehaviour:
   weapon: {fileID: 37913970}
   NotFire: 0
   SepuedeUsar: 0
+  FX_Throw_gre: {fileID: 0}
+  VolumeFX_Throw_gre: 1
   upForce: 5
 --- !u!82 &957099242
 AudioSource:
@@ -27107,6 +27218,7 @@ MonoBehaviour:
   dur: 4
   effect: {fileID: 1248072988339676, guid: 825ae2e87d3a6ee4e972d3a279b44a25, type: 2}
   FxHabilidad: {fileID: 8300000, guid: 29357947ef2d5b240874991898dde298, type: 3}
+  VolumeFxHabilidad: 1
   cambioColor: {fileID: 957099239}
 --- !u!114 &957099244
 MonoBehaviour:
@@ -27250,6 +27362,7 @@ MonoBehaviour:
   Cooldown: 5
   DuracionHabilidad: 20
   ActivateSlowFx: {fileID: 0}
+  VolumeActivateSlowFx: 1
 --- !u!114 &957099251
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -31250,6 +31363,7 @@ MonoBehaviour:
   - {fileID: 23935621}
   - {fileID: 1847362972}
   - {fileID: 75667861}
+  survivour_num: 0
 --- !u!4 &1105136432
 Transform:
   m_ObjectHideFlags: 0
@@ -31407,6 +31521,7 @@ MonoBehaviour:
   - {fileID: 1278281594}
   - {fileID: 629450885}
   - {fileID: 470580065}
+  survivour_num: 0
 --- !u!4 &1112236843
 Transform:
   m_ObjectHideFlags: 0
@@ -47794,6 +47909,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   kill_enemies:
   - {fileID: 0}
+  survivour_num: 0
 --- !u!4 &1712538950 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4025692944954256, guid: f1cb7232152865f40b6b3b48328d0b51,
@@ -49004,6 +49120,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Salud: 20
   SonidoCurar: {fileID: 8300000, guid: 0718da81df8f1564f8e22d32a708c949, type: 3}
+  VolumeSonidoCurar: 1
 --- !u!114 &1742261457
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -51290,6 +51407,7 @@ MonoBehaviour:
   - {fileID: 986143084}
   - {fileID: 787776120}
   - {fileID: 308884829}
+  survivour_num: 0
 --- !u!4 &1828620222
 Transform:
   m_ObjectHideFlags: 0

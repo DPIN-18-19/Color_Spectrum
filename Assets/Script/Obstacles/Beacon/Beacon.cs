@@ -56,8 +56,8 @@ public class Beacon : MonoBehaviour
             invincible_c = invincible_dur;
             is_invincible = true;
 
-            //if (bar_active)
-            //    UpdateHealthBar();
+            if (bar_active)
+               UpdateHealthBar();
 
             if (health < 0)
                 IsDead();
@@ -86,7 +86,7 @@ public class Beacon : MonoBehaviour
     {
         death_pos = transform.Find("DieEffectPos");
         Instantiate(death_part, death_pos.position, Quaternion.identity);
-        //DeactivateBeacon();
+        DeactivateBeacon();
         Destroy(death_pos.gameObject);
         Destroy(this.gameObject);
     }

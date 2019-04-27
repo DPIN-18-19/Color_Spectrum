@@ -29,6 +29,7 @@ public class PlayerManager : MonoBehaviour
     int num_chips = 0;
 
     public float money = 0;
+    public float weight = 100;
 
     // Use this for initialization
     void Start()
