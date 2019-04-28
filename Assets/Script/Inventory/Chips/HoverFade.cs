@@ -4,9 +4,9 @@ using UnityEngine;
 
 public class HoverFade : MonoBehaviour
 {
-    float show_delay = 1.0f;
-    float to_visible_dur = 0.5f;
-    float to_invisible_dur = 0.2f;
+    float show_delay = 0.5f;            // Tiempo que tarda en comenzar a aparecer
+    float to_visible_dur = 0.5f;        // Tiempo de aparición
+    float to_invisible_dur = 0.1f;      // Tiempo de desvanecimiento
     bool follow = true;
 
     private void Start()
