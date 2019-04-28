@@ -9376,13 +9376,13 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1287859783471824}
   m_LocalRotation: {x: -0, y: 1, z: -0, w: 0}
-  m_LocalPosition: {x: -39.19, y: 0.202, z: 9.12}
+  m_LocalPosition: {x: 10.157967, y: 0.48799896, z: 54.348785}
   m_LocalScale: {x: 1.0498652, y: 1.049864, z: 1.0498652}
   m_Children:
   - {fileID: 4883158461925796}
   m_Father: {fileID: 0}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 180, z: 0}
 --- !u!4 &4699930586796988
 Transform:
   m_ObjectHideFlags: 1
@@ -11562,7 +11562,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 0}
   m_PlayOnAwake: 1
-  m_Volume: 1
+  m_Volume: 0.499
   m_Pitch: 1
   Loop: 0
   Mute: 0
@@ -11811,6 +11811,7 @@ MonoBehaviour:
   dur: 4
   effect: {fileID: 1248072988339676, guid: 825ae2e87d3a6ee4e972d3a279b44a25, type: 2}
   FxHabilidad: {fileID: 8300000, guid: 29357947ef2d5b240874991898dde298, type: 3}
+  VolumeFxHabilidad: 0.5
   cambioColor: {fileID: 114451129755308060}
 --- !u!114 &114116106142899612
 MonoBehaviour:
@@ -11828,6 +11829,7 @@ MonoBehaviour:
   Cooldown: 5
   DuracionHabilidad: 20
   ActivateSlowFx: {fileID: 0}
+  VolumeActivateSlowFx: 1
 --- !u!114 &114268793728992624
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -11839,8 +11841,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3e0f7981e9649dc41b49e6eeb4dd7beb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  health: 999
-  max_health: 999
+  health: 90
+  max_health: 90
   cambioColor: {fileID: 114451129755308060}
   max_armor: 0
   die_effect:
@@ -11848,7 +11850,8 @@ MonoBehaviour:
   - {fileID: 198410871006054420, guid: e8aea81e9760d524fa416e72fc23bcfa, type: 2}
   - {fileID: 198960496170012676, guid: 7efa9a88b93e80b469c213b03b15d1ae, type: 2}
   PosParticleDead: {fileID: 4927018901209196}
-  FxDie: {fileID: 8300000, guid: c38412696178e174f8fa3703b7b169b2, type: 3}
+  FxDamage: {fileID: 0}
+  VolumeFxDamage: 1
   HealthYellow: {fileID: 198945216879961990, guid: 79dcddc10e0bd5b4795b7bb169850ecf,
     type: 2}
   HealthBlue: {fileID: 198945216879961990, guid: 79dcddc10e0bd5b4795b7bb169850ecf,
@@ -11856,13 +11859,13 @@ MonoBehaviour:
   HealthPink: {fileID: 198945216879961990, guid: 79dcddc10e0bd5b4795b7bb169850ecf,
     type: 2}
   MaterialsPlayer: {fileID: 114652965684706598}
-  TimeDamageMat: 0.6
+  TimeDamageMat: 0.7
   "Da\xF1o": 0
   TimeHealtheMat: 0.7
   MaxTimeHealhthMat: 0.7
   curar: 0
-  TimeGlitchtheMat: 0.7
-  MaxGlitchthMat: 0.7
+  TimeGlitchtheMat: 0.67
+  MaxGlitchthMat: 0.67
   ParedNopasar: 0
   BlackGlitch: {fileID: 114451129755308060}
   MovePlayer: {fileID: 114081732494132398}
@@ -11894,7 +11897,7 @@ MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1932695455589572}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: e62e80894112e404e9b483ed563f9e94, type: 3}
   m_Name: 
@@ -11916,6 +11919,8 @@ MonoBehaviour:
   weapon: {fileID: 114344628822269572}
   NotFire: 0
   SepuedeUsar: 0
+  FX_Throw_gre: {fileID: 0}
+  VolumeFX_Throw_gre: 1
   upForce: 5
 --- !u!114 &114394944839152200
 MonoBehaviour:
@@ -11935,6 +11940,7 @@ MonoBehaviour:
   rb: {fileID: 54558269098473626}
   SePuedeUsar: 0
   FxDash: {fileID: 8300000, guid: 546d68f4a1cb4944b855d14fcead5300, type: 3}
+  VolumeFxDash: 1
   ControlledObject: {fileID: 114420169365513524}
   ColorPlayer: {fileID: 114451129755308060}
   ParticleDashExplosiveYellow: {fileID: 198691134350173468, guid: 1743e4e7911e6ef4da6be02553230a4b,
@@ -12010,6 +12016,7 @@ MonoBehaviour:
   rb: {fileID: 54558269098473626}
   SePuedeUsar: 0
   FxDash: {fileID: 8300000, guid: 546d68f4a1cb4944b855d14fcead5300, type: 3}
+  VolumeFxDash: 1
   ControlledObject: {fileID: 114420169365513524}
   ColorPlayer: {fileID: 114451129755308060}
   ParticleDashYellow: {fileID: 198691134350173468, guid: 1743e4e7911e6ef4da6be02553230a4b,
@@ -12032,12 +12039,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ParedCambioNo: 0
-  ParedRosa: {fileID: 0}
-  DuracionMismoColor: 0
+  DuracionMismoColor: 0.67
   MaxDuracion: 4
   cur_color: 0
   init_color: 0
   FxCambioColor: {fileID: 8300000, guid: 95b0c667a5ca8f345b2798680b90ca1d, type: 3}
+  VolumeFxCambioColor: 0.6
+  FxNoChangeColor: {fileID: 0}
+  VolumeFxNoChangeColor: 0.6
 --- !u!114 &114470462089029236
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -12067,6 +12076,7 @@ MonoBehaviour:
   Cooldown: 5
   DuracionHabilidad: 7
   ActivateShieldFx: {fileID: 8300000, guid: 0718da81df8f1564f8e22d32a708c949, type: 3}
+  VolumeActivateShieldFx: 1
   ObjectShield: {fileID: 1406051884050424, guid: 4627aa8f4a6facd4aa5106886b65e1b1,
     type: 2}
 --- !u!114 &114636674937019562
@@ -12164,7 +12174,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1c9ead5135e26da46a0223a36c7ae4f2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  base_health: 999
+  base_health: 90
   base_armor: 0
   base_speed: 7
   health: 0

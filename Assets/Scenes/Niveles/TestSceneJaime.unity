@@ -37496,7 +37496,8 @@ Prefab:
       propertyPath: m_Name
       value: Terminal_1 (5)
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 65558301066153504, guid: a41a9101ad335984991d72d502da7598, type: 2}
   m_SourcePrefab: {fileID: 100100000, guid: a41a9101ad335984991d72d502da7598, type: 2}
   m_IsPrefabAsset: 0
 --- !u!1 &883352054
@@ -45833,12 +45834,6 @@ Transform:
   m_Father: {fileID: 6558472}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &997237751 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 114652965684706598, guid: a0981ff69c3b0f4498a4d5a23db49b54,
-    type: 2}
-  m_PrefabInternal: {fileID: 1554264941}
-  m_Script: {fileID: 11500000, guid: efa253f98f20e694783d630490204063, type: 3}
 --- !u!1 &1005095979
 GameObject:
   m_ObjectHideFlags: 0
@@ -66345,6 +66340,11 @@ Prefab:
       propertyPath: m_RootOrder
       value: 51
       objectReference: {fileID: 0}
+    - target: {fileID: 114470462089029236, guid: a0981ff69c3b0f4498a4d5a23db49b54,
+        type: 2}
+      propertyPath: cam
+      value: 
+      objectReference: {fileID: 173183245}
     - target: {fileID: 114081732494132398, guid: a0981ff69c3b0f4498a4d5a23db49b54,
         type: 2}
       propertyPath: Cam1
@@ -66355,96 +66355,6 @@ Prefab:
       propertyPath: camera
       value: 
       objectReference: {fileID: 1721451222}
-    - target: {fileID: 114470462089029236, guid: a0981ff69c3b0f4498a4d5a23db49b54,
-        type: 2}
-      propertyPath: cam
-      value: 
-      objectReference: {fileID: 173183245}
-    - target: {fileID: 114385589453124172, guid: a0981ff69c3b0f4498a4d5a23db49b54,
-        type: 2}
-      propertyPath: m_Enabled
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 114394944839152200, guid: a0981ff69c3b0f4498a4d5a23db49b54,
-        type: 2}
-      propertyPath: m_Enabled
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 114385589453124172, guid: a0981ff69c3b0f4498a4d5a23db49b54,
-        type: 2}
-      propertyPath: FX_Throw_gre
-      value: 
-      objectReference: {fileID: 0}
-    - target: {fileID: 114268793728992624, guid: a0981ff69c3b0f4498a4d5a23db49b54,
-        type: 2}
-      propertyPath: FxDamage
-      value: 
-      objectReference: {fileID: 0}
-    - target: {fileID: 114451129755308060, guid: a0981ff69c3b0f4498a4d5a23db49b54,
-        type: 2}
-      propertyPath: FxNoChangeColor
-      value: 
-      objectReference: {fileID: 0}
-    - target: {fileID: 114451129755308060, guid: a0981ff69c3b0f4498a4d5a23db49b54,
-        type: 2}
-      propertyPath: MaterialsPlayer
-      value: 
-      objectReference: {fileID: 997237751}
-    - target: {fileID: 82312450409375620, guid: a0981ff69c3b0f4498a4d5a23db49b54,
-        type: 2}
-      propertyPath: m_Volume
-      value: 0.499
-      objectReference: {fileID: 0}
-    - target: {fileID: 114451129755308060, guid: a0981ff69c3b0f4498a4d5a23db49b54,
-        type: 2}
-      propertyPath: VolumeFxCambioColor
-      value: 0.6
-      objectReference: {fileID: 0}
-    - target: {fileID: 114451129755308060, guid: a0981ff69c3b0f4498a4d5a23db49b54,
-        type: 2}
-      propertyPath: VolumeFxNoChangeColor
-      value: 0.6
-      objectReference: {fileID: 0}
-    - target: {fileID: 114445871441492416, guid: a0981ff69c3b0f4498a4d5a23db49b54,
-        type: 2}
-      propertyPath: VolumeFxDash
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 114622862469429364, guid: a0981ff69c3b0f4498a4d5a23db49b54,
-        type: 2}
-      propertyPath: VolumeActivateShieldFx
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 114116106142899612, guid: a0981ff69c3b0f4498a4d5a23db49b54,
-        type: 2}
-      propertyPath: VolumeActivateSlowFx
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 114115845755434910, guid: a0981ff69c3b0f4498a4d5a23db49b54,
-        type: 2}
-      propertyPath: VolumeFxHabilidad
-      value: 0.5
-      objectReference: {fileID: 0}
-    - target: {fileID: 114852605818612574, guid: a0981ff69c3b0f4498a4d5a23db49b54,
-        type: 2}
-      propertyPath: base_health
-      value: 20
-      objectReference: {fileID: 0}
-    - target: {fileID: 114268793728992624, guid: a0981ff69c3b0f4498a4d5a23db49b54,
-        type: 2}
-      propertyPath: MaxGlitchthMat
-      value: 0.67
-      objectReference: {fileID: 0}
-    - target: {fileID: 114268793728992624, guid: a0981ff69c3b0f4498a4d5a23db49b54,
-        type: 2}
-      propertyPath: TimeGlitchtheMat
-      value: 0.67
-      objectReference: {fileID: 0}
-    - target: {fileID: 114451129755308060, guid: a0981ff69c3b0f4498a4d5a23db49b54,
-        type: 2}
-      propertyPath: DuracionMismoColor
-      value: 0.67
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a0981ff69c3b0f4498a4d5a23db49b54, type: 2}
   m_IsPrefabAsset: 0
