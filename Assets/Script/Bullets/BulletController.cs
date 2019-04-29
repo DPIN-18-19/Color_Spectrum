@@ -36,6 +36,7 @@ public class BulletController : MonoBehaviour
     public ParticleSystem DestroyEffectBlue;
     private bool BlueDestroyeffect;
     public AudioClip DestroyBulletFx;
+    public float VolumeDestroyBulletFx = 1;
 
     public float TimeTrasparenteMat;
     private float MaxTimeTrasparenteMat;
@@ -297,8 +298,8 @@ public class BulletController : MonoBehaviour
             {
                 if (col.gameObject.GetComponent<EnemyHealth>().IsWeak(gameObject.tag, gameObject.layer))
                 {
-                    Debug.Log("Ennmy collision " + col.gameObject.name);
-                    Debug.Log("BalaIsWeak");
+                   // Debug.Log("Ennmy collision " + col.gameObject.name);
+                   // Debug.Log("BalaIsWeak");
                     col.gameObject.GetComponent<EnemyHealth>().GetDamage(bullet_damage);
 
                     if (YellowDestroyeffect)
@@ -325,6 +326,14 @@ public class BulletController : MonoBehaviour
             if(Sniper == false)
             Destroy(gameObject);
         }
+        // Colision contra una baliza
+        else if (col.transform.name.Contains("Beacon"))
+        {
+            if (!friendly)
+                col.transform.GetComponent<Beacon>().GetDamage(bullet_damage);
+
+            Destroy(gameObject);
+        }
         else
         {
             Vector3 rotParticle = col.contacts[0].normal;
@@ -333,7 +342,8 @@ public class BulletController : MonoBehaviour
            // bulletRot.LookAt(col.contacts[0].);
             if (YellowDestroyeffect)
             {
-                Instantiate(DestroyEffectYellow.gameObject, transform.position,Quaternion.LookRotation(Quaternion.Euler(0,Angle, 0)* transform.forward, Vector3.up));
+                Instantiate(DestroyEffectYellow.gameObject, transform.position,
+                    Quaternion.LookRotation(Quaternion.Euler(0,Angle, 0)* transform.forward, Vector3.up));
                 
                
                 Destroy(gameObject);
@@ -341,14 +351,16 @@ public class BulletController : MonoBehaviour
             }
             if (PinkDestroyeffect)
             {
-                Instantiate(DestroyEffectPink.gameObject, transform.position, Quaternion.LookRotation(Quaternion.Euler(0, Angle, 0) * transform.forward, Vector3.up));
+                Instantiate(DestroyEffectPink.gameObject, transform.position, 
+                    Quaternion.LookRotation(Quaternion.Euler(0, Angle, 0) * transform.forward, Vector3.up));
                 // Debug.Log("destroy bullet");
                 Destroy(gameObject);
               //  AudioSource.PlayClipAtPoint(DestroyBulletFx, transform.position);
             }
             if (BlueDestroyeffect)
             {
-                Instantiate(DestroyEffectBlue.gameObject, transform.position, Quaternion.LookRotation(Quaternion.Euler(0, Angle, 0) * transform.forward, Vector3.up));
+                Instantiate(DestroyEffectBlue.gameObject, transform.position, 
+                    Quaternion.LookRotation(Quaternion.Euler(0, Angle, 0) * transform.forward, Vector3.up));
                 //  Debug.Log("destroy bullet");
                 Destroy(gameObject);
               //  AudioSource.PlayClipAtPoint(DestroyBulletFx, transform.position);

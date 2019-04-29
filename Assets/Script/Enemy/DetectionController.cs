@@ -62,6 +62,7 @@ public class DetectionController : MonoBehaviour
             if (hits[i].transform.gameObject.tag == target.tag)
                 my_target = i;
         }
+        //Debug.Log("Target is "+ hits[my_target].transform.name);
 
         // El usuario no ha detectado al objetivo
         if (hits.Length == 0 || my_target == hits.Length)
@@ -80,11 +81,14 @@ public class DetectionController : MonoBehaviour
                 if (obstacle_dist < target_dir.magnitude)
                     if (GetComponent<Enemy>().cur_color.ToString() != hits[i].transform.gameObject.tag)
                     {
+                        Debug.Log("Target is " + hits[i].transform.name);
+
                         return false;
                     }
             }
         }
-
+        Debug.Log("Target is Thanos " + hits[my_target].transform.name);
         return true;
+
     }
 }

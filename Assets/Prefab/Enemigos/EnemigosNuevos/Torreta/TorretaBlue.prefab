@@ -800,7 +800,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 0}
   m_PlayOnAwake: 1
-  m_Volume: 1
+  m_Volume: 0.307
   m_Pitch: 1
   Loop: 0
   Mute: 0
@@ -1028,6 +1028,7 @@ MonoBehaviour:
   can_shoot: 1
   can_move: 0
   can_rotate: 1
+  can_patrol: 1
   can_change_target: 0
   init_target: {fileID: 0}
   alert_distance: 10
@@ -1091,7 +1092,6 @@ MonoBehaviour:
   PrefabScore: {fileID: 1892186745157182, guid: b8341ad366c986f4ebd7b8dc81fb0ef8,
     type: 2}
   PosScore: {fileID: 224571047847010634}
-  die_fx: {fileID: 0}
 --- !u!114 &114575698103718260
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1156,7 +1156,8 @@ MonoBehaviour:
     type: 2}
   shell_efect_m: {fileID: 198076230649775678, guid: 3a875e93ad345f74b8662cfe669da381,
     type: 2}
-  FXShotEnemy: {fileID: 0}
+  FXShotEnemy: {fileID: 8300000, guid: 2c270755a083f394bb2ccf4037733bea, type: 3}
+  VolumeFXShotEnemy: 1
   weapon_1: {fileID: 4340927320979144}
   shot_dur_1: 0.2
   shot_dur_max_1: 0.2

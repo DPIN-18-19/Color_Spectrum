@@ -7,8 +7,13 @@ public class ObstaculoAmplificador : MonoBehaviour {
     public float TimeBetweenShot;
     public float TimeShots;
     public Transform FirePos;
+    public AudioClip FxAmplificador;
+    public float VolumeFxAmplificador = 1f;
+
+    private AudioSource source;
     // Use this for initialization
     void Start () {
+        source = GetComponent<AudioSource>();
         TimeBetweenShot = TimeShots;
     }
 	
@@ -19,7 +24,7 @@ public class ObstaculoAmplificador : MonoBehaviour {
         {
             Instantiate(Amplificador, FirePos.position, FirePos.rotation);
             TimeBetweenShot = TimeShots;
-           
+            source.PlayOneShot(FxAmplificador, VolumeFxAmplificador);
         }
 
     }

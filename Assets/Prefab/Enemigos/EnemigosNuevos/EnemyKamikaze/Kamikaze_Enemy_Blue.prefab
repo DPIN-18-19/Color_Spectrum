@@ -2654,7 +2654,6 @@ MonoBehaviour:
   PrefabScore: {fileID: 1892186745157182, guid: b8341ad366c986f4ebd7b8dc81fb0ef8,
     type: 2}
   PosScore: {fileID: 4586789556559264}
-  die_fx: {fileID: 0}
 --- !u!114 &114786753330652554
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -2692,6 +2691,7 @@ MonoBehaviour:
   can_shoot: 0
   can_move: 1
   can_rotate: 1
+  can_patrol: 1
   can_change_target: 0
   init_target: {fileID: 0}
   alert_distance: 10
@@ -2704,6 +2704,7 @@ MonoBehaviour:
   attack_moving: 0
   attack_in_place: 0
   SonidoKi: {fileID: 8300000, guid: fa55aaad6aa020c4e8cddbc8e96cc302, type: 3}
+  FxSonidoKi: 0.7
 --- !u!114 &114979034490046300
 MonoBehaviour:
   m_ObjectHideFlags: 1

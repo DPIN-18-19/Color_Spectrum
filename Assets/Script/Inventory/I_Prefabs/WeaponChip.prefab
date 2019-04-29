@@ -135,7 +135,7 @@ GameObject:
   - component: {fileID: 114856286454716230}
   - component: {fileID: 225408244992691278}
   - component: {fileID: 114863092664039416}
-  - component: {fileID: 114779156421078228}
+  - component: {fileID: 114428218415989952}
   m_Layer: 5
   m_Name: WeaponChip
   m_TagString: Untagged
@@ -395,6 +395,28 @@ MonoBehaviour:
   - {fileID: 0}
   m_baseMaterial: {fileID: 0}
   m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
+--- !u!114 &114428218415989952
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1872107800408908}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8109a65c9d037374ba09fbbe9bb4ac29, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  chip_type: 1
+  data:
+    id: 
+    name: 
+    weight: 0
+    player_stats: []
+    weapon_stats: []
+    equipped: 0
+    price: 0
+  hover_tooltip: {fileID: 1088993472910828, guid: 59e766233877f52488aa55ed76fac9df,
+    type: 2}
 --- !u!114 &114458118953317294
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -508,27 +530,6 @@ MonoBehaviour:
   m_FillAmount: 1
   m_FillClockwise: 1
   m_FillOrigin: 0
---- !u!114 &114779156421078228
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1872107800408908}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c999cff8f9bafed4da83f6267205c102, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  chip_type: 1
-  data:
-    id: 
-    name: 
-    weight: 0
-    player_stats: []
-    weapon_stats: []
-    equipped: 0
-  hover_tooltip: {fileID: 1576484268447382, guid: 3c73a0ed91ce99e428131382824e9011,
-    type: 2}
 --- !u!114 &114856286454716230
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -581,15 +582,19 @@ MonoBehaviour:
       ability: 
       fx_shot: {fileID: 0}
       display_icon: {fileID: 0}
+      price: 0
     ability:
       id: 
       name: 
       is_instant: 1
       cooldown_dur: 0
       active_dur: 0
+      store_brief: 
+      tooltip_brief: 
       display_icon: {fileID: 0}
       weight: 0
       equipped: 0
+      price: 0
     ability_name: 
     added_chips: []
     slots: 3

@@ -9,8 +9,8 @@ public class WeightPanel : MonoBehaviour
     public IWeaponChipList weapon_p_chips;
     public ChipList character_p_chips;
 
-    float weight = 0.01f;
-    public float max_weight = 100;
+    float weight;               // Cantidad de peso
+    float max_weight;           // Máximo peso permitido
 
     TextMesh text;
     Image weight_bar;
@@ -20,41 +20,49 @@ public class WeightPanel : MonoBehaviour
     {
         weight_bar = transform.Find("WeightBar").GetComponent<Image>();
         weight_text = transform.Find("WeightText").GetComponent<TextMeshProUGUI>();
-        
+
+        max_weight = PlayerManager.Instance.weight;
+
         CalculateWeight();
     }
 
-    void Update()
-    {
-        UpdateUI();
-    }
+    //void Update()
+    //{
+        
+    //}
 
+    // Calcular peso total de todos los elementos equipados
     public void CalculateWeight()
     {
+        // Resetear contador de peso
         weight = 0;
 
-        // Calculate weapons weight
+        // Calcular peso de las armas
         for(int i = 0; i < weapon_p_chips.i_weapon_chips.Count; ++i)
         {
             weight += weapon_p_chips.i_weapon_chips[i].GetWeight();
         }
 
-        //Calculate characters weight
+        // Calcular peso del jugador
         for(int i = 0; i < character_p_chips.chips.Count; ++i)
         {
             weight += character_p_chips.chips[i].weight;
         }
+
+        // Actualizar barra con nuevo peso
+        UpdateUI();
     }
 
     void UpdateUI()
     {
-        //Update image
+        // Actualizar imagen
         weight_bar.fillAmount = weight / max_weight;
 
-        //Update text
+        // Actualizar texto
         weight_text.text = weight.ToString() + " / " + max_weight.ToString();
     }
 
+    // Comprobar si es posible insertar un nuevo elemento
     public bool CanFitChip(float n_weight)
     {
         if (n_weight + weight <= max_weight)

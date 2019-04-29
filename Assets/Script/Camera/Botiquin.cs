@@ -7,6 +7,7 @@ public class Botiquin : MonoBehaviour {
     public float Salud;
     private HealthController vida;
     public AudioClip SonidoCurar;
+    public float VolumeSonidoCurar = 1;
     AudioSource source;
     // Use this for initialization
     void Start () {
@@ -22,7 +23,7 @@ public class Botiquin : MonoBehaviour {
     {
         if(col.gameObject.tag == "Player" )
         {
-            AudioSource.PlayClipAtPoint(SonidoCurar, transform.position);
+            AudioSource.PlayClipAtPoint(SonidoCurar, transform.position, VolumeSonidoCurar);
             vida.RestoreHealth(Salud);
             
             Destroy(gameObject);

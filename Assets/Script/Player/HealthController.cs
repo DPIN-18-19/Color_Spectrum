@@ -16,7 +16,13 @@ public class HealthController : MonoBehaviour
     public ParticleSystem [] die_effect;    // Effect particle array
     public Transform PosParticleDead;
     int player_color;                       // Player's color
-    public AudioClip FxDie;
+  //  public AudioClip FxDie;
+  //  public float VolumeFxDie = 1;
+    public AudioClip FxDamage;
+    public float VolumeFxDamage = 1;
+    private bool FxDamageOnlyOne;
+
+
     private AudioSource source;
 
     public ParticleSystem HealthYellow;
@@ -44,15 +50,18 @@ public class HealthController : MonoBehaviour
     public float TimeGlichEffect;
 
     public GameObject camera;
-
+   
 
     float TimeToRestart = 2f;
     public bool isdead = false;
+    public ParticleSystem DamageParticle;
+    public Transform PosDamageParticle;
+    bool InstanciateParticle = true;
     //////////////////////////////////////////////////////////////////////////////
     void Awake()
     {
-        source = GetComponent<AudioSource>();
 
+        source = GetComponent<AudioSource>();
     }
     // Use this for initialization
     void Start ()
@@ -79,7 +88,9 @@ public class HealthController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if( isdead == true)
+        //Debug.Log(TimeDamageMat);
+       // Debug.Log(Daño);
+        if ( isdead == true)
         {
             TimeToRestart -= Time.deltaTime;
         }
@@ -96,14 +107,25 @@ public class HealthController : MonoBehaviour
 
         if(Daño == true) 
         {
+            if (FxDamageOnlyOne)
+            {
+                source.PlayOneShot(FxDamage, VolumeFxDamage);
+                FxDamageOnlyOne = false;
+            }
             TimeDamageMat -= Time.deltaTime;
+            MaterialsPlayer.DamageColor();
+            if (InstanciateParticle == true)
+            {
+                Instantiate(DamageParticle.gameObject, PosDamageParticle.transform.position, Quaternion.identity);
+                InstanciateParticle = false;
+            }
         }
 
-        if (Daño == false && TimeDamageMat < 0)
+        if (Daño == false)
         {
+            FxDamageOnlyOne = true;
             if (ParedNopasar == false)
             {
-
                 MaterialsPlayer.ResetColor();
                 TimeDamageMat = MaxTimeDamageMat;
             }
@@ -112,6 +134,7 @@ public class HealthController : MonoBehaviour
                 MaterialsPlayer.BlackColor();
                 TimeDamageMat = MaxTimeDamageMat;
             }
+            InstanciateParticle = true;
         }
 
         if( TimeDamageMat < 0)
@@ -121,6 +144,7 @@ public class HealthController : MonoBehaviour
        
         if (curar == true)
         {
+            MaterialsPlayer.HealthColor();
             TimeHealtheMat -= Time.deltaTime;
         }
         if (curar == false && TimeHealtheMat < 0)
@@ -173,7 +197,7 @@ public class HealthController : MonoBehaviour
         if (health <= 0.4)
         {
             isdead = true;
-            AudioSource.PlayClipAtPoint(FxDie, transform.position);
+            //AudioSource.PlayClipAtPoint(FxDie, transform.position, VolumeFxDie);
             if (player_color < die_effect.Length)
             {
                 //- Search a way to destroy die effect after finishing
@@ -209,6 +233,9 @@ public class HealthController : MonoBehaviour
 
             ScoreManager.Instance.CountDamage(damage);
             Daño = true;
+          
+          
+            
         }
     }
 

@@ -56,7 +56,7 @@ namespace QFX.SFX
 
         private float _time;
 
-        public bool is_Explosive;
+       
         public GameObject Explosive;
 
         public override void Setup()

@@ -13,9 +13,10 @@ public class activate_Shield : MonoBehaviour {
     private float Max_Duracion;
     private bool Init_Abi;
     public AudioClip ActivateShieldFx;
+    public float VolumeActivateShieldFx;
     public GameObject ObjectShield;
     AudioSource source;
-
+     
     void Awake()
     {
         source = GetComponent<AudioSource>();
@@ -39,7 +40,7 @@ public class activate_Shield : MonoBehaviour {
         if ( SePuedeUsar == true && Input.GetButtonDown("Habilidad1") && Init_Abi == true)
         {
 
-            source.PlayOneShot(ActivateShieldFx);
+            source.PlayOneShot(ActivateShieldFx, VolumeActivateShieldFx);
             DuracionHabilidad = Max_Duracion;
             UsarHabilidad = true;
             Init_Abi = false;
