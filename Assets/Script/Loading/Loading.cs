@@ -12,7 +12,7 @@ public class Loading : MonoBehaviour
     // https://issuetracker.unity3d.com/issues/loadsceneasync-allowsceneactivation-flag-is-ignored-in-awake
     void Start()
     {
-        Debug.Log("Loading " + SceneMan1.Instance.GetLoadScene());
+       // Debug.Log("Loading " + SceneMan1.Instance.GetLoadScene());
         loading = SceneManager.LoadSceneAsync(SceneMan1.Instance.GetLoadScene(), LoadSceneMode.Additive);
         loading.allowSceneActivation = false;
         StartCoroutine(LoadingNewScene());
@@ -50,10 +50,10 @@ public class Loading : MonoBehaviour
     {
         while(!loading.isDone)
         {
-            Debug.Log("Progress " + loading.progress.ToString());
+           // Debug.Log("Progress " + loading.progress.ToString());
             if(loading.progress >= 0.9f)
             {
-                Debug.Log("I'm ready");
+           //     Debug.Log("I'm ready");
                 loading.allowSceneActivation = true;
                 //unloading = SceneManager.UnloadSceneAsync("Loading");
             }

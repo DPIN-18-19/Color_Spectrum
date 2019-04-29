@@ -46,14 +46,18 @@ public class EnemyHealth : MonoBehaviour
 
     ///////////////////////////////////////////////////////////////
     // Audio
-    [SerializeField]
-    private AudioClip die_fx;               // Sonido muerte
+    //[SerializeField]
+    //public AudioClip die_fx;               // Sonido muerte
 
     /////////////////////////////////////////////////////////////////////////
+    private void Awake()
+    {
+        source = GetComponent<AudioSource>();
+    }
     void Start()
     {
         // Inicializar componentes
-        source = GetComponent<AudioSource>();
+       
         enemy_materials = GetComponent<EnemyRenderer>();
 
         dead_pos = transform.Find("DieEffectPos");
@@ -100,6 +104,7 @@ public class EnemyHealth : MonoBehaviour
         if (health <= 0.4f)
         {
             // Realizar muerte
+           // AudioSource.PlayClipAtPoint(die_fx, transform.position);
             int enemy_color = GetComponent<Enemy>().GetColor();
             Instantiate(die_effect[enemy_color].gameObject, dead_pos.transform.position, Quaternion.identity);
 

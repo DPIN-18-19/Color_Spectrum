@@ -17,6 +17,7 @@ public class AutoColor : MonoBehaviour
     public GameObject effect;
     
     public AudioClip FxHabilidad;
+    public float VolumeFxHabilidad = 1;
     AudioSource source;
     public ColorChangingController cambioColor;
 
@@ -42,7 +43,7 @@ public class AutoColor : MonoBehaviour
 
         if (is_active == true && Input.GetButtonDown("Habilidad1") && Init_Abi == true)
         {
-            source.PlayOneShot(FxHabilidad);
+            source.PlayOneShot(FxHabilidad, VolumeFxHabilidad);
             dur = max_dur;
             use_ability = true;
             CreateEffect();
