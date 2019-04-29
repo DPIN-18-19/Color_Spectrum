@@ -2086,6 +2086,7 @@ MonoBehaviour:
   can_shoot: 1
   can_move: 1
   can_rotate: 1
+  can_patrol: 1
   can_change_target: 0
   init_target: {fileID: 0}
   alert_distance: 10
@@ -2149,7 +2150,7 @@ MonoBehaviour:
     type: 2}
   shell_efect_m: {fileID: 198834423430413478, guid: 93a8d38d779f61f4cbf4add2091be907,
     type: 2}
-  FXShotEnemy: {fileID: 8300000, guid: 2c270755a083f394bb2ccf4037733bea, type: 3}
+  FXShotEnemy: {fileID: 8300000, guid: a1df9ea6fa61469499157aa37c9b4595, type: 3}
 --- !u!114 &114892943162320820
 MonoBehaviour:
   m_ObjectHideFlags: 1
