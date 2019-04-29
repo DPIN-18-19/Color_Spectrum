@@ -29,6 +29,8 @@ public class EnemyBehaviour : MonoBehaviour
     [SerializeField]
     protected bool can_rotate = true;
     [SerializeField]
+    public bool can_patrol = true;
+    [SerializeField]
     public bool can_change_target = false;            // Puede cambiar de target al jugador
 
     //////////////////////////////////////////////////
@@ -36,30 +38,32 @@ public class EnemyBehaviour : MonoBehaviour
     [Header("Objetivo")]
     public Transform init_target;               // Objetivo de inicio
     protected Transform target;                 // Objetivo de enemigo
-    
     protected Transform home;                   // Punto de regreso de enemigo
-    [Header ("Metricas de deteccion")]
+    [Header("Metricas de deteccion")]
     public float alert_distance;                // Distancia que el enemigo detecta por acercarse
     public float sight_distance;                // Distancia que el enemigo detecta por vision
     public float safe_distance;                 // Distancia que el enemigo mantiene del jugador
     public float sight_angle;                   // Angulo de vision del enemigo
     public float lost_distance;                 // Distancia que tras alejarse, el enemigo pierde interes
+    int stuck_phase = 2;                            // Fase de "Atascado". 0:Disparo 1:Quieto 2:Fuera
+    float stuck_shot;                           // Si se atasca, tiempo que sigue disparando en la dirección que mira
+    float stuck_hold;                           // Si se atasca, tiempo que permanece quieto antes de regresar
 
     //////////////////////////////////////////////////
     // Variables de comportamiento
     public bool is_chasing;                          // El enemigo está en el estado "Perseguir"
     protected bool is_retreat = false;                  // El enemigo está en el estado "Regresar"
-
     protected bool in_home = false;                     // El enemigo está en el estado "Casa"
     public bool is_looking = false;                  // El enmigo está en el estado "Mirar"
     protected bool is_protected = false;
+    protected bool is_stuck = false;                // El enemigo está en el eestado "Atascado"
 
-    ///////////////////////////////////////////////////////////////
-    // Comportamiento spawn
+    float checker_c;
+    Transform prev_position;
+
     bool is_spawning;                       // Estado "Spawneando"
     float spawn_c;                          // Contador de spawn
     float spawn_dur;                        // Duracion de spawn
-
     /////////////////////////////////////////////////////
     // Variables de animacion
     [HideInInspector]
@@ -72,10 +76,10 @@ public class EnemyBehaviour : MonoBehaviour
     //RalentizarMovimiento
     protected Slow_Motion Ralentizar;
 
-    protected  float MaxSpeedSlow;
-    protected  float MaxAnimSlow;
-    protected  float Slow_Rotation;
-    protected  float MaxRalentizarRotar;
+    protected float MaxSpeedSlow;
+    protected float MaxAnimSlow;
+    protected float Slow_Rotation;
+    protected float MaxRalentizarRotar;
 
     private void Start()
     {
@@ -88,9 +92,12 @@ public class EnemyBehaviour : MonoBehaviour
         anim = GetComponent<Animator>();
         a_source = GetComponent<AudioSource>();
 
+        checker_c = 0.5f;
+        prev_position = transform;
+
         // Inicializar objetos objetivo
         //target = GameObject.Find(target_name).transform;
-        if(init_target == null)
+        if (init_target == null)
             init_target = GameObject.Find("Player_Naomi").transform;
 
         target = init_target;
@@ -119,10 +126,16 @@ public class EnemyBehaviour : MonoBehaviour
     {
         // Cambiadores de estado
         DetectPlayer();
-        if(!is_protected)
+        if (!is_protected)
             KeepDistance();
-        if(can_shoot)
+        if (can_shoot)
             ShootTarget();
+
+        //if (!is_stuck && !is_retreat && checker_c <= 0)
+        //    CheckIfStuck();
+        //else
+        //    checker_c -= Time.deltaTime;
+
         if (can_change_target)
             ChangeTarget();
         CheckBeacon();
@@ -135,14 +148,17 @@ public class EnemyBehaviour : MonoBehaviour
         if (is_retreat)
             IsRetreating();
         // Realizar "Patrullar"
-        if(patrol != null && patrol.is_patrolling)
+        if (can_patrol && patrol != null && patrol.is_patrolling)
             IsPatrolling();
         // Realizar "Mirar"
-        if(can_rotate && is_looking)
+        if (can_rotate && is_looking)
             IsLooking();
         // Realizar "EnCasa"
         if (in_home)
             IsInHome();
+        // Realizar "Atascado"
+        if (is_stuck)
+            IsStuck();
         // Realizar estado "Spawnear"
         if (is_spawning)
             IsSpawning();
@@ -176,16 +192,16 @@ public class EnemyBehaviour : MonoBehaviour
         {
             is_chasing = false;
             is_retreat = true;
-            Debug.Log("Retreat2");
+
         }
 
-        if (!is_protected)
+        if (!is_protected || !is_chasing)
         {
             if (can_see)
                 // Comprobar si enemigo ve a jugador
                 if (detect.IsPlayerInFront(sight_angle) && detect.IsPlayerNear(sight_distance) && detect.IsPlayerOnSight(sight_distance))
                 {
-                    Debug.Log("I see");
+
                     is_chasing = true;
                     in_home = false;
                 }
@@ -222,6 +238,12 @@ public class EnemyBehaviour : MonoBehaviour
             shot.random = true;
     }
 
+    public void ResetTarget(Transform n_target)
+    {
+        init_target = n_target;
+        target = init_target;
+    }
+
     // El enemigo está lejos de su punto de retorno
     private void IsHomeFar()
     {
@@ -233,20 +255,15 @@ public class EnemyBehaviour : MonoBehaviour
             is_chasing = false;
     }
 
-    public void ResetTarget(Transform n_target)
-    {
-        init_target = n_target;
-        target = init_target;
-    }
+
 
     // Cambiar objetivo de disparo
     void ChangeTarget()
     {
-        if(health.GetInDamage())
+        if (health.GetInDamage())
         {
             target = GameObject.Find("Player_Naomi").transform;
             detect.SetTarget(target);
-
             // Cuando se cambia de objetivo, forzar a entrar en persecución con nuevo objetivo
         }
     }
@@ -254,11 +271,33 @@ public class EnemyBehaviour : MonoBehaviour
     void CheckBeacon()
     {
         // Tratar de buscar otra forma de detectar la eliminación de un target.
-        if(target.childCount == 0)
+        if (target.childCount == 0)
         {
             target = GameObject.Find("Player_Naomi").transform;
             detect.SetTarget(target);
         }
+    }
+
+    void CheckIfStuck()
+    {
+        if (Vector3.Distance(transform.position, prev_position.position) < 0.05f &&
+            Vector3.Angle(transform.forward, prev_position.forward) < 1)
+        {
+            if (stuck_phase != 0)
+            {
+
+                is_looking = true;
+                is_stuck = true;
+                is_chasing = false;
+                stuck_phase = 0;
+                attack_in_place = true;
+                stuck_shot = 2;
+            }
+        }
+        else
+            prev_position = transform;
+
+        checker_c = 0.5f;
     }
 
     public void PauseMoveBySpawn(float n_spawn_dur)
@@ -266,10 +305,25 @@ public class EnemyBehaviour : MonoBehaviour
         can_move = false;
         can_rotate = false;
         can_shoot = false;
-        
+
         is_spawning = true;
         spawn_dur = n_spawn_dur;
         spawn_c = spawn_dur;
+    }
+
+
+    private void OnCollisionStay(Collision other)
+    {
+        // Collision with a colored wall
+        if (other.transform.name.Contains("Pared"))
+        {
+            if (!is_stuck && !is_retreat && checker_c <= 0 && Vector3.Angle(other.contacts[0].normal, -transform.forward) < 20)
+                CheckIfStuck();
+            else
+                checker_c -= Time.deltaTime;
+
+            //transform.position += (other.contacts[0].point - transform.position).normalized;
+        }
     }
 
     ////////////////////////////////////////////////////////////////////
@@ -288,42 +342,41 @@ public class EnemyBehaviour : MonoBehaviour
 
             nav_agent.isStopped = false;
         }
-        
+
         if (can_shoot)
             shot.is_shooting = true;
 
-        if (patrol != null)
+
+        if (can_patrol && patrol != null)
             patrol.is_patrolling = false;
     }
 
     // Estado "Regresar"
     protected virtual void IsRetreating()
     {
-        Debug.Log("Retreat");
-
         if (can_move)
         {
             nav_agent.SetDestination(home.transform.position);
         }
 
-        if(can_shoot)
+        if (can_shoot)
             shot.is_shooting = false;
 
         // Recuperar anterior objetivo
-        if(can_change_target)
+        if (can_change_target)
         {
             target = init_target;
             detect.SetTarget(target);
         }
 
         float dist = nav_agent.remainingDistance; // Distancia restante hasta objetivo
-        if (dist != Mathf.Infinity && nav_agent.remainingDistance <= 5.0f /*&& nav_agent.pathStatus == NavMeshPathStatus.PathComplete*/)
+        if (dist != Mathf.Infinity && nav_agent.remainingDistance <= 0.1f /*&& nav_agent.pathStatus == NavMeshPathStatus.PathComplete*/)
         {
             is_retreat = false;
             in_home = true;
-                
+
             // Retornar a patrulla si debe
-            if (patrol != null)
+            if (can_patrol && patrol != null)
             {
                 patrol.is_patrolling = true;
                 patrol.ResetPatrol();
@@ -340,7 +393,6 @@ public class EnemyBehaviour : MonoBehaviour
     // Estado "Patrullar"
     protected void IsPatrolling()
     {
-        Debug.Log("Patrol");
         attack_moving = true;
         attack_in_place = false;
     }
@@ -361,24 +413,65 @@ public class EnemyBehaviour : MonoBehaviour
                 nav_agent.isStopped = true; // Se para el enemigo
             }
         }
+
+        if (!is_protected)
+        {
+            attack_in_place = true;
+            nav_agent.velocity = Vector3.zero;
+            nav_agent.isStopped = true; // Se para el enemigo
+        }
     }
 
     // Estado "EnCasa"
     protected void IsInHome()
     {
-        Debug.Log("Home");
-
-        if (patrol != null && patrol.is_patrolling == false)
-        {
+        if (can_patrol && patrol != null && !patrol.is_patrolling)
             attack_moving = false;
+
+        in_home = false;
+    }
+
+
+    void IsStuck()
+    {
+        // Wait to stop shooting
+        if (stuck_phase == 0)
+        {
+            stuck_shot -= Time.deltaTime;
+
+            if (stuck_shot <= 0)
+            {
+                Debug.Log("Stuck hold");
+                stuck_phase = 1;
+                is_chasing = false;
+                shot.is_shooting = false;
+                stuck_hold = 3;
+            }
+        }
+        // Wait to return home
+        else if (stuck_phase == 1)
+        {
+            stuck_hold -= Time.deltaTime;
+
+            if (stuck_hold <= 0)
+            {
+                Debug.Log("Go back");
+                is_looking = false;
+                is_retreat = true;
+                is_stuck = false;
+                stuck_phase = 2;
+                attack_in_place = false;
+                attack_moving = true;
+                nav_agent.isStopped = false;
+            }
         }
     }
-    
+
     // Estado "Protegido". El enemigo entra en el estado desde que comienza a acercarse a un punto de protección
     public void IsProtected(Transform shield_pos)
     {
         // Dejar de patrullar
-        if (patrol != null)
+        if (can_patrol && patrol != null)
             patrol.is_patrolling = false;
 
         is_chasing = false;
@@ -387,8 +480,7 @@ public class EnemyBehaviour : MonoBehaviour
         nav_agent.isStopped = false;
         nav_agent.SetDestination(shield_pos.position);
     }
-    
-    // Estado "Spawn"
+
     void IsSpawning()
     {
         spawn_c -= Time.deltaTime;
@@ -414,7 +506,7 @@ public class EnemyBehaviour : MonoBehaviour
         if (is_looking)
             anim.SetFloat("EnemyTurn", correct_look);
     }
-    
+
     /////////////////////////////////////////////////////////////
     //- Make a utilities script
     public float LookAtAxis(Vector3 look_at)

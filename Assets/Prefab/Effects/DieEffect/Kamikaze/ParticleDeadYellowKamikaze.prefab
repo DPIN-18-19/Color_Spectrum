@@ -68,7 +68,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 0}
   m_PlayOnAwake: 1
-  m_Volume: 1
+  m_Volume: 0.153
   m_Pitch: 1
   Loop: 0
   Mute: 0
@@ -163,7 +163,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fe695eff20fec3e43b9568306f1915c1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  SonidoExplosion: {fileID: 0}
+  SonidoExplosion: {fileID: 8300000, guid: 35959eed556ccab48b6ae1200c042c41, type: 3}
   damage: 10
 --- !u!114 &114872664594670332
 MonoBehaviour:

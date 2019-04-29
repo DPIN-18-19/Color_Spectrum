@@ -24,6 +24,8 @@ public class Beacon : MonoBehaviour
     float invincible_c;             // Contador de invencibilidad
     bool is_invincible;             // Comprobador de invencibilidad
 
+    public bool isDamage;
+
     // Death
     Transform death_pos;
     [SerializeField]
@@ -48,13 +50,14 @@ public class Beacon : MonoBehaviour
         // Comprobar estado de invencibilidad
         if (!is_invincible)
         {
-            //Debug.Log("I got hit. Missing " + health);
+            Debug.Log("I got hit. Missing " + health);
+            isDamage = true;
             health -= damage;
             invincible_c = invincible_dur;
             is_invincible = true;
 
             if (bar_active)
-                UpdateHealthBar();
+               UpdateHealthBar();
 
             if (health < 0)
                 IsDead();
@@ -81,7 +84,7 @@ public class Beacon : MonoBehaviour
 
     void IsDead()
     {
-        death_pos = transform.parent.Find("DieEffectPos");
+        death_pos = transform.Find("DieEffectPos");
         Instantiate(death_part, death_pos.position, Quaternion.identity);
         DeactivateBeacon();
         Destroy(death_pos.gameObject);

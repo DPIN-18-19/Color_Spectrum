@@ -2,9 +2,9 @@
 using System.Collections.Generic;
 using UnityEngine;
 using QFXToolKit;
+using QFX.SFX;
 
-
-    public class dash : MonoBehaviour
+public class dash : MonoBehaviour
     {
         public bool UsarHabilidad;
         public float dashspeed;
@@ -15,12 +15,13 @@ using QFXToolKit;
         public Rigidbody rb;
         public bool SePuedeUsar;
         public AudioClip FxDash;
+        public float VolumeFxDash = 1;
         public ControlledObject ControlledObject;
         public ColorChangingController ColorPlayer;
         public ParticleSystem ParticleDashYellow;
         public ParticleSystem ParticleDashBlue;
         public ParticleSystem ParticleDashPink;
-
+    public MotionCloner DashMotion;
 
     //public GameObject  ParticleInPlayer;
     // public ParticleSystem ParticleOutPlayer2;
@@ -40,7 +41,7 @@ using QFXToolKit;
         // Use this for initialization
         void Start()
         {
-       
+        DashMotion.isExplosive = false;
         Max_Cooldown = Cooldown;
             rb = GetComponent<Rigidbody>();
            
@@ -68,7 +69,7 @@ using QFXToolKit;
             }
                 if (UsarHabilidad)
                 {
-                    source.PlayOneShot(FxDash);
+                    source.PlayOneShot(FxDash, VolumeFxDash);
                     rb.AddForce(MovePlayer.move_dir * (dashspeed * 100), ForceMode.Impulse);
                     // Dash particles
 

@@ -215,7 +215,7 @@ GameObject:
   - component: {fileID: 114054031623488242}
   - component: {fileID: 225616048312243488}
   - component: {fileID: 114453279115272046}
-  - component: {fileID: 114387477692646762}
+  - component: {fileID: 114713159029088500}
   m_Layer: 5
   m_Name: Weapon_Chip
   m_TagString: Untagged
@@ -443,28 +443,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   panel_type: 3
---- !u!114 &114387477692646762
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1897100761065716}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c999cff8f9bafed4da83f6267205c102, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  chip_type: 1
-  data:
-    id: 
-    name: 
-    weight: 0
-    player_stats: []
-    weapon_stats: []
-    equipped: 0
-    price: 0
-  hover_tooltip: {fileID: 1088993472910828, guid: 59e766233877f52488aa55ed76fac9df,
-    type: 2}
 --- !u!114 &114453279115272046
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -476,7 +454,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e0c99efabf7e5674db1401d16d7435fd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ichip_data: {fileID: 114387477692646762}
+  ichip_data: {fileID: 0}
   inv_deck: {fileID: 0}
   org_deck: {fileID: 0}
   new_possible_deck: {fileID: 0}
@@ -700,6 +678,28 @@ MonoBehaviour:
   m_FillAmount: 1
   m_FillClockwise: 1
   m_FillOrigin: 0
+--- !u!114 &114713159029088500
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1897100761065716}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8109a65c9d037374ba09fbbe9bb4ac29, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  chip_type: 1
+  data:
+    id: 
+    name: 
+    weight: 0
+    player_stats: []
+    weapon_stats: []
+    equipped: 0
+    price: 0
+  hover_tooltip: {fileID: 1088993472910828, guid: 59e766233877f52488aa55ed76fac9df,
+    type: 2}
 --- !u!114 &114827227776384202
 MonoBehaviour:
   m_ObjectHideFlags: 1

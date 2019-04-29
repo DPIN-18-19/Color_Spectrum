@@ -21,6 +21,8 @@ public class LevelData
 
     public List<int> unlock_require; // Nombres de niveles necesarios de completar para desbloquear
 
+    public string difficulty;
+
     public void Clone(LevelData other)
     {
         id = other.id;
@@ -34,5 +36,7 @@ public class LevelData
 
         highscore = other.highscore;
         grade = other.grade;
+
+        difficulty = other.difficulty;
     }
 }

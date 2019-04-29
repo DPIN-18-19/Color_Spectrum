@@ -565,6 +565,7 @@ GameObject:
   - component: {fileID: 114475345945460768}
   - component: {fileID: 114844524526490036}
   - component: {fileID: 114282731038370268}
+  - component: {fileID: 136452690131079538}
   m_Layer: 10
   m_Name: Enemy_Kamikaze_P
   m_TagString: EnemyPink
@@ -1466,7 +1467,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1863482739807452}
   m_LocalRotation: {x: -0, y: -0.99878544, z: -0, w: 0.04927197}
-  m_LocalPosition: {x: -39.64, y: 0.17, z: 9.42}
+  m_LocalPosition: {x: -42.91, y: 0.17, z: 10.51}
   m_LocalScale: {x: 1.9302571, y: 1.4431446, z: 1.7865499}
   m_Children:
   - {fileID: 224370493925252756}
@@ -2365,7 +2366,7 @@ BoxCollider:
   m_GameObject: {fileID: 1377295259500792}
   m_Material: {fileID: 0}
   m_IsTrigger: 0
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 2
   m_Size: {x: 1.6634895, y: 2.104978, z: 1.51109}
   m_Center: {x: 0.09704761, y: 1.0501533, z: -0.03196757}
@@ -2493,7 +2494,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5088dd01fe25e5a4f9f44665013d2dbc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  cur_color: 0
+  enemy_type: 3
+  cur_color: 2
   chase_speed: 7
 --- !u!114 &114105158707673398
 MonoBehaviour:
@@ -2508,16 +2510,23 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   can_detect_near: 1
   can_see: 1
-  can_shoot: 1
+  can_shoot: 0
   can_move: 1
+  can_rotate: 1
+  can_patrol: 1
+  can_change_target: 0
+  init_target: {fileID: 0}
   alert_distance: 10
   sight_distance: 25
   safe_distance: 2
   sight_angle: 30
   lost_distance: 25
+  is_chasing: 0
+  is_looking: 0
   attack_moving: 0
   attack_in_place: 0
-  SonidoKi: {fileID: 0}
+  SonidoKi: {fileID: 8300000, guid: fa55aaad6aa020c4e8cddbc8e96cc302, type: 3}
+  FxSonidoKi: 0.7
 --- !u!114 &114247782289944026
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -2608,7 +2617,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 62cc23658d5fbe04e9500fc1c9fd4b84, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  max_health: 0
+  max_health: 1
   health_bar: {fileID: 114743441567796124}
   in_damage_dur: 0.65
   die_effect:
@@ -2616,7 +2625,11 @@ MonoBehaviour:
   - {fileID: 198054349827780410, guid: fa64fe53c5ee98f4fb9f271e995c0b7f, type: 2}
   - {fileID: 198279765054647224, guid: 67f05d1749a57e241bf4b834e5cdcc8e, type: 2}
   score: 100
-  die_fx: {fileID: 0}
+  TextScore: {fileID: 102262678588124188, guid: b8341ad366c986f4ebd7b8dc81fb0ef8,
+    type: 2}
+  PrefabScore: {fileID: 1892186745157182, guid: b8341ad366c986f4ebd7b8dc81fb0ef8,
+    type: 2}
+  PosScore: {fileID: 4305700934927598}
 --- !u!114 &114618156156609512
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -2705,6 +2718,19 @@ MonoBehaviour:
   is_patrolling: 1
   patrol_speed: 5
   wait_dur: 0
+--- !u!136 &136452690131079538
+CapsuleCollider:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1377295259500792}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  m_Radius: 0.7
+  m_Height: 2.55
+  m_Direction: 1
+  m_Center: {x: 0.05, y: 1.23, z: 0.02}
 --- !u!137 &137033801364554616
 SkinnedMeshRenderer:
   m_ObjectHideFlags: 1

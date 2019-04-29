@@ -18,7 +18,7 @@ MonoBehaviour:
     brief: Fourscore and seven years ago our fathers brought forth on this continent,
       a new nation, conceived in Liberty, and dedicated to the proposition that all
       men are created equal.
-    unlock_score: 10
+    unlock_score: 0
     unlocked: 1
     complete: 0
     item_got: 0
@@ -27,19 +27,21 @@ MonoBehaviour:
       grade: 0
       mat: {fileID: 0}
     unlock_require: 
+    difficulty: '-'
   - id: 1
     name: Nivel_1
     scene_name: Nivel_1
     brief: 
-    unlock_score: 10
+    unlock_score: 0
     unlocked: 1
     complete: 0
     item_got: 0
-    highscore: 7300
+    highscore: 7000
     grade:
-      grade: A
-      mat: {fileID: 2100000, guid: e35922498e96a98498729916d76998ea, type: 2}
+      grade: 
+      mat: {fileID: 0}
     unlock_require: 
+    difficulty: Easy
   - id: 2
     name: Nivel_2
     scene_name: Nivel_2
@@ -53,6 +55,7 @@ MonoBehaviour:
       grade: 
       mat: {fileID: 0}
     unlock_require: 
+    difficulty: Easy
   - id: 3
     name: Nivel_3
     scene_name: Nivel_3
@@ -66,6 +69,7 @@ MonoBehaviour:
       grade: 
       mat: {fileID: 0}
     unlock_require: 
+    difficulty: Easy
   - id: 4
     name: Nivel_4
     scene_name: Nivel_4
@@ -79,3 +83,4 @@ MonoBehaviour:
       grade: 
       mat: {fileID: 0}
     unlock_require: 
+    difficulty: Medium

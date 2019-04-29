@@ -36,6 +36,7 @@ public class BulletController : MonoBehaviour
     public ParticleSystem DestroyEffectBlue;
     private bool BlueDestroyeffect;
     public AudioClip DestroyBulletFx;
+    public float VolumeDestroyBulletFx = 1;
 
     public float TimeTrasparenteMat;
     private float MaxTimeTrasparenteMat;
@@ -54,8 +55,8 @@ public class BulletController : MonoBehaviour
     private AudioSource source;
 
     PlayerRenderer MaterialsPlayer;
-    
-   
+
+    Rigidbody myBody;
 
     public bool Sniper;
 
@@ -64,6 +65,7 @@ public class BulletController : MonoBehaviour
     // Use this for initialization
     private void Awake()
     {
+        myBody = GetComponent<Rigidbody>();
         source = gameObject.GetComponent<AudioSource>();
     }
 
@@ -238,72 +240,54 @@ public class BulletController : MonoBehaviour
         //Debug.Log("Enter Collided with " + col.transform.gameObject.tag);
         //- Collision with player is not working
         // Same color obstacle collision
-        if (col.gameObject.tag == gameObject.tag)
-        {
-           // Debug.Log("Collided with a wall");
-            if (m_collider == null)
-                Debug.Log("Error");
-            m_collider.enabled = !m_collider.enabled;
-            Invoke("ReactivateCollision", wall_active_time);
-        }
+       // if (col.gameObject.tag == gameObject.tag)
+       // {
+       //    // Debug.Log("Collided with a wall");
+       //     if (m_collider == null)
+       //         Debug.Log("Error");
+       //     m_collider.enabled = !m_collider.enabled;
+       //     Invoke("ReactivateCollision", wall_active_time);
+       // }
         
 
-       else if( bullet_color == 0 && col.gameObject.tag == "ParedNoCambioYellow")
-        {
-            Debug.Log("Collided with a wall");
-            m_collider.enabled = !m_collider.enabled;
-            Invoke("ReactivateCollision", wall_active_time);
-        }
-       else if (bullet_color == 1 && col.gameObject.tag == "ParedNoCambioBlue")
-        {
-            Debug.Log("Collided with a wall");
-            m_collider.enabled = !m_collider.enabled;
-            Invoke("ReactivateCollision", wall_active_time);
-        }
-       else if (bullet_color == 2 && col.gameObject.tag == "ParedNoCambioPink")
-        {
-            Debug.Log("Collided with a wall");
-            m_collider.enabled = !m_collider.enabled;
-            Invoke("ReactivateCollision", wall_active_time);
-        }
+       //else if( bullet_color == 0 && col.gameObject.tag == "ParedNoCambioYellow")
+       // {
+       //     Debug.Log("Collided with a wall");
+       //     m_collider.enabled = !m_collider.enabled;
+       //     Invoke("ReactivateCollision", wall_active_time);
+       // }
+       //else if (bullet_color == 1 && col.gameObject.tag == "ParedNoCambioBlue")
+       // {
+       //     Debug.Log("Collided with a wall");
+       //     m_collider.enabled = !m_collider.enabled;
+       //     Invoke("ReactivateCollision", wall_active_time);
+       // }
+       //else if (bullet_color == 2 && col.gameObject.tag == "ParedNoCambioPink")
+       // {
+       //     Debug.Log("Collided with a wall");
+       //     m_collider.enabled = !m_collider.enabled;
+       //     Invoke("ReactivateCollision", wall_active_time);
+       // }
 
         // Collision with player
-        else if (col.gameObject.tag == "Player")
+         if (col.gameObject.tag == "Player")
         {
             // Enemy bullet
             if (!friendly)
             {
                 // Taking damage to player
                 if (col.gameObject.GetComponent<ColorChangingController>().GetColor() != bullet_color)
-                {
+                { 
                     col.gameObject.SendMessage("GetDamage", bullet_damage);
                     Destroy(gameObject);
-                }
-                // Restoring player health
-                else
-                {
-                 //   Debug.Log("Paso");
-                    m_collider.enabled = !m_collider.enabled;
-                   
-                    Invoke("ReactivateCollision", 0.5f);
-                    //  col.gameObject.SendMessage("RestoreHealth", bullet_damage);
-                }
+                }   
             }
             // Player bullet
             //- Bug here
-            else
-            {
-                Debug.Log("collided with player");
-                m_collider.enabled = !m_collider.enabled;
-                Invoke("ReactivateCollision", 1);
-            }
+           
         }
         // Ignore enemies of same color
-        else if (col.gameObject.tag == enemy_ignore)
-        {
-            m_collider.enabled = !m_collider.enabled;
-            Invoke("ReactivateCollision", enemy_active_time);
-        }
+       
         // Collision with any other object
         else if (col.gameObject.tag.Contains("Enemy"))
         {
@@ -315,36 +299,40 @@ public class BulletController : MonoBehaviour
             {
                 if (col.gameObject.GetComponent<EnemyHealth>().IsWeak(gameObject.tag, gameObject.layer))
                 {
-                    //Debug.Log("BalaIsWeak");
+                   // Debug.Log("Ennmy collision " + col.gameObject.name);
+                   // Debug.Log("BalaIsWeak");
                     col.gameObject.GetComponent<EnemyHealth>().GetDamage(bullet_damage);
 
                     if (YellowDestroyeffect)
                     {
-                        Instantiate(DestroyEffectYellow.gameObject, transform.position, 
-                            Quaternion.LookRotation(Quaternion.Euler(0, Angle, 0) * transform.forward, Vector3.up));
+                        Instantiate(DestroyEffectYellow.gameObject, transform.position, Quaternion.LookRotation(Quaternion.Euler(0, Angle, 0) * transform.forward, Vector3.up));
+
                     }
                     if (PinkDestroyeffect)
                     {
-                        Instantiate(DestroyEffectPink.gameObject, transform.position, 
-                            Quaternion.LookRotation(Quaternion.Euler(0, Angle, 0) * transform.forward, Vector3.up));
+                        Instantiate(DestroyEffectPink.gameObject, transform.position, Quaternion.LookRotation(Quaternion.Euler(0, Angle, 0) * transform.forward, Vector3.up));
+
+
                     }
                     if (BlueDestroyeffect)
                     {
-                        Instantiate(DestroyEffectBlue.gameObject, transform.position, 
-                            Quaternion.LookRotation(Quaternion.Euler(0, Angle, 0) * transform.forward, Vector3.up));
+                        Instantiate(DestroyEffectBlue.gameObject, transform.position, Quaternion.LookRotation(Quaternion.Euler(0, Angle, 0) * transform.forward, Vector3.up));
+
                     }
+                    
                 }
+                
             }
             //LLevarselo al hijo
             if(Sniper == false)
             Destroy(gameObject);
         }
         // Colision contra una baliza
-        else if(col.transform.name.Contains("Beacon"))
+        else if (col.transform.name.Contains("Beacon"))
         {
-            if(!friendly)
+            if (!friendly)
                 col.transform.GetComponent<Beacon>().GetDamage(bullet_damage);
-            
+
             Destroy(gameObject);
         }
         else
@@ -357,35 +345,39 @@ public class BulletController : MonoBehaviour
             {
                 Instantiate(DestroyEffectYellow.gameObject, transform.position,
                     Quaternion.LookRotation(Quaternion.Euler(0,Angle, 0)* transform.forward, Vector3.up));
+                
+               
                 Destroy(gameObject);
+                //AudioSource.PlayClipAtPoint(DestroyBulletFx, transform.position);
             }
             if (PinkDestroyeffect)
             {
                 Instantiate(DestroyEffectPink.gameObject, transform.position, 
                     Quaternion.LookRotation(Quaternion.Euler(0, Angle, 0) * transform.forward, Vector3.up));
+                // Debug.Log("destroy bullet");
                 Destroy(gameObject);
+              //  AudioSource.PlayClipAtPoint(DestroyBulletFx, transform.position);
             }
             if (BlueDestroyeffect)
             {
                 Instantiate(DestroyEffectBlue.gameObject, transform.position, 
                     Quaternion.LookRotation(Quaternion.Euler(0, Angle, 0) * transform.forward, Vector3.up));
+                //  Debug.Log("destroy bullet");
                 Destroy(gameObject);
+              //  AudioSource.PlayClipAtPoint(DestroyBulletFx, transform.position);
             }
         }
     }
 
     void OnCollisionStay(Collision col)
     {
+       
+
         Debug.Log("Collided with " + col.transform.gameObject.tag);
 
         // Same color obstacle collision
-        if (col.gameObject.tag == gameObject.tag)
-        {
-            m_collider.enabled = !m_collider.enabled;
-            Invoke("ReactivateCollision", wall_active_time);
-        }
         // Collision with player
-        else if (col.gameObject.tag == "Player")
+        if (col.gameObject.tag == "Player")
         {
             // Enemy bullet
             if (!friendly)
@@ -394,10 +386,7 @@ public class BulletController : MonoBehaviour
                 if (col.gameObject.GetComponent<ColorChangingController>().GetColor() != bullet_color)
                     col.gameObject.SendMessage("GetDamage", bullet_damage);
                 // Restoring player health
-                else
-                {
-                //   col.gameObject.SendMessage("RestoreHealth", bullet_damage);
-                }
+               
 
                 Debug.Log("Destry enemy bullet11");
                 Destroy(gameObject);
@@ -406,21 +395,21 @@ public class BulletController : MonoBehaviour
             //- Bug here
             else
             {
-                Debug.Log("collided with player");
-                m_collider.enabled = !m_collider.enabled;
-                Invoke("ReactivateCollision", 1);
+                //Debug.Log("collided with player");
+                //m_collider.enabled = !m_collider.enabled;
+                //Invoke("ReactivateCollision", 1);
             }
         }
         // Ignore enemies of same color
         else if (col.gameObject.tag == enemy_ignore)
         {
-            m_collider.enabled = !m_collider.enabled;
-            Invoke("ReactivateCollision", enemy_active_time);
+            //m_collider.enabled = !m_collider.enabled;
+            //Invoke("ReactivateCollision", enemy_active_time);
         }
         // Collision with any other object
         else if (col.gameObject.tag.Contains("Enemy"))
         {
-            Debug.Log("Enemy hit");
+           
             if (col.gameObject.GetComponent<EnemyHealth>().IsWeak(gameObject.tag, gameObject.layer))
                 col.gameObject.GetComponent<EnemyHealth>().GetDamage(bullet_damage);
 
@@ -440,10 +429,13 @@ public class BulletController : MonoBehaviour
 
     protected void MoveBullet()
     {
+        myBody.velocity = bullet_dir * -bullet_speed / ralentizarVelocidad;
+
+        /*
         Vector3 final_pos = transform.position + bullet_dir * -bullet_speed * Time.deltaTime ;
         // Move only if no collision is found
         if (!PeekNextPosition(final_pos))
-            transform.position += bullet_dir * -bullet_speed * Time.deltaTime/ ralentizarVelocidad;
+            transform.position += bullet_dir * -bullet_speed * Time.deltaTime/ralentizarVelocidad;*/
     }
 
     // Check next position the bullet will move to

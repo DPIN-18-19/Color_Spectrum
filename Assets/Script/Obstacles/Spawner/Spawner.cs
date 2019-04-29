@@ -112,11 +112,9 @@ public class Spawner : MonoBehaviour
         s_home.position = home.position;
 
         // Insertar nuevo target
-        s_enemy.GetComponentInChildren<EnemyBehaviour>().ResetTarget(target);
+        s_enemy.GetComponentInChildren<EnemyBehaviour>().init_target = target;
         if (Random.Range(0, 4) == 0)
             s_enemy.GetComponentInChildren<EnemyBehaviour>().can_change_target = true;
-
-        s_enemy.GetComponentInChildren<EnemyBehaviour>().PauseMoveBySpawn(spawn_pause);
 
         // Pausar la patrulla durante un tiempo
         s_enemy.GetComponentInChildren<PatrolController>().PausePatrolBySpawn(spawn_pause);

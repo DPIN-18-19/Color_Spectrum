@@ -4,12 +4,11 @@ using UnityEngine;
 
 public class Destroy_Terminal : MonoBehaviour {
 
-    public GameObject mismo;
-
-	// Use this for initialization
-	void Start () {
-		
-	}
+    public ParticleSystem DestroyTerminal;
+    // Use this for initialization
+    void Start () {
+       
+    }
 	
 	// Update is called once per frame
 	void Update () {
@@ -18,7 +17,14 @@ public class Destroy_Terminal : MonoBehaviour {
 
     private void OnTriggerEnter(Collider other)
     {
-        Debug.Log("Destroy");
-        Destroy(mismo);
+        if (other.gameObject.tag == "Terminal")
+        {
+           
+            Destroy(other.transform.parent.gameObject);
+            Instantiate(DestroyTerminal.gameObject, other.transform.position, Quaternion.identity);
+
+            Destroy(gameObject); 
+        }
+
     }
 }

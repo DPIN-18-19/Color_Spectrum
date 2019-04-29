@@ -14,6 +14,8 @@ public class AbilityController : MonoBehaviour
     AutoColor a_autocolor;
     throw_gre a_grenade;
     activate_Shield a_shield;
+    Slow_Motion a_slow;
+    Dash_explosivo a_dash_e;
 
     // Use this for initialization
     void Awake ()
@@ -24,13 +26,9 @@ public class AbilityController : MonoBehaviour
         a_autocolor = holder.GetComponent<AutoColor>();
         a_grenade = holder.GetComponent<throw_gre>();
         a_shield = holder.GetComponent<activate_Shield>();
+        a_slow = holder.GetComponent<Slow_Motion>();
+        a_dash_e = holder.GetComponent<Dash_explosivo>();
     }
-	
-	// Update is called once per frame
-	void Update ()
-    {
-		
-	}
 
     // Activar una habilidad mediante un nombre
     public void ActivateAbility(string name)
@@ -56,7 +54,11 @@ public class AbilityController : MonoBehaviour
             case "Shield":
                 a_shield.enabled = true;
                 break;
-
+            case "SlowMotion":
+                a_slow.enabled = true;
+                break;
+            case "DashExplosion":
+                a_dash_e.enabled = true;
                 break;
             default:
                 cur_ability = "";
@@ -86,6 +88,12 @@ public class AbilityController : MonoBehaviour
                 break;
             case "Shield":
                 a_shield.enabled = false;
+                break;
+            case "SlowMotion":
+                a_slow.enabled = false;
+                break;
+            case "DashExplosion":
+                a_dash_e.enabled = false;
                 break;
             default:
                 break;

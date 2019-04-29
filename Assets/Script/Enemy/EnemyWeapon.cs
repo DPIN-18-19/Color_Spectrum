@@ -55,6 +55,7 @@ public class EnemyWeapon : MonoBehaviour
     protected AudioSource a_source;
     [Header("Efectos de Sonido")]
     public AudioClip FXShotEnemy;
+    public float VolumeFXShotEnemy = 1;
 
     ///////////////////////////////////////////////
     //Ralentizar
@@ -95,7 +96,7 @@ public class EnemyWeapon : MonoBehaviour
         if (shot_c < 0 && is_shooting == true)
         {
             AddaptColor();
-            a_source.PlayOneShot(FXShotEnemy);
+            a_source.PlayOneShot(FXShotEnemy, VolumeFXShotEnemy);
 
             GameObject bullet_shot = Instantiate(bullet, fire_pos.position, fire_pos.rotation);
             Vector3 bullet_dir = transform.forward;

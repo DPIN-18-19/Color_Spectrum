@@ -62,6 +62,7 @@ public class DetectionController : MonoBehaviour
             if (hits[i].transform.gameObject.tag == target.tag)
                 my_target = i;
         }
+        //Debug.Log("Target is "+ hits[my_target].transform.name);
 
         // El usuario no ha detectado al objetivo
         if (hits.Length == 0 || my_target == hits.Length)
@@ -71,21 +72,23 @@ public class DetectionController : MonoBehaviour
         for (int i = 0; i < hits.Length; ++i)
         {
             // No comprobar objetivo de nuevo
-            if (i == my_target)
-                continue;
-            else
+            if (i != my_target)
             { 
+
                 float obstacle_dist = Vector3.Distance(transform.position, hits[i].point);
 
                 // Se puede ver a través del obstáculo
                 if (obstacle_dist < target_dir.magnitude)
                     if (GetComponent<Enemy>().cur_color.ToString() != hits[i].transform.gameObject.tag)
                     {
+                        Debug.Log("Target is " + hits[i].transform.name);
+
                         return false;
                     }
             }
         }
-
+        Debug.Log("Target is Thanos " + hits[my_target].transform.name);
         return true;
+
     }
 }
