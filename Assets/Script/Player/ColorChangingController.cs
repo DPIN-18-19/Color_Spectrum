@@ -211,13 +211,13 @@ public class ColorChangingController : MonoBehaviour {
     }
     private void OnTriggerStay(Collider col)
     {
-        if(col.gameObject.tag == "ParedNoCambioRosa" && this.gameObject.layer == 10 )
+        if(col.gameObject.tag == "ParedNoCambioPink" && this.gameObject.layer == 10 )
         {
             same_color = true;
             Debug.Log("NoPasarRosa");
             
         }
-        if (col.gameObject.tag == "ParedNoCambioAzul" && this.gameObject.layer == 9 )
+        if (col.gameObject.tag == "ParedNoCambioBlue" && this.gameObject.layer == 9 )
         {
 
             same_color = true;

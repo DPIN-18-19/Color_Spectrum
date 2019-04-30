@@ -15,7 +15,7 @@ public class Amplificador : MonoBehaviour {
 
 
     public ColorChangingController cambioColor;
-    public GameObject player;
+    
 
     Vector3 NewSize;
 
@@ -23,8 +23,7 @@ public class Amplificador : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
         tiempoNoHacerDaño = tiempoinmuneravilidad;
-        player = GameObject.Find("Player_Naomi");
-        cambioColor = player.GetComponent<ColorChangingController>();
+        cambioColor = GameObject.Find("Player_Naomi").GetComponent<ColorChangingController>();
     }
 	
 	// Update is called once per frame
