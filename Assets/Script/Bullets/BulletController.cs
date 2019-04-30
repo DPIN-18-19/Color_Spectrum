@@ -55,8 +55,8 @@ public class BulletController : MonoBehaviour
     private AudioSource source;
 
     PlayerRenderer MaterialsPlayer;
-    
-   
+
+    Rigidbody myBody;
 
     public bool Sniper;
 
@@ -65,6 +65,7 @@ public class BulletController : MonoBehaviour
     // Use this for initialization
     private void Awake()
     {
+        myBody = GetComponent<Rigidbody>();
         source = gameObject.GetComponent<AudioSource>();
     }
 
@@ -428,10 +429,13 @@ public class BulletController : MonoBehaviour
 
     protected void MoveBullet()
     {
+        myBody.velocity = bullet_dir * -bullet_speed / ralentizarVelocidad;
+
+        /*
         Vector3 final_pos = transform.position + bullet_dir * -bullet_speed * Time.deltaTime ;
         // Move only if no collision is found
         if (!PeekNextPosition(final_pos))
-            transform.position += bullet_dir * -bullet_speed * Time.deltaTime/ ralentizarVelocidad;
+            transform.position += bullet_dir * -bullet_speed * Time.deltaTime/ralentizarVelocidad;*/
     }
 
     // Check next position the bullet will move to
