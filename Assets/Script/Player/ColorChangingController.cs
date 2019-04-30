@@ -28,8 +28,9 @@ public class ColorChangingController : MonoBehaviour {
     public float VolumeFxNoChangeColor = 1;
     AudioSource source;
 
-    // Variables de cambio de color 
-    bool same_color;                     // Estado "MismoColor"
+    // Variables de cambio de color
+    [HideInInspector]
+    public bool same_color;                     // Estado "MismoColor"
     float same_color_c = 0;                  // Contador en estado "MismoColor"
     public float same_color_dur;                // Duracion de "MismoColor"
     public float same_color_glitch_dur;         // Duracion de primera fase de "Mismo Color"
@@ -115,12 +116,13 @@ public class ColorChangingController : MonoBehaviour {
             //////////
 
 
-            Debug.Log("Contando NoCambioColor");
+            Debug.Log("Contando NoCambioColor ");
             same_color_c += Time.deltaTime;
 
             // Estado "Glitch" al inicio de pared
             if (same_color_c < same_color_glitch_dur)
             {
+                Debug.Log("Hello");
                 MaterialsPlayer.BlackGlitchColor();
             }
             else

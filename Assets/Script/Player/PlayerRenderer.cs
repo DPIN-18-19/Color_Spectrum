@@ -88,6 +88,7 @@ public class PlayerRenderer : MonoBehaviour
     // Reset Colors
     public void ResetColor()
     {
+        Debug.Log("Restting");
         switch (cur_color)
         {
             case 0:

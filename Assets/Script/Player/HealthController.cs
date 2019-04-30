@@ -39,8 +39,8 @@ public class HealthController : MonoBehaviour
     public float MaxTimeHealhthMat;
     public bool curar;
 
-    public float TimeGlitchtheMat;
-    public float MaxGlitchthMat;
+    //public float TimeGlitchtheMat;
+    //public float MaxGlitchthMat;
     public bool ParedNopasar;
    
     public ColorChangingController BlackGlitch;
@@ -124,12 +124,12 @@ public class HealthController : MonoBehaviour
         if (Daño == false)
         {
             FxDamageOnlyOne = true;
-            if (ParedNopasar == false)
+            if (cambioColor.same_color == false)
             {
                 MaterialsPlayer.ResetColor();
                 TimeDamageMat = MaxTimeDamageMat;
             }
-            if(ParedNopasar == true)
+            if(cambioColor.same_color == true)
             {
                 MaterialsPlayer.BlackColor();
                 TimeDamageMat = MaxTimeDamageMat;

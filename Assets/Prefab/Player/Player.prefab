@@ -11864,8 +11864,6 @@ MonoBehaviour:
   TimeHealtheMat: 0.7
   MaxTimeHealhthMat: 0.7
   curar: 0
-  TimeGlitchtheMat: 0.67
-  MaxGlitchthMat: 0.67
   ParedNopasar: 0
   BlackGlitch: {fileID: 114451129755308060}
   MovePlayer: {fileID: 114081732494132398}
@@ -12038,15 +12036,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 07f017e74462fc3418d69f1824a0b48c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ParedCambioNo: 0
-  DuracionMismoColor: 0.67
-  MaxDuracion: 4
   cur_color: 0
   init_color: 0
   FxCambioColor: {fileID: 8300000, guid: 95b0c667a5ca8f345b2798680b90ca1d, type: 3}
   VolumeFxCambioColor: 0.6
   FxNoChangeColor: {fileID: 0}
   VolumeFxNoChangeColor: 0.6
+  same_color: 0
+  same_color_dur: 4
+  same_color_glitch_dur: 0.6
 --- !u!114 &114470462089029236
 MonoBehaviour:
   m_ObjectHideFlags: 1
