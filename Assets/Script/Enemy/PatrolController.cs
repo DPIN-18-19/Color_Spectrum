@@ -36,9 +36,7 @@ public class PatrolController : MonoBehaviour
         if (nav_agent == null)
             nav_agent = GetComponent<NavMeshAgent>();
         anim = gameObject.GetComponent<Animator>();
-
-        Debug.Log("Starting");
-
+        
         // Inicializar datos
         SearchPatrolPoints();
         ResetPatrol();

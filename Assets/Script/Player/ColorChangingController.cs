@@ -10,13 +10,9 @@ public class ColorChangingController : MonoBehaviour {
         Cyan,           // Cyan = 1
         Magenta         // Magenta = 2
     };
-
-
-    public bool ParedCambioNo;
-    public float DuracionMismoColor;
-    public float MaxDuracion;
-
+    
     private PlayerRenderer MaterialsPlayer;
+    HealthController health;
 
     public Colors cur_color;                    // Current selected color
     int i_cur_color;                            // Current selected color (number)
@@ -32,8 +28,13 @@ public class ColorChangingController : MonoBehaviour {
     public float VolumeFxNoChangeColor = 1;
     AudioSource source;
 
-
+    // Variables de cambio de color 
+    bool same_color;                     // Estado "MismoColor"
+    float same_color_c = 0;                  // Contador en estado "MismoColor"
+    public float same_color_dur;                // Duracion de "MismoColor"
+    public float same_color_glitch_dur;         // Duracion de primera fase de "Mismo Color"
     private bool DoOnce = true;
+
     //////////////////////////////////////////////////////////////////////////////
 
     // Events
@@ -60,11 +61,10 @@ public class ColorChangingController : MonoBehaviour {
     // Use this for initialization
     void Start ()
     {
-     
+        health = GetComponent<HealthController>();
+
         num_colors = System.Enum.GetNames(typeof(Colors)).Length;
         do_update = true;
-
-       
     }
 	
 	// Update is called once per frame
@@ -80,7 +80,7 @@ public class ColorChangingController : MonoBehaviour {
         // Change colors forward
         if(Input.GetKeyDown(KeyCode.E))
         {
-            if (ParedCambioNo == false){
+            if (same_color == false){
 
                 i_cur_color = (int)cur_color;
                 i_cur_color = Loop(i_cur_color + 1, num_colors);
@@ -93,32 +93,53 @@ public class ColorChangingController : MonoBehaviour {
         // Change Colors backwards
         if (Input.GetKeyDown(KeyCode.Q))
         {
-            if (ParedCambioNo == false){
+            if (same_color == false){
                
                 i_cur_color = (int)cur_color;
-            i_cur_color = Loop(i_cur_color - 1, num_colors);
-            cur_color = (Colors)i_cur_color;
-            do_update = true;
+                i_cur_color = Loop(i_cur_color - 1, num_colors);
+                cur_color = (Colors)i_cur_color;
+                do_update = true;
                 source.PlayOneShot(FxCambioColor, VolumeFxNoChangeColor);
             }
         }
-        if(ParedCambioNo == true)
-        {
-            if (DoOnce)
-            {
-                source.PlayOneShot(FxNoChangeColor);
-                DoOnce = false;
-            }
 
-            DuracionMismoColor += Time.deltaTime;
-            if(DuracionMismoColor > MaxDuracion)
+        if(same_color)
+        {
+            //if (DoOnce)
+            //{
+
+            //    DoOnce = false;
+            //}
+
+
+            //////////
+
+
+            Debug.Log("Contando NoCambioColor");
+            same_color_c += Time.deltaTime;
+
+            // Estado "Glitch" al inicio de pared
+            if (same_color_c < same_color_glitch_dur)
             {
-               ParedCambioNo = false;
-               DuracionMismoColor = 0;
-                DoOnce = true;
-               
+                MaterialsPlayer.BlackGlitchColor();
             }
-           
+            else
+            {
+                if(health.Daño)
+                    MaterialsPlayer.DamageColor();
+                else
+                    MaterialsPlayer.BlackColor();
+            }
+            
+            // Ejecutar al terminar tiempo de "Negro"
+            if(same_color_c > same_color_dur)
+            {
+                Debug.Log("NoCambioColor Vuelta");
+                same_color = false;
+                same_color_c = 0;
+                MaterialsPlayer.ResetColor();
+                source.PlayOneShot(FxNoChangeColor);
+            }
         }
     }
 
@@ -190,22 +211,22 @@ public class ColorChangingController : MonoBehaviour {
     {
         if(col.gameObject.tag == "ParedNoCambioRosa" && this.gameObject.layer == 10 )
         {
-            ParedCambioNo = true;
-                Debug.Log("NoPasarRosa");
+            same_color = true;
+            Debug.Log("NoPasarRosa");
             
         }
         if (col.gameObject.tag == "ParedNoCambioAzul" && this.gameObject.layer == 9 )
         {
-            
-            ParedCambioNo = true;
-                Debug.Log("NoPasarAzul");
+
+            same_color = true;
+            Debug.Log("NoPasarAzul");
             
         }
         if (col.gameObject.tag == "ParedNoCambioYellow" && this.gameObject.layer == 8 )
         {
-            
-            ParedCambioNo = true;
-                Debug.Log("NoPasarYellow");
+
+            same_color = true;
+            Debug.Log("NoPasarYellow");
             
         }
     }

@@ -22,10 +22,8 @@ public class KillCondition : MonoBehaviour
 
     private void Start()
     {
-        Debug.Log("Start Kill Condition");
         if (kill_enemies == null)
         {
-            Debug.Log("New kill enemy list");
             kill_enemies = new List<GameObject>();
         }
 
@@ -39,7 +37,6 @@ public class KillCondition : MonoBehaviour
     {
         if (kill_enemies == null)
         {
-            Debug.Log("New kill enemy list");
             kill_enemies = new List<GameObject>();
         }
 
@@ -60,11 +57,8 @@ public class KillCondition : MonoBehaviour
     {
         if (kill_checking)
         {
-            Debug.Log("Checking");
-
             if (kill_enemies.Count > survivour_num)
             {
-                Debug.Log("Enemies alive " + kill_enemies.Count);
                 for (int i = 0; i < kill_enemies.Count; ++i)
                 {
                     if (kill_enemies[i] == null)
@@ -90,7 +84,6 @@ public class KillCondition : MonoBehaviour
     public void SwitchKill()
     {
         kill_checking = !kill_checking;
-        Debug.Log("Kill_checking is " + kill_checking);
     }
 
     public void SurvivourAmount(int amount)

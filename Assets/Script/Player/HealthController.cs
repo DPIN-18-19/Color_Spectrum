@@ -158,35 +158,36 @@ public class HealthController : MonoBehaviour
             curar = false;
         }
         
-        if(cambioColor.ParedCambioNo == true)
-        {
-            ParedNopasar = true;
-            TimeGlitchtheMat += Time.deltaTime;
-            if (TimeGlitchtheMat < MaxGlitchthMat)
-            {
-                MaterialsPlayer.BlackGlitchColor();
-            }
-            if (TimeGlitchtheMat > MaxGlitchthMat && Daño == false )
-            {
-                MaterialsPlayer.BlackColor();
-            }
-            if (TimeGlitchtheMat > MaxGlitchthMat && Daño == true)
-            {
+        //if(cambioColor.ParedCambioNo == true)
+        //{
+        //    ParedNopasar = true;
+        //    TimeGlitchtheMat += Time.deltaTime;
 
-                MaterialsPlayer.DamageColor();
+        //    // Estado "Glitch" al inicio de pared
+        //    if (TimeGlitchtheMat < MaxGlitchthMat)
+        //    {
+        //        MaterialsPlayer.BlackGlitchColor();
+        //    }
 
-                // TimeDamageMat -= Time.deltaTime;
-
-            }
-
-
-            if (TimeGlitchtheMat > cambioColor.MaxDuracion)
-            {
-                MaterialsPlayer.ResetColor();
-                TimeGlitchtheMat = 0;
-                ParedNopasar = false;
-            }
-        }
+        //    // Estado "Negro" tras estado "Glitch"
+        //    if (TimeGlitchtheMat > MaxGlitchthMat && Daño == false )
+        //    {
+        //        MaterialsPlayer.BlackColor();
+        //    }
+        //    // Cambio a "Dano" mientras estado "Negro"
+        //    if (TimeGlitchtheMat > MaxGlitchthMat && Daño == true)
+        //    {
+        //        MaterialsPlayer.DamageColor();
+        //        // TimeDamageMat -= Time.deltaTime;
+        //    }
+            
+        //    if (TimeGlitchtheMat > cambioColor.MaxDuracion)
+        //    {
+        //        MaterialsPlayer.ResetColor();
+        //        TimeGlitchtheMat = 0;
+        //        ParedNopasar = false;
+        //    }
+        //}
     }
 
     // Check if dead
