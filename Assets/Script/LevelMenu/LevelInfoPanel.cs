@@ -25,7 +25,8 @@ public class LevelInfoPanel : MonoBehaviour, IPointerEnterHandler, IPointerExitH
     // Cancel button
     Button cancel_b;
     bool is_selected = false;
-    bool allow_cancel = true;
+    [HideInInspector]
+    public bool allow_cancel = true;
 
     private void Start()
     {
@@ -57,6 +58,7 @@ public class LevelInfoPanel : MonoBehaviour, IPointerEnterHandler, IPointerExitH
     {
         if(is_selected && allow_cancel)
         {
+            Debug.Log("Allowed");
             if(Input.GetMouseButtonDown(0))
             {
                 CancelSelected();
@@ -104,6 +106,8 @@ public class LevelInfoPanel : MonoBehaviour, IPointerEnterHandler, IPointerExitH
         }
 
         scene_name = data.scene_name;
+
+        // Evitar que se deseleccione en el mismo frame
         StartCoroutine(FrameSkip());
     }
 
@@ -113,7 +117,7 @@ public class LevelInfoPanel : MonoBehaviour, IPointerEnterHandler, IPointerExitH
 
         yield return new WaitForEndOfFrame();
         is_selected = true;
-        allow_cancel = true;
+        //allow_cancel = true;
     }
 
     void LoadSelectedLevel()

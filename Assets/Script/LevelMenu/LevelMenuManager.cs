@@ -70,6 +70,12 @@ public class LevelMenuManager : MonoBehaviour
     {
         //if (selection.id == data.id)
         //    return false;
+        if (IsSameSelection(data.id))
+        {
+            Debug.Log("Detected same selection");
+            return false;
+        }
+
         Deselect();
         selection.Clone(data);
         //info_p.gameObject.SetActive(true);
@@ -78,8 +84,19 @@ public class LevelMenuManager : MonoBehaviour
         return true;
     }
 
+    public bool IsSameSelection(int id)
+    {
+        Debug.Log("Comparing " + selection.id + " " + id);
+
+        if (selection.id == id)
+            return true;
+        else
+            return false;
+    }
+
     public void Deselect()
     {
+        Debug.Log("You are deselecting");
         // Deseleccionar objeto específico
         for(int i = 0; i < level_icons.Count; ++i)
         {
@@ -140,5 +157,11 @@ public class LevelMenuManager : MonoBehaviour
                     levels_l.levels[i].unlocked = true;
             }
         }
+    }
+
+    public void AllowDeselection(bool allow)
+    {
+        Debug.Log("Allow gets " + allow);
+        info_p.GetComponent<LevelInfoPanel>().allow_cancel = allow;
     }
 }
