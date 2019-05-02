@@ -12,12 +12,16 @@ public class ScoreScreen : MonoBehaviour
     public ScoreList level_scores;
     public string NextLevel;
 
+ 
+
     private void Awake()
     {
     }
 
     private void Start()
     {
+        
+
     }
 
     public void Init()
@@ -59,7 +63,7 @@ public class ScoreScreen : MonoBehaviour
         PlayerManager.Instance.AddMoney(ScoreManager.Instance.GetFinalScore());
         LevelMenuManager.Instance.UpdateScoreInfo();
 
-        // Actualizar desbloqueables
+       // Actualizar desbloqueables
         UnlockMan.Instance.LevelUnlock();
         UnlockMan.Instance.StoreUnlock(LevelMenuManager.Instance.selection.name);
 
@@ -72,15 +76,16 @@ public class ScoreScreen : MonoBehaviour
             UnlockMan.Instance.ScoreLevelUnlock(LevelMenuManager.Instance.selection.name);
         }
 
-
+        Debug.Log("PasoPorAqui");
         //UnityEngine.SceneManagement.SceneManager.LoadScene("Store");
         //SceneMan1.Instance.LoadSceneByName(NextLevel);
-
+        
         this.Invoke("LoadNext", 5);
     }
 
     void LoadNext()
     {
+
         SceneMan1.Instance.LoadSceneByName(NextLevel);
         //UnityEngine.SceneManagement.SceneManager.LoadScene("Store");
     }

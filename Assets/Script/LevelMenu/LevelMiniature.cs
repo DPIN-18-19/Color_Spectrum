@@ -12,11 +12,14 @@ public class LevelMiniature : MonoBehaviour, IPointerDownHandler, IPointerEnterH
     private bool select;
     public float Intesity;
     Transform outline_i;
+    LevelInfoPanel infoPanel;
+    public GameObject ObjectSelect;
     //Transform locked_i;
     //Transform unlocked_i;
 
     private void Start()
     {
+        infoPanel = GameObject.Find("InfoPanel").GetComponent<LevelInfoPanel>();
         colour = MaterialColor.GetColor("_EmissionColor");
         outline_i = transform.Find("Outline");
        // locked_i = transform.Find("Locked");
@@ -29,14 +32,26 @@ public class LevelMiniature : MonoBehaviour, IPointerDownHandler, IPointerEnterH
         }
     }
 
+    private void Update()
+    {
+        if (infoPanel.ClickButton && select)
+        {
+            colour /= Intesity;
+            MaterialColor.SetColor("_EmissionColor", colour);
+        }
+        Debug.Log(select);
+    }
+
     public void OnPointerDown(PointerEventData p_data)
     {
         Debug.Log("OnPointerDown");
-        select = true;
+       
         if (data.unlocked)
         {
             if (LevelMenuManager.Instance.MakeSelection(data))
             {
+                select = true;
+                LevelMenuManager.Instance.AllowDeselection(false);
                 outline_i.gameObject.SetActive(true);
             }
         }
@@ -48,37 +63,48 @@ public class LevelMiniature : MonoBehaviour, IPointerDownHandler, IPointerEnterH
 
         if (select == false)
         {
-
             colour *= Intesity;
             MaterialColor.SetColor("_EmissionColor", colour);
         }
-            
-        
+        if (select == true)
+        {
+            LevelMenuManager.Instance.AllowDeselection(false);
+        }
+
+
     }
     public void OnPointerExit(PointerEventData p_data)
     {
         if (select == false)
         {
+           
             colour /= Intesity;
             MaterialColor.SetColor("_EmissionColor", colour);
         }
-
-
-    }
-
-
-    void OnMouseDown()
-    {
-        Debug.Log("OnMouseDown");
-
-        if (data.unlocked)
+        if (select == true)
         {
-            if (LevelMenuManager.Instance.MakeSelection(data))
-            {
-                outline_i.gameObject.SetActive(true);
-            }
+            LevelMenuManager.Instance.AllowDeselection(true);
         }
     }
+    //void OnMouseDown()
+    //{
+    //    Debug.Log("OnMouseDown");
+    //    if(select == true)
+    //    {
+    //        colour /= Intesity;
+    //        MaterialColor.SetColor("_EmissionColor", colour);
+    //    }
+    //    if (data.unlocked)
+    //    {
+    //        if (!LevelMenuManager.Instance.IsSameSelection(data.name))
+    //        {
+    //            if (LevelMenuManager.Instance.MakeSelection(data))
+    //            {
+    //                outline_i.gameObject.SetActive(true);
+    //            }
+    //        }
+    //    }
+    //}
 
     public void Deselect()
     {

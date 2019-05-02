@@ -8,12 +8,15 @@ public class PlayerRotation : MonoBehaviour
     
     private float weapon_height;    // Altura del arma
 
+    public bool isRotate = true;
+
     // Use managers better at some point
    
 
 
     private void Start()
     {
+        isRotate = true;
         //cam = FindObjectOfType<Camera>();
         if (PlayerManager.Instance != null)
         {
@@ -29,6 +32,7 @@ public class PlayerRotation : MonoBehaviour
 
     private void LateUpdate()
     {
+        if(isRotate)
         Rotation();
     }
 

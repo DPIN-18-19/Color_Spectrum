@@ -24,9 +24,11 @@ public class ShowScore : MonoBehaviour
 
     void ShowScoreScreen()
     {
+        
         ScoreScreen.SetActive(true);
         ScoreScreen.GetComponentInChildren<ScoreScreen>().UpdateStats();
-       // Time.timeScale = 0.0f;
+        Debug.Log("EstoyAqui");
+        // Time.timeScale = 0.0f;
         ScoreManager.Instance.is_result_active = true;
     }
 }

@@ -68,14 +68,22 @@ public class LevelMenuManager : MonoBehaviour
 
     public bool MakeSelection(LevelData data)
     {
-        //if (selection.id == data.id)
-        //    return false;
+        if (IsSameSelection(data.id))
+            return false;
         Deselect();
         selection.Clone(data);
         //info_p.gameObject.SetActive(true);
         info_p.GetComponent<LevelInfoPanel>().TextAppear();
         info_p.GetComponent<LevelInfoPanel>().UpdateInfo(selection);
         return true;
+    }
+
+    public bool IsSameSelection(int id)
+    {
+        if (selection.id == id)
+            return true;
+        else
+            return false;
     }
 
     public void Deselect()
@@ -140,5 +148,11 @@ public class LevelMenuManager : MonoBehaviour
                     levels_l.levels[i].unlocked = true;
             }
         }
+    }
+    //Permitir o no la deseleccion
+    public void AllowDeselection(bool allow)
+    {
+        Debug.Log("Allow gets " + allow);
+        info_p.GetComponent<LevelInfoPanel>().allow_cancel = allow;
     }
 }

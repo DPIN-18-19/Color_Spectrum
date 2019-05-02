@@ -70,7 +70,7 @@ public class WeaponController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (is_firing)
+        if (is_firing && !ScoreManager.Instance.is_result_active)
         {
             //Debug.Log(gun.GetComponent<GunController>().GetType().Name);
             gun.GetComponent<GunController>().FireBullet();
