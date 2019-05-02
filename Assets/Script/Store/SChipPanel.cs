@@ -28,9 +28,12 @@ public class SChipPanel : MonoBehaviour
     public bool select_click = false;   // Click de selección. Evitar varias operaciones con el mismo click.
     public bool allow_click = true;     // Permitir selección/deselección en ciertas áreas
 
+    // Scroll
     public int scroll_min;              // Minimo numero de filas para incluir scroll
     public float display_step;          // Tamaño de un aumento de ventana display
     float org_height;
+    bool is_loading = true;
+    float load_c = 0.2f;
 
     private void Awake()
     {
@@ -50,6 +53,7 @@ public class SChipPanel : MonoBehaviour
             GameObject n_chip = Instantiate(schip_mould);
             n_chip.transform.SetParent(display_p);
             n_chip.GetComponent<StoreChip>().data.Clone(store_chips.schip_l[i]);
+            n_chip.GetComponent<StoreChip>().Init();
             //n_chip.GetComponent<StoreChip>().u_data.Clone(store_chips.chips[i]);
         }
 
@@ -57,13 +61,13 @@ public class SChipPanel : MonoBehaviour
 
         ItemPurchasable();
         RowsOnDisplay();
-
-        // Colocar la barra al inicio. La barra se reajusta en el segundo frame tras la rescalación
-        display_scroll.GetComponent<Scrollbar>().value = 0.0f;
     }
 
     private void Update()
     {
+        if (is_loading)
+            IsLoading();
+
         if (Input.GetMouseButtonDown(0))
         {
             if (chip_to_buy.store_id != 0 && !select_click && allow_click)
@@ -186,6 +190,15 @@ public class SChipPanel : MonoBehaviour
             // Calculate height of the new rect
             display_p.GetComponent<RectTransform>().sizeDelta = new Vector2(display_p.GetComponent<RectTransform>().sizeDelta.x, display_step * num_rows);
         }
-        
+    }
+
+    void IsLoading()
+    {
+        load_c -= Time.deltaTime;
+        // Colocar la barra al inicio. La barra se reajusta en el segundo frame tras la rescalación
+        display_scroll.GetComponent<Scrollbar>().value = 1.0f;
+
+        if (load_c < 0)
+            is_loading = false;
     }
 }

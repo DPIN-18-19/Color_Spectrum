@@ -19,8 +19,16 @@ public class StoreChip : MonoBehaviour, IPointerDownHandler
     GameObject my_hover_tooltip;                    // Referencia al tooltip creado
     
     bool purchasable = true;                        // Alcanza el dinero a comprarlo
+
+    bool is_init;
     
     private void Start()
+    {
+        if (!is_init)
+            Init();
+    }
+
+    public void Init()
     {
         canvas = GetComponentInParent<Canvas>().transform;          // Coger el canvas de la interfaz
         display_p = GetComponentInParent<SChipPanel>().transform;
@@ -28,6 +36,7 @@ public class StoreChip : MonoBehaviour, IPointerDownHandler
         WritePrice();
         money_symbol = transform.Find("PricePanel").Find("Symbol").GetComponent<Image>();
         outline = transform.Find("Outline");
+        is_init = true;
     }
 
     // Escribir el precio del objeto

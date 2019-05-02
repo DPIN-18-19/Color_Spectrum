@@ -15,6 +15,7 @@ public class Loading : MonoBehaviour
        // Debug.Log("Loading " + SceneMan1.Instance.GetLoadScene());
         loading = SceneManager.LoadSceneAsync(SceneMan1.Instance.GetLoadScene(), LoadSceneMode.Additive);
         loading.allowSceneActivation = false;
+        SceneMan1.Instance.blackscreen.GetComponent<CanvasGroup>().alpha = 0;
         StartCoroutine(LoadingNewScene());
         //SceneManager.sceneLoaded += LoadScreenLoaded;
     }
@@ -23,8 +24,11 @@ public class Loading : MonoBehaviour
     // https://issuetracker.unity3d.com/issues/loadsceneasync-allowsceneactivation-flag-is-ignored-in-awake
     private void Update()
     {
-        if(loading.isDone)
+        if (loading.isDone)
+        {
+            SceneMan1.Instance.PostLoad();
             unloading = SceneManager.UnloadSceneAsync("Loading");
+        }
     }
 
     //void LoadScreenLoaded(Scene scene, LoadSceneMode mode)
