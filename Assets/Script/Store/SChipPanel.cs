@@ -43,6 +43,7 @@ public class SChipPanel : MonoBehaviour
         buy_b = transform.parent.Find("BuyButton").GetComponent<Button>();
         money_p = transform.parent.Find("MoneyPanel");
         info_p = transform.parent.Find("InfoPanel");
+       
         LoadChips();
     }
 
@@ -59,7 +60,9 @@ public class SChipPanel : MonoBehaviour
 
         org_height = display_p.GetComponent<RectTransform>().sizeDelta.y;
 
+        // Comprobar a que objetos alcanza el dinero
         ItemPurchasable();
+        // Ajustar tamano de ventana a lineas de objetos
         RowsOnDisplay();
     }
 

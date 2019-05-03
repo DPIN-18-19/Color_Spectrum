@@ -91,7 +91,7 @@ GameObject:
   - component: {fileID: 222524854463970356}
   - component: {fileID: 114199822067576088}
   m_Layer: 5
-  m_Name: Picture
+  m_Name: Icon
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -216,14 +216,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 0, b: 0, a: 1}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
     m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
-  m_Sprite: {fileID: 21300000, guid: 339a81b9cb0627d438ee6e7a5e96b01c, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 5cb22512c13da844abf8f03cb8cd5dc2, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -250,7 +250,7 @@ MonoBehaviour:
       m_Calls: []
     m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
-  m_Sprite: {fileID: 21300000, guid: 338d60ca39e0e2546a016197abca061e, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 2872a481b806cce42a1fe6ff7325ac40, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -269,14 +269,46 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a1006b12cc1a3114ca8af350fbed1b06, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  chip_type: 0
   data:
-    id: 
-    name: 
-    weight: 0
-    player_stats: []
-    weapon_stats: []
-    equipped: 0
+    store_id: 0
+    schip_type: 0
+    u_data:
+      id: 
+      name: 
+      display_icon: {fileID: 0}
+      weight: 0
+      player_stats: []
+      weapon_stats: []
+      equipped: 0
+      price: 0
+    g_data:
+      name: 
+      gun: {fileID: 0}
+      bullet: {fileID: 0}
+      speed: 0.2
+      damage: 5
+      range: 5
+      spray: 5
+      cadence: 0.5
+      num_bullets: 1
+      automatic: 1
+      weight: 10
+      ability: 
+      fx_shot: {fileID: 0}
+      display_icon: {fileID: 0}
+      price: 0
+    a_data:
+      id: 
+      name: 
+      is_instant: 1
+      cooldown_dur: 0
+      active_dur: 0
+      store_brief: 
+      tooltip_brief: 
+      display_icon: {fileID: 0}
+      weight: 0
+      equipped: 0
+      price: 0
     price: 0
   hover_tooltip: {fileID: 0}
 --- !u!114 &114878240385243134
@@ -302,8 +334,9 @@ MonoBehaviour:
 
 '
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
-  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 604bb7d86776f424081b08a913841253, type: 2}
+  m_sharedMaterial: {fileID: 21015390330326124, guid: 604bb7d86776f424081b08a913841253,
+    type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -413,7 +446,7 @@ MonoBehaviour:
       m_Calls: []
     m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
-  m_Sprite: {fileID: 21300000, guid: 431dc42723be5ee49900f1ecbf5dd85d, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 2ded1812a9e5c9f408b60bcc22ce7788, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -482,7 +515,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 305, y: 990}
+  m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!224 &224312394199504618
@@ -500,8 +533,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 90, y: 90}
+  m_AnchoredPosition: {x: 5.895, y: -0.29999}
+  m_SizeDelta: {x: 157, y: 156}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!224 &224334611546403532
 RectTransform:
@@ -518,8 +551,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0.24, y: -0.3}
-  m_SizeDelta: {x: 70, y: 70}
+  m_AnchoredPosition: {x: -0.21, y: 7.13}
+  m_SizeDelta: {x: 101.37, y: 92.17}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!224 &224480791820857394
 RectTransform:
@@ -536,7 +569,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 54.7, y: 0}
+  m_AnchoredPosition: {x: 44.7, y: 8.815}
   m_SizeDelta: {x: 28.37, y: 28.37}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!224 &224582746774174130
@@ -545,7 +578,7 @@ RectTransform:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1451327704003188}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
@@ -554,8 +587,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -0.35, y: 0}
-  m_SizeDelta: {x: 97.72, y: 100.51}
+  m_AnchoredPosition: {x: 5.895, y: -0.29999}
+  m_SizeDelta: {x: 157, y: 156}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!224 &224822307600842974
 RectTransform:
@@ -572,7 +605,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -18.37, y: -0.00000023842}
+  m_AnchoredPosition: {x: -28.7, y: 8.815}
   m_SizeDelta: {x: 108.47, y: 35.75}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!224 &224869000490019316
@@ -592,8 +625,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -0.0000070632, y: -71}
-  m_SizeDelta: {x: 145.21, y: 35.75}
+  m_AnchoredPosition: {x: 0.24001, y: -95.8}
+  m_SizeDelta: {x: 130, y: 46}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!225 &225661026397775672
 CanvasGroup:

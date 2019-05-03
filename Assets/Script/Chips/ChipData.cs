@@ -8,9 +8,10 @@ public class ChipData
     // Datos del chips
     public string id;                      // Identificador
     public string name;                    // Nombre de chip
-    public float weight;
-    public List<BonusStat> player_stats;   // Estadisticas nuevas jugador
-    public List<BonusStat> weapon_stats;   // Estadisticas nuevas arma
+    public Sprite display_icon;             // Icono de chip
+    public float weight;                    // Peso de chip
+    public List<BonusStat> player_stats;    // Estadisticas nuevas jugador
+    public List<BonusStat> weapon_stats;    // Estadisticas nuevas arma
     
     // Datos de inventario
     public bool equipped;
@@ -22,6 +23,7 @@ public class ChipData
     {
         id = other.id;
         name = other.name;
+        display_icon = other.display_icon;
         weight = other.weight;
         player_stats = other.player_stats;
         weapon_stats = other.weapon_stats;
