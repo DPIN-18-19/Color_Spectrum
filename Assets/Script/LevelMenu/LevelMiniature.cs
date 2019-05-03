@@ -83,7 +83,8 @@ public class LevelMiniature : MonoBehaviour, IPointerDownHandler, IPointerEnterH
         }
         if (select == true)
         {
-            LevelMenuManager.Instance.AllowDeselection(true);
+            LevelMenuManager.Instance.AllowDeselection(true
+                );
         }
     }
     //void OnMouseDown()

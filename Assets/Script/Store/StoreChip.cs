@@ -14,26 +14,56 @@ public class StoreChip : MonoBehaviour, IPointerDownHandler
     protected Transform canvas;                     // El canvas
     Transform display_p;                            // Ventana donde se situa el objeto
     Transform outline;                              // Recuadro de selección
+    Transform icon;                                 // Icono de chip
 
     public GameObject hover_tooltip;                // Objeto con el que se creara el tooltip
     GameObject my_hover_tooltip;                    // Referencia al tooltip creado
     
     bool purchasable = true;                        // Alcanza el dinero a comprarlo
+
+    bool is_init;
     
     private void Start()
     {
+        if (!is_init)
+            Init();
+    }
+
+    public void Init()
+    {
         canvas = GetComponentInParent<Canvas>().transform;          // Coger el canvas de la interfaz
         display_p = GetComponentInParent<SChipPanel>().transform;
+
         price_t = transform.Find("PricePanel").GetComponentInChildren<TextMeshProUGUI>();
         WritePrice();
         money_symbol = transform.Find("PricePanel").Find("Symbol").GetComponent<Image>();
+        icon = transform.Find("Icon");
+        DrawIcon();
         outline = transform.Find("Outline");
+        is_init = true;
     }
 
     // Escribir el precio del objeto
     void WritePrice()
     {
         price_t.text = data.price.ToString();
+    }
+
+    void DrawIcon()
+    {
+        switch(data.schip_type)
+        {
+            case SChipData.SChipType.Upgrade:
+                Debug.Log("werw");
+                icon.GetComponent<Image>().sprite = data.u_data.display_icon;
+                break;
+            case SChipData.SChipType.Weapon:
+                icon.GetComponent<Image>().sprite = data.g_data.display_icon;
+                break;
+            case SChipData.SChipType.Ability:
+                icon.GetComponent<Image>().sprite = data.a_data.display_icon;
+                break;
+        }
     }
 
     // El raton se situa encima del objeto y se ha detectado un click
