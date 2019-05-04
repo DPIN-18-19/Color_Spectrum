@@ -53,7 +53,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4574113443249442}
   - component: {fileID: 114668236771147586}
-  m_Layer: 18
+  m_Layer: 19
   m_Name: Volumen_Amarillo
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -70,7 +70,7 @@ GameObject:
   - component: {fileID: 4934948198441854}
   - component: {fileID: 95200462937838110}
   - component: {fileID: 65983694982473438}
-  m_Layer: 9
+  m_Layer: 8
   m_Name: Pared_Amarilla
   m_TagString: Blue
   m_Icon: {fileID: 0}
@@ -85,7 +85,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4798139454524232}
-  m_Layer: 9
+  m_Layer: 8
   m_Name: Art
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -153,8 +153,8 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1793808411154226}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 7.4770136, y: -0.00024112404, z: -10.201225}
-  m_LocalScale: {x: 1.2987013, y: 1, z: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 0.75, z: 1}
   m_Children:
   - {fileID: 4574113443249442}
   - {fileID: 4798139454524232}
@@ -213,8 +213,8 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 5.2982464, y: 4.014857, z: 1.2025893}
-  m_Center: {x: 0.015905963, y: 2.946804, z: -0.21558854}
+  m_Size: {x: 4, y: 4, z: 1}
+  m_Center: {x: 0, y: 3, z: -0.2}
 --- !u!95 &95200462937838110
 Animator:
   serializedVersion: 3
