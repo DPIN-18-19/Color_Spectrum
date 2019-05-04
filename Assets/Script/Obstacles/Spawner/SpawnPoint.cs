@@ -47,11 +47,16 @@ public class SpawnPoint : MonoBehaviour
     bool is_wave;                       // Comprobador de si se esta realizando una oleada
     public int survivour_num;           // Enemigos dentro de una oleada
 
-    float kill_c;
-    float kill_dur = 1;
+    float kill_c;                       // Contador de comprobacion de kill
+    float kill_dur = 1;                 // Duracion para comprobacion de kill
 
+    public bool can_reset;              // Resetear spawn al finalizar
 
-    public bool can_reset;             // Resetear spawn al finalizar
+    public bool can_trigger_at_end;     // Avisar de spawn terminado
+    bool is_end;
+    float end_c, end_dur = 1;
+    [HideInInspector]
+    public KillCondition all_spawnees;  // Todos los enemigos del spawn
 
     //////////////////////////////////////////////////////////
 
@@ -67,6 +72,11 @@ public class SpawnPoint : MonoBehaviour
             KillCondition n_kill = new KillCondition();
             wave_l.Add(n_kill);
         }
+
+        if(can_trigger_at_end)
+        {
+            all_spawnees = new KillCondition();
+        }
     }
 
 
@@ -77,7 +87,7 @@ public class SpawnPoint : MonoBehaviour
         {
             DoSpawning();
 
-            if (!is_wave)
+            if (!is_wave && !is_end)
             {
                 if (start_wave == WaveType.Time)
                     StartWaveByTime();
@@ -88,6 +98,11 @@ public class SpawnPoint : MonoBehaviour
                     StartWaveByTime();
                     CheckKill();
                 }
+            }
+
+            if(is_end)
+            {
+                CheckKillEnd();
             }
         }
     }
@@ -157,7 +172,19 @@ public class SpawnPoint : MonoBehaviour
         // Desactivarlo
         else
         {
-            active = false;
+            if (can_trigger_at_end)
+            {
+                is_wave = false;
+                is_end = true;
+                end_c = end_dur;
+                all_spawnees.SwitchKill();
+                // Llamar a funcion
+                //GetComponent<SpawnEnd>().ActivateEnd();
+            }
+            else
+            {
+                active = false;
+            }
         }
     }
 
@@ -166,18 +193,22 @@ public class SpawnPoint : MonoBehaviour
     {
         is_wave = false;
 
+        // Realizar preparativos respecto tipo de oleada
         switch (start_wave)
         {
+            // Oleada por tiempo
             case WaveType.Time:
                 Debug.Log("Wave Time");
                 next_spawn_c = next_wave_dur;
                 break;
+            // Oleada por muerte de todos
             case WaveType.KillAll:
                 Debug.Log("Wave Kill " + wave_it);
                 wave_l[wave_it].SwitchKill();
                 wave_l[wave_it].KillWave += StartWaveByKill;
                 kill_c = kill_dur;
                 break;
+            // Oleada tras matar a varios
             case WaveType.KillSome:
                 Debug.Log("Wave Kill Some " + wave_it);
                 wave_l[wave_it].SwitchKill();
@@ -185,6 +216,7 @@ public class SpawnPoint : MonoBehaviour
                 wave_l[wave_it].KillWave += StartWaveByKill;
                 kill_c = kill_dur;
                 break;
+            // Oleada tras tiempo o muerte de todos
             case WaveType.TimeForward:
                 Debug.Log("Wave Kill Time " + wave_it);
                 next_spawn_c = next_wave_dur;
@@ -239,10 +271,23 @@ public class SpawnPoint : MonoBehaviour
     {
         kill_c -= Time.deltaTime;
 
+        // Comprobar KillCondition cada tiempo n
         if (kill_c < 0)
         {
             kill_c = kill_dur;
             wave_l[wave_it].CheckKillCondition();
+        }
+    }
+
+    void CheckKillEnd()
+    {
+        end_c -= Time.deltaTime;
+
+        // Comprobar KillCondition cada tiempo n
+        if (end_c < 0)
+        {
+            end_c = end_dur;
+            all_spawnees.CheckKillCondition();
         }
     }
 
@@ -254,6 +299,12 @@ public class SpawnPoint : MonoBehaviour
             Debug.Log("Enemies in list " + wave_l[wave_it].kill_enemies.Count);
 
             wave_l[wave_it].kill_enemies.Add(enemy.gameObject);
+        }
+
+        if(can_trigger_at_end)
+        {
+            all_spawnees.kill_enemies.Add(enemy.gameObject);
+            Debug.Log("Included enemies " + all_spawnees.kill_enemies.Count);
         }
     }
 }

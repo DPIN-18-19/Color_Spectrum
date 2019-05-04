@@ -50,7 +50,7 @@ public class Beacon : MonoBehaviour
         // Comprobar estado de invencibilidad
         if (!is_invincible)
         {
-            Debug.Log("I got hit. Missing " + health);
+            //Debug.Log("I got hit. Missing " + health);
             isDamage = true;
             health -= damage;
             invincible_c = invincible_dur;

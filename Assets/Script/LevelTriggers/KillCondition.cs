@@ -8,7 +8,6 @@ public class KillCondition : MonoBehaviour
     // Eventos
 
     public delegate void Condition();
-
     public event Condition KillWave;
     
     ///////////////////////////////////////
@@ -22,10 +21,10 @@ public class KillCondition : MonoBehaviour
 
     private void Start()
     {
-        Debug.Log("Start Kill Condition");
+        //Debug.Log("Start Kill Condition");
         if (kill_enemies == null)
         {
-            Debug.Log("New kill enemy list");
+            //Debug.Log("New kill enemy list");
             kill_enemies = new List<GameObject>();
         }
 
@@ -39,7 +38,7 @@ public class KillCondition : MonoBehaviour
     {
         if (kill_enemies == null)
         {
-            Debug.Log("New kill enemy list");
+            //Debug.Log("New kill enemy list");
             kill_enemies = new List<GameObject>();
         }
 
@@ -69,7 +68,7 @@ public class KillCondition : MonoBehaviour
                 {
                     if (kill_enemies[i] == null)
                     {
-                        //Debug.Log("Dead");
+                        Debug.Log("Dead");
                         kill_enemies.RemoveAt(i);
                         break;
                     }
@@ -82,7 +81,6 @@ public class KillCondition : MonoBehaviour
                 if (KillWave != null)
                     KillWave();
             }
-            
         }
     }
 

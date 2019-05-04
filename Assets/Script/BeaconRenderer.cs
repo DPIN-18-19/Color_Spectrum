@@ -22,7 +22,6 @@ public class BeaconRenderer : MonoBehaviour {
 	void Update () {
 		if (Baliza.isDamage)
         {
-            Debug.Log("ChangeMaterial");
             m_Material.material = DamageMat;
             TimeMaterialDamage -= Time.deltaTime;
         }

@@ -333,7 +333,7 @@ public class EnemyBehaviour : MonoBehaviour
     {
         if (can_move)
         {
-            Debug.Log("Chasing");
+            //Debug.Log("Chasing");
             nav_agent.SetDestination(target.position);
             //nav_agent.speed = chase_speed;
 

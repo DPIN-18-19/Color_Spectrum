@@ -81,13 +81,13 @@ public class DetectionController : MonoBehaviour
                 if (obstacle_dist < target_dir.magnitude)
                     if (GetComponent<Enemy>().cur_color.ToString() != hits[i].transform.gameObject.tag)
                     {
-                        Debug.Log("Target is " + hits[i].transform.name);
+                        //Debug.Log("Target is " + hits[i].transform.name);
 
                         return false;
                     }
             }
         }
-        Debug.Log("Target is Thanos " + hits[my_target].transform.name);
+        //Debug.Log("Target is Thanos " + hits[my_target].transform.name);
         return true;
 
     }
